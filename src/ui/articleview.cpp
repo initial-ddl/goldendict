@@ -355,7 +355,7 @@ ArticleView::ArticleView( QWidget * parent, ArticleNetworkAccessManager & nm, Au
   settings->defaultSettings()->setAttribute( QWebEngineSettings::LocalContentCanAccessRemoteUrls, true );
   settings->defaultSettings()->setAttribute( QWebEngineSettings::LocalContentCanAccessFileUrls, true );
   settings->defaultSettings()->setAttribute( QWebEngineSettings::ErrorPageEnabled, false );
-  settings->defaultSettings()->setAttribute( QWebEngineSettings::PluginsEnabled, cfg.preferences.enableWebPlugins );
+  settings->defaultSettings()->setAttribute( QWebEngineSettings::PluginsEnabled, true );
   settings->defaultSettings()->setAttribute( QWebEngineSettings::PlaybackRequiresUserGesture, false );
   settings->defaultSettings()->setAttribute( QWebEngineSettings::JavascriptCanAccessClipboard, true );
   settings->defaultSettings()->setAttribute( QWebEngineSettings::PrintElementBackgrounds, false );
@@ -363,7 +363,7 @@ ArticleView::ArticleView( QWidget * parent, ArticleNetworkAccessManager & nm, Au
   settings->setAttribute( QWebEngineSettings::LocalContentCanAccessRemoteUrls, true );
   settings->setAttribute( QWebEngineSettings::LocalContentCanAccessFileUrls, true );
   settings->setAttribute( QWebEngineSettings::ErrorPageEnabled, false );
-  settings->setAttribute( QWebEngineSettings::PluginsEnabled, cfg.preferences.enableWebPlugins );
+  settings->setAttribute( QWebEngineSettings::PluginsEnabled, true );
   settings->setAttribute( QWebEngineSettings::PlaybackRequiresUserGesture, false );
   settings->setAttribute( QWebEngineSettings::JavascriptCanAccessClipboard, true );
   settings->setAttribute( QWebEngineSettings::PrintElementBackgrounds, false );
@@ -391,6 +391,13 @@ ArticleView::ArticleView( QWidget * parent, ArticleNetworkAccessManager & nm, Au
            &AnkiConnector::errorText,
            this,
            [ this ]( QString const & errorText ) { emit statusBarMessage( errorText ); } );
+
+  // Set up an Anki action if Anki integration is enabled in settings.
+  if ( cfg.preferences.ankiConnectServer.enabled ) {
+    sendToAnkiAction.setShortcut( QKeySequence( "Ctrl+Shift+N" ) );
+    webview->addAction( &sendToAnkiAction );
+    connect( &sendToAnkiAction, &QAction::triggered, this, &ArticleView::handleAnkiAction );
+  }
 }
 
 // explicitly report the minimum size, to avoid
@@ -532,8 +539,9 @@ void ArticleView::showDefinition( QString const & word, QStringList const & dict
   webview->setCursor( Qt::WaitCursor );
 }
 
-void ArticleView::sendToAnki(QString const & word, QString const & text, QString const & sentence ){
-  ankiConnector->sendToAnki(word,text,sentence);
+void ArticleView::sendToAnki( QString const & word, QString const & dict_definition, QString const & sentence )
+{
+  ankiConnector->sendToAnki( word, dict_definition, sentence );
 }
 
 void ArticleView::showAnticipation()
@@ -546,7 +554,6 @@ void ArticleView::inspectElement() { emit inspectSignal( webview->page() ); }
 
 void ArticleView::loadFinished( bool result )
 {
-  webview->setFocus();
   setZoomFactor( cfg.preferences.zoomFactor );
   QUrl url = webview->url();
   qDebug() << "article view loaded url:" << url.url().left( 200 ) << result;
@@ -576,38 +583,14 @@ void ArticleView::loadFinished( bool result )
   // Expand collapsed article if only one loaded
   webview->page()->runJavaScript( QString( "gdCheckArticlesNumber();" ) );
 
-  if( !Utils::Url::queryItemValue( url, "gdanchor" ).isEmpty() )
-  {
-    QString anchor = QUrl::fromPercentEncoding( Utils::Url::encodedQueryItemValue( url, "gdanchor" ) );
+  if( !Utils::Url::queryItemValue( url, "gdanchor" ).isEmpty() ) {
+    const QString anchor = QUrl::fromPercentEncoding( Utils::Url::encodedQueryItemValue( url, "gdanchor" ) );
 
     // Find GD anchor on page
-
-    int n = anchor.indexOf( '_' );
-    if( n == 33 )
-      // MDict pattern: ("g" + dictionary ID (33 chars total))_(articleID(quint64, hex))_(original anchor)
-      n = anchor.indexOf( '_', n + 1 );
-    else
-      n = 0;
-
-    if( n > 0 )
-    {
-      QString originalAnchor = anchor.mid( n + 1 );
-
-      int end = originalAnchor.indexOf('_');
-      QString hash=originalAnchor.left(end);
-      url.clear();
-      url.setFragment(hash);
-      webview->page()->runJavaScript(
-        QString( "window.location.hash = \"%1\"" ).arg( QString::fromUtf8( url.toEncoded() ) ) );
-      
-    }
-    else
-    {
-      url.clear();
-      url.setFragment( anchor );
-      webview->page()->runJavaScript(
-        QString( "window.location.hash = \"%1\"" ).arg( QString::fromUtf8( url.toEncoded() ) ) );
-    }
+    url.clear();
+    url.setFragment( anchor );
+    webview->page()->runJavaScript(
+      QString( "window.location.hash = \"%1\"" ).arg( QString::fromUtf8( url.toEncoded() ) ) );
   }
 
   //the click audio url such as gdau://xxxx ,webview also emit a pageLoaded signal but with the result is false.need future investigation.
@@ -1124,6 +1107,15 @@ void ArticleView::linkClickedInHtml( QUrl const & url_ )
     linkClicked( url_ );
   }
 }
+
+void ArticleView::makeAnkiCardFromArticle( QString const & article_id )
+{
+  auto const js_code = QString( R"EOF(document.getElementById("gdarticlefrom-%1").innerText)EOF" ).arg( article_id );
+  webview->page()->runJavaScript( js_code, [ this ]( const QVariant & article_text ) {
+    sendToAnki( webview->title(), article_text.toString(), translateLine->text() );
+  } );
+}
+
 void ArticleView::openLink( QUrl const & url, QUrl const & ref, QString const & scrollTo, Contexts const & contexts_ )
 {
   audioPlayer->stop();
@@ -1132,7 +1124,8 @@ void ArticleView::openLink( QUrl const & url, QUrl const & ref, QString const & 
   auto [valid, word] = Utils::Url::getQueryWord( url );
   if( valid && word.isEmpty() )
   {
-    // invalid gdlookup url.
+    //if valid=true and word is empty,the url must be a invalid gdlookup url.
+    //else if valid=false,the url should be external urls.
     return;
   }
 
@@ -1142,6 +1135,19 @@ void ArticleView::openLink( QUrl const & url, QUrl const & ref, QString const & 
     load( url );
   else if( url.scheme().compare( "ankisearch" ) == 0 ) {
     ankiConnector->ankiSearch( url.path() );
+    return;
+  }
+  else if ( url.scheme().compare( "ankicard" ) == 0 ) {
+    // If article id is set in path and selection is empty, use text from the current article.
+    // Otherwise, grab currently selected text and use it as the definition.
+    if ( !url.path().isEmpty() && webview->selectedText().isEmpty() ) {
+      makeAnkiCardFromArticle( url.path() );
+    }
+    else {
+      sendToAnki( webview->title(), webview->selectedText(), translateLine->text() );
+    }
+    qDebug() << "requested to make Anki card.";
+    return;
   }
   else if( url.scheme().compare( "bword" ) == 0 || url.scheme().compare( "entry" ) == 0 ) {
     if( Utils::Url::hasQueryItem( ref, "dictionaries" ) )
@@ -1617,6 +1623,18 @@ void ArticleView::forward()
   webview->forward();
 }
 
+void ArticleView::handleAnkiAction()
+{
+  // React to the "send *word* to anki" action.
+  // If selected text is empty, use the whole article as the definition.
+  if ( webview->selectedText().isEmpty() ) {
+    makeAnkiCardFromArticle( getActiveArticleId() );
+  }
+  else {
+    sendToAnki( webview->title(), webview->selectedText(), translateLine->text() );
+  }
+}
+
 void ArticleView::reload() { webview->reload(); }
 
 void ArticleView::hasSound( const std::function< void( bool ) > & callback )
@@ -1706,8 +1724,7 @@ void ArticleView::contextMenuRequested( QPoint const & pos )
   QAction * followLink = 0;
   QAction * followLinkExternal = 0;
   QAction * followLinkNewTab = 0;
-  QAction * lookupSelection = 0;
-  QAction * sendToAnkiAction = 0 ;
+  QAction * lookupSelection           = 0;
   QAction * lookupSelectionGr = 0;
   QAction * lookupSelectionNewTab = 0;
   QAction * lookupSelectionNewTabGr = 0;
@@ -1773,7 +1790,7 @@ void ArticleView::contextMenuRequested( QPoint const & pos )
       menu.addAction( saveSoundAction );
   }
 
-  QString selectedText = webview->selectedText();
+  QString const selectedText = webview->selectedText();
   QString text         = Utils::trimNonChar( selectedText );
 
   if ( text.size() && text.size() < 60 )
@@ -1844,12 +1861,12 @@ void ArticleView::contextMenuRequested( QPoint const & pos )
     menu.addAction( saveBookmark );
   }
 
-  // add anki menu
-  if( !text.isEmpty() && cfg.preferences.ankiConnectServer.enabled )
-  {
-    QString txt      = webview->title();
-    sendToAnkiAction = new QAction( tr( "&Send \"%1\" to anki with selected text." ).arg( txt ), &menu );
-    menu.addAction( sendToAnkiAction );
+  // Add anki menu (if enabled)
+  // If there is no selected text, it will extract text from the current article.
+  if ( cfg.preferences.ankiConnectServer.enabled ) {
+    menu.addAction( &sendToAnkiAction );
+    sendToAnkiAction.setText( webview->selectedText().isEmpty() ? tr( "&Send Current Article to Anki" ) :
+                                                                  tr( "&Send selected text to Anki" ) );
   }
 
   if( text.isEmpty() && !cfg.preferences.storeHistory)
@@ -1946,8 +1963,9 @@ void ArticleView::contextMenuRequested( QPoint const & pos )
     else if( result == saveBookmark ) {
       emit saveBookmarkSignal( text.left( 60 ) );
     }
-    else if( result == sendToAnkiAction ) {
-      sendToAnki( webview->title(), webview->selectedText(), translateLine->text() );
+    else if( result == &sendToAnkiAction ) {
+      // This action is handled by a slot.
+      return;
     }
     else
     if ( result == lookupSelectionGr && groupComboBox )
@@ -2735,3 +2753,16 @@ void ArticleViewAgent::linkClickedInHtml( QUrl const & url )
 {
   articleView->linkClickedInHtml( url );
 }
+
+void ArticleViewAgent::collapseInHtml( QString const & dictId, bool on ) const
+{
+  if ( GlobalBroadcaster::instance()->getPreference()->sessionCollapse ) {
+    if ( on ) {
+      GlobalBroadcaster::instance()->collapsedDicts.insert( dictId );
+    }
+    else {
+      GlobalBroadcaster::instance()->collapsedDicts.remove( dictId );
+    }
+  }
+}
+

@@ -76,7 +76,6 @@
 #define MIN_THREAD_COUNT 4
 
 using std::set;
-using std::wstring;
 using std::map;
 using std::pair;
 
@@ -412,7 +411,7 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   // Tab management
   tabListMenu = new MRUQMenu(tr("Opened tabs"), ui.tabWidget);
 
-  connect( tabListMenu, &MRUQMenu::ctrlReleased, this, &MainWindow::ctrlReleased );
+  connect( tabListMenu, &MRUQMenu::requestTabChange, ui.tabWidget, &MainTabWidget::setCurrentIndex );
 
   connect( &addTabAction, &QAction::triggered, this, &MainWindow::addNewTab );
 
@@ -545,10 +544,7 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
 
   connect( &dictionaryBar, &DictionaryBar::showDictionaryInfo, this, &MainWindow::showDictionaryInfo );
 
-  connect( &dictionaryBar,
-    SIGNAL( showDictionaryHeadwords( QString const & ) ),
-    this,
-    SLOT( showDictionaryHeadwords( QString const & ) ) );
+  connect( &dictionaryBar,&DictionaryBar::showDictionaryHeadwords,this,&MainWindow::showDictionaryHeadwords);
 
   connect( &dictionaryBar, &DictionaryBar::openDictionaryFolder, this, &MainWindow::openDictionaryFolder );
 
@@ -1816,19 +1812,6 @@ void MainWindow::switchToPrevTab()
     ui.tabWidget->setCurrentIndex( ui.tabWidget->currentIndex() - 1 );
 }
 
-//emitted by tabListMenu when user releases Ctrl
-void MainWindow::ctrlReleased()
-{
-    if (tabListMenu->actions().size() > 1)
-    {
-        QAction *act = tabListMenu->activeAction();
-        if( act == 0 )
-          act = tabListMenu->actions().at( 1 );
-        ui.tabWidget->setCurrentIndex( act->data().toInt() );
-    }
-    tabListMenu->hide();
-}
-
 void MainWindow::backClicked()
 {
   GD_DPRINTF( "Back\n" );
@@ -2097,10 +2080,7 @@ void MainWindow::editDictionaries( unsigned editDictionaryGroup )
 
   connect( &dicts, &EditDictionaries::showDictionaryInfo, this, &MainWindow::showDictionaryInfo );
 
-  connect( &dicts,
-    SIGNAL( showDictionaryHeadwords( QString const & ) ),
-    this,
-    SLOT( showDictionaryHeadwords( QString const & ) ) );
+  connect( &dicts, &EditDictionaries::showDictionaryHeadwords,this, &MainWindow::showDictionaryHeadwords);
 
   if ( editDictionaryGroup != Instances::Group::NoGroupId )
     dicts.editGroup( editDictionaryGroup );
@@ -4187,14 +4167,6 @@ void MainWindow::foundDictsPaneClicked( QListWidgetItem * item )
 
 void MainWindow::showDictionaryInfo( const QString & id )
 {
-  QWidget * owner = 0;
-
-  if( sender()->objectName().compare( "EditDictionaries" ) == 0 )
-    owner = qobject_cast< QWidget * >( sender() );
-
-  if( owner == 0 )
-    owner = this;
-
   for( unsigned x = 0; x < dictionaries.size(); x++ )
   {
     if( dictionaries[ x ]->getId() == id.toUtf8().data() )
@@ -4213,7 +4185,7 @@ void MainWindow::showDictionaryInfo( const QString & id )
       }
       else if( result == DictInfo::SHOW_HEADWORDS )
       {
-        showDictionaryHeadwords( owner, dictionaries[x].get() );
+        showDictionaryHeadwords( dictionaries[x].get() );
       }
 
       break;
@@ -4221,48 +4193,36 @@ void MainWindow::showDictionaryInfo( const QString & id )
   }
 }
 
-void MainWindow::showDictionaryHeadwords( const QString & id )
+void MainWindow::showDictionaryHeadwords( Dictionary::Class * dict )
 {
-  QWidget * owner = 0;
 
-  if( sender()->objectName().compare( "EditDictionaries" ) == 0 )
-    owner = qobject_cast< QWidget * >( sender() );
+  QWidget * owner = qobject_cast< QWidget * >( sender() );
 
-  if( owner == 0 )
-    owner = this;
+  // DictHeadwords internally check parent== mainwindow to know why it is requested.
+  // If the DictHeadwords is requested by Edit->Dictionaries->ShowHeadWords, (owner = "EditDictionaries")
+  // it will be a modal dialog. When click a word, that word will NOT be queried.
+  // In all other cases, just set owner = mainwindow(this),
 
-  for( unsigned x = 0; x < dictionaries.size(); x++ )
-  {
-    if( dictionaries[ x ]->getId() == id.toUtf8().data() )
-    {
-      showDictionaryHeadwords( owner, dictionaries[ x ].get() );
-      break;
-    }
-  }
-}
-
-void MainWindow::showDictionaryHeadwords( QWidget * owner, Dictionary::Class * dict )
-{
-  if( owner && owner != this )
-  {
+  if ( owner->objectName() == "EditDictionaries" ) {
     DictHeadwords headwords( owner, cfg, dict );
     headwords.exec();
-    return;
   }
-
-  if( headwordsDlg == 0 )
-  {
-    headwordsDlg = new DictHeadwords( this, cfg, dict );
-    addGlobalActionsToDialog( headwordsDlg );
-    addGroupComboBoxActionsToDialog( headwordsDlg, groupList );
-    connect( headwordsDlg, &DictHeadwords::headwordSelected, this, &MainWindow::headwordReceived );
-    connect( headwordsDlg, &DictHeadwords::closeDialog, this, &MainWindow::closeHeadwordsDialog, Qt::QueuedConnection );
+  else {
+    if ( headwordsDlg == nullptr ) {
+      headwordsDlg = new DictHeadwords( this, cfg, dict );
+      addGlobalActionsToDialog( headwordsDlg );
+      addGroupComboBoxActionsToDialog( headwordsDlg, groupList );
+      connect( headwordsDlg, &DictHeadwords::headwordSelected, this, &MainWindow::headwordReceived );
+      connect( headwordsDlg, &DictHeadwords::closeDialog,
+               this, &MainWindow::closeHeadwordsDialog, Qt::QueuedConnection );
+    }
+    else{
+      headwordsDlg->setup( dict );
+    }
+    headwordsDlg->show();
   }
-  else
-    headwordsDlg->setup( dict );
-
-  headwordsDlg->show();
 }
+
 
 void MainWindow::closeHeadwordsDialog()
 {
@@ -4317,13 +4277,8 @@ void MainWindow::openDictionaryFolder( const QString & id )
   {
     if( dictionaries[ x ]->getId() == id.toUtf8().data() )
     {
-      if( dictionaries[ x ]->getDictionaryFilenames().size() > 0 )
-      {
-        QString fileName = FsEncoding::decode( dictionaries[ x ]->getDictionaryFilenames()[ 0 ].c_str() );
-
-        QString folder = QFileInfo( fileName ).absoluteDir().absolutePath();
-        if( !folder.isEmpty() )
-          QDesktopServices::openUrl( QUrl::fromLocalFile( folder ) );
+      if ( !dictionaries[ x ]->getDictionaryFilenames().empty() ) {
+        QDesktopServices::openUrl( QUrl::fromLocalFile( dictionaries[ x ]->getContainingFolder() ) );
       }
       break;
     }
@@ -4390,7 +4345,7 @@ void MainWindow::foundDictsContextMenuRequested( const QPoint &pos )
       {
         if ( scanPopup )
           scanPopup->blockSignals( true );
-        showDictionaryHeadwords( this, pDict );
+        showDictionaryHeadwords( pDict );
         if ( scanPopup )
           scanPopup->blockSignals( false );
       }

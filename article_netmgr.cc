@@ -4,7 +4,6 @@
 #include <stdint.h>
 #include <QUrl>
 #include "article_netmgr.hh"
-#include "wstring_qt.hh"
 #include "gddebug.hh"
 #include "utils.hh"
 #include <QNetworkAccessManager>
@@ -559,6 +558,5 @@ void LocalSchemeHandler::requestStarted(QWebEngineUrlRequestJob *requestJob)
 
   QNetworkReply * reply = this->mManager.getArticleReply( request );
   requestJob->reply( "text/html", reply );
-  //connect( reply, &QNetworkReply::finished, requestJob, [ = ]() {  } );
   connect( requestJob, &QObject::destroyed, reply, &QObject::deleteLater );
 }

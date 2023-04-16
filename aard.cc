@@ -7,7 +7,6 @@
 #include "utf8.hh"
 #include "chunkedstorage.hh"
 #include "langcoder.hh"
-#include "fsencoding.hh"
 #include "decompress.hh"
 #include "gddebug.hh"
 #include "ftshelpers.hh"
@@ -343,8 +342,7 @@ void AardDictionary::loadIcon() noexcept
   if ( dictionaryIconLoaded )
     return;
 
-  QString fileName =
-    QDir::fromNativeSeparators( FsEncoding::decode( getDictionaryFilenames()[ 0 ].c_str() ) );
+  QString fileName = QDir::fromNativeSeparators( QString::fromStdString( getDictionaryFilenames()[ 0 ] ) );
 
   // Remove the extension
   fileName.chop( 3 );
@@ -524,11 +522,7 @@ void AardDictionary::loadArticle( quint32 address,
       articleText = QObject::tr( "Article decoding error" ).toStdString();
 
     // See Issue #271: A mechanism to clean-up invalid HTML cards.
-    string cleaner = "</font>""</font>""</font>""</font>""</font>""</font>"
-                     "</font>""</font>""</font>""</font>""</font>""</font>"
-                     "</b></b></b></b></b></b></b></b>"
-                     "</i></i></i></i></i></i></i></i>"
-                     "</a></a></a></a></a></a></a></a>";
+    const string cleaner = Utils::Html::getHtmlCleaner();
 
     string prefix( "<div class=\"aard\"" );
     if( isToLanguageRTL() )
@@ -614,7 +608,7 @@ void AardDictionary::makeFTSIndex( QAtomicInt & isCancelled, bool firstIteration
   catch( std::exception &ex )
   {
     gdWarning( "Aard: Failed building full-text search index for \"%s\", reason: %s\n", getName().c_str(), ex.what() );
-    QFile::remove( FsEncoding::decode( ftsIdxName.c_str() ) );
+    QFile::remove( QString::fromStdString( ftsIdxName ) );
   }
 }
 
@@ -869,7 +863,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries(
           gdDebug( "Aard: Building the index for dictionary: %s\n", i->c_str() );
 
           {
-            QFileInfo info( FsEncoding::decode( i->c_str() ) );
+            QFileInfo info( QString::fromUtf8( i->c_str() ) );
             if( static_cast< quint64 >( info.size() ) > ULONG_MAX )
             {
               gdWarning( "File %s is too large\n", i->c_str() );

@@ -299,9 +299,9 @@ private:
   void loadArticle( uint32_t offset, string & articleText, bool noFilter = false );
 
   /// Process resource links (images, audios, etc)
-  QString & filterResource( QString const & articleId, QString & article );
+  QString & filterResource( QString & article );
 
-  void replaceLinks( QString & id, const QString & articleId, QString & article );
+  void replaceLinks( QString & id, QString & article );
   //@font-face
   void replaceStyleInHtml( QString & id, QString & article );
   void replaceFontLinks( QString & id, QString & article );
@@ -499,7 +499,7 @@ void MdxDictionary::makeFTSIndex( QAtomicInt & isCancelled, bool firstIteration 
   catch( std::exception &ex )
   {
     gdWarning( "MDict: Failed building full-text search index for \"%s\", reason: %s", getName().c_str(), ex.what() );
-    QFile::remove( FsEncoding::decode( ftsIdxName.c_str() ) );
+    QFile::remove( ftsIdxName.c_str() );
   }
 }
 
@@ -664,11 +664,7 @@ void MdxArticleRequest::run()
     }
 
     // See Issue #271: A mechanism to clean-up invalid HTML cards.
-    string cleaner = "</font>""</font>""</font>""</font>""</font>""</font>"
-                     "</font>""</font>""</font>""</font>""</font>""</font>"
-                     "</b></b></b></b></b></b></b></b>"
-                     "</i></i></i></i></i></i></i></i>"
-                     "</a></a></a></a></a></a></a></a>";
+    string cleaner = Utils::Html::getHtmlCleaner();
     articleText += "<div class=\"mdict\">" + articleBody + cleaner + "</div>\n";
   }
 
@@ -739,7 +735,7 @@ void MddResourceRequest::run()
   }
 
   // In order to prevent recursive internal redirection...
-  set< wstring > resourceIncluded;
+  set< wstring, std::less<> > resourceIncluded;
 
   for ( ;; )
   {
@@ -871,8 +867,7 @@ void MdxDictionary::loadIcon() noexcept
   if ( dictionaryIconLoaded )
     return;
 
-  QString fileName =
-    QDir::fromNativeSeparators( FsEncoding::decode( getDictionaryFilenames()[ 0 ].c_str() ) );
+  QString fileName = QDir::fromNativeSeparators( getDictionaryFilenames()[ 0 ].c_str() );
 
   // Remove the extension
   fileName.chop( 3 );
@@ -894,12 +889,8 @@ void MdxDictionary::loadArticle( uint32_t offset, string & articleText, bool noF
 
   // Load record info from index
   MdictParser::RecordInfo recordInfo;
-  char * pRecordInfo = chunks.getBlock( offset, chunk );
+  const char * pRecordInfo = chunks.getBlock( offset, chunk );
   memcpy( &recordInfo, pRecordInfo, sizeof( recordInfo ) );
-
-  // Make a sub unique id for this article
-  QString articleId;
-  articleId.setNum( ( quint64 )pRecordInfo, 16 );
 
   QByteArray decompressed;
 
@@ -923,25 +914,23 @@ void MdxDictionary::loadArticle( uint32_t offset, string & articleText, bool noF
   if( !noFilter )
   {
     article = MdictParser::substituteStylesheet( article, styleSheets );
-    article = filterResource( articleId, article );
+    article = filterResource( article );
   }
 
   // articleText = article.toStdString();
   articleText = string( article.toUtf8().constData() );
 }
 
-QString & MdxDictionary::filterResource( QString const & articleId, QString & article )
+QString & MdxDictionary::filterResource( QString & article )
 {
   QString id = QString::fromStdString( getId() );
-  replaceLinks( id, articleId, article );
+  replaceLinks( id, article );
   replaceStyleInHtml( id, article);
   return article;
 }
 
-void MdxDictionary::replaceLinks( QString & id, const QString & articleId, QString & article )
+void MdxDictionary::replaceLinks( QString & id, QString & article )
 {
-  QString uniquePrefix = QString::fromLatin1( "g" ) + id + "_" + articleId + "_";
-
   QString articleNewText;
   int linkPos                        = 0;
   QRegularExpressionMatchIterator it = RX::Mdx::allLinksRe.globalMatch( article );
@@ -978,13 +967,25 @@ void MdxDictionary::replaceLinks( QString & id, const QString & articleId, QStri
       match = RX::Mdx::wordCrossLink.match( newLink );
       if( match.hasMatch() )
       {
-        QString newTxt = match.captured( 1 ) + match.captured( 2 ) + "gdlookup://localhost/" + match.captured( 3 );
+        if ( !match.captured( 3 ).isEmpty() ) {
+          QString newTxt = match.captured( 1 ) + match.captured( 2 ) + "gdlookup://localhost/" + match.captured( 3 );
 
-        if( match.lastCapturedIndex() >= 4 && !match.captured( 4 ).isEmpty() )
-          newTxt += QString( "?gdanchor=" ) + uniquePrefix + match.captured( 4 ).mid( 1 );
+          if ( match.lastCapturedIndex() >= 4 && !match.captured( 4 ).isEmpty() )
+            newTxt += QString( "?gdanchor=" ) + match.captured( 4 ).mid( 1 );
 
-        newTxt += match.captured( 2 );
-        newLink.replace( match.capturedStart(), match.capturedLength(), newTxt );
+          newTxt += match.captured( 2 );
+          newLink.replace( match.capturedStart(), match.capturedLength(), newTxt );
+        }
+        else {
+          //links like entry://#abc,just remove the prefix entry://
+          QString newTxt = match.captured( 1 ) + match.captured( 2 );
+
+          if ( match.lastCapturedIndex() >= 4 && !match.captured( 4 ).isEmpty() )
+            newTxt += match.captured( 4 );
+
+          newTxt += match.captured( 2 );
+          newLink.replace( match.capturedStart(), match.capturedLength(), newTxt );
+        }
       }
     }
     else if( linkType.compare( "link" ) == 0 )
@@ -1167,11 +1168,11 @@ QString MdxDictionary::getCachedFileName( QString filename )
     gdWarning( R"(Mdx: file "%s" creating error: "%s")", fullName.toUtf8().data(), f.errorString().toUtf8().data() );
     return QString();
   }
-  gd::wstring resourceName = FsEncoding::decode( filename.toStdString() );
+  gd::wstring resourceName = filename.toStdU32String();
   vector< char > data;
 
   // In order to prevent recursive internal redirection...
-  set< wstring > resourceIncluded;
+  set< wstring, std::less<> > resourceIncluded;
 
   for( ;; ) {
     if( !resourceIncluded.insert( resourceName ).second )
@@ -1222,8 +1223,8 @@ void MdxDictionary::loadResourceFile( const wstring & resourceName, vector< char
     newResourceName.insert( 0, 1, '\\' );
   }
   // local file takes precedence
-  if( string fn = FsEncoding::dirname( getDictionaryFilenames()[ 0 ] ) + FsEncoding::separator() + u8ResourceName;
-      File::exists( fn ) ) {
+  if ( string fn = getContainingFolder().toStdString() + FsEncoding::separator() + u8ResourceName;
+       File::exists( fn ) ) {
     File::loadFromFile( fn, data );
     return;
   }

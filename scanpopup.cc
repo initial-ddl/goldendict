@@ -20,7 +20,6 @@
 #define MouseOver MacMouseOver
 #endif
 #include "base_type.h"
-using std::wstring;
 
 /// We use different window flags under Windows and X11 due to slight differences
 /// in their behavior on those platforms.
@@ -713,7 +712,7 @@ vector< sptr< Dictionary::Class > > const & ScanPopup::getActiveDicts()
 
   Config::MutedDictionaries const * mutedDictionaries = dictionaryBar.getMutedDictionaries();
 
-  if ( !dictionaryBar.toggleViewAction()->isChecked() || mutedDictionaries == 0 ){
+  if ( !dictionaryBar.toggleViewAction()->isChecked() || mutedDictionaries == nullptr ){
     return groups[current].dictionaries;
   }
 
@@ -752,29 +751,15 @@ void ScanPopup::typingEvent( QString const & t )
 
 bool ScanPopup::eventFilter( QObject * watched, QEvent * event )
 {
-  if ( watched == ui.translateBox->translateLine() )
+  if ( watched == ui.translateBox->translateLine() && event->type() == QEvent::FocusIn )
   {
-    if ( event->type() == QEvent::FocusIn )
-    {
-      QFocusEvent * focusEvent = static_cast< QFocusEvent * >( event );
+    const QFocusEvent * focusEvent = static_cast< QFocusEvent * >( event );
 
-      // select all on mouse click
-      if ( focusEvent->reason() == Qt::MouseFocusReason ) {
-        QTimer::singleShot( 0, this, &ScanPopup::focusTranslateLine );
-      }
-      return false;
+    // select all on mouse click
+    if ( focusEvent->reason() == Qt::MouseFocusReason ) {
+      QTimer::singleShot( 0, this, &ScanPopup::focusTranslateLine );
     }
-
-    if ( event->type() == QEvent::Resize )
-    {
-      // The UI looks ugly when group combobox is higher than translate line.
-      // Make the height of the combobox the same as the line edit's height.
-      // The fonts of these UI items should be kept in sync by applyWordsZoomLevel()
-      // so that text in the combobox is not clipped.
-      const QResizeEvent * const resizeEvent = static_cast< const QResizeEvent * >( event );
-      ui.groupList->setFixedHeight( resizeEvent->size().height() );
-      return false;
-    }
+    return false;
   }
 
   if ( mouseIntercepted )
@@ -783,7 +768,6 @@ bool ScanPopup::eventFilter( QObject * watched, QEvent * event )
 
     if ( event->type() == QEvent::MouseMove )
     {
-//    GD_DPRINTF( "Object: %s\n", watched->objectName().toUtf8().data() );
       QMouseEvent * mouseEvent = ( QMouseEvent * ) event;
       reactOnMouseMove( mouseEvent->globalPos() );
     }

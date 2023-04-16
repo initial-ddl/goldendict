@@ -73,12 +73,7 @@ contains(DEFINES, MAKE_QTMULTIMEDIA_PLAYER|MAKE_FFMPEG_PLAYER) {
 CONFIG( use_xapian ) {
   DEFINES += USE_XAPIAN
 
-  unix:!mac{
-    LIBS+= -lxapian-core
-  }
-  else{
-    LIBS+=-lxapian
-  }
+  LIBS+= -lxapian
 }
 
 CONFIG( use_iconv ) {
@@ -409,7 +404,6 @@ HEADERS += folding.hh \
     gls.hh \
     splitfile.hh \
     favoritespanewidget.hh \
-    treeview.hh \
     src/dict/lingualibre.h \
     src/ui/articleview.h \
     src/ui/ftssearchpanel.h \
@@ -545,7 +539,6 @@ SOURCES += folding.cc \
     gls.cc \
     splitfile.cc \
     favoritespanewidget.cc \
-    treeview.cc \
     src/dict/lingualibre.cpp \
     src/ui/articleview.cpp \
     src/ui/ftssearchpanel.cpp \

@@ -674,7 +674,7 @@ SlobDictionary::SlobDictionary( string const & id,
 
     try
     {
-      sf.open( FsEncoding::decode( dictionaryFiles[ 0 ].c_str() ) );
+      sf.open( dictionaryFiles[ 0 ].c_str() );
     }
     catch( std::exception & e )
     {
@@ -697,7 +697,7 @@ SlobDictionary::SlobDictionary( string const & id,
     dictionaryName = sf.getDictionaryName().toStdString();
     if( dictionaryName.empty() )
     {
-      QString name = QDir::fromNativeSeparators( FsEncoding::decode( dictionaryFiles[ 0 ].c_str() ) );
+      QString name   = QDir::fromNativeSeparators( dictionaryFiles[ 0 ].c_str() );
       int n = name.lastIndexOf( '/' );
       dictionaryName = name.mid( n + 1 ).toStdString();
     }
@@ -751,8 +751,7 @@ void SlobDictionary::loadIcon() noexcept
   if ( dictionaryIconLoaded )
     return;
 
-  QString fileName =
-    QDir::fromNativeSeparators( FsEncoding::decode( getDictionaryFilenames()[ 0 ].c_str() ) );
+  QString fileName = QDir::fromNativeSeparators( getDictionaryFilenames()[ 0 ].c_str() );
 
   // Remove the extension
   fileName.chop( 4 );
@@ -802,11 +801,7 @@ void SlobDictionary::loadArticle( quint32 address,
     articleText = QObject::tr( "Article decoding error" ).toStdString();
 
   // See Issue #271: A mechanism to clean-up invalid HTML cards.
-  string cleaner = "</font>""</font>""</font>""</font>""</font>""</font>"
-                   "</font>""</font>""</font>""</font>""</font>""</font>"
-                   "</b></b></b></b></b></b></b></b>"
-                   "</i></i></i></i></i></i></i></i>"
-                   "</a></a></a></a></a></a></a></a>";
+  string cleaner = Utils::Html::getHtmlCleaner();
 
   string prefix( "<div class=\"slobdict\"" );
   if( isToLanguageRTL() )
@@ -1260,7 +1255,7 @@ void SlobDictionary::makeFTSIndex( QAtomicInt & isCancelled, bool firstIteration
   catch( std::exception &ex )
   {
     gdWarning( "Slob: Failed building full-text search index for \"%s\", reason: %s\n", getName().c_str(), ex.what() );
-    QFile::remove( FsEncoding::decode( ftsIdxName.c_str() ) );
+    QFile::remove( ftsIdxName.c_str() );
   }
 }
 
@@ -1638,7 +1633,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries(
       // Skip files with the extensions different to .slob to speed up the
       // scanning
 
-      QString firstName = QDir::fromNativeSeparators( FsEncoding::decode( i->c_str() ) );
+      QString firstName = QDir::fromNativeSeparators( i->c_str() );
       if( !firstName.endsWith( ".slob") )
         continue;
 

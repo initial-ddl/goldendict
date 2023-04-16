@@ -143,7 +143,8 @@ struct AnkiConnectServer
   bool enabled;
 
   QString host;
-  unsigned port;
+  int port; // Port will be passed to QUrl::setPort() which expects an int.
+
   QString deck;
   QString model;
 
@@ -337,6 +338,7 @@ struct Preferences
   bool scanToMainWindow;
   bool ignoreDiacritics;
   bool ignorePunctuation;
+  bool sessionCollapse = false;
 #ifdef HAVE_X11
   bool trackClipboardScan;
   bool trackSelectionScan;
@@ -354,7 +356,6 @@ struct Preferences
 
   bool checkForNewReleases;
   bool disallowContentFromOtherSites;
-  bool enableWebPlugins;
   bool hideGoldenDictHeader;
   int maxNetworkCacheSize;
   bool clearNetworkCacheOnExit;

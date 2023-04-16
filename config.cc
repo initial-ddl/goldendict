@@ -265,7 +265,6 @@ Preferences::Preferences():
   internalPlayerBackend( InternalPlayerBackend::defaultBackend() ),
   checkForNewReleases( true ),
   disallowContentFromOtherSites( false ),
-  enableWebPlugins( false ),
   hideGoldenDictHeader( false ),
   maxNetworkCacheSize( 50 ),
   clearNetworkCacheOnExit( true ),
@@ -930,6 +929,11 @@ Class load()
     c.preferences.ignoreDiacritics = ( preferences.namedItem( "ignoreDiacritics" ).toElement().text() == "1" );
     if( !preferences.namedItem( "ignorePunctuation" ).isNull() )
       c.preferences.ignorePunctuation = ( preferences.namedItem( "ignorePunctuation" ).toElement().text() == "1" );
+
+    if ( !preferences.namedItem( "sessionCollapse" ).isNull() ) {
+      c.preferences.sessionCollapse = ( preferences.namedItem( "sessionCollapse" ).toElement().text() == "1" );
+    }
+
 #ifdef HAVE_X11
     c.preferences.trackClipboardScan= ( preferences.namedItem( "trackClipboardScan" ).toElement().text() == "1" );
     c.preferences.trackSelectionScan= ( preferences.namedItem( "trackSelectionScan" ).toElement().text() == "1" );
@@ -976,7 +980,7 @@ Class load()
     {
       c.preferences.ankiConnectServer.enabled = ( ankiConnectServer.toElement().attribute( "enabled" ) == "1" );
       c.preferences.ankiConnectServer.host = ankiConnectServer.namedItem( "host" ).toElement().text();
-      c.preferences.ankiConnectServer.port = ankiConnectServer.namedItem( "port" ).toElement().text().toULong();
+      c.preferences.ankiConnectServer.port    = ankiConnectServer.namedItem( "port" ).toElement().text().toInt();
       c.preferences.ankiConnectServer.deck = ankiConnectServer.namedItem( "deck" ).toElement().text();
       c.preferences.ankiConnectServer.model = ankiConnectServer.namedItem( "model" ).toElement().text();
 
@@ -990,9 +994,6 @@ Class load()
 
     if ( !preferences.namedItem( "disallowContentFromOtherSites" ).isNull() )
       c.preferences.disallowContentFromOtherSites = ( preferences.namedItem( "disallowContentFromOtherSites" ).toElement().text() == "1" );
-
-    if ( !preferences.namedItem( "enableWebPlugins" ).isNull() )
-      c.preferences.enableWebPlugins = ( preferences.namedItem( "enableWebPlugins" ).toElement().text() == "1" );
 
     if ( !preferences.namedItem( "hideGoldenDictHeader" ).isNull() )
       c.preferences.hideGoldenDictHeader = ( preferences.namedItem( "hideGoldenDictHeader" ).toElement().text() == "1" );
@@ -1845,6 +1846,10 @@ void save( Class const & c )
     opt.appendChild( dd.createTextNode( c.preferences.ignorePunctuation ? "1":"0" ) );
     preferences.appendChild( opt );
 
+    opt = dd.createElement( "sessionCollapse" );
+    opt.appendChild( dd.createTextNode( c.preferences.sessionCollapse ? "1" : "0" ) );
+    preferences.appendChild( opt );
+
 #ifdef HAVE_X11
     opt = dd.createElement( "trackClipboardScan" );
     opt.appendChild( dd.createTextNode( c.preferences.trackClipboardScan ? "1":"0" ) );
@@ -1984,10 +1989,6 @@ void save( Class const & c )
 
     opt = dd.createElement( "disallowContentFromOtherSites" );
     opt.appendChild( dd.createTextNode( c.preferences.disallowContentFromOtherSites ? "1" : "0" ) );
-    preferences.appendChild( opt );
-
-    opt = dd.createElement( "enableWebPlugins" );
-    opt.appendChild( dd.createTextNode( c.preferences.enableWebPlugins ? "1" : "0" ) );
     preferences.appendChild( opt );
 
     opt = dd.createElement( "hideGoldenDictHeader" );

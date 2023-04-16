@@ -270,8 +270,7 @@ StardictDictionary::StardictDictionary( string const & id,
                                       idxHeader.zipIndexRootOffset ),
                            idx, idxMutex );
 
-    QString zipName = QDir::fromNativeSeparators(
-        FsEncoding::decode( getDictionaryFilenames().back().c_str() ) );
+    QString zipName = QDir::fromNativeSeparators( getDictionaryFilenames().back().c_str() );
 
     if ( zipName.endsWith( ".zip", Qt::CaseInsensitive ) ) // Sanity check
       resourceZip.openZipFile( zipName );
@@ -299,8 +298,7 @@ void StardictDictionary::loadIcon() noexcept
   if ( dictionaryIconLoaded )
     return;
 
-  QString fileName =
-    QDir::fromNativeSeparators( FsEncoding::decode( getDictionaryFilenames()[ 0 ].c_str() ) );
+  QString fileName = QDir::fromNativeSeparators( getDictionaryFilenames()[ 0 ].c_str() );
 
   // Remove the extension
   fileName.chop( 3 );
@@ -447,6 +445,8 @@ private:
 string StardictDictionary::handleResource( char type, char const * resource, size_t size )
 {
   QString text;
+
+  // See "Type identifiers" at http://www.huzheng.org/stardict/StarDictFileFormat
   switch( type )
   {
     case 'x': // Xdxf content
@@ -592,8 +592,24 @@ string StardictDictionary::handleResource( char type, char const * resource, siz
     case 'n': // WordNet data. We don't know anything about it.
       return "<div class=\"sdct_n\">" + Html::escape( string( resource, size ) ) + "</div>";
 
-    case 'r': // Resource file list. For now, resources aren't handled.
-      return "<div class=\"sdct_r\">" + Html::escape( string( resource, size ) ) + "</div>";
+    case 'r': // Resource file list. For now, only img: is handled.
+    {
+      string result = R"(<div class="sdct_r">)";
+
+      // Handle img:example.jpg
+      QString imgTemplate( R"(<img src="bres://)" + QString::fromStdString( getId() ) + R"(/%1">)" );
+
+      for ( const auto & file : QString::fromUtf8( resource, size ).simplified().split( " " ) ) {
+        if ( file.startsWith( "img:" ) ) {
+          result += imgTemplate.arg( file.right( file.size() - file.indexOf( ":" ) - 1 ) ).toStdString();
+        }
+        else {
+          result += Html::escape( file.toStdString() );
+        }
+      }
+
+      return result + "</div>";
+    }
 
     case 'W': // An embedded Wav file. Unhandled yet.
       return "<div class=\"sdct_W\">(an embedded .wav file)</div>";
@@ -1140,10 +1156,7 @@ QString const& StardictDictionary::getDescription()
     return dictionaryDescription;
 }
 
-QString StardictDictionary::getMainFilename()
-{
-  return FsEncoding::decode( getDictionaryFilenames()[ 0 ].c_str() );
-}
+QString StardictDictionary::getMainFilename() { return getDictionaryFilenames()[ 0 ].c_str(); }
 
 void StardictDictionary::makeFTSIndex( QAtomicInt & isCancelled, bool firstIteration )
 {
@@ -1171,7 +1184,7 @@ void StardictDictionary::makeFTSIndex( QAtomicInt & isCancelled, bool firstItera
   catch( std::exception &ex )
   {
     gdWarning( "Stardict: Failed building full-text search index for \"%s\", reason: %s\n", getName().c_str(), ex.what() );
-    QFile::remove( FsEncoding::decode( ftsIdxName.c_str() ) );
+    QFile::remove( ftsIdxName.c_str() );
   }
 }
 
@@ -1470,10 +1483,7 @@ void StardictArticleRequest::run()
 
     multimap< wstring, pair< string, string > >::const_iterator i;
 
-    string cleaner = "</font>""</font>""</font>""</font>""</font>""</font>"
-                     "</font>""</font>""</font>""</font>""</font>""</font>"
-                     "</b></b></b></b></b></b></b></b>"
-                     "</i></i></i></i></i></i></i></i>";
+    string cleaner = Utils::Html::getHtmlCleaner();
 
     for( i = mainArticles.begin(); i != mainArticles.end(); ++i )
     {
@@ -1698,12 +1708,7 @@ void StardictResourceRequest::run()
     if( resourceName.at( resourceName.length() - 1 ) == '\x1F' )
       resourceName.erase( resourceName.length() - 1, 1 );
 
-    string n =
-      FsEncoding::dirname( dict.getDictionaryFilenames()[ 0 ] ) +
-      FsEncoding::separator() +
-      "res" +
-      FsEncoding::separator() +
-      FsEncoding::encode( resourceName );
+    string n = dict.getContainingFolder().toStdString() + FsEncoding::separator() + "res" + FsEncoding::separator() + resourceName;
 
     GD_DPRINTF( "n is %s\n", n.c_str() );
 
@@ -2014,7 +2019,8 @@ vector< sptr< Dictionary::Class > > makeDictionaries(
       // See if there's a zip file with resources present. If so, include it.
 
       string zipFileName;
-      string baseName = FsEncoding::dirname( idxFileName ) + FsEncoding::separator();
+      string baseName =
+        QDir( QString::fromStdString( idxFileName ) ).absolutePath().toStdString() + FsEncoding::separator();
 
       if ( File::tryPossibleZipName( baseName + "res.zip", zipFileName ) ||
            File::tryPossibleZipName( baseName + "RES.ZIP", zipFileName ) ||
@@ -2146,9 +2152,8 @@ vector< sptr< Dictionary::Class > > makeDictionaries(
 
           IndexedWords zipFileNames;
           IndexedZip zipFile;
-          if( zipFile.openZipFile( QDir::fromNativeSeparators(
-                                   FsEncoding::decode( zipFileName.c_str() ) ) ) )
-              zipFile.indexFile( zipFileNames );
+          if ( zipFile.openZipFile( QDir::fromNativeSeparators( zipFileName.c_str() ) ) )
+            zipFile.indexFile( zipFileNames );
 
           if( !zipFileNames.empty() )
           {

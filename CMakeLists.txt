@@ -121,7 +121,8 @@ if(LINUX)
 endif()
 
 if(MSVC)
-    add_compile_definitions(NO_EPWING_SUPPORT)
+    add_compile_definitions(NO_EPWING_SUPPORT
+                            __WIN32)
 endif()
 
 #### Sources Files
@@ -410,8 +411,6 @@ set(PROJECT_SOURCES
         translatebox.hh
         transliteration.cc
         transliteration.hh
-        treeview.cc
-        treeview.hh
         ufile.cc
         ufile.hh
         utf8.cc

@@ -22,6 +22,8 @@ using gd::wstring;
 using std::set;
 using std::list;
 
+inline bool ankiConnectEnabled() { return GlobalBroadcaster::instance()->getPreference()->ankiConnectServer.enabled; }
+
 ArticleMaker::ArticleMaker( vector< sptr< Dictionary::Class > > const & dictionaries_,
                             vector< Instances::Group > const & groups_,
                             const Config::Preferences & cfg_ ):
@@ -62,14 +64,16 @@ std::string ArticleMaker::makeHtmlHeader( QString const & word,
 
   // document ready ,init webchannel
   {
-    result += "<script>"
-              " $_$(document).ready( function ($){ "
-              "     console.log(\"webchannel ready...\"); "
-              "     new QWebChannel(qt.webChannelTransport, function(channel) { "
-              "         window.articleview = channel.objects.articleview; "
-              "   }); "
-              " }); "
-              "</script>";
+    result += R"(
+    <script>
+     $_$(document).ready( function ($){ 
+         console.log("webchannel ready..."); 
+         new QWebChannel(qt.webChannelTransport, function(channel) { 
+             window.articleview = channel.objects.articleview; 
+       }); 
+     }); 
+    </script>
+    )";
   }
 
   // Add a css stylesheet
@@ -97,10 +101,13 @@ std::string ArticleMaker::makeHtmlHeader( QString const & word,
     // Turn on/off expanding of article optional parts
     if( expandOptionalParts )
     {
-      result += "<!-- Expand optional parts css -->\n";
-      result += "<style type=\"text/css\" media=\"all\">\n";
-      result += "\n.dsl_opt\n{\n  display: inline;\n}\n\n.hidden_expand_opt\n{\n  display: none;\n}\n";
-      result += "</style>\n";
+      result += R"(<!-- Expand optional parts css -->
+                   <style type="text/css" media="all">
+                    .dsl_opt{
+                      display: inline;
+                     }
+                    .hidden_expand_opt{  display: none;}
+                    </style>)";
     }
 
   }
@@ -126,17 +133,18 @@ std::string ArticleMaker::makeHtmlHeader( QString const & word,
   if ( icon.size() )
     result += R"(<link rel="icon" type="image/png" href="qrc:///flags/)" + Html::escape( icon.toUtf8().data() ) + "\" />\n";
 
-  result += "<script type=\"text/javascript\">"
-            "function tr(key) {"
-            " var tr_map = {"
-            "\"Expand article\":\"";
-  result += tr("Expand article").toUtf8().data();
-  result += R"(","Collapse article":")";
-  result += tr("Collapse article").toUtf8().data();
-  result += "\"  };"
-            "return tr_map[key] || '';"
-            "}"
-            "</script>";
+  result += QString::fromUtf8( R"(
+<script type="text/javascript">
+     function tr(key) {
+            var tr_map = {
+                "Expand article": "%1", "Collapse article": "%2"
+            };
+            return tr_map[key] || '';
+        }
+</script>
+)" ).arg( tr( "Expand article" ), tr( "Collapse article" ) )
+            .toStdString();
+
   result+= R"(<script type="text/javascript" src="qrc:///scripts/gd-builtin.js"></script>)";
 
   if( GlobalBroadcaster::instance()->getPreference()->darkReaderMode )
@@ -224,8 +232,7 @@ std::string ArticleMaker::makeNotFoundBody( QString const & word,
 
   if ( word.size() )
     result += tr( "No translation for <b>%1</b> was found in group <b>%2</b>." ).
-              arg( QString::fromUtf8( Html::escape( str.toUtf8().data() ).c_str() ) ).
-              arg( QString::fromUtf8( Html::escape( group.toUtf8().data() ).c_str() ) ).
+              arg( QString::fromUtf8( Html::escape( str.toUtf8().data() ).c_str() ), QString::fromUtf8( Html::escape( group.toUtf8().data() ).c_str() ) ).
                 toUtf8().data();
   else
     result += tr( "No translation was found in group <b>%1</b>." ).
@@ -428,19 +435,21 @@ bool ArticleMaker::adjustFilePath( QString & fileName )
 
 //////// ArticleRequest
 
-ArticleRequest::ArticleRequest(
-  Config::InputPhrase const & phrase, QString const & group_,
-  QMap< QString, QString > const & contexts_,
-  vector< sptr< Dictionary::Class > > const & activeDicts_,
-  string const & header,
-  int sizeLimit, bool needExpandOptionalParts_, bool ignoreDiacritics_ ):
-    word( phrase.phrase ), group( group_ ), contexts( contexts_ ),
-    activeDicts( activeDicts_ ),
-    altsDone( false ), bodyDone( false ), foundAnyDefinitions( false ),
-    closePrevSpan( false )
-,   articleSizeLimit( sizeLimit )
-,   needExpandOptionalParts( needExpandOptionalParts_ )
-,   ignoreDiacritics( ignoreDiacritics_ )
+ArticleRequest::ArticleRequest( Config::InputPhrase const & phrase,
+                                QString const & group_,
+                                QMap< QString, QString > const & contexts_,
+                                vector< sptr< Dictionary::Class > > const & activeDicts_,
+                                string const & header,
+                                int sizeLimit,
+                                bool needExpandOptionalParts_,
+                                bool ignoreDiacritics_ ):
+  word( phrase.phrase ),
+  group( group_ ),
+  contexts( contexts_ ),
+  activeDicts( activeDicts_ ),
+  articleSizeLimit( sizeLimit ),
+  needExpandOptionalParts( needExpandOptionalParts_ ),
+  ignoreDiacritics( ignoreDiacritics_ )
 {
   if ( !phrase.punctuationSuffix.isEmpty() )
     alts.insert( gd::toWString( phrase.phraseWithSuffix() ) );
@@ -554,6 +563,49 @@ int ArticleRequest::findEndOfCloseDiv( const QString &str, int pos )
   }
 }
 
+bool ArticleRequest::isCollapsable( Dictionary::DataRequest & req ,QString const & dictId) {
+  if ( GlobalBroadcaster::instance()->collapsedDicts.contains( dictId ) )
+    return true;
+
+  bool collapse = false;
+
+  if( articleSizeLimit >= 0 )
+  {
+    try
+    {
+      Mutex::Lock _( dataMutex );
+      QString text = QString::fromUtf8( req.getFullData().data(), req.getFullData().size() );
+
+      if( !needExpandOptionalParts )
+      {
+        // Strip DSL optional parts
+        for( ; ; )
+        {
+          const int pos = text.indexOf( "<div class=\"dsl_opt\"" );
+          if( pos > 0 )
+          {
+            const int endPos = findEndOfCloseDiv( text, pos + 1 );
+            if( endPos > pos)
+              text.remove( pos, endPos - pos );
+            else
+              break;
+          }
+          else
+            break;
+        }
+      }
+
+      int size = htmlTextSize( text );
+      if( size > articleSizeLimit )
+        collapse = true;
+    }
+    catch(...)
+    {
+    }
+  }
+  return collapse;
+}
+
 void ArticleRequest::bodyFinished()
 {
   if ( bodyDone )
@@ -593,79 +645,60 @@ void ArticleRequest::bodyFinished()
           head += R"(</div></div><div style="clear:both;"></div><span class="gdarticleseparator"></span>)";
         }
 
-        bool collapse = false;
-        if( articleSizeLimit >= 0 )
-        {
-          try
-          {
-            Mutex::Lock _( dataMutex );
-            QString text = QString::fromUtf8( req.getFullData().data(), req.getFullData().size() );
-
-            if( !needExpandOptionalParts )
-            {
-              // Strip DSL optional parts
-              int pos = 0;
-              for( ; ; )
-              {
-                pos = text.indexOf( "<div class=\"dsl_opt\"" );
-                if( pos > 0 )
-                {
-                  int endPos = findEndOfCloseDiv( text, pos + 1 );
-                  if( endPos > pos)
-                    text.remove( pos, endPos - pos );
-                  else
-                    break;
-                }
-                else
-                  break;
-              }
-            }
-
-            int size = htmlTextSize( text );
-            if( size > articleSizeLimit )
-              collapse = true;
-          }
-          catch(...)
-          {
-          }
-        }
+        bool collapse = isCollapsable( req, QString::fromStdString( dictId ) );
 
         string jsVal = Html::escapeForJavaScript( dictId );
 
-        head += string( "<div class=\"gdarticle" ) +
-                ( closePrevSpan ? "" : " gdactivearticle" ) +
-                ( collapse ? " gdcollapsedarticle" : "" ) +
-                "\" id=\"" + gdFrom +
-                "\" onClick=\"gdMakeArticleActive( '" + jsVal + "' );\" " +
-                " onContextMenu=\"gdMakeArticleActive( '" + jsVal + "' );\""
-                + ">";
+        head += QString::fromUtf8(
+                  R"( <div class="gdarticle %1 %2" id="%3" 
+                    onClick="gdMakeArticleActive( '%4' );" 
+                    onContextMenu="gdMakeArticleActive( '%4' );">)" )
+                  .arg(  closePrevSpan ? "" : " gdactivearticle" ,
+                         collapse ? " gdcollapsedarticle" : "" ,
+                         gdFrom.c_str() ,
+                         jsVal.c_str() )
+                  .toStdString();
 
         closePrevSpan = true;
 
-        head += string( R"(<div class="gddictname" onclick="gdExpandArticle(')" ) + dictId + "\');"
-          + ( collapse ? "\" style=\"cursor:pointer;" : "" )
-          + "\" id=\"gddictname-" + Html::escape( dictId ) + "\""
-          + ( collapse ? string( " title=\"" ) + tr( "Expand article" ).toUtf8().data() + "\"" : "" )
-          + R"(><span class="gddicticon"><img src="gico://)" + Html::escape( dictId )
-          + R"(/dicticon.png"></span><span class="gdfromprefix">)"  +
-          Html::escape( tr( "From " ).toUtf8().data() ) + "</span><span class=\"gddicttitle\">" +
-          Html::escape( activeDict->getName().c_str() ) + "</span>"
-          + R"(<span class="collapse_expand_area"><img src="qrc:///icons/blank.png" class=")"
-          + ( collapse ? "gdexpandicon" : "gdcollapseicon" )
-          + "\" id=\"expandicon-" + Html::escape( dictId ) + "\""
-          + ( collapse ? "" : string( " title=\"" ) + tr( "Collapse article" ).toUtf8().data() + "\"" )
-          + "></span>" + "</div>";
+        head += QString::fromUtf8(
+                  R"(<div class="gddictname" onclick="gdExpandArticle('%1');"  %2  id="gddictname-%1" title="%3">
+                      <span class="gddicticon"><img src="gico://%1/dicticon.png"></span>
+                      <span class="gdfromprefix">%4</span>
+                      <span class="gddicttitle">%5</span>
+                      <span class="collapse_expand_area"><img src="qrc:///icons/blank.png" class="%6" id="expandicon-%1" title="%7" ></span>
+                     </div>)" )
+                  .arg( dictId.c_str(),
+                        collapse ? R"(style="cursor:pointer;")" : "",
+                        collapse ? tr( "Expand article" ) : QString(),
+                        Html::escape( tr( "From " ).toStdString() ).c_str(),
+                        Html::escape( activeDict->getName() ).c_str(),
+                        collapse ? "gdexpandicon" : "gdcollapseicon",
+                        collapse ? "" : tr( "Collapse article" )
 
-        head += "<div class=\"gddictnamebodyseparator\"></div>";
+                          )
+                  .toStdString();
 
-        head += "<div class=\"gdarticlebody gdlangfrom-";
-        head += LangCoder::intToCode2( activeDict->getLangFrom() ).toLatin1().data();
-        head += "\" lang=\"";
-        head += LangCoder::intToCode2( activeDict->getLangTo() ).toLatin1().data();
-        head += "\"";
-        head += " style=\"display:";
-        head += collapse ? "none" : "inline";
-        head += string( "\" id=\"gdarticlefrom-" ) + Html::escape( dictId ) + "\">";
+        head += R"(<div class="gddictnamebodyseparator"></div>)";
+
+        // If the user has enabled Anki integration in settings,
+        // Show a (+) button that lets the user add a new Anki card.
+        if ( ankiConnectEnabled() ) {
+          QString link{ R"EOF(
+          <a href="ankicard:%1" class="ankibutton" title="%2" >
+          <img src="qrc:///icons/add-anki-icon.svg">
+          </a>
+          )EOF" };
+          head += link.arg( Html::escape( dictId ).c_str(), tr( "Make a new Anki note" ) ).toStdString();
+        }
+
+        head += QString::fromUtf8(
+                  R"(<div class="gdarticlebody gdlangfrom-%1" lang="%2" style="display:%3" id="gdarticlefrom-%4">)" )
+                  .arg( LangCoder::intToCode2( activeDict->getLangFrom() ),
+                        LangCoder::intToCode2( activeDict->getLangTo() ),
+                        collapse ? "none" : "inline",
+                        dictId.c_str()  )
+                  .toStdString();
 
         if( errorString.size() ) {
           head += "<div class=\"gderrordesc\">"
