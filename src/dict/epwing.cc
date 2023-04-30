@@ -18,7 +18,7 @@
 #include "btreeidx.hh"
 #include "folding.hh"
 #include "gddebug.hh"
-#include "fsencoding.hh"
+
 #include "chunkedstorage.hh"
 #include "wstring.hh"
 #include "wstring_qt.hh"
@@ -561,7 +561,7 @@ void EpwingHeadwordsRequest::run()
     return;
   }
 
-  QRegularExpressionMatch m = RX::Epwing::refWord.match( gd::toQString( str ) );
+  QRegularExpressionMatch m = RX::Epwing::refWord.match( QString::fromStdU32String( str ) );
   if ( !m.hasMatch() ) {
     finish();
     return;
@@ -713,7 +713,7 @@ void EpwingArticleRequest::run()
     // We do the case-folded comparison here.
 
     wstring headwordStripped =
-      Folding::applySimpleCaseOnly( Utf8::decode( headword ) );
+      Folding::applySimpleCaseOnly( headword );
     if( ignoreDiacritics )
       headwordStripped = Folding::applyDiacriticsOnly( headwordStripped );
 
@@ -721,14 +721,14 @@ void EpwingArticleRequest::run()
       ( wordCaseFolded == headwordStripped ) ?
         mainArticles : alternateArticles;
 
-    mapToUse.insert( pair< wstring, pair< string, string > >(
-      Folding::applySimpleCaseOnly( Utf8::decode( headword ) ),
-      pair< string, string >( headword, articleText ) ) );
+    mapToUse.insert( pair(
+      Folding::applySimpleCaseOnly( headword ),
+      pair( headword, articleText ) ) );
 
     articlesIncluded.insert( x.articleOffset );
   }
 
-  QRegularExpressionMatch m = RX::Epwing::refWord.match( gd::toQString( word ) );
+  QRegularExpressionMatch m = RX::Epwing::refWord.match( QString::fromStdU32String( word ) );
   bool ref                  = m.hasMatch();
 
   // Also try to find word in the built-in dictionary index
@@ -806,7 +806,7 @@ void EpwingArticleRequest::getBuiltInArticle( wstring const & word_,
     QVector< int > pg, off;
     {
       Mutex::Lock _( dict.eBook.getLibMutex() );
-      dict.eBook.getArticlePos( gd::toQString( word_ ), pg, off );
+      dict.eBook.getArticlePos( QString::fromStdU32String( word_ ), pg, off );
     }
 
     for( int i = 0; i < pg.size(); i++ )
@@ -826,8 +826,8 @@ void EpwingArticleRequest::getBuiltInArticle( wstring const & word_,
         dict.loadArticle( pg.at( i ), off.at( i ), headword, articleText );
 
         mainArticles.insert(
-          pair< wstring, pair< string, string > >( Folding::applySimpleCaseOnly( Utf8::decode( headword ) ),
-                                                   pair< string, string >( headword, articleText ) ) );
+          pair( Folding::applySimpleCaseOnly( headword ),
+                                                   pair( headword, articleText ) ) );
 
         pages.append( pg.at( i ) );
         offsets.append( off.at( i ) );
@@ -843,7 +843,7 @@ void EpwingDictionary::getHeadwordPos( wstring const & word_, QVector< int > & p
 {
   try {
     Mutex::Lock _( eBook.getLibMutex() );
-    eBook.getArticlePos( gd::toQString( word_ ), pg, off );
+    eBook.getArticlePos( QString::fromStdU32String( word_ ), pg, off );
   }
   catch ( ... ) {
     //ignore
@@ -1011,31 +1011,9 @@ bool EpwingDictionary::isJapanesePunctiation( gd::wchar ch )
   return ch >= 0x3000 && ch <= 0x303F;
 }
 
-class EpwingWordSearchRequest;
-
-class EpwingWordSearchRunnable: public QRunnable
-{
-  EpwingWordSearchRequest & r;
-  QSemaphore & hasExited;
-
-public:
-
-  EpwingWordSearchRunnable( EpwingWordSearchRequest & r_,
-                            QSemaphore & hasExited_ ): r( r_ ),
-                                                       hasExited( hasExited_ )
-  {}
-
-  ~EpwingWordSearchRunnable()
-  {
-    hasExited.release();
-  }
-
-  void run() override;
-};
 
 class EpwingWordSearchRequest: public BtreeIndexing::BtreeWordSearchRequest
 {
-  friend class EpwingWordSearchRunnable;
 
   EpwingDictionary & edict;
 
@@ -1050,17 +1028,14 @@ public:
     BtreeWordSearchRequest( dict_, str_, minLength_, maxSuffixVariation_, allowMiddleMatches_, maxResults_, false ),
     edict( dict_ )
   {
-    QThreadPool::globalInstance()->start(
-      new EpwingWordSearchRunnable( *this, hasExited ) );
+    f = QtConcurrent::run( [ this ]() {
+      this->run();
+    } );
   }
 
   void findMatches() override;
 };
 
-void EpwingWordSearchRunnable::run()
-{
-  r.run();
-}
 
 void EpwingWordSearchRequest::findMatches()
 {
@@ -1079,7 +1054,7 @@ void EpwingWordSearchRequest::findMatches()
       if( Utils::AtomicInt::loadAcquire( isCancelled ) )
         break;
 
-      if( !edict.eBook.getMatches( gd::toQString( str ), headwords ) )
+      if( !edict.eBook.getMatches( QString::fromStdU32String( str ), headwords ) )
         break;
     }
 
@@ -1276,7 +1251,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries(
 
           dict.setSubBook( sb );
 
-          dir = QString::fromStdString( mainDirectory ) + FsEncoding::separator() + dict.getCurrentSubBookDirectory();
+          dir = QString::fromStdString( mainDirectory ) + Utils::Fs::separator() + dict.getCurrentSubBookDirectory();
 
           Epwing::Book::EpwingBook::collectFilenames( dir, dictFiles );
 

@@ -7,7 +7,7 @@
 #include "config.hh"
 #include "langcoder.hh"
 #include "language.hh"
-#include "fsencoding.hh"
+#include "metadata.hh"
 
 //#include "initializing.hh"
 
@@ -15,7 +15,6 @@
 #include <QDir>
 #include <QIcon>
 #include <QMap>
-#include <QMultiMap>
 #include <QVector>
 #include <QFileInfo>
 #include <QFileDialog>
@@ -780,6 +779,12 @@ void DictGroupsWidget::addAutoGroupsByFolders()
     return;
   }
 
+  auto cdUpWentWrong = [ this ]( const QString & path ) {
+    QMessageBox::warning( this,
+                          tr( "Auto group by folder failed." ),
+                          tr( "The parent directory of %1 can be reached." ).arg( path ) );
+  };
+
   if ( QMessageBox::information( this,
                                  tr( "Confirmation" ),
                                  tr( "Are you sure you want to generate a set of groups "
@@ -790,26 +795,79 @@ void DictGroupsWidget::addAutoGroupsByFolders()
     return;
   }
 
-  QMultiMap< QString, sptr< Dictionary::Class > > dictMap;
+  // Map from dict to ContainerFolder's parent
+  QMap< sptr< Dictionary::Class >, QString > dictToContainerFolder;
 
   for ( const auto & dict : *activeDicts ) {
-    QString dictFolder = dict->getContainingFolder();
+    QDir c = dict->getContainingFolder();
 
-    if ( dictFolder.isEmpty() ) {
-      continue;
+    if ( !c.cdUp() ) {
+      cdUpWentWrong( c.absolutePath() );
+      return;
     }
 
-    QDir dir = dictFolder;
-    if ( dir.cdUp() ) {
-      dictMap.insert( dir.dirName(), dict );
+    dictToContainerFolder.insert( dict, c.absolutePath() );
+  }
+
+  /*
+  Check for duplicated ContainerFolder's parent folder names, and prepend the upper parent's name.
+
+  .
+  ├─epistularum
+  │   └─Japanese   <- Group
+  │       └─DictA  <- Dict Files's container folder
+  |          └─ DictA Files
+  ├─Mastameta
+  │   └─Japanese   <- Group
+  |       └─DictB  <- Dict Files's container folder
+  |          └─ DictB Files
+
+  will be grouped into epistularum/Japanese and Mastameta/Japanese
+  */
+
+  // set a dirname to true if there are duplications like `epistularum/Japanese` and `Mastameta/Japanese`
+  QHash< QString, bool > dirNeedPrepend{};
+
+  for ( const auto & path : dictToContainerFolder.values() ) {
+    auto dir = QDir( path );
+    if ( dirNeedPrepend.contains( dir.dirName() ) ) {
+      dirNeedPrepend[ dir.dirName() ] = true;
     }
     else {
-      qWarning() << "Cannot auto group because parent folder cannot be reached: " << dir;
-      continue;
+      dirNeedPrepend.insert( dir.dirName(), false );
     }
   }
 
-  for ( const auto & group : dictMap.uniqueKeys() ) {
+  // map from GroupName to dicts
+  QMultiMap< QString, sptr< Dictionary::Class > > groupToDicts;
+
+  for ( const auto & dict : dictToContainerFolder.keys() ) {
+    QDir path = dictToContainerFolder[ dict ];
+    QString groupName;
+    if ( !dirNeedPrepend[ path.dirName() ] ) {
+      groupName = path.dirName();
+    }
+    else {
+      QString directFolder = path.dirName();
+      if ( !path.cdUp() ) {
+        cdUpWentWrong( path.absolutePath() );
+        return;
+      }
+      QString upperFolder = path.dirName();
+      groupName           = upperFolder + "/" + directFolder;
+    }
+
+    groupToDicts.insert( groupName, dict );
+  }
+
+  // create and insert groups
+  // modifying user's groups begins here
+  addGroupBasedOnMap( groupToDicts );
+}
+
+void DictGroupsWidget::addGroupBasedOnMap( const QMultiMap<QString, sptr<Dictionary::Class>> & groupToDicts )
+{
+  for ( const auto & group : groupToDicts.uniqueKeys() ) {
     if ( count() != 0 ) {
       setCurrentIndex( count() - 1 );
     }
@@ -817,10 +875,50 @@ void DictGroupsWidget::addAutoGroupsByFolders()
     addUniqueGroup( group );
     DictListModel * model = getCurrentModel();
 
-    for ( auto dict : dictMap.values( group ) ) {
+    for ( const auto & dict : groupToDicts.values( group ) ) {
       model->addRow( QModelIndex(), dict );
     }
   }
+}
+
+void DictGroupsWidget::groupsByMetadata()
+{
+  if ( activeDicts->empty() ) {
+    return;
+  }
+  if ( QMessageBox::information( this,
+                                 tr( "Confirmation" ),
+                                 tr( "Are you sure you want to generate a set of groups based on metadata.toml?" ),
+                                 QMessageBox::Yes,
+                                 QMessageBox::Cancel )
+       != QMessageBox::Yes ) {
+    return;
+  }
+  // map from GroupName to dicts
+  QMultiMap< QString, sptr< Dictionary::Class > > groupToDicts;
+
+  for ( const auto & dict : *activeDicts ) {
+    auto baseDir = dict->getContainingFolder();
+    if ( baseDir.isEmpty() )
+      continue;
+
+    auto filePath = Utils::Path::combine( baseDir, "metadata.toml" );
+
+    auto dictMetaData = Metadata::load( filePath.toStdString() );
+    if ( dictMetaData && dictMetaData->categories ) {
+      for ( const auto & category : dictMetaData->categories.value() ) {
+        auto group = QString::fromStdString( category ).trimmed();
+        if ( group.isEmpty() ) {
+          continue;
+        }
+        groupToDicts.insert( group, dict );
+      }
+    }
+  }
+
+  // create and insert groups
+  // modifying user's groups begins here
+  addGroupBasedOnMap( groupToDicts );
 }
 
 

@@ -206,7 +206,7 @@ InputPhrase Preferences::sanitizeInputPhrase( QString const & inputPhrase ) cons
   }
 
   const QString withPunct = _phase.simplified().remove( QChar( 0xAD ) ); // Simplify whitespaces and remove soft hyphens;
-  result.phrase = gd::toQString( Folding::trimWhitespaceOrPunct( gd::toWString( withPunct ) ) );
+  result.phrase = Folding::trimWhitespaceOrPunct(  withPunct );
   if ( !result.isValid() )
     return result; // The suffix of an invalid input phrase must be empty.
 
@@ -2415,10 +2415,4 @@ QString getCacheDir() noexcept
                              : QStandardPaths::writableLocation( QStandardPaths::CacheLocation );
   #endif
 }
-
-QString getNetworkCacheDir() noexcept
-{
-  return getCacheDir() + "/network";
-}
-
 }

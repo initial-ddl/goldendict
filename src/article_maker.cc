@@ -14,7 +14,6 @@
 #include <QFile>
 #include <QTextDocumentFragment>
 #include <QUrl>
-#include <limits.h>
 
 using std::vector;
 using std::string;
@@ -38,28 +37,22 @@ std::string ArticleMaker::makeHtmlHeader( QString const & word,
                                           QString const & icon,
                                           bool expandOptionalParts ) const
 {
-  string result =
-      "<!DOCTYPE html>"
-      "<html><head>"
-      "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">";
+  string result = R"(<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+)";
 
   // add jquery
   {
-    result += "<script type=\"text/javascript\"  "
-              "src=\"qrc:///scripts/jquery-3.6.0.slim.min.js\"></script>";
-
-    result += "<script> var $_$=$.noConflict(); </script>";
-
-    //custom javascript
-    result += R"(<script type="text/javascript" src="qrc:///scripts/gd-custom.js"></script>)";
-
-    //iframe resizer javascript
-    result += R"(<script type="text/javascript" src="qrc:///scripts/iframeResizer.min.js"></script>)";
+    result += R"(<script src="qrc:///scripts/jquery-3.6.0.slim.min.js"></script>)";
+    result += R"(<script> var $_$=$.noConflict(); </script>)";
+    result += R"(<script src="qrc:///scripts/gd-custom.js"></script>)";
+    result += R"(<script src="qrc:///scripts/iframeResizer.min.js"></script>)";
   }
 
   // add qwebchannel
   {
-    result += R"(<script type="text/javascript" src="qrc:///qtwebchannel/qwebchannel.js"></script>)";
+    result += R"(<script src="qrc:///qtwebchannel/qwebchannel.js"></script>)";
   }
 
   // document ready ,init webchannel
@@ -131,10 +124,10 @@ std::string ArticleMaker::makeHtmlHeader( QString const & word,
   // This doesn't seem to be much of influence right now, but we'll keep
   // it anyway.
   if ( icon.size() )
-    result += R"(<link rel="icon" type="image/png" href="qrc:///flags/)" + Html::escape( icon.toUtf8().data() ) + "\" />\n";
+    result += R"(<link rel="icon" type="image/png" href="qrc:///flags/)" + Html::escape( icon.toUtf8().data() ) + "\" >\n";
 
   result += QString::fromUtf8( R"(
-<script type="text/javascript">
+<script>
      function tr(key) {
             var tr_map = {
                 "Expand article": "%1", "Collapse article": "%2"
@@ -145,7 +138,7 @@ std::string ArticleMaker::makeHtmlHeader( QString const & word,
 )" ).arg( tr( "Expand article" ), tr( "Collapse article" ) )
             .toStdString();
 
-  result+= R"(<script type="text/javascript" src="qrc:///scripts/gd-builtin.js"></script>)";
+  result+= R"(<script src="qrc:///scripts/gd-builtin.js"></script>)";
 
   if( GlobalBroadcaster::instance()->getPreference()->darkReaderMode )
   {
@@ -468,7 +461,7 @@ ArticleRequest::ArticleRequest( Config::InputPhrase const & phrase,
   // Accumulate main forms
   for( unsigned x = 0; x < activeDicts.size(); ++x )
   {
-    sptr< Dictionary::WordSearchRequest > s = activeDicts[ x ]->findHeadwordsForSynonym( gd::toWString( word ) );
+    sptr< Dictionary::WordSearchRequest > s = activeDicts[ x ]->findHeadwordsForSynonym( gd::removeTrailingZero( word ) );
 
     connect( s.get(), &Dictionary::Request::finished, this, &ArticleRequest::altSearchFinished, Qt::QueuedConnection );
 
@@ -514,7 +507,7 @@ void ArticleRequest::altSearchFinished()
 #ifdef QT_DEBUG
     for( unsigned x = 0; x < altsVector.size(); ++x )
     {
-      qDebug() << "Alt:" << gd::toQString( altsVector[ x ] );
+      qDebug() << "Alt:" << QString::fromStdU32String( altsVector[ x ] );
     }
 #endif
 
@@ -529,7 +522,7 @@ void ArticleRequest::altSearchFinished()
       {
         sptr< Dictionary::DataRequest > r =
           activeDicts[ x ]->getArticle( wordStd, altsVector,
-                                        gd::toWString( contexts.value( QString::fromStdString( activeDicts[ x ]->getId() ) ) ),
+                                        gd::removeTrailingZero( contexts.value( QString::fromStdString( activeDicts[ x ]->getId() ) ) ),
                                         ignoreDiacritics );
 
         connect( r.get(), &Dictionary::Request::finished, this, &ArticleRequest::bodyFinished, Qt::QueuedConnection );
@@ -1008,11 +1001,7 @@ QString ArticleRequest::makeSplittedWordCompound()
 
     if ( x < currentSplittedWordEnd )
     {
-      wstring ws( gd::toWString( splittedWords.second[ x + 1 ] ) );
-
-      Folding::normalizeWhitespace( ws );
-
-      result.append( gd::toQString( ws ) );
+      result.append( splittedWords.second[ x + 1 ].simplified() );
     }
   }
 
@@ -1025,7 +1014,7 @@ void ArticleRequest::individualWordFinished()
 
   if ( results.size() )
   {
-    wstring source = Folding::applySimpleCaseOnly( gd::toWString( currentSplittedWordCompound ) );
+    wstring source = Folding::applySimpleCaseOnly(currentSplittedWordCompound);
 
     bool hadSomething = false;
 
@@ -1041,7 +1030,7 @@ void ArticleRequest::individualWordFinished()
 
       // Prefix match found. Check if the aliases are acceptable.
 
-      wstring result( Folding::applySimpleCaseOnly( gd::toWString( results[ x ].first ) ) );
+      wstring result( Folding::applySimpleCaseOnly( results[ x ].first ) );
 
       if ( source.size() <= result.size() && result.compare( 0, source.size(), source ) == 0 )
       {

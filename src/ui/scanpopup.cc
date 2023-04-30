@@ -139,7 +139,7 @@ ScanPopup::ScanPopup( QWidget * parent,
 
   connect( ui.translateBox->wordList(), &WordList::statusBarMessage, this, &ScanPopup::showStatusBarMessage );
 
-  ui.pronounceButton->hide();
+  ui.pronounceButton->setDisabled( true );
 
   ui.groupList->fill( groups );
   ui.groupList->setCurrentGroup( cfg.lastPopupGroupId );
@@ -307,9 +307,15 @@ void ScanPopup::refresh() {
   // it, we disconnect it while we're clearing and filling back groups.
   disconnect( ui.groupList, &GroupComboBox::currentIndexChanged,
     this, &ScanPopup::currentGroupChanged );
+
+  auto OldGroupID = ui.groupList->getCurrentGroup();
+
+  // repopulate
   ui.groupList->clear();
-  ui.groupList->fill(groups);
-  ui.groupList->setCurrentGroup(0); // user edited group list, force reset to default
+  ui.groupList->fill( groups );
+
+  ui.groupList->setCurrentGroup( OldGroupID ); // This does nothing if OldGroupID doesn't exist;
+
   ui.groupList->setVisible(!cfg.groups.empty());
 
   updateDictionaryBar();
@@ -699,7 +705,7 @@ void ScanPopup::translateInputFinished()
 
 void ScanPopup::showTranslationFor( Config::InputPhrase const & inputPhrase )
 {
-  ui.pronounceButton->hide();
+  ui.pronounceButton->setDisabled( true );
 
   unsigned groupId = ui.groupList->getCurrentGroup();
   definition->showDefinition( inputPhrase, groupId );
@@ -1046,7 +1052,7 @@ void ScanPopup::pageLoaded( ArticleView * )
     [ pronounceBtn ]( bool has )
     {
       if( pronounceBtn )
-        pronounceBtn->setVisible( has );
+        pronounceBtn->setDisabled( !has );
     } );
 
   updateBackForwardButtons();
@@ -1158,9 +1164,11 @@ void ScanPopup::on_sendWordToFavoritesButton_clicked()
 {
   if ( !isVisible() )
     return;
-  emit sendWordToFavorites( definition->getTitle(), cfg.lastPopupGroupId );
-
-  ui.sendWordToFavoritesButton->setIcon( blueStarIcon );
+  unsigned groupId   = ui.groupList->getCurrentGroup();
+  auto current_exist = isWordPresentedInFavorites( definition->getTitle(), groupId );
+  //if current_exist=false( not exist ),  after click ,the word should be in the favorite which is blueStar
+  ui.sendWordToFavoritesButton->setIcon( !current_exist ? blueStarIcon : starIcon );
+  emit sendWordToFavorites( definition->getTitle(), cfg.lastPopupGroupId, current_exist );
 }
 
 void ScanPopup::switchExpandOptionalPartsMode()
@@ -1230,6 +1238,13 @@ void ScanPopup::titleChanged( ArticleView *, QString const & title )
   // Set icon for "Add to Favorites" button
   ui.sendWordToFavoritesButton->setIcon( isWordPresentedInFavorites( title, groupId ) ?
                                          blueStarIcon : starIcon );
+}
+
+bool ScanPopup::isWordPresentedInFavorites( QString const & word, unsigned groupId ) const
+{
+  QString folder = GlobalBroadcaster::instance()->groupFolderMap[ groupId ];
+
+  return GlobalBroadcaster::instance()->folderFavoritesMap[ folder ].contains( word );
 }
 
 #ifdef HAVE_X11

@@ -233,8 +233,9 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   navPronounce->setEnabled( false );
   navToolbar->widgetForAction( navPronounce )->setObjectName( "soundButton" );
 
-  connect( navPronounce, SIGNAL( triggered() ),
-           this, SLOT( pronounce() ) );
+  connect( navPronounce, &QAction::triggered, [ this ]() {
+    getCurrentArticleView()->playSound();
+  } );
 
   // zooming
   // named separator (to be able to hide it via CSS)
@@ -348,8 +349,7 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   ui.dictsPane->setTitleBarWidget( &dictsPaneTitleBar );
   ui.dictsList->setContextMenuPolicy( Qt::CustomContextMenu );
 
-  connect( ui.dictsPane, SIGNAL( visibilityChanged( bool ) ),
-           this, SLOT( dictsPaneVisibilityChanged ( bool ) ) );
+  connect( ui.dictsPane, &QDockWidget::visibilityChanged, this, &MainWindow::dictsPaneVisibilityChanged );
 
   connect( ui.dictsList, &QListWidget::itemClicked, this, &MainWindow::foundDictsPaneClicked );
 
@@ -529,8 +529,7 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   showDictBarNamesTriggered(); // Make update its state according to initial
                                // setting
 
-  connect( this, SIGNAL( clickOnDictPane( QString const & ) ),
-           &dictionaryBar, SLOT( dictsPaneClicked( QString const & ) ) );
+  connect( this, &MainWindow::clickOnDictPane, &dictionaryBar, &DictionaryBar::dictsPaneClicked );
 
   addToolBar( &dictionaryBar );
 
@@ -760,7 +759,6 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   connect( scanPopup, &ScanPopup::sendWordToHistory, this, &MainWindow::addWordToHistory );
   connect( this, &MainWindow::setPopupGroupByName, scanPopup, &ScanPopup::setGroupByName );
   connect( scanPopup, &ScanPopup::sendWordToFavorites, this, &MainWindow::addWordToFavorites );
-  connect( scanPopup, &ScanPopup::isWordPresentedInFavorites, this, &MainWindow::isWordPresentedInFavorites );
 
 #ifdef Q_OS_MAC
   macClipboard = new gd_clipboard(this);
@@ -1411,11 +1409,13 @@ void MainWindow::setupNetworkCache( int maxSize )
   if( maxCacheSizeInBytes == 0 )
     return; // There is currently no cache and it is not needed.
 
-  QString const cacheDirectory = Config::getNetworkCacheDir();
-  if( !QDir().mkpath( cacheDirectory ) ) {
-    gdWarning( "Cannot create a cache directory %s. Disabling network cache.", cacheDirectory.toUtf8().constData() );
-    return;
+  QString cacheDirectory = Config::getCacheDir();
+  if ( !QDir().mkpath( cacheDirectory ) ) {
+    cacheDirectory = QStandardPaths::writableLocation( QStandardPaths::CacheLocation );
+
+    gdWarning( "Cannot create a cache directory %s. use default cache path.", cacheDirectory.toUtf8().constData() );
   }
+
   QNetworkDiskCache * const diskCache = new QNetworkDiskCache( this );
   diskCache->setMaximumCacheSize( maxCacheSizeInBytes );
   diskCache->setCacheDirectory( cacheDirectory );
@@ -1499,8 +1499,11 @@ void MainWindow::updateGroupList()
     groupInstances.push_back( g );
   }
 
-  for( int x  = 0; x < cfg.groups.size(); ++x )
+  GlobalBroadcaster::instance()->groupFolderMap.clear();
+  for ( int x = 0; x < cfg.groups.size(); ++x ) {
     groupInstances.push_back( Instances::Group( cfg.groups[ x ], dictionaries, cfg.inactiveDictionaries ) );
+    GlobalBroadcaster::instance()->groupFolderMap.insert( cfg.groups[ x ].id, cfg.groups[ x ].favoritesFolder );
+  }
 
   // Update names for dictionaries that are present, so that they could be
   // found in case they got moved.
@@ -1906,8 +1909,9 @@ void MainWindow::pageLoaded( ArticleView * view )
 
   updatePronounceAvailability();
 
-  if ( cfg.preferences.pronounceOnLoadMain )
-    pronounce( view );
+  if ( cfg.preferences.pronounceOnLoadMain && view != nullptr ) {
+    view->playSound();
+  }
 
   //updateFoundInDictsList();
 }
@@ -1964,14 +1968,6 @@ void MainWindow::dictionaryBarToggled( bool )
 
   updateDictionaryBar(); // Updates dictionary bar contents if it's shown
   applyMutedDictionariesState(); // Visibility change affects searches and results
-}
-
-void MainWindow::pronounce( ArticleView * view )
-{
-  if ( view )
-    view->playSound();
-  else
-    getCurrentArticleView()->playSound();
 }
 
 void MainWindow::showDictsPane( )
@@ -2477,7 +2473,6 @@ bool MainWindow::eventFilter( QObject * obj, QEvent * ev )
        || ev->type() == QEvent::KeyPress )
   {
     QKeyEvent * ke = static_cast<QKeyEvent*>( ev );
-    qDebug()<<obj<<ke->type()<<ke->text();
 
     // Handle F3/Shift+F3 shortcuts
     if ( ke->key() == Qt::Key_F3 )
@@ -3465,6 +3460,8 @@ void MainWindow::on_saveArticle_triggered()
         {
           file.write( html.toUtf8() );
         }
+
+        mainStatusBar->showMessage( tr( "Save article complete" ), 5000 );
       }
     } );
 }
@@ -4505,14 +4502,17 @@ void MainWindow::handleAddToFavoritesButton()
   }
 }
 
-void MainWindow::addWordToFavorites( QString const & word, unsigned groupId )
+void MainWindow::addWordToFavorites( QString const & word, unsigned groupId, bool exist )
 {
   QString folder;
   Instances::Group const * igrp = groupInstances.findGroup( groupId );
   if( igrp )
     folder = igrp->favoritesFolder;
 
-  ui.favoritesPaneWidget->addHeadword( folder, word );
+  if ( !exist )
+    ui.favoritesPaneWidget->addHeadword( folder, word );
+  else
+    ui.favoritesPaneWidget->removeHeadword( folder, word );
 }
 
 void MainWindow::addBookmarkToFavorite( QString const & text )

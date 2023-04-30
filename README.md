@@ -1,6 +1,6 @@
 # GoldenDict-ng
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e507f9bf83bd48f7a5b76f71dfe9f0dd)](https://app.codacy.com/gh/xiaoyifang/goldendict?utm_source=github.com&utm_medium=referral&utm_content=xiaoyifang/goldendict&utm_campaign=Badge_Grade_Settings)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=xiaoyifang_goldendict&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=xiaoyifang_goldendict)
 [![Windows](https://github.com/xiaoyifang/goldendict/actions/workflows/windows.yml/badge.svg)](https://github.com/xiaoyifang/goldendict/actions/workflows/windows.yml) [![Ubuntu](https://github.com/xiaoyifang/goldendict/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/xiaoyifang/goldendict/actions/workflows/ubuntu.yml)
 [![macos](https://github.com/xiaoyifang/goldendict/actions/workflows/macos.yml/badge.svg)](https://github.com/xiaoyifang/goldendict/actions/workflows/macos.yml)
 
@@ -10,7 +10,7 @@ dictionaries.
 
 | Linux | Windows | macOS |
 |--|--|--|
-| [<img src="website/docs/img/linux_genshin.webp" width="500"/>](website/docs/img/linux_genshin.webp) | [<img src="website/docs/img/windows_white.webp" width="500"/>](website/docs/img/windows_white.webp) | [<img src="website/docs/img/mac_black.webp" width="500"/>](website/docs/img/mac_black.webp) |
+| [<img src="website/docs/img/linux_genshin.webp" width="500"/>](https://xiaoyifang.github.io/goldendict-ng/) | [<img src="website/docs/img/windows_white.webp" width="500"/>](https://xiaoyifang.github.io/goldendict-ng/) | [<img src="website/docs/img/mac_black.webp" width="500"/>](https://xiaoyifang.github.io/goldendict-ng/) |
 
 # Some significant features of this fork
 
@@ -45,21 +45,28 @@ If Qt's version is not changed, you can also download a single `goldendict.exe` 
 
 ## Linux
 
-`.Appimage` can be used in any recent linux distros.
-
-[Debian packages](https://tracker.debian.org/pkg/goldendict-webengine) are available in Debian 12 or later.
-
-[Ubuntu packages](https://launchpad.net/ubuntu/+source/goldendict-webengine) are available in Ubuntu 23.04 or later.
-
-Archlinux users can also use community maintained [goldendict-webengine-git](https://aur.archlinux.org/packages/goldendict-webengine-git).
-
-openSUSE ships an old version of this fork.
+* `.Appimage` can be used in any recent linux distros.
+* [Debian packages](https://tracker.debian.org/pkg/goldendict-webengine) are available in Debian 12 or later.
+* [Ubuntu packages](https://launchpad.net/ubuntu/+source/goldendict-webengine) are available in Ubuntu 23.04 or later.
+* Archlinux can use [goldendict-ng-git](https://aur.archlinux.org/packages/goldendict-ng-git). Built binary is also availiable from [archlinuxcn's repo](https://github.com/archlinuxcn/repo/tree/master/archlinuxcn/goldendict-ng-git).
+* [Gentoo package from PG_Overlay](https://gitlab.com/Perfect_Gentleman/PG_Overlay/-/blob/master/app-text/goldendict/goldendict-9999-r6.ebuild)
+* openSUSE ships an old version of this fork.
 
 > Help wanted to package this GoldenDict for linux distros.
 
 ## macOS
 
 One of the `.dmg` installers.
+
+## Help GoldenDict's Development
+
+GoldenDict is developed by volunteers.
+
+All kinds of help like answering questions, bug reporting, testing, translation and coding are welcomed.
+
+To translate the interface, you can use the Crowdin <https://crowdin.com/project/goldendict-ng>
+
+To start development, check out [developer guide](https://xiaoyifang.github.io/goldendict-ng/developer/)
 
 ## Build from source
 
@@ -189,11 +196,6 @@ qmake "CONFIG+=use_iconv"
 ```
 
 when enabled ,iconv should be installed on the platform at the same time.
-
-
-## Contributing
-
-All kinds of help like answering questions, bug reporting, testing, translation and coding are welcomed.
 
 ## Support
 

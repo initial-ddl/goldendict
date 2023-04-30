@@ -35,8 +35,10 @@ inline QString rstrip(const QString &str) {
       return str.left(n + 1);
     }
   }
-  return "";
+  return {};
 }
+
+std::string c_string( const QString & str );
 
 /**
  * remove punctuation , space, symbol
@@ -322,6 +324,21 @@ void setNoResultColor(QWidget * widget, bool noResult);
 namespace Html {
 // See Issue #271: A mechanism to clean-up invalid HTML cards.
 std::string getHtmlCleaner();
+}
+
+/// Utilities to convert a wide string or an utf8 string to the local 8bit
+/// encoding of the file system, and to do other manipulations on the file
+/// names.
+namespace Fs {
+
+using std::string;
+
+/// Returns the filesystem separator (/ on Unix and clones, \ on Windows).
+char separator();
+
+/// Returns the name part of the given filename.
+string basename( string const & );
+
 }
 
 } // namespace Utils

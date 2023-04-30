@@ -8,7 +8,7 @@
 #include "chunkedstorage.hh"
 #include "langcoder.hh"
 #include "gddebug.hh"
-#include "fsencoding.hh"
+
 #include "decompress.hh"
 #include "htmlescape.hh"
 #include "ftshelpers.hh"
@@ -454,8 +454,7 @@ void SdictDictionary::getArticleText( uint32_t articleAddress, QString & headwor
 
     try
     {
-      wstring wstr = Utf8::decode( articleStr );
-      text = Html::unescape( gd::toQString( wstr ) );
+      text = Html::unescape( QString::fromStdString( articleStr ) );
     }
     catch( std::exception & )
     {
@@ -479,31 +478,9 @@ sptr< Dictionary::DataRequest > SdictDictionary::getSearchResults( QString const
 
 /// SdictDictionary::getArticle()
 
-class SdictArticleRequest;
-
-class SdictArticleRequestRunnable: public QRunnable
-{
-  SdictArticleRequest & r;
-  QSemaphore & hasExited;
-
-public:
-
-  SdictArticleRequestRunnable( SdictArticleRequest & r_,
-                               QSemaphore & hasExited_ ): r( r_ ),
-                                                          hasExited( hasExited_ )
-  {}
-
-  ~SdictArticleRequestRunnable()
-  {
-    hasExited.release();
-  }
-
-  void run() override;
-};
 
 class SdictArticleRequest: public Dictionary::DataRequest
 {
-  friend class SdictArticleRequestRunnable;
 
   wstring word;
   vector< wstring > alts;
@@ -511,7 +488,8 @@ class SdictArticleRequest: public Dictionary::DataRequest
   bool ignoreDiacritics;
 
   QAtomicInt isCancelled;
-  QSemaphore hasExited;
+
+  QFuture< void > f;
 
 public:
 
@@ -520,8 +498,10 @@ public:
                        SdictDictionary & dict_, bool ignoreDiacritics_ ):
     word( word_ ), alts( alts_ ), dict( dict_ ), ignoreDiacritics( ignoreDiacritics_ )
   {
-    QThreadPool::globalInstance()->start(
-      new SdictArticleRequestRunnable( *this, hasExited ) );
+    f = QtConcurrent::run( [ this ]() {
+      this->run();
+    } );
+
   }
 
   void run(); // Run from another thread by DslArticleRequestRunnable
@@ -534,14 +514,9 @@ public:
   ~SdictArticleRequest()
   {
     isCancelled.ref();
-    hasExited.acquire();
+    f.waitForFinished();
   }
 };
-
-void SdictArticleRequestRunnable::run()
-{
-  r.run();
-}
 
 void SdictArticleRequest::run()
 {
@@ -599,7 +574,7 @@ void SdictArticleRequest::run()
       // We do the case-folded comparison here.
 
       wstring headwordStripped =
-        Folding::applySimpleCaseOnly( Utf8::decode( headword ) );
+        Folding::applySimpleCaseOnly( headword );
       if( ignoreDiacritics )
         headwordStripped = Folding::applyDiacriticsOnly( headwordStripped );
 
@@ -607,9 +582,9 @@ void SdictArticleRequest::run()
         ( wordCaseFolded == headwordStripped ) ?
           mainArticles : alternateArticles;
 
-      mapToUse.insert( pair< wstring, pair< string, string > >(
-        Folding::applySimpleCaseOnly( Utf8::decode( headword ) ),
-        pair< string, string >( headword, articleText ) ) );
+      mapToUse.insert( pair(
+        Folding::applySimpleCaseOnly( headword ),
+        pair( headword, articleText ) ) );
 
       articlesIncluded.insert( chain[ x ].articleOffset );
     }

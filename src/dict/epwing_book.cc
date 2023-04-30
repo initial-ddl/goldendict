@@ -8,7 +8,7 @@
 #include <QTextDocumentFragment>
 #include <QHash>
 #include "gddebug.hh"
-#include "fsencoding.hh"
+
 #include "audiolink.hh"
 #include "wstring.hh"
 #include "wstring_qt.hh"
@@ -1122,7 +1122,7 @@ void EpwingBook::fixHeadword( QString & headword )
   //}
 
   gd::wstring folded = Folding::applyPunctOnly( gd::toWString( fixed ) );
-  //fixed = gd::toQString( folded );
+  //fixed = QString::fromStdU32String( folded );
 
   //if( isHeadwordCorrect( fixed ) )
   //{
@@ -1131,7 +1131,7 @@ void EpwingBook::fixHeadword( QString & headword )
   //}
 
   folded = Folding::applyDiacriticsOnly( folded );
-  fixed = gd::toQString( folded );
+  fixed = QString::fromStdU32String( folded );
 
   //if( isHeadwordCorrect( fixed ) )
   //{
@@ -1140,7 +1140,7 @@ void EpwingBook::fixHeadword( QString & headword )
   //}
 
   //folded = Folding::applyWhitespaceOnly( folded );
-  //fixed = gd::toQString( folded );
+  //fixed = QString::fromStdU32String( folded );
 
   //if( isHeadwordCorrect( fixed ) )
   //  headword = fixed;
@@ -1168,7 +1168,7 @@ void EpwingBook::getArticle( QString & headword, QString & articleText,
 
   readHeadword( headword, text_only );
 
-  QString hw = Html::unescape( headword, true );
+  QString hw = Html::unescape( headword, Html::HtmlOption::Keep );
   fixHeadword( hw );
 
   auto parts = hw.split( QChar::Space, Qt::SkipEmptyParts );

@@ -18,10 +18,7 @@
 #include "wildcard.hh"
 #include "globalbroadcaster.hh"
 
-//#define __BTREE_USE_LZO
-// LZO mode is experimental and unsupported. Tests didn't show any substantial
-// speed improvements.
-
+#include <QtConcurrent>
 #include <zlib.h>
 
 namespace BtreeIndexing {
@@ -67,8 +64,10 @@ void BtreeIndex::openIndex( IndexInfo const & indexInfo,
   rootNode.clear();
 }
 
-vector< WordArticleLink > BtreeIndex::findArticles( wstring const & word, bool ignoreDiacritics )
+vector< WordArticleLink > BtreeIndex::findArticles( wstring const & search_word, bool ignoreDiacritics )
 {
+  //First trim ending zero
+  wstring word = gd::removeTrailingZero( search_word );
   vector< WordArticleLink > result;
 
   try
@@ -109,31 +108,6 @@ vector< WordArticleLink > BtreeIndex::findArticles( wstring const & word, bool i
   return result;
 }
 
-class BtreeWordSearchRunnable: public QRunnable
-{
-  BtreeWordSearchRequest & r;
-  QSemaphore & hasExited;
-  
-public:
-
-  BtreeWordSearchRunnable( BtreeWordSearchRequest & r_,
-                           QSemaphore & hasExited_ ): r( r_ ),
-                                                      hasExited( hasExited_ )
-  {}
-
-  ~BtreeWordSearchRunnable()
-  {
-    hasExited.release();
-  }
-  
-  void run() override;
-};
-
-void BtreeWordSearchRunnable::run()
-{
-  r.run();
-}
-
 BtreeWordSearchRequest::BtreeWordSearchRequest( BtreeDictionary & dict_,
                                                 wstring const & str_,
                                                 unsigned minLength_,
@@ -149,8 +123,9 @@ BtreeWordSearchRequest::BtreeWordSearchRequest( BtreeDictionary & dict_,
 {
   if( startRunnable )
   {
-    QThreadPool::globalInstance()->start(
-      new BtreeWordSearchRunnable( *this, hasExited ) );
+    f = QtConcurrent::run( [ this ]() {
+      this->run();
+    } );
   }
 }
 
@@ -184,7 +159,7 @@ void BtreeWordSearchRequest::findMatches()
 
   if( useWildcards )
   {
-    regexp.setPattern( wildcardsToRegexp( gd::toQString( Folding::applyDiacriticsOnly( Folding::applySimpleCaseOnly( str ) ) ) ) );
+    regexp.setPattern( wildcardsToRegexp( QString::fromStdU32String( Folding::applyDiacriticsOnly( Folding::applySimpleCaseOnly( str ) ) ) ) );
     if( !regexp.isValid() )
       regexp.setPattern( QRegularExpression::escape( regexp.pattern() ) );
     regexp.setPatternOptions( QRegularExpression::CaseInsensitiveOption );
@@ -337,7 +312,7 @@ void BtreeWordSearchRequest::findMatches()
               wstring result = Folding::applyDiacriticsOnly( word );
               if( result.size() >= (wstring::size_type)minMatchLength )
               {
-                QRegularExpressionMatch match = regexp.match( gd::toQString( result ) );
+                QRegularExpressionMatch match = regexp.match( QString::fromStdU32String( result ) );
                 if( match.hasMatch() && match.capturedStart() == 0 )
                 {
                   addMatch( word );
@@ -443,7 +418,7 @@ void BtreeWordSearchRequest::run()
 BtreeWordSearchRequest::~BtreeWordSearchRequest()
 {
   isCancelled.ref();
-  hasExited.acquire();
+  f.waitForFinished();
 }
 
 sptr< Dictionary::WordSearchRequest > BtreeDictionary::prefixMatch(
@@ -1003,8 +978,9 @@ static uint32_t buildBtreeNode( IndexedWords::const_iterator & nextIndex,
   return offset;
 }
 
-void IndexedWords::addWord( wstring const & word, uint32_t articleOffset, unsigned int maxHeadwordSize )
+void IndexedWords::addWord( wstring const & index_word, uint32_t articleOffset, unsigned int maxHeadwordSize )
 {
+  wstring const & word = gd::removeTrailingZero( index_word );
   wchar const * wordBegin = word.c_str();
   string::size_type wordSize = word.size();
 
@@ -1095,8 +1071,9 @@ void IndexedWords::addWord( wstring const & word, uint32_t articleOffset, unsign
   }
 }
 
-void IndexedWords::addSingleWord( wstring const & word, uint32_t articleOffset )
+void IndexedWords::addSingleWord( wstring const & index_word, uint32_t articleOffset )
 {
+  wstring const & word = gd::removeTrailingZero( index_word );
   wstring folded = Folding::apply( word );
   if( folded.empty() )
       folded = Folding::applyWhitespaceOnly( word );

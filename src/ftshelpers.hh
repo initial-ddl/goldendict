@@ -135,12 +135,11 @@ public:
     wordsInIndex( 0 )
   {
     if( ignoreDiacritics_ )
-      searchString = gd::toQString( Folding::applyDiacriticsOnly( gd::toWString( searchString_ ) ) );
+      searchString = QString::fromStdU32String( Folding::applyDiacriticsOnly( gd::removeTrailingZero( searchString_ ) ) );
 
     foundHeadwords = new QList< FTS::FtsHeadword >;
     results         = 0;
     f              = QtConcurrent::run( [ this ]() { this->run(); } );
-    // QThreadPool::globalInstance()->start( [ this ]() { this->run(); }, -100 );
   }
 
   void run();
