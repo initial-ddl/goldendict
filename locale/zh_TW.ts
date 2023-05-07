@@ -26,7 +26,7 @@
     <message>
       <location filename="../src/ui/about.ui" line="142"/>
       <source>Copy dictionaries list</source>
-      <translation type="unfinished">Copy dictionaries list</translation>
+      <translation>複製詞典列表</translation>
     </message>
     <message>
       <location filename="../src/ui/about.ui" line="168"/>
@@ -54,19 +54,19 @@
     <message>
       <location filename="../src/ankiconnector.cc" line="23"/>
       <source>anki: can&apos;t create a card without a word</source>
-      <translation type="unfinished">anki: can&apos;t create a card without a word</translation>
+      <translation>anki: 沒選擇詞語，無法建立卡片</translation>
     </message>
     <message>
       <location filename="../src/ankiconnector.cc" line="65"/>
       <source>Anki search: AnkiConnect is not enabled.</source>
-      <translation type="unfinished">Anki search: AnkiConnect is not enabled.</translation>
+      <translation>Anki: AnkiConnect 沒有啟用。</translation>
     </message>
     <message>
       <location filename="../src/ankiconnector.cc" line="96"/>
       <location filename="../src/ankiconnector.cc" line="113"/>
       <source>anki: post to anki failed</source>
       <translatorcomment>anki:发布成功</translatorcomment>
-      <translation type="unfinished">anki: post to anki failed</translation>
+      <translation>anki: 調用失敗</translation>
     </message>
     <message>
       <location filename="../src/ankiconnector.cc" line="110"/>
@@ -165,7 +165,7 @@
     <message>
       <location filename="../src/article_maker.cc" line="693"/>
       <source>Make a new Anki note</source>
-      <translation type="unfinished">Make a new Anki note</translation>
+      <translation>製作一個新的anki note</translation>
     </message>
     <message>
       <location filename="../src/article_maker.cc" line="706"/>
@@ -192,7 +192,7 @@
     <name>ArticleView</name>
     <message>
       <source>x</source>
-      <translation type="unfinished">x</translation>
+      <translation>x</translation>
     </message>
     <message>
       <source>Form</source>
@@ -217,7 +217,7 @@
     </message>
     <message>
       <source>Ctrl+G</source>
-      <translation type="unfinished">Ctrl+G</translation>
+      <translation>Ctrl+G</translation>
     </message>
     <message>
       <location filename="../src/ui/articleview.cc" line="1807"/>
@@ -226,7 +226,7 @@
     </message>
     <message>
       <source>about:blank</source>
-      <translation type="unfinished">about:blank</translation>
+      <translation>about:blank</translation>
     </message>
     <message>
       <source>&amp;Previous</source>
@@ -349,15 +349,15 @@
     <message>
       <location filename="../src/ui/articleview.cc" line="1860"/>
       <source>Save &amp;Bookmark &quot;%1...&quot;</source>
-      <translation type="unfinished">Save &amp;Bookmark &quot;%1...&quot;</translation>
+      <translation>儲存書籤(&amp;B)&quot;%1...&quot;</translation>
     </message>
     <message>
       <source>&amp;Send &quot;%1&quot; to anki with selected text.</source>
-      <translation type="unfinished">&amp;Send &quot;%1&quot; to anki with selected text.</translation>
+      <translation>(&amp;S) 用選擇的文字 &quot;%1&quot; 製作anki卡片</translation>
     </message>
     <message>
       <source>Sound files (*.wav *.ogg *.oga *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape);;All files (*.*)</source>
-      <translation type="unfinished">Sound files (*.wav *.ogg *.oga *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape);;All files (*.*)</translation>
+      <translation>聲音檔案 (*.wav *.ogg *.oga *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape);;All files (*.*)</translation>
     </message>
     <message>
       <location filename="../src/ui/articleview.cc" line="2137"/>
@@ -420,17 +420,17 @@
     <message>
       <location filename="../src/ui/articleview.cc" line="1868"/>
       <source>&amp;Send Current Article to Anki</source>
-      <translation type="unfinished">&amp;Send Current Article to Anki</translation>
+      <translation>將當前內容傳送到anki</translation>
     </message>
     <message>
       <location filename="../src/ui/articleview.cc" line="1869"/>
       <source>&amp;Send selected text to Anki</source>
-      <translation type="unfinished">&amp;Send selected text to Anki</translation>
+      <translation>將選擇的文字傳送到anki</translation>
     </message>
     <message>
       <location filename="../src/ui/articleview.cc" line="2011"/>
       <source>Sound files (*.wav *.ogg *.oga *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape *.spx);;All files (*.*)</source>
-      <translation type="unfinished">Sound files (*.wav *.ogg *.oga *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape *.spx);;All files (*.*)</translation>
+      <translation>聲音檔案 (*.wav *.ogg *.oga *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape *.spx);;All files (*.*)</translation>
     </message>
     <message>
       <location filename="../src/ui/articleview.cc" line="2081"/>
@@ -444,7 +444,7 @@
     <message>
       <location filename="../src/ui/articleview.hh" line="59"/>
       <source>&amp;Create Anki note</source>
-      <translation type="unfinished">&amp;Create Anki note</translation>
+      <translation>製作anki note</translation>
     </message>
   </context>
   <context>
@@ -633,6 +633,26 @@ between classic and school orthography in cyrillic)</source>
       <translation>依目標語言合併分組至 &quot;-&gt;%1&quot;</translation>
     </message>
     <message>
+      <location filename="../src/ui/groups_widgets.cc" line="785"/>
+      <source>Auto group by folder failed.</source>
+      <translation type="unfinished">Auto group by folder failed.</translation>
+    </message>
+    <message>
+      <location filename="../src/ui/groups_widgets.cc" line="786"/>
+      <source>The parent directory of %1 can be reached.</source>
+      <translation type="unfinished">The parent directory of %1 can be reached.</translation>
+    </message>
+    <message>
+      <location filename="../src/ui/groups_widgets.cc" line="791"/>
+      <source>Are you sure you want to generate a set of groups based on containing folders?</source>
+      <translation>您確定要依據語言來產生群組嗎？</translation>
+    </message>
+    <message>
+      <location filename="../src/ui/groups_widgets.cc" line="892"/>
+      <source>Are you sure you want to generate a set of groups based on metadata.txt?</source>
+      <translation>您確定要依據metadata.toml產生群組嗎？</translation>
+    </message>
+    <message>
       <location filename="../src/ui/groups_widgets.cc" line="886"/>
       <source>Make two-side translate group &quot;%1-%2-%1&quot;</source>
       <translation>製作雙向翻譯組 &quot;%1-%2-%1&quot;</translation>
@@ -762,7 +782,7 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <location filename="../src/ui/dictheadwords.cc" line="292"/>
       <source>Can not open exported file</source>
-      <translation type="unfinished">Can not open exported file</translation>
+      <translation>無法開啟要存檔的檔案</translation>
     </message>
     <message>
       <location filename="../src/ui/dictheadwords.cc" line="303"/>
@@ -777,7 +797,7 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <location filename="../src/ui/dictheadwords.cc" line="367"/>
       <source>Export process is interrupted</source>
-      <translation type="unfinished">Export process is interrupted</translation>
+      <translation>匯出的活動被中止</translation>
     </message>
     <message>
       <location filename="../src/ui/dictheadwords.cc" line="375"/>
@@ -1057,7 +1077,7 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <location filename="../src/fulltextsearch.cc" line="257"/>
       <source>support xapian search syntax,such as AND OR +/- etc</source>
-      <translation type="unfinished">support xapian search syntax,such as AND OR +/- etc</translation>
+      <translation>支援xapian如下的搜尋語法 AND OR +/- 等</translation>
     </message>
     <message>
       <location filename="../src/fulltextsearch.cc" line="263"/>
@@ -1963,7 +1983,7 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <location filename="../src/language.cc" line="136"/>
       <source>Korean</source>
-      <translation>韓國語(韓文)</translation>
+      <translation>韓語</translation>
     </message>
     <message>
       <location filename="../src/language.cc" line="171"/>
@@ -2559,6 +2579,214 @@ between classic and school orthography in cyrillic)</source>
       <location filename="../src/language.cc" line="237"/>
       <source>Lojban</source>
       <translation>邏輯語</translation>
+    </message>
+  </context>
+  <context>
+    <name>Language::Db</name>
+    <message>
+      <location filename="../src/language.cc" line="41"/>
+      <source>French</source>
+      <translation>法語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="42"/>
+      <source>Spanish</source>
+      <translation>西班牙語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="43"/>
+      <source>Belarusian</source>
+      <translation>白俄羅斯語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="44"/>
+      <source>Bulgarian</source>
+      <translation>保加利亞語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="45"/>
+      <source>Czech</source>
+      <translation>捷克語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="46"/>
+      <source>German</source>
+      <translation>德語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="47"/>
+      <source>Greek</source>
+      <translation>希臘文</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="48"/>
+      <source>Finnish</source>
+      <translation>芬蘭文</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="49"/>
+      <source>Italian</source>
+      <translation>義大利文</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="50"/>
+      <source>Japanese</source>
+      <translation>日语</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="51"/>
+      <source>Korean</source>
+      <translation>韓語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="52"/>
+      <source>Lithuanian</source>
+      <translation>立陶宛文</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="53"/>
+      <source>Macedonian</source>
+      <translation>馬其頓文</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="54"/>
+      <source>Dutch</source>
+      <translation>荷蘭文</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="55"/>
+      <source>Polish</source>
+      <translation>波蘭文</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="56"/>
+      <source>Portuguese</source>
+      <translation>葡萄牙文</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="57"/>
+      <source>Russian</source>
+      <translation>俄語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="58"/>
+      <source>Slovak</source>
+      <translation>斯洛伐克語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="59"/>
+      <source>Albanian</source>
+      <translation>阿爾巴尼亞文</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="60"/>
+      <source>Serbian (Cyrillic)</source>
+      <translation>塞爾維亞語（西里爾語）</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="61"/>
+      <source>Swedish</source>
+      <translation>瑞典語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="62"/>
+      <source>Turkish</source>
+      <translation>土耳其語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="63"/>
+      <source>Ukrainian</source>
+      <translation>烏克蘭語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="64"/>
+      <source>Chinese Simplified</source>
+      <translation>簡體中文</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="65"/>
+      <source>Chinese Traditional</source>
+      <translation>繁體中文</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="66"/>
+      <source>Vietnamese</source>
+      <translation>越南文</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="67"/>
+      <source>Portuguese, Brazilian</source>
+      <translation>葡萄牙文（巴西）</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="68"/>
+      <source>Persian</source>
+      <translation>波斯文</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="69"/>
+      <source>Spanish, Argentina</source>
+      <translation>西班牙文（阿根廷）</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="70"/>
+      <source>Hindi</source>
+      <translation>印地語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="71"/>
+      <source>Esperanto</source>
+      <translation>世界語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="72"/>
+      <source>German, Switzerland</source>
+      <translation>德語（瑞士）</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="73"/>
+      <source>Spanish, Bolivia</source>
+      <translation>西班牙語（玻利維亞）</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="74"/>
+      <source>Tajik</source>
+      <translation>塔吉克語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="75"/>
+      <source>Quechua</source>
+      <translation>科察語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="76"/>
+      <source>Aymara</source>
+      <translation>艾馬拉語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="77"/>
+      <source>Arabic, Saudi Arabia</source>
+      <translation>阿拉伯文（沙烏地阿拉伯）</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="78"/>
+      <source>Turkmen</source>
+      <translation>土庫曼語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="79"/>
+      <source>Interlingue</source>
+      <translation>國際語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="80"/>
+      <source>Lojban</source>
+      <translation>邏輯語</translation>
+    </message>
+    <message>
+      <location filename="../src/language.cc" line="81"/>
+      <source>English</source>
+      <translation>英文</translation>
     </message>
   </context>
   <context>
@@ -3991,7 +4219,7 @@ however, the article from the topmost dictionary is shown.</translation>
     <message>
       <location filename="../src/ui/preferences.ui" line="73"/>
       <source>Dictionary Font: </source>
-      <translation type="unfinished">Dictionary Font: </translation>
+      <translation>字典名稱: </translation>
     </message>
     <message>
       <location filename="../src/ui/preferences.ui" line="86"/>
@@ -4071,7 +4299,7 @@ however, the article from the topmost dictionary is shown.</translation>
     <message>
       <location filename="../src/ui/preferences.ui" line="996"/>
       <source>Anki Connect</source>
-      <translation type="unfinished">Anki Connect</translation>
+      <translation>Anki Connect</translation>
     </message>
     <message>
       <location filename="../src/ui/preferences.ui" line="1017"/>
@@ -4402,6 +4630,11 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>分鐘儲存一次</translation>
     </message>
     <message>
+      <location filename="../src/ui/preferences.cc" line="60"/>
+      <source>English</source>
+      <translation>英文</translation>
+    </message>
+    <message>
       <location filename="../src/ui/preferences.cc" line="112"/>
       <source>Classic</source>
       <translation>經典式樣</translation>
@@ -4540,27 +4773,27 @@ from Stardict, Babylon and GLS dictionaries</source>
     <message>
       <location filename="../src/ffmpegaudio.cc" line="157"/>
       <source>avformat_alloc_context() failed.</source>
-      <translation type="unfinished">avformat_alloc_context() failed.</translation>
+      <translation>avformat_alloc_context() failed.</translation>
     </message>
     <message>
       <location filename="../src/ffmpegaudio.cc" line="165"/>
       <source>av_malloc() failed.</source>
-      <translation type="unfinished">av_malloc() failed.</translation>
+      <translation>av_malloc() failed.</translation>
     </message>
     <message>
       <location filename="../src/ffmpegaudio.cc" line="174"/>
       <source>avio_alloc_context() failed.</source>
-      <translation type="unfinished">avio_alloc_context() failed.</translation>
+      <translation>avio_alloc_context() failed.</translation>
     </message>
     <message>
       <location filename="../src/ffmpegaudio.cc" line="191"/>
       <source>avformat_open_input() failed: %1.</source>
-      <translation type="unfinished">avformat_open_input() failed: %1.</translation>
+      <translation>avformat_open_input() failed: %1.</translation>
     </message>
     <message>
       <location filename="../src/ffmpegaudio.cc" line="198"/>
       <source>avformat_find_stream_info() failed: %1.</source>
-      <translation type="unfinished">avformat_find_stream_info() failed: %1.</translation>
+      <translation>avformat_find_stream_info() failed: %1.</translation>
     </message>
     <message>
       <location filename="../src/ffmpegaudio.cc" line="213"/>
@@ -4580,7 +4813,7 @@ from Stardict, Babylon and GLS dictionaries</source>
     <message>
       <location filename="../src/ffmpegaudio.cc" line="234"/>
       <source>avcodec_open2() failed: %1.</source>
-      <translation type="unfinished">avcodec_open2() failed: %1.</translation>
+      <translation>avcodec_open2() failed: %1.</translation>
     </message>
     <message>
       <location filename="../src/ffmpegaudio.cc" line="324"/>
@@ -4597,7 +4830,7 @@ from Stardict, Babylon and GLS dictionaries</source>
     </message>
     <message>
       <source>ao_open_live() failed: </source>
-      <translation type="unfinished">ao_open_live() failed: </translation>
+      <translation>ao_open_live() failed: </translation>
     </message>
     <message>
       <source>No driver.</source>
@@ -4622,7 +4855,7 @@ from Stardict, Babylon and GLS dictionaries</source>
     <message>
       <location filename="../src/ffmpegaudio.cc" line="343"/>
       <source>avcodec_alloc_frame() failed.</source>
-      <translation type="unfinished">avcodec_alloc_frame() failed.</translation>
+      <translation>avcodec_alloc_frame() failed.</translation>
     </message>
     <message>
       <location filename="../src/dict/bgl.cc" line="401"/>
@@ -4654,11 +4887,11 @@ from Stardict, Babylon and GLS dictionaries</source>
     </message>
     <message>
       <source>anki: post to anki failed</source>
-      <translation type="unfinished">anki: post to anki failed</translation>
+      <translation>anki: 調用失敗</translation>
     </message>
     <message>
       <source>Previous Page</source>
-      <translation type="unfinished">Previous Page</translation>
+      <translation>上一頁</translation>
     </message>
     <message>
       <source>Next Page</source>
@@ -5159,7 +5392,7 @@ of the appropriate groups to use them.</source>
     <message>
       <location filename="../src/ui/sources.ui" line="533"/>
       <source>Forvo</source>
-      <translation type="unfinished">Forvo</translation>
+      <translation>Forvo</translation>
     </message>
     <message>
       <location filename="../src/ui/sources.ui" line="350"/>
@@ -5188,7 +5421,7 @@ of the appropriate groups to use them.</source>
     <message>
       <location filename="../src/ui/sources.ui" line="575"/>
       <source>API Key:</source>
-      <translation type="unfinished">API Key:</translation>
+      <translation>API Key:</translation>
     </message>
     <message>
       <source>Use of Forvo currently requires an API key. Leave this field
@@ -5368,7 +5601,7 @@ Big-5 使用%GDBIG5%，Big5-HKSCS 使用 %GDBIG5HKSCS% ，GBK 和 GB18030 使用
     <message>
       <location filename="../src/texttospeechsource.cc" line="284"/>
       <source>Id</source>
-      <translation type="unfinished">Id</translation>
+      <translation>Id</translation>
     </message>
     <message>
       <location filename="../src/texttospeechsource.cc" line="286"/>

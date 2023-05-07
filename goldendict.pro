@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = goldendict
-VERSION = 23.04.03-alpha
+VERSION = 23.05.03-alpha
 
 # Generate version file. We do this here and in a build rule described later.
 # The build rule is required since qmake isn't run each time the project is
@@ -79,6 +79,22 @@ CONFIG( use_xapian ) {
   LIBS+= -lxapian
 }
 
+CONFIG( use_breakpad ) {
+  DEFINES += USE_BREAKPAD
+
+  win32: LIBS += -L$$PWD/thirdparty/breakpad/lib/ -llibbreakpad -llibbreakpad_client
+  else:unix: LIBS += -L$$PWD/thirdparty/breakpad/lib/ -llibbreakpa
+
+  INCLUDEPATH += $$PWD/thirdparty/breakpad/include
+  DEPENDPATH += $$PWD/thirdparty/breakpad/include
+
+  CONFIG( release, debug|release ) {
+    # create debug symbols for release builds
+    CONFIG*=force_debug_info
+    QMAKE_CXXFLAGS_RELEASE_WITH_DEBUGINFO -= -O2
+  }
+}
+
 CONFIG( use_iconv ) {
   DEFINES += USE_ICONV
   unix:!mac{
@@ -94,8 +110,7 @@ CONFIG += exceptions \
     stl  \
     c++17 \
     lrelease \
-    utf8_source \
-    force_debug_info
+    utf8_source
 
 mac {
     CONFIG += app_bundle
@@ -105,9 +120,15 @@ OBJECTS_DIR = build
 UI_DIR = build
 MOC_DIR = build
 RCC_DIR = build
-LIBS += -lz \
-        -lbz2 \
+LIBS += -lbz2 \
         -llzo2
+
+win32{
+  LIBS += -lzlib 
+}else{
+  LIBS += -lz 
+}
+
 
 win32 {
     QM_FILES_INSTALL_PATH = /locale/
@@ -115,7 +136,7 @@ win32 {
 
     win32-msvc* {
         # VS does not recognize 22.number.alpha,cause errors during compilation under MSVC++
-        VERSION = 23.04.03 
+        VERSION = 23.05.03 
         DEFINES += __WIN32 _CRT_SECURE_NO_WARNINGS
         contains(QMAKE_TARGET.arch, x86_64) {
             DEFINES += NOMINMAX __WIN64
@@ -261,7 +282,6 @@ mac {
     }
     else{
         QMAKE_POST_LINK = mkdir -p GoldenDict.app/Contents/Frameworks && \
-                          cp -nR $${PWD}/maclibs/lib/libeb.dylib GoldenDict.app/Contents/Frameworks/ && \
                           mkdir -p GoldenDict.app/Contents/MacOS/locale && \
                           cp -R locale/*.qm GoldenDict.app/Contents/MacOS/locale/
     }
@@ -562,7 +582,9 @@ CONFIG( no_epwing_support ) {
   SOURCES += src/dict/epwing.cc \
              src/dict/epwing_book.cc \
              src/dict/epwing_charmap.cc
-  LIBS += -leb
+  INCLUDEPATH += thirdparty
+  HEADERS += $$files(thirdparty/eb/*.h)
+  SOURCES += $$files(thirdparty/eb/*.c)
 }
 
 CONFIG( chinese_conversion_support ) {

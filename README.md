@@ -1,5 +1,6 @@
 # GoldenDict-ng
 
+[![Crowdin](https://badges.crowdin.net/goldendict-ng/localized.svg)](https://crowdin.com/project/goldendict-ng)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=xiaoyifang_goldendict&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=xiaoyifang_goldendict)
 [![Windows](https://github.com/xiaoyifang/goldendict/actions/workflows/windows.yml/badge.svg)](https://github.com/xiaoyifang/goldendict/actions/workflows/windows.yml) [![Ubuntu](https://github.com/xiaoyifang/goldendict/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/xiaoyifang/goldendict/actions/workflows/ubuntu.yml)
 [![macos](https://github.com/xiaoyifang/goldendict/actions/workflows/macos.yml/badge.svg)](https://github.com/xiaoyifang/goldendict/actions/workflows/macos.yml)
@@ -196,6 +197,38 @@ qmake "CONFIG+=use_iconv"
 ```
 
 when enabled ,iconv should be installed on the platform at the same time.
+
+
+use `CONFIG+=use_breakpad` to enable this crash dump. when enabled [breakpad](https://chromium.googlesource.com/breakpad/breakpad/+/master/docs), goldendict will generate a crash dump alongside with Goldendict in the `crash` directory.
+
+on Windows:
+`vcpkg install breakpad:x64-windows-release` and copy the installed packages into `thirdparty/breakpad` directory.
+with a structure like this:
+```
+├─breakpad
+│  ├─include
+│  │  ├─client
+│  │  │  └─windows
+│  │  │      ├─common
+│  │  │      ├─crash_generation
+│  │  │      ├─handler
+│  │  │      └─sender
+│  │  ├─common
+│  │  │  └─windows
+│  │  └─google_breakpad
+│  │      ├─common
+│  │      └─processor
+│  └─lib
+```
+
+on Mac/Linux:
+[vcpkg](https://techviewleo.com/install-vcpkg-c-library-manager-on-linux-macos-windows/) can also be used or you can just install breakpad from source or use precompiled packages. 
+
+Then enable google breakpad like this with qmake:
+
+```
+qmake "CONFIG+=use_breakpad"
+```
 
 ## Support
 
