@@ -77,6 +77,7 @@ target_sources(${GOLDENDICT} PUBLIC
         resources.qrc
         src/scripts/scripts.qrc
         src/stylesheets/css.qrc
+        thirdparty/fmt/format.cc
         ${ALL_SOURCE_FILES}
         ${MACOS_SOURCE_FILES}
         ${QSINGLEAPP_SOURCE_FILES})
@@ -105,6 +106,7 @@ target_include_directories(${GOLDENDICT} PUBLIC
         ${PROJECT_SOURCE_DIR}/src/dict
         ${PROJECT_SOURCE_DIR}/src/ui
         ${PROJECT_SOURCE_DIR}/thirdparty/tomlplusplus
+        ${PROJECT_SOURCE_DIR}/thirdparty/fmt/include
         )
 
 #### Compile definitions
@@ -168,8 +170,8 @@ if (APPLE)
 endif ()
 
 if (LINUX OR BSD)
-    install(FILES ${CMAKE_SOURCE_DIR}/redist/org.goldendict.GoldenDict.desktop DESTINATION share/applications)
-    install(FILES ${CMAKE_SOURCE_DIR}/redist/org.goldendict.GoldenDict.metainfo.xml DESTINATION share/metainfo)
+    install(FILES ${CMAKE_SOURCE_DIR}/redist/org.xiaoyifang.GoldenDict_NG.desktop DESTINATION share/applications)
+    install(FILES ${CMAKE_SOURCE_DIR}/redist/org.xiaoyifang.GoldenDict_NG.metainfo.xml DESTINATION share/metainfo)
 
     install(FILES ${CMAKE_SOURCE_DIR}/redist/icons/goldendict.png DESTINATION share/pixmaps)
 

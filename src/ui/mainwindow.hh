@@ -60,11 +60,12 @@ public:
   /// Set group for main/popup window
   void setGroupByName( QString const & name, bool main_window );
 
+  enum WildcardPolicy { EscapeWildcards, WildcardsAreAlreadyEscaped };
 public slots:
 
   void messageFromAnotherInstanceReceived( QString const & );
   void showStatusBarMessage ( QString const &, int, QPixmap const & );
-  void phraseReceived( Config::InputPhrase const & );
+  void phraseReceived( Config::InputPhrase const &, WildcardPolicy );
   void wordReceived( QString const & );
   void headwordReceived( QString const &, QString const & );
   void headwordFromFavorites( QString const &, QString const & );
@@ -130,7 +131,7 @@ private:
   History history;
   DictionaryBar dictionaryBar;
   vector< sptr< Dictionary::Class > > dictionaries;
-  QMap< std::string, sptr< Dictionary::Class > > dictMap;
+  QMap<std::string, sptr< Dictionary::Class > > dictMap;
   /// Here we store unmuted dictionaries when the dictionary bar is active
   vector< sptr< Dictionary::Class > > dictionariesUnmuted;
   Instances::Groups groupInstances;
@@ -139,9 +140,6 @@ private:
   QNetworkAccessManager dictNetMgr; // We give dictionaries a separate manager,
                                     // since their requests can be destroyed
                                     // in a separate thread
-
-  QScopedPointer< QWebEngineProfile > webEngineProfile;
-
   AudioPlayerFactory audioPlayerFactory;
 
   WordList * wordList;
@@ -252,7 +250,6 @@ private:
   void updateSuggestionList();
   void updateSuggestionList( QString const & text );
 
-  enum WildcardPolicy { EscapeWildcards, WildcardsAreAlreadyEscaped };
   enum TranslateBoxPopup { NoPopupChange, EnablePopup, DisablePopup };
   void setTranslateBoxTextAndKeepSuffix( QString text, WildcardPolicy wildcardPolicy,
                                          TranslateBoxPopup popupAction );

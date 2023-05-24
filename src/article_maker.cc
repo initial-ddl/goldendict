@@ -14,6 +14,8 @@
 #include <QFile>
 #include <QTextDocumentFragment>
 #include <QUrl>
+#include "fmt/core.h"
+#include "fmt/compile.h"
 
 using std::vector;
 using std::string;
@@ -73,12 +75,13 @@ std::string ArticleMaker::makeHtmlHeader( QString const & word,
   {
     result += R"(<link href="qrc:///article-style.css"  media="all" rel="stylesheet" type="text/css">)";
 
-    if ( cfg.displayStyle.size() )
-    {
+    if ( cfg.displayStyle.size() ) {
       // Load an additional stylesheet
-      QString displayStyleCssFile = QString("qrc:///article-style-st-%1.css").arg(cfg.displayStyle);
-      result += "<link href=\"" + displayStyleCssFile.toStdString() +
-                R"("  media="all" rel="stylesheet" type="text/css">)";
+      fmt::format_to(
+        std::back_inserter( result ),
+        FMT_COMPILE(
+          R"(<link href="qrc:///article-style-st-{}.css" media="all" media="all" rel="stylesheet" type="text/css">)" ),
+        cfg.displayStyle.toStdString() );
     }
 
     result += readCssFile(Config::getUserCssFileName() ,"all");
@@ -142,7 +145,10 @@ std::string ArticleMaker::makeHtmlHeader( QString const & word,
 
   if( GlobalBroadcaster::instance()->getPreference()->darkReaderMode )
   {
-    result += R"(<link href="qrc:///article-style-darkmode.css"  media="all" rel="stylesheet" type="text/css">)";
+    //only enable this darkmode on modern style.
+    if( cfg.displayStyle == "modern" ) {
+      result += R"(<link href="qrc:///article-style-darkmode.css"  media="all" rel="stylesheet" type="text/css">)";
+    }
 
     // #242525 because Darkreader will invert pure white to this value
     result += R"(
@@ -218,17 +224,13 @@ std::string ArticleMaker::makeNotFoundBody( QString const & word,
 {
   string result( "<div class=\"gdnotfound\"><p>" );
 
-  QString str( word );
-  if( str.isRightToLeft() )
-  {
-    str.insert( 0, (ushort)0x202E ); // RLE, Right-to-Left Embedding
-    str.append( (ushort)0x202C ); // PDF, POP DIRECTIONAL FORMATTING
-  }
-
   if ( word.size() )
-    result += tr( "No translation for <b>%1</b> was found in group <b>%2</b>." ).
-              arg( QString::fromUtf8( Html::escape( str.toUtf8().data() ).c_str() ), QString::fromUtf8( Html::escape( group.toUtf8().data() ).c_str() ) ).
-                toUtf8().data();
+    result += tr( "No translation for <b dir=\"%3\">%1</b> was found in group <b>%2</b>." )
+                .arg( QString::fromUtf8( Html::escape( word.toUtf8().data() ).c_str() ),
+                      QString::fromUtf8( Html::escape( group.toUtf8().data() ).c_str() ),
+                      word.isRightToLeft() ? "rtl" : "ltr" )
+                .toUtf8()
+                .data();
   else
     result += tr( "No translation was found in group <b>%1</b>." ).
               arg( QString::fromUtf8( Html::escape( group.toUtf8().data() ).c_str() ) ).
@@ -268,7 +270,7 @@ sptr< Dictionary::DataRequest > ArticleMaker::makeDefinitionFor(
 
     string header = makeHtmlHeader( phrase.phrase, QString(), true );
 
-    return std::make_shared<ArticleRequest>( phrase, "",
+    return std::make_shared<ArticleRequest>( phrase, Instances::Group{groupId,""},
                                contexts, ftsDicts, header,
                                -1, true );
   }
@@ -360,13 +362,13 @@ sptr< Dictionary::DataRequest > ArticleMaker::makeDefinitionFor(
               QString::fromStdString( activeDicts[ x ]->getId() ) ) )
         unmutedDicts.push_back( activeDicts[ x ] );
 
-    return  std::make_shared<ArticleRequest>( phrase, activeGroup ? activeGroup->name : "",
+    return  std::make_shared<ArticleRequest>( phrase, Instances::Group{ activeGroup ? activeGroup->id:0, activeGroup ? activeGroup->name : ""},
                                contexts, unmutedDicts, header,
                                cfg.collapseBigArticles ? cfg.articleSizeLimit : -1,
                                cfg.alwaysExpandOptionalParts, ignoreDiacritics );
   }
   else
-    return std::make_shared<ArticleRequest>( phrase, activeGroup ? activeGroup->name : "",
+    return std::make_shared<ArticleRequest>( phrase, Instances::Group{ activeGroup ? activeGroup->id:0, activeGroup ? activeGroup->name : ""},
                                contexts, activeDicts, header,
                                cfg.collapseBigArticles ? cfg.articleSizeLimit : -1,
                                cfg.alwaysExpandOptionalParts, ignoreDiacritics );
@@ -431,7 +433,7 @@ bool ArticleMaker::adjustFilePath( QString & fileName )
 //////// ArticleRequest
 
 ArticleRequest::ArticleRequest( Config::InputPhrase const & phrase,
-                                QString const & group_,
+                                Instances::Group const & group_,
                                 QMap< QString, QString > const & contexts_,
                                 vector< sptr< Dictionary::Class > > const & activeDicts_,
                                 string const & header,
@@ -456,7 +458,7 @@ ArticleRequest::ArticleRequest( Config::InputPhrase const & phrase,
   appendDataSlice( (void *) header.data(), header.size() );
 
   //clear founded dicts.
-  emit GlobalBroadcaster::instance()->dictionaryClear( ActiveDictIds{word} );
+  emit GlobalBroadcaster::instance()->dictionaryClear( ActiveDictIds{group.id, word} );
 
   // Accumulate main forms
   for( unsigned x = 0; x < activeDicts.size(); ++x )
@@ -645,35 +647,34 @@ void ArticleRequest::bodyFinished()
 
         string jsVal = Html::escapeForJavaScript( dictId );
 
-        head += QString::fromUtf8(
-                  R"( <div class="gdarticle %1 %2" id="%3" 
-                    onClick="gdMakeArticleActive( '%4' );" 
-                    onContextMenu="gdMakeArticleActive( '%4' );">)" )
-                  .arg(  closePrevSpan ? "" : " gdactivearticle" ,
-                         collapse ? " gdcollapsedarticle" : "" ,
-                         gdFrom.c_str() ,
-                         jsVal.c_str() )
-                  .toStdString();
+        fmt::format_to( std::back_inserter( head ),
+                        FMT_COMPILE(
+                          R"( <div class="gdarticle {0} {1}" id="{2}"
+                              onClick="gdMakeArticleActive( '{3}', false );"
+                              onContextMenu="gdMakeArticleActive( '{3}', false );">)" ),
+                        closePrevSpan ? "" : " gdactivearticle",
+                        collapse ? " gdcollapsedarticle" : "",
+                        gdFrom,
+                        jsVal );
 
         closePrevSpan = true;
 
-        head += QString::fromUtf8(
-                  R"(<div class="gddictname" onclick="gdExpandArticle('%1');"  %2  id="gddictname-%1" title="%3">
-                      <span class="gddicticon"><img src="gico://%1/dicticon.png"></span>
-                      <span class="gdfromprefix">%4</span>
-                      <span class="gddicttitle">%5</span>
-                      <span class="collapse_expand_area"><img class="%6" id="expandicon-%1" title="%7" ></span>
-                     </div>)" )
-                  .arg( dictId.c_str(),
-                        collapse ? R"(style="cursor:pointer;")" : "",
-                        collapse ? tr( "Expand article" ) : QString(),
-                        Html::escape( tr( "From " ).toStdString() ).c_str(),
-                        Html::escape( activeDict->getName() ).c_str(),
-                        collapse ? "gdexpandicon" : "gdcollapseicon",
-                        collapse ? "" : tr( "Collapse article" )
-
-                          )
-                  .toStdString();
+        fmt::format_to(
+          std::back_inserter( head ),
+          FMT_COMPILE(
+            R"(<div class="gddictname" onclick="gdExpandArticle('{0}');"  {1}  id="gddictname-{0}" title="{2}">
+                      <span class="gddicticon"><img src="gico://{0}/dicticon.png"></span>
+                      <span class="gdfromprefix">{3}</span>
+                      <span class="gddicttitle">{4}</span>
+                      <span class="collapse_expand_area"><img class="{5}" id="expandicon-{0}" title="{6}" ></span>
+                     </div>)" ),
+          dictId,
+          collapse ? R"(style="cursor:pointer;")" : "",
+          collapse ? tr( "Expand article" ).toStdString() : "",
+          Html::escape( tr( "From " ).toStdString() ),
+          Html::escape( activeDict->getName() ),
+          collapse ? "gdexpandicon" : "gdcollapseicon",
+          collapse ? "" : tr( "Collapse article" ).toStdString() );
 
         head += R"(<div class="gddictnamebodyseparator"></div>)";
 
@@ -688,13 +689,14 @@ void ArticleRequest::bodyFinished()
           head += link.arg( Html::escape( dictId ).c_str(), tr( "Make a new Anki note" ) ).toStdString();
         }
 
-        head += QString::fromUtf8(
-                  R"(<div class="gdarticlebody gdlangfrom-%1" lang="%2" style="display:%3" id="gdarticlefrom-%4">)" )
-                  .arg( LangCoder::intToCode2( activeDict->getLangFrom() ),
-                        LangCoder::intToCode2( activeDict->getLangTo() ),
-                        collapse ? "none" : "inline",
-                        dictId.c_str()  )
-                  .toStdString();
+        fmt::format_to(
+          std::back_inserter( head ),
+          FMT_COMPILE(
+            R"(<div class="gdarticlebody gdlangfrom-{}" lang="{}" style="display:{}" id="gdarticlefrom-{}">)" ),
+          LangCoder::intToCode2( activeDict->getLangFrom() ).toStdString(),
+          LangCoder::intToCode2( activeDict->getLangTo() ).toStdString(),
+          collapse ? "none" : "inline",
+          dictId );
 
         if( errorString.size() ) {
           head += "<div class=\"gderrordesc\">"
@@ -728,6 +730,7 @@ void ArticleRequest::bodyFinished()
     }
   }
 
+  ActiveDictIds hittedWord{ group.id, word, dictIds };
 
   if ( bodyRequests.empty() )
   {
@@ -750,7 +753,7 @@ void ArticleRequest::bodyFinished()
 
         // Larger words are usually whole sentences - don't clutter the output
         // with their full bodies.
-        footer += ArticleMaker::makeNotFoundBody( word.size() < 40 ? word : "", group );
+        footer += ArticleMaker::makeNotFoundBody( word.size() < 40 ? word : "", group.name );
 
         // When there were no definitions, we run stemmed search.
         stemmedWordFinder = std::make_shared< WordFinder >( this );
@@ -772,23 +775,24 @@ void ArticleRequest::bodyFinished()
       appendDataSlice( footer.data(), footer.size() );
     }
 
-    if( stemmedWordFinder.get() ) {
+
+    if ( stemmedWordFinder.get() ) {
       update();
-      qDebug() << "send dicts(stemmed):" << word << ":" << dictIds;
-      emit GlobalBroadcaster::instance()->dictionaryChanges( ActiveDictIds{ word, dictIds } );
+      qDebug() << "send dicts(stemmed):" << hittedWord;
+      emit GlobalBroadcaster::instance()->dictionaryChanges( hittedWord );
       dictIds.clear();
     }
     else {
       finish();
-      qDebug() << "send dicts(finished):" << word << ":" << dictIds;
-      emit GlobalBroadcaster::instance()->dictionaryChanges( ActiveDictIds{ word, dictIds } );
+      qDebug() << "send dicts(finished):" << hittedWord;
+      emit GlobalBroadcaster::instance()->dictionaryChanges( hittedWord );
       dictIds.clear();
     }
   }
-  else if( wasUpdated ) {
+  else if ( wasUpdated ) {
     update();
-    qDebug() << "send dicts(updated):" << word << ":" << dictIds;
-    emit GlobalBroadcaster::instance()->dictionaryChanges( ActiveDictIds{ word, dictIds } );
+    qDebug() << "send dicts(updated):" << hittedWord;
+    emit GlobalBroadcaster::instance()->dictionaryChanges( hittedWord );
     dictIds.clear();
   }
 }

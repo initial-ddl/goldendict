@@ -228,7 +228,6 @@ class AardDictionary: public BtreeIndexing::BtreeDictionary
     File::Class idx;
     IdxHeader idxHeader;
     ChunkedStorage::Reader chunks;
-    string dictionaryName;
     File::Class df;
 
   public:
@@ -237,9 +236,6 @@ class AardDictionary: public BtreeIndexing::BtreeDictionary
                      vector< string > const & dictionaryFiles );
 
     ~AardDictionary();
-
-    string getName() noexcept override
-    { return dictionaryName; }
 
     map< Dictionary::Property, string > getProperties() noexcept override
     { return map< Dictionary::Property, string >(); }
@@ -560,11 +556,11 @@ QString const& AardDictionary::getDescription()
     {
         map< string, string >::const_iterator iter = meta.find( "copyright" );
         if( iter != meta.end() )
-          dictionaryDescription = QString( QObject::tr( "Copyright: %1%2" ) ).arg( QString::fromUtf8( iter->second.c_str() ) ).arg( "\n\n" );
+          dictionaryDescription =  QObject::tr( "Copyright: %1%2" ).arg( QString::fromUtf8( iter->second.c_str() ) ).arg( "\n\n" );
 
         iter = meta.find( "version" );
         if( iter != meta.end() )
-          dictionaryDescription = QString( QObject::tr( "Version: %1%2" ) ).arg( QString::fromUtf8( iter->second.c_str() ) ).arg( "\n\n" );
+          dictionaryDescription = QObject::tr( "Version: %1%2" ).arg( QString::fromUtf8( iter->second.c_str() ) ).arg( "\n\n" );
 
         iter = meta.find( "description" );
         if( iter != meta.end() )
@@ -663,7 +659,7 @@ public:
     } );
   }
 
-  void run(); // Run from another thread by DslArticleRequestRunnable
+  void run();
 
   void cancel() override
   {
@@ -1009,12 +1005,12 @@ vector< sptr< Dictionary::Class > > makeDictionaries(
           idxHeader.wordCount = wordCount;
 
           if( langFrom.size() == 3)
-              idxHeader.langFrom = LangCoder::findIdForLanguageCode3( langFrom.c_str() );
+            idxHeader.langFrom = LangCoder::findIdForLanguageCode3( langFrom );
           else if( langFrom.size() == 2 )
               idxHeader.langFrom = LangCoder::code2toInt( langFrom.c_str() );
 
           if( langTo.size() == 3)
-              idxHeader.langTo = LangCoder::findIdForLanguageCode3( langTo.c_str() );
+            idxHeader.langTo = LangCoder::findIdForLanguageCode3( langTo );
           else if( langTo.size() == 2 )
               idxHeader.langTo = LangCoder::code2toInt( langTo.c_str() );
 

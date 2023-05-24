@@ -173,7 +173,10 @@ vector< wstring > Class::getAlternateWritings( wstring const & )
 QString Class::getContainingFolder() const
 {
   if ( !dictionaryFiles.empty() ) {
-    return QFileInfo( QString::fromStdString( dictionaryFiles[ 0 ] ) ).absolutePath();
+    auto fileInfo = QFileInfo( QString::fromStdString( dictionaryFiles[ 0 ] ) );
+    if ( fileInfo.isDir() )
+      return fileInfo.absoluteFilePath();
+    return fileInfo.absolutePath();
   }
 
   return QString();
@@ -584,12 +587,8 @@ bool needToRebuildIndex( vector< string > const & dictionaryFiles,
     if ( ts > lastModified )
       lastModified = ts;
   }
-#ifndef USE_XAPIAN
-  QDir d( indexFile.c_str() );
-  if(d.exists()){
-    d.removeRecursively();
-  }
-#endif
+
+
   QFileInfo fileInfo( indexFile.c_str() );
 
   if ( !fileInfo.exists() )
@@ -598,12 +597,9 @@ bool needToRebuildIndex( vector< string > const & dictionaryFiles,
   return fileInfo.lastModified().toSecsSinceEpoch() < lastModified;
 }
 
-string getFtsSuffix(){
-#ifdef USE_XAPIAN
+string getFtsSuffix()
+{
   return "_FTS_x";
-#else
-  return "_FTS";
-#endif
 }
 
 QString generateRandomDictionaryId()

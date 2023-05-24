@@ -17,6 +17,7 @@
 
 #ifdef Q_OS_WIN32
 #include <QtCore/qt_windows.h>
+  #include <windows.h>
 #endif
 
 #include "termination.hh"
@@ -29,6 +30,8 @@
 #include <QtWebEngineCore/QWebEngineUrlScheme>
 
 #include "gddebug.hh"
+#include <QMutexLocker>
+#include <QMutex>
 
 #if defined(USE_BREAKPAD)
   #include "client/windows/handler/exception_handler.h"
@@ -48,59 +51,65 @@ bool callback(const wchar_t* dump_path, const wchar_t* id,
 }
 #endif
 
+QMutex logMutex;
+
 void gdMessageHandler( QtMsgType type, const QMessageLogContext &context, const QString &mess )
 {
-  Q_UNUSED( context );
-  QString message( mess );
-  QByteArray msg = message.toUtf8().constData();
+  QString strTime = QDateTime::currentDateTime().toString( "MM-dd hh:mm:ss" );
+  QString message = QString( "%1 file:%2,line:%3,function:%4 %5\r\n" )
+                      .arg( strTime )
+                      .arg( context.file )
+                      .arg( context.line )
+                      .arg( context.function )
+                      .arg( mess );
 
-  switch (type) {
-
-    case QtDebugMsg:
-      if( logFilePtr && logFilePtr->isOpen() )
+  if ( ( logFilePtr != nullptr ) && logFilePtr->isOpen() ) {
+    //without the lock ,on multithread,there would be assert error.
+    QMutexLocker _( &logMutex );
+    switch ( type ) {
+      case QtDebugMsg:
         message.insert( 0, "Debug: " );
-      else
-        fprintf(stderr, "Debug: %s\n", msg.constData());
-      break;
-
-    case QtWarningMsg:
-      if( logFilePtr && logFilePtr->isOpen() )
+        break;
+      case QtWarningMsg:
         message.insert( 0, "Warning: " );
-      else
-        fprintf(stderr, "Warning: %s\n", msg.constData());
-      break;
-
-    case QtCriticalMsg:
-      if( logFilePtr && logFilePtr->isOpen() )
+        break;
+      case QtCriticalMsg:
         message.insert( 0, "Critical: " );
-      else
-        fprintf(stderr, "Critical: %s\n", msg.constData());
-      break;
-
-    case QtFatalMsg:
-      if( logFilePtr && logFilePtr->isOpen() )
-      {
-        logFilePtr->write( "Fatal: " );
-        logFilePtr->write( msg );
+        break;
+      case QtFatalMsg:
+        message.insert( 0, "Fatal: " );
+        logFilePtr->write( message.toUtf8() );
         logFilePtr->flush();
-      }
-      else
-        fprintf(stderr, "Fatal: %s\n", msg.constData());
-      abort();
-    case QtInfoMsg:
-      if( logFilePtr && logFilePtr->isOpen() )
+        abort();
+      case QtInfoMsg:
         message.insert( 0, "Info: " );
-      else
-        fprintf(stderr, "Info: %s\n", msg.constData());
-      break;
-  }
+        break;
+    }
 
-  if( logFilePtr && logFilePtr->isOpen() )
-  {
-    message.insert( 0, QDateTime::currentDateTime().toString( "yyyy-MM-dd HH:mm:ss.zzz " ) );
-    message.append( "\n" );
     logFilePtr->write( message.toUtf8() );
     logFilePtr->flush();
+
+    return;
+  }
+
+  //the following code lines actually will have no chance to run, schedule to remove in the future.
+  QByteArray msg = mess.toUtf8().constData();
+  switch ( type ) {
+    case QtDebugMsg:
+      fprintf( stderr, "Debug: %s\n", msg.constData() );
+      break;
+    case QtWarningMsg:
+      fprintf( stderr, "Warning: %s\n", msg.constData() );
+      break;
+    case QtCriticalMsg:
+      fprintf( stderr, "Critical: %s\n", msg.constData() );
+      break;
+    case QtFatalMsg:
+      fprintf( stderr, "Fatal: %s\n", msg.constData() );
+      abort();
+    case QtInfoMsg:
+      fprintf( stderr, "Info: %s\n", msg.constData() );
+      break;
   }
 }
 
@@ -206,30 +215,30 @@ void processCommandLine( QCoreApplication * app, GDOptions * result)
   }
 }
 
-class LogFilePtrGuard
-{
-  QFile logFile;
-  Q_DISABLE_COPY( LogFilePtrGuard ) 
-public:
-  LogFilePtrGuard() { logFilePtr = &logFile; }
-  ~LogFilePtrGuard() { logFilePtr = 0; }
-};
-
 int main( int argc, char ** argv )
 {
 #ifdef Q_OS_UNIX
-    // GoldenDict use lots of X11 functions and it currently cannot work
-    // natively on Wayland. This workaround will force GoldenDict to use
-    // XWayland.
-    char * xdg_envc = getenv("XDG_SESSION_TYPE");
-    QString xdg_session = xdg_envc ? QString::fromLatin1(xdg_envc) : QString();
-    if (!QString::compare(xdg_session, QString("wayland"), Qt::CaseInsensitive))
-    {
-        setenv("QT_QPA_PLATFORM", "xcb", 1);
-    }
+  // GoldenDict use lots of X11 functions and it currently cannot work
+  // natively on Wayland. This workaround will force GoldenDict to use
+  // XWayland.
+  char * xdg_envc     = getenv( "XDG_SESSION_TYPE" );
+  QString xdg_session = xdg_envc ? QString::fromLatin1( xdg_envc ) : QString();
+  if ( !QString::compare( xdg_session, QString( "wayland" ), Qt::CaseInsensitive ) ) {
+    setenv( "QT_QPA_PLATFORM", "xcb", 1 );
+  }
 #endif
+
 #ifdef Q_OS_MAC
-    setenv("LANG", "en_US.UTF-8", 1);
+  setenv( "LANG", "en_US.UTF-8", 1 );
+#endif
+
+#ifdef Q_OS_WIN32
+  // attach the new console to this application's process
+  if ( AttachConsole( ATTACH_PARENT_PROCESS ) ) {
+    // reopen the std I/O streams to redirect I/O to the new console
+    freopen( "CON", "w", stdout );
+    freopen( "CON", "w", stderr );
+  }
 
 #endif
 
@@ -247,7 +256,7 @@ int main( int argc, char ** argv )
   int newArgc                     = argc + 1 + 1;
   char ** newArgv                 = new char *[ newArgc ];
   for ( int i = 0; i < argc; i++ ) {
-        newArgv[ i ] = argv[ i ];
+    newArgv[ i ] = argv[ i ];
   }
   newArgv[ argc ]     = ARG_DISABLE_WEB_SECURITY;
   newArgv[ argc + 1 ] = nullptr;
@@ -264,9 +273,8 @@ int main( int argc, char ** argv )
   QString appDirPath = QCoreApplication::applicationDirPath() + "/crash";
 
   QDir dir;
-  if (!dir.exists(appDirPath)) {
-        bool res = dir.mkpath(appDirPath);
-        qDebug() << "New mkdir " << appDirPath << " " << res;
+  if ( !dir.exists( appDirPath ) ) {
+    dir.mkpath( appDirPath );
   }
 
   google_breakpad::ExceptionHandler eh(
@@ -296,15 +304,24 @@ int main( int argc, char ** argv )
     { "gdlookup", "gdau", "gico", "qrcx", "bres", "bword", "gdprg", "gdvideo", "gdpicture", "gdtts", "ifr", "entry" };
 
   for ( const auto & localScheme : localSchemes ) {
-    QWebEngineUrlScheme webUiScheme(localScheme.toLatin1());
-      webUiScheme.setFlags(QWebEngineUrlScheme::SecureScheme |
-                           QWebEngineUrlScheme::LocalScheme |
-                           QWebEngineUrlScheme::LocalAccessAllowed|
-                           QWebEngineUrlScheme::CorsEnabled);
-      QWebEngineUrlScheme::registerScheme(webUiScheme);
+        QWebEngineUrlScheme webUiScheme( localScheme.toLatin1() );
+        webUiScheme.setFlags( QWebEngineUrlScheme::SecureScheme | QWebEngineUrlScheme::LocalScheme
+                              | QWebEngineUrlScheme::LocalAccessAllowed | QWebEngineUrlScheme::CorsEnabled );
+        QWebEngineUrlScheme::registerScheme( webUiScheme );
   }
 
-  LogFilePtrGuard logFilePtrGuard;
+  QFile file;
+  logFilePtr = &file;
+  auto guard = qScopeGuard( [ &file ]() {
+    logFilePtr = nullptr;
+    file.close();
+  } );
+
+  Q_UNUSED( guard )
+
+  QFont f = QApplication::font();
+  f.setStyleStrategy( QFont::PreferAntialias );
+  QApplication::setFont( f );
 
   if ( app.isRunning() )
   {
@@ -356,8 +373,8 @@ int main( int argc, char ** argv )
     }
     catch( Config::exError & )
     {
-      QMessageBox mb( QMessageBox::Warning, app.applicationName(),
-                      app.translate( "Main", "Error in configuration file. Continue with default settings?" ),
+      QMessageBox mb( QMessageBox::Warning, QHotkeyApplication::applicationName(),
+                      QHotkeyApplication::translate( "Main", "Error in configuration file. Continue with default settings?" ),
                       QMessageBox::Yes | QMessageBox::No );
       mb.exec();
       if( mb.result() != QMessageBox::Yes )

@@ -15,10 +15,6 @@
 #include "ex.hh"
 #include <QLocale>
 
-#ifdef Q_OS_WIN
-#include <QRect>
-#endif
-
 /// GoldenDict's configuration
 namespace Config {
 
@@ -177,27 +173,15 @@ struct HotKey
 struct FullTextSearch
 {
   int searchMode;
-  bool matchCase;
-  int maxArticlesPerDictionary;
-  int maxDistanceBetweenWords;
-  bool useMaxDistanceBetweenWords;
-  bool useMaxArticlesPerDictionary;
   bool enabled;
-  bool ignoreWordsOrder;
-  bool ignoreDiacritics;
+
   quint32 maxDictionarySize;
   QByteArray dialogGeometry;
   QString disabledTypes;
 
-  FullTextSearch() :
-    searchMode( 0 ), matchCase( false ),
-    maxArticlesPerDictionary( 100 ),
-    maxDistanceBetweenWords( 2 ),
-    useMaxDistanceBetweenWords( true ),
-    useMaxArticlesPerDictionary( false ),
+  FullTextSearch():
+    searchMode( 0 ),
     enabled( true ),
-    ignoreWordsOrder( false ),
-    ignoreDiacritics( false ),
     maxDictionarySize( 0 )
   {}
 };
@@ -508,6 +492,23 @@ struct Chinese
 };
 
 
+struct CustomTrans
+{
+  bool enable = false;
+
+  QString context;
+
+  bool operator==( CustomTrans const & other ) const
+  {
+    return enable == other.enable && context == other.context;
+  }
+
+  bool operator!=( CustomTrans const & other ) const
+  {
+    return !operator==( other );
+  }
+};
+
 /// Romaji transliteration configuration
 struct Romaji
 {
@@ -540,20 +541,24 @@ struct Transliteration
   bool enableGermanTransliteration;
   bool enableGreekTransliteration;
   bool enableBelarusianTransliteration;
+
+  CustomTrans customTrans;
 #ifdef MAKE_CHINESE_CONVERSION_SUPPORT
   Chinese chinese;
 #endif
   Romaji romaji;
 
-  bool operator == ( Transliteration const & other ) const
-  { return enableRussianTransliteration == other.enableRussianTransliteration &&
-           enableGermanTransliteration == other.enableGermanTransliteration &&
-           enableGreekTransliteration == other.enableGreekTransliteration &&
-           enableBelarusianTransliteration == other.enableBelarusianTransliteration &&
+  bool operator==( Transliteration const & other ) const
+  {
+    return enableRussianTransliteration == other.enableRussianTransliteration
+      && enableGermanTransliteration == other.enableGermanTransliteration
+      && enableGreekTransliteration == other.enableGreekTransliteration
+      && enableBelarusianTransliteration == other.enableBelarusianTransliteration
+      && customTrans == other.customTrans &&
 #ifdef MAKE_CHINESE_CONVERSION_SUPPORT
-           chinese == other.chinese &&
+      chinese == other.chinese &&
 #endif
-           romaji == other.romaji;
+      romaji == other.romaji;
   }
 
   bool operator != ( Transliteration const & other ) const

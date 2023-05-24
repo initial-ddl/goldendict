@@ -36,6 +36,7 @@ INCLUDEPATH += ./src/
 INCLUDEPATH += ./src/ui    # for compiled .ui files to find headers
 INCLUDEPATH += ./src/common
 INCLUDEPATH += ./thirdparty/tomlplusplus
+INCLUDEPATH += ./thirdparty/fmt/include
 
 QT += core \
       gui \
@@ -71,12 +72,12 @@ contains(DEFINES, MAKE_QTMULTIMEDIA_PLAYER|MAKE_FFMPEG_PLAYER) {
   src/audiooutput.cc
 }
 
-# on windows platform ,only works in release build
-
-CONFIG( use_xapian ) {
-  DEFINES += USE_XAPIAN
-
-  LIBS+= -lxapian
+#xapian is the must option now.
+win32{
+  Debug: LIBS+= -L$$PWD/winlibs/lib/xapian/dbg/ -lxapian
+  Release: LIBS+= -L$$PWD/winlibs/lib/xapian/rel/ -lxapian
+}else{
+  LIBS += -lxapian
 }
 
 CONFIG( use_breakpad ) {
@@ -124,7 +125,8 @@ LIBS += -lbz2 \
         -llzo2
 
 win32{
-  LIBS += -lzlib 
+    Debug: LIBS+= -lzlibd
+    Release: LIBS+= -lzlib
 }else{
   LIBS += -lz 
 }
@@ -142,8 +144,9 @@ win32 {
             DEFINES += NOMINMAX __WIN64
         }
         LIBS += -L$${PWD}/winlibs/lib/msvc
-        # silence the warning C4290: C++ exception specification ignored
-        QMAKE_CXXFLAGS += /wd4290 /Zc:__cplusplus /std:c++17 /permissive- 
+        LIBS += -L$${PWD}/winlibs/lib
+        # silence the warning C4290: C++ exception specification ignored,C4267  size_t to const T , lost data.
+        QMAKE_CXXFLAGS += /wd4290 /wd4267 /Zc:__cplusplus /std:c++17 /permissive-
         # QMAKE_LFLAGS_RELEASE += /OPT:REF /OPT:ICF
 
         # QMAKE_CXXFLAGS_RELEASE += /GL # slows down the linking significantly
@@ -183,9 +186,11 @@ win32 {
         CONFIG += chinese_conversion_support
     }
 }
-!CONFIG( no_macos_universal ) {
+
+!mac {
     DEFINES += INCLUDE_LIBRARY_PATH
 }
+
 unix:!mac {
     DEFINES += HAVE_X11
 
@@ -257,34 +262,21 @@ mac {
     QT_CONFIG -= no-pkg-config
     CONFIG += link_pkgconfig
 
-
-    !CONFIG( no_macos_universal ) {
-        LIBS+=        -lhunspell
-        INCLUDEPATH += $${PWD}/maclibs/include
-        LIBS += -L$${PWD}/maclibs/lib -framework AppKit -framework Carbon
-    }
-    else{
-        PKGCONFIG +=   hunspell
-        INCLUDEPATH += /opt/homebrew/include /usr/local/include
-        LIBS += -L/opt/homebrew/lib -L/usr/local/lib -framework AppKit -framework Carbon
-    }
+    PKGCONFIG +=   hunspell
+    INCLUDEPATH += /opt/homebrew/include /usr/local/include
+    LIBS += -L/opt/homebrew/lib -L/usr/local/lib -framework AppKit -framework Carbon
+    
 
     OBJECTIVE_SOURCES += src/macos/machotkeywrapper.mm \
                          src/macos/macmouseover.mm
     ICON = icons/macicon.icns
     QMAKE_INFO_PLIST = redist/myInfo.plist
 
-    !CONFIG( no_macos_universal ) {
-        QMAKE_POST_LINK = mkdir -p GoldenDict.app/Contents/Frameworks && \
-                          cp -nR $${PWD}/maclibs/lib/ GoldenDict.app/Contents/Frameworks/ && \
-                          mkdir -p GoldenDict.app/Contents/MacOS/locale && \
-                          cp -R locale/*.qm GoldenDict.app/Contents/MacOS/locale/
-    }
-    else{
-        QMAKE_POST_LINK = mkdir -p GoldenDict.app/Contents/Frameworks && \
-                          mkdir -p GoldenDict.app/Contents/MacOS/locale && \
-                          cp -R locale/*.qm GoldenDict.app/Contents/MacOS/locale/
-    }
+
+    QMAKE_POST_LINK = mkdir -p GoldenDict.app/Contents/Frameworks && \
+                      mkdir -p GoldenDict.app/Contents/MacOS/locale && \
+                      cp -R locale/*.qm GoldenDict.app/Contents/MacOS/locale/
+    
 
     !CONFIG( no_chinese_conversion_support ) {
         CONFIG += chinese_conversion_support
@@ -317,7 +309,6 @@ HEADERS += \
     src/common/htmlescape.hh \
     src/common/iconv.hh \
     src/common/inc_case_folding.hh \
-    src/common/inc_diacritic_folding.hh \
     src/common/mutex.hh \
     src/common/sptr.hh \
     src/common/ufile.hh \
@@ -332,6 +323,7 @@ HEADERS += \
     src/dict/belarusiantranslit.hh \
     src/dict/bgl.hh \
     src/dict/bgl_babylon.hh \
+    src/dict/customtransliteration.hh \
     src/dict/dictdfiles.hh \
     src/dict/dictionary.hh \
     src/dict/dictserver.hh \
@@ -455,6 +447,7 @@ SOURCES += \
     src/dict/belarusiantranslit.cc \
     src/dict/bgl.cc \
     src/dict/bgl_babylon.cc \
+    src/dict/customtransliteration.cc \
     src/dict/dictdfiles.cc \
     src/dict/dictionary.cc \
     src/dict/dictserver.cc \
@@ -542,7 +535,8 @@ SOURCES += \
     src/weburlrequestinterceptor.cc \
     src/wordfinder.cc \
     src/wordlist.cc \
-    src/zipfile.cc
+    src/zipfile.cc \
+    thirdparty/fmt/format.cc
 
 #speech to text
 SOURCES += src/speechclient.cc \
@@ -582,9 +576,14 @@ CONFIG( no_epwing_support ) {
   SOURCES += src/dict/epwing.cc \
              src/dict/epwing_book.cc \
              src/dict/epwing_charmap.cc
-  INCLUDEPATH += thirdparty
-  HEADERS += $$files(thirdparty/eb/*.h)
-  SOURCES += $$files(thirdparty/eb/*.c)
+  if(win32){
+    INCLUDEPATH += thirdparty
+    HEADERS += $$files(thirdparty/eb/*.h)
+    SOURCES += $$files(thirdparty/eb/*.c)
+  }
+  else{
+    LIBS += -leb
+  }
 }
 
 CONFIG( chinese_conversion_support ) {

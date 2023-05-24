@@ -72,7 +72,8 @@ quint32 getLanguageId( const QString & lang )
   switch( lstr.size() )
   {
     case 2: return LangCoder::code2toInt( lstr.toLatin1().data() );
-    case 3: return LangCoder::findIdForLanguageCode3( lstr.toLatin1().data() );
+    case 3:
+      return LangCoder::findIdForLanguageCode3( lstr.toStdString() );
   }
 
   return 0;
@@ -152,7 +153,6 @@ class XdxfDictionary: public BtreeIndexing::BtreeDictionary
   dictData * dz;
   Mutex resourceZipMutex;
   IndexedZip resourceZip;
-  string dictionaryName;
   map< string, string > abrv;
 
 public:
@@ -467,7 +467,7 @@ public:
     } );
   }
 
-  void run(); // Run from another thread by XdxfArticleRequestRunnable
+  void run();
 
   void cancel() override
   {
@@ -963,7 +963,7 @@ public:
     } );
   }
 
-  void run(); // Run from another thread by XdxfResourceRequestRunnable
+  void run();
 
   void cancel() override
   {

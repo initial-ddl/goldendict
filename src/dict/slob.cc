@@ -576,7 +576,6 @@ class SlobDictionary: public BtreeIndexing::BtreeDictionary
     File::Class idx;
     BtreeIndex resourceIndex;
     IdxHeader idxHeader;
-    string dictionaryName;
     SlobFile sf;
     QString texCgiPath, texCachePath;
 
@@ -1329,7 +1328,7 @@ public:
     } );
   }
 
-  void run(); // Run from another thread by DslArticleRequestRunnable
+  void run();
 
   void cancel() override
   {
@@ -1491,7 +1490,7 @@ public:
       } );
   }
 
-  void run(); // Run from another thread by ZimResourceRequestRunnable
+  void run();
 
   void cancel() override
   {

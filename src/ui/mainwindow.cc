@@ -96,17 +96,18 @@ void MainWindow::changeWebEngineViewFont()
 {
   if( cfg.preferences.webFontFamily.isEmpty() )
   {
-    webEngineProfile->settings()->resetFontFamily( QWebEngineSettings::StandardFont );
+    QWebEngineProfile::defaultProfile()->settings()->resetFontFamily( QWebEngineSettings::StandardFont );
   }
   else
   {
-    webEngineProfile->settings()->setFontFamily( QWebEngineSettings::StandardFont, cfg.preferences.webFontFamily );
+    QWebEngineProfile::defaultProfile()->settings()->setFontFamily( QWebEngineSettings::StandardFont,
+                                                                    cfg.preferences.webFontFamily );
   }
 }
 
 MainWindow::MainWindow( Config::Class & cfg_ ):
   trayIcon( 0 ),
-  groupLabel( &searchPaneTitleBar ),
+  //  groupLabel( &searchPaneTitleBar ),
   foundInDictsLabel( &dictsPaneTitleBar ),
   escAction( this ),
   focusTranslateLineAction( this ),
@@ -128,21 +129,24 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   history( History::Load(), cfg_.preferences.maxStringsInHistory, cfg_.maxHeadwordSize ),
   dictionaryBar( this, configEvents, cfg.editDictionaryCommandLine, cfg.preferences.maxDictionaryRefsInContextMenu ),
   articleMaker( dictionaries, groupInstances, cfg.preferences ),
-  articleNetMgr( this, dictionaries, articleMaker,
-                 cfg.preferences.disallowContentFromOtherSites, cfg.preferences.hideGoldenDictHeader ),
+  articleNetMgr( this,
+                 dictionaries,
+                 articleMaker,
+                 cfg.preferences.disallowContentFromOtherSites,
+                 cfg.preferences.hideGoldenDictHeader ),
   dictNetMgr( this ),
   audioPlayerFactory( cfg.preferences ),
   wordFinder( this ),
   newReleaseCheckTimer( this ),
   latestReleaseReply( 0 ),
-  wordListSelChanged( false )
-, wasMaximized( false )
-, blockUpdateWindowTitle( false )
-, headwordsDlg( 0 )
-, ftsIndexing( dictionaries )
-, ftsDlg( 0 )
-, starIcon( ":/icons/star.svg" )
-, blueStarIcon( ":/icons/star_blue.svg" )
+  wordListSelChanged( false ),
+  wasMaximized( false ),
+  blockUpdateWindowTitle( false ),
+  headwordsDlg( 0 ),
+  ftsIndexing( dictionaries ),
+  ftsDlg( 0 ),
+  starIcon( ":/icons/star.svg" ),
+  blueStarIcon( ":/icons/star_blue.svg" )
 {
   if( QThreadPool::globalInstance()->maxThreadCount() < MIN_THREAD_COUNT )
     QThreadPool::globalInstance()->setMaxThreadCount( MIN_THREAD_COUNT );
@@ -151,28 +155,28 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   QThreadPool::globalInstance()->start( new InitSSLRunnable );
 #endif
 
-  GlobalBroadcaster::instance()->setPreference( &cfg.preferences );
+  GlobalBroadcaster::instance()->setPreference(&cfg.preferences);
 
-  webEngineProfile.reset( new QWebEngineProfile( "GoldenDictProfile" ) );
-  GlobalBroadcaster::instance()->profile = webEngineProfile.get();
-  localSchemeHandler                     = new LocalSchemeHandler( articleNetMgr, this );
-  webEngineProfile->installUrlSchemeHandler( "gdlookup", localSchemeHandler );
-  webEngineProfile->installUrlSchemeHandler( "bword", localSchemeHandler );
-  webEngineProfile->installUrlSchemeHandler( "entry", localSchemeHandler );
+  localSchemeHandler = new LocalSchemeHandler( articleNetMgr, this);
+  QWebEngineProfile::defaultProfile()->installUrlSchemeHandler( "gdlookup", localSchemeHandler );
+  QWebEngineProfile::defaultProfile()->installUrlSchemeHandler( "bword", localSchemeHandler );
+  QWebEngineProfile::defaultProfile()->installUrlSchemeHandler( "entry", localSchemeHandler );
 
   iframeSchemeHandler = new IframeSchemeHandler( this );
-  webEngineProfile->installUrlSchemeHandler( "ifr", iframeSchemeHandler );
+  QWebEngineProfile::defaultProfile()->installUrlSchemeHandler( "ifr", iframeSchemeHandler );
 
   QStringList localSchemes = { "gdau", "gico", "qrcx", "bres", "gdprg", "gdvideo", "gdpicture", "gdtts" };
-  resourceSchemeHandler    = new ResourceSchemeHandler( articleNetMgr, this );
-  for( const auto & localScheme : localSchemes ) {
-    webEngineProfile->installUrlSchemeHandler( localScheme.toLatin1(), resourceSchemeHandler );
+  resourceSchemeHandler    = new ResourceSchemeHandler( articleNetMgr, this);
+  for( int i = 0; i < localSchemes.size(); i++ )
+  {
+    QWebEngineProfile::defaultProfile()->installUrlSchemeHandler( localSchemes.at( i ).toLatin1(),
+                                                                  resourceSchemeHandler );
   }
 
-  webEngineProfile->setUrlRequestInterceptor( new WebUrlRequestInterceptor( this ) );
+  QWebEngineProfile::defaultProfile()->setUrlRequestInterceptor( new WebUrlRequestInterceptor(this) );
 
-  if( !cfg.preferences.hideGoldenDictHeader ) {
-    webEngineProfile->setHttpUserAgent( webEngineProfile->httpUserAgent() + " GoldenDict/WebEngine" );
+  if(!cfg.preferences.hideGoldenDictHeader){
+    QWebEngineProfile::defaultProfile()->setHttpUserAgent(QWebEngineProfile::defaultProfile()->httpUserAgent()+" GoldenDict/WebEngine");
   }
 
   qRegisterMetaType< Config::InputPhrase >();
@@ -303,11 +307,11 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   menuButtonAction->setVisible( cfg.preferences.hideMenubar );
 
   // Make the search pane's titlebar
-  groupLabel.setText( tr( "Look up in:" ) );
+  //  groupLabel.setText( tr( "Look up in:" ) );
   groupListInDock = new GroupComboBox( &searchPaneTitleBar );
 
   searchPaneTitleBarLayout.setContentsMargins( 8, 5, 8, 4 );
-  searchPaneTitleBarLayout.addWidget( &groupLabel );
+  //  searchPaneTitleBarLayout.addWidget( &groupLabel );
   searchPaneTitleBarLayout.addWidget( groupListInDock );
   searchPaneTitleBarLayout.addStretch();
 
@@ -748,9 +752,9 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
     this, SLOT(editDictionaries(unsigned)),
     Qt::QueuedConnection);
 
-  connect( scanPopup, &ScanPopup::sendPhraseToMainWindow,
-    this,&MainWindow::phraseReceived,
-    Qt::QueuedConnection);
+  connect( scanPopup, &ScanPopup::sendPhraseToMainWindow, this, [ this ]( Config::InputPhrase const & phrase ) {
+    phraseReceived( phrase, WildcardsAreAlreadyEscaped );
+  } );
 
   connect( scanPopup, &ScanPopup::inspectSignal,this,&MainWindow::inspectElement );
   connect( scanPopup, &ScanPopup::forceAddWordToHistory, this, &MainWindow::forceAddWordToHistory );
@@ -1412,7 +1416,6 @@ void MainWindow::setupNetworkCache( int maxSize )
   QString cacheDirectory = Config::getCacheDir();
   if ( !QDir().mkpath( cacheDirectory ) ) {
     cacheDirectory = QStandardPaths::writableLocation( QStandardPaths::CacheLocation );
-
     gdWarning( "Cannot create a cache directory %s. use default cache path.", cacheDirectory.toUtf8().constData() );
   }
 
@@ -1420,9 +1423,6 @@ void MainWindow::setupNetworkCache( int maxSize )
   diskCache->setMaximumCacheSize( maxCacheSizeInBytes );
   diskCache->setCacheDirectory( cacheDirectory );
   articleNetMgr.setCache( diskCache );
-
-  webEngineProfile->setCachePath( cacheDirectory );
-  webEngineProfile->setPersistentStoragePath( cacheDirectory );
 }
 
 void MainWindow::makeDictionaries()
@@ -1474,7 +1474,7 @@ void MainWindow::updateGroupList()
 
   groupList->setVisible( haveGroups );
 
-  groupLabel.setText( haveGroups ? tr( "Look up in:" ) : tr( "Look up:" ) );
+  //  groupLabel.setText( haveGroups ? tr( "Look up in:" ) : tr( "Look up:" ) );
 
   // currentIndexChanged() signal is very trigger-happy. To avoid triggering
   // it, we disconnect it while we're clearing and filling back groups.
@@ -1847,12 +1847,6 @@ void MainWindow::titleChanged( ArticleView * view, QString const & title )
   }
   escaped.replace( "&", "&&" );
 
-  if( escaped.isRightToLeft() )
-  {
-    escaped.insert( 0, (ushort)0x202E ); // RLE, Right-to-Left Embedding
-    escaped.append( (ushort)0x202C ); // PDF, POP DIRECTIONAL FORMATTING
-  }
-
   int index = ui.tabWidget->indexOf( view );
   if( !escaped.isEmpty() )
     ui.tabWidget->setTabText( index, escaped );
@@ -1886,13 +1880,7 @@ void MainWindow::updateWindowTitle()
   if ( view )
   {
     QString str = view->getTitle();
-    if( !str.isEmpty() )
-    {
-      if( str.isRightToLeft() )
-      {
-        str.insert( 0, (ushort)0x202E ); // RLE, Right-to-Left Embedding
-        str.append( (ushort)0x202C ); // PDF, POP DIRECTIONAL FORMATTING
-      }
+    if ( !str.isEmpty() ) {
       if( !blockUpdateWindowTitle )
         setWindowTitle( tr( "%1 - %2" ).arg( str, "GoldenDict-ng" ) );
       blockUpdateWindowTitle = false;
@@ -1912,8 +1900,6 @@ void MainWindow::pageLoaded( ArticleView * view )
   if ( cfg.preferences.pronounceOnLoadMain && view != nullptr ) {
     view->playSound();
   }
-
-  //updateFoundInDictsList();
 }
 
 void MainWindow::showStatusBarMessage( QString const & message, int timeout, QPixmap const & icon )
@@ -2125,8 +2111,6 @@ void MainWindow::editDictionaries( unsigned editDictionaryGroup )
 
   scanPopup->refresh();
   installHotKeys();
-
-
 }
 
 void MainWindow::editCurrentGroup()
@@ -2163,14 +2147,8 @@ void MainWindow::editPreferences()
     p.proxyServer.systemProxyPassword = cfg.preferences.proxyServer.systemProxyPassword;
 
     p.fts.dialogGeometry = cfg.preferences.fts.dialogGeometry;
-    p.fts.matchCase = cfg.preferences.fts.matchCase;
-    p.fts.maxArticlesPerDictionary = cfg.preferences.fts.maxArticlesPerDictionary;
-    p.fts.maxDistanceBetweenWords = cfg.preferences.fts.maxDistanceBetweenWords;
+
     p.fts.searchMode = cfg.preferences.fts.searchMode;
-    p.fts.useMaxArticlesPerDictionary = cfg.preferences.fts.useMaxArticlesPerDictionary;
-    p.fts.useMaxDistanceBetweenWords = cfg.preferences.fts.useMaxDistanceBetweenWords;
-    p.fts.ignoreWordsOrder = cfg.preferences.fts.ignoreWordsOrder;
-    p.fts.ignoreDiacritics = cfg.preferences.fts.ignoreDiacritics;
 
     // See if we need to reapply Qt stylesheets
     if( cfg.preferences.displayStyle != p.displayStyle ||
@@ -2473,13 +2451,21 @@ bool MainWindow::eventFilter( QObject * obj, QEvent * ev )
        || ev->type() == QEvent::KeyPress )
   {
     QKeyEvent * ke = static_cast<QKeyEvent*>( ev );
-
     // Handle F3/Shift+F3 shortcuts
     if ( ke->key() == Qt::Key_F3 )
     {
       ArticleView  * view = getCurrentArticleView();
       if ( view  && view->handleF3( obj, ev ) )
         return true;
+    }
+
+    //workaround to fix #660
+    if ( obj == this && ev->type() == QEvent::KeyPress && ( ke->key() == Qt::Key_Up || ke->key() == Qt::Key_Down ) ) {
+      ArticleView * view = getCurrentArticleView();
+      if ( view ) {
+        view->focus();
+        return true;
+      }
     }
   }
 
@@ -2560,16 +2546,6 @@ bool MainWindow::eventFilter( QObject * obj, QEvent * ev )
 
     }
 
-    if ( ev->type() == QEvent::FocusIn ) {
-      QFocusEvent * focusEvent = static_cast< QFocusEvent * >( ev );
-
-      // select all on mouse click
-      if ( focusEvent->reason() == Qt::MouseFocusReason ) {
-        QTimer::singleShot( 0, this, &MainWindow::focusTranslateLine );
-      }
-      return false;
-    }
-
     if ( ev->type() == QEvent::Resize ) {
       QResizeEvent * resizeEvent = static_cast< QResizeEvent * >( ev );
       groupList->setFixedHeight( resizeEvent->size().height() );
@@ -2624,10 +2600,7 @@ bool MainWindow::eventFilter( QObject * obj, QEvent * ev )
 
   }
 
-
   return QMainWindow::eventFilter( obj, ev );
-
-  return false;
 }
 
 void MainWindow::wordListItemActivated( QListWidgetItem * item )
@@ -2667,16 +2640,7 @@ void MainWindow::dictsListSelectionChanged()
   QList< QListWidgetItem * > selected = ui.dictsList->selectedItems();
   if( selected.size() )
   {
-    ArticleView * view = getCurrentArticleView();
-    if( view )
-    {
-      QString dictId = ui.dictsList->selectedItems().at( 0 )->data( Qt::UserRole ).toString();
-      view->setActiveArticleId( dictId );
-    }
-    // selection change ,no need to jump to article ,if jump to article ,the position in webview would be changed
-    // when click the dictionary in the html.
-
-    // jumpToDictionary( selected.front() );
+    jumpToDictionary( selected.front() );
   }
 }
 
@@ -3241,7 +3205,7 @@ void MainWindow::setAutostart(bool autostart)
     return; // Nothing to do.
   if( autostart )
   {
-    const QString sourcePath = Config::getProgramDataDir() + "../applications/org.goldendict.GoldenDict.desktop";
+    const QString sourcePath = Config::getProgramDataDir() + "../applications/org.xiaoyifang.GoldenDict_NG.desktop";
     QFile::copy( sourcePath, destinationPath );
   }
   else
@@ -3728,17 +3692,17 @@ ArticleView * MainWindow::getCurrentArticleView()
   return 0;
 }
 
-void MainWindow::phraseReceived( Config::InputPhrase const & phrase )
+void MainWindow::phraseReceived( Config::InputPhrase const & phrase, WildcardPolicy wildcardPolicy )
 {
   toggleMainWindow( true );
-  setTranslateBoxTextAndKeepSuffix( phrase.phrase, EscapeWildcards, NoPopupChange );
+  setTranslateBoxTextAndKeepSuffix( phrase.phrase, wildcardPolicy, NoPopupChange );
   translateBoxSuffix = phrase.punctuationSuffix;
   respondToTranslationRequest( phrase, false );
 }
 
 void MainWindow::wordReceived( const QString & word)
 {
-  phraseReceived( Config::InputPhrase::fromPhrase( word ) );
+  phraseReceived( Config::InputPhrase::fromPhrase( word ), EscapeWildcards );
 }
 
 void MainWindow::headwordReceived( const QString & word, const QString & ID )
@@ -4450,10 +4414,6 @@ QString MainWindow::unescapeTabHeader(QString const & header )
 
   QString escaped = header;
   escaped.replace( "&&", "&" );
-  if( escaped.startsWith( QChar( 0x202E ) ) )
-    escaped = escaped.mid( 1 );
-  if( escaped.endsWith( QChar( 0x202C ) ) )
-    escaped.chop( 1 );
 
   return escaped;
 }
