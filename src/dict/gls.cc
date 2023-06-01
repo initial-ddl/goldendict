@@ -355,19 +355,18 @@ bool indexIsOldOrBad( string const & indexFile, bool hasZipFile )
 
 class GlsDictionary: public BtreeIndexing::BtreeDictionary
 {
-  Mutex idxMutex;
+  QMutex idxMutex;
   File::Class idx;
   IdxHeader idxHeader;
   dictData * dz;
   ChunkedStorage::Reader chunks;
-  Mutex dzMutex;
-  Mutex resourceZipMutex;
+  QMutex dzMutex;
+  QMutex resourceZipMutex;
   IndexedZip resourceZip;
 
 public:
 
-  GlsDictionary( string const & id, string const & indexFile,
-                      vector< string > const & dictionaryFiles );
+  GlsDictionary( string const & id, string const & indexFile, vector< string > const & dictionaryFiles );
 
   ~GlsDictionary();
 
@@ -405,12 +404,8 @@ public:
 
   QString getMainFilename() override;
 
-  sptr< Dictionary::DataRequest > getSearchResults( QString const & searchString,
-                                                            int searchMode, bool matchCase,
-                                                            int distanceBetweenWords,
-                                                            int maxResults,
-                                                            bool ignoreWordsOrder,
-                                                            bool ignoreDiacritics ) override;
+  sptr< Dictionary::DataRequest >
+  getSearchResults( QString const & searchString, int searchMode, bool matchCase, bool ignoreDiacritics ) override;
 
   void getArticleText( uint32_t articleAddress, QString & headword, QString & text ) override;
 
@@ -610,7 +605,7 @@ void GlsDictionary::loadArticleText( uint32_t address,
   vector< char > chunk;
   char * articleProps;
   {
-    Mutex::Lock _( idxMutex );
+    QMutexLocker _( &idxMutex );
 
     articleProps = chunks.getBlock( address, chunk );
   }
@@ -624,7 +619,7 @@ void GlsDictionary::loadArticleText( uint32_t address,
   char * articleBody;
 
   {
-    Mutex::Lock _( dzMutex );
+    QMutexLocker _( &dzMutex );
 
     articleBody = dict_data_read_( dz, articleOffset, articleSize, 0, 0 );
   }
@@ -925,7 +920,7 @@ void GlsHeadwordsRequest::run()
       {
         // The headword seems to differ from the input word, which makes the
         // input word its synonym.
-        Mutex::Lock _( dataMutex );
+        QMutexLocker _( &dataMutex );
 
         matches.push_back( headwordDecoded );
       }
@@ -1076,7 +1071,7 @@ void GlsArticleRequest::run()
         result += i->second.second;
     }
 
-    Mutex::Lock _( dataMutex );
+    QMutexLocker _( &dataMutex );
 
     data.resize( result.size() );
 
@@ -1156,9 +1151,9 @@ void GlsResourceRequest::run()
 
     try
     {
-      Mutex::Lock _( dataMutex );
+        QMutexLocker _( &dataMutex );
 
-      File::loadFromFile( n, data );
+        File::loadFromFile( n, data );
     }
     catch( File::exCantOpen & )
     {
@@ -1166,7 +1161,7 @@ void GlsResourceRequest::run()
 
       try
       {
-        Mutex::Lock _( dataMutex );
+        QMutexLocker _( &dataMutex );
 
         File::loadFromFile( n, data );
       }
@@ -1176,9 +1171,7 @@ void GlsResourceRequest::run()
 
         if ( dict.resourceZip.isOpen() )
         {
-          Mutex::Lock _( dict.resourceZipMutex );
-
-          Mutex::Lock __( dataMutex );
+          QMutexLocker _( &dataMutex );
 
           if ( !dict.resourceZip.loadFile( Utf8::decode( resourceName ), data ) )
             throw; // Make it fail since we couldn't read the archive
@@ -1192,13 +1185,13 @@ void GlsResourceRequest::run()
     {
       // Convert it
 
-      Mutex::Lock _( dataMutex );
+      QMutexLocker _( &dataMutex );
       GdTiff::tiff2img( data );
     }
 
     if( Filetype::isNameOfCSS( resourceName ) )
     {
-      Mutex::Lock _( dataMutex );
+      QMutexLocker _( &dataMutex );
 
       QString css = QString::fromUtf8( data.data(), data.size() );
 
@@ -1244,7 +1237,7 @@ void GlsResourceRequest::run()
       memcpy( &data.front(), bytes.constData(), bytes.size() );
     }
 
-    Mutex::Lock _( dataMutex );
+    QMutexLocker _( &dataMutex );
     hasAnyData = true;
   }
   catch( std::exception &ex )
@@ -1264,13 +1257,16 @@ sptr< Dictionary::DataRequest > GlsDictionary::getResource( string const & name 
 }
 
 sptr< Dictionary::DataRequest > GlsDictionary::getSearchResults( QString const & searchString,
-                                                                 int searchMode, bool matchCase,
-                                                                 int distanceBetweenWords,
-                                                                 int maxResults,
-                                                                 bool ignoreWordsOrder,
+                                                                 int searchMode,
+                                                                 bool matchCase,
+
                                                                  bool ignoreDiacritics )
 {
-  return std::make_shared<FtsHelpers::FTSResultsRequest>( *this, searchString,searchMode, matchCase, distanceBetweenWords, maxResults, ignoreWordsOrder, ignoreDiacritics );
+  return std::make_shared< FtsHelpers::FTSResultsRequest >( *this,
+                                                            searchString,
+                                                            searchMode,
+                                                            matchCase,
+                                                            ignoreDiacritics );
 }
 
 } // anonymous namespace

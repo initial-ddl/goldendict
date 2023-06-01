@@ -43,7 +43,6 @@
 #include "historypanewidget.hh"
 #include "utils.hh"
 #include "help.hh"
-#include <qscreen.h>
 #include "ui_authentication.h"
 #include "resourceschemehandler.hh"
 
@@ -60,7 +59,6 @@
 #endif
 
 #include <QWebEngineSettings>
-#include <QWebEngineProfile>
 #include <QProxyStyle>
 
 #ifdef HAVE_X11
@@ -178,8 +176,6 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   if(!cfg.preferences.hideGoldenDictHeader){
     QWebEngineProfile::defaultProfile()->setHttpUserAgent(QWebEngineProfile::defaultProfile()->httpUserAgent()+" GoldenDict/WebEngine");
   }
-
-  qRegisterMetaType< Config::InputPhrase >();
 
 #ifndef NO_EPWING_SUPPORT
   Epwing::initialize();
@@ -645,10 +641,12 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
 
   connect( translateBox->translateLine(), &QLineEdit::textChanged, this, &MainWindow::translateInputChanged );
 
-  connect( ui.translateLine, SIGNAL( returnPressed() ), this, SLOT( translateInputFinished() ) );
-
-  connect( translateBox->translateLine(), SIGNAL( returnPressed() ),
-           this, SLOT( translateInputFinished() ) );
+  connect( ui.translateLine, &QLineEdit::returnPressed, [ this ]() {
+    translateInputFinished( true );
+  } );
+  connect( translateBox->translateLine(), &QLineEdit::returnPressed, [ this ]() {
+    translateInputFinished( true );
+  } );
 
   connect( ui.wordList, &QListWidget::itemSelectionChanged, this, &MainWindow::wordListSelectionChanged );
 
@@ -691,6 +689,10 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   groupListInToolbar->installEventFilter( this );
 
   connect( &ftsIndexing, &FTS::FtsIndexing::newIndexingName, this, &MainWindow::showFTSIndexingName );
+  connect( GlobalBroadcaster::instance(),
+           &GlobalBroadcaster::indexingDictionary,
+           this,
+           &MainWindow::showFTSIndexingName );
 
   applyProxySettings();
 
@@ -752,8 +754,8 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
     this, SLOT(editDictionaries(unsigned)),
     Qt::QueuedConnection);
 
-  connect( scanPopup, &ScanPopup::sendPhraseToMainWindow, this, [ this ]( Config::InputPhrase const & phrase ) {
-    phraseReceived( phrase, WildcardsAreAlreadyEscaped );
+  connect( scanPopup, &ScanPopup::sendPhraseToMainWindow, this, [ this ]( QString const & word ) {
+    wordReceived( word );
   } );
 
   connect( scanPopup, &ScanPopup::inspectSignal,this,&MainWindow::inspectElement );
@@ -1022,7 +1024,7 @@ void MainWindow::updateSearchPaneAndBar( bool searchInDock )
   updateGroupList();
   applyWordsZoomLevel();
 
-  setTranslateBoxTextAndKeepSuffix( text, WildcardsAreAlreadyEscaped, DisablePopup );
+  setInputLineText( text, WildcardPolicy::WildcardsAreAlreadyEscaped, DisablePopup );
   focusTranslateLine();
 }
 
@@ -1041,7 +1043,7 @@ void MainWindow::mousePressEvent( QMouseEvent *event)
   QString subtype = "plain";
 
   QString str = QApplication::clipboard()->text( subtype, QClipboard::Selection );
-  setTranslateBoxTextAndClearSuffix( str, EscapeWildcards, NoPopupChange );
+  setInputLineText( str, WildcardPolicy::EscapeWildcards, NoPopupChange );
 
   QKeyEvent ev( QEvent::KeyPress, Qt::Key_Enter, Qt::NoModifier );
   QApplication::sendEvent( translateLine, &ev );
@@ -2289,7 +2291,6 @@ void MainWindow::updateCurrentGroupProperty()
 void MainWindow::translateInputChanged( QString const & newValue )
 {
   updateSuggestionList( newValue );
-  translateBoxSuffix = QString();
   // Save translate line text. Later it can be passed to external applications.
   GlobalBroadcaster::instance()->translateLineText = newValue;
 }
@@ -2341,19 +2342,19 @@ void MainWindow::updateSuggestionList( QString const & newValue )
 void MainWindow::translateInputFinished( bool checkModifiers )
 {
   QString word = Folding::unescapeWildcardSymbols( translateLine->text() );
-  respondToTranslationRequest( Config::InputPhrase( word, translateBoxSuffix ), checkModifiers );
+  respondToTranslationRequest( word, checkModifiers );
 }
 
-void MainWindow::respondToTranslationRequest( Config::InputPhrase const & phrase,
+void MainWindow::respondToTranslationRequest( QString const & word,
                                               bool checkModifiers, QString const & scrollTo )
 {
-  if ( phrase.isValid() )
+  if ( !word.isEmpty())
   {
     Qt::KeyboardModifiers mods = QApplication::keyboardModifiers();
     if ( checkModifiers && ( mods & (Qt::ControlModifier | Qt::ShiftModifier) ) )
       addNewTab();
 
-    showTranslationFor( phrase, 0, scrollTo );
+    showTranslationFor( word, 0, scrollTo );
 
     if ( cfg.preferences.searchInDock )
     {
@@ -2365,23 +2366,15 @@ void MainWindow::respondToTranslationRequest( Config::InputPhrase const & phrase
   }
 }
 
-void MainWindow::setTranslateBoxTextAndKeepSuffix( QString text, WildcardPolicy wildcardPolicy,
-                                                   TranslateBoxPopup popupAction )
+void MainWindow::setInputLineText( QString text, WildcardPolicy wildcardPolicy, TranslateBoxPopup popupAction )
 {
-  if( wildcardPolicy == EscapeWildcards )
+  if ( wildcardPolicy ==WildcardPolicy::EscapeWildcards )
     text = Folding::escapeWildcardSymbols( text );
 
-  if( popupAction == NoPopupChange || cfg.preferences.searchInDock )
+  if ( popupAction == NoPopupChange || cfg.preferences.searchInDock )
     translateLine->setText( text );
   else
     translateBox->setText( text, popupAction == EnablePopup );
-}
-
-void MainWindow::setTranslateBoxTextAndClearSuffix( QString const & text, WildcardPolicy wildcardPolicy,
-                                                    TranslateBoxPopup popupAction )
-{
-  setTranslateBoxTextAndKeepSuffix( text, wildcardPolicy, popupAction );
-  translateBoxSuffix = QString();
 }
 
 void MainWindow::handleEsc()
@@ -2605,17 +2598,11 @@ bool MainWindow::eventFilter( QObject * obj, QEvent * ev )
 
 void MainWindow::wordListItemActivated( QListWidgetItem * item )
 {
-  if( wordListSelChanged )
+  if ( wordListSelChanged ) {
     wordListSelChanged = false;
+  }
   else {
-    // TODO: code duplication with translateInputFinished!
-
-    Qt::KeyboardModifiers mods = QApplication::keyboardModifiers();
-    if ( mods & (Qt::ControlModifier | Qt::ShiftModifier) )
-      addNewTab();
-
-    showTranslationFor( item->text() );
-    getCurrentArticleView()->focus();
+    respondToTranslationRequest( item->text(), true );
   }
 }
 
@@ -2709,7 +2696,7 @@ void MainWindow::typingEvent( QString const & t )
       translateLine->clear();
       translateLine->setFocus();
       // Escaping the typed-in characters is the user's responsibility.
-      setTranslateBoxTextAndClearSuffix( t, WildcardsAreAlreadyEscaped, EnablePopup );
+      setInputLineText( t, WildcardPolicy::WildcardsAreAlreadyEscaped, EnablePopup );
       translateLine->setCursorPosition( t.size() );
     }
   }
@@ -2727,13 +2714,13 @@ void MainWindow::showHistoryItem( QString const & word )
 
   history.enableAdd( false );
 
-  setTranslateBoxTextAndClearSuffix( word, EscapeWildcards, DisablePopup );
+  setInputLineText( word, WildcardPolicy::EscapeWildcards, DisablePopup );
   showTranslationFor( word );
 
   history.enableAdd( cfg.preferences.storeHistory );
 }
 
-void MainWindow::showTranslationFor( Config::InputPhrase const & phrase,
+void MainWindow::showTranslationFor( QString const & word,
                                      unsigned inGroup,
                                      QString const & scrollTo )
 {
@@ -2745,27 +2732,23 @@ void MainWindow::showTranslationFor( Config::InputPhrase const & phrase,
                    ( groupInstances.empty() ? 0 :
                         groupInstances[ groupList->currentIndex() ].id );
 
-  view->showDefinition( phrase, group, scrollTo );
-
+  view->showDefinition( word, group, scrollTo );
 
   //ui.tabWidget->setTabText( ui.tabWidget->indexOf(ui.tab), inWord.trimmed() );
 }
 
-void MainWindow::showTranslationFor( QString const & word )
+void MainWindow::showTranslationForDicts( QString const & inWord,
+                                          QStringList const & dictIDs,
+                                          QRegExp const & searchRegExp,
+                                          bool ignoreDiacritics )
 {
-  showTranslationFor( Config::InputPhrase::fromPhrase( word ) );
-}
-
-void MainWindow::showTranslationFor( QString const & inWord,
-                                     QStringList const & dictIDs,
-                                     QRegExp const & searchRegExp,
-                                     bool ignoreDiacritics )
-{
-  ArticleView *view = getCurrentArticleView();
+  ArticleView * view = getCurrentArticleView();
 
   navPronounce->setEnabled( false );
 
-  view->showDefinition( inWord, dictIDs, searchRegExp,
+  view->showDefinition( inWord,
+                        dictIDs,
+                        searchRegExp,
                         groupInstances[ groupList->currentIndex() ].id,
                         ignoreDiacritics );
 }
@@ -3692,24 +3675,18 @@ ArticleView * MainWindow::getCurrentArticleView()
   return 0;
 }
 
-void MainWindow::phraseReceived( Config::InputPhrase const & phrase, WildcardPolicy wildcardPolicy )
-{
-  toggleMainWindow( true );
-  setTranslateBoxTextAndKeepSuffix( phrase.phrase, wildcardPolicy, NoPopupChange );
-  translateBoxSuffix = phrase.punctuationSuffix;
-  respondToTranslationRequest( phrase, false );
-}
-
 void MainWindow::wordReceived( const QString & word)
 {
-  phraseReceived( Config::InputPhrase::fromPhrase( word ), EscapeWildcards );
+  toggleMainWindow( true );
+  setInputLineText( word, WildcardPolicy::EscapeWildcards, NoPopupChange );
+  respondToTranslationRequest( word, false );
 }
 
 void MainWindow::headwordReceived( const QString & word, const QString & ID )
 {
   toggleMainWindow( true );
-  setTranslateBoxTextAndClearSuffix( word, EscapeWildcards, NoPopupChange );
-  respondToTranslationRequest( Config::InputPhrase::fromPhrase( word ),
+  setInputLineText( word, WildcardPolicy::EscapeWildcards, NoPopupChange );
+  respondToTranslationRequest( word,
                                false, ArticleView::scrollToFromDictionaryId( ID ) );
 }
 
@@ -4071,6 +4048,7 @@ void MainWindow::focusWordList()
 
 void MainWindow::addWordToHistory( const QString & word )
 {
+//    skip epwing reference link. epwing reference link has the pattern of r%dAt%d
     if(QRegularExpressionMatch m = RX::Epwing::refWord.match( word ); m.hasMatch() )
         return;
     history.addItem( History::Item( 1, word.trimmed() ) );
@@ -4296,7 +4274,7 @@ void MainWindow::foundDictsContextMenuRequested( const QPoint &pos )
 
 void MainWindow::sendWordToInputLine( const QString & word )
 {
-  setTranslateBoxTextAndClearSuffix( word, EscapeWildcards, NoPopupChange );
+  setInputLineText( word, WildcardPolicy::EscapeWildcards, NoPopupChange );
 }
 
 void MainWindow::storeResourceSavePath( const QString & newPath )
@@ -4365,8 +4343,7 @@ void MainWindow::showFullTextSearchDialog()
     addGlobalActionsToDialog( ftsDlg );
     addGroupComboBoxActionsToDialog( ftsDlg, groupList );
 
-    connect( ftsDlg, SIGNAL( showTranslationFor( QString, QStringList, QRegExp, bool ) ),
-             this, SLOT( showTranslationFor( QString, QStringList, QRegExp, bool ) ) );
+    connect( ftsDlg, &FTS::FullTextSearchDialog::showTranslationFor, this, &MainWindow::showTranslationForDicts );
     connect( ftsDlg,
       &FTS::FullTextSearchDialog::closeDialog,
       this,
@@ -4559,7 +4536,7 @@ void MainWindow::headwordFromFavorites( QString const & headword,
   // bookmark cases:   the favorite item may like this   "word~~~selectedtext"
   auto words = headword.split( "~~~" );
 
-  setTranslateBoxTextAndClearSuffix( words[0], EscapeWildcards, DisablePopup );
+  setInputLineText( words[0], WildcardPolicy::EscapeWildcards, DisablePopup );
 
   //must be a bookmark.
   if(words.size()>1)

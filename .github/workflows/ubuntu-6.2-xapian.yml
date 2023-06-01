@@ -30,7 +30,7 @@ jobs:
         qt_ver: [6.4.3]
         qt_arch: [gcc_64]
     env:
-      version: 23.05.03
+      version: 23.06.02
       version-suffix: alpha
       prerelease: true
     steps:          
@@ -48,7 +48,7 @@ jobs:
           sudo apt-get install git pkg-config build-essential 
           sudo apt-get install libvorbis-dev zlib1g-dev libhunspell-dev x11proto-record-dev 
           sudo apt-get install libxtst-dev liblzo2-dev libbz2-dev 
-          sudo apt-get install libao-dev libavutil-dev libavformat-dev libeb16-dev
+          sudo apt-get install libavutil-dev libavformat-dev libeb16-dev
           sudo apt-get install doxygen libzstd-dev libxkbcommon-dev libgstreamer-plugins-base1.0-0 libgstreamer-gl1.0-0
           sudo apt-get install  libxkbcommon-x11-dev libspeechd-dev
           sudo apt install libfuse2
@@ -69,6 +69,7 @@ jobs:
           # sudo make install
           # cd ..
           sudo apt install libxapian-dev
+          sudo apt-get install libzim-dev
           # sudo ls -al /usr/lib/|grep xapian
 
       - uses: actions/checkout@v3
@@ -126,7 +127,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ${{ steps.vars.outputs.appname }}
-          asset_name: ${{ matrix.qt_ver }}-xapian-${{ steps.vars.outputs.appname }}
+          asset_name: ${{ matrix.qt_ver }}-${{ steps.vars.outputs.appname }}
           tag: v${{env.version}}-${{env.version-suffix}}.${{ steps.vars.outputs.release_hm }}.${{ steps.vars.outputs.sha_short }}
           overwrite: true 
           release_name: GoldenDict-ng-v${{env.version}}-${{env.version-suffix}}.${{ steps.vars.outputs.release_hm }}.${{ steps.vars.outputs.sha_short }}
@@ -148,10 +149,10 @@ jobs:
             **recommend version**:Qt6.X   (with the latest bug fixes and performance enhancements)  
 
             Filename pattern: **[Qt version]-GoldenDict-[OS]-[release-date].[ext]**
-            `-xapian` is built with [xapian](https://xapian.org/) support which offers 10X~20X performance 
+            [xapian](https://xapian.org/)  is enabled by default which offers 10X~20X performance 
             ------------------------------
             文件名的模式: **[Qt version]-GoldenDict-[OS]-[release-date].[ext]** 
-            `-xapian` 表示使用的是 [xapian](https://xapian.org/) 用于全文索引的创建，提供更快的全文索引创建、搜索支持
+            [xapian](https://xapian.org/) 用于全文索引的创建，提供更快的全文索引创建、搜索支持
             比如：
             6.4.3-GoldenDict.exe_windows-2022_20230502.zip
             表示基于qt6.4.3，windows-2022,  于20230502日创建的版本。

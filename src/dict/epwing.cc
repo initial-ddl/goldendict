@@ -87,7 +87,7 @@ class EpwingDictionary: public BtreeIndexing::BtreeDictionary
 {
   Q_DECLARE_TR_FUNCTIONS(Epwing::EpwingDictionary)
 
-  Mutex idxMutex;
+  QMutex idxMutex;
   File::Class idx;
   IdxHeader idxHeader;
   string bookName;
@@ -139,12 +139,8 @@ public:
   sptr< Dictionary::DataRequest > getResource( string const & name ) override
     ;
 
-  sptr< Dictionary::DataRequest > getSearchResults( QString const & searchString,
-                                                            int searchMode, bool matchCase,
-                                                            int distanceBetweenWords,
-                                                            int maxResults,
-                                                            bool ignoreWordsOrder,
-                                                            bool ignoreDiacritics ) override;
+  sptr< Dictionary::DataRequest >
+  getSearchResults( QString const & searchString, int searchMode, bool matchCase, bool ignoreDiacritics ) override;
   void getArticleText( uint32_t articleAddress, QString & headword, QString & text ) override;
 
   void makeFTSIndex(QAtomicInt & isCancelled, bool firstIteration ) override;
@@ -317,7 +313,7 @@ void EpwingDictionary::loadArticle(
   char * articleProps;
 
   {
-    Mutex::Lock _( idxMutex );
+    QMutexLocker _( &idxMutex );
     articleProps = chunks.getBlock( address, chunk );
   }
 
@@ -329,7 +325,7 @@ void EpwingDictionary::loadArticle(
 
   try
   {
-    Mutex::Lock _( eBook.getLibMutex() );
+    QMutexLocker _( &eBook.getLibMutex() );
     eBook.getArticle( headword, text, articlePage, articleOffset, false);
   }
   catch( std::exception & e )
@@ -361,7 +357,7 @@ void EpwingDictionary::loadArticleNextPage(string & articleHeadword, string & ar
   EB_Position pos;
   try
   {
-    Mutex::Lock _( eBook.getLibMutex() );
+    QMutexLocker _( &eBook.getLibMutex() );
     pos = eBook.getArticleNextPage( headword, text, articlePage, articleOffset, false );
   }
   catch( std::exception & e )
@@ -398,7 +394,7 @@ void EpwingDictionary::loadArticlePreviousPage(
   EB_Position pos;
   try
   {
-    Mutex::Lock _( eBook.getLibMutex() );
+    QMutexLocker _( &eBook.getLibMutex() );
     pos = eBook.getArticlePreviousPage( headword, text, articlePage, articleOffset, false );
   }
   catch( std::exception & e ) {
@@ -427,7 +423,7 @@ void EpwingDictionary::loadArticle( int articlePage,
 
   try
   {
-    Mutex::Lock _( eBook.getLibMutex() );
+    QMutexLocker _( &eBook.getLibMutex() );
     eBook.getArticle( headword, text, articlePage, articleOffset, false );
   }
   catch( std::exception & e )
@@ -453,7 +449,7 @@ QString const& EpwingDictionary::getDescription()
 
   QString str;
   {
-    Mutex::Lock _( eBook.getLibMutex() );
+    QMutexLocker _( &eBook.getLibMutex() );
     str = eBook.copyright();
   }
 
@@ -500,7 +496,7 @@ void EpwingDictionary::getArticleText( uint32_t articleAddress, QString & headwo
   char * articleProps;
 
   {
-    Mutex::Lock _( idxMutex );
+    QMutexLocker _( &idxMutex );
     articleProps = chunks.getBlock( articleAddress, chunk );
   }
 
@@ -512,7 +508,7 @@ void EpwingDictionary::getArticleText( uint32_t articleAddress, QString & headwo
 
   try
   {
-    Mutex::Lock _( eBook.getLibMutex() );
+    QMutexLocker _( &eBook.getLibMutex() );
     eBook.getArticle( headword, text, articlePage, articleOffset, true );
   }
   catch( std::exception & e )
@@ -600,7 +596,7 @@ void EpwingHeadwordsRequest::run()
 
     if ( pg.at( i ) == articlePage && off.at( i ) == articleOffset ) {
 
-      Mutex::Lock _( dataMutex );
+      QMutexLocker _( &dataMutex );
 
       matches.emplace_back( parts[0].toStdU32String() );
       break;
@@ -794,7 +790,7 @@ void EpwingArticleRequest::run()
 
   result += "</div>";
 
-  Mutex::Lock _( dataMutex );
+  QMutexLocker _( &dataMutex );
 
   data.resize( result.size() );
 
@@ -816,7 +812,7 @@ void EpwingArticleRequest::getBuiltInArticle( wstring const & word_,
 
     QVector< int > pg, off;
     {
-      Mutex::Lock _( dict.eBook.getLibMutex() );
+      QMutexLocker _( &dict.eBook.getLibMutex() );
       dict.eBook.getArticlePos( QString::fromStdU32String( word_ ), pg, off );
     }
 
@@ -853,7 +849,7 @@ void EpwingArticleRequest::getBuiltInArticle( wstring const & word_,
 void EpwingDictionary::getHeadwordPos( wstring const & word_, QVector< int > & pg, QVector< int > & off )
 {
   try {
-    Mutex::Lock _( eBook.getLibMutex() );
+    QMutexLocker _( &eBook.getLibMutex() );
     eBook.getArticlePos( QString::fromStdU32String( word_ ), pg, off );
   }
   catch ( ... ) {
@@ -914,7 +910,7 @@ void EpwingResourceRequest::run()
 
   QString cacheDir;
   {
-    Mutex::Lock _( dict.eBook.getLibMutex() );
+    QMutexLocker _( &dict.eBook.getLibMutex() );
     if( Filetype::isNameOfPicture( resourceName ) )
       cacheDir = dict.getImagesCacheDir();
     else
@@ -940,7 +936,7 @@ void EpwingResourceRequest::run()
     {
       QByteArray buffer = f.readAll();
 
-      Mutex::Lock _( dataMutex );
+      QMutexLocker _( &dataMutex );
 
       data.resize( buffer.size() );
 
@@ -967,13 +963,15 @@ sptr< Dictionary::DataRequest > EpwingDictionary::getResource( string const & na
 
 
 sptr< Dictionary::DataRequest > EpwingDictionary::getSearchResults( QString const & searchString,
-                                                                    int searchMode, bool matchCase,
-                                                                    int distanceBetweenWords,
-                                                                    int maxResults,
-                                                                    bool ignoreWordsOrder,
+                                                                    int searchMode,
+                                                                    bool matchCase,
                                                                     bool ignoreDiacritics )
 {
-  return std::make_shared<FtsHelpers::FTSResultsRequest>( *this, searchString,searchMode, matchCase, distanceBetweenWords, maxResults, ignoreWordsOrder, ignoreDiacritics );
+  return std::make_shared< FtsHelpers::FTSResultsRequest >( *this,
+                                                            searchString,
+                                                            searchMode,
+                                                            matchCase,
+                                                            ignoreDiacritics );
 }
 
 int EpwingDictionary::japaneseWriting( gd::wchar ch )
@@ -1061,7 +1059,7 @@ void EpwingWordSearchRequest::findMatches()
   {
     QVector< QString > headwords;
     {
-      Mutex::Lock _( edict.eBook.getLibMutex() );
+      QMutexLocker _( &edict.eBook.getLibMutex() );
       if( Utils::AtomicInt::loadAcquire( isCancelled ) )
         break;
 
@@ -1069,7 +1067,7 @@ void EpwingWordSearchRequest::findMatches()
         break;
     }
 
-    Mutex::Lock _( dataMutex );
+    QMutexLocker _( &dataMutex );
 
     for ( const auto & headword : headwords )
       addMatch( gd::toWString( headword ) );
@@ -1099,7 +1097,7 @@ bool Epwing::EpwingDictionary::readHeadword( const EB_Position & pos, QString & 
 {
   try
   {
-    Mutex::Lock _( eBook.getLibMutex() );
+    QMutexLocker _( &eBook.getLibMutex() );
     eBook.readHeadword( pos,headword, true);
     eBook.fixHeadword( headword );
     return eBook.isHeadwordCorrect( headword ) ;

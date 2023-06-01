@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
       
     env:
-      version: 23.05.03
+      version: 23.06.02
       version-suffix: alpha
       prerelease: true
 
@@ -42,4 +42,9 @@ jobs:
           custom_tag: ${{env.version}}-${{env.version-suffix}}.${{ steps.vars.outputs.release_hm }}.${{ steps.vars.outputs.sha_short }}
 
          
-      
+      - name: Bump version and push tag
+        if: ${{env.prerelease != true}}
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{env.version}}

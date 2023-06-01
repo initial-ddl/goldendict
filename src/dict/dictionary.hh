@@ -4,19 +4,22 @@
 #ifndef __DICTIONARY_HH_INCLUDED__
 #define __DICTIONARY_HH_INCLUDED__
 
-#include <vector>
-#include <string>
 #include <map>
+#include <string>
+#include <vector>
+
+#include <QMutex>
 #include <QObject>
-#include <QWaitCondition>
-#include "sptr.hh"
-#include "ex.hh"
-#include "mutex.hh"
-#include "wstring.hh"
-#include "langcoder.hh"
-#include "config.hh"
-#include "utils.hh"
 #include <QString>
+#include <QWaitCondition>
+
+#include "config.hh"
+#include "ex.hh"
+#include "globalbroadcaster.hh"
+#include "langcoder.hh"
+#include "sptr.hh"
+#include "utils.hh"
+#include "wstring.hh"
 
 /// Abstract dictionary-related stuff
 namespace Dictionary {
@@ -113,7 +116,7 @@ private:
 
   QAtomicInt isFinishedFlag;
 
-  Mutex errorStringMutex;
+  QMutex errorStringMutex;
   QString errorString;
 };
 
@@ -167,7 +170,7 @@ protected:
 
   // Subclasses should be filling up the 'matches' array, locking the mutex when
   // whey work with it.
-  Mutex dataMutex;
+  QMutex dataMutex;
 
   vector< WordMatch > matches;
   bool uncertain;
@@ -205,7 +208,7 @@ protected:
 
   // Subclasses should be filling up the 'data' array, locking the mutex when
   // whey work with it.
-  Mutex dataMutex;
+  QMutex dataMutex;
 
   bool hasAnyData; // With this being false, dataSize() always returns -1
   vector< char > data;
@@ -261,11 +264,15 @@ Q_DECLARE_FLAGS( Features, Feature )
 Q_DECLARE_OPERATORS_FOR_FLAGS( Features )
 
 /// A dictionary. Can be used to query words.
-class Class
+class Class: public QObject
 {
+  Q_OBJECT
+
   string id;
   vector< string > dictionaryFiles;
   long indexedFtsDoc;
+
+  long lastProgress = 0;
 
 protected:
   QString dictionaryDescription;
@@ -339,8 +346,16 @@ public:
   /// Returns the number of articles in the dictionary.
   virtual unsigned long getArticleCount() noexcept=0;
 
-  void setIndexedFtsDoc(long _indexedFtsDoc){
+  void setIndexedFtsDoc(long _indexedFtsDoc)
+  {
     indexedFtsDoc = _indexedFtsDoc;
+
+    auto newProgress = getIndexingFtsProgress();
+    if ( newProgress != lastProgress ) {
+      lastProgress = newProgress;
+      emit GlobalBroadcaster::instance()->indexingDictionary(
+        QString( "%1......%%2" ).arg( QString::fromStdString( getName() ) ).arg( newProgress ) );
+    }
   }
 
   int getIndexingFtsProgress(){
@@ -427,12 +442,8 @@ public:
     ;
 
   /// Returns a results of full-text search of given string similar getArticle().
-  virtual sptr< DataRequest > getSearchResults( QString const & searchString,
-                                                int searchMode, bool matchCase,
-                                                int distanceBetweenWords,
-                                                int maxArticlesPerDictionary,
-                                                bool ignoreWordsOrder,
-                                                bool ignoreDiacritics );
+  virtual sptr< DataRequest >
+  getSearchResults( QString const & searchString, int searchMode, bool matchCase, bool ignoreDiacritics );
 
   // Return dictionary description if presented
   virtual QString const& getDescription();

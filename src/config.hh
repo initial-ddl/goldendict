@@ -249,38 +249,6 @@ enum ScanPopupWindowFlags
 };
 ScanPopupWindowFlags spwfFromInt( int id );
 
-struct InputPhrase
-{
-  InputPhrase()
-  {}
-
-  InputPhrase( QString const & _phrase, QString const & _suffix ) :
-    phrase( _phrase ),
-    punctuationSuffix( _suffix )
-  {}
-
-  static InputPhrase fromPhrase( QString const & phrase )
-  {
-    return InputPhrase( phrase, QString() );
-  }
-
-  bool isValid() const { return !phrase.isEmpty(); }
-
-  QString phraseWithSuffix() const { return phrase + punctuationSuffix; }
-
-  QString phrase;
-  QString punctuationSuffix;
-};
-
-inline bool operator == ( InputPhrase const & a, InputPhrase const & b )
-{
-  return a.phrase == b.phrase && a.punctuationSuffix == b.punctuationSuffix;
-}
-inline bool operator != ( InputPhrase const & a, InputPhrase const & b )
-{
-  return !( a == b );
-}
-
 /// Various user preferences
 struct Preferences
 {
@@ -309,8 +277,9 @@ struct Preferences
   bool searchInDock;
 
   bool enableMainWindowHotkey;
-  QKeySequence mainWindowHotkey;
   bool enableClipboardHotkey;
+
+  QKeySequence mainWindowHotkey;
   QKeySequence clipboardHotkey;
 
   bool startWithScanPopupOn;
@@ -361,7 +330,7 @@ struct Preferences
 
   bool limitInputPhraseLength;
   int inputPhraseLengthLimit;
-  InputPhrase sanitizeInputPhrase( QString const & inputPhrase ) const;
+  QString sanitizeInputPhrase( QString const & inputWord ) const;
 
   unsigned short maxDictionaryRefsInContextMenu;
 
@@ -760,14 +729,21 @@ struct Class
 
   QString editDictionaryCommandLine; // Command line to call external editor for dictionary
 
-  Class(): lastMainGroupId( 0 ), lastPopupGroupId( 0 ),
-           pinPopupWindow( false ), showingDictBarNames( false ),
-           usingSmallIconsInToolbars( false ),
-           maxPictureWidth( 0 ), maxHeadwordSize ( 256U ),
-           maxHeadwordsToExpand( 0 )
-  {}
+  Class():
+    lastMainGroupId( 0 ),
+    lastPopupGroupId( 0 ),
+    pinPopupWindow( false ),
+    showingDictBarNames( false ),
+    usingSmallIconsInToolbars( false ),
+    maxPictureWidth( 0 ),
+    maxHeadwordSize( 256U ),
+    maxHeadwordsToExpand( 0 )
+  {
+  }
   Group * getGroup( unsigned id );
   Group const * getGroup( unsigned id ) const;
+  //disable tts dictionary. does not need to save to persistent file
+  bool notts = false;
 };
 
 #ifdef Q_OS_WIN
@@ -874,7 +850,5 @@ QString getStylesDir();
 QString getCacheDir() noexcept;
 
 }
-
-Q_DECLARE_METATYPE( Config::InputPhrase )
 
 #endif

@@ -85,11 +85,11 @@ bool indexIsOldOrBad( string const & indexFile )
 
 class DictdDictionary: public BtreeIndexing::BtreeDictionary
 {
-  Mutex idxMutex;
+  QMutex idxMutex;
   File::Class idx, indexFile; // The later is .index file
   IdxHeader idxHeader;
   dictData * dz;
-  Mutex indexFileMutex, dzMutex;
+  QMutex indexFileMutex, dzMutex;
 
 public:
 
@@ -126,12 +126,8 @@ public:
 
   QString const& getDescription() override;
 
-  sptr< Dictionary::DataRequest > getSearchResults( QString const & searchString,
-                                                            int searchMode, bool matchCase,
-                                                            int distanceBetweenWords,
-                                                            int maxResults,
-                                                            bool ignoreWordsOrder,
-                                                            bool ignoreDiacritics ) override;
+  sptr< Dictionary::DataRequest >
+  getSearchResults( QString const & searchString, int searchMode, bool matchCase, bool ignoreDiacritics ) override;
   void getArticleText( uint32_t articleAddress, QString & headword, QString & text ) override;
 
   void makeFTSIndex(QAtomicInt & isCancelled, bool firstIteration ) override;
@@ -290,7 +286,7 @@ sptr< Dictionary::DataRequest > DictdDictionary::getArticle( wstring const & wor
       // Now load that article
 
       {
-        Mutex::Lock _( indexFileMutex );
+        QMutexLocker _( &indexFileMutex );
         indexFile.seek( chain[ x ].articleOffset );
 
         if ( !indexFile.gets( buf, sizeof( buf ), true ) )
@@ -327,7 +323,7 @@ sptr< Dictionary::DataRequest > DictdDictionary::getArticle( wstring const & wor
 
       char * articleBody;
       {
-        Mutex::Lock _( dzMutex );
+        QMutexLocker _( &dzMutex );
         articleBody = dict_data_read_( dz, articleOffset, articleSize, 0, 0 );
       }
 
@@ -498,7 +494,7 @@ void DictdDictionary::getArticleText( uint32_t articleAddress, QString & headwor
   {
     char buf[ 16384 ];
     {
-      Mutex::Lock _( indexFileMutex );
+      QMutexLocker _( &indexFileMutex );
       indexFile.seek( articleAddress );
 
       if ( !indexFile.gets( buf, sizeof( buf ), true ) )
@@ -537,7 +533,7 @@ void DictdDictionary::getArticleText( uint32_t articleAddress, QString & headwor
 
     char * articleBody;
     {
-      Mutex::Lock _( dzMutex );
+      QMutexLocker _( &dzMutex );
       articleBody = dict_data_read_( dz, articleOffset, articleSize, 0, 0 );
     }
 
@@ -568,14 +564,14 @@ void DictdDictionary::getArticleText( uint32_t articleAddress, QString & headwor
   }
 }
 
-sptr< Dictionary::DataRequest > DictdDictionary::getSearchResults( QString const & searchString,
-                                                                   int searchMode, bool matchCase,
-                                                                   int distanceBetweenWords,
-                                                                   int maxResults,
-                                                                   bool ignoreWordsOrder,
-                                                                   bool ignoreDiacritics )
+sptr< Dictionary::DataRequest >
+DictdDictionary::getSearchResults( QString const & searchString, int searchMode, bool matchCase, bool ignoreDiacritics )
 {
-  return std::make_shared<FtsHelpers::FTSResultsRequest>( *this, searchString,searchMode, matchCase, distanceBetweenWords, maxResults, ignoreWordsOrder, ignoreDiacritics );
+  return std::make_shared< FtsHelpers::FTSResultsRequest >( *this,
+                                                            searchString,
+                                                            searchMode,
+                                                            matchCase,
+                                                            ignoreDiacritics );
 }
 
 } // anonymous namespace

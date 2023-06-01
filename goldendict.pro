@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = goldendict
-VERSION = 23.05.03-alpha
+VERSION = 23.06.02-alpha
 
 # Generate version file. We do this here and in a build rule described later.
 # The build rule is required since qmake isn't run each time the project is
@@ -138,13 +138,12 @@ win32 {
 
     win32-msvc* {
         # VS does not recognize 22.number.alpha,cause errors during compilation under MSVC++
-        VERSION = 23.05.03 
+        VERSION = 23.06.02 
         DEFINES += __WIN32 _CRT_SECURE_NO_WARNINGS
         contains(QMAKE_TARGET.arch, x86_64) {
             DEFINES += NOMINMAX __WIN64
         }
         LIBS += -L$${PWD}/winlibs/lib/msvc
-        LIBS += -L$${PWD}/winlibs/lib
         # silence the warning C4290: C++ exception specification ignored,C4267  size_t to const T , lost data.
         QMAKE_CXXFLAGS += /wd4290 /wd4267 /Zc:__cplusplus /std:c++17 /permissive-
         # QMAKE_LFLAGS_RELEASE += /OPT:REF /OPT:ICF
@@ -309,7 +308,6 @@ HEADERS += \
     src/common/htmlescape.hh \
     src/common/iconv.hh \
     src/common/inc_case_folding.hh \
-    src/common/mutex.hh \
     src/common/sptr.hh \
     src/common/ufile.hh \
     src/common/utf8.hh \
@@ -414,7 +412,7 @@ HEADERS += \
     src/wordfinder.hh \
     src/wordlist.hh \
     src/zipfile.hh \
-    thirdparty/tomlplusplus/toml.hpp
+    thirdparty/tomlplusplus/toml++/toml.h
 
 FORMS += $$files(src/ui/*.ui)
 
@@ -435,7 +433,6 @@ SOURCES += \
     src/common/help.cc \
     src/common/htmlescape.cc \
     src/common/iconv.cc \
-    src/common/mutex.cc \
     src/common/ufile.cc \
     src/common/utf8.cc \
     src/common/utils.cc \
@@ -562,7 +559,12 @@ SOURCES += src/common/wildcard.cc
 
 CONFIG( zim_support ) {
   DEFINES += MAKE_ZIM_SUPPORT
-  LIBS += -llzma -lzstd
+  LIBS += -llzma -lzstd -lzim
+
+    win32{
+      Debug: LIBS+= -L$$PWD/winlibs/lib/dbg/
+      Release: LIBS+= -L$$PWD/winlibs/lib/
+    }
 }
 
 CONFIG( no_epwing_support ) {

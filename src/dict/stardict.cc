@@ -36,7 +36,6 @@
 
 #include <QString>
 #include <QSemaphore>
-#include <QThreadPool>
 #include <QAtomicInt>
 #if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
 #include <QtCore5Compat/QRegExp>
@@ -45,7 +44,6 @@
 #endif
 #include <QStringList>
 #include <QDomDocument>
-#include <QDomNode>
 #include "ufile.hh"
 #include "utils.hh"
 
@@ -137,15 +135,15 @@ bool indexIsOldOrBad( string const & indexFile )
 
 class StardictDictionary: public BtreeIndexing::BtreeDictionary
 {
-  Mutex idxMutex;
+  QMutex idxMutex;
   File::Class idx;
   IdxHeader idxHeader;
   string bookName;
   string sameTypeSequence;
   ChunkedStorage::Reader chunks;
-  Mutex dzMutex;
+  QMutex dzMutex;
   dictData * dz;
-  Mutex resourceZipMutex;
+  QMutex resourceZipMutex;
   IndexedZip resourceZip;
 
 public:
@@ -190,12 +188,8 @@ public:
 
   QString getMainFilename() override;
 
-  sptr< Dictionary::DataRequest > getSearchResults( QString const & searchString,
-                                                            int searchMode, bool matchCase,
-                                                            int distanceBetweenWords,
-                                                            int maxResults,
-                                                            bool ignoreWordsOrder,
-                                                            bool ignoreDiacritics ) override;
+  sptr< Dictionary::DataRequest >
+  getSearchResults( QString const & searchString, int searchMode, bool matchCase, bool ignoreDiacritics ) override;
   void getArticleText( uint32_t articleAddress, QString & headword, QString & text ) override;
 
   void makeFTSIndex(QAtomicInt & isCancelled, bool firstIteration ) override;
@@ -329,7 +323,7 @@ void StardictDictionary::getArticleProps( uint32_t articleAddress,
 {
   vector< char > chunk;
 
-  Mutex::Lock _( idxMutex );
+  QMutexLocker _( &idxMutex );
 
   char * articleData = chunks.getBlock( articleAddress, chunk );
 
@@ -934,7 +928,7 @@ void StardictDictionary::loadArticle( uint32_t address,
   char * articleBody;
 
   {
-    Mutex::Lock _( dzMutex );
+    QMutexLocker _( &dzMutex );
 
     // Note that the function always zero-pads the result.
     articleBody = dict_data_read_( dz, offset, size, 0, 0 );
@@ -1207,13 +1201,15 @@ void StardictDictionary::getArticleText( uint32_t articleAddress, QString & head
 }
 
 sptr< Dictionary::DataRequest > StardictDictionary::getSearchResults( QString const & searchString,
-                                                                      int searchMode, bool matchCase,
-                                                                      int distanceBetweenWords,
-                                                                      int maxResults,
-                                                                      bool ignoreWordsOrder,
+                                                                      int searchMode,
+                                                                      bool matchCase,
                                                                       bool ignoreDiacritics )
 {
-  return std::make_shared<FtsHelpers::FTSResultsRequest>( *this, searchString,searchMode, matchCase, distanceBetweenWords, maxResults, ignoreWordsOrder, ignoreDiacritics );
+  return std::make_shared< FtsHelpers::FTSResultsRequest >( *this,
+                                                            searchString,
+                                                            searchMode,
+                                                            matchCase,
+                                                            ignoreDiacritics );
 }
 
 /// StardictDictionary::findHeadwordsForSynonym()
@@ -1286,7 +1282,7 @@ void StardictHeadwordsRequest::run()
       {
         // The headword seems to differ from the input word, which makes the
         // input word its synonym.
-        Mutex::Lock _( dataMutex );
+        QMutexLocker _( &dataMutex );
 
         matches.push_back( headwordDecoded );
       }
@@ -1459,7 +1455,7 @@ void StardictArticleRequest::run()
           result += "</div>";
     }
 
-    Mutex::Lock _( dataMutex );
+    QMutexLocker _( &dataMutex );
 
     data.resize( result.size() );
 
@@ -1636,7 +1632,7 @@ void StardictResourceRequest::run()
 
     try
     {
-      Mutex::Lock _( dataMutex );
+      QMutexLocker _( &dataMutex );
 
       File::loadFromFile( n, data );
     }
@@ -1646,9 +1642,7 @@ void StardictResourceRequest::run()
 
       if ( dict.resourceZip.isOpen() )
       {
-        Mutex::Lock _( dict.resourceZipMutex );
-
-        Mutex::Lock __( dataMutex );
+        QMutexLocker _( &dataMutex );
 
         if ( !dict.resourceZip.loadFile( Utf8::decode( resourceName ), data ) )
           throw; // Make it fail since we couldn't read the archive
@@ -1661,13 +1655,13 @@ void StardictResourceRequest::run()
     {
       // Convert it
 
-      Mutex::Lock _( dataMutex );
+      QMutexLocker _( &dataMutex );
       GdTiff::tiff2img( data );
     }
 
     if( Filetype::isNameOfCSS( resourceName ) )
     {
-      Mutex::Lock _( dataMutex );
+      QMutexLocker _( &dataMutex );
 
       QString css = QString::fromUtf8( data.data(), data.size() );
 
@@ -1713,7 +1707,7 @@ void StardictResourceRequest::run()
       memcpy( &data.front(), bytes.constData(), bytes.size() );
     }
 
-    Mutex::Lock _( dataMutex );
+    QMutexLocker _( &dataMutex );
     hasAnyData = true;
   }
   catch( std::exception &ex )

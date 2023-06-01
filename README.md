@@ -156,8 +156,16 @@ sudo apt-get install libopencc-dev
 To add Zim and Slob formats support you need at first install lzma-dev and zstd-dev packages, then pass `"CONFIG+=zim_support"` to `qmake`
 
 ```
-sudo apt-get install liblzma-dev libzstd-dev
+sudo apt-get install liblzma-dev libzstd-dev libzim-dev
 ```
+
+**Note**: Some linux distros do not support latest zim version, so you need to compile from latest source.
+On Windows,  you can use vcpkg to compile the libzim
+```
+vcpkg install libzim:x64-windows
+```
+and copy the corresponding(debug/release) library to the `winlibs/lib` folder. the zim's `include` directory to the `winlibs/include` directory.
+
 
 #### Building without Epwing format support
 
@@ -189,6 +197,7 @@ On Mac, use homebrew to install xapian `brew install xapian`
 
 Goldendict-ng has used xapian as the default and the only one fulltext engine.
 
+#### use iconv (recommend to enable)
 use `CONFIG+=use_iconv` to enable this feature. when enabled ,iconv will be used to convert encoding other than the QTextCodec(which will be deprecated in future Qt version)
 
 ```
@@ -197,6 +206,7 @@ qmake "CONFIG+=use_iconv"
 
 when enabled ,iconv should be installed on the platform at the same time.
 
+#### use breakpad
 
 use `CONFIG+=use_breakpad` to enable this crash dump. when enabled [breakpad](https://chromium.googlesource.com/breakpad/breakpad/+/master/docs), goldendict will generate a crash dump alongside with Goldendict in the `crash` directory.
 
@@ -243,7 +253,7 @@ This project is licensed under the <b>GNU GPLv3+</b> license, a copy of which ca
 
 The original project was developed at <http://goldendict.org/> and <https://github.com/goldendict/goldendict>.
 
-## Thanks the help of JetBrains
+## Thank JetBrains for the help
 
 [![JetBrains Black Box Logo logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_square.png)](https://jb.gg/OpenSourceSupport)
 

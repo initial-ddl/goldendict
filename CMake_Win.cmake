@@ -20,6 +20,12 @@ foreach (A_WIN_LIB ${WINLIBS_FILES})
     target_link_libraries(${GOLDENDICT} PRIVATE ${A_WIN_LIB})
 endforeach ()
 
+# zim dependencies
+file(GLOB WINLIBS_FILES "${CMAKE_SOURCE_DIR}/winlibs/lib/*.lib")
+foreach (A_WIN_LIB ${WINLIBS_FILES})
+    target_link_libraries(${GOLDENDICT} PRIVATE ${A_WIN_LIB})
+endforeach ()
+
 # Copy .dlls to output dir
 
 file(GLOB DLL_FILES LIST_DIRECTORIES false "${CMAKE_SOURCE_DIR}/winlibs/lib/msvc/*.dll")
@@ -34,8 +40,14 @@ foreach (A_DLL_FILE ${DLL_FILES})
     configure_file("${A_DLL_FILE}" "${CMAKE_BINARY_DIR}/${TEMP_VAR_HOLDING_DLL_FILENAME}" COPYONLY)
 endforeach ()
 
+file(GLOB DLL_FILES LIST_DIRECTORIES false "${CMAKE_SOURCE_DIR}/winlibs/lib/*.dll")
+foreach (A_DLL_FILE ${DLL_FILES})
+    get_filename_component(TEMP_VAR_HOLDING_DLL_FILENAME ${A_DLL_FILE} NAME)
+    configure_file("${A_DLL_FILE}" "${CMAKE_BINARY_DIR}/${TEMP_VAR_HOLDING_DLL_FILENAME}" COPYONLY)
+endforeach ()
+
 if (WITH_EPWING_SUPPORT)
-    add_subdirectory(thirdparty/eb)
+    add_subdirectory(thirdparty/eb EXCLUDE_FROM_ALL)
     target_include_directories(${GOLDENDICT} PRIVATE
         thirdparty
     )

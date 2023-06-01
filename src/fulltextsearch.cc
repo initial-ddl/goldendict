@@ -22,44 +22,30 @@
 namespace FTS
 {
 
-enum
-{
-  MinDistanceBetweenWords = 0,
-  MaxDistanceBetweenWords = 15,
-  MinArticlesPerDictionary = 1,
-  MaxArticlesPerDictionary = 10000
-};
-
 void Indexing::run()
 {
   try
   {
     timerThread->start();
     // First iteration - dictionaries with no more MaxDictionarySizeForFastSearch articles
-    for( size_t x = 0; x < dictionaries.size(); x++ )
-    {
-      if( Utils::AtomicInt::loadAcquire( isCancelled ) )
+    for ( const auto & dictionary : dictionaries ) {
+      if ( Utils::AtomicInt::loadAcquire( isCancelled ) )
         break;
 
-      if( dictionaries.at( x )->canFTS()
-          &&!dictionaries.at( x )->haveFTSIndex() )
-      {
-        emit sendNowIndexingName( QString::fromUtf8( dictionaries.at( x )->getName().c_str() ) );
-        dictionaries.at( x )->makeFTSIndex( isCancelled, true );
+      if ( dictionary->canFTS() && !dictionary->haveFTSIndex() ) {
+        emit sendNowIndexingName( QString::fromUtf8( dictionary->getName().c_str() ) );
+        dictionary->makeFTSIndex( isCancelled, true );
       }
     }
 
     // Second iteration - all remaining dictionaries
-    for( size_t x = 0; x < dictionaries.size(); x++ )
-    {
-      if( Utils::AtomicInt::loadAcquire( isCancelled ) )
+    for ( const auto & dictionary : dictionaries ) {
+      if ( Utils::AtomicInt::loadAcquire( isCancelled ) )
         break;
 
-      if( dictionaries.at( x )->canFTS()
-          &&!dictionaries.at( x )->haveFTSIndex() )
-      {
-        emit sendNowIndexingName( QString::fromUtf8( dictionaries.at( x )->getName().c_str() ) );
-        dictionaries.at( x )->makeFTSIndex( isCancelled, false );
+      if ( dictionary->canFTS() && !dictionary->haveFTSIndex() ) {
+        emit sendNowIndexingName( QString::fromUtf8( dictionary->getName().c_str() ) );
+        dictionary->makeFTSIndex( isCancelled, false );
       }
     }
 
@@ -68,25 +54,26 @@ void Indexing::run()
   }
   catch( std::exception &ex )
   {
-    gdWarning( "Exception occured while full-text search: %s", ex.what() );
+    gdWarning( "Exception occurred while full-text search: %s", ex.what() );
   }
   emit sendNowIndexingName( QString() );
 }
 
-void Indexing::timeout(){
-  for( size_t x = 0; x < dictionaries.size(); x++ )
-  {
-    if( Utils::AtomicInt::loadAcquire( isCancelled ) )
+void Indexing::timeout()
+{
+  //display all the dictionary name in the following loop ,may result only one dictionary name been seen.
+  //as the interval is so small.
+  for ( const auto & dictionary : dictionaries ) {
+    if ( Utils::AtomicInt::loadAcquire( isCancelled ) )
       break;
 
-    auto progress = dictionaries.at( x )->getIndexingFtsProgress();
-    if( progress>0&&progress<100)
-    {
-      emit sendNowIndexingName( QString::fromUtf8( dictionaries.at( x )->getName().c_str() )+QString("......%1%2").arg("%").arg(progress) );
+    auto newProgress = dictionary->getIndexingFtsProgress();
+    if ( newProgress > 0 && newProgress < 100 ) {
+      emit sendNowIndexingName(
+        QString( "%1......%%2" ).arg( QString::fromStdString( dictionary->getName() ) ).arg( newProgress ) );
     }
   }
 }
-
 
 FtsIndexing::FtsIndexing( std::vector< sptr< Dictionary::Class > > const & dicts):
   dictionaries( dicts ),
@@ -128,10 +115,10 @@ void FtsIndexing::stopIndexing()
   }
 }
 
-void FtsIndexing::setNowIndexedName( QString name )
+void FtsIndexing::setNowIndexedName( const QString & name )
 {
   {
-    Mutex::Lock _( nameMutex );
+    QMutexLocker _( &nameMutex );
     nowIndexing = name;
   }
   emit newIndexingName( name );
@@ -139,7 +126,7 @@ void FtsIndexing::setNowIndexedName( QString name )
 
 QString FtsIndexing::nowIndexingName()
 {
-  Mutex::Lock _( nameMutex );
+  QMutexLocker _( &nameMutex );
   return nowIndexing;
 }
 
@@ -235,6 +222,10 @@ FullTextSearchDialog::FullTextSearchDialog( QWidget * parent,
   setNewIndexingName( ftsIdx.nowIndexingName() );
 
   connect( &ftsIdx, &FtsIndexing::newIndexingName, this, &FullTextSearchDialog::setNewIndexingName );
+  connect( GlobalBroadcaster::instance(),
+           &GlobalBroadcaster::indexingDictionary,
+           this,
+           &FullTextSearchDialog::setNewIndexingName );
 
   ui.searchMode->addItem( tr( "Whole words" ), WholeWords );
   ui.searchMode->addItem( tr( "Plain text"), PlainText );
@@ -387,7 +378,7 @@ void FullTextSearchDialog::accept()
     }
     //max results=100
     sptr< Dictionary::DataRequest > req =
-      activeDicts[ x ]->getSearchResults( ui.searchLine->text(), mode, false, 0, 100, false, false );
+      activeDicts[ x ]->getSearchResults( ui.searchLine->text(), mode, false, false );
     connect( req.get(),
       &Dictionary::Request::finished,
       this,

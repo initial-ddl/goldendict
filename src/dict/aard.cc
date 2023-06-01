@@ -223,8 +223,8 @@ map< string, string > parseMetaData( string const & metaData )
 
 class AardDictionary: public BtreeIndexing::BtreeDictionary
 {
-    Mutex idxMutex;
-    Mutex aardMutex;
+    QMutex idxMutex;
+    QMutex aardMutex;
     File::Class idx;
     IdxHeader idxHeader;
     ChunkedStorage::Reader chunks;
@@ -232,8 +232,7 @@ class AardDictionary: public BtreeIndexing::BtreeDictionary
 
   public:
 
-    AardDictionary( string const & id, string const & indexFile,
-                     vector< string > const & dictionaryFiles );
+    AardDictionary( string const & id, string const & indexFile, vector< string > const & dictionaryFiles );
 
     ~AardDictionary();
 
@@ -260,12 +259,8 @@ class AardDictionary: public BtreeIndexing::BtreeDictionary
 
     QString const& getDescription() override;
 
-    sptr< Dictionary::DataRequest > getSearchResults( QString const & searchString,
-                                                              int searchMode, bool matchCase,
-                                                              int distanceBetweenWords,
-                                                              int maxResults,
-                                                              bool ignoreWordsOrder,
-                                                              bool ignoreDiacritics ) override;
+    sptr< Dictionary::DataRequest >
+    getSearchResults( QString const & searchString, int searchMode, bool matchCase, bool ignoreDiacritics ) override;
     void getArticleText( uint32_t articleAddress, QString & headword, QString & text ) override;
 
     void makeFTSIndex(QAtomicInt & isCancelled, bool firstIteration ) override;
@@ -426,8 +421,8 @@ void AardDictionary::loadArticle( quint32 address,
       articleText = QObject::tr( "Article loading error" ).toStdString();
       try
       {
-        Mutex::Lock _( aardMutex );
-        df.seek( articleOffset );
+            QMutexLocker _( &aardMutex );
+            df.seek( articleOffset );
         df.read( &size, sizeof(size) );
         articleSize = qFromBigEndian( size );
 
@@ -538,7 +533,7 @@ QString const& AardDictionary::getDescription()
     vector< char > data;
 
     {
-        Mutex::Lock _( aardMutex );
+        QMutexLocker _( &aardMutex );
         df.seek( 0 );
         df.read( &dictHeader, sizeof(dictHeader) );
         size = qFromBigEndian( dictHeader.metaLength );
@@ -625,14 +620,14 @@ void AardDictionary::getArticleText( uint32_t articleAddress, QString & headword
   }
 }
 
-sptr< Dictionary::DataRequest > AardDictionary::getSearchResults( QString const & searchString,
-                                                                  int searchMode, bool matchCase,
-                                                                  int distanceBetweenWords,
-                                                                  int maxResults,
-                                                                  bool ignoreWordsOrder,
-                                                                  bool ignoreDiacritics )
+sptr< Dictionary::DataRequest >
+AardDictionary::getSearchResults( QString const & searchString, int searchMode, bool matchCase, bool ignoreDiacritics )
 {
-  return std::make_shared<FtsHelpers::FTSResultsRequest>( *this, searchString,searchMode, matchCase, distanceBetweenWords, maxResults, ignoreWordsOrder, ignoreDiacritics );
+  return std::make_shared< FtsHelpers::FTSResultsRequest >( *this,
+                                                            searchString,
+                                                            searchMode,
+                                                            matchCase,
+                                                            ignoreDiacritics );
 }
 
 /// AardDictionary::getArticle()
@@ -774,7 +769,7 @@ void AardArticleRequest::run()
       result += i->second.second;
   }
 
-  Mutex::Lock _( dataMutex );
+  QMutexLocker _( &dataMutex );
 
   data.resize( result.size() );
 

@@ -11,9 +11,11 @@
 #include "langcoder.hh"
 #include "utils.hh"
 #include "wstring_qt.hh"
+#include <QDir>
 #include <QFile>
 #include <QTextDocumentFragment>
 #include <QUrl>
+
 #include "fmt/core.h"
 #include "fmt/compile.h"
 
@@ -242,7 +244,7 @@ std::string ArticleMaker::makeNotFoundBody( QString const & word,
 }
 
 sptr< Dictionary::DataRequest > ArticleMaker::makeDefinitionFor(
-  Config::InputPhrase const & phrase, unsigned groupId,
+  QString const & word, unsigned groupId,
   QMap< QString, QString > const & contexts,
   QSet< QString > const & mutedDicts,
   QStringList const & dictIDs , bool ignoreDiacritics ) const
@@ -268,9 +270,9 @@ sptr< Dictionary::DataRequest > ArticleMaker::makeDefinitionFor(
         break;
     }
 
-    string header = makeHtmlHeader( phrase.phrase, QString(), true );
+    string header = makeHtmlHeader( word, QString(), true );
 
-    return std::make_shared<ArticleRequest>( phrase, Instances::Group{groupId,""},
+    return std::make_shared<ArticleRequest>( word, Instances::Group{groupId,""},
                                contexts, ftsDicts, header,
                                -1, true );
   }
@@ -278,9 +280,9 @@ sptr< Dictionary::DataRequest > ArticleMaker::makeDefinitionFor(
   if ( groupId == Instances::Group::HelpGroupId )
   {
     // This is a special group containing internal welcome/help pages
-    string result = makeHtmlHeader( phrase.phrase, QString(), cfg.alwaysExpandOptionalParts);
+    string result = makeHtmlHeader( word, QString(), cfg.alwaysExpandOptionalParts);
 
-    if ( phrase.phrase == tr( "Welcome!" ) )
+    if ( word == tr( "Welcome!" ) )
     {
       result += tr(
 "<h3 align=\"center\">Welcome to <b>GoldenDict</b>!</h3>"
@@ -298,7 +300,7 @@ sptr< Dictionary::DataRequest > ArticleMaker::makeDefinitionFor(
         ).toUtf8().data();
     }
     else
-    if ( phrase.phrase == tr( "Working with popup" ) )
+    if ( word == tr( "Working with popup" ) )
     {
       result += ( tr( "<h3 align=\"center\">Working with the popup</h3>"
 
@@ -319,7 +321,7 @@ sptr< Dictionary::DataRequest > ArticleMaker::makeDefinitionFor(
     else
     {
       // Not found
-      return makeNotFoundTextFor( phrase.phrase, "help" );
+      return makeNotFoundTextFor( word, "help" );
     }
 
     result += "</body></html>";
@@ -346,7 +348,7 @@ sptr< Dictionary::DataRequest > ArticleMaker::makeDefinitionFor(
   std::vector< sptr< Dictionary::Class > > const & activeDicts =
     activeGroup ? activeGroup->dictionaries : dictionaries;
 
-  string header = makeHtmlHeader( phrase.phrase,
+  string header = makeHtmlHeader( word,
                                   activeGroup && activeGroup->icon.size() ?
                                     activeGroup->icon : QString(),
                                   cfg.alwaysExpandOptionalParts );
@@ -362,13 +364,13 @@ sptr< Dictionary::DataRequest > ArticleMaker::makeDefinitionFor(
               QString::fromStdString( activeDicts[ x ]->getId() ) ) )
         unmutedDicts.push_back( activeDicts[ x ] );
 
-    return  std::make_shared<ArticleRequest>( phrase, Instances::Group{ activeGroup ? activeGroup->id:0, activeGroup ? activeGroup->name : ""},
+    return  std::make_shared<ArticleRequest>( word, Instances::Group{ activeGroup ? activeGroup->id:0, activeGroup ? activeGroup->name : ""},
                                contexts, unmutedDicts, header,
                                cfg.collapseBigArticles ? cfg.articleSizeLimit : -1,
                                cfg.alwaysExpandOptionalParts, ignoreDiacritics );
   }
   else
-    return std::make_shared<ArticleRequest>( phrase, Instances::Group{ activeGroup ? activeGroup->id:0, activeGroup ? activeGroup->name : ""},
+    return std::make_shared<ArticleRequest>( word, Instances::Group{ activeGroup ? activeGroup->id:0, activeGroup ? activeGroup->name : ""},
                                contexts, activeDicts, header,
                                cfg.collapseBigArticles ? cfg.articleSizeLimit : -1,
                                cfg.alwaysExpandOptionalParts, ignoreDiacritics );
@@ -432,7 +434,7 @@ bool ArticleMaker::adjustFilePath( QString & fileName )
 
 //////// ArticleRequest
 
-ArticleRequest::ArticleRequest( Config::InputPhrase const & phrase,
+ArticleRequest::ArticleRequest( QString const & word,
                                 Instances::Group const & group_,
                                 QMap< QString, QString > const & contexts_,
                                 vector< sptr< Dictionary::Class > > const & activeDicts_,
@@ -440,7 +442,7 @@ ArticleRequest::ArticleRequest( Config::InputPhrase const & phrase,
                                 int sizeLimit,
                                 bool needExpandOptionalParts_,
                                 bool ignoreDiacritics_ ):
-  word( phrase.phrase ),
+  word( word ),
   group( group_ ),
   contexts( contexts_ ),
   activeDicts( activeDicts_ ),
@@ -448,9 +450,6 @@ ArticleRequest::ArticleRequest( Config::InputPhrase const & phrase,
   needExpandOptionalParts( needExpandOptionalParts_ ),
   ignoreDiacritics( ignoreDiacritics_ )
 {
-  if ( !phrase.punctuationSuffix.isEmpty() )
-    alts.insert( gd::toWString( phrase.phraseWithSuffix() ) );
-
   // No need to lock dataMutex on construction
 
   hasAnyData = true;
@@ -571,7 +570,7 @@ bool ArticleRequest::isCollapsable( Dictionary::DataRequest & req ,QString const
   {
     try
     {
-      Mutex::Lock _( dataMutex );
+      QMutexLocker _( &dataMutex );
       QString text = QString::fromUtf8( req.getFullData().data(), req.getFullData().size() );
 
       if( !needExpandOptionalParts )
