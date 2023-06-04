@@ -2262,6 +2262,17 @@ QString getUserCssFileName()
   return getHomeDir().filePath( "article-style.css" );
 }
 
+std::optional< std::string > getUserJsFileName()
+{
+  QString userJsPath = getHomeDir().filePath( "article-script.js" );
+  if ( QFileInfo::exists( userJsPath ) ) {
+    return userJsPath.toStdString();
+  }
+  else {
+    return std::nullopt;
+  }
+}
+
 QString getUserCssPrintFileName() 
 {
   return getHomeDir().filePath( "article-style-print.css" );
@@ -2276,7 +2287,7 @@ QString getProgramDataDir() noexcept
 {
   if ( isPortableVersion() )
     return QCoreApplication::applicationDirPath();
-
+// TODO: rewrite this in QStandardPaths::AppDataLocation
   #ifdef PROGRAM_DATA_DIR
   return PROGRAM_DATA_DIR;
   #else
