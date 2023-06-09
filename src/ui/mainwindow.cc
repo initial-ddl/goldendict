@@ -92,7 +92,11 @@ class InitSSLRunnable: public QRunnable
 
 #endif
 
-void MainWindow::changeWebEngineViewFont()
+namespace {
+QString ApplicationSettingName = "GoldenDict";
+}
+
+void MainWindow::changeWebEngineViewFont() const
 {
   if ( cfg.preferences.webFontFamily.isEmpty() ) {
     QWebEngineProfile::defaultProfile()->settings()->resetFontFamily( QWebEngineSettings::StandardFont );
@@ -700,8 +704,8 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
 
   if ( cfg.mainWindowGeometry.size() )
     restoreGeometry( cfg.mainWindowGeometry );
-  if ( cfg.mainWindowState.size() )
-    restoreState( cfg.mainWindowState, 1 );
+  if ( cfg.mainWindowState.size() && !cfg.resetState )
+    restoreState( cfg.mainWindowState );
 
   // Show the initial welcome text
 
@@ -1165,7 +1169,7 @@ void MainWindow::commitData()
 
   try {
     // Save MainWindow state and geometry
-    cfg.mainWindowState    = saveState( 1 );
+    cfg.mainWindowState    = saveState();
     cfg.mainWindowGeometry = saveGeometry();
 
     // Save popup window state and geometry
@@ -3102,10 +3106,10 @@ void MainWindow::setAutostart( bool autostart )
   if ( autostart ) {
     QString app_fname = QString( "\"%1\"" ).arg( QCoreApplication::applicationFilePath() );
     app_fname.replace( "/", "\\" );
-    reg.setValue( QCoreApplication::applicationName(), app_fname );
+    reg.setValue( ApplicationSettingName, app_fname );
   }
   else {
-    reg.remove( QCoreApplication::applicationName() );
+    reg.remove( ApplicationSettingName );
   }
   reg.sync();
 #elif defined HAVE_X11
@@ -3700,7 +3704,6 @@ void MainWindow::on_exportHistory_triggered()
   mainStatusBar->showMessage( tr( "History export complete" ), 5000 );
 }
 
-// TODO: consider moving parts of this method into History class.
 void MainWindow::on_importHistory_triggered()
 {
   QString importPath;
@@ -3712,66 +3715,65 @@ void MainWindow::on_importHistory_triggered()
       importPath = QDir::homePath();
   }
 
-    QString fileName = QFileDialog::getOpenFileName( this, tr( "Import history from file" ),
-                                                     importPath,
-                                                     tr( "Text files (*.txt);;All files (*.*)" ) );
-    if ( fileName.size() == 0 )
-      return;
+  QString fileName = QFileDialog::getOpenFileName( this,
+                                                   tr( "Import history from file" ),
+                                                   importPath,
+                                                   tr( "Text files (*.txt);;All files (*.*)" ) );
+  if ( fileName.size() == 0 )
+    return;
 
-    QFileInfo fileInfo( fileName );
-    cfg.historyExportPath = QDir::toNativeSeparators( fileInfo.absoluteDir().absolutePath() );
-    QString errStr;
-    QFile file( fileName );
+  QFileInfo fileInfo( fileName );
+  cfg.historyExportPath = QDir::toNativeSeparators( fileInfo.absoluteDir().absolutePath() );
+  QString errStr;
+  QFile file( fileName );
 
+  if ( !file.open( QFile::ReadOnly | QIODevice::Text ) ) {
+    errStr = QString( tr( "Import error: " ) ) + file.errorString();
+    errorMessageOnStatusBar( errStr );
+    return;
+  }
 
-    if ( !file.open( QFile::ReadOnly | QIODevice::Text ) ) {
-      errStr = QString( tr( "Import error: " ) ) + file.errorString();
-      errorMessageOnStatusBar( errStr );
-      return;
-    }
+  QTextStream fileStream( &file );
+  QString itemStr, trimmedStr;
+  QList< QString > itemList;
 
-    QTextStream fileStream( &file );
-    QString itemStr, trimmedStr;
-    QList< QString > itemList;
+  do {
+    itemStr = fileStream.readLine();
+    if ( fileStream.status() >= QTextStream::ReadCorruptData )
+      break;
 
-    history.clear();
+    trimmedStr = itemStr.trimmed();
+    if ( trimmedStr.isEmpty() )
+      continue;
 
-    do {
-      itemStr = fileStream.readLine();
-      if ( fileStream.status() >= QTextStream::ReadCorruptData )
-        break;
+    if ( (unsigned)trimmedStr.size() <= history.getMaxItemLength() )
+      itemList.prepend( trimmedStr );
 
-      trimmedStr = itemStr.trimmed();
-      if ( trimmedStr.isEmpty() )
-        continue;
+  } while ( !fileStream.atEnd() && itemList.size() < (int)history.getMaxSize() );
 
-      if ( (unsigned)trimmedStr.size() <= history.getMaxItemLength() )
-        itemList.prepend( trimmedStr );
+  history.enableAdd( true );
 
-    } while ( !fileStream.atEnd() && itemList.size() < (int)history.getMaxSize() );
+  for ( QList< QString >::const_iterator i = itemList.constBegin(); i != itemList.constEnd(); ++i )
+    history.addItem( History::Item( 1, *i ) );
 
-    history.enableAdd( true );
+  history.enableAdd( cfg.preferences.storeHistory );
 
-    for ( QList< QString >::const_iterator i = itemList.constBegin(); i != itemList.constEnd(); ++i )
-      history.addItem( History::Item( 1, *i ) );
+  if ( file.error() != QFile::NoError ) {
+    errStr = QString( tr( "Import error: " ) ) + file.errorString();
+    errorMessageOnStatusBar( errStr );
+    return;
+  }
 
-    history.enableAdd( cfg.preferences.storeHistory );
-
-    if ( file.error() != QFile::NoError ) {
-      errStr = QString( tr( "Import error: " ) ) + file.errorString();
-      errorMessageOnStatusBar( errStr );
-      return;
-    }
-
-    if ( fileStream.status() >= QTextStream::ReadCorruptData ) {
-      errStr = QString( tr( "Import error: invalid data in file" ) );
-      errorMessageOnStatusBar( errStr );
-      return;
-    }
-    //even without this line, the destructor of QFile will close the file as documented.
-    file.close();
-    mainStatusBar->showMessage( tr( "History import complete" ), 5000 );
+  if ( fileStream.status() >= QTextStream::ReadCorruptData ) {
+    errStr = QString( tr( "Import error: invalid data in file" ) );
+    errorMessageOnStatusBar( errStr );
+    return;
+  }
+  //even without this line, the destructor of QFile will close the file as documented.
+  file.close();
+  mainStatusBar->showMessage( tr( "History import complete" ), 5000 );
 }
+
 void MainWindow::errorMessageOnStatusBar( const QString & errStr )
 {
   this->mainStatusBar->showMessage( errStr, 10000, QPixmap( ":/icons/error.svg" ) );
