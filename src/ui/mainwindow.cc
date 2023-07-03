@@ -306,7 +306,7 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   //  groupLabel.setText( tr( "Look up in:" ) );
   groupListInDock = new GroupComboBox( &searchPaneTitleBar );
 
-  searchPaneTitleBarLayout.setContentsMargins( 8, 5, 8, 4 );
+  searchPaneTitleBarLayout.setContentsMargins( 3, 5, 3, 5 );
   //  searchPaneTitleBarLayout.addWidget( &groupLabel );
   searchPaneTitleBarLayout.addWidget( groupListInDock );
   searchPaneTitleBarLayout.addStretch();
@@ -382,21 +382,31 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   trayIconMenu.addSeparator();
   connect( trayIconMenu.addAction( tr( "&Quit" ) ), &QAction::triggered, this, &MainWindow::quitApp );
 
-  addGlobalAction( &escAction, SLOT( handleEsc() ) );
+  addGlobalAction( &escAction, [ this ]() {
+    handleEsc();
+  } );
   escAction.setShortcut( QKeySequence( "Esc" ) );
 
-  addGlobalAction( &focusTranslateLineAction, SLOT( focusTranslateLine() ) );
+  addGlobalAction( &focusTranslateLineAction, [ this ]() {
+    focusTranslateLine();
+  } );
   focusTranslateLineAction.setShortcuts( QList< QKeySequence >() <<
                                          QKeySequence( "Alt+D" ) <<
                                          QKeySequence( "Ctrl+L" ) );
 
-  addGlobalAction( &focusHeadwordsDlgAction, SLOT( focusHeadwordsDialog() ) );
+  addGlobalAction( &focusHeadwordsDlgAction, [ this ]() {
+    focusHeadwordsDialog();
+  } );
   focusHeadwordsDlgAction.setShortcut( QKeySequence( "Ctrl+D" ) );
 
-  addGlobalAction( &focusArticleViewAction, SLOT( focusArticleView() ) );
+  addGlobalAction( &focusArticleViewAction, [ this ]() {
+    focusArticleView();
+  } );
   focusArticleViewAction.setShortcut( QKeySequence( "Ctrl+N" ) );
 
-  addGlobalAction( ui.fullTextSearchAction, SLOT( showFullTextSearchDialog() ) );
+  addGlobalAction( ui.fullTextSearchAction, [ this ]() {
+    showFullTextSearchDialog();
+  } );
 
   addTabAction.setShortcutContext( Qt::WidgetWithChildrenShortcut );
   addTabAction.setShortcut( QKeySequence( "Ctrl+T" ) );
@@ -731,11 +741,7 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
 
   scanPopup->setStyleSheet( styleSheet() );
 
-  connect( scanPopup,
-           SIGNAL( editGroupRequested( unsigned ) ),
-           this,
-           SLOT( editDictionaries( unsigned ) ),
-           Qt::QueuedConnection );
+  connect( scanPopup, &ScanPopup::editGroupRequest, this, &MainWindow::editDictionaries, Qt::QueuedConnection );
 
   connect( scanPopup, &ScanPopup::sendPhraseToMainWindow, this, [ this ]( QString const & word ) {
     wordReceived( word );
@@ -1122,10 +1128,10 @@ MainWindow::~MainWindow()
 #endif
 }
 
-void MainWindow::addGlobalAction( QAction * action, const char * slot )
+void MainWindow::addGlobalAction( QAction * action, const std::function< void() > & slotFunc )
 {
   action->setShortcutContext( Qt::WidgetWithChildrenShortcut );
-  connect( action, SIGNAL( triggered() ), this, slot );
+  connect( action, &QAction::triggered, this, slotFunc );
 
   ui.centralWidget->addAction( action );
   ui.dictsPane->addAction( action );
@@ -2078,13 +2084,13 @@ void MainWindow::editDictionaries( unsigned editDictionaryGroup )
       ftsIndexing.stopIndexing();
       ftsIndexing.clearDictionaries();
       // Set muted dictionaries from old groups
-      for ( int x = 0; x < newCfg.groups.size(); x++ ) {
-        unsigned id = newCfg.groups[ x ].id;
+      for ( auto & group : newCfg.groups ) {
+        unsigned id = group.id;
         if ( id != Instances::Group::NoGroupId ) {
           Config::Group const * grp = cfg.getGroup( id );
           if ( grp ) {
-            newCfg.groups[ x ].mutedDictionaries      = grp->mutedDictionaries;
-            newCfg.groups[ x ].popupMutedDictionaries = grp->popupMutedDictionaries;
+            group.mutedDictionaries      = grp->mutedDictionaries;
+            group.popupMutedDictionaries = grp->popupMutedDictionaries;
           }
         }
       }
@@ -2097,9 +2103,9 @@ void MainWindow::editDictionaries( unsigned editDictionaryGroup )
 
       updateSuggestionList();
 
-      for ( unsigned x = 0; x < dictionaries.size(); x++ ) {
-        dictionaries[ x ]->setFTSParameters( cfg.preferences.fts );
-        dictionaries[ x ]->setSynonymSearchEnabled( cfg.preferences.synonymSearchEnabled );
+      for ( auto & dictionary : dictionaries ) {
+        dictionary->setFTSParameters( cfg.preferences.fts );
+        dictionary->setSynonymSearchEnabled( cfg.preferences.synonymSearchEnabled );
       }
 
       ftsIndexing.setDictionaries( dictionaries );
@@ -2505,6 +2511,15 @@ bool MainWindow::eventFilter( QObject * obj, QEvent * ev )
           return true;
         }
       }
+    }
+
+    if ( ev->type() == QEvent::FocusIn ) {
+
+      // select all on mouse click
+      if ( const auto focusEvent = dynamic_cast< QFocusEvent * >( ev ); focusEvent->reason() == Qt::MouseFocusReason ) {
+        QTimer::singleShot( 0, this, SLOT( focusTranslateLine() ) );
+      }
+      return false;
     }
 
     if ( ev->type() == QEvent::Resize ) {

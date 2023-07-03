@@ -7,6 +7,7 @@
 #include "config.hh"
 #include <QWebEngineProfile>
 #include "hotkeywrapper.hh"
+#include "version.hh"
 #ifdef HAVE_X11
 #include <fixx11h.h>
 #endif
@@ -32,10 +33,17 @@
 #include <QMutex>
 
 #if defined(USE_BREAKPAD)
-  #include "client/windows/handler/exception_handler.h"
+  #if defined( Q_OS_MAC )
+    #include "client/mac/handler/exception_handler.h"
+  #elif defined( Q_OS_LINUX )
+    #include "client/linux/handler/exception_handler.h"
+  #elif defined( Q_OS_WIN32 )
+    #include "client/windows/handler/exception_handler.h"
+  #endif
 #endif
 
 #if defined(USE_BREAKPAD)
+  #ifdef Q_OS_WIN32
 bool callback(const wchar_t* dump_path, const wchar_t* id,
                void* context, EXCEPTION_POINTERS* exinfo,
                MDRawAssertionInfo* assertion,
@@ -48,15 +56,38 @@ bool callback(const wchar_t* dump_path, const wchar_t* id,
   return succeeded;
 }
 #endif
+  #ifdef Q_OS_LINUX
+bool callback( const google_breakpad::MinidumpDescriptor & descriptor, void * context, bool succeeded )
+{
+  if ( succeeded ) {
+    qDebug() << "Create dump file success";
+  }
+  else {
+    qDebug() << "Create dump file failed";
+  }
+  return succeeded;
+}
+  #endif
+  #ifdef Q_OS_MAC
+bool callback( const char * dump_dir, const char * minidump_id, void * context, bool succeeded )
+{
+  if ( succeeded ) {
+    qDebug() << "Create dump file success";
+  }
+  else {
+    qDebug() << "Create dump file failed";
+  }
+  return succeeded;
+}
+  #endif
+#endif
 
 QMutex logMutex;
 
 void gdMessageHandler( QtMsgType type, const QMessageLogContext &context, const QString &mess )
 {
   QString strTime = QDateTime::currentDateTime().toString( "MM-dd hh:mm:ss" );
-  QString message = QString( "%1 %2\r\n" )
-                      .arg( strTime )
-                      .arg( mess );
+  QString message = QString( "%1 %2\r\n" ).arg( strTime, mess );
 
   if ( ( logFilePtr != nullptr ) && logFilePtr->isOpen() ) {
     //without the lock ,on multithread,there would be assert error.
@@ -173,12 +204,17 @@ void processCommandLine( QCoreApplication * app, GDOptions * result)
                                                       << "toggle-scan-popup",
                                         QObject::tr( "Toggle scan popup." ) );
 
+  QCommandLineOption printVersion( QStringList() << "v"
+                                                 << "version",
+                                   QObject::tr( "Print version and diagnosis info." ) );
+
   qcmd.addOption( logFileOption );
   qcmd.addOption( groupNameOption );
   qcmd.addOption( popupGroupNameOption );
   qcmd.addOption( togglePopupOption );
   qcmd.addOption( notts );
   qcmd.addOption( resetState );
+  qcmd.addOption( printVersion );
 
   QCommandLineOption doNothingOption( "disable-web-security" ); // ignore the --disable-web-security
   doNothingOption.setFlags( QCommandLineOption::HiddenFromHelp );
@@ -208,6 +244,11 @@ void processCommandLine( QCoreApplication * app, GDOptions * result)
 
   if ( qcmd.isSet( resetState ) ) {
     result->resetState = true;
+  }
+
+  if ( qcmd.isSet( printVersion ) ) {
+    qInfo() << qPrintable( Version::everything() );
+    std::exit( 0 );
   }
 
   const QStringList posArgs = qcmd.positionalArguments();
@@ -278,22 +319,34 @@ int main( int argc, char ** argv )
 
   QHotkeyApplication::setApplicationName( "GoldenDict-ng" );
   QHotkeyApplication::setOrganizationDomain( "https://github.com/xiaoyifang/goldendict-ng" );
-#ifndef Q_OS_MAC
   QHotkeyApplication::setWindowIcon( QIcon( ":/icons/programicon.png" ) );
-#endif
 
 #if defined(USE_BREAKPAD)
-  QString appDirPath = QCoreApplication::applicationDirPath() + "/crash";
+  QString appDirPath = Config::getConfigDir() + "crash";
 
   QDir dir;
   if ( !dir.exists( appDirPath ) ) {
     dir.mkpath( appDirPath );
   }
+  #ifdef Q_OS_WIN32
 
   google_breakpad::ExceptionHandler eh(
     appDirPath.toStdWString(), NULL, callback, NULL,
     google_breakpad::ExceptionHandler::HANDLER_ALL);
+  #elif defined( Q_OS_MAC )
 
+
+  google_breakpad::ExceptionHandler eh( appDirPath.toStdString(), 0, callback, 0, true, NULL );
+
+  #else
+
+  google_breakpad::ExceptionHandler eh( google_breakpad::MinidumpDescriptor( appDirPath.toStdString() ),
+                                        /*FilterCallback*/ 0,
+                                        callback,
+                                        /*context*/ 0,
+                                        true,
+                                        -1 );
+  #endif
 
   #endif
 
@@ -402,6 +455,7 @@ int main( int argc, char ** argv )
 
   if ( gdcl.notts ) {
     cfg.notts = true;
+    cfg.voiceEngines.clear();
   }
 
   cfg.resetState = gdcl.resetState;

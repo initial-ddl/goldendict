@@ -233,12 +233,11 @@ QString LangCoder::intToCode2( quint32 val )
   if ( !val || val == 0xFFffFFff )
     return {};
 
-  char code[ 2 ];
+  QByteArray ba;
+  ba.append( val & 0xFF );
+  ba.append( ( val >> 8 ) & 0xFF );
 
-  code[ 0 ] = val & 0xFF;
-  code[ 1 ] = ( val >> 8 ) & 0xFF;
-
-  return QString::fromLatin1( code, 2 );
+  return QString::fromLatin1( ba );
 }
 
 quint32 LangCoder::findIdForLanguage( gd::wstring const & lang )
@@ -246,7 +245,7 @@ quint32 LangCoder::findIdForLanguage( gd::wstring const & lang )
   const auto langFolded = Utf8::encode( lang );
 
   for ( auto const & lc : LANG_CODE_MAP ) {
-    if ( langFolded == lc.lang ) {
+    if ( strcasecmp( langFolded.c_str(), lc.lang.c_str() ) == 0 ) {
       return code2toInt( lc.code.toStdString().c_str() );
     }
   }

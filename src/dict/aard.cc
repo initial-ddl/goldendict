@@ -47,7 +47,6 @@ using BtreeIndexing::IndexInfo;
 namespace {
 
 DEF_EX_STR( exNotAardFile, "Not an AARD file", Dictionary::Ex )
-DEF_EX_STR( exCantReadFile, "Can't read file", Dictionary::Ex )
 DEF_EX_STR( exWordIsTooLarge, "Enountered a word that is too large:", Dictionary::Ex )
 DEF_EX_STR( exSuddenEndOfFile, "Sudden end of file", Dictionary::Ex )
 
@@ -340,7 +339,7 @@ void AardDictionary::loadIcon() noexcept
   if( !loadIconFromFile( fileName ) )
   {
     // Load failed -- use default icons
-    dictionaryNativeIcon = dictionaryIcon = QIcon(":/icons/icon32_aard.png");
+    dictionaryIcon = QIcon(":/icons/icon32_aard.png");
   }
 
   dictionaryIconLoaded = true;
@@ -768,11 +767,7 @@ void AardArticleRequest::run()
       result += i->second.second;
   }
 
-  QMutexLocker _( &dataMutex );
-
-  data.resize( result.size() );
-
-  memcpy( &data.front(), result.data(), result.size() );
+  appendString(result);
 
   hasAnyData = true;
 

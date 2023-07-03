@@ -61,7 +61,7 @@ using BtreeIndexing::IndexedWords;
 using BtreeIndexing::IndexInfo;
 
 DEF_EX_STR( exNotSlobFile, "Not an Slob file", Dictionary::Ex )
-DEF_EX_STR( exCantReadFile, "Can't read file", Dictionary::Ex )
+using Dictionary::exCantReadFile;
 DEF_EX_STR( exCantDecodeFile, "Can't decode file", Dictionary::Ex )
 DEF_EX_STR( exNoCodecFound, "No text codec found", Dictionary::Ex )
 DEF_EX( exUserAbort, "User abort", Dictionary::Ex )
@@ -757,7 +757,7 @@ void SlobDictionary::loadIcon() noexcept
   if( !loadIconFromFile( fileName ) )
   {
     // Load failed -- use default icons
-    dictionaryNativeIcon = dictionaryIcon = QIcon(":/icons/icon32_slob.png");
+    dictionaryIcon = QIcon(":/icons/icon32_slob.png");
   }
 
   dictionaryIconLoaded = true;
@@ -1098,6 +1098,8 @@ void SlobDictionary::sortArticlesOffsetsForFTS( QVector< uint32_t > & offsets, Q
 
     qint32 entries = sf.getRefsCount();
     for ( qint32 i = 0; i < entries; i++ ) {
+      if ( Utils::AtomicInt::loadAcquire( isCancelled ) )
+        throw exUserAbort();
       if ( offsets.contains( sortedOffsets[ i ].second ) )
         newOffsets.append( sortedOffsets[ i ].second );
     }
@@ -1326,11 +1328,7 @@ void SlobArticleRequest::run()
       result += i->second.second;
   }
 
-  QMutexLocker _( &dataMutex );
-
-  data.resize( result.size() );
-
-  memcpy( &data.front(), result.data(), result.size() );
+  appendString(result);
 
   hasAnyData = true;
 

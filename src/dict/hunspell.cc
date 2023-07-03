@@ -159,7 +159,7 @@ void HunspellDictionary::loadIcon() noexcept
   if( !loadIconFromFile( fileName ) )
   {
     // Load failed -- use default icons
-    dictionaryNativeIcon = dictionaryIcon = QIcon(":/icons/icon32_hunspell.png");
+    dictionaryIcon = QIcon(":/icons/icon32_hunspell.png");
   }
 
   dictionaryIconLoaded = true;
@@ -283,11 +283,7 @@ void HunspellArticleRequest::run()
 
       result += "</div>";
 
-      QMutexLocker _( &dataMutex );
-
-      data.resize( result.size() );
-
-      memcpy( &data.front(), result.data(), result.size() );
+      appendString(result);
 
       hasAnyData = true;
     }

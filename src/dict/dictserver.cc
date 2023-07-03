@@ -258,7 +258,7 @@ void DictServerDictionary::loadIcon() noexcept
       loadIconFromFile( fInfo.absoluteFilePath(), true );
   }
   if( dictionaryIcon.isNull() )
-    dictionaryIcon = dictionaryNativeIcon = QIcon(":/icons/network.svg");
+    dictionaryIcon = QIcon(":/icons/network.svg");
   dictionaryIconLoaded = true;
 }
 
@@ -834,10 +834,7 @@ void DictServerArticleRequest::run()
     }
     if( !Utils::AtomicInt::loadAcquire( isCancelled ) && errorString.isEmpty() && !articleData.empty() )
     {
-      QMutexLocker _( &dataMutex );
-
-      data.resize( articleData.size() );
-      memcpy( &data.front(), articleData.data(), articleData.size() );
+      appendString(articleData);
 
       hasAnyData = true;
     }

@@ -44,7 +44,7 @@ using BtreeIndexing::IndexInfo;
 
 namespace {
 
-DEF_EX_STR( exCantReadFile, "Can't read file", Dictionary::Ex )
+using Dictionary::exCantReadFile;
 DEF_EX( exFailedToReadLineFromIndex, "Failed to read line from index file", Dictionary::Ex )
 DEF_EX( exMalformedIndexFileLine, "Malformed index file line encountered", Dictionary::Ex )
 DEF_EX( exInvalidBase64, "Invalid base64 sequence encountered", Dictionary::Ex )
@@ -221,7 +221,7 @@ void DictdDictionary::loadIcon() noexcept
   if( !loadIconFromFile( fileName ) )
   {
     // Load failed -- use default icons
-    dictionaryNativeIcon = dictionaryIcon = QIcon(":/icons/icon32_dictd.png");
+    dictionaryIcon = QIcon(":/icons/icon32_dictd.png");
   }
 
   dictionaryIconLoaded = true;
@@ -422,12 +422,8 @@ sptr< Dictionary::DataRequest > DictdDictionary::getArticle( wstring const & wor
     for( i = alternateArticles.begin(); i != alternateArticles.end(); ++i )
       result += i->second;
 
-    sptr< Dictionary::DataRequestInstant > ret =
-      std::make_shared<Dictionary::DataRequestInstant>( true );
-
-    ret->getData().resize( result.size() );
-
-    memcpy( &(ret->getData().front()), result.data(), result.size() );
+    auto ret = std::make_shared< Dictionary::DataRequestInstant >( true );
+    ret->appendString( result );
 
     return ret;
   }

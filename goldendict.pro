@@ -19,13 +19,7 @@ system(git describe --tags --always --dirty): hasGit=1
 }
 
 
-!CONFIG( verbose_build_output ) {
-  !win32|*-msvc* {
-    # Reduce build log verbosity except for MinGW builds (mingw-make cannot
-    # execute "@echo ..." commands inserted by qmake).
-    CONFIG += silent
-  }
-}
+# users can suppress verbose console compile output by add `CONFIG += silent` to qmake.
 
 CONFIG( release, debug|release ) {
   DEFINES += NDEBUG
@@ -83,8 +77,8 @@ win32{
 CONFIG( use_breakpad ) {
   DEFINES += USE_BREAKPAD
 
-  win32: LIBS += -L$$PWD/thirdparty/breakpad/lib/ -llibbreakpad -llibbreakpad_client
-  else:unix: LIBS += -L$$PWD/thirdparty/breakpad/lib/ -llibbreakpa
+  LIBS += -L$$PWD/thirdparty/breakpad/lib/ -llibbreakpad -llibbreakpad_client
+
 
   INCLUDEPATH += $$PWD/thirdparty/breakpad/include
   DEPENDPATH += $$PWD/thirdparty/breakpad/include
@@ -290,16 +284,17 @@ HEADERS += \
     src/ankiconnector.hh \
     src/article_maker.hh \
     src/article_netmgr.hh \
-    src/common/atomic_rename.hh \
     src/audiolink.hh \
     src/audioplayerfactory.hh \
     src/audioplayerinterface.hh \
     src/btreeidx.hh \
     src/chunkedstorage.hh \
+    src/common/atomic_rename.hh \
     src/common/base_type.hh \
     src/common/ex.hh \
     src/common/file.hh \
     src/common/filetype.hh \
+    src/common/folding.hh \
     src/common/gddebug.hh \
     src/common/globalbroadcaster.hh \
     src/common/globalregex.hh \
@@ -358,7 +353,6 @@ HEADERS += \
     src/externalviewer.hh \
     src/ffmpegaudio.hh \
     src/ffmpegaudioplayer.hh \
-    src/common/folding.hh \
     src/ftshelpers.hh \
     src/fulltextsearch.hh \
     src/gestures.hh \
@@ -406,6 +400,7 @@ HEADERS += \
     src/ui/searchpanewidget.hh \
     src/ui/stylescombobox.hh \
     src/ui/translatebox.hh \
+    src/version.hh \
     src/webmultimediadownload.hh \
     src/weburlrequestinterceptor.hh \
     src/wordfinder.hh \
@@ -418,13 +413,14 @@ SOURCES += \
     src/ankiconnector.cc \
     src/article_maker.cc \
     src/article_netmgr.cc \
-    src/common/atomic_rename.cc \
     src/audiolink.cc \
     src/audioplayerfactory.cc \
     src/btreeidx.cc \
     src/chunkedstorage.cc \
+    src/common/atomic_rename.cc \
     src/common/file.cc \
     src/common/filetype.cc \
+    src/common/folding.cc \
     src/common/gddebug.cc \
     src/common/globalbroadcaster.cc \
     src/common/globalregex.cc \
@@ -479,7 +475,6 @@ SOURCES += \
     src/externalaudioplayer.cc \
     src/externalviewer.cc \
     src/ffmpegaudio.cc \
-    src/common/folding.cc \
     src/ftshelpers.cc \
     src/fulltextsearch.cc \
     src/gestures.cc \
@@ -526,6 +521,7 @@ SOURCES += \
     src/ui/searchpanel.cc \
     src/ui/stylescombobox.cc \
     src/ui/translatebox.cc \
+    src/version.cc \
     src/webmultimediadownload.cc \
     src/weburlrequestinterceptor.cc \
     src/wordfinder.cc \
@@ -592,7 +588,14 @@ CONFIG( chinese_conversion_support ) {
              src/ui/chineseconversion.hh
   SOURCES += src/dict/chinese.cc \
              src/ui/chineseconversion.cc
+
+win32{
+  Debug: LIBS+= -L$$PWD/winlibs/lib/dbg/ -lopencc
+  Release: LIBS+= -L$$PWD/winlibs/lib -lopencc
+}else{
   LIBS += -lopencc
+}
+
 }
 
 RESOURCES += resources.qrc \

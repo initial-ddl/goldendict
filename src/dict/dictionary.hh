@@ -42,6 +42,8 @@ DEF_EX( exIndexOutOfRange, "The supplied index is out of range", Ex )
 DEF_EX( exSliceOutOfRange, "The requested data slice is out of range", Ex )
 DEF_EX( exRequestUnfinished, "The request hasn't yet finished", Ex )
 
+DEF_EX_STR( exCantReadFile, "Can't read file", Dictionary::Ex )
+
 /// When you request a search to be performed in a dictionary, you get
 /// this structure in return. It accumulates search results over time.
 /// The finished() signal is emitted when the search has finished and there's
@@ -191,10 +193,12 @@ public:
   /// the resource wasn't found.
   long dataSize();
 
+  void appendDataSlice( const void * buffer, size_t size );
+  void appendString( std::string_view str );
+
   /// Writes "size" bytes starting from "offset" of the data read to the given
   /// buffer. "size + offset" must be <= than dataSize().
   void getDataSlice( size_t offset, size_t size, void * buffer );
-  void appendDataSlice( const void * buffer, size_t size );
 
   /// Returns all the data read. Since no further locking can or would be
   /// done, this can only be called after the request has finished.
@@ -281,7 +285,7 @@ class Class: public QObject
 
 protected:
   QString dictionaryDescription;
-  QIcon dictionaryIcon, dictionaryNativeIcon;
+  QIcon dictionaryIcon;
   bool dictionaryIconLoaded;
   bool can_FTS;
   QAtomicInt FTS_index_completed;
@@ -376,11 +380,6 @@ public:
 
   /// Returns the dictionary's icon.
   virtual QIcon const & getIcon() noexcept;
-
-  /// Returns the dictionary's native icon. Dsl icons are usually rectangular,
-  /// and are adapted by getIcon() to be square. This function allows getting
-  /// the original icon with no geometry transformations applied.
-  virtual QIcon const & getNativeIcon() noexcept;
 
   /// Returns the dictionary's source language.
   virtual quint32 getLangFrom() const

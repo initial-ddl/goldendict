@@ -330,14 +330,9 @@ sptr< Dictionary::DataRequest > ZipSoundsDictionary::getArticle( wstring const &
 
   result += "</table>";
 
-  Dictionary::DataRequestInstant * ret =
-    new Dictionary::DataRequestInstant( true );
-
-  ret->getData().resize( result.size() );
-
-  memcpy( &(ret->getData().front()), result.data(), result.size() );
-
-  return std::shared_ptr<Dictionary::DataRequestInstant>(ret);
+  auto ret = std::make_shared< Dictionary::DataRequestInstant >( true );
+  ret->appendString( result );
+  return ret;
 }
 
 sptr< Dictionary::DataRequest > ZipSoundsDictionary::getResource( string const & name )
@@ -395,7 +390,7 @@ void ZipSoundsDictionary::loadIcon() noexcept
   if( !loadIconFromFile( fileName ) )
   {
     // Load failed -- use default icons
-    dictionaryNativeIcon = dictionaryIcon = QIcon(":/icons/playsound_full.png");
+    dictionaryIcon = QIcon(":/icons/playsound_full.png");
   }
 
   dictionaryIconLoaded = true;

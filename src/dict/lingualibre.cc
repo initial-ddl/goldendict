@@ -327,7 +327,7 @@ WHERE {
       if( dictionaryIconLoaded )
         return;
 
-      dictionaryIcon = dictionaryNativeIcon = QIcon( ":/icons/lingualibre.svg" );
+      dictionaryIcon = QIcon( ":/icons/lingualibre.svg" );
       dictionaryIconLoaded                  = true;
     }
   };
@@ -485,12 +485,8 @@ void LinguaArticleRequest::requestFinished( QNetworkReply * r )
 
     articleBody += "</p>";
 
-    QMutexLocker _( &dataMutex );
+    appendString( articleBody );
 
-    size_t prevSize = data.size();
-    data.resize( prevSize + articleBody.size() );
-
-    memcpy( &data.front() + prevSize, articleBody.data(), articleBody.size() );
 
     hasAnyData = true;
 

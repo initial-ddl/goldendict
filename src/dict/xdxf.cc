@@ -81,7 +81,7 @@ quint32 getLanguageId( const QString & lang )
 
 namespace {
 
-DEF_EX_STR( exCantReadFile, "Can't read file", Dictionary::Ex )
+using Dictionary::exCantReadFile;
 DEF_EX_STR( exNotXdxfFile, "The file is not an XDXF file:", Dictionary::Ex )
 DEF_EX( exCorruptedIndex, "The index file is corrupted", Dictionary::Ex )
 DEF_EX_STR( exDictzipError, "DICTZIP error", Dictionary::Ex )
@@ -347,7 +347,6 @@ void XdxfDictionary::loadIcon() noexcept
     // Load failed -- use default icons
 
     dictionaryIcon = QIcon(":/icons/icon32_xdxf.png");
-    dictionaryNativeIcon = QIcon(":/icons/icon32_xdxf.png");
   }
 
   dictionaryIconLoaded = true;
@@ -582,11 +581,7 @@ void XdxfArticleRequest::run()
       result += cleaner;
   }
 
-  QMutexLocker _( &dataMutex );
-
-  data.resize( result.size() );
-
-  memcpy( &data.front(), result.data(), result.size() );
+  appendString(result);
 
   hasAnyData = true;
 

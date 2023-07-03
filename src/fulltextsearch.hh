@@ -40,7 +40,7 @@ enum {
 
 enum SearchMode
 {
-  WholeWords = 0,
+  WholeWords = 0, // aka Default search using Xapian query syntax
   PlainText,
   Wildcards,
   RegExp
@@ -84,19 +84,20 @@ Q_OBJECT
   QThread * timerThread;
 
 public:
-  Indexing( QAtomicInt & cancelled, std::vector< sptr< Dictionary::Class > > const & dicts,
-            QSemaphore & hasExited_):
+  Indexing( QAtomicInt & cancelled, std::vector< sptr< Dictionary::Class > > const & dicts, QSemaphore & hasExited_ ):
     isCancelled( cancelled ),
     dictionaries( dicts ),
     hasExited( hasExited_ ),
-    timer(new QTimer(nullptr)), // must be null since it will live in separate thread
-    timerThread(new QThread(this))
+    timer( new QTimer( nullptr ) ), // must be null since it will live in separate thread
+    timerThread( new QThread( this ) )
   {
-    connect(timer, &QTimer::timeout, this, &Indexing::timeout);
-    timer->moveToThread(timerThread);
-    connect(timerThread, &QThread::started, timer, [this](){timer->start(2000);});
-    connect(timerThread, &QThread::finished, timer, &QTimer::stop);
-
+    connect( timer, &QTimer::timeout, this, &Indexing::timeout );
+    timer->moveToThread( timerThread );
+    connect( timerThread, &QThread::started, timer, [ this ]() {
+      timer->start( 2000 );
+    } );
+    connect( timerThread, &QThread::finished, timer, &QTimer::stop );
+    connect( timerThread, &QThread::finished, timer, &QObject::deleteLater );
   }
 
   ~Indexing()
@@ -129,7 +130,9 @@ public:
   }
 
   void clearDictionaries()
-  { dictionaries.clear(); }
+  {
+    dictionaries.clear();
+  }
 
   /// Start dictionaries indexing for full-text search
   void doIndexing();
@@ -139,7 +142,7 @@ public:
 
   QString nowIndexingName();
 
-protected:
+private:
   QAtomicInt isCancelled;
   QSemaphore indexingExited;
   std::vector< sptr< Dictionary::Class > > dictionaries;

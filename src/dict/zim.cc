@@ -41,6 +41,8 @@
   #include <zim/archive.h>
   #include <zim/entry.h>
   #include <zim/item.h>
+  #include <zim/error.h>
+
 namespace Zim {
 
 using std::string;
@@ -56,7 +58,7 @@ using BtreeIndexing::IndexedWords;
 using BtreeIndexing::IndexInfo;
 
 DEF_EX_STR( exNotZimFile, "Not an Zim file", Dictionary::Ex )
-DEF_EX_STR( exCantReadFile, "Can't read file", Dictionary::Ex )
+using Dictionary::exCantReadFile;
 DEF_EX_STR( exInvalidZimHeader, "Invalid Zim header", Dictionary::Ex )
 DEF_EX( exUserAbort, "User abort", Dictionary::Ex )
 
@@ -275,18 +277,34 @@ void ZimDictionary::loadIcon() noexcept
   if ( dictionaryIconLoaded )
     return;
 
+  // Try to load Original GD's user provided icon
   QString fileName = QDir::fromNativeSeparators( getDictionaryFilenames()[ 0 ].c_str() );
-
   // Remove the extension
   fileName.chop( 3 );
-
-  if( !loadIconFromFile( fileName ) )
-  {
-    // Load failed -- use default icons
-    dictionaryNativeIcon = dictionaryIcon = QIcon(":/icons/icon32_zim.png");
+  if ( loadIconFromFile( fileName ) ) {
+    dictionaryIconLoaded = true;
+    return;
   }
 
-  dictionaryIconLoaded = true;
+  // Try to load zim's illustration, which is usually 48x48 png
+  try {
+    auto illustration = df.getIllustrationItem( 48 ).getData();
+    QImage img = QImage::fromData( reinterpret_cast< const uchar * >( illustration.data() ), illustration.size() );
+
+    if ( img.isNull() ) {
+      // Fallback to default icon
+      dictionaryIcon = QIcon( ":/icons/icon32_zim.png" );
+    }
+    else {
+      dictionaryIcon = QIcon( QPixmap::fromImage( img ) );
+    }
+
+    dictionaryIconLoaded = true;
+    return;
+  }
+  catch ( zim::EntryNotFound & e ) {
+    gdDebug( "ZIM icon not loaded for: %s", dictionaryName.c_str() );
+  }
 }
 
 quint32 ZimDictionary::loadArticle( quint32 address, string & articleText, bool rawText )
@@ -695,11 +713,7 @@ void ZimArticleRequest::run()
       result += cleaner + "</div>";
   }
 
-  QMutexLocker _( &dataMutex );
-
-  data.resize( result.size() );
-
-  memcpy( &data.front(), result.data(), result.size() );
+  appendString(result);
 
   hasAnyData = true;
 

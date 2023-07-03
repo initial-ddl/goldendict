@@ -302,7 +302,7 @@ namespace {
 
 ////////////////// GLS Dictionary
 
-DEF_EX_STR( exCantReadFile, "Can't read file", Dictionary::Ex )
+using Dictionary::exCantReadFile;
 DEF_EX( exUserAbort, "User abort", Dictionary::Ex )
 DEF_EX_STR( exDictzipError, "DICTZIP error", Dictionary::Ex )
 
@@ -525,7 +525,7 @@ void GlsDictionary::loadIcon() noexcept
   if ( !loadIconFromFile( fileName ) )
   {
     // Load failed -- use default icon
-    dictionaryNativeIcon = dictionaryIcon = QIcon(":/icons/icon32_gls.png");
+    dictionaryIcon = QIcon(":/icons/icon32_gls.png");
   }
 
   dictionaryIconLoaded = true;
@@ -1070,11 +1070,7 @@ void GlsArticleRequest::run()
         result += i->second.second;
     }
 
-    QMutexLocker _( &dataMutex );
-
-    data.resize( result.size() );
-
-    memcpy( &data.front(), result.data(), result.size() );
+    appendString(result);
 
     hasAnyData = true;
   }

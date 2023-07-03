@@ -47,7 +47,7 @@ using BtreeIndexing::IndexInfo;
 namespace {
 
 DEF_EX_STR( exNotDctFile, "Not an Sdictionary file", Dictionary::Ex )
-DEF_EX_STR( exCantReadFile, "Can't read file", Dictionary::Ex )
+using Dictionary::exCantReadFile;
 DEF_EX_STR( exWordIsTooLarge, "Enountered a word that is too large:", Dictionary::Ex )
 DEF_EX_STR( exSuddenEndOfFile, "Sudden end of file", Dictionary::Ex )
 
@@ -242,7 +242,7 @@ void SdictDictionary::loadIcon() noexcept
   if( !loadIconFromFile( fileName ) )
   {
     // Load failed -- use default icons
-    dictionaryNativeIcon = dictionaryIcon = QIcon(":/icons/icon32_sdict.png");
+    dictionaryIcon = QIcon(":/icons/icon32_sdict.png");
   }
 
   dictionaryIconLoaded = true;
@@ -615,11 +615,7 @@ void SdictArticleRequest::run()
         result += "</span>";
   }
 
-  QMutexLocker _( &dataMutex );
-
-  data.resize( result.size() );
-
-  memcpy( &data.front(), result.data(), result.size() );
+  appendString(result);
 
   hasAnyData = true;
 

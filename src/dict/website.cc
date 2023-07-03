@@ -277,23 +277,16 @@ void WebSiteArticleRequest::requestFinished( QNetworkReply * r )
     // See Issue #271: A mechanism to clean-up invalid HTML cards.
     articleString += QString::fromStdString(Utils::Html::getHtmlCleaner());
 
-    QByteArray articleBody = articleString.toUtf8();
 
     QString divStr = QString( "<div class=\"website\"" );
     divStr += dictPtr->isToLanguageRTL() ? " dir=\"rtl\">" : ">";
 
-    articleBody.prepend( divStr.toUtf8() );
-    articleBody.append( "</div>" );
+    articleString.prepend( divStr.toUtf8() );
+    articleString.append( "</div>" );
 
-    articleBody.prepend( "<div class=\"website_padding\"></div>" );
+    articleString.prepend( "<div class=\"website_padding\"></div>" );
 
-    QMutexLocker _( &dataMutex );
-
-    size_t prevSize = data.size();
-
-    data.resize( prevSize + articleBody.size() );
-
-    memcpy( &data.front() + prevSize, articleBody.data(), articleBody.size() );
+    appendString( articleString.toStdString() );
 
     hasAnyData = true;
 
@@ -372,8 +365,6 @@ sptr< DataRequest > WebSiteDictionary::getArticle( wstring const & str,
   {
     // Just insert link in <iframe> tag
 
-    sptr< DataRequestInstant > dr = std::make_shared<DataRequestInstant>( true );
-
     string result = "<div class=\"website_padding\"></div>";
 
     //heuristic add url to global whitelist.
@@ -397,10 +388,8 @@ sptr< DataRequest > WebSiteDictionary::getArticle( wstring const & str,
                       "style=\"overflow:visible; width:100%; display:block; border:none;\" sandbox=\"allow-same-origin allow-scripts allow-popups\">"
                       "</iframe>";
 
-    dr->getData().resize( result.size() );
-
-    memcpy( &( dr->getData().front() ), result.data(), result.size() );
-
+    auto dr = std::make_shared< DataRequestInstant >( true );
+    dr->appendString( result );
     return dr;
   }
 
@@ -490,15 +479,7 @@ void WebSiteResourceRequest::requestFinished( QNetworkReply * r )
 
     dictPtr->isolateWebCSS( cssString );
 
-    QByteArray cssData = cssString.toUtf8();
-
-    QMutexLocker _( &dataMutex );
-
-    size_t prevSize = data.size();
-
-    data.resize( prevSize + cssData.size() );
-
-    memcpy( &data.front() + prevSize, cssData.data(), cssData.size() );
+    appendString(cssString.toStdString());
 
     hasAnyData = true;
   }
@@ -532,7 +513,7 @@ void WebSiteDictionary::loadIcon() noexcept
       loadIconFromFile( fInfo.absoluteFilePath(), true );
   }
   if( dictionaryIcon.isNull() && !loadIconFromText(":/icons/webdict.svg", QString::fromStdString(name ) ) )
-    dictionaryIcon = dictionaryNativeIcon = QIcon(":/icons/webdict.svg");
+    dictionaryIcon = QIcon(":/icons/webdict.svg");
   dictionaryIconLoaded = true;
 }
 

@@ -318,9 +318,6 @@ namespace
 
         if (img.loadFromData( ( unsigned char *) iconData, idxHeader.iconSize  ) )
         {
-          // Load successful
-
-          dictionaryNativeIcon = QIcon( QPixmap::fromImage( img ) );
 
           // Transform it to be square
           int max = img.width() > img.height() ? img.width() : img.height();
@@ -342,7 +339,7 @@ namespace
       }
 
       if ( dictionaryIcon.isNull() )
-        dictionaryIcon = dictionaryNativeIcon = QIcon(":/icons/icon32_bgl.png");
+        dictionaryIcon = QIcon(":/icons/icon32_bgl.png");
     }
 
     dictionaryIconLoaded = true;
@@ -840,11 +837,7 @@ void BglArticleRequest::run()
            .toUtf8().data();
 
 
-  QMutexLocker _( &dataMutex );
-
-  data.resize( result.size() );
-
-  memcpy( &data.front(), result.data(), result.size() );
+  appendString(result);
 
   hasAnyData = true;
 
