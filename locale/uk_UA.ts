@@ -372,7 +372,7 @@
     </message>
     <message>
       <location filename="../src/ui/articleview.cc" line="1843"/>
-      <source>Sound files (*.wav *.ogg *.oga *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape *.spx);;All files (*.*)</source>
+      <source>Sound files (*.wav *.opus *.ogg *.oga *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape *.spx);;All files (*.*)</source>
       <translation>Звукові файли (*.wav *.oga *.oga *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape *.spx);Всі файли (*.*)</translation>
     </message>
     <message>
@@ -4111,7 +4111,7 @@ however, the article from the topmost dictionary is shown.</source>
     <message>
       <location filename="../src/ui/preferences.ui"/>
       <source> ms</source>
-      <translation> РС</translation>
+      <translation> мс</translation>
     </message>
     <message>
       <location filename="../src/ui/preferences.ui"/>

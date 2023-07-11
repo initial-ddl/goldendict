@@ -2,14 +2,12 @@
  * Part of GoldenDict. Licensed under GPLv3 or later, see the LICENSE file */
 
 #include "folding.hh"
-#include <QRegularExpression>
 
 #include "utf8.hh"
 #include "globalregex.hh"
+#include "inc_case_folding.hh"
 
 namespace Folding {
-
-#include "inc_case_folding.hh"
 
 /// Tests if the given char is one of the Unicode combining marks. Some are
 /// caught by the diacritics folding table, but they are only handled there
@@ -155,9 +153,10 @@ wstring applyWhitespaceAndPunctOnly( wstring const & in )
 
   out.reserve( in.size() );
 
-  for( size_t left = in.size(); left--; ++nextChar )
+  for ( size_t left = in.size(); left--; ++nextChar ) {
     if ( !isWhitespace( *nextChar ) && !isPunct( *nextChar ) )
       out.push_back( *nextChar );
+  }
 
   return out;
 }
@@ -165,6 +164,11 @@ wstring applyWhitespaceAndPunctOnly( wstring const & in )
 bool isWhitespace( wchar ch )
 {
   return QChar::isSpace( ch );
+}
+
+bool isWhitespaceOrPunct( wchar ch )
+{
+  return QChar::isSpace( ch ) || QChar::isPunct( ch );
 }
 
 bool isPunct( wchar ch )
@@ -242,7 +246,7 @@ QString trimWhitespace( QString const & in )
 QString escapeWildcardSymbols( const QString & str )
 {
   QString escaped( str );
-  escaped.replace( QRegularExpression( R"(([\[\]\?\*]))" ), "\\\\1" );
+  escaped.replace( QRegularExpression( R"(([\[\]\?\*]))" ), R"(\\1)" );
 
   return escaped;
 }
@@ -250,8 +254,8 @@ QString escapeWildcardSymbols( const QString & str )
 QString unescapeWildcardSymbols( const QString & str )
 {
   QString unescaped( str );
-  unescaped.replace( QRegularExpression( R"(\\([\[\]\?\*]))" ), "\\1" );
+  unescaped.replace( QRegularExpression( R"(\\([\[\]\?\*]))" ), R"(\1)" );
 
   return unescaped;
 }
-}
+} // namespace Folding
