@@ -59,13 +59,6 @@ jobs:
           previousTag=$(git tag --sort=-creatordate | grep "^v" | sed -n 2p)
           echo "previousTag : $previousTag"
           
-          CHANGELOG="$(git log --oneline --no-decorate $previousTag..HEAD)"
-          CHANGELOG="${CHANGELOG//'%'/'%25'}"
-          CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
-          CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
-          CHANGELOG="${CHANGELOG//'\"'/'%22'}"
-          CHANGELOG="${CHANGELOG//"'"/ }"
-          echo "::set-output name=changelog::$(echo "$CHANGELOG")"
           echo "::set-output name=prev_tag::$previousTag"
           echo "::set-output name=curr_tag::$(git tag --sort=-creatordate | grep "^v" | sed -n 1p)"
 
@@ -122,9 +115,7 @@ jobs:
           echo "::set-output name=release_date::$(date +'%Y%m%d')"    
           echo "::set-output name=release_time::$(date +'%H%M%S')"  
           echo "::set-output name=release_time_clock::$(date +'%H:%M:%S')"   
-          echo "::set-output name=release_hm::$(date +'%y%m%d')"     
-
-          echo "changlog : ${{steps.build_changelog.outputs.changelog}}"
+          echo "::set-output name=release_hm::$(date +'%y%m%d')"          
 
       - name: version-file
         shell: bash
@@ -267,9 +258,6 @@ jobs:
             macOS: macOS-12 and macOS-13
             Windows: Visual studio 2019
 
-            #### Commits
-
-            ${{ steps.changelog.outputs.changelog }}  
 
             #### Changes
             

@@ -20,7 +20,7 @@ public:
     SHOW_HEADWORDS
   };
 
-  DictInfo( Config::Class &cfg_, QWidget * parent = 0 );
+  DictInfo( Config::Class & cfg_, QWidget * parent = nullptr );
   void showInfo( sptr< Dictionary::Class > dict );
 
 private:
@@ -32,6 +32,7 @@ private slots:
   void on_openFolder_clicked();
   void on_OKButton_clicked();
   void on_headwordsButton_clicked();
+  void on_openIndexFolder_clicked();
 };
 
 #endif // DICTINFO_HH

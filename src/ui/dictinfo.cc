@@ -1,6 +1,7 @@
 #include "dictinfo.hh"
-#include "langcoder.hh"
 #include "language.hh"
+#include <QDesktopServices>
+#include "config.hh"
 
 #include <QString>
 
@@ -38,17 +39,14 @@ void DictInfo::showInfo( sptr<Dictionary::Class> dict )
 
   QString filenamesText;
 
-  for( unsigned x = 0; x < filenames.size(); x++ )
-  {
-    filenamesText += QString::fromStdString( filenames[ x ] );
+  for ( const auto & filename : filenames ) {
+    filenamesText += QString::fromStdString( filename );
     filenamesText += '\n';
   }
 
   ui.dictionaryFileList->setPlainText( filenamesText );
 
-  QString info = dict->getDescription();
-
-  if( !info.isEmpty() && info.compare( "NONE" ) != 0 ) {
+  if ( QString info = dict->getDescription(); !info.isEmpty() && info.compare( "NONE" ) != 0 ) {
     //qtbug QTBUG-112020
     info.remove( QRegularExpression( R"(<link[^>]*>)", QRegularExpression::CaseInsensitiveOption ) );
     ui.infoLabel->setHtml( info );
@@ -82,4 +80,9 @@ void DictInfo::on_OKButton_clicked()
 void DictInfo::on_headwordsButton_clicked()
 {
   done( SHOW_HEADWORDS );
+}
+
+void DictInfo::on_openIndexFolder_clicked()
+{
+  QDesktopServices::openUrl( QUrl::fromLocalFile( Config::getIndexDir() ) );
 }

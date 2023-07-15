@@ -685,6 +685,15 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
            this,
            &MainWindow::showFTSIndexingName );
 
+  connect( &GlobalBroadcaster::instance()->pronounce_engine,
+           &PronounceEngine::emitAudio,
+           this,
+           [ this ]( auto audioUrl ) {
+             auto view = getCurrentArticleView();
+             if ( cfg.preferences.pronounceOnLoadMain && view != nullptr ) {
+               view->openLink( QUrl::fromEncoded( audioUrl.toUtf8() ), {} );
+             }
+           } );
   applyProxySettings();
 
   //set  webengineview font
@@ -712,24 +721,17 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   // Create tab list menu
   createTabList();
 
-  if ( cfg.mainWindowGeometry.size() )
-    restoreGeometry( cfg.mainWindowGeometry );
   if ( cfg.mainWindowState.size() && !cfg.resetState )
     restoreState( cfg.mainWindowState );
+  if ( cfg.mainWindowGeometry.size() )
+    restoreGeometry( cfg.mainWindowGeometry );
 
   // Show the initial welcome text
-
-  {
-    ArticleView * view = getCurrentArticleView();
-
-    history.enableAdd( false );
-
-    blockUpdateWindowTitle = true;
-
-    view->showDefinition( tr( "Welcome!" ), Instances::Group::HelpGroupId );
-
-    history.enableAdd( cfg.preferences.storeHistory );
-  }
+  ArticleView * view = getCurrentArticleView();
+  history.enableAdd( false );
+  blockUpdateWindowTitle = true;
+  view->showDefinition( tr( "Welcome!" ), Instances::Group::HelpGroupId );
+  history.enableAdd( cfg.preferences.storeHistory );
 
   translateLine->setFocus();
 
@@ -1121,6 +1123,11 @@ MainWindow::~MainWindow()
     ui.tabWidget->removeTab( 0 );
 
     delete w;
+  }
+
+  if ( scanPopup ) {
+    delete scanPopup;
+    scanPopup = nullptr;
   }
 
 #ifndef NO_EPWING_SUPPORT
@@ -1917,12 +1924,7 @@ void MainWindow::pageLoaded( ArticleView * view )
     return; // It was background action
 
   updateBackForwardButtons();
-
   updatePronounceAvailability();
-
-  if ( cfg.preferences.pronounceOnLoadMain && view != nullptr ) {
-    view->playSound();
-  }
 }
 
 void MainWindow::showStatusBarMessage( QString const & message, int timeout, QPixmap const & icon )
