@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = goldendict
-VERSION = 23.06.02-alpha
+VERSION = 23.07.25
 
 # Generate version file. We do this here and in a build rule described later.
 # The build rule is required since qmake isn't run each time the project is
@@ -77,6 +77,7 @@ win32{
 CONFIG( use_breakpad ) {
   DEFINES += USE_BREAKPAD
 
+#the lib ,include files are copied from vcpkg install package.
   LIBS += -L$$PWD/thirdparty/breakpad/lib/ -llibbreakpad -llibbreakpad_client
 
 
@@ -119,8 +120,8 @@ LIBS += -lbz2 \
         -llzo2
 
 win32{
-    Debug: LIBS+= -lzlibd
-    Release: LIBS+= -lzlib
+    Debug: LIBS+= -L$$PWD/winlibs/lib/dbg/ -lzlibd
+    Release: LIBS+= -L$$PWD/winlibs/lib/ -lzlib
 }else{
   LIBS += -lz 
 }
@@ -132,7 +133,7 @@ win32 {
 
     win32-msvc* {
         # VS does not recognize 22.number.alpha,cause errors during compilation under MSVC++
-        VERSION = 23.06.02 
+        VERSION = 23.07.25 
         DEFINES += __WIN32 _CRT_SECURE_NO_WARNINGS
         contains(QMAKE_TARGET.arch, x86_64) {
             DEFINES += NOMINMAX __WIN64

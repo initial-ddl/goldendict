@@ -64,9 +64,13 @@
         <file>icons/network.svg</file>
         <file>icons/next.svg</file>
         <file>icons/playsound_color.svg</file>
+        <file>icons/sounddir.svg</file>
+        <file>icons/zipsound.svg</file>
+        <file>icons/lsasound.svg</file>
         <file>icons/previous.svg</file>
         <file>icons/print.svg</file>
         <file>icons/programs.svg</file>
+        <file>icons/programdict.svg</file>
         <file>icons/sources.png</file>
         <file>icons/star.svg</file>
         <file>icons/star_blue.svg</file>
@@ -88,5 +92,7 @@
         <file>icons/old-downarrow.png</file>
         <file>icons/custom_trans.svg</file>
         <file>icons/splash.png</file>
+        <file>icons/fts_disabled.svg</file>
+        <file>icons/fts_enabled.svg</file>
     </qresource>
 </RCC>

@@ -5,6 +5,7 @@
 #include <vector>
 #include "config.hh"
 #include "pronounceengine.hh"
+#include <QCache>
 
 struct ActiveDictIds
 {
@@ -19,19 +20,19 @@ struct ActiveDictIds
 };
 
 
-class GlobalBroadcaster : public QObject
+class GlobalBroadcaster: public QObject
 {
   Q_OBJECT
 
   Config::Preferences * preference;
-  QSet<QString> whitelist;
+  QSet< QString > whitelist;
 
 public:
   void setPreference( Config::Preferences * _pre );
   Config::Preferences * getPreference();
   GlobalBroadcaster( QObject * parent = nullptr );
-  void addWhitelist(QString host);
-  bool existedInWhitelist(QString host);
+  void addWhitelist( QString host );
+  bool existedInWhitelist( QString host );
   static GlobalBroadcaster * instance();
   unsigned currentGroupId;
   QString translateLineText{};
@@ -40,6 +41,7 @@ public:
   QMap< QString, QSet< QString > > folderFavoritesMap;
   QMap< unsigned, QString > groupFolderMap;
   PronounceEngine pronounce_engine;
+  QCache< QString, QByteArray > cache;
 
 signals:
   void dictionaryChanges( ActiveDictIds ad );

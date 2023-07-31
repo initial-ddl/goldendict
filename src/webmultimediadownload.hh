@@ -20,9 +20,6 @@ public:
 
   WebMultimediaDownload( QUrl const &, QNetworkAccessManager & );
 
-  /// Checks if the given url is an http request for an audio file.
-  static bool isAudioUrl( QUrl const & );
-
   virtual void cancel();
 
 private slots:
@@ -30,6 +27,6 @@ private slots:
   void replyFinished( QNetworkReply * );
 };
 
-}
+} // namespace Dictionary
 
 #endif // WEBMULTIMEDIADOWNLOAD_HH

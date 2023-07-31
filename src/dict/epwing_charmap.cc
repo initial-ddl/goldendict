@@ -1,7 +1,9 @@
 /* This file is (c) 2014 Abs62
  * Part of GoldenDict. Licensed under GPLv3 or later, see the LICENSE file */
 
-#include "epwing_charmap.hh"
+#ifndef NO_EPWING_SUPPORT
+
+  #include "epwing_charmap.hh"
 
 namespace Epwing {
 
@@ -13,7 +15,7 @@ EpwingCharmap & EpwingCharmap::instance()
 
 QByteArray EpwingCharmap::mapToUtf8( QString const & code )
 {
-  if( charMap.contains( code ) )
+  if ( charMap.contains( code ) )
     return QString( charMap[ code ] ).toUtf8();
 
   return QByteArray();
@@ -21,7 +23,9 @@ QByteArray EpwingCharmap::mapToUtf8( QString const & code )
 
 void EpwingCharmap::addEntry( QString const & code, int ch )
 {
-    charMap[ code ] = QChar(ch);
+  charMap[ code ] = QChar( ch );
 }
 
 } // namespace Epwing
+
+#endif

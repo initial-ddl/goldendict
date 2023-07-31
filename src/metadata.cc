@@ -17,8 +17,8 @@ std::optional< Metadata::result > Metadata::load( std::string_view filepath )
     tbl = toml::parse_file( filepath );
   }
   catch ( toml::parse_error & e ) {
-    qWarning()<< "Failed to load metadata: " << QString::fromUtf8(filepath.data(),filepath.size())
-              << "Reason:" << e.what();
+    qWarning() << "Failed to load metadata: " << QString::fromUtf8( filepath.data(), filepath.size() )
+               << "Reason:" << e.what();
 
     return std::nullopt;
   }
@@ -34,5 +34,19 @@ std::optional< Metadata::result > Metadata::load( std::string_view filepath )
   }
 
   result.name = tbl[ "metadata" ][ "name" ].value_exact< std::string >();
+
+  const auto fullindex = tbl[ "fts" ];
+  if ( fullindex.as_string() ) {
+    const auto value = fullindex.as_string()->get();
+    result.fullindex = value == "1" || value == "on" || value == "true";
+  }
+  else if ( fullindex.as_boolean() ) {
+    auto value       = fullindex.as_boolean()->get();
+    result.fullindex = value;
+  }
+  else if ( fullindex.as_integer() ) {
+    const auto value = fullindex.as_integer()->get();
+    result.fullindex = value > 0;
+  }
   return result;
 }

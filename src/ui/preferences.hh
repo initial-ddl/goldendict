@@ -13,7 +13,12 @@ class Preferences: public QDialog
 
   int prevInterfaceLanguage = 0;
 
-  QString prevWebFontFamily;
+#if !defined( Q_OS_WIN )
+  int prevInterfaceStyle = 0;
+#endif
+
+
+  Config::CustomFonts prevWebFontFamily;
 
   Config::Class & cfg;
   QAction helpAction;
@@ -55,9 +60,6 @@ private slots:
 
   void on_collapseBigArticles_toggled( bool checked );
   void on_limitInputPhraseLength_toggled( bool checked );
-
-
 };
 
 #endif
-

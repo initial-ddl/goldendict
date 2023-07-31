@@ -1,5 +1,6 @@
 /* This file is (c) 2014 Abs62
  * Part of GoldenDict. Licensed under GPLv3 or later, see the LICENSE file */
+//xapian.h must at the first in the  include header files to avoid collision with other macro definition.
 #include "xapian.h"
 #include <cstdlib>
 #include "fulltextsearch.hh"
@@ -13,21 +14,16 @@
 #include <vector>
 #include <string>
 
-#include <QVector>
 
 #include <QRegularExpression>
 
-#include "wildcard.hh"
-#include "globalregex.hh"
-#include <QSemaphoreReleaser>
 
 using std::vector;
 using std::string;
 
 DEF_EX( exUserAbort, "User abort", Dictionary::Ex )
 
-namespace FtsHelpers
-{
+namespace FtsHelpers {
 // finished  reversed   dehsinif
 const static std::string finish_mark = std::string( "dehsinif" );
 
@@ -42,85 +38,31 @@ bool ftsIndexIsOldOrBad( BtreeIndexing::BtreeDictionary * dict )
     //use a special document to mark the end of the index.
     return document.get_data() != finish_mark;
   }
-  catch( Xapian::Error & e )
-  {
+  catch ( Xapian::Error & e ) {
     qWarning() << e.get_description().c_str();
     //the file is corrupted,remove it.
-    QFile::remove(QString::fromStdString(dict->ftsIndexName()));
+    QFile::remove( QString::fromStdString( dict->ftsIndexName() ) );
     return true;
   }
-  catch( ... )
-  {
+  catch ( ... ) {
     return true;
   }
 }
 
-static QString makeHiliteRegExpString( QStringList const & words,
-                                       int searchMode, int distanceBetweenWords, bool hasCJK = false, bool ignoreWordsOrder = false )
-{
-  QString searchString( "(" );
-
-  QString stripWords( "(?:\\W+\\w+){0," );
-
-  if( hasCJK )
-  {
-    stripWords = "(?:[\\W\\w]){0,";
-  }
-
-  if( distanceBetweenWords >= 0 )
-    stripWords += QString::number( distanceBetweenWords );
-  stripWords += "}";
-
-  if(!hasCJK)
-  {
-    stripWords += "\\W+";
-  }
-
-  QString boundWord( searchMode == FTS::WholeWords ? "\\b" : "(?:\\w*)");
-  if(hasCJK)
-  {
-    //no boundary for CJK
-    boundWord.clear();
-  }
-
-  for( int x = 0; x < words.size(); x++ )
-  {
-    if( x )
-    {
-      searchString += stripWords;
-      if(ignoreWordsOrder)
-        searchString += "(";
-    }
-
-    searchString += boundWord + words[ x ] + boundWord;
-
-    if( x )
-    {
-      if( ignoreWordsOrder )
-        searchString += ")?";
-    }
-
-  }
-
-  searchString += ")";
-  return searchString;
-}
 
 void tokenizeCJK( QStringList & indexWords, QRegularExpression wordRegExp, QStringList list )
 {
   QStringList wordList, hieroglyphList;
-  for(auto word : list)
-  {
+  for ( auto word : list ) {
     // Check for CJK symbols in word
     bool parsed = false;
     QString hieroglyph;
-    for( int x = 0; x < word.size(); x++ )
+    for ( int x = 0; x < word.size(); x++ )
       if ( Utils::isCJKChar( word.at( x ).unicode() ) ) {
         parsed = true;
         hieroglyph.append( word[ x ] );
 
-        if( QChar( word.at( x ) ).isHighSurrogate()
-            &&  QChar( word[ x + 1 ] ).isLowSurrogate() )
+        if ( QChar( word.at( x ) ).isHighSurrogate() && QChar( word[ x + 1 ] ).isLowSurrogate() )
           hieroglyph.append( word[ ++x ] );
 
         hieroglyphList.append( hieroglyph );
@@ -128,7 +70,7 @@ void tokenizeCJK( QStringList & indexWords, QRegularExpression wordRegExp, QStri
       }
 
     // If word don't contains CJK symbols put it in list as is
-    if( !parsed )
+    if ( !parsed )
       wordList.append( word );
   }
 
@@ -139,10 +81,10 @@ void tokenizeCJK( QStringList & indexWords, QRegularExpression wordRegExp, QStri
   indexWords += hieroglyphList;
 }
 
-bool containCJK( QString const & str)
+bool containCJK( QString const & str )
 {
   bool hasCJK = false;
-  for(auto x : str)
+  for ( auto x : str )
     if ( Utils::isCJKChar( x.unicode() ) ) {
       hasCJK = true;
       break;
@@ -278,14 +220,12 @@ void FTSResultsRequest::run()
     return;
   }
 
-  try
-  {
-    if( dict.haveFTSIndex() )
-    {
+  try {
+    if ( dict.haveFTSIndex() ) {
       //no need to parse the search string,  use xapian directly.
       //if the search mode is wildcard, change xapian search query flag?
       // Open the database for searching.
-      Xapian::Database db(dict.ftsIndexName());
+      Xapian::Database db( dict.ftsIndexName() );
 
       // Start an enquire session.
       Xapian::Enquire enquire( db );
@@ -299,37 +239,34 @@ void FTSResultsRequest::run()
       Xapian::QueryParser qp;
       qp.set_database( db );
       Xapian::QueryParser::feature_flag flag = Xapian::QueryParser::FLAG_DEFAULT;
-      if( searchMode == FTS::Wildcards )
+      if ( searchMode == FTS::Wildcards )
         flag = Xapian::QueryParser::FLAG_WILDCARD;
-      Xapian::Query query = qp.parse_query( query_string, flag|Xapian::QueryParser::FLAG_CJK_NGRAM );
+      Xapian::Query query = qp.parse_query( query_string, flag | Xapian::QueryParser::FLAG_CJK_NGRAM );
       qDebug() << "Parsed query is: " << query.get_description().c_str();
 
       // Find the top 100 results for the query.
       enquire.set_query( query );
       Xapian::MSet matches = enquire.get_mset( 0, 100 );
 
-      emit matchCount(matches.get_matches_estimated());
+      emit matchCount( matches.get_matches_estimated() );
       // Display the results.
       qDebug() << matches.get_matches_estimated() << " results found.\n";
       qDebug() << "Matches " << matches.size() << ":\n\n";
       QList< uint32_t > offsetsForHeadwords;
-      for( Xapian::MSetIterator i = matches.begin(); i != matches.end(); ++i )
-      {
+      for ( Xapian::MSetIterator i = matches.begin(); i != matches.end(); ++i ) {
         qDebug() << i.get_rank() + 1 << ": " << i.get_weight() << " docid=" << *i << " ["
                  << i.get_document().get_data().c_str() << "]";
-        if(i.get_document().get_data()==finish_mark)
+        if ( i.get_document().get_data() == finish_mark )
           continue;
         offsetsForHeadwords.append( atoi( i.get_document().get_data().c_str() ) );
       }
 
-      if( !offsetsForHeadwords.isEmpty() )
-      {
+      if ( !offsetsForHeadwords.isEmpty() ) {
         QVector< QString > headwords;
         QMutexLocker _( &dataMutex );
         QString id = QString::fromUtf8( dict.getId().c_str() );
         dict.getHeadwordsFromOffsets( offsetsForHeadwords, headwords, &isCancelled );
-        for(const auto & headword : headwords)
-        {
+        for ( const auto & headword : headwords ) {
           foundHeadwords->append( FTS::FtsHeadword( headword, id, QStringList(), matchCase ) );
         }
       }
@@ -349,18 +286,15 @@ void FTSResultsRequest::run()
       hasAnyData     = true;
     }
   }
-  catch (const Xapian::Error &e) {
+  catch ( const Xapian::Error & e ) {
     qWarning() << e.get_description().c_str();
   }
-  catch( std::exception &ex )
-  {
-    gdWarning( "FTS: Failed full-text search for \"%s\", reason: %s\n",
-               dict.getName().c_str(), ex.what() );
+  catch ( std::exception & ex ) {
+    gdWarning( "FTS: Failed full-text search for \"%s\", reason: %s\n", dict.getName().c_str(), ex.what() );
     // Results not loaded -- we don't set the hasAnyData flag then
   }
 
   finish();
 }
 
-} // namespace
-
+} // namespace FtsHelpers
