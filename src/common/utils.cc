@@ -68,4 +68,15 @@ std::string basename( std::string const & str )
   return std::string( str, x + 1 );
 }
 
+void removeDirectory( QString const & directory )
+{
+  QDir dir( directory );
+  dir.removeRecursively();
+}
+
+void removeDirectory( string const & directory )
+{
+  removeDirectory( QString::fromStdString( directory ) );
+}
+
 } // namespace Utils::Fs

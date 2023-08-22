@@ -1213,6 +1213,10 @@ arasındaki farkı giderir)</translation>
       <source>Indexing...</source>
       <translation>indeksleniyor...</translation>
     </message>
+    <message>
+      <source>Loading...</source>
+      <translation>Yükleniyor...</translation>
+    </message>
   </context>
   <context>
     <name>Language</name>
@@ -3426,10 +3430,6 @@ clears its network cache from disk during exit.</source>
       <translation>oturum çöküşü</translation>
     </message>
     <message>
-      <source>When using clipboard,strip everything after newline</source>
-      <translation>Pano kullanırken, yeni satırdan sonraki her şeyi soyun</translation>
-    </message>
-    <message>
       <source>On a new search, focus the main or popup window even if it&apos;s visible</source>
       <translation>Yeni bir aramada, görünür olsa bile ana veya açılır pencereye odaklanın</translation>
     </message>
@@ -3636,6 +3636,18 @@ eşanlamlı listeleri aracılığıyla ekstra makale aramasını etkinleştirmek
     <message>
       <source>Create fulltext index with parallel threads </source>
       <translation>Paralel iş parçacığı ile tam metin dizini oluşturun </translation>
+    </message>
+    <message>
+      <source>When using clipboard, strip everything after newline</source>
+      <translation>Pano kullanırken, yeni satırdan sonraki her şeyi soyun</translation>
+    </message>
+    <message>
+      <source>Remove invalid index on exit</source>
+      <translation>Çıkışta geçersiz dizini kaldır</translation>
+    </message>
+    <message>
+      <source>Miscellaneous</source>
+      <translation>Çeşitli</translation>
     </message>
   </context>
   <context>

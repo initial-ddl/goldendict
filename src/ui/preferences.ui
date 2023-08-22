@@ -1936,7 +1936,7 @@ from Stardict, Babylon and GLS dictionaries</string>
        <item>
         <widget class="QCheckBox" name="stripClipboard">
          <property name="text">
-          <string>When using clipboard,strip everything after newline</string>
+          <string>When using clipboard, strip everything after newline</string>
          </property>
         </widget>
        </item>
@@ -1945,6 +1945,22 @@ from Stardict, Babylon and GLS dictionaries</string>
          <property name="text">
           <string>On a new search, focus the main or popup window even if it's visible</string>
          </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_7">
+         <property name="title">
+          <string>Miscellaneous</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_20">
+          <item>
+           <widget class="QCheckBox" name="removeInvalidIndexOnExit">
+            <property name="text">
+             <string>Remove invalid index on exit</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>

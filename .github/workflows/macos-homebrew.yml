@@ -45,7 +45,7 @@ jobs:
       - name: Set outputs
         id: githash
         run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"   
+          echo "sha_short=$(git rev-parse --short HEAD)"    >> $GITHUB_OUTPUT
        
       - name: install deps on macos
         run: |
@@ -80,6 +80,11 @@ jobs:
           brew install dylibbundler
           find /opt -name libicudata.72.dylib 
           find /usr/local -name libicudata.72.dylib 
+          find /opt -name libzstd.1.dylib 
+          find /usr/local -name libzstd.1.dylib 
+          brew install dylibbundler
+          find /opt -name liblzma.5.dylib
+          find /usr/local -name liblzma.5.dylib
       - name: version-file
         shell: bash
         env:
@@ -101,18 +106,13 @@ jobs:
         run: |   
           ls -al /usr/local/share/vcpkg/packages/breakpad*
           cp -R /usr/local/share/vcpkg/packages/breakpad*/*  thirdparty/breakpad
-          ls -al thirdparty/breakpad/lib
-      - uses: actions/setup-python@v3
-        with:
-          python-version: '3.9'              
+          ls -al thirdparty/breakpad/lib          
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
           version: ${{ matrix.qt_ver }}
           arch: ${{ matrix.qt_arch }}
-          
           modules: qtwebengine qtwebchannel qtpositioning qt5compat qtmultimedia qtimageformats qtspeech
-          setup-python: 'false'
           
       - name: compile
         run: |          
@@ -125,8 +125,22 @@ jobs:
           macdeployqt ${targetName}.app -qmldir=. -verbose=1
           otool -L GoldenDict.app/Contents/MacOS/GoldenDict
           ls -al GoldenDict.app/Contents/Frameworks
-          otool -L GoldenDict.app/Contents/Frameworks/libicu*.dylib
-          cp -r /usr/local/Cellar/icu4c/7*/lib/libicudata.*.dylib  GoldenDict.app/Contents/Frameworks
+          otool -L GoldenDict.app/Contents/Frameworks/libzim.8.dylib
+          cp -r /usr/local/Cellar/icu4c/7*/lib/libicu*.dylib  GoldenDict.app/Contents/Frameworks
+          cp -r /usr/local/Cellar/zstd/1.5.5/lib/libzstd.1.dylib  GoldenDict.app/Contents/Frameworks
+          # dylibbundler -of -x GoldenDict.app/Contents/Frameworks/libzim.8.dylib -d GoldenDict.app/Contents/Frameworks/ -p @executable_path/../Frameworks
+          install_name_tool -change "@loader_path/../../../../opt/zstd/lib/libzstd.1.dylib" "@executable_path/../Frameworks/libzstd.1.dylib" GoldenDict.app/Contents/Frameworks/libzim.8.dylib
+          install_name_tool -change "@loader_path/../../../../opt/xz/lib/liblzma.5.dylib" "@executable_path/../Frameworks/liblzma.5.dylib" GoldenDict.app/Contents/Frameworks/libzim.8.dylib
+          install_name_tool -change "@loader_path/../../../../opt/xapian/lib/libxapian.30.dylib" "@executable_path/../Frameworks/libxapian.30.dylib" GoldenDict.app/Contents/Frameworks/libzim.8.dylib
+          install_name_tool -change "@loader_path/../../../../opt/icu4c/lib/libicui18n.73.dylib" "@executable_path/../Frameworks/libicui18n.73.dylib" GoldenDict.app/Contents/Frameworks/libzim.8.dylib
+          install_name_tool -change "@loader_path/../../../../opt/icu4c/lib/libicuuc.73.dylib" "@executable_path/../Frameworks/libicuuc.73.dylib" GoldenDict.app/Contents/Frameworks/libzim.8.dylib
+          
+
+          dylibbundler -of -x GoldenDict.app/Contents/Frameworks/libicui18n.73.dylib -x GoldenDict.app/Contents/Frameworks/libicudata.73.dylib -x GoldenDict.app/Contents/Frameworks/libicuuc.73.dylib  -d GoldenDict.app/Contents/Frameworks/ -p @executable_path/../Frameworks
+
+          otool -L GoldenDict.app/Contents/Frameworks/libzim.8.dylib
+          otool -L GoldenDict.app/Contents/Frameworks/libxapian.30.dylib
+          otool -L GoldenDict.app/Contents/Frameworks/liblzma.5.dylib
 
           codesign --force --deep -s - GoldenDict.app
           
@@ -142,17 +156,17 @@ jobs:
           echo "previousTag : $previousTag"
           
 
-          echo "::set-output name=prev_tag::$previousTag"
-          echo "::set-output name=curr_tag::$(git tag --sort=-creatordate | grep "^v" | sed -n 1p)"
+          echo "prev_tag=$previousTag" >> $GITHUB_OUTPUT
+          echo "curr_tag=$(git tag --sort=-creatordate | grep "^v" | sed -n 1p)" >> $GITHUB_OUTPUT
 
       - name: Set outputs
         id: vars
         run: |
-          echo "::set-output name=sha_short::$(git rev-parse --short=8 HEAD)"    
-          echo "::set-output name=release_date::$(date +'%Y%m%d')"    
-          echo "::set-output name=release_time::$(date +'%H%M%S')"  
-          echo "::set-output name=release_time_clock::$(date +'%H:%M:%S')"   
-          echo "::set-output name=release_hm::$(date +'%y%m%d')"  
+          echo "sha_short=$(git rev-parse --short=8 HEAD)"     >> $GITHUB_OUTPUT
+          echo "release_date=$(date +'%Y%m%d')"     >> $GITHUB_OUTPUT
+          echo "release_time=$(date +'%H%M%S')"   >> $GITHUB_OUTPUT
+          echo "release_time_clock=$(date +'%H:%M:%S')"    >> $GITHUB_OUTPUT
+          echo "release_hm=$(date +'%y%m%d')"   >> $GITHUB_OUTPUT
 
       # tag 上传Release
       - name: "Build Changelog"
