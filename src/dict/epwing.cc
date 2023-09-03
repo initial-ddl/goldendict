@@ -45,7 +45,7 @@ namespace {
 
 enum {
   Signature            = 0x58575045, // EPWX on little-endian, XWPE on big-endian
-  CurrentFormatVersion = 6 + BtreeIndexing::FormatVersion + Folding::Version
+  CurrentFormatVersion = 7 + BtreeIndexing::FormatVersion + Folding::Version
 };
 
 struct IdxHeader
@@ -303,16 +303,17 @@ void EpwingDictionary::loadArticle(
   articleHeadword = string( headword.toUtf8().data() );
   articleText     = string( text.toUtf8().data() );
 
-  string prefix( "<div class=\"epwing_text\">" );
+  const string prefix( "<div class=\"epwing_text\">" );
 
   articleText = prefix + articleText + "</div>";
 }
 
 string Epwing::EpwingDictionary::epwing_previous_button( const int & articlePage, const int & articleOffset )
 {
-  QString previousButton = QString( "p%1At%2" ).arg( articlePage ).arg( articleOffset );
-  string previousLink    = R"(<p><a class="epwing_previous_page" href="gdlookup://localhost/)"
-    + previousButton.toStdString() + "\">" + tr( "Previous Page" ).toStdString() + "</a></p>";
+  const QString previousButton = QString( "p%1At%2" ).arg( articlePage ).arg( articleOffset );
+  string previousLink          = R"(<p><a class="epwing_previous_page" href="gdlookup://localhost/)"
+    + previousButton.toStdString() + "?dictionaries=" + getId() + "\">" + tr( "Previous Page" ).toStdString()
+    + "</a></p>";
 
   return previousLink;
 }
@@ -348,8 +349,8 @@ void EpwingDictionary::loadArticleNextPage( string & articleHeadword,
 string Epwing::EpwingDictionary::epwing_next_button( const int & articlePage, const int & articleOffset )
 {
   QString refLink = QString( "r%1At%2" ).arg( articlePage ).arg( articleOffset );
-  string nextLink = R"(<p><a class="epwing_next_page" href="gdlookup://localhost/)" + refLink.toStdString() + "\">"
-    + tr( "Next Page" ).toStdString() + "</a></p>";
+  string nextLink = R"(<p><a class="epwing_next_page" href="gdlookup://localhost/)" + refLink.toStdString()
+    + "?dictionaries=" + getId() + "\">" + tr( "Next Page" ).toStdString() + "</a></p>";
 
   return nextLink;
 }
@@ -1144,8 +1145,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
   for ( const auto & fileName : fileNames ) {
     // Skip files other than "catalogs" to speed up the scanning
 
-    if ( fileName.size() < (unsigned)catName.size()
-         || strcasecmp( fileName.c_str() + ( fileName.size() - catName.size() ), catName.data() ) != 0 )
+    if ( !Utils::endsWithIgnoreCase( fileName, catName.data() ) )
       continue;
 
     int ndir = fileName.size() - catName.size();
@@ -1175,6 +1175,10 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
         dict.setSubBook( sb );
 
         dir = QString::fromStdString( mainDirectory ) + Utils::Fs::separator() + dict.getCurrentSubBookDirectory();
+        QDir _dir( dir );
+        if ( !_dir.exists() ) {
+          continue;
+        }
 
         Epwing::Book::EpwingBook::collectFilenames( dir, dictFiles );
 
@@ -1184,7 +1188,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
         if ( info.exists() && info.isFile() )
           dictFiles.push_back( fontSubName.toStdString() );
 
-        // Check if we need to rebuid the index
+        // Check if we need to rebuild the index
 
         string dictId = Dictionary::makeDictionaryId( dictFiles );
 
@@ -1199,7 +1203,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
 
           File::Class idx( indexFile, "wb" );
 
-          IdxHeader idxHeader;
+          IdxHeader idxHeader{};
 
           memset( &idxHeader, 0, sizeof( idxHeader ) );
 
@@ -1216,16 +1220,26 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
           ChunkedStorage::Writer chunks( idx );
 
           Epwing::Book::EpwingHeadword head;
-
-          dict.getFirstHeadword( head );
-
           int wordCount    = 0;
           int articleCount = 0;
-
-          for ( ;; ) {
-            addWordToChunks( head, chunks, indexedWords, wordCount, articleCount );
-            if ( !dict.getNextHeadword( head ) )
-              break;
+          if ( dict.getFirstHeadword( head ) ) {
+            for ( ;; ) {
+              addWordToChunks( head, chunks, indexedWords, wordCount, articleCount );
+              if ( !dict.getNextHeadword( head ) )
+                break;
+            }
+          }
+          else {
+            //the book does not contain text,use menu instead if any.
+            if ( dict.getMenu( head ) ) {
+              auto candidateItems = dict.candidate( head.page, head.offset );
+              for ( Epwing::Book::EpwingHeadword word : candidateItems ) {
+                addWordToChunks( word, chunks, indexedWords, wordCount, articleCount );
+              }
+            }
+            else {
+              throw exEbLibrary( dict.errorString().toUtf8().data() );
+            }
           }
 
           dict.clearBuffers();
