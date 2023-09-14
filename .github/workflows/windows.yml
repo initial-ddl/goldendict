@@ -32,7 +32,7 @@ jobs:
         qt_arch: [win64_msvc2019_64]
     env:
       targetName: GoldenDict.exe
-      version: 23.07.25
+      version: 23.09.11
       version-suffix: alpha
       prerelease: true
     # 步骤
@@ -238,6 +238,7 @@ jobs:
             AppImage: Ubuntu-20.04
             macOS: macOS-12 and macOS-13
             Windows: Visual studio 2019
+            based on: ${{github.ref}}
 
 
 

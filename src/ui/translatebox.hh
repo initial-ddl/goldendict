@@ -27,12 +27,16 @@ public:
 public slots:
   void setPopupEnabled( bool enable );
 
+signals:
+  void returnPressed();
+
 private slots:
   void showPopup();
   void rightButtonClicked();
 
 private:
   QLineEdit * translate_line;
+  bool selectedItem = false;
   bool m_popupEnabled;
   QCompleter * completer;
   QStringList words;

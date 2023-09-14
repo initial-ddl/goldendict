@@ -29,7 +29,7 @@ jobs:
         qt_ver: [ 6.5.2 ]
         qt_arch: [gcc_64]
     env:
-      version: 23.07.25
+      version: 23.09.11
       version-suffix: alpha
       prerelease: true
     steps:
@@ -202,6 +202,7 @@ jobs:
             AppImage: Ubuntu-20.04
             macOS: macOS-12 and macOS-13
             Windows: Visual studio 2019
+            based on: ${{github.ref}}
 
             #### Changes
             
