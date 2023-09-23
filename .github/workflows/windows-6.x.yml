@@ -27,7 +27,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-2019]
-        qt_ver: [6.5.2]
+        qt_ver: [6.5.2,6.6.0]
         qt_arch: [win64_msvc2019_64]
     env:
       targetName: GoldenDict.exe
@@ -262,7 +262,7 @@ jobs:
             AppImage: Ubuntu-20.04
             macOS: macOS-12 and macOS-13
             Windows: Visual studio 2019
-            based on: ${{github.ref}}
+            based on: ${{github.ref_name}}
 
             #### Changes
             
