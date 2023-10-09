@@ -292,13 +292,6 @@ sptr< Dictionary::DataRequest > ArticleNetworkAccessManager::getResource( QUrl c
     }
   }
 
-  if ( url.scheme() == "gdpicture" ) {
-    contentType = "text/html";
-    QUrl imgUrl( url );
-    imgUrl.setScheme( "bres" );
-    return articleMaker.makePicturePage( imgUrl.toEncoded().data() );
-  }
-
   return sptr< Dictionary::DataRequest >();
 }
 
@@ -365,11 +358,12 @@ qint64 ArticleResourceReply::bytesAvailable() const
   if ( avail < 0 )
     return 0;
 
-  if ( !req->isFinished() ) {
-    return 65536;
+  qint64 availBytes = avail - alreadyRead + QNetworkReply::bytesAvailable();
+  if ( availBytes == 0 && !req->isFinished() ) {
+    return 10240;
   }
 
-  return avail - alreadyRead + QNetworkReply::bytesAvailable();
+  return availBytes;
 }
 
 
