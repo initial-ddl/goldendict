@@ -41,7 +41,6 @@ jobs:
        
       - name: install deps on macos
         run: |
-          brew install pcre2 harfbuzz freetype
           brew install cmake ninja python
           brew install automake
           brew install autoconf
