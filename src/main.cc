@@ -311,10 +311,13 @@ int main( int argc, char ** argv )
   // GoldenDict use lots of X11 functions and it currently cannot work
   // natively on Wayland. This workaround will force GoldenDict to use
   // XWayland.
-  char * xdg_envc     = getenv( "XDG_SESSION_TYPE" );
-  QString xdg_session = xdg_envc ? QString::fromLatin1( xdg_envc ) : QString();
-  if ( !QString::compare( xdg_session, QString( "wayland" ), Qt::CaseInsensitive ) ) {
-    setenv( "QT_QPA_PLATFORM", "xcb", 1 );
+
+  if ( qEnvironmentVariableIsEmpty( "GOLDENDICT_FORCE_WAYLAND" ) ) {
+    char * xdg_envc     = getenv( "XDG_SESSION_TYPE" );
+    QString xdg_session = xdg_envc ? QString::fromLatin1( xdg_envc ) : QString();
+    if ( !QString::compare( xdg_session, QString( "wayland" ), Qt::CaseInsensitive ) ) {
+      setenv( "QT_QPA_PLATFORM", "xcb", 1 );
+    }
   }
 #endif
 
@@ -410,8 +413,8 @@ int main( int argc, char ** argv )
   for ( const auto & localScheme : localSchemes ) {
     QWebEngineUrlScheme webUiScheme( localScheme.toLatin1() );
     webUiScheme.setSyntax( QWebEngineUrlScheme::Syntax::Host );
-    webUiScheme.setFlags( QWebEngineUrlScheme::SecureScheme | QWebEngineUrlScheme::LocalScheme
-                          | QWebEngineUrlScheme::LocalAccessAllowed | QWebEngineUrlScheme::CorsEnabled );
+    webUiScheme.setFlags( QWebEngineUrlScheme::LocalScheme | QWebEngineUrlScheme::LocalAccessAllowed
+                          | QWebEngineUrlScheme::CorsEnabled );
     QWebEngineUrlScheme::registerScheme( webUiScheme );
   }
 

@@ -22,11 +22,11 @@ jobs:
     strategy:
       matrix:
         os: [macos-12,macos-13]
-        qt_ver: [ 6.5.2 ]
+        qt_ver: [ 6.6.0 ]
         qt_arch: [clang_64]
     env:
       targetName: GoldenDict
-      version: 23.10.01
+      version: 23.11.09
       version-suffix: alpha
       prerelease: true
     steps:
@@ -41,6 +41,7 @@ jobs:
        
       - name: install deps on macos
         run: |
+          export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=TRUE
           brew install cmake ninja
           brew install automake
           brew install autoconf
@@ -56,7 +57,7 @@ jobs:
           brew install hunspell
           git clone https://github.com/xiaoyifang/eb.git
           cd eb && ./configure && make -j 8 && sudo make install && cd ..
-          brew install  xz lzo 
+          # brew install  xz 
           brew install pkg-config
           brew install create-dmg
           brew install xapian
@@ -206,8 +207,8 @@ jobs:
             Windows users can use either `****-installer.exe` (for installer) or `****.zip` (unzip and run).
             The `goldendict.exe` can be dropped into previous installation's folder (if dependencies aren't changed).
 
-            Linux users can use AppImages or Flatpak.
-            https://flathub.org/zh-Hans/apps/io.github.xiaoyifang.goldendict_ng
+            Linux users can use Flatpak or build from source.
+            https://flathub.org/apps/io.github.xiaoyifang.goldendict_ng
 
             macOS users can use `.dmg` installer.
 
