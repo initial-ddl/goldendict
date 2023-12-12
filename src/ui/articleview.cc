@@ -30,6 +30,7 @@
 #include <QWebEngineSettings>
 #include <map>
 #include <QApplication>
+#include <QRandomGenerator>
 
 #if ( QT_VERSION >= QT_VERSION_CHECK( 5, 0, 0 ) && QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 ) )
   #include <QWebEngineContextMenuData>
@@ -1493,6 +1494,7 @@ void ArticleView::contextMenuRequested( QPoint const & pos )
   QAction * addHeaderToHistoryAction  = nullptr;
   QAction * sendWordToInputLineAction = nullptr;
   QAction * saveImageAction           = nullptr;
+  QAction * openImageAction           = nullptr;
   QAction * saveSoundAction           = nullptr;
   QAction * saveBookmark              = nullptr;
 
@@ -1536,6 +1538,9 @@ void ArticleView::contextMenuRequested( QPoint const & pos )
       menu.addAction( webview->pageAction( QWebEnginePage::CopyImageToClipboard ) );
       saveImageAction = new QAction( tr( "Save &image..." ), &menu );
       menu.addAction( saveImageAction );
+
+      openImageAction = new QAction( tr( "Open image in system viewer..." ), &menu );
+      menu.addAction( openImageAction );
     }
   }
 
@@ -1746,6 +1751,36 @@ void ArticleView::contextMenuRequested( QPoint const & pos )
         QFileInfo fileInfo( fileName );
         emit storeResourceSavePath( QDir::toNativeSeparators( fileInfo.absoluteDir().absolutePath() ) );
         saveResource( url, webview->url(), fileName );
+      }
+    }
+    else if ( result == openImageAction ) {
+      QUrl url = imageUrl;
+      QString fileName;
+
+
+      QString name = Utils::Url::path( url ).section( '/', -1 );
+      // Image data
+
+      // Check for babylon image name
+      if ( name[ 0 ] == '\x1E' )
+        name.remove( 0, 1 );
+      if ( name.length() && name[ name.length() - 1 ] == '\x1F' )
+        name.chop( 1 );
+
+      fileName = QDir::temp().filePath( QString::number( QRandomGenerator::global()->generate() ) + name );
+
+      if ( !fileName.isEmpty() ) {
+        QFileInfo fileInfo( fileName );
+        auto handler = saveResource( url, webview->url(), fileName );
+
+        if ( !handler->isEmpty() ) {
+          connect( handler, &ResourceToSaveHandler::done, this, [ fileName ]() {
+            QDesktopServices::openUrl( fileName );
+          } );
+        }
+        else {
+          QDesktopServices::openUrl( fileName );
+        }
       }
     }
     else {
@@ -2149,7 +2184,7 @@ void ArticleView::highlightFTSResults()
   QString script = QString(
                      "var context = document.querySelector(\"body\");\n"
                      "var instance = new Mark(context);\n"
-                     "instance.mark(\"%1\");" )
+                     "instance.mark(\"%1\",{\"accuracy\": \"exactly\"});" )
                      .arg( regString );
 
   webview->page()->runJavaScript( script );
