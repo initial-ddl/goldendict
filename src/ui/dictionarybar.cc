@@ -42,7 +42,7 @@ static QString elideDictName( QString const & name )
   return name.left( pieceSize ) + QChar( 0x2026 ) + name.right( pieceSize );
 }
 
-void DictionaryBar::setDictionaries( vector< sptr< Dictionary::Class > > const & dictionaries )
+void DictionaryBar::setDictionaries( vector< sptr< Dictionary::Class > > const dictionaries )
 {
   if ( dictionaries.empty() ) {
     return;
