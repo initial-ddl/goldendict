@@ -56,10 +56,7 @@ void DictionaryBar::setDictionaries( vector< sptr< Dictionary::Class > > const d
   clear();
   dictActions.clear();
 
-  for ( const auto & dictionary : dictionaries ) {
-    if ( !dictionary ) {
-      continue;
-    }
+  for ( const auto & dictionary : allDictionaries ) {
     QIcon icon = dictionary->getIcon();
 
     QString dictName = QString::fromUtf8( dictionary->getName().c_str() );
