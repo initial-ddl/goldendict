@@ -486,7 +486,7 @@ void DictListWidget::rowsInserted( QModelIndex const & parent, int start, int en
   QListView::rowsInserted( parent, start, end );
 
   // When inserting new rows, make the first of them current
-  selectionModel()->setCurrentIndex( model.index( start, 0, parent ), QItemSelectionModel::NoUpdate );
+  // selectionModel()->setCurrentIndex( model.index( start, 0, parent ), QItemSelectionModel::NoUpdate );
 }
 
 void DictListWidget::rowsAboutToBeRemoved( QModelIndex const & parent, int start, int end )
