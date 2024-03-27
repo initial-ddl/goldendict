@@ -16,7 +16,9 @@ Sources::Sources( QWidget * parent, Config::Class const & cfg ):
 #ifdef MAKE_CHINESE_CONVERSION_SUPPORT
   chineseConversion( new ChineseConversion( this, cfg.transliteration.chinese ) ),
 #endif
+#ifndef NO_TTS_SUPPORT
   textToSpeechSource( nullptr ),
+#endif
   itemDelegate( new QItemDelegate( this ) ),
   itemEditorFactory( new QItemEditorFactory() ),
   mediawikisModel( this, cfg.mediawikis ),
@@ -39,7 +41,7 @@ Sources::Sources( QWidget * parent, Config::Class const & cfg ):
   // anyone?
   QItemEditorCreatorBase * programTypeEditorCreator = new QStandardItemEditorCreator< ProgramTypeEditor >();
 
-  itemEditorFactory->registerEditor( QVariant::Int, programTypeEditorCreator );
+  itemEditorFactory->registerEditor( QMetaType::Int, programTypeEditorCreator );
 
   itemDelegate->setItemEditorFactory( itemEditorFactory.get() );
 
@@ -317,12 +319,14 @@ void Sources::on_removeProgram_clicked()
     programsModel.removeProgram( current.row() );
 }
 
+#ifndef NO_TTS_SUPPORT
 Config::VoiceEngines Sources::getVoiceEngines() const
 {
   if ( !textToSpeechSource )
     return Config::VoiceEngines();
   return textToSpeechSource->getVoiceEnginesModel().getCurrentVoiceEngines();
 }
+#endif
 
 Config::Hunspell Sources::getHunspell() const
 {
@@ -1110,13 +1114,6 @@ QModelIndex PathsModel::parent( QModelIndex const & /*parent*/ ) const
 Qt::ItemFlags PathsModel::flags( QModelIndex const & index ) const
 {
   Qt::ItemFlags result = QAbstractItemModel::flags( index );
-
-  if ( Config::isPortableVersion() ) {
-    if ( index.isValid() && index.row() == 0 ) {
-      result &= ~Qt::ItemIsSelectable;
-      result &= ~Qt::ItemIsEnabled;
-    }
-  }
 
   if ( index.isValid() && index.column() == 1 )
     result |= Qt::ItemIsUserCheckable;

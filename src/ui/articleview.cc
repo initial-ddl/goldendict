@@ -94,7 +94,6 @@ ArticleView::ArticleView( QWidget * parent,
                           Instances::Groups const & groups_,
                           bool popupView_,
                           Config::Class const & cfg_,
-                          QAction & openSearchAction_,
                           QLineEdit const * translateLine_,
                           QAction * dictionaryBarToggled_,
                           GroupComboBox const * groupComboBox_ ):
@@ -113,7 +112,6 @@ ArticleView::ArticleView( QWidget * parent,
   selectCurrentArticleAction( this ),
   copyAsTextAction( this ),
   inspectAction( this ),
-  openSearchAction( openSearchAction_ ),
   searchIsOpened( false ),
   dictionaryBarToggled( dictionaryBarToggled_ ),
   groupComboBox( groupComboBox_ ),
@@ -201,9 +199,6 @@ ArticleView::ArticleView( QWidget * parent,
   webview->addAction( &articleDownAction );
   connect( &articleDownAction, &QAction::triggered, this, &ArticleView::moveOneArticleDown );
 
-  webview->addAction( &openSearchAction );
-  connect( &openSearchAction, &QAction::triggered, this, &ArticleView::openSearch );
-
   selectCurrentArticleAction.setShortcut( QKeySequence( "Ctrl+Shift+A" ) );
   selectCurrentArticleAction.setText( tr( "Select Current Article" ) );
   webview->addAction( &selectCurrentArticleAction );
@@ -250,10 +245,10 @@ ArticleView::ArticleView( QWidget * parent,
   webview->setHtml( QString::fromStdString( html ) );
 
   expandOptionalParts = cfg.preferences.alwaysExpandOptionalParts;
-
+#ifndef Q_OS_MACOS
   webview->grabGesture( Gestures::GDPinchGestureType );
   webview->grabGesture( Gestures::GDSwipeGestureType );
-
+#endif
   // Variable name for store current selection range
   rangeVarName = QString( "sr_%1" ).arg( QString::number( (quint64)this, 16 ) );
 
@@ -300,8 +295,10 @@ ArticleView::~ArticleView()
   cleanupTemp();
   audioPlayer->stop();
   //channel->deregisterObject(this);
+#ifndef Q_OS_MACOS
   webview->ungrabGesture( Gestures::GDPinchGestureType );
   webview->ungrabGesture( Gestures::GDSwipeGestureType );
+#endif
 }
 
 void ArticleView::showDefinition( QString const & word,
@@ -724,7 +721,6 @@ bool ArticleView::eventFilter( QObject * obj, QEvent * ev )
 
     return handled;
   }
-#endif
 
   if ( ev->type() == QEvent::MouseMove ) {
     if ( Gestures::isFewTouchPointsPresented() ) {
@@ -732,6 +728,7 @@ bool ArticleView::eventFilter( QObject * obj, QEvent * ev )
       return true;
     }
   }
+#endif
 
   if ( handleF3( obj, ev ) ) {
     return true;
@@ -1182,6 +1179,7 @@ void ArticleView::openLink( QUrl const & url, QUrl const & ref, QString const & 
     QMessageBox::critical( this, "GoldenDict", tr( "The referenced audio program doesn't exist." ) );
   }
   else if ( url.scheme() == "gdtts" ) {
+#ifndef NO_TTS_SUPPORT
     // Text to speech
     QString md5Id = Utils::Url::queryItemValue( url, "engine" );
     QString text( url.path().mid( 1 ) );
@@ -1197,7 +1195,11 @@ void ArticleView::openLink( QUrl const & url, QUrl const & ref, QString const & 
         break;
       }
     }
+#else
+    qDebug() << "gdtts:// is not supported due to missing TTS support";
+#endif
   }
+
   else if ( Utils::isExternalLink( url ) ) {
     // Use the system handler for the conventional external links
     QDesktopServices::openUrl( url );
@@ -1792,11 +1794,11 @@ void ArticleView::contextMenuRequested( QPoint const & pos )
 
         if ( !handler->isEmpty() ) {
           connect( handler, &ResourceToSaveHandler::done, this, [ fileName ]() {
-            QDesktopServices::openUrl( fileName );
+            QDesktopServices::openUrl( QUrl::fromLocalFile( fileName ) );
           } );
         }
         else {
-          QDesktopServices::openUrl( fileName );
+          QDesktopServices::openUrl( QUrl::fromLocalFile( fileName ) );
         }
       }
     }

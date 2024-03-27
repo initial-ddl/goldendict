@@ -905,9 +905,10 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   wasMaximized = isMaximized();
 
   history.setSaveInterval( cfg.preferences.historyStoreInterval );
-
+#ifndef Q_OS_MACOS
   ui.centralWidget->grabGesture( Gestures::GDPinchGestureType );
   ui.centralWidget->grabGesture( Gestures::GDSwipeGestureType );
+#endif
 
   if ( layoutDirection() == Qt::RightToLeft ) {
     // Adjust button icons for Right-To-Left layout
@@ -1158,9 +1159,10 @@ MainWindow::~MainWindow()
   closeHeadwordsDialog();
 
   ftsIndexing.stopIndexing();
-
+#ifndef Q_OS_MACOS
   ui.centralWidget->ungrabGesture( Gestures::GDPinchGestureType );
   ui.centralWidget->ungrabGesture( Gestures::GDSwipeGestureType );
+#endif
   //  Gestures::unregisterRecognizers();
 
   // Close all tabs -- they should be destroyed before network managers
@@ -1781,7 +1783,6 @@ ArticleView * MainWindow::createNewTab( bool switchToIt, QString const & name )
                                         groupInstances,
                                         false,
                                         cfg,
-                                        *ui.searchInPageAction,
                                         translateLine,
                                         dictionaryBar.toggleViewAction(),
                                         groupList );
@@ -1820,6 +1821,8 @@ ArticleView * MainWindow::createNewTab( bool switchToIt, QString const & name )
 
   connect( view, &ArticleView::zoomOut, this, &MainWindow::zoomout );
   connect( view, &ArticleView::saveBookmarkSignal, this, &MainWindow::addBookmarkToFavorite );
+
+  connect( ui.searchInPageAction, &QAction::triggered, view, &ArticleView::openSearch );
 
   view->setSelectionBySingleClick( cfg.preferences.selectWordBySingleClick );
 

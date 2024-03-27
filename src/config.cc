@@ -3,7 +3,7 @@
 
 #include "config.hh"
 #include "folding.hh"
-#include <QDir>
+#include <QSaveFile>
 #include <QFile>
 #include <QtXml>
 #include <QApplication>
@@ -16,8 +16,6 @@
 #endif
 
 #include <stdint.h>
-
-#include "atomic_rename.hh"
 
 #include <QStandardPaths>
 
@@ -632,6 +630,11 @@ Class load()
         Path( nl.item( x ).toElement().text(), nl.item( x ).toElement().attribute( "recursive" ) == "1" ) );
   }
 
+  if ( Config::isPortableVersion() && c.paths.empty() ) {
+    // For portable version, hardcode some settings
+    c.paths.push_back( Config::Path( Config::getPortableVersionDictionaryDir(), true ) );
+  }
+
   QDomNode soundDirs = root.namedItem( "sounddirs" );
 
   if ( !soundDirs.isNull() ) {
@@ -845,7 +848,7 @@ Class load()
     // Upgrading
     c.dictServers = makeDefaultDictServers();
   }
-
+#ifndef NO_TTS_SUPPORT
   QDomNode ves = root.namedItem( "voiceEngines" );
 
   if ( !ves.isNull() ) {
@@ -872,6 +875,7 @@ Class load()
       c.voiceEngines.push_back( v );
     }
   }
+#endif
 
   c.mutedDictionaries      = loadMutedDictionaries( root.namedItem( "mutedDictionaries" ) );
   c.popupMutedDictionaries = loadMutedDictionaries( root.namedItem( "popupMutedDictionaries" ) );
@@ -1304,7 +1308,7 @@ void saveGroup( Group const & data, QDomElement & group )
 
 void save( Class const & c )
 {
-  QFile configFile( getConfigFileName() + ".tmp" );
+  QSaveFile configFile( getConfigFileName() );
 
   if ( !configFile.open( QFile::WriteOnly ) )
     throw exCantWriteConfigFile();
@@ -1664,7 +1668,7 @@ void save( Class const & c )
       p.setAttributeNode( icon );
     }
   }
-
+#ifndef NO_TTS_SUPPORT
   {
     QDomNode ves = dd.createElement( "voiceEngines" );
     root.appendChild( ves );
@@ -1706,6 +1710,7 @@ void save( Class const & c )
       v.setAttributeNode( rate );
     }
   }
+#endif
 
   {
     QDomElement muted = dd.createElement( "mutedDictionaries" );
@@ -2226,14 +2231,9 @@ void save( Class const & c )
     hd.appendChild( opt );
   }
 
-  QByteArray result( dd.toByteArray() );
-
-  if ( configFile.write( result ) != result.size() )
+  configFile.write( dd.toByteArray() );
+  if ( !configFile.commit() )
     throw exCantWriteConfigFile();
-
-  configFile.close();
-
-  renameAtomically( configFile.fileName(), getConfigFileName() );
 }
 
 QString getConfigFileName()
