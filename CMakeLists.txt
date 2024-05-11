@@ -21,14 +21,16 @@ option(USE_ALTERNATIVE_NAME "Force the name goldendict-ng " OFF)
 include(FeatureSummary)
 
 project(goldendict-ng
-        VERSION 24.02.16
+        VERSION 24.05.13
         LANGUAGES CXX C)
 
-if (NOT USE_ALTERNATIVE_NAME)
-    set(GOLDENDICT "goldendict") # binary/executable name
-else ()
+set(GOLDENDICT "goldendict") # binary/executable name
+if (USE_ALTERNATIVE_NAME )
     set(GOLDENDICT "goldendict-ng")
 endif ()
+if (APPLE)
+    set(GOLDENDICT "GoldenDict-ng")
+endif()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -49,7 +51,7 @@ set(CMAKE_AUTORCC ON) # not included in the qt_standard_project_setup
 #### Things required during configuration
 
 block() # generate version.txt
-    string(TIMESTAMP build_time)
+    string(TIMESTAMP build_time UTC)
     find_package(Git)
     if (EXISTS "${CMAKE_SOURCE_DIR}/.git" AND GIT_FOUND)
         execute_process(
@@ -80,6 +82,9 @@ file(GLOB_RECURSE ALL_SOURCE_FILES CONFIGURE_DEPENDS src/*.cc src/*.hh src/*.c)
 
 if (APPLE)
     file(GLOB_RECURSE MACOS_SOURCE_FILES CONFIGURE_DEPENDS src/macos/*.mm)
+
+    set(MACOS_APP_ICON ${CMAKE_SOURCE_DIR}/icons/macicon.icns)
+    set_source_files_properties(${MACOS_APP_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
 endif ()
 
 if (WIN32)
@@ -102,6 +107,7 @@ target_sources(${GOLDENDICT} PRIVATE
         src/stylesheets/css.qrc
         ${ALL_SOURCE_FILES}
         ${MACOS_SOURCE_FILES}
+        ${MACOS_APP_ICON}
         ${QSINGLEAPP_SOURCE_FILES}
         ${WINDOWS_ICON_RC}
 )
@@ -198,12 +204,53 @@ qt_add_translations(${GOLDENDICT} TS_FILES ${TRANS_FILES}
 #### installation or assemble redistribution
 
 if (APPLE)
+    set(PLIST_FILE "${CMAKE_BINARY_DIR}/info_generated.plist")
+    configure_file("${CMAKE_SOURCE_DIR}/redist/mac_info_plist_template_cmake.plist" "${PLIST_FILE}" @ONLY)
+
     set_target_properties(${GOLDENDICT} PROPERTIES
-            MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
-            MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-            MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
             MACOSX_BUNDLE TRUE
-            )
+            MACOSX_BUNDLE_INFO_PLIST "${PLIST_FILE}"
+    )
+
+    set(Assembling_Dir "${CMAKE_BINARY_DIR}/redist")
+    set(App_Name "${GOLDENDICT}.app")
+    set(Redistributable_APP "${Assembling_Dir}/${App_Name}")
+    
+    qt_generate_deploy_script(
+            TARGET ${GOLDENDICT}
+            OUTPUT_SCRIPT deploy_script
+            CONTENT "qt_deploy_runtime_dependencies(
+                        EXECUTABLE \"${Redistributable_APP}\"
+                        GENERATE_QT_CONF
+                        NO_APP_STORE_COMPLIANCE
+                )"
+    )
+
+    install(TARGETS ${GOLDENDICT} BUNDLE DESTINATION "${Assembling_Dir}")
+    install(FILES ${qm_files} DESTINATION "${Redistributable_APP}/Contents/MacOS/locale")
+    install(DIRECTORY "${CMAKE_SOURCE_DIR}/opencc" DESTINATION "${Redistributable_APP}/Contents/MacOS")
+
+    install(SCRIPT ${deploy_script})
+
+    install(CODE "execute_process(COMMAND codesign --force --deep -s - ${Redistributable_APP})")
+
+    find_program(CREATE-DMG "create-dmg")
+    if (CREATE-DMG)
+        install(CODE "
+        execute_process(COMMAND ${CREATE-DMG} \
+            --skip-jenkins \
+            --format \"ULMO\"
+            --volname ${CMAKE_PROJECT_NAME}-${CMAKE_PROJECT_VERSION}-${CMAKE_SYSTEM_PROCESSOR} \
+            --volicon ${CMAKE_SOURCE_DIR}/icons/macicon.icns \
+            --icon \"${App_Name}\" 100 100
+            --app-drop-link 300 100 \
+            \"GoldenDict-${CMAKE_PROJECT_VERSION}-Qt${Qt6_VERSION}-${CMAKE_SYSTEM_PROCESSOR}.dmg\" \
+            \"${Assembling_Dir}\")"
+        )
+    else ()
+        message(WARNING "create-dmg not found. No .dmg will be created")
+    endif ()
+
 endif ()
 
 if (LINUX OR BSD)
@@ -232,7 +279,6 @@ if (LINUX OR BSD)
 endif ()
 
 if (WIN32)
-    find_program(TOOL_WINDEPLOYQT NAMES windeployqt PATHS "${Qt6_ROOT}/bin")
     set_target_properties(${GOLDENDICT}
             PROPERTIES
             WIN32_EXECUTABLE TRUE
@@ -243,14 +289,24 @@ if (WIN32)
     add_custom_target(windeploy
             COMMENT "Deploy everything to the output dir"
             DEPENDS ${GOLDENDICT} # build this target will check if Goldendict.exe is already built
-            COMMAND ${TOOL_WINDEPLOYQT} --no-quick-import "${GD_WIN_OUTPUT_DIR}/${GOLDENDICT}.exe" --plugindir "${GD_WIN_OUTPUT_DIR}/plugins"
+            COMMAND ${WINDEPLOYQT_EXECUTABLE} --no-quick-import "${GD_WIN_OUTPUT_DIR}/${GOLDENDICT}.exe" --plugindir "${GD_WIN_OUTPUT_DIR}/plugins"
             COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_SOURCE_DIR}/opencc" "${GD_WIN_OUTPUT_DIR}/opencc"
             COMMAND ${CMAKE_COMMAND} -E copy "${CMAKE_SOURCE_DIR}/LICENSE.txt" "${GD_WIN_OUTPUT_DIR}/LICENSE.txt"
             COMMAND ${CMAKE_COMMAND} -E rm -f "${GD_WIN_OUTPUT_DIR}/goldendict.exe.manifest" "${GD_WIN_OUTPUT_DIR}/eb.dll.manifest"
             WORKING_DIRECTORY ${GD_WIN_OUTPUT_DIR}
     )
 
-    #TODO: use CPack to make the output folder as NSIS installer
+    # use CPack to make the output folder as NSIS installer
+    install(
+        DIRECTORY "${GD_WIN_OUTPUT_DIR}/"
+        DESTINATION .
+    )
+
+    set(CPACK_PACKAGE_FILE_NAME "${Qt6Widgets_VERSION}-${PROJECT_NAME}-${PROJECT_VERSION}-${CMAKE_SYSTEM_NAME}-${CMAKE_SYSTEM_PROCESSOR}")
+    set(CPACK_GENERATOR "7Z;NSIS")
+    set(CPACK_NSIS_MANIFEST_DPI_AWARE ON)
+    set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE.txt")
+    include(CPack)
 endif ()
 
 feature_summary(WHAT ALL DESCRIPTION "Build configuration:")
