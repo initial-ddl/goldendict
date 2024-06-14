@@ -67,7 +67,7 @@ class ArticleView: public QWidget
   QSet< QString > desktopOpenedTempFiles;
 
   QAction * dictionaryBarToggled;
-  GroupComboBox const * groupComboBox;
+
   unsigned currentGroupId;
   QLineEdit const * translateLine;
 
@@ -105,8 +105,8 @@ public:
                bool popupView,
                Config::Class const & cfg,
                QLineEdit const * translateLine,
-               QAction * dictionaryBarToggled      = nullptr,
-               GroupComboBox const * groupComboBox = nullptr );
+               QAction * dictionaryBarToggled = nullptr,
+               unsigned currentGroupId        = 0 );
 
 
   void setCurrentGroupId( unsigned currengGrgId );
@@ -261,8 +261,6 @@ public:
 
 signals:
 
-  void iconChanged( ArticleView *, QIcon const & icon );
-
   void titleChanged( ArticleView *, QString const & title );
 
   void pageLoaded( ArticleView * );
@@ -338,7 +336,6 @@ private slots:
   void inspectElement();
   void loadFinished( bool ok );
   void handleTitleChanged( QString const & title );
-  void handleUrlChanged( QUrl const & url );
   void attachWebChannelToHtml();
 
   void linkHovered( const QString & link );

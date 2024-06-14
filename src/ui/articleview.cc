@@ -96,7 +96,7 @@ ArticleView::ArticleView( QWidget * parent,
                           Config::Class const & cfg_,
                           QLineEdit const * translateLine_,
                           QAction * dictionaryBarToggled_,
-                          GroupComboBox const * groupComboBox_ ):
+                          unsigned int currentGroupId_ ):
   QWidget( parent ),
   articleNetMgr( nm ),
   audioPlayer( audioPlayer_ ),
@@ -114,11 +114,9 @@ ArticleView::ArticleView( QWidget * parent,
   inspectAction( this ),
   searchIsOpened( false ),
   dictionaryBarToggled( dictionaryBarToggled_ ),
-  groupComboBox( groupComboBox_ ),
+  currentGroupId( currentGroupId_ ),
   translateLine( translateLine_ )
 {
-  if ( groupComboBox_ )
-    currentGroupId = groupComboBox_->getCurrentGroup();
 
   // setup GUI
   webview        = new ArticleWebView( this );
@@ -178,8 +176,6 @@ ArticleView::ArticleView( QWidget * parent,
   connect( webview, &ArticleWebView::linkClicked, this, &ArticleView::linkClicked );
 
   connect( webview->page(), &QWebEnginePage::titleChanged, this, &ArticleView::handleTitleChanged );
-
-  connect( webview->page(), &QWebEnginePage::urlChanged, this, &ArticleView::handleUrlChanged );
 
   connect( webview, &QWidget::customContextMenuRequested, this, &ArticleView::contextMenuRequested );
 
@@ -488,24 +484,6 @@ void ArticleView::handleTitleChanged( QString const & title )
     emit titleChanged( this, title );
 }
 
-void ArticleView::handleUrlChanged( QUrl const & url )
-{
-  QIcon icon;
-
-  if ( unsigned group = getGroup( url ) ) {
-    // Find the group's instance corresponding to the fragment value
-    for ( auto const & g : groups ) {
-      if ( g.id == group ) {
-        // Found it
-        icon = g.makeIcon();
-        break;
-      }
-    }
-  }
-
-  emit iconChanged( this, icon );
-}
-
 unsigned ArticleView::getGroup( QUrl const & url )
 {
   if ( url.scheme() == "gdlookup" && Utils::Url::hasQueryItem( url, "group" ) )
@@ -539,7 +517,7 @@ void ArticleView::jumpToDictionary( QString const & id, bool force )
 {
 
   // jump only if neceessary, or when forced
-  if ( const QString targetArticle = scrollToFromDictionaryId( id ); force || targetArticle != getCurrentArticle() ) {
+  if ( const QString targetArticle = scrollToFromDictionaryId( id ); force && targetArticle != getCurrentArticle() ) {
     setCurrentArticle( targetArticle, true );
   }
 }
@@ -1712,7 +1690,7 @@ void ArticleView::contextMenuRequested( QPoint const & pos )
       showDefinition( selectedText, currentGroupId, QString() );
     else if ( result == addWordToHistoryAction )
       emit forceAddWordToHistory( selectedText );
-    if ( result == addHeaderToHistoryAction )
+    else if ( result == addHeaderToHistoryAction )
       emit forceAddWordToHistory( webview->title() );
     else if ( result == sendWordToInputLineAction )
       emit sendWordToInputLine( selectedText );
@@ -1915,9 +1893,7 @@ void ArticleView::pasteTriggered()
 
 unsigned ArticleView::getCurrentGroup()
 {
-  if ( !groupComboBox )
-    return currentGroupId;
-  return groupComboBox->getCurrentGroup();
+  return currentGroupId;
 }
 
 void ArticleView::moveOneArticleUp()

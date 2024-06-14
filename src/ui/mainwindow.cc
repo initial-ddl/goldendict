@@ -1606,8 +1606,6 @@ void MainWindow::updateGroupList()
   groupList->fill( groupInstances );
   groupList->setCurrentGroup( cfg.lastMainGroupId );
 
-  updateCurrentGroupProperty();
-
   updateDictionaryBar();
 
   qDebug() << "Reloading all the tabs...";
@@ -1754,13 +1752,11 @@ ArticleView * MainWindow::createNewTab( bool switchToIt, QString const & name )
                                         cfg,
                                         translateLine,
                                         dictionaryBar.toggleViewAction(),
-                                        groupList );
+                                        groupList->getCurrentGroup() );
 
   connect( view, &ArticleView::inspectSignal, this, &MainWindow::inspectElement );
 
   connect( view, &ArticleView::titleChanged, this, &MainWindow::titleChanged );
-
-  connect( view, &ArticleView::iconChanged, this, &MainWindow::iconChanged );
 
   connect( view, &ArticleView::pageLoaded, this, &MainWindow::pageLoaded );
 
@@ -1853,11 +1849,9 @@ void MainWindow::closeCurrentTab()
 
 void MainWindow::closeAllTabs()
 {
-  while ( ui.tabWidget->count() > 1 )
+  while ( ui.tabWidget->count() > 0 ) {
     closeCurrentTab();
-
-  // close last tab
-  closeCurrentTab();
+  }
 }
 
 void MainWindow::closeRestTabs()
@@ -1897,19 +1891,13 @@ void MainWindow::switchToPrevTab()
 
 void MainWindow::backClicked()
 {
-  GD_DPRINTF( "Back\n" );
-
   ArticleView * view = getCurrentArticleView();
-
   view->back();
 }
 
 void MainWindow::forwardClicked()
 {
-  GD_DPRINTF( "Forward\n" );
-
   ArticleView * view = getCurrentArticleView();
-
   view->forward();
 }
 
@@ -2305,6 +2293,10 @@ void MainWindow::currentGroupChanged( int )
 
   if ( igrp ) {
     GlobalBroadcaster::instance()->currentGroupId = grg_id;
+    ui.tabWidget->setTabIcon( ui.tabWidget->currentIndex(), igrp->makeIcon() );
+  }
+  else {
+    ui.tabWidget->setTabIcon( ui.tabWidget->currentIndex(), QIcon() );
   }
 
   updateDictionaryBar();
@@ -2314,33 +2306,15 @@ void MainWindow::currentGroupChanged( int )
   updateSuggestionList();
 
   if ( auto view = getCurrentArticleView() ) {
-    view->setCurrentGroupId( grg_id );
-    QString word = Folding::unescapeWildcardSymbols( view->getWord() );
-    respondToTranslationRequest( word, false );
+    if ( view->getCurrentGroupId() != grg_id ) {
+      view->setCurrentGroupId( grg_id );
+      QString word = Folding::unescapeWildcardSymbols( view->getWord() );
+      respondToTranslationRequest( word, false );
+    }
   }
-
-  updateCurrentGroupProperty();
 
   if ( ftsDlg )
     ftsDlg->setCurrentGroup( grg_id );
-}
-
-void MainWindow::updateCurrentGroupProperty()
-{
-  // We maintain currentGroup property so styles could use that to change
-  // fonts based on group names
-  Instances::Group * grp = groupInstances.findGroup( groupList->getCurrentGroup() );
-
-  if ( grp && translateLine->property( "currentGroup" ).toString() != grp->name ) {
-    translateLine->setProperty( "currentGroup", grp->name );
-    ui.wordList->setProperty( "currentGroup", grp->name );
-    QString ss = styleSheet();
-
-    // Only update stylesheet if it mentions currentGroup, as updating the
-    // stylesheet is a slow operation
-    if ( ss.contains( "currentGroup" ) )
-      setStyleSheet( ss );
-  }
 }
 
 void MainWindow::translateInputChanged( QString const & newValue )
