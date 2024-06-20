@@ -454,11 +454,9 @@ string StardictDictionary::handleResource( char type, char const * resource, siz
       QString articleText = QString( "<div class=\"sdct_h\">" ) + QString::fromUtf8( resource, size ) + "</div>";
 
       QRegularExpression imgRe( R"((<\s*(?:img|script)\s+[^>]*src\s*=\s*["']?)(?!(?:data|https?|ftp):))",
-                                QRegularExpression::CaseInsensitiveOption
-                                  | QRegularExpression::InvertedGreedinessOption );
+                                QRegularExpression::CaseInsensitiveOption );
       QRegularExpression linkRe( R"((<\s*link\s+[^>]*href\s*=\s*["']?)(?!(?:data|https?|ftp):))",
-                                 QRegularExpression::CaseInsensitiveOption
-                                   | QRegularExpression::InvertedGreedinessOption );
+                                 QRegularExpression::CaseInsensitiveOption );
 
       articleText.replace( imgRe, "\\1bres://" + QString::fromStdString( getId() ) + "/" )
         .replace( linkRe, "\\1bres://" + QString::fromStdString( getId() ) + "/" );
@@ -517,8 +515,7 @@ string StardictDictionary::handleResource( char type, char const * resource, siz
 
       QRegularExpression audioRe( R"(<\s*audio\s*src\s*=\s*(["']+)([^"']+)(["'])\s*>(.*)</audio>)",
                                   QRegularExpression::CaseInsensitiveOption
-                                    | QRegularExpression::DotMatchesEverythingOption
-                                    | QRegularExpression::InvertedGreedinessOption );
+                                    | QRegularExpression::DotMatchesEverythingOption );
 
 
       pos = 0;
@@ -1906,12 +1903,11 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
         idxHeader.bookNameSize         = ifo.bookname.size();
         idxHeader.sameTypeSequenceSize = ifo.sametypesequence.size();
 
-        // read languages
-        QPair< quint32, quint32 > langs = LangCoder::findIdsForFilename( QString::fromStdString( dictFileName ) );
-
+        // read languages from dictioanry file name
+        auto langs = LangCoder::findLangIdPairFromName( QString::fromStdString( dictFileName ) );
         // if no languages found, try dictionary's name
         if ( langs.first == 0 || langs.second == 0 ) {
-          langs = LangCoder::findIdsForFilename( QString::fromStdString( ifo.bookname ) );
+          langs = LangCoder::findLangIdPairFromName( QString::fromStdString( ifo.bookname ) );
         }
 
         idxHeader.langFrom = langs.first;

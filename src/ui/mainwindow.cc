@@ -165,7 +165,6 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   audioPlayerFactory( cfg.preferences ),
   wordFinder( this ),
   wordListSelChanged( false ),
-  wasMaximized( false ),
   headwordsDlg( nullptr ),
   ftsIndexing( dictionaries ),
   ftsDlg( nullptr ),
@@ -872,8 +871,6 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
     mainStatusBar->showMessage( tr( "Accessibility API is not enabled" ), 10000, QPixmap( ":/icons/error.svg" ) );
 #endif
 
-  wasMaximized = isMaximized();
-
   history.setSaveInterval( cfg.preferences.historyStoreInterval );
 #ifndef Q_OS_MACOS
   ui.centralWidget->grabGesture( Gestures::GDPinchGestureType );
@@ -980,12 +977,7 @@ void MainWindow::refreshTranslateLine()
 
   // Visually mark the input line to mark if there's no results
   bool setMark = wordFinder.getResults().empty() && !wordFinder.wasSearchUncertain();
-
-  if ( translateLine->property( "noResults" ).toBool() != setMark ) {
-    translateLine->setProperty( "noResults", setMark );
-
-    Utils::Widget::setNoResultColor( translateLine, setMark );
-  }
+  Utils::Widget::setNoResultColor( translateLine, setMark );
 }
 
 void MainWindow::clipboardChange( QClipboard::Mode m )
@@ -2345,11 +2337,7 @@ void MainWindow::updateSuggestionList( QString const & newValue )
     ui.wordList->unsetCursor();
 
     // Reset the noResults mark if it's on right now
-    if ( translateLine->property( "noResults" ).toBool() ) {
-      translateLine->setProperty( "noResults", false );
-
-      Utils::Widget::setNoResultColor( translateLine, false );
-    }
+    Utils::Widget::setNoResultColor( translateLine, false );
     return;
   }
 
@@ -2489,11 +2477,6 @@ bool MainWindow::eventFilter( QObject * obj, QEvent * ev )
       translateBox->setPopupEnabled( false );
       return false;
     }
-  }
-
-  if ( obj == this && ev->type() == QEvent::WindowStateChange ) {
-    auto stev                      = dynamic_cast< QWindowStateChangeEvent * >( ev );
-    wasMaximized                   = ( stev->oldState() == Qt::WindowMaximized && isMinimized() );
   }
 
   if ( ev->type() == QEvent::MouseButtonPress ) {
@@ -2749,25 +2732,14 @@ void MainWindow::toggleMainWindow( bool onlyShow )
   if ( !isVisible() ) {
     show();
 
-    qApp->setActiveWindow( this );
-    activateWindow();
-    raise();
-    shown = true;
-  }
-  else if ( isMinimized() ) {
-    if ( wasMaximized )
-      showMaximized();
-    else
-      showNormal();
     activateWindow();
     raise();
     shown = true;
   }
   else if ( !isActiveWindow() ) {
-    qApp->setActiveWindow( this );
+    activateWindow();
     if ( cfg.preferences.raiseWindowOnSearch ) {
       raise();
-      activateWindow();
     }
     shown = true;
   }

@@ -688,10 +688,10 @@ void GlsDictionary::loadArticle( uint32_t address, string & headword, string & a
 
 QString & GlsDictionary::filterResource( QString & article )
 {
-  QRegularExpression imgRe( R"((<\s*img\s+[^>]*src\s*=\s*["']+)(?!(?:data|https?|ftp|qrcx):))",
-                            QRegularExpression::CaseInsensitiveOption | QRegularExpression::InvertedGreedinessOption );
-  QRegularExpression linkRe( R"((<\s*link\s+[^>]*href\s*=\s*["']+)(?!(?:data|https?|ftp):))",
-                             QRegularExpression::CaseInsensitiveOption | QRegularExpression::InvertedGreedinessOption );
+  QRegularExpression imgRe( R"((<\s*(?:img|script)\s+[^>]*src\s*=\s*["']?)(?!(?:data|https?|ftp|qrcx):))",
+                            QRegularExpression::CaseInsensitiveOption );
+  QRegularExpression linkRe( R"((<\s*link\s+[^>]*href\s*=\s*["']?)(?!(?:data|https?|ftp):))",
+                             QRegularExpression::CaseInsensitiveOption );
 
   article.replace( imgRe, "\\1bres://" + QString::fromStdString( getId() ) + "/" )
     .replace( linkRe, "\\1bres://" + QString::fromStdString( getId() ) + "/" );
@@ -742,8 +742,8 @@ QString & GlsDictionary::filterResource( QString & article )
   // Handle "audio" tags
 
   QRegularExpression audioRe( R"(<\s*audio\s+src\s*=\s*(["']+)([^"']+)(["'])\s*>(.*)</audio>)",
-                              QRegularExpression::CaseInsensitiveOption | QRegularExpression::DotMatchesEverythingOption
-                                | QRegularExpression::InvertedGreedinessOption );
+                              QRegularExpression::CaseInsensitiveOption
+                                | QRegularExpression::DotMatchesEverythingOption );
 
 
   pos = 0;
@@ -1367,11 +1367,11 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
           idxHeader.langTo   = LangCoder::findIdForLanguage( scanner.getLangTo() );
           if ( idxHeader.langFrom == 0 && idxHeader.langTo == 0 ) {
             // if no languages found, try dictionary's file name
-            QPair< quint32, quint32 > langs = LangCoder::findIdsForFilename( QString::fromStdString( dictFiles[ 0 ] ) );
+            auto langs = LangCoder::findLangIdPairFromPath( dictFiles[ 0 ] );
 
             // if no languages found, try dictionary's name
             if ( langs.first == 0 || langs.second == 0 ) {
-              langs = LangCoder::findIdsForFilename( QString::fromStdString( dictionaryName ) );
+              langs = LangCoder::findLangIdPairFromName( QString::fromStdString( dictionaryName ) );
             }
             idxHeader.langFrom = langs.first;
             idxHeader.langTo   = langs.second;
