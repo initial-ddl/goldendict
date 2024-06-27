@@ -113,7 +113,7 @@ ScanPopup::ScanPopup( QWidget * parent,
   connect( definition, &ArticleView::typingEvent, this, &ScanPopup::typingEvent );
 
   openSearchAction.setShortcut( QKeySequence( "Ctrl+F" ) );
-  definition->addAction( &openSearchAction );
+  addAction( &openSearchAction );
   connect( &openSearchAction, &QAction::triggered, definition, &ArticleView::openSearch );
 
   wordListDefaultFont      = ui.translateBox->completerWidget()->font();
