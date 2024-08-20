@@ -1430,7 +1430,8 @@ QString ArticleView::getTitle()
 
 QString ArticleView::getWord() const
 {
-  return currentWord;
+  return webview->history()->currentItem().title();
+  // return currentWord;
 }
 
 void ArticleView::print( QPrinter * printer ) const
@@ -2106,15 +2107,23 @@ void ArticleView::highlightFTSResults()
   QString script = QString(
                      "var context = document.querySelector(\"body\");\n"
                      "var instance = new Mark(context);\n instance.unmark();\n"
-                     "instance.mark(\"%1\");" )
+                     "instance.mark(\"%1\",{\"accuracy\": \"exactly\"});" )
                      .arg( regString );
 
   webview->page()->runJavaScript( script );
   auto parts = regString.split( " ", Qt::SkipEmptyParts );
-  if ( !parts.isEmpty() ) {
-    firstAvailableText = parts[ 0 ];
-    ftsSearchPanel->show();
+  if ( parts.isEmpty() ) {
+    return;
   }
+
+  //hold the longest word
+  for ( auto & p : parts ) {
+    if ( p.size() > firstAvailableText.size() ) {
+      firstAvailableText = p;
+    }
+  }
+
+  ftsSearchPanel->show();
 }
 
 void ArticleView::setActiveDictIds( const ActiveDictIds & ad )
