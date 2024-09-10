@@ -1,660 +1,661 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="tk_TM" sourcelanguage="en">
+<TS version="2.1" language="hu_HU" sourcelanguage="en">
   <context>
     <name>About</name>
     <message>
       <source>About</source>
-      <translation>Hakynda</translation>
+      <translation>Névjegy</translation>
     </message>
     <message>
       <source>GoldenDict-ng dictionary lookup program, version </source>
-      <translation>GoldenDict-ng - sozlükleri açmak üçin programma,  wersiýa </translation>
+      <translation>GoldenDict-ng szótári keresőprogram, verzió </translation>
     </message>
     <message>
       <source>Licensed under GNU GPLv3 or later</source>
-      <translation>GNU GPLv3 we ondan soňky çykan lisenziýasy boýunça</translation>
+      <translation>Licenc: GNU GPLv3 vagy újabb</translation>
     </message>
     <message>
       <source>Copy version info</source>
-      <translation>Wersiýa maglumatyny göçüriň</translation>
+      <translation>Verzió infó másolása</translation>
     </message>
     <message>
       <source>Copy dictionaries list</source>
-      <translation>Sözlükleriň sanawyny göçüriň</translation>
+      <translation>Szótárlista másolása</translation>
     </message>
     <message>
       <source>Credits:</source>
-      <translation>Hormatlar:</translation>
+      <translation>Készítők:</translation>
     </message>
     <message>
       <source>Based on Qt %1 (%2, %3)</source>
-      <translation>Qt %1 (%2, %3) esasynda</translation>
+      <translation>Qt %1 alapokon (%2, %3)</translation>
     </message>
   </context>
   <context>
     <name>AnkiConnector</name>
     <message>
       <source>anki: can&apos;t create a card without a word</source>
-      <translation>anki: sözsiz kartoçka döredip bolmaz</translation>
+      <translation>anki: szó nélkül nem hozható létre a kártya</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
-      <translation>Anki gözlegi: AnkiConnect açyk däl.</translation>
+      <translation>Anki kereső: Az AnkiConnect nincs bekapcsolva.</translation>
     </message>
     <message>
       <source>anki: post to anki failed</source>
-      <translation>anki: anki ýazmak şowsuz</translation>
+      <translation>anki: beküldés nem sikerült</translation>
     </message>
     <message>
       <source>anki: post to anki success</source>
-      <translation>anki: anki üstünlik</translation>
+      <translation>anki: beküldés sikeres</translation>
     </message>
   </context>
   <context>
     <name>ArticleInspector</name>
     <message>
       <source>Inspect</source>
-      <translation>Barlaň</translation>
+      <translation>Vizsgálat</translation>
     </message>
   </context>
   <context>
     <name>ArticleMaker</name>
     <message>
       <source>Expand article</source>
-      <translation>Makalany giňelt</translation>
+      <translation>Szócikk kibontása</translation>
     </message>
     <message>
       <source>Collapse article</source>
-      <translation>Makalany kiçelt</translation>
+      <translation>Szócikk összecsukása</translation>
     </message>
     <message>
       <source>No translation for &lt;b dir=&quot;%3&quot;&gt;%1&lt;/b&gt; was found in group &lt;b&gt;%2&lt;/b&gt;.</source>
-      <translation>&lt;b&gt;%2&lt;/b&gt;toparda &lt;b dir=&quot;%3&quot;&gt;%1&lt;/b&gt; üçin terjime tapylmady.</translation>
+      <translation>Nem található fordítás ehhez: &lt;b dir=&quot;%3&quot;&gt;%1&lt;/b&gt;, a(z) &lt;b&gt;%2&lt;/b&gt; csoportban.</translation>
     </message>
     <message>
       <source>No translation was found in group &lt;b&gt;%1&lt;/b&gt;.</source>
-      <translation>&lt;b&gt;%1&lt;/b&gt; toparda hiç terjime tapylmady..</translation>
+      <translation>Nem található fordítás a csoportban: &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
       <source>Welcome!</source>
-      <translation>Hoş geldiňiz!</translation>
+      <translation>Üdvözöljük!</translation>
     </message>
     <message>
       <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt; &lt;b&gt;GoldenDict&lt;/b&gt;e hoş geldiňiz!&lt;/h3&gt;&lt;p&gt;Programma bilen işe başlamak üçin ilki bilen &lt;em&gt;Edit | -e giriň Sözlük faýllaryny gözlemek, dürli Wikipediýa sahypalaryny ýa-da başga çeşmeleri gurmak, sözlük tertibini sazlamak ýa-da söz toparlaryny döretmek üçin käbir katalog ýollaryny goşmak üçin&lt;/em&gt; sözlükler.&lt;p&gt;Soň bolsa, sözleriňizi gözlemäge&apos;! Bu penjirede çep tarapdaky paneli ulanyp bilersiňiz ýa-da beýleki işjeň programmalardan &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;&lt;/a&gt;gözläp bilersiňiz. &lt;p&gt;Programmany sazlamak üçin &lt;em&gt;Edit | -de bar bolan ileri tutmalary gözden geçiriň Saýlamalar&lt;/em&gt;. Therehli sazlamalarda gurallar bar, haýsydyr bir zada şübhelenýän bolsaňyz, hökman okaň.&lt;p&gt;Goşmaça kömek gerek bolsa, soraglaryňyz, teklipleriňiz bar bolsa ýa-da beýlekileriň pikirleri bilen gyzyklanýan bolsaňyz,&apos;-nji &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;programmada hoş geldiňiz.&lt;p&gt;Täzelenmeler üçin 19 programma&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;web sahypasyny barlaň&lt;/a&gt; &lt;p&gt;(c) 2008-2013 Konstantin Isakow. GPLv3 ýa-da has soňraky ygtyýarnama.</translation>
+      <translation>&lt;h3 align=&quot;center&quot;&gt;Üdvözli a &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;A programmal való munka megkezdéséhez nyissa meg a &lt;em&gt;Szerkesztés | Szótárak&lt;/em&gt; menüt, és adja meg a könyvtárakat ahol a szótárfájlok találhatók, válasszon ki különböző Wikipédia oldalakat és más forrásokat, majd adja meg a szótárak sorrendjét vagy rendezze őket csoportokba.&lt;p&gt;Ezután már kezdheti is kikeresni a kívánt szavakat! Ezt végezheti ebben az ablakban, az egyik bal oldali panel használatával, vagy &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;kereshet szavakat más futó programokból&lt;/a&gt;.&lt;p&gt;A program testreszabásához nézze meg a lehetséges beállításokat a &lt;em&gt;Szerkesztés | Beállítások&lt;/em&gt; menüpontban. Az összes beállításnak van eszköztippje, így ha kétségei lennének a működésével kapcsolatban, mindenképpen olvassa el azokat.&lt;p&gt;Ha további segítségre van szüksége, kérdése, javaslata van, vagy csak kíváncsi a többiek véleményére, akkor szívesen látjuk a program &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;fórumán&lt;/a&gt;. Nézze meg a program &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;weboldalát&lt;/a&gt; a frissítésekért. (c) 2008-2013 Konstantin Isakov. Licenc: GPL v3 vagy újabb.</translation>
     </message>
     <message>
       <source>(untitled)</source>
-      <translation>(atsyz)</translation>
+      <translation>(névtelen)</translation>
     </message>
     <message>
       <source>(picture)</source>
-      <translation>(surat)</translation>
+      <translation>(kép)</translation>
     </message>
   </context>
   <context>
     <name>ArticleRequest</name>
     <message>
       <source>Expand article</source>
-      <translation>Makalany giňelt</translation>
+      <translation>Szócikk kibontása</translation>
     </message>
     <message>
       <source>From </source>
-      <translation>Sözlük  </translation>
+      <translation>Forrás </translation>
     </message>
     <message>
       <source>Collapse article</source>
-      <translation>Makalany kiçelt</translation>
+      <translation>Szócikk összecsukása</translation>
     </message>
     <message>
       <source>Make a new Anki note</source>
-      <translation>Täze Anki belligini ediň</translation>
+      <translation>Anki feljegyzés létrehozása</translation>
     </message>
     <message>
       <source>Query error: %1</source>
-      <translation>Sorag ýalňyşlygy: %1</translation>
+      <translation>Lekérdezési hiba: %1</translation>
     </message>
     <message>
       <source>Close words: </source>
-      <translation>Ýakyn sözler: </translation>
+      <translation>Közeli szavak: </translation>
     </message>
     <message>
       <source>Compound expressions: </source>
-      <translation>Goşma aňlatmalar: </translation>
+      <translation>Összetett kifejezések: </translation>
     </message>
     <message>
       <source>Individual words: </source>
-      <translation>Aýry sözler: </translation>
+      <translation>Különálló szavak: </translation>
     </message>
   </context>
   <context>
     <name>ArticleView</name>
     <message>
       <source>Phrase not found</source>
-      <translation>Jümle tapylmady</translation>
+      <translation>Kifejezés nem található</translation>
     </message>
     <message>
       <source>%1 of %2 matches</source>
-      <translation>%2 oýundan %1</translation>
+      <translation>%1 / %2 találat</translation>
     </message>
     <message>
       <source>Select Current Article</source>
-      <translation>Şu makalany saýla</translation>
+      <translation>Jelenlegi szócikk kijelölése</translation>
     </message>
     <message>
       <source>Copy as text</source>
-      <translation>Tekst görnüşinde kopiýa et</translation>
+      <translation>Másolás szövegként</translation>
     </message>
     <message>
       <source>Inspect</source>
-      <translation>Gözden geçir</translation>
+      <translation>Vizsgálat</translation>
     </message>
     <message>
       <source>Resource</source>
-      <translation>Çeşme</translation>
+      <translation>Erőforrás</translation>
     </message>
     <message>
       <source>Audio</source>
-      <translation>Ses</translation>
+      <translation>Hang</translation>
     </message>
     <message>
       <source>TTS Voice</source>
-      <translation>TTS sesi</translation>
+      <translation>TTS hang</translation>
     </message>
     <message>
       <source>Video</source>
-      <translation>Wideo</translation>
+      <translation>Videó</translation>
     </message>
     <message>
       <source>Video: %1</source>
-      <translation>Wideo: %1</translation>
+      <translation>Videó: %1</translation>
     </message>
     <message>
       <source>Definition from dictionary &quot;%1&quot;: %2</source>
-      <translation>Adalga şu sözlükden alyndy - &quot;%1&quot;: %2</translation>
+      <translation>Definíció a szótárból &quot;%1&quot;: %2</translation>
     </message>
     <message>
       <source>Definition: %1</source>
-      <translation>Kesgitleme: %1</translation>
+      <translation>Definíció: %1</translation>
     </message>
     <message>
       <source>ERROR: %1</source>
-      <translation>ÝALŇYŞLYK: %1</translation>
+      <translation>HIBA: %1</translation>
     </message>
     <message>
       <source>The referenced resource doesn&apos;t exist.</source>
-      <translation>Salgylanan çeşme ýok.</translation>
+      <translation>A hivatkozott erőforrás nem létezik.</translation>
     </message>
     <message>
       <source>The referenced audio program doesn&apos;t exist.</source>
-      <translation>Salgylanan audio programa ýok.</translation>
+      <translation>A hivatkozott hanglejátszó program nem található.</translation>
     </message>
     <message>
       <source>Op&amp;en Link</source>
-      <translation>Baglanyşyk we baglanyşyk</translation>
+      <translation>&amp;Hivatkozás megnyitása</translation>
     </message>
     <message>
       <source>Open Link in New &amp;Tab</source>
-      <translation>Linki täze aç &amp;Tab-dan</translation>
+      <translation>Hivatkozás megnyitása új &amp;lapon</translation>
     </message>
     <message>
       <source>Open Link in &amp;External Browser</source>
-      <translation>Linki &amp;Daşky Brauzerden aç</translation>
+      <translation>Hivatkozás megnyitása külső &amp;böngészőben</translation>
     </message>
     <message>
       <source>Save &amp;image...</source>
-      <translation>Surady &amp;ýatda sakla - ...</translation>
+      <translation>Kép &amp;mentése...</translation>
     </message>
     <message>
       <source>Open image in system viewer...</source>
-      <translation>Ulgam görkezijisinde açyk surat ...</translation>
+      <translation>Kép megnyitása az alapértelmezett megjelenítőben...</translation>
     </message>
     <message>
       <source>Save s&amp;ound...</source>
-      <translation>Ýatda sakla s&amp;esi - ...</translation>
+      <translation>&amp;Hang mentése...</translation>
     </message>
     <message>
       <source>&amp;Look up &quot;%1&quot;</source>
-      <translation>&amp;Tap &quot;%1&quot;</translation>
+      <translation>&quot;%1&quot; &amp;kikeresése</translation>
     </message>
     <message>
       <source>Look up &quot;%1&quot; in &amp;New Tab</source>
-      <translation>Tap &quot;%1&quot; in &amp;New Tab</translation>
+      <translation>&quot;%1&quot; kikeresése &amp;új lapon</translation>
     </message>
     <message>
       <source>Send &quot;%1&quot; to input line</source>
-      <translation>Iber &quot;%1&quot; girizme setire</translation>
+      <translation>&quot;%1&quot; küldése a beviteli sorba</translation>
     </message>
     <message>
       <source>&amp;Add &quot;%1&quot; to history</source>
-      <translation>&amp;Goş &quot;%1&quot; geçmişe</translation>
+      <translation>&quot;%1&quot; hozzáadása az &amp;előzményekhez</translation>
     </message>
     <message>
       <source>Look up &quot;%1&quot; in %2</source>
-      <translation>Tap &quot;%1&quot; in %2</translation>
+      <translation>&quot;%1&quot; kikeresése: %2</translation>
     </message>
     <message>
       <source>Look up &quot;%1&quot; in %2 in &amp;New Tab</source>
-      <translation>Tap &quot;%1&quot; in %2 in &amp;New Tab</translation>
+      <translation>&quot;%1&quot; kikeresése: %2, &amp;új lapon</translation>
     </message>
     <message>
       <source>Save &amp;Bookmark &quot;%1...&quot;</source>
-      <translation>Saklaň we bellik ediň &quot;%1...&quot;</translation>
+      <translation>&amp;Könyvjelző mentése: &quot;%1...&quot;</translation>
     </message>
     <message>
       <source>&amp;Send Current Article to Anki</source>
-      <translation>&amp; Häzirki makalany Anki iber</translation>
+      <translation>Jelenlegi szócikk küldése &amp;Anki feljegyzésbe</translation>
     </message>
     <message>
       <source>&amp;Send selected text to Anki</source>
-      <translation>Saýlanan teksti Anki iber</translation>
+      <translation>Kijelölt &amp;szöveg küldése Anki feljegyzésbe</translation>
     </message>
     <message>
       <source>Save sound</source>
-      <translation>Ýatda sakla sesini</translation>
+      <translation>Hang mentése</translation>
     </message>
     <message>
       <source>Sound files (*.wav *.opus *.ogg *.oga *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape *.spx);;All files (*.*)</source>
-      <translation>Ses faýllary (* .wav * .ogg * .oga * .mp3 * .mp4 * .aac * .flac * .mid * .wv * .ape * .spx) ;; fileshli faýllar (*. *)</translation>
+      <translation>Hangfájlok (*.wav *.opus *.ogg *.oga *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape *.spx);;Minden fájl (*.*)</translation>
     </message>
     <message>
       <source>Save image</source>
-      <translation>Surady ýatda sakla</translation>
+      <translation>Kép mentése</translation>
     </message>
     <message>
       <source>Image files (*.bmp *.jpg *.png *.tif);;All files (*.*)</source>
-      <translation>Surat faýllary (*.bmp *.jpg *.png *.tif);;All files (*.*)</translation>
+      <translation>Képfájlok (*.bmp *.jpg *.png *.tif);;Minden fájl (*.*)</translation>
     </message>
     <message>
       <source>Failed to play sound file: %1</source>
-      <translation>Ses faýlyny oýnamak başartmady: %1</translation>
+      <translation>Hangfájl lejátszása nem sikerült: %1</translation>
     </message>
     <message>
       <source>Failed to create temporary file.</source>
-      <translation>Wagtlaýyn faýly döredip bolmady.</translation>
+      <translation>Ideiglenes fájl létrehozása nem sikerült.</translation>
     </message>
     <message>
       <source>Failed to auto-open resource file, try opening manually: %1.</source>
-      <translation>Çeşme faýly awtomat açyp bolmady, özbaşdak açmaga synanşyň: %1.</translation>
+      <translation>Hiba az erőforrásfájl automatikus megnyitásakor, próbálja meg manuálisan: %1.</translation>
     </message>
     <message>
       <source>WARNING: Audio Player: %1</source>
-      <translation>DUNDURYŞ: Ses pleýer: %1</translation>
+      <translation>FIGYELEM: Hanglejátszó: %1</translation>
     </message>
     <message>
       <source>&amp;Create Anki note</source>
-      <translation>&amp; Anki belligini dörediň</translation>
+      <translation>Anki &amp;feljegyzés létrehozása</translation>
     </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
     <message>
       <source>Belarusian transliteration from latin to cyrillic (classic orthography)</source>
-      <translation>Belarus transliterasiýa - latinden kirilisa (klassyk orfografiýa)</translation>
+      <translation>Belorusz átbetűzés latinról cirillre (klasszikus helyesírás)</translation>
     </message>
     <message>
       <source>Belarusian transliteration from latin to cyrillic (school orthography)</source>
-      <translation>Belarus transliterasiýa - latinden kirillisa (mekdep orfografiýa)</translation>
+      <translation>Belorusz átbetűzés latinról cirillre (iskolai helyesírás)</translation>
     </message>
     <message>
       <source>Belarusian transliteration (smoothes out the difference
 between classic and school orthography in cyrillic)</source>
-      <translation>Belarus transliterasiýa (klassyk we mekdep kirillisa orfografiýalary arasynda tapawutlaryny sazlaýar)</translation>
+      <translation>Belorusz átbetűzés (kifinomítva a különbségeket
+a klasszikus és az iskolai helyesírás közt cirillben)</translation>
     </message>
   </context>
   <context>
     <name>ChineseConversion</name>
     <message>
       <source>Chinese Conversion</source>
-      <translation>Hytaý dili</translation>
+      <translation>Kínai átalakítás</translation>
     </message>
     <message>
       <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Simplönekeýleşdirilen we adaty hytaý nyşanlarynyň arasynda öwrülmegi üpjün ediň</translation>
+      <translation>Átalakítás engedélyezése az egyszerűsített és a hagyományos kínai írás közt</translation>
     </message>
     <message>
       <source>Chinese Con&amp;version</source>
-      <translation>Hytaýyň wersiýasy</translation>
+      <translation>Kínai á&amp;talakítás</translation>
     </message>
     <message>
       <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Simplönekeýleşdirilen nyşanlardan adaty (Taýwan warianty) nyşanlara öwrülmegi üpjün ediň</translation>
+      <translation>Átalakítás engedélyezése az egyszerűsített kínai írásról a hagyományosra (tajvani változtat)</translation>
     </message>
     <message>
       <source>SC to TC (Taiwan variant)</source>
-      <translation>SC-den TC (Taýwan görnüşi)</translation>
+      <translation>SC-ről TC-re (tajvani változat)</translation>
     </message>
     <message>
       <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Simplönekeýleşdirilen nyşanlardan adaty (Gonkong warianty) nyşanlara öwrülmegi üpjün ediň</translation>
+      <translation>Átalakítás engedélyezése az egyszerűsített kínai írásról a hagyományosra (hongkongi változtat)</translation>
     </message>
     <message>
       <source>SC to TC (Hong Kong variant)</source>
-      <translation>SC-den TC (Gonkong görnüşi)</translation>
+      <translation>SC-ről TC-re (hongkongi változat)</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
-      <translation>Adaty nyşanlardan ýönekeýleşdirilen nyşanlara öwrülmegi üpjün ediň</translation>
+      <translation>Átalakítás engedélyezése a hagyományos kínai írásról az egyszerűsítettre</translation>
     </message>
     <message>
       <source>TC to SC</source>
-      <translation>TC-den SC</translation>
+      <translation>TC-ről SC-re</translation>
     </message>
     <message>
       <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Adaty hytaý (Taýwan warianty) öwrülişine ýönekeýleşdirildi</translation>
+      <translation>Átalakítás egyszerűsítettről hagyományos kínai írásra (tajvani változat)</translation>
     </message>
     <message>
       <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Adaty hytaý (Gonkong görnüşi) öwrülişine ýönekeýleşdirildi</translation>
+      <translation>Átalakítás egyszerűsítettről hagyományos kínai írásra (hongkongi változat)</translation>
     </message>
     <message>
       <source>Traditional to simplified Chinese conversion</source>
-      <translation>Chineseönekeýleşdirilen hytaý öwrülişigi</translation>
+      <translation>Átalakítás hagyományosról egyszerűsített kínai írásra</translation>
     </message>
   </context>
   <context>
     <name>CustomTranslit</name>
     <message>
       <source>custom transliteration</source>
-      <translation>adaty terjime</translation>
+      <translation>egyéni átbetűzés</translation>
     </message>
   </context>
   <context>
     <name>Dialog</name>
     <message>
       <source>Proxy authentication required</source>
-      <translation>Proksi tassyklamak talap edilýär</translation>
+      <translation>Proxy hitelesítés szükséges</translation>
     </message>
     <message>
       <source>You need to supply a Username and a Password to access via proxy</source>
-      <translation>Proksi arkaly girmek üçin Ulanyjy adyny we paroly üpjün etmeli</translation>
+      <translation>Proxyn keresztüli eléréshez meg kell adnia egy felhasználónevet és jelszót</translation>
     </message>
     <message>
       <source>Username:</source>
-      <translation>Ulanyjy ady:</translation>
+      <translation>Felhasználónév:</translation>
     </message>
     <message>
       <source>Password:</source>
-      <translation>Parol:</translation>
+      <translation>Jelszó:</translation>
     </message>
   </context>
   <context>
     <name>DictGroupWidget</name>
     <message>
       <source>Form</source>
-      <translation>Forma</translation>
+      <translation>Forrás</translation>
     </message>
     <message>
       <source>Group icon:</source>
-      <translation>Toparyň nyşany:</translation>
+      <translation>Csoport ikonja:</translation>
     </message>
     <message>
       <source>Shortcut:</source>
-      <translation>Çalt açar:</translation>
+      <translation>Gyorsbillentyű:</translation>
     </message>
     <message>
       <source>Favorites folder:</source>
-      <translation>Halanýan bukjasy:</translation>
+      <translation>Kedvencek mappa:</translation>
     </message>
     <message>
       <source>None</source>
-      <translation>Hiç birisi</translation>
+      <translation>Nincs</translation>
     </message>
     <message>
       <source>From file...</source>
-      <translation>Şu faýldan...</translation>
+      <translation>Fájlból...</translation>
     </message>
     <message>
       <source>Choose a file to use as group icon</source>
-      <translation>Topar nyşany hökmünde ulanyljak faýly saýla</translation>
+      <translation>Válasszon egy fájlt a csoport ikonjának</translation>
     </message>
     <message>
       <source>Images</source>
-      <translation>Suratlar</translation>
+      <translation>Képek</translation>
     </message>
     <message>
       <source>All files</source>
-      <translation>Ähli faýllar</translation>
+      <translation>Minden fájl</translation>
     </message>
     <message>
       <source>Error</source>
-      <translation>Ýalňyş</translation>
+      <translation>Hiba</translation>
     </message>
     <message>
       <source>Can&apos;t read the specified image file.</source>
-      <translation>Bellenen şekiliň faýlyny okap bolanok.</translation>
+      <translation>Nem sikerült a megadott képfájl betöltése.</translation>
     </message>
   </context>
   <context>
     <name>DictGroupsWidget</name>
     <message>
       <source>Dictionaries: </source>
-      <translation>Sözlükler: </translation>
+      <translation>Szótárak: </translation>
     </message>
     <message>
       <source>Confirmation</source>
-      <translation>Tassyklama</translation>
+      <translation>Jóváhagyás</translation>
     </message>
     <message>
       <source>Are you sure you want to generate a set of groups based on language pairs?</source>
-      <translation>Çyndan hem toparlary dil jübütleriň esasynda gurmak isleýäýäňizmi?</translation>
+      <translation>Biztos, hogy létre szeretne hozni csoportokat a nyelvi párok alapján?</translation>
     </message>
     <message>
       <source>Unassigned</source>
-      <translation>Bellenmedik</translation>
+      <translation>Csoport nélküliek</translation>
     </message>
     <message>
       <source>Auto group by folder failed.</source>
-      <translation>Papka boýunça awtomatik topar şowsuz boldy.</translation>
+      <translation>A mappánkénti csoportosítás nem sikerült.</translation>
     </message>
     <message>
       <source>The parent directory of %1 can not be reached.</source>
-      <translation>%1 -nyň esasy katalogyna baryp bolmaýar.</translation>
+      <translation>A(z) %1 szülőkönyvtára nem érhető el.</translation>
     </message>
     <message>
       <source>Are you sure you want to generate a set of groups based on containing folders?</source>
-      <translation>Papkalary öz içine alýan toparlar toplumyny döretmek isleýändigiňize ynanýarsyňyzmy?</translation>
+      <translation>Biztos, hogy létre szeretne hozni csoportokat a tartalmazó mappák alapján?</translation>
     </message>
     <message>
       <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>Metadata.toml esasynda bir topar topar döretmek isleýändigiňize ynanýarsyňyzmy?</translation>
+      <translation>Biztos, hogy létre szeretne hozni csoportokat a metadata.toml alapján?</translation>
     </message>
     <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
-      <translation>Toparlary çeşme dillere görä utgaşdyr -  &quot;%1-&gt;&quot;</translation>
+      <translation>Csoportok kombinálása forrásnyelv alapján: &quot;%1 -&gt;&quot;</translation>
     </message>
     <message>
       <source>Combine groups by target language to &quot;-&gt;%1&quot;</source>
-      <translation>Toparlary terjime dillere görä utgaşdyr - &quot;-&gt;%1&quot;</translation>
+      <translation>Csoportok kombinálása célnyelv alapján: &quot;-&gt; %1&quot;</translation>
     </message>
     <message>
       <source>Make two-side translate group &quot;%1-%2-%1&quot;</source>
-      <translation>Iki-taraplaýyn terjime topary ýasa -  &quot;%1-%2-%1&quot;</translation>
+      <translation>Kétoldali fordítási csoport létrehozása: %1-%2-%1&quot;</translation>
     </message>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
-      <translation>Utgaşdyr toparlary we &quot;%1&quot;</translation>
+      <translation>Csoportok kombinálása ezzel: &quot;%1&quot;</translation>
     </message>
   </context>
   <context>
     <name>DictHeadwords</name>
     <message>
       <source>If checked any filter changes will we immediately applied to headwords list</source>
-      <translation>Süzgüç üýtgeşmeleri barlanylsa, derrew söz sözleriniň sanawyna ýüz tutarys</translation>
+      <translation>Bejelölésekor a szűrő automatikusan alkalmazásra kerül a címszavak listájára</translation>
     </message>
     <message>
       <source>Auto apply</source>
-      <translation>Awtomatiki usulda ulanylýar</translation>
+      <translation>Automatikus alkalmazás</translation>
     </message>
     <message>
       <source>Press this button to apply filter to headwords list</source>
-      <translation>Sözleri söz sözleriniň sanawyna ulanmak üçin şu düwmä basyň</translation>
+      <translation>A gomb megnyomásával alkalmazhatja a szűrőt a címszavak listájára</translation>
     </message>
     <message>
       <source>Apply</source>
-      <translation>Giriş</translation>
+      <translation>Alkalmazás</translation>
     </message>
     <message>
       <source>Filter string (fixed string, wildcards or regular expression)</source>
-      <translation>Süzgüç setiri (kesgitli setir, kartoçka ýa-da yzygiderli aňlatma)</translation>
+      <translation>Szűrőkifejezés (szöveg, helyettesítő karakterek vagy reguláris kifejezés)</translation>
     </message>
     <message>
       <source>Filter:</source>
-      <translation>Süzgüç:</translation>
+      <translation>Szűrő:</translation>
     </message>
     <message>
       <source>Search mode</source>
-      <translation>Gözleg tertibi</translation>
+      <translation>Keresés módja</translation>
     </message>
     <message>
       <source>This element determines how filter string will be interpreted</source>
-      <translation>Bu element süzgüç setiriniň nähili düşündiriljekdigini kesgitleýär</translation>
+      <translation>Megadja a szűrési kifejezések formátumát</translation>
     </message>
     <message>
       <source>If checked on the symbols case will be take in account when filtering</source>
-      <translation>Nyşanlaryň üstünde barlansa, süzülende hasaba alynar</translation>
+      <translation>Bejelölésekor a szűrésben a kis- és nagybetűk egyezése is szükséges</translation>
     </message>
     <message>
       <source>Match case</source>
-      <translation>Gabat gelýän ýagdaý</translation>
+      <translation>Kis-.és nagybetűk</translation>
     </message>
     <message>
       <source>Exports headwords to file</source>
-      <translation>Faýl üçin söz sözlerini eksport edýär</translation>
+      <translation>Címszavak exportálása fájlba</translation>
     </message>
     <message>
       <source>Export</source>
-      <translation>Eksport</translation>
+      <translation>Exportálás</translation>
     </message>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
-      <translation>Iň köp süzülen söz sözlerini görkeziň.</translation>
+      <translation>Adja meg a szűrésben maximálisan visszaadható címszavak számát.</translation>
     </message>
     <message>
       <source>Filter max results:</source>
-      <translation>Iň ýokary netijeleri süzüň:</translation>
+      <translation>Találatok maximális száma:</translation>
     </message>
     <message>
       <source>Help</source>
-      <translation>Kömek ediň</translation>
+      <translation>Súgó</translation>
     </message>
     <message>
       <source>OK</source>
-      <translation>Bolýar</translation>
+      <translation>OK</translation>
     </message>
     <message>
       <source>Text</source>
-      <translation>Tekst</translation>
+      <translation>Szöveg</translation>
     </message>
     <message>
       <source>Wildcards</source>
-      <translation>Waýkard</translation>
+      <translation>Helyettesítő karakterek</translation>
     </message>
     <message>
       <source>RegExp</source>
-      <translation>RegExp</translation>
+      <translation>Reguláris kifejezés</translation>
     </message>
     <message>
       <source>Unique headwords total: %1.</source>
-      <translation type="unfinished">Unique headwords total: %1.</translation>
+      <translation>Különböző címszavak száma összesen: %1.</translation>
     </message>
     <message>
       <source>Unique headwords total: %1, filtered(limited): %2</source>
-      <translation type="unfinished">Unique headwords total: %1, filtered(limited): %2</translation>
+      <translation>Különböző címszavak száma összesen: %1, szűrve (korlátozott): %2</translation>
     </message>
     <message>
       <source>Save headwords to file</source>
-      <translation>Faýl üçin söz sözlerini ýazdyryň</translation>
+      <translation>Címszavak mentése fájlba</translation>
     </message>
     <message>
       <source>Text files (*.txt);;All files (*.*)</source>
-      <translation>Tekst faýllary (*.txt);;Ähli faýllar (*.*)</translation>
+      <translation>Szövegfájlok (*.txt);;Minden fájl (*.*)</translation>
     </message>
     <message>
       <source>Can not open exported file</source>
-      <translation>Eksport edilen faýly açyp bilemok</translation>
+      <translation>Az exportált fájl megnyitása nem sikerült</translation>
     </message>
     <message>
       <source>Export headwords...</source>
-      <translation>Baş sözleri eksport ediň ...</translation>
+      <translation>Címszavak exportálása...</translation>
     </message>
     <message>
       <source>Cancel</source>
-      <translation>Yza Gaýtar</translation>
+      <translation>Mégsem</translation>
     </message>
     <message>
       <source>Export process is interrupted</source>
-      <translation>Eksport prosesi kesilýär</translation>
+      <translation>Az exportálást megszakították</translation>
     </message>
     <message>
       <source>Export finished</source>
-      <translation>Eksport gutardy</translation>
+      <translation>Exportálás befejeződött</translation>
     </message>
   </context>
   <context>
     <name>DictInfo</name>
     <message>
       <source>Edit dictionary</source>
-      <translation>Sözlügi üýtget</translation>
+      <translation>Szótár szerkesztése</translation>
     </message>
     <message>
       <source>Open index folder</source>
-      <translation>Indeks bukjasyny açyň</translation>
+      <translation>Indexmappa megnyitása</translation>
     </message>
     <message>
       <source>Total articles:</source>
-      <translation>Jemi makala sany:</translation>
+      <translation>Szócikkek száma:</translation>
     </message>
     <message>
       <source>Index filename:</source>
-      <translation>Indeks faýlyň ady:</translation>
+      <translation>Index fájlnév:</translation>
     </message>
     <message>
       <source>Total words:</source>
-      <translation>Jemi söz sany:</translation>
+      <translation>Szavak száma:</translation>
     </message>
     <message>
       <source>Open folder</source>
-      <translation>Aç bukjany</translation>
+      <translation>Mappa megnyitása</translation>
     </message>
     <message>
       <source>Translates from:</source>
-      <translation>Terjime edýär şu dilden:</translation>
+      <translation>Fordítás erről:</translation>
     </message>
     <message>
       <source>Translates to:</source>
-      <translation>Terjime edýär şu dile:</translation>
+      <translation>Fordítás erre:</translation>
     </message>
     <message>
       <source>Files comprising this dictionary:</source>
-      <translation>Şu sözlügiň düzümine girýän faýlllar:</translation>
+      <translation>A szótárat alkotó fájlok:</translation>
     </message>
     <message>
       <source>Description:</source>
-      <translation>Häsiýetnama:</translation>
+      <translation>Részletek:</translation>
     </message>
     <message>
       <source>Show all unique dictionary headwords</source>
-      <translation>Uniquehli täsin sözlük sözlerini görkeziň</translation>
+      <translation>A szótár különböző címszavainak megjelenítése</translation>
     </message>
     <message>
       <source>Headwords</source>
-      <translation>Baş sözler</translation>
+      <translation>Címszavak</translation>
     </message>
     <message>
       <source>Full-text search enabled</source>
-      <translation>Doly tekst gözlegi açyk</translation>
+      <translation>Keresés a teljes szövegben engedélyezve</translation>
     </message>
     <message>
       <source>Full-text search disabled</source>
-      <translation>Doly tekst gözlegi ýapyldy</translation>
+      <translation>Keresés a teljes szövegben letiltva</translation>
     </message>
     <message>
       <source>Edit the dictionary via command:
 %1</source>
-      <translation>Sözlügi şu komanda bilen üýtget:
+      <translation>A szótár szerkesztése a paranccsal:
 %1</translation>
     </message>
   </context>
@@ -662,7 +663,7 @@ between classic and school orthography in cyrillic)</source>
     <name>DictListModel</name>
     <message>
       <source>%1 entries</source>
-      <translation>%1 girizmeler</translation>
+      <translation>%1 szócikk</translation>
     </message>
   </context>
   <context>
@@ -673,153 +674,153 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Databases: </source>
-      <translation>Maglumatlar bazalary: </translation>
+      <translation>Adatbázisok: </translation>
     </message>
     <message>
       <source>Search strategies: </source>
-      <translation>Gözleg strategiýalary: </translation>
+      <translation>Keresési stratégiák: </translation>
     </message>
     <message>
       <source>Server databases</source>
-      <translation>Serwer maglumat bazalary</translation>
+      <translation>Szerver adatbázisok</translation>
     </message>
   </context>
   <context>
     <name>DictServersModel</name>
     <message>
       <source>Enabled</source>
-      <translation>Işledilen</translation>
+      <translation>Bekapcsolva</translation>
     </message>
     <message>
       <source>Name</source>
-      <translation>Ady</translation>
+      <translation>Név</translation>
     </message>
     <message>
       <source>Address</source>
-      <translation>Adres</translation>
+      <translation>Cím</translation>
     </message>
     <message>
       <source>Databases</source>
-      <translation>Maglumatlar bazalary</translation>
+      <translation>Adatbázisok</translation>
     </message>
     <message>
       <source>Strategies</source>
-      <translation>Strategiýalar</translation>
+      <translation>Stratégiák</translation>
     </message>
     <message>
       <source>Icon</source>
-      <translation>Nyşan</translation>
+      <translation>Ikon</translation>
     </message>
     <message>
       <source>Comma-delimited list of databases
 (empty string or &quot;*&quot; matches all databases)</source>
-      <translation>Maglumatlar bazalarynyň yzygiderli bölünen sanawy
-(boş setir ýa-da &quot;*&quot; ähli maglumat bazalaryna gabat gelýär)</translation>
+      <translation>Adatbázisok, vesszővel elválasztva
+(üres érték vagy &quot;*&quot; az összes adatbázist jelenti)</translation>
     </message>
     <message>
       <source>Comma-delimited list of search strategies
 (empty string mean &quot;prefix&quot; strategy)</source>
-      <translation>Gözleg strategiýalarynyň yzygiderli bölünen sanawy
-(boş setir &quot;prefiks&quot; strategiýasyny aňladýar)</translation>
+      <translation>Keresési stratégiák, vesszővel elválasztva
+(üres érték a &quot;prefix&quot; stratégiát jelenti)</translation>
     </message>
   </context>
   <context>
     <name>DictionaryBar</name>
     <message>
       <source>&amp;Dictionary Bar</source>
-      <translation>&amp;Sözlük zolagy</translation>
+      <translation>&amp;Szótár gombok</translation>
     </message>
     <message>
       <source>Extended menu with all dictionaries...</source>
-      <translation>Ähli sözlükleri görkezýän giňeldilen menýu...</translation>
+      <translation>Bővített menü az összes szótárral...</translation>
     </message>
     <message>
       <source>Edit this group</source>
-      <translation>Şu topary üýtget</translation>
+      <translation>Csoport szerkesztése</translation>
     </message>
     <message>
       <source>Dictionary info</source>
-      <translation>Sözlük barada maglumat</translation>
+      <translation>Szótár adatai</translation>
     </message>
     <message>
       <source>Dictionary headwords</source>
-      <translation>Sözlük sözleri</translation>
+      <translation>Címszavak</translation>
     </message>
     <message>
       <source>Open dictionary folder</source>
-      <translation>Sözlügiň bukjasyny aç</translation>
+      <translation>Mappa megnyitása</translation>
     </message>
     <message>
       <source>Edit dictionary</source>
-      <translation>Sözlügi üýtget</translation>
+      <translation>Szótár szerkesztése</translation>
     </message>
   </context>
   <context>
     <name>EditDictionaries</name>
     <message>
       <source>Dictionaries</source>
-      <translation>Sözlükler</translation>
+      <translation>Szótárak</translation>
     </message>
     <message>
       <source>&amp;Sources</source>
-      <translation>&amp;Çeşmeler</translation>
+      <translation>&amp;Források</translation>
     </message>
     <message>
       <source>&amp;Dictionaries</source>
-      <translation>&amp;Sözlükler</translation>
+      <translation>&amp;Szótárak</translation>
     </message>
     <message>
       <source>&amp;Groups</source>
-      <translation>&amp;Toparlar</translation>
+      <translation>&amp;Csoportok</translation>
     </message>
     <message>
       <source>Sources changed</source>
-      <translation>Çeşmeler üýtgedildi</translation>
+      <translation>Változás a forrásokban</translation>
     </message>
     <message>
       <source>Some sources were changed. Would you like to accept the changes?</source>
-      <translation>Käbir çeşmeler üýtgedildi. Üýtgeşmeleri kabul etmek isleýäňmi?</translation>
+      <translation>Bizonyos források megváltoztak. Elfogadja a változtatásokat?</translation>
     </message>
     <message>
       <source>Accept</source>
-      <translation>Kabul et</translation>
+      <translation>Elfogadás</translation>
     </message>
     <message>
       <source>Cancel</source>
-      <translation>Yza Gaýtar</translation>
+      <translation>Mégsem</translation>
     </message>
   </context>
   <context>
     <name>Epwing::EpwingDictionary</name>
     <message>
       <source>Previous Page</source>
-      <translation>Öňki sahypa</translation>
+      <translation>Előző oldal</translation>
     </message>
     <message>
       <source>Next Page</source>
-      <translation>Indiki sahypa</translation>
+      <translation>Következő oldal</translation>
     </message>
   </context>
   <context>
     <name>ExternalViewer</name>
     <message>
       <source>the viewer program name is empty</source>
-      <translation>Görmek üçin programanyň ady boş</translation>
+      <translation>a megjelenítő program neve üres</translation>
     </message>
   </context>
   <context>
     <name>FTS::FullTextSearchDialog</name>
     <message>
       <source>Full-text search</source>
-      <translation>Doly tekst gözlegi</translation>
+      <translation>Keresés a teljes szövegben</translation>
     </message>
     <message>
       <source>Default</source>
-      <translation>Bellenen</translation>
+      <translation>Alapértelmezett</translation>
     </message>
     <message>
       <source>Wildcards</source>
-      <translation>Waýkard</translation>
+      <translation>Helyettesítő karakterek</translation>
     </message>
     <message>
       <source>Support xapian search syntax, such as AND OR +/- etc.</source>
@@ -827,170 +828,170 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Articles found: </source>
-      <translation>Tapylan makalalar: </translation>
+      <translation>Megtalált szócikkek: </translation>
     </message>
     <message>
       <source>Now indexing: </source>
-      <translation>Indi indeksirleme: </translation>
+      <translation>Indexelés alatt: </translation>
     </message>
     <message>
       <source>None</source>
-      <translation>Hiç birisi</translation>
+      <translation>Semmi</translation>
     </message>
     <message>
       <source>The querying word can not be empty.</source>
-      <translation>Talap sözi boş bolup bilmez.</translation>
+      <translation>A keresett szó nem lehet üres.</translation>
     </message>
     <message>
       <source>No dictionaries for full-text search</source>
-      <translation>Doly tekst gözlemek üçin sözlük ýok</translation>
+      <translation>Nincs szótár a teljes szöveges kereséshez</translation>
     </message>
   </context>
   <context>
     <name>FavoritesModel</name>
     <message>
       <source>Error in favorities file</source>
-      <translation>Saýlawlar faýlynda säwlik</translation>
+      <translation>Hiba a kedvencek fájlban</translation>
     </message>
   </context>
   <context>
     <name>FavoritesPaneWidget</name>
     <message>
       <source>&amp;Delete Selected</source>
-      <translation>&amp;Saýlananlary ýok et</translation>
+      <translation>Kijelölt &amp;törlése</translation>
     </message>
     <message>
       <source>Copy Selected</source>
-      <translation>Saýlananlary kopiýa et</translation>
+      <translation>Kijelölt másolása</translation>
     </message>
     <message>
       <source>Add folder</source>
-      <translation>Papka goşuň</translation>
+      <translation>Új mappa</translation>
     </message>
     <message>
       <source>Favorites:</source>
-      <translation>Halanýanlar:</translation>
+      <translation>Kedvencek:</translation>
     </message>
     <message>
       <source>All selected items will be deleted. Continue?</source>
-      <translation>Selectedhli saýlanan elementler pozular. Dowam et?</translation>
+      <translation>Biztos, hogy töröl minden kijelölt elemet?</translation>
     </message>
   </context>
   <context>
     <name>Forvo::ForvoArticleRequest</name>
     <message>
       <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML analizinde ýalňyşlyk: %1 at %2,%3</translation>
+      <translation>XML értelmezési hiba: %1, hely: %2, %3</translation>
     </message>
     <message>
       <source>Added %1</source>
-      <translation>Goşuldy %1</translation>
+      <translation>Hozzáadva %1</translation>
     </message>
     <message>
       <source>by</source>
-      <translation> -</translation>
+      <translation>szerző</translation>
     </message>
     <message>
       <source>Male</source>
-      <translation>Erkek</translation>
+      <translation>Férfi</translation>
     </message>
     <message>
       <source>Female</source>
-      <translation>Aýal</translation>
+      <translation>Nő</translation>
     </message>
     <message>
       <source>from</source>
-      <translation>kimden</translation>
+      <translation>hely</translation>
     </message>
     <message>
       <source>Go to Edit|Dictionaries|Sources|Forvo and apply for our own API key to make this error disappear.</source>
-      <translation>Redkatirle|Dictionaries|Çeşmeler|Forvo açyň we öz API açaryňyzy soraň, şeýlelikde bu ýalňyşlyk ýok bolar.</translation>
+      <translation>A hiba megszüntetéséhez nyissa meg a Szerkesztés|Szótárak|Források|Forvo menüt és adja meg a saját API kulcsát.</translation>
     </message>
   </context>
   <context>
     <name>FtsSearchPanel</name>
     <message>
       <source>&amp;Previous</source>
-      <translation>&amp; Öňki</translation>
+      <translation>&amp;Előző</translation>
     </message>
     <message>
       <source>&amp;Next</source>
-      <translation>&amp; Indiki</translation>
+      <translation>&amp;Következő</translation>
     </message>
   </context>
   <context>
     <name>FullTextSearchDialog</name>
     <message>
       <source>Search</source>
-      <translation>Gözlemek</translation>
+      <translation>Keresés</translation>
     </message>
     <message>
       <source>Mode:</source>
-      <translation>Reodeim:</translation>
+      <translation>Mód:</translation>
     </message>
     <message>
       <source>Articles found:</source>
-      <translation>Tapylan makalalar:</translation>
+      <translation>Megtalált szócikkek:</translation>
     </message>
     <message>
       <source>Available dictionaries in group:</source>
-      <translation>Toparda elýeterli sözlükler:</translation>
+      <translation>A csoportban elérhető szótárak:</translation>
     </message>
     <message>
       <source>Wait for indexing:</source>
-      <translation>Indeksirlemäge garaşyň:</translation>
+      <translation>Indexelésre vár:</translation>
     </message>
     <message>
       <source>Total:</source>
-      <translation>Jemi:</translation>
+      <translation>Összesen:</translation>
     </message>
     <message>
       <source>Indexed:</source>
-      <translation>Indekslenen:</translation>
+      <translation>Indexelve:</translation>
     </message>
     <message>
       <source>Now indexing: None</source>
-      <translation>Indi indeksirleme: Hiç</translation>
+      <translation>Indexelés alatt: Semmi</translation>
     </message>
     <message>
       <source>Cancel</source>
-      <translation>Yza Gaýtar</translation>
+      <translation>Mégsem</translation>
     </message>
     <message>
       <source>Help</source>
-      <translation>Kömek ediň</translation>
+      <translation>Súgó</translation>
     </message>
   </context>
   <context>
     <name>GermanTranslit</name>
     <message>
       <source>German Transliteration</source>
-      <translation>Nemes transliterasiýa</translation>
+      <translation>Német átbetűzés</translation>
     </message>
   </context>
   <context>
     <name>GreekTranslit</name>
     <message>
       <source>Greek Transliteration</source>
-      <translation>Grek transliterasiýa</translation>
+      <translation>Görög átbetűzés</translation>
     </message>
   </context>
   <context>
     <name>GroupComboBox</name>
     <message>
       <source>Choose a Group (Alt+G)</source>
-      <translation>Topary saýla (Alt+G)</translation>
+      <translation>Csoport kiválasztása (Alt+G)</translation>
     </message>
   </context>
   <context>
     <name>Groups</name>
     <message>
       <source>Dictionaries available:</source>
-      <translation>Elýeterli sözlükler:</translation>
+      <translation>Elérhető szótárak:</translation>
     </message>
     <message>
       <source>Add selected dictionaries to group (Ins)</source>
-      <translation>Saýlanan sözlükleri topara goş (Ins)</translation>
+      <translation>A kijelölt szótárak hozzáadása a csoporthoz (Ins)</translation>
     </message>
     <message>
       <source>&gt;</source>
@@ -1002,7 +1003,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Remove selected dictionaries from group (Del)</source>
-      <translation>Saýlanan sözlükleri topardan aýyr (Del)</translation>
+      <translation>A kijelölt szótárak eltávolítása a csoportból (Del)</translation>
     </message>
     <message>
       <source>&lt;</source>
@@ -1014,175 +1015,175 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Groups:</source>
-      <translation>Toparlar:</translation>
+      <translation>Csoportok:</translation>
     </message>
     <message>
       <source>Tab 2</source>
-      <translation>2-nji tab</translation>
+      <translation>2. lap</translation>
     </message>
     <message>
       <source>Create new dictionary group</source>
-      <translation>Täze sözlük toparyny döret</translation>
+      <translation>Új szótárcsoport létrehozása</translation>
     </message>
     <message>
       <source>&amp;Add group</source>
-      <translation>&amp;Topary goş</translation>
+      <translation>Új &amp;csoport</translation>
     </message>
     <message>
       <source>Rename current dictionary group</source>
-      <translation>Häzirki sözlük toparynyň adyny üýtget</translation>
+      <translation>A jelenlegi csoport átnevezése</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
-      <translation>Toparyň adyny&amp;üýtget</translation>
+      <translation>Át&amp;nevezés</translation>
     </message>
     <message>
       <source>Remove current dictionary group</source>
-      <translation>Häzirki sözlük toparyny aýyr</translation>
+      <translation>A jelenlegi csoport törlése</translation>
     </message>
     <message>
       <source>&amp;Remove group</source>
-      <translation>&amp;Topary aýyr</translation>
+      <translation>Csoport &amp;törlése</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
-      <translation>Ähli sözlük toparlaryny aýyr</translation>
+      <translation>Az összes csoport törlése</translation>
     </message>
     <message>
       <source>Remove all groups</source>
-      <translation>Ähli toparlary aýyr</translation>
+      <translation>Összes törlése</translation>
     </message>
     <message>
       <source>Create language-based groups</source>
-      <translation>Dil esasynda toparlary döret</translation>
+      <translation>Nyelv alapú csoportok létrehozása</translation>
     </message>
     <message>
       <source>Group by Languages</source>
-      <translation>Diller boýunça topar</translation>
+      <translation>Csoportosítás nyelvek szerint</translation>
     </message>
     <message>
       <source>Create folder-based groups.</source>
-      <translation>Papka esasly toparlary dörediň.</translation>
+      <translation>Mappa alapú csoportok létrehozása.</translation>
     </message>
     <message>
       <source>Group by Folders</source>
-      <translation>Papkalar boýunça topar</translation>
+      <translation>Csoportosítás mappák szerint</translation>
     </message>
     <message>
       <source>Group by Metadata</source>
-      <translation>Metadata boýunça topar</translation>
+      <translation>Csoportosítás metaadatok szerint</translation>
     </message>
     <message>
       <source>Drag&amp;drop dictionaries to and from the groups, move them inside the groups, reorder the groups using your mouse.</source>
-      <translation>Süýre&amp;taşla sözlükleri toparyň içine ýa-da daşyna, myşkanyň kömegi bilen toparyň içinde ýerlerini ýa-da tertibini üýtget.</translation>
+      <translation>Húzza át a szótárakat a csoportokba vagy vissza, mozgassa csoportokon belül vagy módosítsa a sorrendjüket az egérrel.</translation>
     </message>
     <message>
       <source>Group tabs</source>
-      <translation>Topar goýmalary</translation>
+      <translation>Csoport lapok</translation>
     </message>
     <message>
       <source>Open groups list</source>
-      <translation>Toparlaryň sanawyny açyň</translation>
+      <translation>Csoportok listájának megnyitása</translation>
     </message>
     <message>
       <source>Add group</source>
-      <translation>Topary goş</translation>
+      <translation>Új csoport</translation>
     </message>
     <message>
       <source>Give a name for the new group:</source>
-      <translation>Täze topara at ber:</translation>
+      <translation>Adjon nevet az új csoportnak:</translation>
     </message>
     <message>
       <source>Rename group</source>
-      <translation>Toparyň adyny üýtget</translation>
+      <translation>Csoport átnevezése</translation>
     </message>
     <message>
       <source>Give a new name for the group:</source>
-      <translation>Topara täze adyny ber:</translation>
+      <translation>Adjon új nevet a csoportnak:</translation>
     </message>
     <message>
       <source>Remove group</source>
-      <translation>Topary aýyr</translation>
+      <translation>Csoport törlése</translation>
     </message>
     <message>
       <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
-      <translation>&lt;b&gt;%1&lt;/b&gt;? topary çyndan hem aýyrmak isleýäňmi?</translation>
+      <translation>Biztos, hogy törli a csoportot: &lt;b&gt;%1&lt;/b&gt;?</translation>
     </message>
     <message>
       <source>Are you sure you want to remove all the groups?</source>
-      <translation>Siz çyndanam ähli toparlary aýyrmak isleýärsiňizmi?</translation>
+      <translation>Biztos, hogy törli az összes csoportot?</translation>
     </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
     <message>
       <source>&amp;Delete Selected</source>
-      <translation>&amp;Saýlananlary ýok et</translation>
+      <translation>Kijelölt &amp;törlése</translation>
     </message>
     <message>
       <source>Copy Selected</source>
-      <translation>Saýlananlary kopiýa et</translation>
+      <translation>Kijelölt másolása</translation>
     </message>
     <message>
       <source>History:</source>
-      <translation>Geçmiş:</translation>
+      <translation>Előzmények:</translation>
     </message>
     <message>
       <source>%1/%2</source>
-      <translation>%1%2</translation>
+      <translation>%1/%2</translation>
     </message>
     <message>
       <source>History size: %1 entries out of maximum %2</source>
-      <translation>Geçmişde görkeziljek terjimeleriň göwrümi: %1 girizmeler maksimum %2</translation>
+      <translation>Előzmények hossza: %1 szócikk, maximum: %2</translation>
     </message>
   </context>
   <context>
     <name>Hunspell</name>
     <message>
       <source>Spelling suggestions: </source>
-      <translation>Dürs ýazuw kadalary hödürlemek: </translation>
+      <translation>Helyesírási javaslatok: </translation>
     </message>
     <message>
       <source>%1 Morphology</source>
-      <translation>%1 Morfologiýa</translation>
+      <translation>%1 morfológia</translation>
     </message>
   </context>
   <context>
     <name>HunspellDictsModel</name>
     <message>
       <source>Enabled</source>
-      <translation>Işledilen</translation>
+      <translation>Bekapcsolva</translation>
     </message>
     <message>
       <source>Name</source>
-      <translation>Ady</translation>
+      <translation>Név</translation>
     </message>
   </context>
   <context>
     <name>Initializing</name>
     <message>
       <source>GoldenDict-ng - Initializing</source>
-      <translation>GoldenDict-ng -  başlangyç</translation>
+      <translation>GondenDict-ng - Előkészítés</translation>
     </message>
     <message>
       <source>Indexing: </source>
-      <translation>Indeksirleme: </translation>
+      <translation>Indexelés: </translation>
     </message>
     <message>
       <source>Dictionary Name</source>
-      <translation>Sözlügiň ady</translation>
+      <translation>Szótár neve</translation>
     </message>
     <message>
       <source>Please wait...</source>
-      <translation>Haýyş garaşyň...</translation>
+      <translation>Kis türelmet...</translation>
     </message>
     <message>
       <source>Indexing...</source>
-      <translation>Indeksirlemek ...</translation>
+      <translation>Indexelés...</translation>
     </message>
     <message>
       <source>Loading...</source>
-      <translation>Adingüklenýär ...</translation>
+      <translation>Betöltés...</translation>
     </message>
   </context>
   <context>
@@ -1193,15 +1194,15 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Abkhazian</source>
-      <translation>Abhaz</translation>
+      <translation>Abház</translation>
     </message>
     <message>
       <source>Avestan</source>
-      <translation>Awest</translation>
+      <translation>Avesztai</translation>
     </message>
     <message>
       <source>Afrikaans</source>
-      <translation>Afrika</translation>
+      <translation>Afrikaans</translation>
     </message>
     <message>
       <source>Akan</source>
@@ -1209,51 +1210,51 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Amharic</source>
-      <translation>Amhar</translation>
+      <translation>Amhara</translation>
     </message>
     <message>
       <source>Aragonese</source>
-      <translation>Aragon</translation>
+      <translation>Aragóniai</translation>
     </message>
     <message>
       <source>Arabic</source>
-      <translation>Arap</translation>
+      <translation>Arab</translation>
     </message>
     <message>
       <source>Assamese</source>
-      <translation>Assamen</translation>
+      <translation>Asszámi</translation>
     </message>
     <message>
       <source>Avaric</source>
-      <translation>Awar</translation>
+      <translation>Avar</translation>
     </message>
     <message>
       <source>Aymara</source>
-      <translation>Aýmar</translation>
+      <translation>Ajmara</translation>
     </message>
     <message>
       <source>Azerbaijani</source>
-      <translation>Azerbeýjan</translation>
+      <translation>Azeri</translation>
     </message>
     <message>
       <source>Bashkir</source>
-      <translation>Başkir</translation>
+      <translation>Baskír</translation>
     </message>
     <message>
       <source>Belarusian</source>
-      <translation>Belarus</translation>
+      <translation>Belorusz</translation>
     </message>
     <message>
       <source>Bulgarian</source>
-      <translation>Bolgar</translation>
+      <translation>Bolgár</translation>
     </message>
     <message>
       <source>Bihari</source>
-      <translation>Bengal</translation>
+      <translation>Bihári</translation>
     </message>
     <message>
       <source>Bislama</source>
-      <translation>Bihari</translation>
+      <translation>Biszlama</translation>
     </message>
     <message>
       <source>Bambara</source>
@@ -1261,11 +1262,11 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Bengali</source>
-      <translation>Bengal</translation>
+      <translation>Bengáli</translation>
     </message>
     <message>
       <source>Tibetan</source>
-      <translation>Tibet</translation>
+      <translation>Tibeti</translation>
     </message>
     <message>
       <source>Breton</source>
@@ -1273,127 +1274,127 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Bosnian</source>
-      <translation>Boşnýak</translation>
+      <translation>Bosnyák</translation>
     </message>
     <message>
       <source>Catalan</source>
-      <translation>Katalon</translation>
+      <translation>Katalán</translation>
     </message>
     <message>
       <source>Chechen</source>
-      <translation>Çeçen</translation>
+      <translation>Csecsen</translation>
     </message>
     <message>
       <source>Chamorro</source>
-      <translation>Çamoro</translation>
+      <translation>Csamorro</translation>
     </message>
     <message>
       <source>Corsican</source>
-      <translation>Korsika</translation>
+      <translation>Korzikai</translation>
     </message>
     <message>
       <source>Cree</source>
-      <translation>Kri</translation>
+      <translation>Krí</translation>
     </message>
     <message>
       <source>Czech</source>
-      <translation>Çeh</translation>
+      <translation>Cseh</translation>
     </message>
     <message>
       <source>Church Slavic</source>
-      <translation>Gadymy slawýan</translation>
+      <translation>Óegyházi szláv</translation>
     </message>
     <message>
       <source>Chuvash</source>
-      <translation>Çuvaş</translation>
+      <translation>Csuvas</translation>
     </message>
     <message>
       <source>Welsh</source>
-      <translation>Welş</translation>
+      <translation>Walesi</translation>
     </message>
     <message>
       <source>Danish</source>
-      <translation>Daniýa</translation>
+      <translation>Dán</translation>
     </message>
     <message>
       <source>German</source>
-      <translation>Nemes</translation>
+      <translation>Német</translation>
     </message>
     <message>
       <source>Divehi</source>
-      <translation>Diweli</translation>
+      <translation>Maldív</translation>
     </message>
     <message>
       <source>Dzongkha</source>
-      <translation>Jonka</translation>
+      <translation>Dzongkha</translation>
     </message>
     <message>
       <source>Ewe</source>
-      <translation>Ewe</translation>
+      <translation>Eve</translation>
     </message>
     <message>
       <source>Greek</source>
-      <translation>Grek</translation>
+      <translation>Görög</translation>
     </message>
     <message>
       <source>English</source>
-      <translation>Iňlis</translation>
+      <translation>Angol</translation>
     </message>
     <message>
       <source>Esperanto</source>
-      <translation>Esperanto</translation>
+      <translation>Eszperantó</translation>
     </message>
     <message>
       <source>Spanish</source>
-      <translation>Ispan</translation>
+      <translation>Spanyol</translation>
     </message>
     <message>
       <source>Estonian</source>
-      <translation>Eston</translation>
+      <translation>Észt</translation>
     </message>
     <message>
       <source>Basque</source>
-      <translation>Bask</translation>
+      <translation>Baszk</translation>
     </message>
     <message>
       <source>Persian</source>
-      <translation>Pars (Parsça)</translation>
+      <translation>Perzsa</translation>
     </message>
     <message>
       <source>Fulah</source>
-      <translation>Fula</translation>
+      <translation>Ful</translation>
     </message>
     <message>
       <source>Finnish</source>
-      <translation>Fin</translation>
+      <translation>Finn</translation>
     </message>
     <message>
       <source>Fijian</source>
-      <translation>Fijian</translation>
+      <translation>Fidzsi</translation>
     </message>
     <message>
       <source>Faroese</source>
-      <translation>Friz</translation>
+      <translation>Feröeri</translation>
     </message>
     <message>
       <source>French</source>
-      <translation>Fransuz</translation>
+      <translation>Francia</translation>
     </message>
     <message>
       <source>Western Frisian</source>
-      <translation>Günbatar Friz</translation>
+      <translation>Fríz (nyugati)</translation>
     </message>
     <message>
       <source>Irish</source>
-      <translation>Irland</translation>
+      <translation>Ír</translation>
     </message>
     <message>
       <source>Scottish Gaelic</source>
-      <translation>Şotland gall</translation>
+      <translation>Skót gael</translation>
     </message>
     <message>
       <source>Galician</source>
-      <translation>Galisiýa</translation>
+      <translation>Galiciai</translation>
     </message>
     <message>
       <source>Guarani</source>
@@ -1401,19 +1402,19 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Gujarati</source>
-      <translation>Gujarat</translation>
+      <translation>Gudzsaráti</translation>
     </message>
     <message>
       <source>Manx</source>
-      <translation>Manks</translation>
+      <translation>Manx</translation>
     </message>
     <message>
       <source>Hausa</source>
-      <translation>Hauza</translation>
+      <translation>Hausza</translation>
     </message>
     <message>
       <source>Hebrew</source>
-      <translation>Yewreý</translation>
+      <translation>Héber</translation>
     </message>
     <message>
       <source>Hindi</source>
@@ -1421,23 +1422,23 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Hiri Motu</source>
-      <translation>Hindi</translation>
+      <translation>Hiri motu</translation>
     </message>
     <message>
       <source>Croatian</source>
-      <translation>Horwat</translation>
+      <translation>Horvát</translation>
     </message>
     <message>
       <source>Haitian</source>
-      <translation>Gaiti</translation>
+      <translation>Haiti</translation>
     </message>
     <message>
       <source>Hungarian</source>
-      <translation>Wenger</translation>
+      <translation>Magyar</translation>
     </message>
     <message>
       <source>Armenian</source>
-      <translation>Ermeni</translation>
+      <translation>Örmény</translation>
     </message>
     <message>
       <source>Herero</source>
@@ -1445,75 +1446,75 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Interlingua</source>
-      <translation>Interlingwa</translation>
+      <translation>Interlingva</translation>
     </message>
     <message>
       <source>Indonesian</source>
-      <translation>Endoneziýa</translation>
+      <translation>Indonéz</translation>
     </message>
     <message>
       <source>Interlingue</source>
-      <translation>Interlingwe</translation>
+      <translation>Interlingue</translation>
     </message>
     <message>
       <source>Igbo</source>
-      <translation>Irland</translation>
+      <translation>Igbó</translation>
     </message>
     <message>
       <source>Sichuan Yi</source>
-      <translation>Syçuan Ýi</translation>
+      <translation>Nuoszu (szecsuáni ji)</translation>
     </message>
     <message>
       <source>Inupiaq</source>
-      <translation>Inupak</translation>
+      <translation>Inupiak</translation>
     </message>
     <message>
       <source>Ido</source>
-      <translation>Men edýän</translation>
+      <translation>Ido</translation>
     </message>
     <message>
       <source>Icelandic</source>
-      <translation>Island</translation>
+      <translation>Izlandi</translation>
     </message>
     <message>
       <source>Italian</source>
-      <translation>italiyan</translation>
+      <translation>Olasz</translation>
     </message>
     <message>
       <source>Inuktitut</source>
-      <translation>Inuktikut</translation>
+      <translation>Inuktitut</translation>
     </message>
     <message>
       <source>Japanese</source>
-      <translation>Ýapon</translation>
+      <translation>Japán</translation>
     </message>
     <message>
       <source>Javanese</source>
-      <translation>Ýawa</translation>
+      <translation>Jávai</translation>
     </message>
     <message>
       <source>Georgian</source>
-      <translation>Gruzin</translation>
+      <translation>Grúz</translation>
     </message>
     <message>
       <source>Kongo</source>
-      <translation>Kongo</translation>
+      <translation>Kikongo</translation>
     </message>
     <message>
       <source>Kikuyu</source>
-      <translation>Kikuýu</translation>
+      <translation>Kikuju</translation>
     </message>
     <message>
       <source>Kwanyama</source>
-      <translation>Kwanýama</translation>
+      <translation>Kvanyama</translation>
     </message>
     <message>
       <source>Kazakh</source>
-      <translation>Gazak</translation>
+      <translation>Kazak</translation>
     </message>
     <message>
       <source>Kalaallisut</source>
-      <translation>Kalaallisut</translation>
+      <translation>Grönlandi</translation>
     </message>
     <message>
       <source>Khmer</source>
@@ -1525,7 +1526,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Korean</source>
-      <translation>Koreý</translation>
+      <translation>Koreai</translation>
     </message>
     <message>
       <source>Kanuri</source>
@@ -1533,11 +1534,11 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Kashmiri</source>
-      <translation>Kaşmir</translation>
+      <translation>Kasmíri</translation>
     </message>
     <message>
       <source>Kurdish</source>
-      <translation>Kürt</translation>
+      <translation>Kurd</translation>
     </message>
     <message>
       <source>Komi</source>
@@ -1545,27 +1546,27 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Cornish</source>
-      <translation>Korniş</translation>
+      <translation>Korni</translation>
     </message>
     <message>
       <source>Kirghiz</source>
-      <translation>Gyrgyz</translation>
+      <translation>Kirgiz</translation>
     </message>
     <message>
       <source>Latin</source>
-      <translation>Latyn</translation>
+      <translation>Latin</translation>
     </message>
     <message>
       <source>Luxembourgish</source>
-      <translation>Lýuksemburg</translation>
+      <translation>Luxemburgi</translation>
     </message>
     <message>
       <source>Ganda</source>
-      <translation>Ganda</translation>
+      <translation>Luganda</translation>
     </message>
     <message>
       <source>Limburgish</source>
-      <translation>Limburg</translation>
+      <translation>Limburgi</translation>
     </message>
     <message>
       <source>Lingala</source>
@@ -1573,11 +1574,11 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Lao</source>
-      <translation>Laos</translation>
+      <translation>Lao</translation>
     </message>
     <message>
       <source>Lithuanian</source>
-      <translation>Litwanýa</translation>
+      <translation>Litván</translation>
     </message>
     <message>
       <source>Luba-Katanga</source>
@@ -1585,15 +1586,15 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Latvian</source>
-      <translation>Latyş</translation>
+      <translation>Lett</translation>
     </message>
     <message>
       <source>Malagasy</source>
-      <translation>Malagazi</translation>
+      <translation>Malgas</translation>
     </message>
     <message>
       <source>Marshallese</source>
-      <translation>Marşal</translation>
+      <translation>Marshall-szigeteki</translation>
     </message>
     <message>
       <source>Maori</source>
@@ -1601,11 +1602,11 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Macedonian</source>
-      <translation>Makedon</translation>
+      <translation>Macedón</translation>
     </message>
     <message>
       <source>Malayalam</source>
-      <translation>Malaý</translation>
+      <translation>Malajálam</translation>
     </message>
     <message>
       <source>Mongolian</source>
@@ -1613,35 +1614,35 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Marathi</source>
-      <translation>Marati</translation>
+      <translation>Maráthi</translation>
     </message>
     <message>
       <source>Malay</source>
-      <translation>Malaý</translation>
+      <translation>Maláj</translation>
     </message>
     <message>
       <source>Maltese</source>
-      <translation>Malta</translation>
+      <translation>Máltai</translation>
     </message>
     <message>
       <source>Burmese</source>
-      <translation>Birma</translation>
+      <translation>Burmai</translation>
     </message>
     <message>
       <source>Nauru</source>
-      <translation>Nauru</translation>
+      <translation>Naurui</translation>
     </message>
     <message>
       <source>Norwegian Bokmal</source>
-      <translation>Norwegiýa bokmal</translation>
+      <translation>Norvég bokmål</translation>
     </message>
     <message>
       <source>North Ndebele</source>
-      <translation>Demirgazyk Ndbele</translation>
+      <translation>Északi ndebele</translation>
     </message>
     <message>
       <source>Nepali</source>
-      <translation>Nepal</translation>
+      <translation>Nepáli</translation>
     </message>
     <message>
       <source>Ndonga</source>
@@ -1649,167 +1650,167 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Dutch</source>
-      <translation>Golland</translation>
+      <translation>Holland</translation>
     </message>
     <message>
       <source>Norwegian Nynorsk</source>
-      <translation>Norwegiýa Ninorsk</translation>
+      <translation>Norvég nynorsk</translation>
     </message>
     <message>
       <source>Norwegian</source>
-      <translation>Norweg</translation>
+      <translation>Norvég</translation>
     </message>
     <message>
       <source>South Ndebele</source>
-      <translation>Günorta Ndbele</translation>
+      <translation>Déli ndebele</translation>
     </message>
     <message>
       <source>Navajo</source>
-      <translation>Nawaho</translation>
+      <translation>Navahó</translation>
     </message>
     <message>
       <source>Chichewa</source>
-      <translation>Çiçewa</translation>
+      <translation>Cseva</translation>
     </message>
     <message>
       <source>Occitan</source>
-      <translation>Okkitan</translation>
+      <translation>Okcitán</translation>
     </message>
     <message>
       <source>Ojibwa</source>
-      <translation>Ojibwe</translation>
+      <translation>Odzsibva</translation>
     </message>
     <message>
       <source>Oromo</source>
-      <translation>Oromo</translation>
+      <translation>Oromó</translation>
     </message>
     <message>
       <source>Oriya</source>
-      <translation>Oriwa</translation>
+      <translation>Orija</translation>
     </message>
     <message>
       <source>Ossetian</source>
-      <translation>Osetin</translation>
+      <translation>Oszét</translation>
     </message>
     <message>
       <source>Panjabi</source>
-      <translation>Panjabi</translation>
+      <translation>Pandzsábi</translation>
     </message>
     <message>
       <source>Pali</source>
-      <translation>Pali</translation>
+      <translation>Páli</translation>
     </message>
     <message>
       <source>Polish</source>
-      <translation>Polýak</translation>
+      <translation>Lengyel</translation>
     </message>
     <message>
       <source>Pashto</source>
-      <translation>Puştu</translation>
+      <translation>Pastu</translation>
     </message>
     <message>
       <source>Portuguese</source>
-      <translation>Portugal</translation>
+      <translation>Portugál</translation>
     </message>
     <message>
       <source>Quechua</source>
-      <translation>Keçua</translation>
+      <translation>Kecsua</translation>
     </message>
     <message>
       <source>Raeto-Romance</source>
-      <translation>Rito-Roman</translation>
+      <translation>Romans</translation>
     </message>
     <message>
       <source>Kirundi</source>
-      <translation>Kirundu</translation>
+      <translation>Rundi</translation>
     </message>
     <message>
       <source>Romanian</source>
-      <translation>Rumyn</translation>
+      <translation>Román</translation>
     </message>
     <message>
       <source>Russian</source>
-      <translation>Rus</translation>
+      <translation>Orosz</translation>
     </message>
     <message>
       <source>Kinyarwanda</source>
-      <translation>Kinýarwanda</translation>
+      <translation>Kinyarvanda</translation>
     </message>
     <message>
       <source>Sanskrit</source>
-      <translation>Sanskrit</translation>
+      <translation>Szanszkrit</translation>
     </message>
     <message>
       <source>Sardinian</source>
-      <translation>Sardin</translation>
+      <translation>Szárd (szardíniai)</translation>
     </message>
     <message>
       <source>Sindhi</source>
-      <translation>Sindhi</translation>
+      <translation>Szindhi</translation>
     </message>
     <message>
       <source>Northern Sami</source>
-      <translation>Demirgazyk Sami</translation>
+      <translation>Északi számi</translation>
     </message>
     <message>
       <source>Sango</source>
-      <translation>Sango</translation>
+      <translation>Szangó</translation>
     </message>
     <message>
       <source>Serbo-Croatian</source>
-      <translation>Singala</translation>
+      <translation>Szerbhorvát</translation>
     </message>
     <message>
       <source>Sinhala</source>
-      <translation>Sinhala</translation>
+      <translation>Szingaléz</translation>
     </message>
     <message>
       <source>Slovak</source>
-      <translation>Slowak</translation>
+      <translation>Szlovák</translation>
     </message>
     <message>
       <source>Slovenian</source>
-      <translation>Slowen</translation>
+      <translation>Szlovén</translation>
     </message>
     <message>
       <source>Samoan</source>
-      <translation>Samoa</translation>
+      <translation>Szamoai</translation>
     </message>
     <message>
       <source>Shona</source>
-      <translation>Şona</translation>
+      <translation>Sona</translation>
     </message>
     <message>
       <source>Somali</source>
-      <translation>Somali</translation>
+      <translation>Szomáli</translation>
     </message>
     <message>
       <source>Albanian</source>
-      <translation>Alban</translation>
+      <translation>Albán</translation>
     </message>
     <message>
       <source>Serbian</source>
-      <translation>Serb</translation>
+      <translation>Szerb</translation>
     </message>
     <message>
       <source>Swati</source>
-      <translation>Swati</translation>
+      <translation>Szvázi</translation>
     </message>
     <message>
       <source>Southern Sotho</source>
-      <translation>Günorta Soto</translation>
+      <translation>Déli szoto</translation>
     </message>
     <message>
       <source>Sundanese</source>
-      <translation>Sundan</translation>
+      <translation>Szundai</translation>
     </message>
     <message>
       <source>Swedish</source>
-      <translation>Şwed</translation>
+      <translation>Svéd</translation>
     </message>
     <message>
       <source>Swahili</source>
-      <translation>Suwaýili</translation>
+      <translation>Szuahéli</translation>
     </message>
     <message>
       <source>Tamil</source>
@@ -1817,23 +1818,23 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Telugu</source>
-      <translation>Telügü</translation>
+      <translation>Telugu</translation>
     </message>
     <message>
       <source>Tajik</source>
-      <translation>Täjik</translation>
+      <translation>Tádzsik</translation>
     </message>
     <message>
       <source>Thai</source>
-      <translation>tayland</translation>
+      <translation>Thai (sziámi)</translation>
     </message>
     <message>
       <source>Tigrinya</source>
-      <translation>Tigrinýa</translation>
+      <translation>Tigrinya</translation>
     </message>
     <message>
       <source>Turkmen</source>
-      <translation>Türkmen</translation>
+      <translation>Türkmén</translation>
     </message>
     <message>
       <source>Tagalog</source>
@@ -1841,7 +1842,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Tswana</source>
-      <translation>Tswana</translation>
+      <translation>Csvana</translation>
     </message>
     <message>
       <source>Tonga</source>
@@ -1849,31 +1850,31 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Turkish</source>
-      <translation>Türki</translation>
+      <translation>Török</translation>
     </message>
     <message>
       <source>Tsonga</source>
-      <translation>Tsonga</translation>
+      <translation>Conga</translation>
     </message>
     <message>
       <source>Tatar</source>
-      <translation>Tatar</translation>
+      <translation>Tatár</translation>
     </message>
     <message>
       <source>Twi</source>
-      <translation>Twi</translation>
+      <translation>Tvi</translation>
     </message>
     <message>
       <source>Tahitian</source>
-      <translation>Taiti</translation>
+      <translation>Tahiti</translation>
     </message>
     <message>
       <source>Uighur</source>
-      <translation>Uýgur</translation>
+      <translation>Ujgur</translation>
     </message>
     <message>
       <source>Ukrainian</source>
-      <translation>Ukrain</translation>
+      <translation>Ukrán</translation>
     </message>
     <message>
       <source>Urdu</source>
@@ -1881,234 +1882,234 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Uzbek</source>
-      <translation>Özbek</translation>
+      <translation>Üzbég</translation>
     </message>
     <message>
       <source>Venda</source>
-      <translation>Wenda</translation>
+      <translation>Venda</translation>
     </message>
     <message>
       <source>Vietnamese</source>
-      <translation>Vetnam</translation>
+      <translation>Vietnámi</translation>
     </message>
     <message>
       <source>Volapuk</source>
-      <translation>Wolapuk</translation>
+      <translation>Volapük</translation>
     </message>
     <message>
       <source>Walloon</source>
-      <translation>Walon</translation>
+      <translation>Vallon</translation>
     </message>
     <message>
       <source>Wolof</source>
-      <translation>Möjek</translation>
+      <translation>Volof</translation>
     </message>
     <message>
       <source>Xhosa</source>
-      <translation>Kosa</translation>
+      <translation>Xhosza</translation>
     </message>
     <message>
       <source>Yiddish</source>
-      <translation>Idiş</translation>
+      <translation>Jiddis</translation>
     </message>
     <message>
       <source>Yoruba</source>
-      <translation>Ýoruba</translation>
+      <translation>Joruba</translation>
     </message>
     <message>
       <source>Zhuang</source>
-      <translation>Žuang</translation>
+      <translation>Csuang</translation>
     </message>
     <message>
       <source>Chinese</source>
-      <translation>Hytay</translation>
+      <translation>Kínai</translation>
     </message>
     <message>
       <source>Zulu</source>
-      <translation>Zulus</translation>
+      <translation>Zulu</translation>
     </message>
     <message>
       <source>Lojban</source>
-      <translation>Ložban</translation>
+      <translation>Lojban</translation>
     </message>
     <message>
       <source>Traditional Chinese</source>
-      <translation>Adaty Hytaý</translation>
+      <translation>Hagyományos kínai</translation>
     </message>
     <message>
       <source>Simplified Chinese</source>
-      <translation>Ýönekeýleşdirlen Hytaý</translation>
+      <translation>Egyszerűsített kínai</translation>
     </message>
     <message>
       <source>Other</source>
-      <translation>Başgalar</translation>
+      <translation>Egyéb</translation>
     </message>
     <message>
       <source>Other Simplified Chinese dialects</source>
-      <translation>Başga ýönekeýleşdirlen Hytaý şiweleri</translation>
+      <translation>Egyéb egyszerűsített kínai nyelvjárások</translation>
     </message>
     <message>
       <source>Other Traditional Chinese dialects</source>
-      <translation>Başga adaty Hytaý şiweleri</translation>
+      <translation>Egyéb hagyományos kínai nyelvjárások</translation>
     </message>
     <message>
       <source>Other Eastern-European languages</source>
-      <translation>Başga Gündogar-Ýewropa dilleri</translation>
+      <translation>Egyéb kelet-európai nyelvek</translation>
     </message>
     <message>
       <source>Other Western-European languages</source>
-      <translation>Başga Günbatar-Ýewropa dilleri</translation>
+      <translation>Egyéb nyugat-európai nyelvek</translation>
     </message>
     <message>
       <source>Other Russian languages</source>
-      <translation>Başga rus dilleri</translation>
+      <translation>Egyéb orosz nyelvek</translation>
     </message>
     <message>
       <source>Other Japanese languages</source>
-      <translation>Başga ýapon dilleri</translation>
+      <translation>Egyéb japán nyelvek</translation>
     </message>
     <message>
       <source>Other Baltic languages</source>
-      <translation>Başga baltik dilleri</translation>
+      <translation>Egyéb balti nyelvek</translation>
     </message>
     <message>
       <source>Other Greek languages</source>
-      <translation>Başga grek dilleri</translation>
+      <translation>Egyéb görög nyelvek</translation>
     </message>
     <message>
       <source>Other Korean dialects</source>
-      <translation>Başga koreýa dilleri</translation>
+      <translation>Egyéb koreai nyelvjárások</translation>
     </message>
     <message>
       <source>Other Turkish dialects</source>
-      <translation>Başga türki dilleri</translation>
+      <translation>Egyéb török nyelvjárások</translation>
     </message>
     <message>
       <source>Other Thai dialects</source>
-      <translation>Başga tailand dilleri</translation>
+      <translation>Egyéb thai nyelvjárások</translation>
     </message>
     <message>
       <source>Tamazight</source>
-      <translation>Tamazigt</translation>
+      <translation>Berber nyelvek</translation>
     </message>
   </context>
   <context>
     <name>Language::Db</name>
     <message>
       <source>French</source>
-      <translation>Fransuz</translation>
+      <translation>Francia</translation>
     </message>
     <message>
       <source>Spanish</source>
-      <translation>Ispan</translation>
+      <translation>Spanyol</translation>
     </message>
     <message>
       <source>Belarusian</source>
-      <translation>Belarus</translation>
+      <translation>Belorusz</translation>
     </message>
     <message>
       <source>Bulgarian</source>
-      <translation>Bolgar</translation>
+      <translation>Bolgár</translation>
     </message>
     <message>
       <source>Czech</source>
-      <translation>Çeh</translation>
+      <translation>Cseh</translation>
     </message>
     <message>
       <source>German</source>
-      <translation>Nemes</translation>
+      <translation>Német</translation>
     </message>
     <message>
       <source>Greek</source>
-      <translation>Grek</translation>
+      <translation>Görög</translation>
     </message>
     <message>
       <source>Finnish</source>
-      <translation>Fin</translation>
+      <translation>Finn</translation>
     </message>
     <message>
       <source>Italian</source>
-      <translation>Italýan</translation>
+      <translation>Olasz</translation>
     </message>
     <message>
       <source>Japanese</source>
-      <translation>Japaneseaponlar</translation>
+      <translation>Japán</translation>
     </message>
     <message>
       <source>Korean</source>
-      <translation>Koreýçe</translation>
+      <translation>Koreai</translation>
     </message>
     <message>
       <source>Lithuanian</source>
-      <translation>Litwa</translation>
+      <translation>Litván</translation>
     </message>
     <message>
       <source>Macedonian</source>
-      <translation>Makedoniýa</translation>
+      <translation>Macedón</translation>
     </message>
     <message>
       <source>Dutch</source>
-      <translation>Gollandiýaly</translation>
+      <translation>Holland</translation>
     </message>
     <message>
       <source>Polish</source>
-      <translation>Polýak</translation>
+      <translation>Lengyel</translation>
     </message>
     <message>
       <source>Portuguese</source>
-      <translation>Portugaliýa</translation>
+      <translation>Portugál</translation>
     </message>
     <message>
       <source>Russian</source>
-      <translation>Rus</translation>
+      <translation>Orosz</translation>
     </message>
     <message>
       <source>Slovak</source>
-      <translation>Slowakiýa</translation>
+      <translation>Szlovák</translation>
     </message>
     <message>
       <source>Albanian</source>
-      <translation>Alban</translation>
+      <translation>Albán</translation>
     </message>
     <message>
       <source>Serbian (Cyrillic)</source>
-      <translation>Serb (kiril)</translation>
+      <translation>Szerb (Cirill)</translation>
     </message>
     <message>
       <source>Swedish</source>
-      <translation>Şwesiýa</translation>
+      <translation>Svéd</translation>
     </message>
     <message>
       <source>Turkish</source>
-      <translation>Türk</translation>
+      <translation>Török</translation>
     </message>
     <message>
       <source>Ukrainian</source>
-      <translation>Ukrain</translation>
+      <translation>Ukrán</translation>
     </message>
     <message>
       <source>Chinese Simplified</source>
-      <translation>Hytaý ýönekeýleşdirildi</translation>
+      <translation>Kínai Egyszerűsített</translation>
     </message>
     <message>
       <source>Chinese Traditional</source>
-      <translation>Hytaý adaty</translation>
+      <translation>Kínai Hagyományos</translation>
     </message>
     <message>
       <source>Vietnamese</source>
-      <translation>Wýetnamly</translation>
+      <translation>Vietnámi</translation>
     </message>
     <message>
       <source>Portuguese, Brazilian</source>
-      <translation>Portugaliýa, Braziliýa</translation>
+      <translation>Portugál, brazíliai</translation>
     </message>
     <message>
       <source>Persian</source>
-      <translation>Pars</translation>
+      <translation>Perzsa</translation>
     </message>
     <message>
       <source>Spanish, Argentina</source>
-      <translation>Ispan, Argentina</translation>
+      <translation>Spanyol, argentínai</translation>
     </message>
     <message>
       <source>Hindi</source>
@@ -2116,39 +2117,39 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Esperanto</source>
-      <translation>Esperanto</translation>
+      <translation>Eszperantó</translation>
     </message>
     <message>
       <source>German, Switzerland</source>
-      <translation>German, Şweýsariýa</translation>
+      <translation>Német, svájci</translation>
     </message>
     <message>
       <source>Spanish, Bolivia</source>
-      <translation>Ispan, Boliwiýa</translation>
+      <translation>Spanyol, bolíviai</translation>
     </message>
     <message>
       <source>Tajik</source>
-      <translation>Täjik</translation>
+      <translation>Tádzsik</translation>
     </message>
     <message>
       <source>Quechua</source>
-      <translation>Keçua</translation>
+      <translation>Kecsua</translation>
     </message>
     <message>
       <source>Aymara</source>
-      <translation>Aýmara</translation>
+      <translation>Ajmara</translation>
     </message>
     <message>
       <source>Arabic, Saudi Arabia</source>
-      <translation>Arap, Saud Arabystany</translation>
+      <translation>Arab, szaúd-arábiai</translation>
     </message>
     <message>
       <source>Turkmen</source>
-      <translation>Türkmenler</translation>
+      <translation>Türkmén</translation>
     </message>
     <message>
       <source>Interlingue</source>
-      <translation>Aragatnaşyk</translation>
+      <translation>Interlingue</translation>
     </message>
     <message>
       <source>Lojban</source>
@@ -2160,80 +2161,80 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>English</source>
-      <translation>Iňlis</translation>
+      <translation>Angol</translation>
     </message>
   </context>
   <context>
     <name>LoadDictionaries</name>
     <message>
       <source>Error loading dictionaries</source>
-      <translation>Sözlük ýüklenende ýalňyşlyk çykdy</translation>
+      <translation>Hiba a szótárak betöltésekor</translation>
     </message>
   </context>
   <context>
     <name>Main</name>
     <message>
       <source>Error in configuration file. Continue with default settings?</source>
-      <translation>Konfigurasiýa faýlynda ýalňyşlyk bar. Başlangyç sazlamalar bilen dowam etjekmi?</translation>
+      <translation>Hiba a beállítási fájlban. Folytatja alapértelmezett beállításokkal?</translation>
     </message>
   </context>
   <context>
     <name>MainWindow</name>
     <message>
       <source>Welcome!</source>
-      <translation>Hoş geldiňiz!</translation>
+      <translation>Üdvözöljük!</translation>
     </message>
     <message>
       <source>&amp;File</source>
-      <translation>&amp;Faýl</translation>
+      <translation>&amp;Fájl</translation>
     </message>
     <message>
       <source>&amp;Edit</source>
-      <translation>&amp;Redaktirle</translation>
+      <translation>&amp;Szerkesztés</translation>
     </message>
     <message>
       <source>&amp;Help</source>
-      <translation>&amp;Kömek</translation>
+      <translation>&amp;Súgó</translation>
     </message>
     <message>
       <source>&amp;View</source>
-      <translation>&amp;Görnüş</translation>
+      <translation>&amp;Nézet</translation>
     </message>
     <message>
       <source>&amp;Zoom</source>
-      <translation>&amp;Ulalt</translation>
+      <translation>Na&amp;gyítás</translation>
     </message>
     <message>
       <source>H&amp;istory</source>
-      <translation>&amp;Geçmiş</translation>
+      <translation>&amp;Előzmények</translation>
     </message>
     <message>
       <source>Search</source>
-      <translation>Gözlemek</translation>
+      <translation>Keresés</translation>
     </message>
     <message>
       <source>Favo&amp;rites</source>
-      <translation>Favo we dessurlar</translation>
+      <translation>Ked&amp;vencek</translation>
     </message>
     <message>
       <source>&amp;Search Pane</source>
-      <translation>&amp;Gözleg tagtasy</translation>
+      <translation>&amp;Keresés panel</translation>
     </message>
     <message>
       <source>&amp;Results Navigation Pane</source>
-      <translation>&amp;Nawigasiýa tagtasyndan netijeler</translation>
+      <translation>E&amp;redmény navigációs panel</translation>
     </message>
     <message>
       <source>Favor&amp;ites Pane</source>
-      <translation>Saýlaw we bellikler</translation>
+      <translation>Ked&amp;vencek panel</translation>
     </message>
     <message>
       <source>&amp;History Pane</source>
-      <translation>&amp;Geçmiş tagtasy</translation>
+      <translation>&amp;Előzmények panel</translation>
     </message>
     <message>
       <source>&amp;Dictionaries...</source>
-      <translation>&amp;Sözlükler...</translation>
+      <translation>&amp;Szótárak...</translation>
     </message>
     <message>
       <source>F3</source>
@@ -2241,7 +2242,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>&amp;Preferences...</source>
-      <translation>&amp;Saýlamalar...</translation>
+      <translation>&amp;Beállítások...</translation>
     </message>
     <message>
       <source>F4</source>
@@ -2249,51 +2250,51 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>&amp;Homepage</source>
-      <translation>&amp;Baş sahypa</translation>
+      <translation>&amp;Weboldal</translation>
     </message>
     <message>
       <source>&amp;About</source>
-      <translation>&amp;Maglumat</translation>
+      <translation>&amp;Névjegy</translation>
     </message>
     <message>
       <source>About GoldenDict-ng</source>
-      <translation>GoldenDict-ng barada</translation>
+      <translation>GoldenDict-ng névjegye</translation>
     </message>
     <message>
       <source>&amp;Quit</source>
-      <translation>&amp;Çyk</translation>
+      <translation>&amp;Kilépés</translation>
     </message>
     <message>
       <source>Quit from application</source>
-      <translation>Programadan çyk</translation>
+      <translation>Kilépés az alkalmazásból</translation>
     </message>
     <message>
       <source>Ctrl+Q</source>
-      <translation>Ctrl + Q.</translation>
+      <translation>Ctrl+Q</translation>
     </message>
     <message>
       <source>&amp;Forum</source>
-      <translation>&amp; Forum</translation>
+      <translation>&amp;Fórum</translation>
     </message>
     <message>
       <source>&amp;Close To Tray</source>
-      <translation>&amp;Panel içine buk</translation>
+      <translation>&amp;Bezárás a tálcára</translation>
     </message>
     <message>
       <source>Minimizes the window to tray</source>
-      <translation>Penjireleri paneliň içinde gizlemek</translation>
+      <translation>Minimalizálja az ablakot a rendszertálcára</translation>
     </message>
     <message>
       <source>Ctrl+F4</source>
-      <translation>Ctrl + F4</translation>
+      <translation>Ctrl+F4</translation>
     </message>
     <message>
       <source>&amp;Save Article</source>
-      <translation>&amp;Makalany ýatda sakla</translation>
+      <translation>Szócikk &amp;mentése</translation>
     </message>
     <message>
       <source>Save Article</source>
-      <translation>Ýatda sakla</translation>
+      <translation>Szócikk mentése</translation>
     </message>
     <message>
       <source>F2</source>
@@ -2301,95 +2302,95 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>&amp;Print</source>
-      <translation>&amp;Çap et</translation>
+      <translation>&amp;Nyomtatás</translation>
     </message>
     <message>
       <source>Ctrl+P</source>
-      <translation>Ctrl + P.</translation>
+      <translation>Ctrl+P</translation>
     </message>
     <message>
       <source>Page Set&amp;up</source>
-      <translation>Sahypany &amp;sazla</translation>
+      <translation>&amp;Oldalbeállítás</translation>
     </message>
     <message>
       <source>Print Pre&amp;view</source>
-      <translation>Çap edilen &amp;görnüşi</translation>
+      <translation>Nyomtatási &amp;előnézet</translation>
     </message>
     <message>
       <source>&amp;Rescan Files</source>
-      <translation>&amp;Faýllary täzeden gözden geçirmek</translation>
+      <translation>&amp;Fájlok újraolvasása</translation>
     </message>
     <message>
       <source>Ctrl+F5</source>
-      <translation>Ctrl + F5</translation>
+      <translation>Ctrl+F5</translation>
     </message>
     <message>
       <source>&amp;Clear</source>
-      <translation>&amp;Arassala</translation>
+      <translation>&amp;Törlés</translation>
     </message>
     <message>
       <source>&amp;New Tab</source>
-      <translation>&amp;Täze wkladka</translation>
+      <translation>Új &amp;lap</translation>
     </message>
     <message>
       <source>Ctrl+T</source>
-      <translation>Ctrl + T.</translation>
+      <translation>Ctrl+T</translation>
     </message>
     <message>
       <source>&amp;Configuration Folder</source>
-      <translation>&amp;Konfigurasiýa bukjasy</translation>
+      <translation>&amp;Beállítási mappa</translation>
     </message>
     <message>
       <source>&amp;Show</source>
-      <translation>&amp;Görkez</translation>
+      <translation>&amp;Megjelenítés</translation>
     </message>
     <message>
       <source>Ctrl+H</source>
-      <translation>Ctrl + H.</translation>
+      <translation>Ctrl+H</translation>
     </message>
     <message>
       <source>&amp;Export</source>
-      <translation>&amp;Eksport</translation>
+      <translation>&amp;Exportálás</translation>
     </message>
     <message>
       <source>&amp;Import</source>
-      <translation>&amp; Import</translation>
+      <translation>&amp;Importálás</translation>
     </message>
     <message>
       <source>&amp;Always on Top</source>
-      <translation>&amp;Mydama ýokarda</translation>
+      <translation>Mindig &amp;felül</translation>
     </message>
     <message>
       <source>Always on Top</source>
-      <translation>Mydama ýokarda</translation>
+      <translation>Mindig felül</translation>
     </message>
     <message>
       <source>Ctrl+O</source>
-      <translation>Ctrl + O.</translation>
+      <translation>Ctrl+O</translation>
     </message>
     <message>
       <source>Menu Button</source>
-      <translation>Menýu düwmesi</translation>
+      <translation>Menü gomb</translation>
     </message>
     <message>
       <source>Search in page</source>
-      <translation>Sahypada gözläň</translation>
+      <translation>Keresés az oldalon</translation>
     </message>
     <message>
       <source>Ctrl+F</source>
-      <translation>Ctrl + F.</translation>
+      <translation>Ctrl+F</translation>
     </message>
     <message>
       <source>Full-text search</source>
-      <translation>Doly tekst gözlegi</translation>
+      <translation>Keresés a teljes szövegben</translation>
     </message>
     <message>
       <source>Ctrl+Shift+F</source>
-      <translation>Ctrl + Shift + F.</translation>
+      <translation>Ctrl+Shift+F</translation>
     </message>
     <message>
       <source>GoldenDict reference</source>
-      <translation>GoldenDict salgylanmasy</translation>
+      <translation>GondenDict kézikönyv</translation>
     </message>
     <message>
       <source>F1</source>
@@ -2397,153 +2398,153 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Show</source>
-      <translation>Görkez</translation>
+      <translation>Megjelenítés</translation>
     </message>
     <message>
       <source>Export</source>
-      <translation>Eksport</translation>
+      <translation>Exportálás</translation>
     </message>
     <message>
       <source>Import</source>
-      <translation>Import</translation>
+      <translation>Importálás</translation>
     </message>
     <message>
       <source>Add</source>
-      <translation>Goş</translation>
+      <translation>Hozzáadás</translation>
     </message>
     <message>
       <source>Add current tab to Favorites</source>
-      <translation>Halanýanlara häzirki goýmany goşuň</translation>
+      <translation>A jelenlegi lap hozzáadása a kedvencekhez</translation>
     </message>
     <message>
       <source>Ctrl+E</source>
-      <translation>Ctrl + E.</translation>
+      <translation>Ctrl+E</translation>
     </message>
     <message>
       <source>Export to list</source>
-      <translation>Sanaw üçin eksport</translation>
+      <translation>Exportálás listába</translation>
     </message>
     <message>
       <source>Show Names in Dictionary &amp;Bar</source>
-      <translation>Sözlük &amp;tagtasynda atlary görkez</translation>
+      <translation>Nevek megjelenítése a szótár &amp;gombokon</translation>
     </message>
     <message>
       <source>Show Small Icons in &amp;Toolbars</source>
-      <translation>Kiçi nyşanlary görkez &amp;gurallar-tagtasynda</translation>
+      <translation>Kis &amp;ikonok megjelenítése az eszköztáron</translation>
     </message>
     <message>
       <source>&amp;Menubar</source>
-      <translation>&amp;Menýu zolagy</translation>
+      <translation>&amp;Menüsor</translation>
     </message>
     <message>
       <source>&amp;Navigation</source>
-      <translation>&amp;Nawigasiýa</translation>
+      <translation>&amp;Navigáció</translation>
     </message>
     <message>
       <source>Back</source>
-      <translation>Yza gaýt</translation>
+      <translation>Vissza</translation>
     </message>
     <message>
       <source>Forward</source>
-      <translation>Ugrukdyr</translation>
+      <translation>Előre</translation>
     </message>
     <message>
       <source>Enable Scanning</source>
-      <translation>Skaneri açyň</translation>
+      <translation>Felugróablak engedélyezése</translation>
     </message>
     <message>
       <source>Pronounce Word (Alt+S)</source>
-      <translation>Sözi eşitdirmek (Alt+S)</translation>
+      <translation>Szó kiejtése (Alt+S)</translation>
     </message>
     <message>
       <source>Zoom In</source>
-      <translation>Ulalt</translation>
+      <translation>Nagyítás</translation>
     </message>
     <message>
       <source>Zoom Out</source>
-      <translation>Kiçelt</translation>
+      <translation>Kicsinyítés</translation>
     </message>
     <message>
       <source>Normal Size</source>
-      <translation>Normal ululygy</translation>
+      <translation>Alapértelmezett méret</translation>
     </message>
     <message>
       <source>Found in Dictionaries:</source>
-      <translation>Sözlüklerden tapylan:</translation>
+      <translation>Találat a szótárakban:</translation>
     </message>
     <message>
       <source>Words Zoom In</source>
-      <translation>Sözleri ulalt</translation>
+      <translation>Szavak nagyítása</translation>
     </message>
     <message>
       <source>Words Zoom Out</source>
-      <translation>Sözleri kiçelt</translation>
+      <translation>Szavak kicsinyítése</translation>
     </message>
     <message>
       <source>Words Normal Size</source>
-      <translation>Sözleriň normal ululygy</translation>
+      <translation>Szavak alapértelmezett méretben</translation>
     </message>
     <message>
       <source>Show &amp;Main Window</source>
-      <translation>Görkez &amp;Esasy penjiräni</translation>
+      <translation>&amp;Főablak megjelenítése</translation>
     </message>
     <message>
       <source>Opened tabs</source>
-      <translation>Açyk wkladkalar</translation>
+      <translation>Megnyitott lapok</translation>
     </message>
     <message>
       <source>Close current tab</source>
-      <translation>Şu wagtky wkladkany ýap</translation>
+      <translation>Jelenlegi lap bezárása</translation>
     </message>
     <message>
       <source>Close all tabs</source>
-      <translation>Ähli açyk wkladkalary ýap</translation>
+      <translation>Összes lap bezárása</translation>
     </message>
     <message>
       <source>Close all tabs except current</source>
-      <translation>Şu wagtky açylandan daşary ähli başga wkladkalary ýap</translation>
+      <translation>A jelenlegin kívüli összes lap bezárása</translation>
     </message>
     <message>
       <source>Add all tabs to Favorites</source>
-      <translation>Tabhli bellikleri Halanýanlara goşuň</translation>
+      <translation>Minden lap hozzáadása a kedvencekhez</translation>
     </message>
     <message>
       <source>New Tab</source>
-      <translation>Täze wkladka</translation>
+      <translation>Új lap</translation>
     </message>
     <message>
       <source>Accessibility API is not enabled</source>
-      <translation>API elýeterli edilmedik</translation>
+      <translation>A kisegítő lehetőségek API nincs bekapcsolva</translation>
     </message>
     <message>
       <source>WARNING: %1</source>
-      <translation>DUNDURYŞ: %1</translation>
+      <translation>FIGYELEM: %1</translation>
     </message>
     <message>
       <source>String to search in dictionaries. The wildcards &apos;*&apos;, &apos;?&apos; and sets of symbols &apos;[...]&apos; are allowed.
 To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &apos;\*&apos;, &apos;\?&apos;, &apos;\[&apos;, &apos;\]&apos; respectively</source>
-      <translation>Sözlüklerde gözlemek üçin setir. &apos;*&apos;, &apos;?&apos; we &apos;[...]&apos; nyşan toplumyna rugsat berilýär.
- &apos;*&apos;, &apos;tapmak üçin?&apos;, &apos;[&apos;, &apos;]&apos; nyşan &apos;\ *&apos;, &apos;\ ulanýar? Degişlilikde&apos;, &apos;\ [&apos;, &apos;\]&apos;</translation>
+      <translation>A szótárakban keresendő kifejezés. A &apos;*&apos; és &apos;?&apos; helyettesítő karakterek és &apos;[...]&apos; szimbólumkészletek használhatók.
+A &apos;*&apos;, &apos;?&apos;, &apos;[&apos; és &apos;]&apos; karakterek kereséséhez a &apos;\*&apos;, &apos;\?&apos;, &apos;\[&apos; ill. &apos;\]&apos; formátumot használhatja</translation>
     </message>
     <message>
       <source>%1 dictionaries, %2 articles, %3 words</source>
-      <translation>%1 sözlükler, %2 makalalar, %3 sözler</translation>
+      <translation>%1 szótár, %2 szócikk, %3 szó</translation>
     </message>
     <message>
       <source>All</source>
-      <translation>Ählisi</translation>
+      <translation>Összes</translation>
     </message>
     <message>
       <source>Open Tabs List</source>
-      <translation>Açyk wkladkalaryň sanawy</translation>
+      <translation>A megnyitott lapok listája</translation>
     </message>
     <message>
       <source>(untitled)</source>
-      <translation>(atsyz)</translation>
+      <translation>(névtelen)</translation>
     </message>
     <message>
       <source>Remove current tab from Favorites</source>
-      <translation>Häzirki goýmany Halanýanlardan aýyryň</translation>
+      <translation>A jelenlegi lap eltávolítása a kedvencekből</translation>
     </message>
     <message>
       <source>%1 - %2</source>
@@ -2551,553 +2552,553 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
       <source>Failed to initialize hotkeys monitoring mechanism.&lt;br&gt;Make sure your XServer has RECORD extension turned on.</source>
-      <translation>“Hotkeys” -e gözegçilik mehanizmini işe girizip bilmedi.&lt;br&gt;XServer-de RECORD giňeltmesiniň açykdygyna göz ýetiriň.</translation>
+      <translation>Nem sikerült a gyorsbillentyűk beállítása.&lt;br&gt;Ellenőrizze, hogy a RECORD bővítmény engedélyezve van az XServeren.</translation>
     </message>
     <message>
       <source>New Release Available</source>
-      <translation>Täze neşir elýeterli</translation>
+      <translation>Új kiadás érhető el</translation>
     </message>
     <message>
       <source>Version &lt;b&gt;%1&lt;/b&gt; of GoldenDict is now available for download.&lt;br&gt;Click &lt;b&gt;Download&lt;/b&gt; to get to the download page.</source>
-      <translation>“GoldenDict” -iň &lt;b&gt;%1&lt;/b&gt; wersiýasyny indi göçürip alyp bilersiňiz.&lt;br&gt;Göçürip almak sahypasyna girmek üçin &lt;b&gt;ýüklemek&lt;/b&gt; basyň.</translation>
+      <translation>A GoldenDict &lt;b&gt;%1&lt;/b&gt; verziója elérhető letöltésre. &lt;br&gt;Kattintson a &lt;b&gt;Letöltés&lt;/b&gt; gombra az oldal megnyitásához.</translation>
     </message>
     <message>
       <source>Download</source>
-      <translation>Ýükläp almak</translation>
+      <translation>Letöltés</translation>
     </message>
     <message>
       <source>Skip This Release</source>
-      <translation>Şu neşiri böküp geç</translation>
+      <translation>Kiadás mellőzése</translation>
     </message>
     <message>
       <source>You have chosen to hide a menubar. Use %1 to show it back.</source>
-      <translation>Siz menýu zolagyny gizlemägi saýladyňyz. %1 ulanyp ýenede çykaryp görkez.</translation>
+      <translation>Elrejtette a menüsort. A %1 használatával újra megjelenítheti.</translation>
     </message>
     <message>
       <source>Ctrl+M</source>
-      <translation>Ctrl + M.</translation>
+      <translation>Ctrl+M</translation>
     </message>
     <message>
       <source>Page Setup</source>
-      <translation>Sahypany sazlamak</translation>
+      <translation>Oldalbeállítások</translation>
     </message>
     <message>
       <source>No printer is available. Please install one first.</source>
-      <translation>Printer ýok. Ilki bilen gurna ony.</translation>
+      <translation>Nincs elérhető nyomtató. A nyomtatáshoz telepítsen egyet.</translation>
     </message>
     <message>
       <source>Print Article</source>
-      <translation>Makalany çap et</translation>
+      <translation>Szócikk nyomtatása</translation>
     </message>
     <message>
       <source>Article, Complete (*.html)</source>
-      <translation>Makala, taýýar (*.html)</translation>
+      <translation>Szócikk, Teljes (*.html)</translation>
     </message>
     <message>
       <source>Article, HTML Only (*.html)</source>
-      <translation>Makala, HTML diňe (*.html)</translation>
+      <translation>Szócikk, Csak HTML (*.html)</translation>
     </message>
     <message>
       <source>Save Article As</source>
-      <translation>Makalany şular ýaly ýatda sakla</translation>
+      <translation>Szócikk mentése mint</translation>
     </message>
     <message>
       <source>Error</source>
-      <translation>Ýalňyş</translation>
+      <translation>Hiba</translation>
     </message>
     <message>
       <source>Can&apos;t save article: %1</source>
-      <translation>Makalany ýatda saklap bolmady %1</translation>
+      <translation>A szócikk mentése nem sikerült: %1</translation>
     </message>
     <message>
       <source>Saving article...</source>
-      <translation>Makala ýatda saklanýar...</translation>
+      <translation>Szócikk mentése...</translation>
     </message>
     <message>
       <source>Save article complete</source>
-      <translation>Makalany doly ýazdyryň</translation>
+      <translation>Szócikk mentése kész</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
-      <translation>Baş penjire mydama ýokarda durar ýaly edilen.</translation>
+      <translation>A főablak mindig felül megjelenítése be van kapcsolva.</translation>
     </message>
     <message>
       <source>&amp;Hide</source>
-      <translation>&amp;Gizle</translation>
+      <translation>El&amp;rejtés</translation>
     </message>
     <message>
       <source>Export history to file</source>
-      <translation>Geçmişi faýl görnüşinde eksport et</translation>
+      <translation>Az előzmények mentése fájlba</translation>
     </message>
     <message>
       <source>Text files (*.txt);;All files (*.*)</source>
-      <translation>Tekst faýllary (*.txt);;Ähli faýllar (*.*)</translation>
+      <translation>Szövegfájlok (*.txt);;Minden fájl (*.*)</translation>
     </message>
     <message>
       <source>Export error: </source>
-      <translation>Eksport ýalnyşlygy:</translation>
+      <translation>Exportálási hiba: </translation>
     </message>
     <message>
       <source>History export complete</source>
-      <translation>Geşmiş eksport edildi</translation>
+      <translation>Előzmények exportálása kész</translation>
     </message>
     <message>
       <source>Import history from file</source>
-      <translation>Faýldan geçmişi import et</translation>
+      <translation>Előzmények betöltése fájlból</translation>
     </message>
     <message>
       <source>Import error: </source>
-      <translation>Import ýalňyşlygy:</translation>
+      <translation>Importálási hiba: </translation>
     </message>
     <message>
       <source>Import error: invalid data in file</source>
-      <translation>Import ýalňyşlygy: faýlda nädogry maglumatlar bar</translation>
+      <translation>Importálási hiba: érvénytelen adatok a fájlban</translation>
     </message>
     <message>
       <source>History import complete</source>
-      <translation>Geçmiş import edildi</translation>
+      <translation>Előzmények importálása kész</translation>
     </message>
     <message>
       <source>Export Favorites to file</source>
-      <translation>Halanýanlary faýl etmek üçin eksport ediň</translation>
+      <translation>Kedvencek exportálása fájlba</translation>
     </message>
     <message>
       <source>XML files (*.xml);;All files (*.*)</source>
-      <translation>XML faýllary (* .xml) ;; fileshli faýllar (*. *)</translation>
+      <translation>XML fájlok (*.xml);;Minden fájl (*.*)</translation>
     </message>
     <message>
       <source>Favorites export complete</source>
-      <translation>Halanýanlar eksporty doly</translation>
+      <translation>Kedvencek exportálása kész</translation>
     </message>
     <message>
       <source>Export Favorites to file as plain list</source>
-      <translation>Saýlanan sanaw hökmünde faýl üçin halanýanlary eksport ediň</translation>
+      <translation>Kedvencek exportálása fájlba egyszerű listaként</translation>
     </message>
     <message>
       <source>Import Favorites from file</source>
-      <translation>Halanýanlary faýldan import ediň</translation>
+      <translation>Kedvencek importálása fájlból</translation>
     </message>
     <message>
       <source>XML files (*.xml);;Txt files (*.txt);;All files (*.*)</source>
-      <translation>XML faýllary (* .xml) ;; Txt faýllary (* .txt) ;; fileshli faýllar (*. *)</translation>
+      <translation>XML fájlok (*.xml);;Szövegfájlok (*.txt);;Minden fájl (*.*)</translation>
     </message>
     <message>
       <source>Data parsing error</source>
-      <translation>Maglumatlary derňemekde ýalňyşlyk</translation>
+      <translation>Adat értelmezési hiba</translation>
     </message>
     <message>
       <source>Favorites import complete</source>
-      <translation>Halanýanlar importy doly</translation>
+      <translation>Kedvencek importálása kész</translation>
     </message>
     <message>
       <source>Dictionary info</source>
-      <translation>Sözlük barada maglumat</translation>
+      <translation>Szótár adatai</translation>
     </message>
     <message>
       <source>Dictionary headwords</source>
-      <translation>Sözlük sözleri</translation>
+      <translation>Címszavak</translation>
     </message>
     <message>
       <source>Open dictionary folder</source>
-      <translation>Sözlügiň bukjasyny aç</translation>
+      <translation>Mappa megnyitása</translation>
     </message>
     <message>
       <source>Edit dictionary</source>
-      <translation>Sözlügi üýtget</translation>
+      <translation>Szótár szerkesztése</translation>
     </message>
     <message>
       <source>Now indexing for full-text search: </source>
-      <translation>Indi doly tekst gözlegi üçin indeksirleme: </translation>
+      <translation>Indexelés alatt teljes szöveges kereséshez: </translation>
     </message>
     <message>
       <source>Remove headword &quot;%1&quot; from Favorites?</source>
-      <translation>Halanýanlardan &quot;%1&quot; söz sözüni aýyryň?</translation>
+      <translation>Eltávolítja a címszót a kedvencekből: &quot;%1&quot;?</translation>
     </message>
   </context>
   <context>
     <name>Mdx::MdxArticleRequest</name>
     <message>
       <source>Dictionary file was tampered or corrupted</source>
-      <translation>Sözlük faýly bozuldy ýa-da zaýa boldy</translation>
+      <translation>A szótárfájlt megváltoztatták vagy megsérült</translation>
     </message>
     <message>
       <source>Failed loading article from %1, reason: %2</source>
-      <translation> %1-den/dan makalany ýükläp bolmady, sebäbi: %2</translation>
+      <translation>A szócikk betöltése nem sikerült, innen: %1, oka: %2</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
       <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML analizinde ýalňyşlyk: %1 at %2,%3</translation>
+      <translation>XML értelmezési hiba: %1, hely: %2, %3</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
       <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML analizinde ýalňyşlyk: %1 at %2,%3</translation>
+      <translation>XML értelmezési hiba: %1, hely: %2, %3</translation>
     </message>
   </context>
   <context>
     <name>MediaWikisModel</name>
     <message>
       <source>Enabled</source>
-      <translation>Işledilen</translation>
+      <translation>Bekapcsolva</translation>
     </message>
     <message>
       <source>Name</source>
-      <translation>Ady</translation>
+      <translation>Név</translation>
     </message>
     <message>
       <source>Address</source>
-      <translation>Adres</translation>
+      <translation>Cím</translation>
     </message>
     <message>
       <source>Icon</source>
-      <translation>Nyşan</translation>
+      <translation>Ikon</translation>
     </message>
     <message>
       <source>Language Variant</source>
-      <translation>Dil görnüşi</translation>
+      <translation>Nyelvi változat</translation>
     </message>
   </context>
   <context>
     <name>MultimediaAudioPlayer</name>
     <message>
       <source>Couldn&apos;t open audio buffer for reading.</source>
-      <translation>Okamak üçin ses buferini açyp bolmaýar.</translation>
+      <translation>Az audiopuffer megnyitása olvasásra nem sikerült.</translation>
     </message>
   </context>
   <context>
     <name>OrderAndProps</name>
     <message>
       <source>Form</source>
-      <translation>Forma</translation>
+      <translation>Űrlap</translation>
     </message>
     <message>
       <source>Dictionary order:</source>
-      <translation>Sözlügiň tertibi:</translation>
+      <translation>Szótárak sorrendje:</translation>
     </message>
     <message>
       <source>Inactive (disabled) dictionaries:</source>
-      <translation>Işjeň däl (öçürilen) sözlükler:</translation>
+      <translation>Inaktív (kikapcsolt) szótárak:</translation>
     </message>
     <message>
       <source>Dictionary information</source>
-      <translation>Sözlük barada maglumat</translation>
+      <translation>Szótár adatai</translation>
     </message>
     <message>
       <source>Name:</source>
-      <translation>Ady:</translation>
+      <translation>Név:</translation>
     </message>
     <message>
       <source>Total articles:</source>
-      <translation>Jemi makala sany:</translation>
+      <translation>Szócikkek száma:</translation>
     </message>
     <message>
       <source>Total words:</source>
-      <translation>Jemi söz sany:</translation>
+      <translation>Szavak száma:</translation>
     </message>
     <message>
       <source>Translates from:</source>
-      <translation>Terjime edýär şu dilden:</translation>
+      <translation>Fordítás erről:</translation>
     </message>
     <message>
       <source>Translates to:</source>
-      <translation>Terjime edýär şu dile:</translation>
+      <translation>Fordítás erre:</translation>
     </message>
     <message>
       <source>Description:</source>
-      <translation>Häsiýetnama:</translation>
+      <translation>Részletek:</translation>
     </message>
     <message>
       <source>Files comprising this dictionary:</source>
-      <translation>Şu sözlügiň düzümine girýän faýlllar:</translation>
+      <translation>A szótárat alkotó fájlok:</translation>
     </message>
     <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
-      <translation>Içine zatlary süýräp we taşlap tertibini üýtgedip bolýar. Sözlükleri öçürmek üçin, olary aktiw däl toparyna taşlamaly.</translation>
+      <translation>Húzással átrendezheti a szótárak sorrendjét. Ejtse a szótárat az inaktív csoportba a kikapcsolásához.</translation>
     </message>
     <message>
       <source>Dictionary headwords</source>
-      <translation>Sözlük sözleri</translation>
+      <translation>Szótár címszavak</translation>
     </message>
     <message>
       <source>Sort by name</source>
-      <translation>Ady boýunça sortla</translation>
+      <translation>Rendezés név szerint</translation>
     </message>
     <message>
       <source>Sort by languages</source>
-      <translation>Dili boýunça sorla</translation>
+      <translation>Rendezés nyelv szerint</translation>
     </message>
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
-      <translation>Sözlükler işjeň: %1, hereketsiz: %2</translation>
+      <translation>Aktív szótárak: %1, inaktív: %2</translation>
     </message>
   </context>
   <context>
     <name>PathsModel</name>
     <message>
       <source>Path</source>
-      <translation>Ýol</translation>
+      <translation>Útvonal</translation>
     </message>
     <message>
       <source>Recursive</source>
-      <translation>Rekursiw</translation>
+      <translation>Almappák is</translation>
     </message>
   </context>
   <context>
     <name>Preferences</name>
     <message>
       <source>Preferences</source>
-      <translation>Saýlamalar</translation>
+      <translation>Beállítások</translation>
     </message>
     <message>
       <source>&amp;Interface</source>
-      <translation>&amp;Interfeýs</translation>
+      <translation>&amp;Felület</translation>
     </message>
     <message>
       <source>Double-click translates the word clicked</source>
-      <translation>Sözüň üstünde iki gezek basylanda ol terjime edilýär</translation>
+      <translation>Szavak lefordítása dupla kattintás esetén</translation>
     </message>
     <message>
       <source>Tabbed browsing</source>
-      <translation>Wkladkaly agdaryp seretmek</translation>
+      <translation>Lapok</translation>
     </message>
     <message>
       <source>Normally, opening a new tab switches to it immediately.
 With this on however, new tabs will be opened without
 switching to them.</source>
-      <translation>Adatça, täze tab açmak derrew oňa geçýär.
-Şeýle-de bolsa, täze tablar
-e geçmezden açylar.</translation>
+      <translation>Általában egy új lap megnyitása azonnal átvált az új lapra.
+Ezzel a lehetőséggel, az új lapok anélkül nyílnak meg, hogy
+a program átváltana rájuk.</translation>
     </message>
     <message>
       <source>Open new tabs in background</source>
-      <translation>Yzynda täze wkladkalary aç</translation>
+      <translation>Új lapok megnyitása a háttérben</translation>
     </message>
     <message>
       <source>With this on, new tabs are opened just after the
 current, active one. Otherwise they are added to
 be the last ones.</source>
-      <translation>Munuň bilen täze 0 goýma,
-tokdan soň işjeň açylýar. Otherwiseogsam iň soňkylary
--e goşulýar.</translation>
+      <translation>Ezzel a lehetőséggel, az új lapok közvetlenül az
+aktuális lap mellett nyílnak meg. Egyébként pedig
+az utolsó lap után.</translation>
     </message>
     <message>
       <source>Open new tabs after the current one</source>
-      <translation>Täze wkladkalary şu wagtky wkladkadan soň aç</translation>
+      <translation>Új lap megnyitása az aktuális mellett</translation>
     </message>
     <message>
       <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Diňe bir tab açylanda esasy goýma setirini görmek islemeýän bolsaňyz, bu opsiýany saýlaň.</translation>
+      <translation>Ezzel az lehetőséggel, elrejtheti a lapok sorát, amikor csak egyetlen lap van megnyitva.</translation>
     </message>
     <message>
       <source>Hide single tab</source>
-      <translation>Ýeke wkladkany gizle</translation>
+      <translation>Egyetlen lap elrejtése</translation>
     </message>
     <message>
       <source>MRU order: Most recently used order.</source>
-      <translation>MRU buýrugy: Iň soňky ulanylan sargyt.</translation>
+      <translation>Időrend, a legutóbbi használat alapján.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
-      <translation>Ctrl-Tab arkaly wkladkalary MRU tertipde nawigasiýa edilýär</translation>
+      <translation>A Ctrl+Tab időrendi sorrendben navigál</translation>
     </message>
     <message>
       <source>Normally, pressing ESC key moves focus to the translation line.
 With this on however, it will hide the main window.</source>
-      <translation>Adatça, ESC düwmesini basmak ünsi terjime setirine gönükdirýär.
-Şeýle bolsa, esasy penjiräni gizlär.</translation>
+      <translation>Általában az ESC megnyomása a fordítási sorra viszi a fókuszt.
+Ezzel a lehetőséggel viszont elrejti a főablakot.</translation>
     </message>
     <message>
       <source>ESC key hides main window</source>
-      <translation>ESC düwmesini basmak bilen baş penjire ýapylýar</translation>
+      <translation>Főablak elrejtése az ESC billentyűvel</translation>
     </message>
     <message>
       <source>Turn this option on if you want to select words by single mouse click</source>
-      <translation>Şuny aç eger-de sözleri bir gezek myşka bilen basyp saýlamak isleseň</translation>
+      <translation>Kapcsolja be ezt, ha egyes kattintással szeretné kiválasztani a szavakat</translation>
     </message>
     <message>
       <source>Select word by single click</source>
-      <translation>Sözleri bir gezek myşka bilen basyp saýlamak</translation>
+      <translation>Szavak kijelölése egyes kattintással</translation>
     </message>
     <message>
       <source>Startup</source>
-      <translation>Başlangyç</translation>
+      <translation>Indítás</translation>
     </message>
     <message>
       <source>Automatically starts GoldenDict after operation system bootup.</source>
-      <translation>Operasion ulgam açylandan soň, GoldenDict öz işini awtomat başlar.</translation>
+      <translation>A GoldenDict automatikus elindítása amikor elindul az operációs rendszer.</translation>
     </message>
     <message>
       <source>Start with system</source>
-      <translation>Sistema bilen bile b</translation>
+      <translation>Indítás a rendszerrel</translation>
     </message>
     <message>
       <source>Normally, clicking on a link, double-clicking on a word or looking up
 selection in an article loads the translation and almost immediately
 scrolls to the article from the same dictionary. With this option off,
 however, the article from the topmost dictionary is shown.</source>
-      <translation>Adatça bir baglanyşyga basmak, bir söze iki gezek basmak ýa-da makalada
-saýlamany gözlemek terjimesini ýükleýär we derrew şol bir sözlükden makala
-aýlaw aýlanýar. Bu opsiýany ýapmak bilen
-iň ýokarky sözlükden makala görkezilýär.</translation>
+      <translation>Általában, ha egy hivatkozásra kattint, vagy duplán egy szóra, vagy
+kijelölés alapján keres egy szócikkből, akkor a betöltődő szócikk
+azonnal ugyanahhoz a szótárhoz görget, amelyet vizsgált. Ennek
+kikapcsolásával a megjelenő szócikk a legfelső szótárnál nyílik meg.</translation>
     </message>
     <message>
       <source>Automatically scroll to target article</source>
-      <translation>Maksatly makalany awtomatiki aýlaň</translation>
+      <translation>Automatikus görgetés a cél szócikkhez</translation>
     </message>
     <message>
       <source>When enabled, an icon appears in the system tray area which can be used
 to open main window and perform other tasks.</source>
-      <translation>Işledilende, esasy penjire açmak we beýleki meseleleri ýerine ýetirmek üçin
-ulanyp boljak ulgam lýuboýynda bir nyşan peýda bolýar.</translation>
+      <translation>Bekapcsolásakor egy ikon jelenik meg a rendszertálcán, amellyel
+megnyitható a főablak és más műveletek végezhetők.</translation>
     </message>
     <message>
       <source>Enable system tray icon</source>
-      <translation>Sistema paneli nyşany görkez</translation>
+      <translation>Rendszertálca ikon engedélyezése</translation>
     </message>
     <message>
       <source>With this on, the application starts directly to system tray without showing
 its main window.</source>
-      <translation>Şunuň bilen, programma esasy penjiresini
-görkezmän göni ulgam lagasyna başlaýar.</translation>
+      <translation>Ezzel a lehetőséggel, a program a rendszertálcára minimalizálva indul,
+a főablak megjelenítése nélkül.</translation>
     </message>
     <message>
       <source>Start to system tray</source>
-      <translation>Sistema panelinden başlat</translation>
+      <translation>Indítás a rendszertálcán</translation>
     </message>
     <message>
       <source>With this on, an attempt to close main window would hide it instead of closing
 the application.</source>
-      <translation>Munuň bilen esasy penjiräni ýapmak synanyşygy,
-programmany ýapmagyň ýerine ony gizlärdi.</translation>
+      <translation>Ezzel a lehetőséggel, a főablak bezárása a programot csak elrejti, a programból
+való kilépés helyett.</translation>
     </message>
     <message>
       <source>Close to system tray</source>
-      <translation>Sistema panelinden ýap</translation>
+      <translation>Bezárás a rendszertálcára</translation>
     </message>
     <message>
       <source>Adjust this value to avoid huge context menus.</source>
-      <translation>Şu bahany sazlap juda uly kontekst menýularyň öňüni almak mümkin.</translation>
+      <translation>Állítsa ezt az értéket a túl nagy helyi menük elkerüléséhez.</translation>
     </message>
     <message>
       <source>Context menu dictionaries limit:</source>
-      <translation>Kontekst menýu sözlükleriň çägi:</translation>
+      <translation>Helyi menük szótár korlátja:</translation>
     </message>
     <message>
       <source>Appearance</source>
-      <translation>Daş görnüşi</translation>
+      <translation>Megjelenés</translation>
     </message>
     <message>
       <source>Interface Font</source>
-      <translation>Interfeýs şrifti</translation>
+      <translation>Felület betűtípusa</translation>
     </message>
     <message>
       <source>Interface language:</source>
-      <translation>Interfeýs dili:</translation>
+      <translation>Felület nyelve:</translation>
     </message>
     <message>
       <source>Article Display style:</source>
-      <translation>Makalanyň görkeziş stili:</translation>
+      <translation>Szócikk megjelenítése:</translation>
     </message>
     <message>
       <source>Add-on style:</source>
-      <translation>Add-on stili:</translation>
+      <translation>Stílus bővítmény:</translation>
     </message>
     <message>
       <source>Interface Style:</source>
-      <translation>Interfeýs stili:</translation>
+      <translation>Felület stílusa:</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
-      <translation>UI-ni garaňkylyga öwüriň.</translation>
+      <translation>A felület megjelenésének átállítása sötét módra.</translation>
     </message>
     <message>
       <source>Dark Mode</source>
-      <translation>Garaňky re .im</translation>
+      <translation>Sötét mód</translation>
     </message>
     <message>
       <source>Turn the article display style to dark.</source>
-      <translation>Makalanyň görkeziş stilini garaňkylyga öwüriň.</translation>
+      <translation>A szócikk megjelenítésének átállítása sötét módra.</translation>
     </message>
     <message>
       <source>Dark Reader Mode</source>
-      <translation>Garaňky okaýjy tertibi</translation>
+      <translation>Sötét olvasó mód</translation>
     </message>
     <message>
       <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Bu şriftler sözlükde görkezilen şriftler tapylmasa ulanylar.</translation>
+      <translation>Ezek a betűkészletek akkor kerülnek felhasználásra, ha a szótár átlal megadott nem található.</translation>
     </message>
     <message>
       <source>Fallback Fonts</source>
-      <translation>Yza gaýdýan şriftler</translation>
+      <translation>Helyettesítő betűkészletek</translation>
     </message>
     <message>
       <source>Standard Font</source>
-      <translation>Adaty şrift</translation>
+      <translation>Általános betűkészlet</translation>
     </message>
     <message>
       <source>Serif Font</source>
-      <translation>Serif şrifti</translation>
+      <translation>Talpas betűkészlet</translation>
     </message>
     <message>
       <source>Sans-serif Font</source>
-      <translation>Sans-serif şrifti</translation>
+      <translation>Talpatlan betűkészlet</translation>
     </message>
     <message>
       <source>Monospace Font</source>
-      <translation>Monospace şrifti</translation>
+      <translation>Fix szélességű betűkészlet</translation>
     </message>
     <message>
       <source>&amp;Scan Popup</source>
-      <translation>&amp;Skan popup</translation>
+      <translation>Fordító felugró&amp;ablak</translation>
     </message>
     <message>
       <source>Chooses whether the scan popup mode is on by default or not. If checked,
 the program would always start with the scan popup active.</source>
-      <translation>Skaner açylýan re modeimiň deslapkydygyny ýa-da ýokdugyny saýlaýar. Barlanylsa,
-programma elmydama skananyň açylmagy bilen işjeň başlar.</translation>
+      <translation>Megadja, hogy a fordító felugróablak a program indításakor be vagy ki
+legyen kapcsolva.</translation>
     </message>
     <message>
       <source>Start with scan popup turned on</source>
-      <translation>Skan ýüze çykarmany işledip başlat</translation>
+      <translation>Indulás bekapcsolt felugróablakkal</translation>
     </message>
     <message>
       <source>Send translated word to main window instead of to show it in popup window</source>
-      <translation>Terjime edilen sözleri ýüze çykýan penjireden görkezmän olary baş penjirä iber</translation>
+      <translation>A lefordított szót a program főablakában keresi ki, a felugróablak megjelenítése helyett</translation>
     </message>
     <message>
       <source>Send translated word to main window</source>
-      <translation>Terjime edilen sözleri baş penjirä iber</translation>
+      <translation>A lefordított szó beküldése a főablakba</translation>
     </message>
     <message>
       <source>Track clipboard changes when Scanning is enabled. Notice! You should always enable this unless you are on Linux.</source>
-      <translation>Skaner açylanda çalşylýan paneli üýtgediň. Üns beriň! Linux-da bolmasaňyz, muny elmydama işletmeli.</translation>
+      <translation>A vágólap változásainak figyelése ha a fordító felugróablak aktív. Ezt javasolt mindig bekapcsolnia, hacsak nem Linuxot használ.</translation>
     </message>
     <message>
       <source>Track Clipboard change</source>
-      <translation>Paneli üýtgetmegi yzarlaň</translation>
+      <translation>Vágólap változásának figyelése</translation>
     </message>
     <message>
       <source>Track Selection change</source>
-      <translation>Saýlawyň üýtgemegi</translation>
+      <translation>Kijelölés változásának figyelése</translation>
     </message>
     <message>
       <source>With this enabled, the popup would only show up if all chosen keys are
 in the pressed state when the word selection changes.</source>
-      <translation>Bu açyk bolsa, açylan söz saýlama sözi üýtgän mahaly saýlanan düwmeleriň
-basylan ýagdaýynda görkeziler.</translation>
+      <translation>Bekapcsolásakor, csak abban az esetben jelenik meg a felugróablak egy szó
+kijelölésekor, ha a kiválasztott billentyűk mindegyike le van nyomva.</translation>
     </message>
     <message>
       <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Selectedhli saýlanan düwmeler basylanda diňe saýlamany çözüň:</translation>
+      <translation>A kijelölés változását csak a billentyűk együttes lenyomásakor figyelje:</translation>
     </message>
     <message>
       <source>Alt key</source>
-      <translation>Alt düwmesi</translation>
+      <translation>Alt billentyű</translation>
     </message>
     <message>
       <source>Alt</source>
@@ -3105,7 +3106,7 @@ basylan ýagdaýynda görkeziler.</translation>
     </message>
     <message>
       <source>Ctrl key</source>
-      <translation>Ctrl düwmesi</translation>
+      <translation>Ctrl billentyű</translation>
     </message>
     <message>
       <source>Ctrl</source>
@@ -3113,7 +3114,7 @@ basylan ýagdaýynda görkeziler.</translation>
     </message>
     <message>
       <source>Shift key</source>
-      <translation>Shift düwmesi</translation>
+      <translation>Shift billentyű</translation>
     </message>
     <message>
       <source>Shift</source>
@@ -3121,31 +3122,31 @@ basylan ýagdaýynda görkeziler.</translation>
     </message>
     <message>
       <source>Windows key or Meta key</source>
-      <translation>Windows düwme ýa-da Meta düwme</translation>
+      <translation>Windows vagy Meta billentyű</translation>
     </message>
     <message>
       <source>Win/Meta</source>
-      <translation>Win / Meta</translation>
+      <translation>Win/Meta</translation>
     </message>
     <message>
       <source>Show a flag window before showing popup window, click the flag to show popup window. </source>
-      <translation>Açylýan penjire görkezmezden ozal baýdak penjiresini görkeziň, çykýan penjire görkezmek üçin baýdagy basyň. </translation>
+      <translation>Egy jelző ablakot jelenít meg a szó kijelölésekor és a felugróablak a jelzőre kattintva nyitható meg. </translation>
     </message>
     <message>
       <source>Show scan flag when word is selected</source>
-      <translation>Söz saýlananda skaner baýdagyny görkeziň</translation>
+      <translation>Jelző megjelenítése a szó kijelölésekor</translation>
     </message>
     <message>
       <source>Do not show popup when selection or clipboard in one of GoldenDict&apos;s own windows changes</source>
-      <translation>“GoldenDict” -iň öz penjireleriniň birinde saýlama ýa-da gysga paneli açylanda açylma</translation>
+      <translation>Ne jelenjen meg a felugróablak, ha a kijelölés vagy a vágólapra másolás a GoldenDict ablakában történik</translation>
     </message>
     <message>
       <source>Ignore GoldenDict&apos;s own selection and clipboard changes</source>
-      <translation>GoldenDict &amp; apos-yň öz saýlamalaryna we bufer çalşygyna ähmiýet bermäň</translation>
+      <translation>A GoldenDict kijelölések és vágólap figyelmen kívül hagyása</translation>
     </message>
     <message>
       <source>Delay time</source>
-      <translation>Wagtyň yza süýşürilmegi</translation>
+      <translation>Késleltetés</translation>
     </message>
     <message>
       <source> ms</source>
@@ -3153,97 +3154,97 @@ basylan ýagdaýynda görkeziler.</translation>
     </message>
     <message>
       <source>Hotkeys</source>
-      <translation>Gyzgyn düwmeler</translation>
+      <translation>Gyorsbillentyűk</translation>
     </message>
     <message>
       <source>Use the following hotkey to show or hide the main window:</source>
-      <translation>Baş penjiräni görkezmek ýa-da gizlemek üçin şeýle  düwmeleri ulan:</translation>
+      <translation>A főablak megjelenítése vagy elrejtése a gyorsbillentyűvel:</translation>
     </message>
     <message>
       <source>Use the following hotkey to translate a word from clipboard:</source>
-      <translation>Buferde saklanan sözi terjime etmek üçin şeýle düwmeleri ulan:</translation>
+      <translation>A vágólapon lévő szó lefordítása a gyorsbillentyűvel:</translation>
     </message>
     <message>
       <source>The hotkeys are global and work from any program and within any context as long as GoldenDict is running in background.</source>
-      <translation>Bu gyzgyn düwmeler globaldyr we GoldenDict açyk duran wagty islendik başga programmada hem ýerlerde  işleýärler.</translation>
+      <translation>A gyorsbillentyűk globálisak és bármilyen programból működnek, mindaddig amíg a GoldenDict fut a háttérben.</translation>
     </message>
     <message>
       <source>&amp;Audio</source>
-      <translation>&amp; Audio</translation>
+      <translation>&amp;Hang</translation>
     </message>
     <message>
       <source>Pronunciation</source>
-      <translation>Aýdyş</translation>
+      <translation>Kiejtés</translation>
     </message>
     <message>
       <source>Auto-pronounce words in main window</source>
-      <translation>Baş penjirede sözleriň awto-aýdylyşy</translation>
+      <translation>Szavak automatikus kimondása a főablakban</translation>
     </message>
     <message>
       <source>Auto-pronounce words in scan popup</source>
-      <translation>Skan popup-dan sözleriň awto-aýdylyşy</translation>
+      <translation>Szavak automatikus kimondása a felugróablakban</translation>
     </message>
     <message>
       <source>Playback</source>
-      <translation>Oýnatmak</translation>
+      <translation>Lejátszás</translation>
     </message>
     <message>
       <source>Play audio files via built-in audio support</source>
-      <translation>Içindäki ses goldawy arkaly ses faýllaryny oýnaň</translation>
+      <translation>Hangfájlok lejátszása a beépített rendszerrel</translation>
     </message>
     <message>
       <source>Use internal player:</source>
-      <translation>Içerki pleýeri ulanyň:</translation>
+      <translation>Belső lejátszó használata:</translation>
     </message>
     <message>
       <source>Choose audio back end</source>
-      <translation>Sesiň arka tarapyny saýlaň</translation>
+      <translation>Válassza ki a használni kívánt hangrendszert</translation>
     </message>
     <message>
       <source>Use any external program to play audio files</source>
-      <translation>Audio faýllary oýnatmak üçin islendik özge programmany ulan</translation>
+      <translation>Külső program használata a hangfájlok lejátszásához</translation>
     </message>
     <message>
       <source>Use external program:</source>
-      <translation>Daşky programmany ulan:</translation>
+      <translation>Külső program használata:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
-      <translation>Ses pleýer buýruk setirini giriziň</translation>
+      <translation>Adja meg a lejátszásához szükséges parancssort</translation>
     </message>
     <message>
       <source>&amp;Network</source>
-      <translation>&amp;Baglanyşyk ulgamy</translation>
+      <translation>Há&amp;lózat</translation>
     </message>
     <message>
       <source>Enable if you wish to use a proxy server
 for all program&apos;s network requests.</source>
-      <translation>Proksi serwerini ulanmak isleseňiz açyň
-ähli programma we ulgam islegleri üçin.</translation>
+      <translation>Kapcsolja be, ha a program összes hálózati
+forgalmát proxy szerveren át szeretné irányítani.</translation>
     </message>
     <message>
       <source>Use proxy server</source>
-      <translation>Proksi serweri ulan</translation>
+      <translation>Proxy szerver használata</translation>
     </message>
     <message>
       <source>System proxy</source>
-      <translation>Ulgam proksi</translation>
+      <translation>Rendszer proxy</translation>
     </message>
     <message>
       <source>Custom proxy</source>
-      <translation>Hususy proksi</translation>
+      <translation>Egyéni proxy</translation>
     </message>
     <message>
       <source>Custom settings</source>
-      <translation>Omörite sazlamalar</translation>
+      <translation>Egyéni beállítások</translation>
     </message>
     <message>
       <source>Type:</source>
-      <translation>Tip:</translation>
+      <translation>Típus:</translation>
     </message>
     <message>
       <source>Host:</source>
-      <translation>Öy eyesi:</translation>
+      <translation>Gép:</translation>
     </message>
     <message>
       <source>Port:</source>
@@ -3251,85 +3252,85 @@ for all program&apos;s network requests.</source>
     </message>
     <message>
       <source>User:</source>
-      <translation>Ulanyjy:</translation>
+      <translation>Felhasználó:</translation>
     </message>
     <message>
       <source>Password:</source>
-      <translation>Parol:</translation>
+      <translation>Jelszó:</translation>
     </message>
     <message>
       <source>Anki Connect</source>
-      <translation>Anki birikmesi</translation>
+      <translation>Anki kapcsolódás</translation>
     </message>
     <message>
       <source>http://</source>
-      <translation>http: //</translation>
+      <translation>http://</translation>
     </message>
     <message>
       <source>Deck:</source>
-      <translation>Paluba:</translation>
+      <translation>Dekk:</translation>
     </message>
     <message>
       <source>Model:</source>
-      <translation>Model:</translation>
+      <translation>Modell:</translation>
     </message>
     <message>
       <source>Word</source>
-      <translation>Söz</translation>
+      <translation>Szó</translation>
     </message>
     <message>
       <source>Vocabulary field...</source>
-      <translation>Sözlük meýdany ...</translation>
+      <translation>Szókincs mező...</translation>
     </message>
     <message>
       <source>Text</source>
-      <translation>Tekst</translation>
+      <translation>Szöveg</translation>
     </message>
     <message>
       <source>Definition field...</source>
-      <translation>Kesgitleme meýdany ...</translation>
+      <translation>Definíció mező...</translation>
     </message>
     <message>
       <source>Sentence</source>
-      <translation>Jümle</translation>
+      <translation>Mondat</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
-      <translation>Jümle meýdany (boş bolup biler) ...</translation>
+      <translation>Mondat mező (üresen hagyható)...</translation>
     </message>
     <message>
       <source>Enabling this would make GoldenDict block most advertisements
 by disallowing content (images, frames) not originating from the site
 you are browsing. If some site breaks because of this, try disabling this.</source>
-      <translation>Muny açmak, "GoldenDict" -iň gözleýän
-girmeýän mazmunyna (suratlara, ramkalara) rugsat bermezlik bilen mahabatlaryň
-blokirlär. Şol sebäpli käbir sahypa döwülse, muny öçürip görüň.</translation>
+      <translation>Bekapcsolásakor a GondenDict letiltja a legtöbb reklámot, azáltal, hogy
+nem tölti be a böngészett oldalon kívülről származó tartalmakat (képek,
+keretek). Ha bizonyos oldalak nem működnének, próbálja meg ezt kikapcsolni.</translation>
     </message>
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
-      <translation>Özge saýtlardan zat ýüklemegi gadagan et (köp sanly reklama/mahabt gizlemgegini üpjün edýär)</translation>
+      <translation>Más oldalakról származó tartalmak letiltása (elrejti a reklámot nagy részét)</translation>
     </message>
     <message>
       <source>Some sites detect GoldenDict via HTTP headers and block the requests.
 Enable this option to workaround the problem.</source>
-      <translation>Käbir websaýtlar GoldenDict programmany HTTP ady arkaly görýärler we olara ýüz tutmaga rugsat berenoklar. 
-Şeýle meseläni çözmek üçin, şuny işlediň.</translation>
+      <translation>Bizonyos oldalak érzékelik a GoldenDict HTTP fejlécet és letiltják a kérést.
+Kapcsolja be ezt, a probléma megkerüléséhez.</translation>
     </message>
     <message>
       <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>GoldenDict-ng HTTP ady arkaly görkezme</translation>
+      <translation>GoldenDict azonosító kihagyása a HTTP fejlécből</translation>
     </message>
     <message>
       <source>Maximum network cache size:</source>
-      <translation>Ulgam keş keşiniň iň uly ululygy:</translation>
+      <translation>Hálózati gyorsítótár mérete:</translation>
     </message>
     <message>
       <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
 %1
 If set to 0 the network disk cache will be disabled.</source>
-      <translation>GoldenDict-iň tor keşi tarapyndan iň köp disk ýeri
-% 1
-0-a gabat gelse, tor diski keşi ýapylar.</translation>
+      <translation>A GonldenDict által használható hálózati gyorsítótár lemezterület:
+%1
+Ha 0 van megadva, a gyorsítótár kikapcsolásra kerül.</translation>
     </message>
     <message>
       <source> MiB</source>
@@ -3338,12 +3339,12 @@ If set to 0 the network disk cache will be disabled.</source>
     <message>
       <source>When this option is enabled, GoldenDict
 clears its network cache from disk during exit.</source>
-      <translation>Bu opsiýa açyk bolsa, GoldenDict
-çykyş wagtynda tor keşini diskden arassalaýar.</translation>
+      <translation>Bekapcsolásakor a GoldenDict törli a hálózati
+gyorsítótár tartalmát a kilépéskor.</translation>
     </message>
     <message>
       <source>Clear network cache on exit</source>
-      <translation>Çykyşda tor keşini arassalaň</translation>
+      <translation>Gyorsítótár törlése a kilépéskor</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3351,191 +3352,190 @@ checks if a new, updated version of GoldenDict
 is available for download. If it is so, the program
 informs the user about it and prompts to open a
 download page.</source>
-      <translation>Bu açyk bolsa, programma GoldenDict
--iň täze, täzelenen wersiýasyny göçürip alyp bolýandygyny wagtal-wagtal
-barlaýar. Eger şeýle bolsa,
-programma ulanyja bu barada habar berýär we
-göçürip alyş sahypasyny açmagy teklip edýär.</translation>
+      <translation>Bekapcsolásakor a GoldenDict időnként lekérdezi,
+hogy áll-e rendelkezésre újabb programverzió.
+Ha igen, akkor értesíti a felhasználót és lehetőséget ad
+a letöltési oldal megnyitására.</translation>
     </message>
     <message>
       <source>Check for new program releases periodically</source>
-      <translation>Programmanyň täze neşirlerini wagtal-wagtal barlap dur</translation>
+      <translation>Új programverziók rendszeres ellenőrzése</translation>
     </message>
     <message>
       <source>Full-text search</source>
-      <translation>Doly tekst gözlegi</translation>
+      <translation>Keresés a teljes szövegben</translation>
     </message>
     <message>
       <source>Allow full-text search for:</source>
-      <translation>Doly tekst gözlegine rugsat beriň:</translation>
+      <translation>Teljes szöveges keresés engedélyezése:</translation>
     </message>
     <message>
       <source>Don&apos;t search in dictionaries containing more than</source>
-      <translation>Has köp zady öz içine alýan sözlüklerde gözlemäň</translation>
+      <translation>Ne keressen azokban a szótárakban, amiben több mint</translation>
     </message>
     <message>
       <source>articles (0 - unlimited)</source>
-      <translation>makalalar (0 - çäksiz)</translation>
+      <translation>szócikk van (0 - nincs korlátozva)</translation>
     </message>
     <message>
       <source>Create fulltext index with parallel threads </source>
-      <translation>Paralel sapaklar bilen doly tekst indeksini dörediň </translation>
+      <translation>A szöveg indexelése ennyi párhuzamos szálon történjen </translation>
     </message>
     <message>
       <source>Ad&amp;vanced</source>
-      <translation>Has &amp;çylşyrymly</translation>
+      <translation>&amp;Speciális</translation>
     </message>
     <message>
       <source>History</source>
-      <translation>Geçmiş</translation>
+      <translation>Előzmények</translation>
     </message>
     <message>
       <source>Turn this option on to store history of the translated words</source>
-      <translation>Şuny aç eger-de geçmişde terjime edilen sözleri ýatda saklajak bolsaň</translation>
+      <translation>Bekapcsolásakor a program tárolja korábban lefordított szavakat</translation>
     </message>
     <message>
       <source>Store &amp;history</source>
-      <translation>Saklanma &amp;geçmiş</translation>
+      <translation>&amp;Előzmények tárolása</translation>
     </message>
     <message>
       <source>Specify the maximum number of entries to keep in history.</source>
-      <translation>Geçmişde iň köp saklanjak girizmeleriň sany.</translation>
+      <translation>Adja meg az előzményekben tárolt elemek maximális számát.</translation>
     </message>
     <message>
       <source>Maximum history size:</source>
-      <translation>Geçmişiň maksimum sany:</translation>
+      <translation>Előzmények hossza:</translation>
     </message>
     <message>
       <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Geçmişi ýatda saklanmagyň döwri. Eger 0 goýulsa, geçmiş diňe çykan wagty ýatda saklanar.</translation>
+      <translation>Előzmények rendszeres mentésének időintervalluma. 0 esetén a kilépéskor kerülnek mentésre.</translation>
     </message>
     <message>
       <source>Save every</source>
-      <translation>Ýatda sakla her</translation>
+      <translation>Mentés minden</translation>
     </message>
     <message>
       <source>minutes</source>
-      <translation>minut</translation>
+      <translation>percben</translation>
     </message>
     <message>
       <source>Favorites</source>
-      <translation>Halanýanlar</translation>
+      <translation>Kedvencek</translation>
     </message>
     <message>
       <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Halaýan aralygy halaýar. 0 Halanýanlar düzülse, diňe çykyş wagtynda ýatda saklanar.</translation>
+      <translation>Kedvencek rendszeres mentésének időintervalluma. 0 esetén a kilépéskor kerülnek mentésre.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
-      <translation>Önümleriň pozulmagynyň her bir amalyny tassyklamak üçin bu opsiýany açyň</translation>
+      <translation>Bekapcsolásakor minden törlési művelethez megerősítés szükséges</translation>
     </message>
     <message>
       <source>Confirmation for items deletion</source>
-      <translation>Harytlary pozmak üçin tassyklama</translation>
+      <translation>Elemek törlésének megerősítése</translation>
     </message>
     <message>
       <source>Articles</source>
-      <translation>makalalar</translation>
+      <translation>Szócikkek</translation>
     </message>
     <message>
       <source>Ignore punctuation while searching</source>
-      <translation>Gözleýän wagtyňyz dyngy belgilerine ähmiýet bermäň</translation>
+      <translation>Írásjelek figyelmek kívül hagyása</translation>
     </message>
     <message>
       <source>Input phrases longer than this size will be ignored</source>
-      <translation>Bu ululykdan has uzyn giriş sözlemleri hasaba alynmaz</translation>
+      <translation>A megadott értéknél hosszabb bementi adatokat figyelmen kívül hagyja a program</translation>
     </message>
     <message>
       <source>symbols</source>
-      <translation>nyşanlar</translation>
+      <translation>szimbólum</translation>
     </message>
     <message>
       <source>Select this option to automatic collapse big articles</source>
-      <translation>Uly makalalaryň awtomat kiçi edilip görkezilmegi üçin şuny saýlaň</translation>
+      <translation>Bekapcsolásakor a hosszabb szócikkek összecsukva jelennek meg</translation>
     </message>
     <message>
       <source>Collapse articles more than</source>
-      <translation>Makalalary kiçelt şundan köp - </translation>
+      <translation>Szócikk összecsukása, ha hosszabb mint</translation>
     </message>
     <message>
       <source>Turn this option on to ignore unreasonably long input text
 from mouse-over, selection, clipboard or command line</source>
-      <translation>Syçanjygyň üstünden, saýlama, bufer ýa-da buýruk setirinden esassyz uzyn giriş tekstini
-äsgermezlik etmek üçin bu opsiýany açyň</translation>
+      <translation>Bekapcsolásakor az indokolatlanul hosszú szövegek figyelmen kívül
+hagyásra kerülnek az egér alól, kijelölésből, vágólapról vagy parancssorból</translation>
     </message>
     <message>
       <source>Ignore input phrases longer than</source>
-      <translation>Giriş sözlemlerinden has uzyn</translation>
+      <translation>Bemenet mellőzése, ha hosszabb mint</translation>
     </message>
     <message>
       <source>Articles longer than this size will be collapsed</source>
-      <translation>Şundan uly bolan makalalar kiçi edilip görkeziljek</translation>
+      <translation>A megadott értéknél hosszabb szócikkek összecsukva jelennek meg</translation>
     </message>
     <message>
       <source>Turn this option on to always expand optional parts of articles</source>
-      <translation>Makalalaryň goşmaça ýerlerini giňeldip görkezmek üçin şuny saýlaň</translation>
+      <translation>Bekapcsolásakor a szócikkek opcionális részei is kibontva jelennek meg</translation>
     </message>
     <message>
       <source>Expand optional &amp;parts</source>
-      <translation>Goşmaça &amp;ýerlerini giňeldip görkez</translation>
+      <translation>&amp;Opcionális részek kibontása</translation>
     </message>
     <message>
       <source>Turn this option on to ignore diacritics while searching articles</source>
-      <translation>Makalalary gözläniňizde diakritikany äsgermezlik etmek üçin bu opsiýany açyň</translation>
+      <translation>Bekapcsolásakor az ékezeteket és más diakritikus jeleket a keresés figyelmen kívül hagyja</translation>
     </message>
     <message>
       <source>Ignore diacritics while searching</source>
-      <translation>Gözleýän wagtyňyz diakritiklere ähmiýet bermäň</translation>
+      <translation>Ékezetek figyelmek kívül hagyása</translation>
     </message>
     <message>
       <source>During successive searches,if one dictionary is collapsed by manual, it will remain collapsed in the next search</source>
-      <translation>Yzygiderli gözlegleriň dowamynda bir sözlük gollanma bilen ýykylan bolsa, indiki gözlegde ýykylar</translation>
+      <translation>Ha egy szótárat manuálisan összecsukott, akkor a további kereséseknél is összecsukva marad</translation>
     </message>
     <message>
       <source>Session collapse</source>
-      <translation>Sessiýa ýykyldy</translation>
+      <translation>Összecsukás megtartása</translation>
     </message>
     <message>
       <source>Turn this option on to enable extra articles search via synonym lists
 from Stardict, Babylon and GLS dictionaries</source>
-      <translation>Stardict, Wawilon we GLS sözlüklerinden sinonim sanawlary
-arkaly goşmaça makalalary gözlemek üçin bu opsiýany açyň</translation>
+      <translation>Bekapcsolásakor a keresés a Stardict, Babylon és GLS szótár szinonimáit
+is felhasználja további szócikkek felfedezéséhez</translation>
     </message>
     <message>
       <source>Extra search via synonyms</source>
-      <translation>Sinonimler arkaly goşmaça gözleg</translation>
+      <translation>Extra keresés szinonimákkal</translation>
     </message>
     <message>
       <source>When using clipboard, strip everything after newline</source>
-      <translation>Paneli ulananyňyzda, täze setirden soň hemme zady aýyryň</translation>
+      <translation>A vágólap használatakor, az új sor utáni részek levágása</translation>
     </message>
     <message>
       <source>On a new search, focus the main or popup window even if it&apos;s visible</source>
-      <translation>Täze gözlegde, görünýän hem bolsa esasy ýa-da açylan penjire üns beriň</translation>
+      <translation>Új keresés esetén, fókuszáljon a főablakra vagy felugróablakra, akkor is ha látható</translation>
     </message>
     <message>
       <source>Miscellaneous</source>
-      <translation>Dürli</translation>
+      <translation>Egyéb</translation>
     </message>
     <message>
       <source>Remove invalid index on exit</source>
-      <translation>Çykyşda nädogry görkezijini aýyryň</translation>
+      <translation>Érvénytelen index törlése a kilépéskor</translation>
     </message>
     <message>
       <source>System default</source>
-      <translation>Sistemanyň başlangyç bahalary</translation>
+      <translation>Rendszer alapérték</translation>
     </message>
     <message>
       <source>Default</source>
-      <translation>Ilkibaşky ýagdaýy</translation>
+      <translation>Alapértelmezett</translation>
     </message>
     <message>
       <source>Classic</source>
-      <translation>Klassiki</translation>
+      <translation>Klasszikus</translation>
     </message>
     <message>
       <source>Modern</source>
-      <translation>Häzirki zaman</translation>
+      <translation>Modern</translation>
     </message>
     <message>
       <source>Lingvo</source>
@@ -3543,7 +3543,7 @@ arkaly goşmaça makalalary gözlemek üçin bu opsiýany açyň</translation>
     </message>
     <message>
       <source>Babylon</source>
-      <translation>Wawilon</translation>
+      <translation>Babylon</translation>
     </message>
     <message>
       <source>Lingoes</source>
@@ -3551,7 +3551,7 @@ arkaly goşmaça makalalary gözlemek üçin bu opsiýany açyň</translation>
     </message>
     <message>
       <source>Lingoes-Blue</source>
-      <translation>Lingoes-Gök</translation>
+      <translation>Lingoes kék</translation>
     </message>
     <message>
       <source> MB</source>
@@ -3559,30 +3559,30 @@ arkaly goşmaça makalalary gözlemek üçin bu opsiýany açyň</translation>
     </message>
     <message>
       <source>Restart the program to apply the language change.</source>
-      <translation>Diliň çalşmagyny işe girizmek üçin programmany täzeden işlet.</translation>
+      <translation>Indítsa újra a programot a kiválasztott nyelv alkalmazásához.</translation>
     </message>
     <message>
       <source>Restart to apply the interface style change.</source>
-      <translation>Interfeýs stiliniň üýtgemegini ulanmak üçin täzeden başlaň.</translation>
+      <translation>Indítsa újra a programot a kiválasztott stílus alkalmazásához.</translation>
     </message>
     <message>
       <source>Restart to apply the interface font change.</source>
-      <translation>Interfeýs şriftini üýtgetmek üçin täzeden başlaň.</translation>
+      <translation>Indítsa újra a programot a kiválasztott betűkészletek alkalmazásához.</translation>
     </message>
     <message>
       <source>Restart needed</source>
-      <translation>Gaýtadan açmaly</translation>
+      <translation>Újraindítás szükséges</translation>
     </message>
   </context>
   <context>
     <name>ProgramTypeEditor</name>
     <message>
       <source>Audio</source>
-      <translation>Ses</translation>
+      <translation>Hang</translation>
     </message>
     <message>
       <source>Plain Text</source>
-      <translation>Düz tekst</translation>
+      <translation>Egyszerű szöveg</translation>
     </message>
     <message>
       <source>Html</source>
@@ -3590,229 +3590,229 @@ arkaly goşmaça makalalary gözlemek üçin bu opsiýany açyň</translation>
     </message>
     <message>
       <source>Prefix Match</source>
-      <translation>Prefiks gabat getirme</translation>
+      <translation>Szó eleji egyezés</translation>
     </message>
     <message>
       <source>Unknown</source>
-      <translation>Näbelli</translation>
+      <translation>Ismeretlen</translation>
     </message>
   </context>
   <context>
     <name>Programs::RunInstance</name>
     <message>
       <source>No program name was given.</source>
-      <translation>Hiç programma ady berilmedi.</translation>
+      <translation>Nincs megadva programnév.</translation>
     </message>
     <message>
       <source>The program has crashed.</source>
-      <translation>Programma doňdy.</translation>
+      <translation>A program összeomlott.</translation>
     </message>
     <message>
       <source>The program has returned exit code %1.</source>
-      <translation>Programma %1 çykyş koduny çykardy.</translation>
+      <translation>A program által visszaadott kilépési kód: %1.</translation>
     </message>
   </context>
   <context>
     <name>ProgramsModel</name>
     <message>
       <source>Enabled</source>
-      <translation>Işledilen</translation>
+      <translation>Bekapcsolva</translation>
     </message>
     <message>
       <source>Type</source>
-      <translation>Tip</translation>
+      <translation>Típus</translation>
     </message>
     <message>
       <source>Name</source>
-      <translation>Ady</translation>
+      <translation>Név</translation>
     </message>
     <message>
       <source>Command Line</source>
-      <translation>Komanda setiri</translation>
+      <translation>Parancssor</translation>
     </message>
     <message>
       <source>Icon</source>
-      <translation>Nyşan</translation>
+      <translation>Ikon</translation>
     </message>
   </context>
   <context>
     <name>QObject</name>
     <message>
       <source>Article loading error</source>
-      <translation>Makala ýüklenende ýalňyşlyk ýüze çykdy</translation>
+      <translation>Hiba a szócikk betöltésekor</translation>
     </message>
     <message>
       <source>Article decoding error</source>
-      <translation>Makala dekodirlenen wagty ýalňyşlyk ýüze çykdy</translation>
+      <translation>Hiba a szócikk visszafejtésekor</translation>
     </message>
     <message>
       <source>Copyright: %1%2</source>
-      <translation>Awtorlyk hukugy: %1%2</translation>
+      <translation>Copyright: %1%2</translation>
     </message>
     <message>
       <source>Version: %1%2</source>
-      <translation>Wersiýa: %1%2</translation>
+      <translation>Verzió: %1%2</translation>
     </message>
     <message>
       <source>Author: %1%2</source>
-      <translation>Awtory: %1%2</translation>
+      <translation>Szerző: %1%2</translation>
     </message>
     <message>
       <source>E-mail: %1%2</source>
-      <translation>E-poçta: %1%2</translation>
+      <translation>E-mail: %1%2</translation>
     </message>
     <message>
       <source>Title: %1%2</source>
-      <translation>Ady: %1%2</translation>
+      <translation>Cím: %1%2</translation>
     </message>
     <message>
       <source>Website: %1%2</source>
-      <translation>Sahypa: %1%2</translation>
+      <translation>Weboldal: %1%2</translation>
     </message>
     <message>
       <source>Date: %1%2</source>
-      <translation>Sene: %1%2</translation>
+      <translation>Időpont: %1%2</translation>
     </message>
     <message>
       <source>A dictionary lookup program.</source>
-      <translation>Sözlük gözlemek programmasy.</translation>
+      <translation>Egy szótári keresőprogram.</translation>
     </message>
     <message>
       <source>Word or sentence to query.</source>
-      <translation>Talap üçin söz ýa-da söz.</translation>
+      <translation>A keresendő szó vagy kifejezés.</translation>
     </message>
     <message>
       <source>Save debug messages to gd_log.txt in the config folder.</source>
-      <translation>Düzediş habarlaryny konfigurasiýa bukjasyndaky gd_log.txt-a ýazdyryň.</translation>
+      <translation>Hibakeresési üzenetek mentése a gd_log.txt fájlba a beállítási mappában.</translation>
     </message>
     <message>
       <source>Reset window state.</source>
-      <translation>Penjiräniň ýagdaýyny täzeden düzmek.</translation>
+      <translation>Ablak állapotának visszaállítása.</translation>
     </message>
     <message>
       <source>Disable tts.</source>
-      <translation>Tts-i öçüriň.</translation>
+      <translation>Kimondás letiltása.</translation>
     </message>
     <message>
       <source>Change the group of main window.</source>
-      <translation>Esasy penjiräniň toparyny üýtgediň.</translation>
+      <translation>A főablak csoportjának megváltoztatása.</translation>
     </message>
     <message>
       <source>Change the group of popup.</source>
-      <translation>Açylýan topary üýtgediň.</translation>
+      <translation>A felguróablak csoportjának megváltoztatása.</translation>
     </message>
     <message>
       <source>Force the word to be translated in scanpopup</source>
-      <translation>Sözü skanpopupda terjime etmäge mejbur ediň</translation>
+      <translation>A lefordított szó kényszerített beküldése a felugróablakba</translation>
     </message>
     <message>
       <source>Force the word to be translated in the mainwindow</source>
-      <translation>Sözü esasy setirde terjime etmäge mejbur ediň</translation>
+      <translation>A lefordított szó kényszerített beküldése a főablakba</translation>
     </message>
     <message>
       <source>Toggle scan popup.</source>
-      <translation>Açylýan paneli açyň.</translation>
+      <translation>Fordító felugróablak ki- vagy bekapcsolása.</translation>
     </message>
     <message>
       <source>Print version and diagnosis info.</source>
-      <translation>Wersiýa we diagnoz maglumatlary çap ediň.</translation>
+      <translation>Verzió is diagnosztikai információk megjelenítése.</translation>
     </message>
   </context>
   <context>
     <name>QuickFilterLine</name>
     <message>
       <source>Dictionary search/filter (Ctrl+F)</source>
-      <translation>Sözlük gözlegi/filtri  (Ctrl+F)</translation>
+      <translation>Szótár keresés/szűrés (Ctrl+F)</translation>
     </message>
     <message>
       <source>Clear Search</source>
-      <translation>Gözlegi arassala</translation>
+      <translation>Keresés törlése</translation>
     </message>
   </context>
   <context>
     <name>ResourceToSaveHandler</name>
     <message>
       <source>ERROR: %1</source>
-      <translation>ÝALŇYŞLYK: %1</translation>
+      <translation>HIBA: %1</translation>
     </message>
     <message>
       <source>Resource saving error: </source>
-      <translation>Çeşmäni ýatda saklamagyň ýalňyşlygy:</translation>
+      <translation>Hiba az erőforrás mentésekor: </translation>
     </message>
     <message>
       <source>WARNING: %1</source>
-      <translation>ÄGÄ BOLUŇ %1</translation>
+      <translation>FIGYELEM: %1</translation>
     </message>
     <message>
       <source>The referenced resource failed to download.</source>
-      <translation>Salgylanýan çeşmäni ýükläp almak bolmady.</translation>
+      <translation>A hivatkozott erőforrás letöltése nem sikerült.</translation>
     </message>
   </context>
   <context>
     <name>Romaji</name>
     <message>
       <source>Hepburn Romaji for Hiragana</source>
-      <translation>Hiragana üçin Hepburn Romaji </translation>
+      <translation>Hepburn Romadzsi Hiraganához</translation>
     </message>
     <message>
       <source>Hepburn Romaji for Katakana</source>
-      <translation>Katakana üçin Hepburn Romaji</translation>
+      <translation>Hepburn Romadzsi Katakanához</translation>
     </message>
   </context>
   <context>
     <name>RussianTranslit</name>
     <message>
       <source>Russian Transliteration</source>
-      <translation>Rus transliterasiýa</translation>
+      <translation>Orosz átbetűzés</translation>
     </message>
   </context>
   <context>
     <name>ScanPopup</name>
     <message>
       <source>Dialog</source>
-      <translation>Dialog</translation>
+      <translation>Dialógusablak</translation>
     </message>
     <message>
       <source>Back</source>
-      <translation>Yza gaýt</translation>
+      <translation>Vissza</translation>
     </message>
     <message>
       <source>Forward</source>
-      <translation>Öňe geç</translation>
+      <translation>Előre</translation>
     </message>
     <message>
       <source>Pronounce Word (Alt+S)</source>
-      <translation>Sözi eşitdirmek (Alt+S)</translation>
+      <translation>Szó kiejtése (Alt+S)</translation>
     </message>
     <message>
       <source>Alt+S</source>
-      <translation>Alt + S.</translation>
+      <translation>Alt+S</translation>
     </message>
     <message>
       <source>Send word to main window (Alt+W)</source>
-      <translation>Sözi baş penjirä iber (Alt+W)</translation>
+      <translation>Szó átküldése a főablakba (Alt+W)</translation>
     </message>
     <message>
       <source>Alt+W</source>
-      <translation>Alt + W.</translation>
+      <translation>Alt+W</translation>
     </message>
     <message>
       <source>Add word to Favorites (Ctrl+E)</source>
-      <translation>Halanýanlara söz goşuň (Ctrl + E)</translation>
+      <translation>Szó hozzáadása a kedvencekhez (Ctrl+E)</translation>
     </message>
     <message>
       <source>Shows or hides the dictionary bar</source>
-      <translation>Sözlük zolagy görkezýär ýa-da gizleýär</translation>
+      <translation>Szótár gombok elrejtése vagy megjelenítése</translation>
     </message>
     <message>
       <source>Always stay on top of all other windows</source>
-      <translation>Elmydama beýleki penjireleriň üstünde duruň</translation>
+      <translation>Mindig a többi ablak felett jelenik meg</translation>
     </message>
     <message>
       <source>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</source>
-      <translation>Penjiräni ekranda saklamak üçin ulanyň,
-ölçegini üýtgedip ýa-da başga usullar bilen dolandyryp bolar.</translation>
+      <translation>Ezzel rögzítheti az ablakot, hogy mindig a képernyőn maradjon,
+átméretezheti vagy különféleképpen kezelheti.</translation>
     </message>
     <message>
       <source>%1 - GoldenDict-ng</source>
@@ -3820,96 +3820,96 @@ could be resized or managed in other ways.</source>
     </message>
     <message>
       <source>WARNING: %1</source>
-      <translation>DUNDURYŞ: %1</translation>
+      <translation>FIGYELEM: %1</translation>
     </message>
   </context>
   <context>
     <name>SearchPanel</name>
     <message>
       <source>&amp;Previous</source>
-      <translation>&amp; Öňki</translation>
+      <translation>&amp;Előző</translation>
     </message>
     <message>
       <source>Ctrl+Shift+G</source>
-      <translation>Ctrl + Shift + G.</translation>
+      <translation>Ctrl+Shift+G</translation>
     </message>
     <message>
       <source>&amp;Next</source>
-      <translation>&amp; Indiki</translation>
+      <translation>&amp;Következő</translation>
     </message>
     <message>
       <source>Ctrl+G</source>
-      <translation>Ctrl + G.</translation>
+      <translation>Ctrl+G</translation>
     </message>
     <message>
       <source>&amp;Case Sensitive</source>
-      <translation>&amp;Ýagdaýa bagly</translation>
+      <translation>Kis- és nagybetűk &amp;megkülönböztetése</translation>
     </message>
     <message>
       <source>Find:</source>
-      <translation>Tapmak:</translation>
+      <translation>Keresés:</translation>
     </message>
   </context>
   <context>
     <name>SoundDirsModel</name>
     <message>
       <source>Path</source>
-      <translation>Ýol</translation>
+      <translation>Útvonal</translation>
     </message>
     <message>
       <source>Name</source>
-      <translation>Ady</translation>
+      <translation>Név</translation>
     </message>
     <message>
       <source>Icon</source>
-      <translation>Nyşan</translation>
+      <translation>Ikon</translation>
     </message>
   </context>
   <context>
     <name>Sources</name>
     <message>
       <source>Files</source>
-      <translation>Faýllar</translation>
+      <translation>Fájlok</translation>
     </message>
     <message>
       <source>Paths to search for the dictionary files:</source>
-      <translation>Sözlük faýllary gözlemegiň ýollary:</translation>
+      <translation>A szótárak keresésére használt útvonalak:</translation>
     </message>
     <message>
       <source>&amp;Add...</source>
-      <translation>&amp;Goşmak...</translation>
+      <translation>&amp;Hozzáadás...</translation>
     </message>
     <message>
       <source>&amp;Remove</source>
-      <translation>&amp;Aýyr</translation>
+      <translation>&amp;Törlés</translation>
     </message>
     <message>
       <source>Re&amp;scan now</source>
-      <translation>Şu wagt &amp;gaýtadan skanerle</translation>
+      <translation>&amp;Újraolvasás</translation>
     </message>
     <message>
       <source>Sound Dirs</source>
-      <translation>Sesli bukjalar</translation>
+      <translation>Hang könyvtárak</translation>
     </message>
     <message>
       <source>Make dictionaries from bunches of audiofiles by adding paths here:</source>
-      <translation>Birtopar  audiofaýllardan sözlýkleri ýasamak üçin şu ýerde ýollaryny görkez:</translation>
+      <translation>Készítsen szótárakat hangfájlok kötegeiből az útvonalak megadásával:</translation>
     </message>
     <message>
       <source>Morphology</source>
-      <translation>Morfologiýa</translation>
+      <translation>Morfológia</translation>
     </message>
     <message>
       <source>Path to a directory with Hunspell/Myspell dictionaries:</source>
-      <translation>Hunspell/Myspell sözlükli bukjalar ýol:</translation>
+      <translation>A Hunspell/Myspell szótárakat tartalmazó könyvtár útvonala:</translation>
     </message>
     <message>
       <source>&amp;Change...</source>
-      <translation>&amp;Özgertmek...</translation>
+      <translation>&amp;Kiválasztás...</translation>
     </message>
     <message>
       <source>Available morphology dictionaries:</source>
-      <translation>Bar bolan morfologiýa sözlükler:</translation>
+      <translation>Elérhető morfológiai szótárak:</translation>
     </message>
     <message>
       <source>Each morphology dictionary appears as a
@@ -3918,48 +3918,50 @@ provides stem words for searches and
 spelling suggestions for mistyped words.
 Add appropriate dictionaries to the bottoms
 of the appropriate groups to use them.</source>
-      <translation>Her morfologiýa sözlügi aýry bir goşmaça sözlük ýaly 
-görkezilip gözleg üçin esasy sözleri üpjün edýär 
-we ýalňyş ýazylan sözler üçin dogrylary hödürleýär. 
-Laýyk gelýän sözlükleri degişli toparlaryň aşagyna goşup ulan.</translation>
+      <translation>Minden morfológiai szótár egy külön
+segédszótár, amely törzsszavakat biztosít
+a kereséshez és helyesírási javaslatokat a
+hibásan beírt szavakhoz. A használatukhoz
+adja hozzá a szótárakat a megfelelő
+csoportok aljához.</translation>
     </message>
     <message>
       <source>Wikipedia</source>
-      <translation>Wikipediýa</translation>
+      <translation>Wikipédia</translation>
     </message>
     <message>
       <source>Wikipedia (MediaWiki) sites:</source>
-      <translation>Wikipedia (MediaWiki) saýtlary:</translation>
+      <translation>Wikipédia (MediaWiki) oldalak:</translation>
     </message>
     <message>
       <source>Websites</source>
-      <translation>Websaýtlar</translation>
+      <translation>Weboldalak</translation>
     </message>
     <message>
       <source>Any websites. A string %GDWORD% will be replaced with the query word:</source>
-      <translation>Islendik websaýt %GDWORD% setiri soralýan söz bilen çalşyrylar:</translation>
+      <translation>Bármilyen weboldal. A %GDWORD% kifejezés a keresett szóra cserélődik:</translation>
     </message>
     <message>
       <source>Alternatively, use %GD1251% for CP1251, %GDISO1%...%GDISO16% for ISO 8859-1...ISO 8859-16 respectively,
 %GDBIG5% for Big-5, %GDBIG5HKSCS% for Big5-HKSCS, %GDGBK% for GBK and GB18030, %GDSHIFTJIS% for Shift-JIS.</source>
-      <translation>Ýogsam, degişlilikde ulan %GD1251% -  CP1251 üçin, %GDISO1%...%GDISO16% -  ISO 8859-1...ISO 8859-16 üçin,
-%GDBIG5% - Big-5 üçin, %GDBIG5HKSCS% - Big5-HKSCS üçin, %GDGBK% - GBK and GB18030 üçin, %GDSHIFTJIS% - Shift-JIS üçin.</translation>
+      <translation>Alternatívaként használhatja a %GD1251% értéket CP1251-hez, %GDISO1%...%GDISO16% értékeket, rendre ISO 8859-1...ISO 8859-16-hoz,
+%GDBIG5% Big-5-höz, %GDBIG5HKSCS% Big5-HKSCS-hez, %GDGBK% GBK-hoz és GB18030-hoz, %GDSHIFTJIS% a Shift-JIS-hez.</translation>
     </message>
     <message>
       <source>DICT servers</source>
-      <translation>DICT serwerleri</translation>
+      <translation>DICT szerverek</translation>
     </message>
     <message>
       <source>DICT servers:</source>
-      <translation>DICT serwerleri:</translation>
+      <translation>DICT szerverek:</translation>
     </message>
     <message>
       <source>Programs</source>
-      <translation>Programmalar</translation>
+      <translation>Programok</translation>
     </message>
     <message>
       <source>Any external programs. A string %GDWORD% will be replaced with the query word. A string %GDSEARCH% will be replaced with the text in the search bar. If both of the parameters are not provided, the headword will be fed into standard input.</source>
-      <translation>Islendik daşarky programmalar. Talap sözi bilen %GDWORD% setir çalşyrylar. Gözleg setirindäki tekst bilen %GDSEARCH% setir çalşyrylar. Parametrleriň ikisi hem üpjün edilmese, sözbaşy adaty giriş bilen üpjün ediler.</translation>
+      <translation>Bármilyen külső program. A %GDWORD% kifejezés a keresett szóra cserélődik.A %GDSEARCH% kifejezés a keresősávon lévő szövegre cserélődik. Ha nem szerepel egyik kifejezés sem, akkor a címszót a standard bemeneten kapja meg a program.</translation>
     </message>
     <message>
       <source>Lingua Libre</source>
@@ -3967,23 +3969,23 @@ Laýyk gelýän sözlükleri degişli toparlaryň aşagyna goşup ulan.</transla
     </message>
     <message>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pronunciations provided by &lt;a href=&quot;https://lingualibre.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Lingua Libre&lt;/span&gt;&lt;/a&gt;, a collaborative linguistic media library of Wikimedia France. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wikimedia France-iň bilelikdäki lingwistik media kitaphanasy &lt;a href=&quot;https://lingualibre.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Lingua Libre&lt;/span&gt;&lt;/a&gt;tarapyndan berlen sözler. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A kiejtéseket a &lt;a href=&quot;https://lingualibre.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Lingua Libre&lt;/span&gt;&lt;/a&gt; biztosítja, amely a Wikimedia France közösségi nyelvi médiatára. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <source>Enable Lingua Libre</source>
-      <translation>Lingua Libre-i işlediň</translation>
+      <translation>Lingua Libre engedélyezése</translation>
     </message>
     <message>
       <source>ISO 639-3 language code</source>
-      <translation>ISO 639-3 dil kody</translation>
+      <translation>ISO 639-3 nyelvi kód</translation>
     </message>
     <message>
       <source>Examples:  &amp;quot;eng&amp;quot; for English, &amp;quot;fra&amp;quot; for French &lt;br&gt;
 
 Full list of availiable languages can be found &lt;a href=&quot;https://lingualibre.org/wiki/LinguaLibre:Stats/Languages&quot;&gt; here &lt;/a&gt;</source>
-      <translation>Mysallar: Iňlis dili üçin  &amp;quot;eng&amp;quot; , fransuz dili üçin &amp;quot;fra&amp;quot; &lt;br&gt;Elýeterli dilleriň doly sanawyny &lt;a href=&quot;https://lingualibre.org/wiki/LinguaLibre:Stats/Languages&quot;&gt; 
+      <translation>Példák:  &amp;quot;eng&amp;quot; az angol, &amp;quot;fra&amp;quot; a francia &lt;br&gt;
 
-tapyp bilersiňiz &lt;/a&gt;</translation>
+Az elérhető nyelvek teljes listája megtalálható &lt;a href=&quot;https://lingualibre.org/wiki/LinguaLibre:Stats/Languages&quot;&gt; ezen az oldalon &lt;/a&gt;</translation>
     </message>
     <message>
       <source>Forvo</source>
@@ -3991,72 +3993,73 @@ tapyp bilersiňiz &lt;/a&gt;</translation>
     </message>
     <message>
       <source>Live pronunciations from &lt;a href=&quot;http://www.forvo.com/&quot;&gt;forvo.com&lt;/a&gt;. The site allows people to record and share word pronunciations. You can listen to them from GoldenDict.</source>
-      <translation>Janly aýdylyşy şu ýerden alynýar -  &lt;a href=&quot;http://www.forvo.com/&quot;&gt;forvo.com&lt;/a&gt;. Bu websaýt adamlar üçin sözleriň aýdyşyny ýazga geçirmäge we paýlaşmaga mümkinçilik berýär. Olary GoldenDict arkaly diňläp bolýar.</translation>
+      <translation>Online kiejtések a &lt;a href=&quot;http://www.forvo.com/&quot;&gt;forvo.com&lt;/a&gt; oldalról. A weboldalon emberek küldhetnek be és oszthatnak meg kiejtéseket. A GoldenDict képes ezeket lejátszani.</translation>
     </message>
     <message>
       <source>Enable pronunciations from Forvo</source>
-      <translation>Forvo-dan aýdyşyny aç</translation>
+      <translation>Kiejtések engedélyezés a Forvo-ról</translation>
     </message>
     <message>
       <source>API Key:</source>
-      <translation>API açary:</translation>
+      <translation>API-kulcs:</translation>
     </message>
     <message>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use of Forvo currently requires an API key, register on the site to get your own key.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;“Forvo” -ny ulanmak häzirki wagtda API açaryny talap edýär, öz açaryňyzy almak üçin sahypada hasaba alyň.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A Forvo használatához API-kulcs szükséges. Az oldalon regisztrálva kérhet saját kulcsot.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Get your own key &lt;a href=&quot;http://api.forvo.com/key/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;here&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Açaryňyzy alyň &lt;a href=&quot;http://api.forvo.com/key/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;şu ýerden&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Szerezzen be saját kulcsot &lt;a href=&quot;http://api.forvo.com/key/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;ezen ez oldalon&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <source>Language codes (comma-separated):</source>
-      <translation>Dil kodlary (otur bilen bölünen):</translation>
+      <translation>Nyelvi kódok (vesszővel elválasztva):</translation>
     </message>
     <message>
       <source>List of language codes you would like to have. Example: &quot;en, ru&quot;.</source>
-      <translation>Almak isleýän dil kodlarynyň sanawy: Mysal: &quot;en, ru&quot;.</translation>
+      <translation>A nyelvi kódok amelyekre szüksége van. Például: &quot;en, ru&quot;.</translation>
     </message>
     <message>
       <source>Full list of language codes is available &lt;a href=&quot;http://www.forvo.com/languages-codes/&quot;&gt;here&lt;/a&gt;.</source>
-      <translation>Dil kodlarynyň doly sanawy bar &lt;a href=&quot;http://www.forvo.com/languages-codes/&quot;&gt;here&lt;/a&gt;.</translation>
+      <translation>A nyelvi kódok teljes listája &lt;a href=&quot;http://www.forvo.com/languages-codes/&quot;&gt;itt érhető el&lt;/a&gt;.</translation>
     </message>
     <message>
       <source>Transliteration</source>
-      <translation>Transliterasiýa</translation>
+      <translation>Átbetűzés</translation>
     </message>
     <message>
       <source>Greek transliteration</source>
-      <translation>Grek transliterasiýa</translation>
+      <translation>Görög átbetűzés</translation>
     </message>
     <message>
       <source>Russian transliteration</source>
-      <translation>Rus transliterasiýa</translation>
+      <translation>Orosz átbetűzés</translation>
     </message>
     <message>
       <source>German transliteration</source>
-      <translation>Nemes transliterasiýa</translation>
+      <translation>Német átbetűzés</translation>
     </message>
     <message>
       <source>Belarusian transliteration</source>
-      <translation>Belarus transliterasiýa</translation>
+      <translation>Belorusz átbetűzés</translation>
     </message>
     <message>
       <source>Enables to use the Latin alphabet to write the Japanese language</source>
-      <translation>Ýapon dilinde ýazan mahalynda latin harplary ulanmaga rugsat berýär</translation>
+      <translation>Lehetővé teszi a japán nyelv használatát a latin betűkkel leírva</translation>
     </message>
     <message>
       <source>Japanese Romaji</source>
-      <translation>Ýapon romaji</translation>
+      <translation>Japán Romadzsi</translation>
     </message>
     <message>
       <source>Systems:</source>
-      <translation>Sistemalar:</translation>
+      <translation>Rendszerek:</translation>
     </message>
     <message>
       <source>The most widely used method of transcription of Japanese,
 based on English phonology</source>
-      <translation> Ýapon diliniň iňlis fonologiýasynda iň köp ulanylýan transkripsiýa usuly. </translation>
+      <translation>A leggyakrabban használt japán átírási módszer, az angol
+fonológián alapul</translation>
     </message>
     <message>
       <source>Hepburn</source>
@@ -4067,35 +4070,36 @@ based on English phonology</source>
 kana writing systems. Standardized as ISO 3602
 
 Not implemented yet in GoldenDict.</source>
-      <translation> Iň tertipli sistemasy, kana ýazylyş sistemalara brimeňzeşlik gatnaşygy bar. ISO 3602 boýunça standartlaşdyrlan.
+      <translation>A legszabályosabb rendszer, egy az egyben kapcsolható a 
+kana írási rendszerhez. Az ISO-3602-es szabvány írja le.
 
-Entek GoldenDict-de edilmedik.</translation>
+A GoldenDict még nem támogatja.</translation>
     </message>
     <message>
       <source>Nihon-shiki</source>
-      <translation>Nihon-şiki</translation>
+      <translation>Nihon-shiki</translation>
     </message>
     <message>
       <source>Based on Nihon-shiki system, but modified for modern standard Japanese.
 Standardized as ISO 3602
 
 Not implemented yet in GoldenDict.</source>
-      <translation>Nihon-şiki sistemasyna esaslanýar, ýöne häzirki zaman adaty Ýapon dili üçin üýtgedilen görnüşindedir.
-ISO 3602 boýunça standartlaşdyrlan.
+      <translation>A Nihon-shiki rendszeren alapul, de a modern szabályos japánhoz igazítva.
+Az ISO-3602-es szabvány írja le.
 
-Entek GoldenDict-de edilmedik.</translation>
+A GoldenDict még nem támogatja.</translation>
     </message>
     <message>
       <source>Kunrei-shiki</source>
-      <translation>Kunrei-şiki</translation>
+      <translation>Kunrei-shiki</translation>
     </message>
     <message>
       <source>Syllabaries:</source>
-      <translation>Bogunlaryň elipbiýi:</translation>
+      <translation>Szótagkészlet:</translation>
     </message>
     <message>
       <source>Hiragana Japanese syllabary</source>
-      <translation>Hiragana ýapon bogunlaryň elipbiýi</translation>
+      <translation>Hiragana japán szótagok</translation>
     </message>
     <message>
       <source>Hiragana</source>
@@ -4103,7 +4107,7 @@ Entek GoldenDict-de edilmedik.</translation>
     </message>
     <message>
       <source>Katakana Japanese syllabary</source>
-      <translation>Katakana ýapon bogunlaryň elipbiýi</translation>
+      <translation>Katakana japán szótagok</translation>
     </message>
     <message>
       <source>Katakana</source>
@@ -4111,173 +4115,173 @@ Entek GoldenDict-de edilmedik.</translation>
     </message>
     <message>
       <source>Custom transliteration</source>
-      <translation>Omörite terjime</translation>
+      <translation>Egyéni átbetűzés</translation>
     </message>
     <message>
       <source>This only applied in search phrase, with each line represent a transliteration,semicolon seperated. For example, ae;æ,users can input ae to represent æ in the target word.</source>
-      <translation>Bu diňe gözleg sözleminde ulanylýar, her setirde transliterasiýa, nokatly belgili bölünýär. Mysal üçin, ae; æ, ulanyjylar maksat sözünde æ görkezmek üçin ae girizip bilerler.</translation>
+      <translation>Ez csak a keresett kifejezésre vonatkozik. Minden sor egy-egy átbetűzést határoz meg, pontosvesszővel elválasztva. Például: ae;æ, így a felhasználók ae formában is leírhatják a keresett szóban szereplő æ betűt.</translation>
     </message>
     <message>
       <source>ae;æ #this is an example</source>
-      <translation>ae; æ # bu mysal</translation>
+      <translation>ae;æ #ez egy példa</translation>
     </message>
     <message>
       <source>Text to Speech</source>
-      <translation>Teksti gürläp aýtdyrmak</translation>
+      <translation>Szöveg kimondása</translation>
     </message>
     <message>
       <source>Choose a directory</source>
-      <translation>Bukjany saýla</translation>
+      <translation>Válasszon egy könyvtárat</translation>
     </message>
     <message>
       <source>Confirm removal</source>
-      <translation>Aýyrmagy tassykla</translation>
+      <translation>Eltávolítás megerősítése</translation>
     </message>
     <message>
       <source>Remove directory &lt;b&gt;%1&lt;/b&gt; from the list?</source>
-      <translation>&lt;b&gt;%1&lt;/b&gt; bukjasyny sanawdan aýyrmalymy?</translation>
+      <translation>Eltávolítja a könyvtárat a listáról: &lt;b&gt;%1&lt;/b&gt;?</translation>
     </message>
     <message>
       <source>Remove site &lt;b&gt;%1&lt;/b&gt; from the list?</source>
-      <translation>&lt;b&gt;%1&lt;/b&gt; saýty sanawdan aýyrmalymy?</translation>
+      <translation>Eltávolítja a weboldalt a listáról: &lt;b&gt;%1&lt;/b&gt;?</translation>
     </message>
     <message>
       <source>Remove program &lt;b&gt;%1&lt;/b&gt; from the list?</source>
-      <translation>&lt;b&gt;%1&lt;/b&gt; programmany sanawdan aýyrmalymy?</translation>
+      <translation>Eltávolítja a programot a listáról: &lt;b&gt;%1&lt;/b&gt;?</translation>
     </message>
   </context>
   <context>
     <name>StylesComboBox</name>
     <message>
       <source>None</source>
-      <translation>Hiç birisi</translation>
+      <translation>Nincs</translation>
     </message>
   </context>
   <context>
     <name>TextToSpeechSource</name>
     <message>
       <source>Selected voice engines:</source>
-      <translation>Saýlanan ses gurallary:</translation>
+      <translation>Kiválasztott hangrendszerek:</translation>
     </message>
     <message>
       <source>&amp;Add</source>
-      <translation>&amp;Goş</translation>
+      <translation>&amp;Hozzáadás</translation>
     </message>
     <message>
       <source>&amp;Remove</source>
-      <translation>&amp;Aýyr</translation>
+      <translation>&amp;Eltávolítás</translation>
     </message>
     <message>
       <source>Preferences</source>
-      <translation>Saýlamalar</translation>
+      <translation>Beállítások</translation>
     </message>
     <message>
       <source>Volume:</source>
-      <translation>Sesiň güýçlüligi:</translation>
+      <translation>Hangerő:</translation>
     </message>
     <message>
       <source>Rate:</source>
-      <translation>Derejesi:</translation>
+      <translation>Bitráta:</translation>
     </message>
     <message>
       <source>Preview</source>
-      <translation>Öňünden barlamak</translation>
+      <translation>Kipróbálás</translation>
     </message>
     <message>
       <source>Available voice engines:</source>
-      <translation>Bar bolan ses gurallary:</translation>
+      <translation>Elérhető hangrendszerek:</translation>
     </message>
     <message>
       <source>Text to be previewed:</source>
-      <translation>Öňünden görüljek tekst:</translation>
+      <translation>A kipróbálandó szöveg:</translation>
     </message>
     <message>
       <source>Type text to be previewed here.</source>
-      <translation>Öňünden görüljek teksti şu ýerden giriz.</translation>
+      <translation>Írja be a szöveget amivel ki szeretné próbálni.</translation>
     </message>
     <message>
       <source>&amp;Preview</source>
-      <translation>&amp;Öňünden görmek</translation>
+      <translation>&amp;Kipróbálás</translation>
     </message>
     <message>
       <source>No TTS voice available</source>
-      <translation>TTS ses ýok</translation>
+      <translation>Nem érhető el TTS hang</translation>
     </message>
     <message>
       <source>Cannot find available TTS voice.&lt;br&gt;Please make sure that at least one TTS engine installed on your computer already.</source>
-      <translation>TTS ses tapylanok.&lt;br&gt; TTS gurallaryň azyndan biri kompýuterde gurnalandygyny barlaň.</translation>
+      <translation>Nem található TTS hang.&lt;br&gt;Ellenőrizze, hogy legalább egy TTS rendszer legyen telepítve a számítógépen.</translation>
     </message>
     <message>
       <source>Confirm removal</source>
-      <translation>Aýyrmagy tassykla</translation>
+      <translation>Eltávolítás megerősítése</translation>
     </message>
     <message>
       <source>Remove voice engine &lt;b&gt;%1&lt;/b&gt; from the list?</source>
-      <translation>Ses &lt;b&gt;%1&lt;/b&gt; guraly sanawdan  aýyrmalymy?</translation>
+      <translation>Eltávolítja a hangrendszert a listáról: &lt;b&gt;%1&lt;/b&gt;?</translation>
     </message>
   </context>
   <context>
     <name>TranslateBox</name>
     <message>
       <source>Type a word or phrase to search dictionaries</source>
-      <translation>Sözlükleri ýa-da söz düzümleri gözlemek üçin söz giriz</translation>
+      <translation>Írjon be egy szót vagy kifejezést a szótárakban való kereséshez</translation>
     </message>
     <message>
       <source>Drop-down</source>
-      <translation>Gaçyrma</translation>
+      <translation>Lenyíló</translation>
     </message>
   </context>
   <context>
     <name>VoiceEnginesModel</name>
     <message>
       <source>Enabled</source>
-      <translation>Işledilen</translation>
+      <translation>Bekapcsolva</translation>
     </message>
     <message>
       <source>Name</source>
-      <translation>Ady</translation>
+      <translation>Név</translation>
     </message>
     <message>
       <source>Id</source>
-      <translation>Id</translation>
+      <translation>Azonosító</translation>
     </message>
     <message>
       <source>Icon</source>
-      <translation>Nyşan</translation>
+      <translation>Ikon</translation>
     </message>
   </context>
   <context>
     <name>WebSitesModel</name>
     <message>
       <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Makalany &lt;iframe&gt; belligiň içinde baglanyşyk hökmünde salyň</translation>
+      <translation>Szócikk beszúrása hivatkozásként egy &lt;iframe&gt; keretben</translation>
     </message>
     <message>
       <source>Enabled</source>
-      <translation>Işledilen</translation>
+      <translation>Bekapcsolva</translation>
     </message>
     <message>
       <source>As link</source>
-      <translation>Baglanyşyk hökmünde</translation>
+      <translation>Hivatkozásként</translation>
     </message>
     <message>
       <source>Name</source>
-      <translation>Ady</translation>
+      <translation>Név</translation>
     </message>
     <message>
       <source>Address</source>
-      <translation>Adres</translation>
+      <translation>Cím</translation>
     </message>
     <message>
       <source>Icon</source>
-      <translation>Nyşan</translation>
+      <translation>Ikon</translation>
     </message>
   </context>
   <context>
     <name>WordFinder</name>
     <message>
       <source>Failed to query some dictionaries.</source>
-      <translation>Käbir sözlükleri tapyp bolmady.</translation>
+      <translation>A szótárak lekérdezése nem sikerült.</translation>
     </message>
   </context>
 </TS>
