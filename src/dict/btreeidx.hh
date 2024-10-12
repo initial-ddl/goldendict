@@ -258,7 +258,6 @@ struct IndexedWords: public map< string, vector< WordArticleLink > >
   /// itself, and for phrases/sentences it adds additional entries beginning with
   /// each new word.
   void addWord( wstring const & word, uint32_t articleOffset, unsigned int maxHeadwordSize = 256U );
-
   /// Differs from addWord() in that it only adds a single entry. We use this
   /// for zip's file names.
   void addSingleWord( wstring const & word, uint32_t articleOffset );
