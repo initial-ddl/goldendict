@@ -456,7 +456,7 @@ string StardictDictionary::handleResource( char type, char const * resource, siz
   // See "Type identifiers" at http://www.huzheng.org/stardict/StarDictFileFormat
   switch ( type ) {
     case 'x': // Xdxf content
-      return Xdxf2Html::convert( string( resource, size ), Xdxf2Html::STARDICT, NULL, this, &resourceZip );
+      return Xdxf2Html::convert( string( resource, size ), Xdxf2Html::STARDICT, NULL, this );
     case 'h': // Html content
     {
       QString articleText = QString( "<div class=\"sdct_h\">" ) + QString::fromUtf8( resource, size ) + "</div>";
@@ -543,8 +543,9 @@ string StardictDictionary::handleResource( char type, char const * resource, siz
           articleNewText += match.captured();
         }
         else {
-          std::string href   = "\"gdau://" + getId() + "/" + src.toUtf8().data() + "\"";
-          std::string newTag = addAudioLink( href, getId() ) + "<span class=\"sdict_h_wav\"><a href=" + href + ">";
+          std::string audioLink = "gdau://" + getId() + "/" + src.toUtf8().data();
+          std::string href      = "\"" + audioLink + "\"";
+          std::string newTag = addAudioLink( audioLink, getId() ) + "<span class=\"sdict_h_wav\"><a href=" + href + ">";
           newTag += match.captured( 4 ).toUtf8().constData();
           if ( match.captured( 4 ).indexOf( "<img " ) < 0 ) {
             newTag += R"( <img src="qrc:///icons/playsound.png" border="0" alt="Play">)";

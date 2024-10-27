@@ -717,13 +717,14 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
            &PronounceEngine::emitAudio,
            this,
            [ this ]( auto audioUrl ) {
+             auto view = getCurrentArticleView();
+             view->setAudioLink( audioUrl );
              if ( !isActiveWindow() ) {
                return;
              }
-             auto view = getCurrentArticleView();
              if ( ( cfg.preferences.pronounceOnLoadMain ) && view != nullptr ) {
 
-               view->openLink( QUrl::fromEncoded( audioUrl.toUtf8() ), {} );
+               view->playAudio( QUrl::fromEncoded( audioUrl.toUtf8() ) );
              }
            } );
   applyProxySettings();
@@ -1585,7 +1586,7 @@ void MainWindow::makeDictionaries()
   ftsIndexing.stopIndexing();
   ftsIndexing.clearDictionaries();
 
-  loadDictionaries( this, isVisible(), cfg, dictionaries, dictNetMgr, false );
+  loadDictionaries( this, cfg, dictionaries, dictNetMgr, false );
 
   //create map
   dictMap = Dictionary::dictToMap( dictionaries );
@@ -3478,7 +3479,7 @@ void MainWindow::on_rescanFiles_triggered()
   dictionariesUnmuted.clear();
   dictionaryBar.setDictionaries( dictionaries );
 
-  loadDictionaries( this, true, cfg, dictionaries, dictNetMgr );
+  loadDictionaries( this, cfg, dictionaries, dictNetMgr );
   dictMap = Dictionary::dictToMap( dictionaries );
 
   for ( const auto & dictionarie : dictionaries ) {

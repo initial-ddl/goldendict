@@ -52,13 +52,6 @@ class ArticleView: public QWidget
   /// An action used to create Anki notes.
   QAction sendToAnkiAction{ tr( "&Create Anki note" ), this };
 
-  /// Any resource we've decided to download off the dictionary gets stored here.
-  /// Full vector capacity is used for search requests, where we have to make
-  /// a multitude of requests.
-  std::list< sptr< Dictionary::DataRequest > > resourceDownloadRequests;
-  /// Url of the resourceDownloadRequests
-  QUrl resourceDownloadUrl;
-
   /// For resources opened via desktop services
   QSet< QString > desktopOpenedTempFiles;
 
@@ -77,6 +70,8 @@ class ArticleView: public QWidget
 
   //current active dictionary id;
   QString activeDictId;
+
+  QString audioLink_;
 
   /// Search in results of full-text search
   QString firstAvailableText;
@@ -105,6 +100,9 @@ public:
 
   void setCurrentGroupId( unsigned currengGrgId );
   unsigned getCurrentGroupId();
+
+  void setAudioLink( QString audioLink );
+  QString getAudioLink() const;
 
   virtual QSize minimumSizeHint() const;
   void clearContent();
@@ -152,6 +150,8 @@ public:
                  QUrl const & referrer,
                  QString const & scrollTo  = QString(),
                  Contexts const & contexts = Contexts() );
+  void playAudio( QUrl const & url );
+  void audioDownloadFinished( const sptr< Dictionary::DataRequest > & req );
 
   /// Called when the state of dictionary bar changes and the view is active.
   /// The function reloads content if the change affects it.
@@ -248,7 +248,6 @@ public:
   void setActiveArticleId( QString const & );
 
   ResourceToSaveHandler * saveResource( const QUrl & url, const QString & fileName );
-  ResourceToSaveHandler * saveResource( const QUrl & url, const QUrl & ref, const QString & fileName );
 
   void findText( QString & text,
                  const QWebEnginePage::FindFlags & f,
@@ -341,7 +340,7 @@ private slots:
     return ( targetUrl.scheme() == "gdau" || Utils::Url::isAudioUrl( targetUrl ) );
   }
 
-  void resourceDownloadFinished();
+  void resourceDownloadFinished( const sptr< Dictionary::DataRequest > & req, const QUrl & resourceDownloadUrl );
 
   /// We handle pasting by attempting to define the word in clipboard.
   void pasteTriggered();

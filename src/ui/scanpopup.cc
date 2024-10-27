@@ -165,12 +165,12 @@ ScanPopup::ScanPopup( QWidget * parent,
            &PronounceEngine::emitAudio,
            this,
            [ this ]( auto audioUrl ) {
+             definition->setAudioLink( audioUrl );
              if ( !isActiveWindow() ) {
                return;
              }
              if ( cfg.preferences.pronounceOnLoadPopup ) {
-
-               definition->openLink( QUrl::fromEncoded( audioUrl.toUtf8() ), {} );
+               definition->playAudio( QUrl::fromEncoded( audioUrl.toUtf8() ) );
              }
            } );
   pinnedGeometry = cfg.popupWindowGeometry;

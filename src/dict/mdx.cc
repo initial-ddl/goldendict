@@ -920,11 +920,10 @@ void MdxDictionary::replaceLinks( QString & id, QString & article )
       QRegularExpressionMatch match = RX::Mdx::audioRe.match( newLink );
       if ( match.hasMatch() ) {
         // sounds and audio link script
-        QString newTxt =
-          match.captured( 1 ) + match.captured( 2 ) + "gdau://" + id + "/" + match.captured( 3 ) + match.captured( 2 );
-        newLink =
-          QString::fromUtf8(
-            addAudioLink( "\"gdau://" + getId() + "/" + match.captured( 3 ).toUtf8().data() + "\"", getId() ).c_str() )
+        QString newTxt = match.captured( 1 ) + match.captured( 2 ) + "gdau://" + id + "/" + match.captured( 3 )
+          + match.captured( 2 ) + R"( onclick="return false;" )";
+        newLink = QString::fromUtf8(
+                    addAudioLink( "gdau://" + getId() + "/" + match.captured( 3 ).toUtf8().data(), getId() ).c_str() )
           + newLink.replace( match.capturedStart(), match.capturedLength(), newTxt );
       }
 
@@ -981,7 +980,7 @@ void MdxDictionary::replaceLinks( QString & id, QString & article )
         continue;
       }
       else {
-        //audio ,video ,html5 tags fall here.
+        //audio ,script,video ,html5 tags fall here.
         match = RX::Mdx::srcRe.match( linkTxt );
         if ( match.hasMatch() ) {
           QString newText;
@@ -993,8 +992,14 @@ void MdxDictionary::replaceLinks( QString & id, QString & article )
           else {
             scheme = "bres://";
           }
+
           newText =
             match.captured( 1 ) + match.captured( 2 ) + scheme + id + "/" + match.captured( 3 ) + match.captured( 2 );
+
+          //add defer to script tag
+          if ( linkType.compare( "script" ) == 0 ) {
+            newText = newText + " defer ";
+          }
 
           newLink = linkTxt.replace( match.capturedStart(), match.capturedLength(), newText );
         }
