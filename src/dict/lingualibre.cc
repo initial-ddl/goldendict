@@ -33,7 +33,7 @@ class LinguaArticleRequest: public Dictionary::DataRequest
     }
   };
 
-  typedef std::list< NetReply > NetReplies;
+  using NetReplies = std::list< NetReply >;
   NetReplies netReplies;
   QString languageCode, langWikipediaID;
   string dictionaryId;
@@ -47,7 +47,7 @@ public:
                         string const & dictionaryId_,
                         QNetworkAccessManager & mgr );
 
-  virtual void cancel();
+  void cancel() override;
 
 private:
 

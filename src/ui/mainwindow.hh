@@ -190,7 +190,7 @@ private:
   /// Applies Qt stylesheets, use Windows dark palette etc....
   void updateAppearances( const QString & addonStyle,
                           const QString & displayStyle,
-                          const bool & darkMode
+                          Config::Dark darkMode
 #if !defined( Q_OS_WIN )
                           ,
                           const QString & interfaceStyle
@@ -345,7 +345,7 @@ private slots:
 
   /// If editDictionaryGroup is specified, the dialog positions on that group
   /// initially.
-  void editDictionaries( unsigned editDictionaryGroup = Instances::Group::NoGroupId );
+  void editDictionaries( unsigned editDictionaryGroup = GroupId::NoGroupId );
   /// Edits current group when triggered from the dictionary bar.
   void editCurrentGroup();
   void editPreferences();

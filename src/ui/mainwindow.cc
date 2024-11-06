@@ -36,6 +36,8 @@
 #include <QThreadPool>
 #include <QSslConfiguration>
 #include <QStyleFactory>
+#include <QStyleHints>
+
 #include "weburlrequestinterceptor.hh"
 #include "folding.hh"
 
@@ -61,6 +63,7 @@
   #include <windows.h>
 #endif
 
+#include <QGuiApplication>
 #include <QWebEngineSettings>
 #include <QProxyStyle>
 
@@ -553,7 +556,7 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   // Dictionary bar
 
   Instances::Group const * igrp = groupInstances.findGroup( cfg.lastMainGroupId );
-  if ( cfg.lastMainGroupId == Instances::Group::AllGroupId ) {
+  if ( cfg.lastMainGroupId == GroupId::AllGroupId ) {
     if ( igrp ) {
       igrp->checkMutedDictionaries( &cfg.mutedDictionaries );
     }
@@ -776,7 +779,7 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   addNewTab();
   ArticleView * view = getCurrentArticleView();
   history.enableAdd( false );
-  view->showDefinition( tr( "Welcome!" ), Instances::Group::HelpGroupId );
+  view->showDefinition( tr( "Welcome!" ), GroupId::HelpGroupId );
   history.enableAdd( cfg.preferences.storeHistory );
 
   // restore should be called after all UI initialized but not necessarily after show()
@@ -1318,7 +1321,7 @@ QPrinter & MainWindow::getPrinter()
 
 void MainWindow::updateAppearances( QString const & addonStyle,
                                     QString const & displayStyle,
-                                    bool const & darkMode
+                                    Config::Dark darkMode
 #if !defined( Q_OS_WIN )
                                     ,
                                     const QString & interfaceStyle
@@ -1326,7 +1329,7 @@ void MainWindow::updateAppearances( QString const & addonStyle,
 )
 {
 #ifdef Q_OS_WIN32
-  if ( darkMode ) {
+  if ( darkMode == Config::Dark::On ) {
     //https://forum.qt.io/topic/101391/windows-10-dark-theme
 
     QPalette darkPalette;
@@ -1381,7 +1384,7 @@ void MainWindow::updateAppearances( QString const & addonStyle,
 
   // Load an additional stylesheet
   // Dark Mode doesn't work nice with custom qt style sheets,
-  if ( !darkMode ) {
+  if ( darkMode == Config::Dark::Off ) {
     QFile additionalStyle( QString( ":qt-%1.css" ).arg( displayStyle ) );
     if ( additionalStyle.open( QFile::ReadOnly ) ) {
       css += additionalStyle.readAll();
@@ -1406,7 +1409,7 @@ void MainWindow::updateAppearances( QString const & addonStyle,
   }
 
 #ifdef Q_OS_WIN32
-  if ( darkMode ) {
+  if ( darkMode == Config::Dark::On ) {
     css += "QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }";
   }
 #endif
@@ -1640,7 +1643,7 @@ void MainWindow::updateGroupList( bool reload )
                                           dictionaries );
 
     g.name = tr( "All" );
-    g.id   = Instances::Group::AllGroupId;
+    g.id   = GroupId::AllGroupId;
     g.icon = "folder.png";
 
     groupInstances.push_back( g );
@@ -1685,7 +1688,7 @@ void MainWindow::updateDictionaryBar()
 
   dictionaryBar.setMutedDictionaries( nullptr );
   if ( grp ) { // Should always be !0, but check as a safeguard
-    if ( currentId == Instances::Group::AllGroupId ) {
+    if ( currentId == GroupId::AllGroupId ) {
       dictionaryBar.setMutedDictionaries( &cfg.mutedDictionaries );
     }
     else {
@@ -2205,7 +2208,7 @@ void MainWindow::editDictionaries( unsigned editDictionaryGroup )
 
     connect( &dicts, &EditDictionaries::showDictionaryHeadwords, this, &MainWindow::showDictionaryHeadwords );
 
-    if ( editDictionaryGroup != Instances::Group::NoGroupId ) {
+    if ( editDictionaryGroup != GroupId::NoGroupId ) {
       dicts.editGroup( editDictionaryGroup );
     }
 
@@ -2219,7 +2222,7 @@ void MainWindow::editDictionaries( unsigned editDictionaryGroup )
       // Set muted dictionaries from old groups
       for ( auto & group : newCfg.groups ) {
         unsigned id = group.id;
-        if ( id != Instances::Group::NoGroupId ) {
+        if ( id != GroupId::NoGroupId ) {
           Config::Group const * grp = cfg.getGroup( id );
           if ( grp ) {
             group.mutedDictionaries      = grp->mutedDictionaries;
@@ -2321,6 +2324,7 @@ void MainWindow::editPreferences()
         || cfg.preferences.collapseBigArticles != p.collapseBigArticles
         || cfg.preferences.articleSizeLimit != p.articleSizeLimit
         || cfg.preferences.alwaysExpandOptionalParts != p.alwaysExpandOptionalParts // DSL format's special feature
+        || p.darkReaderMode == Config::Dark::Auto // We cannot know if a reload is needed, just do it regardless.
       );
 
     // This line must be here because the components below require cfg's value to reconfigure
@@ -2336,6 +2340,15 @@ void MainWindow::editPreferences()
       if ( needReload ) {
         view.reload();
       }
+
+#if QT_VERSION >= QT_VERSION_CHECK( 6, 5, 0 )
+      if ( cfg.preferences.darkReaderMode == Config::Dark::Auto ) {
+        connect( QGuiApplication::styleHints(), &QStyleHints::colorSchemeChanged, &view, &ArticleView::reload );
+      }
+      else {
+        disconnect( QGuiApplication::styleHints(), &QStyleHints::colorSchemeChanged, &view, &ArticleView::reload );
+      }
+#endif
     }
 
     audioPlayerFactory.setPreferences( cfg.preferences );
@@ -2373,7 +2386,7 @@ void MainWindow::currentGroupChanged( int )
   unsigned grg_id               = groupList->getCurrentGroup();
   cfg.lastMainGroupId           = grg_id;
   Instances::Group const * igrp = groupInstances.findGroup( grg_id );
-  if ( grg_id == Instances::Group::AllGroupId ) {
+  if ( grg_id == GroupId::AllGroupId ) {
     if ( igrp ) {
       igrp->checkMutedDictionaries( &cfg.mutedDictionaries );
     }

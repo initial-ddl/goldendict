@@ -102,31 +102,23 @@ AnkiConnectServer::AnkiConnectServer():
 {
 }
 
-HotKey::HotKey():
-  modifiers( 0 ),
-  key1( 0 ),
-  key2( 0 )
-{
-}
-
-// Does anyone know how to separate modifiers from the keycode? We'll
-// use our own mask.
-
-uint32_t const keyMask = 0x01FFFFFF;
-
 HotKey::HotKey( QKeySequence const & seq ):
-  modifiers( seq[ 0 ] & ~keyMask ),
-  key1( seq[ 0 ] & keyMask ),
-  key2( seq[ 1 ] & keyMask )
+  modifiers( seq[ 0 ].keyboardModifiers() ),
+  key1( seq[ 0 ].key() ),
+  key2( seq[ 1 ].key() )
 {
 }
 
 QKeySequence HotKey::toKeySequence() const
 {
-  int v2 = key2 ? ( key2 | modifiers ) : 0;
-
-  return QKeySequence( key1 | modifiers, v2 );
+  if ( key2 != 0 || key2 != Qt::Key::Key_unknown ) {
+    return { QKeyCombination( modifiers, static_cast< Qt::Key >( key1 ) ),
+             QKeyCombination( modifiers, static_cast< Qt::Key >( key2 ) ) };
+  }
+  return { QKeyCombination( modifiers, static_cast< Qt::Key >( key1 ) ) };
+  ;
 }
+
 
 bool InternalPlayerBackend::anyAvailable()
 {
@@ -213,8 +205,6 @@ Preferences::Preferences():
   selectWordBySingleClick( false ),
   autoScrollToTargetArticle( true ),
   escKeyHidesMainWindow( false ),
-  darkMode( false ),
-  darkReaderMode( false ),
   alwaysOnTop( false ),
   searchInDock( false ),
 // on macOS, register hotkeys will override system shortcuts, disabled for now to avoid troubles.
@@ -947,11 +937,12 @@ Class load()
     }
 
     if ( !preferences.namedItem( "darkMode" ).isNull() ) {
-      c.preferences.darkMode = ( preferences.namedItem( "darkMode" ).toElement().text() == "1" );
+      c.preferences.darkMode = static_cast< Dark >( preferences.namedItem( "darkMode" ).toElement().text().toInt() );
     }
 
     if ( !preferences.namedItem( "darkReaderMode" ).isNull() ) {
-      c.preferences.darkReaderMode = ( preferences.namedItem( "darkReaderMode" ).toElement().text() == "1" );
+      c.preferences.darkReaderMode =
+        static_cast< Dark >( preferences.namedItem( "darkReaderMode" ).toElement().text().toInt() );
     }
 
     if ( !preferences.namedItem( "zoomFactor" ).isNull() ) {
@@ -1882,11 +1873,11 @@ void save( Class const & c )
     preferences.appendChild( opt );
 
     opt = dd.createElement( "darkMode" );
-    opt.appendChild( dd.createTextNode( c.preferences.darkMode ? "1" : "0" ) );
+    opt.appendChild( dd.createTextNode( QString::number( static_cast< int >( c.preferences.darkMode ) ) ) );
     preferences.appendChild( opt );
 
     opt = dd.createElement( "darkReaderMode" );
-    opt.appendChild( dd.createTextNode( c.preferences.darkReaderMode ? "1" : "0" ) );
+    opt.appendChild( dd.createTextNode( QString::number( static_cast< int >( c.preferences.darkReaderMode ) ) ) );
     preferences.appendChild( opt );
 
     opt = dd.createElement( "zoomFactor" );

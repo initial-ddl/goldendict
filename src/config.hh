@@ -18,11 +18,25 @@
 #include <optional>
 #include <QThread>
 
+/// Special group IDs
+enum GroupId : unsigned {
+  AllGroupId  = UINT_MAX - 1, /// The 'All' group
+  HelpGroupId = UINT_MAX,     /// The fictitious 'Help' group
+  NoGroupId   = 0,            /// Invalid value, used to specify that no group id is specified at all.
+};
+
 /// GoldenDict's configuration
 namespace Config {
 
+// Tri states enum for Dark and Dark reader mode
+enum class Dark : std::uint8_t {
+  Off = 0,
+  On  = 1,
+  Auto = 2,
+};
+
 /// Dictionaries which are temporarily disabled via the dictionary bar.
-typedef QSet< QString > MutedDictionaries;
+using MutedDictionaries = QSet< QString >;
 
 /// A path where to search for the dictionaries
 struct Path
@@ -47,7 +61,7 @@ struct Path
 };
 
 /// A list of paths where to search for the dictionaries
-typedef QList< Path > Paths;
+using Paths = QList< Path >;
 
 /// A directory holding bunches of audiofiles, which is indexed into a separate
 /// dictionary.
@@ -72,7 +86,7 @@ struct SoundDir
 };
 
 /// A list of SoundDirs
-typedef QList< SoundDir > SoundDirs;
+using SoundDirs = QList< SoundDir >;
 
 struct DictionaryRef
 {
@@ -178,14 +192,11 @@ struct HotKey
   Qt::KeyboardModifiers modifiers;
   int key1, key2;
 
-  HotKey();
-
   /// Hotkey's constructor, take a QKeySequence's first two keys
   /// 1st key's modifier will be the `modifiers` above
   /// 1st key without modifier will becomes `key1`
   /// 2nd key without modifier will becomes `key2`
   /// The relation between the int and qt's KeyCode should consult qt's doc
-
   HotKey( QKeySequence const & );
 
   QKeySequence toKeySequence() const;
@@ -413,8 +424,14 @@ struct Preferences
 
   // Appearances
 
-  bool darkMode;
-  bool darkReaderMode;
+  Dark darkMode       = Dark::Off;
+  Dark darkReaderMode =
+#if defined( Q_OS_MACOS )
+    Dark::Auto;
+#else
+    Dark::Off;
+#endif
+
   QString addonStyle;
   QString displayStyle; // Article Display style (Which also affect interface style on windows)
 
@@ -498,7 +515,7 @@ struct WebSite
 };
 
 /// All the WebSites
-typedef QList< WebSite > WebSites;
+using WebSites = QList< WebSite >;
 
 /// Any DICT server
 struct DictServer
@@ -539,14 +556,14 @@ struct DictServer
 };
 
 /// All the DictServers
-typedef QList< DictServer > DictServers;
+using DictServers = QList< DictServer >;
 
 /// Hunspell configuration
 struct Hunspell
 {
   QString dictionariesPath;
 
-  typedef QList< QString > Dictionaries;
+  using Dictionaries = QList< QString >;
 
   Dictionaries enabledDictionaries;
 
@@ -562,7 +579,7 @@ struct Hunspell
 };
 
 /// All the MediaWikis
-typedef QList< MediaWiki > MediaWikis;
+using MediaWikis = QList< MediaWiki >;
 
 
 /// Chinese transliteration configuration
@@ -755,7 +772,7 @@ struct Program
   }
 };
 
-typedef QList< Program > Programs;
+using Programs = QList< Program >;
 
 #ifndef NO_TTS_SUPPORT
 struct VoiceEngine
@@ -801,7 +818,7 @@ struct VoiceEngine
   }
 };
 
-typedef QList< VoiceEngine > VoiceEngines;
+using VoiceEngines = QList< VoiceEngine >;
 #endif
 
 struct HeadwordsDialog

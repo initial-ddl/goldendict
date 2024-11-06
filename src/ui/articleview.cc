@@ -440,19 +440,16 @@ void ArticleView::inspectElement()
 void ArticleView::loadFinished( bool result )
 {
   setZoomFactor( cfg.preferences.zoomFactor );
-  QUrl url = webview->url();
-  qDebug() << "article view loaded url:" << url.url().left( 200 ) << result;
-
   webview->unsetCursor();
-
-  if ( url.url() == "about:blank" ) {
-    return;
-  }
-
   if ( !result ) {
     qWarning() << "article loaded unsuccessful";
     return;
   }
+  QUrl url = webview->url();
+  if ( url.url() == "about:blank" ) {
+    return;
+  }
+  qDebug() << "article view loaded url:" << url.url().left( 50 ) << result;
 
   if ( cfg.preferences.autoScrollToTargetArticle ) {
     QString const scrollTo = Utils::Url::queryItemValue( url, "scrollto" );
@@ -798,7 +795,7 @@ QStringList ArticleView::getMutedDictionaries( unsigned group )
     // Find muted dictionaries for current group
     Config::Group const * grp = cfg.getGroup( group );
     Config::MutedDictionaries const * mutedDictionaries;
-    if ( group == Instances::Group::AllGroupId ) {
+    if ( group == GroupId::AllGroupId ) {
       mutedDictionaries = popupView ? &cfg.popupMutedDictionaries : &cfg.mutedDictionaries;
     }
     else {
@@ -1229,7 +1226,7 @@ void ArticleView::syncBackgroundColorWithCfgDarkReader() const
 {
 // Only works Qt6.6.3+ https://bugreports.qt.io/browse/QTBUG-112013
 #if QT_VERSION >= QT_VERSION_CHECK( 6, 6, 3 )
-  if ( cfg.preferences.darkReaderMode ) {
+  if ( cfg.preferences.darkReaderMode == Config::Dark::On ) {
     webview->page()->setBackgroundColor( QColor( 39, 40, 40 ) );
   }
   else {
@@ -1766,7 +1763,7 @@ void ArticleView::pasteTriggered()
 
   if ( !word.isEmpty() ) {
     unsigned groupId = getGroup( webview->url() );
-    if ( groupId == 0 || groupId == Instances::Group::HelpGroupId ) {
+    if ( groupId == 0 || groupId == GroupId::HelpGroupId ) {
       // We couldn't figure out the group out of the URL,
       // so let's try the currently selected group.
       groupId = currentGroupId;
@@ -1918,7 +1915,7 @@ void ArticleView::doubleClicked( QPoint pos )
         QUrl const & ref = webview->url();
 
         auto groupId = getGroup( ref );
-        if ( groupId == 0 || groupId == Instances::Group::HelpGroupId ) {
+        if ( groupId == 0 || groupId == GroupId::HelpGroupId ) {
           groupId = currentGroupId;
         }
         if ( Utils::Url::hasQueryItem( ref, "dictionaries" ) ) {
@@ -2062,7 +2059,7 @@ void ArticleView::setActiveDictIds( const ActiveDictIds & ad )
 {
   auto groupId = ad.groupId;
   if ( groupId == 0 ) {
-    groupId = Instances::Group::AllGroupId;
+    groupId = GroupId::AllGroupId;
   }
   if ( ( ad.word == currentWord && groupId == getCurrentGroup() ) || historyMode ) {
     // ignore all other signals.
@@ -2077,7 +2074,7 @@ void ArticleView::dictionaryClear( const ActiveDictIds & ad )
 {
   auto groupId = ad.groupId;
   if ( groupId == 0 ) {
-    groupId = Instances::Group::AllGroupId;
+    groupId = GroupId::AllGroupId;
   }
   // ignore all other signals.
   if ( ad.word == currentWord && groupId == getCurrentGroup() ) {
