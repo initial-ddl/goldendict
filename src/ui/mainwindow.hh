@@ -1,8 +1,7 @@
 /* This file is (c) 2008-2012 Konstantin Isakov <ikm@goldendict.org>
  * Part of GoldenDict. Licensed under GPLv3 or later, see the LICENSE file */
 
-#ifndef __MAINWINDOW_HH_INCLUDED__
-#define __MAINWINDOW_HH_INCLUDED__
+#pragma once
 
 #include <QMainWindow>
 #include <QThread>
@@ -15,7 +14,7 @@
 #include "config.hh"
 #include "dict/dictionary.hh"
 #include "article_netmgr.hh"
-#include "audioplayerfactory.hh"
+#include "audio/audioplayerfactory.hh"
 #include "instances.hh"
 #include "article_maker.hh"
 #include "scanpopup.hh"
@@ -68,7 +67,6 @@ public slots:
   void messageFromAnotherInstanceReceived( QString const & );
   void showStatusBarMessage( QString const &, int, QPixmap const & );
   void wordReceived( QString const & );
-  void headwordReceived( QString const &, QString const & );
   void headwordFromFavorites( QString const &, QString const & );
   void quitApp();
 
@@ -227,9 +225,8 @@ private:
   /// group, or to all dictionaries if there are no groups.
   vector< sptr< Dictionary::Class > > const & getActiveDicts();
 
-  /// Brings the main window to front if it's not currently, or hides it
-  /// otherwise. The hiding part is omitted if onlyShow is true.
-  void toggleMainWindow( bool onlyShow = false );
+  /// @param ensureShow only ensure the window will be shown and no "toggling"
+  void toggleMainWindow( bool ensureShow );
 
   /// Creates hotkeyWrapper and hooks the currently set keys for it
   void installHotKeys();
@@ -399,8 +396,6 @@ private slots:
 
   void setAutostart( bool );
 
-  void showMainWindow();
-
   void visitHomepage();
   void visitForum();
   void openConfigFolder();
@@ -505,5 +500,3 @@ public slots:
     setValue( progress );
   }
 };
-
-#endif

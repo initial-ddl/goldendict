@@ -621,7 +621,7 @@ void MdxArticleRequest::run()
     }
 
     QCryptographicHash hash( QCryptographicHash::Md5 );
-    hash.addData( articleBody.data(), articleBody.size() );
+    hash.addData( { articleBody.data(), static_cast< qsizetype >( articleBody.length() ) } );
     if ( !articleBodiesIncluded.insert( hash.result() ).second ) {
       continue; // Already had this body
     }
@@ -785,7 +785,7 @@ void MddResourceRequest::run()
         data.push_back( '\0' );
         QString target =
           MdictParser::toUtf16( "UTF-16LE", &data.front() + sizeof( pattern ), data.size() - sizeof( pattern ) );
-        resourceName = gd::toWString( target.trimmed() );
+        resourceName = target.trimmed().toStdU32String();
         continue;
       }
     }
@@ -1200,7 +1200,7 @@ QString MdxDictionary::getCachedFileName( QString filename )
       data.push_back( '\0' );
       QString target =
         MdictParser::toUtf16( "UTF-16LE", &data.front() + sizeof( pattern ), data.size() - sizeof( pattern ) );
-      resourceName = gd::toWString( target.trimmed() );
+      resourceName = target.trimmed().toStdU32String();
       continue;
     }
     break;
@@ -1249,14 +1249,14 @@ static void addEntryToIndex( QString const & word, uint32_t offset, IndexedWords
 {
   // Strip any leading or trailing whitespaces
   QString wordTrimmed = word.trimmed();
-  indexedWords.addWord( gd::toWString( wordTrimmed ), offset );
+  indexedWords.addWord( wordTrimmed.toStdU32String(), offset );
 }
 
 static void addEntryToIndexSingle( QString const & word, uint32_t offset, IndexedWords & indexedWords )
 {
   // Strip any leading or trailing whitespaces
   QString wordTrimmed = word.trimmed();
-  indexedWords.addSingleWord( gd::toWString( wordTrimmed ), offset );
+  indexedWords.addSingleWord( wordTrimmed.toStdU32String(), offset );
 }
 
 class ArticleHandler: public MdictParser::RecordHandler

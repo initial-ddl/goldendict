@@ -1,8 +1,7 @@
 /* This file is (c) 2008-2012 Konstantin Isakov <ikm@goldendict.org>
  * Part of GoldenDict. Licensed under GPLv3 or later, see the LICENSE file */
 
-#ifndef __SCANPOPUP_HH_INCLUDED__
-#define __SCANPOPUP_HH_INCLUDED__
+#pragma once
 
 #include "article_netmgr.hh"
 #include "ui/articleview.hh"
@@ -175,11 +174,7 @@ private:
   virtual void mouseMoveEvent( QMouseEvent * );
   virtual void mouseReleaseEvent( QMouseEvent * );
   virtual void leaveEvent( QEvent * event );
-#if ( QT_VERSION >= QT_VERSION_CHECK( 6, 0, 0 ) )
   virtual void enterEvent( QEnterEvent * event );
-#else
-  virtual void enterEvent( QEvent * event );
-#endif
   virtual void showEvent( QShowEvent * );
   virtual void closeEvent( QCloseEvent * );
   virtual void moveEvent( QMoveEvent * );
@@ -233,5 +228,3 @@ private slots:
 
   void titleChanged( ArticleView *, QString const & title ) const;
 };
-
-#endif

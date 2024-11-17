@@ -174,6 +174,11 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
   ui.hideSingleTab->setChecked( p.hideSingleTab );
   ui.mruTabOrder->setChecked( p.mruTabOrder );
   ui.enableTrayIcon->setChecked( p.enableTrayIcon );
+
+#ifdef Q_OS_MACOS // macOS uses the dock menu instead of the tray icon
+  ui.enableTrayIcon->hide();
+#endif
+
   ui.startToTray->setChecked( p.startToTray );
   ui.closeToTray->setChecked( p.closeToTray );
   ui.cbAutostart->setChecked( p.autoStart );
@@ -205,10 +210,17 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
   ui.darkMode->hide();
 #endif
 
+  /// Hotkey Tab
   ui.enableMainWindowHotkey->setChecked( p.enableMainWindowHotkey );
   ui.mainWindowHotkey->setKeySequence( p.mainWindowHotkey );
   ui.enableClipboardHotkey->setChecked( p.enableClipboardHotkey );
   ui.clipboardHotkey->setKeySequence( p.clipboardHotkey );
+
+#if QT_VERSION >= QT_VERSION_CHECK( 6, 5, 0 )
+  // Bound by current global hotkey implementations
+  ui.mainWindowHotkey->setMaximumSequenceLength( 2 );
+  ui.clipboardHotkey->setMaximumSequenceLength( 2 );
+#endif
 
   ui.startWithScanPopupOn->setChecked( p.startWithScanPopupOn );
   ui.enableScanPopupModifiers->setChecked( p.enableScanPopupModifiers );
@@ -282,7 +294,7 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
   ui.pronounceOnLoadMain->setChecked( p.pronounceOnLoadMain );
   ui.pronounceOnLoadPopup->setChecked( p.pronounceOnLoadPopup );
 
-  ui.internalPlayerBackend->addItems( Config::InternalPlayerBackend::nameList() );
+  ui.internalPlayerBackend->addItems( InternalPlayerBackend::nameList() );
 
   // Make sure that exactly one radio button in the group is checked and that
   // on_useExternalPlayer_toggled() is called.
@@ -294,7 +306,7 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
 
     int index = ui.internalPlayerBackend->findText( p.internalPlayerBackend.uiName() );
     if ( index < 0 ) { // The specified backend is unavailable.
-      index = ui.internalPlayerBackend->findText( Config::InternalPlayerBackend::defaultBackend().uiName() );
+      index = ui.internalPlayerBackend->findText( InternalPlayerBackend::defaultBackend().uiName() );
     }
     Q_ASSERT( index >= 0 && "Logic error: the default backend must be present in the backend name list." );
     ui.internalPlayerBackend->setCurrentIndex( index );

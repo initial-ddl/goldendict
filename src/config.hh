@@ -1,22 +1,22 @@
 /* This file is (c) 2008-2012 Konstantin Isakov <ikm@goldendict.org>
  * Part of GoldenDict. Licensed under GPLv3 or later, see the LICENSE file */
 
-#ifndef __CONFIG_HH_INCLUDED__
-#define __CONFIG_HH_INCLUDED__
+#pragma once
 
-#include <QObject>
-#include <QList>
-#include <QString>
-#include <QSize>
-#include <QDateTime>
-#include <QKeySequence>
-#include <QSet>
-#include <QMetaType>
+#include "audio/internalplayerbackend.hh"
 #include "ex.hh"
+#include <QDateTime>
 #include <QDomDocument>
+#include <QKeySequence>
+#include <QList>
 #include <QLocale>
-#include <optional>
+#include <QMetaType>
+#include <QObject>
+#include <QSet>
+#include <QSize>
+#include <QString>
 #include <QThread>
+#include <optional>
 
 /// Special group IDs
 enum GroupId : unsigned {
@@ -270,66 +270,6 @@ struct CustomFonts
   }
 };
 
-/// This class encapsulates supported backend preprocessor logic,
-/// discourages duplicating backend names in code, which is error-prone.
-class InternalPlayerBackend
-{
-public:
-  /// Returns true if at least one backend is available.
-  static bool anyAvailable();
-  /// Returns the default backend or null backend if none is available.
-  static InternalPlayerBackend defaultBackend();
-  /// Returns the name list of supported backends.
-  static QStringList nameList();
-
-  /// Returns true if built with FFmpeg player support and the name matches.
-  bool isFfmpeg() const;
-  /// Returns true if built with Qt Multimedia player support and the name matches.
-  bool isQtmultimedia() const;
-
-  QString const & uiName() const
-  {
-    return name;
-  }
-
-  void setUiName( QString const & name_ )
-  {
-    name = name_;
-  }
-
-  bool operator==( InternalPlayerBackend const & other ) const
-  {
-    return name == other.name;
-  }
-
-  bool operator!=( InternalPlayerBackend const & other ) const
-  {
-    return !operator==( other );
-  }
-
-private:
-#ifdef MAKE_FFMPEG_PLAYER
-  static InternalPlayerBackend ffmpeg()
-  {
-    return InternalPlayerBackend( "FFmpeg" );
-  }
-#endif
-
-#ifdef MAKE_QTMULTIMEDIA_PLAYER
-  static InternalPlayerBackend qtmultimedia()
-  {
-    return InternalPlayerBackend( "Qt Multimedia" );
-  }
-#endif
-
-  explicit InternalPlayerBackend( QString const & name_ ):
-    name( name_ )
-  {
-  }
-
-  QString name;
-};
-
 /// Various user preferences
 struct Preferences
 {
@@ -342,9 +282,17 @@ struct Preferences
   bool hideSingleTab;
   bool mruTabOrder;
   bool hideMenubar;
-  bool enableTrayIcon;
-  bool startToTray;
-  bool closeToTray;
+
+#ifdef Q_OS_MACOS // macOS uses the dock menu instead of the tray icon
+  bool closeToTray    = false;
+  bool enableTrayIcon = false;
+  bool startToTray    = false;
+#else
+  bool enableTrayIcon = true;
+  bool closeToTray    = true;
+  bool startToTray    = false;
+#endif
+
   bool autoStart;
   bool doubleClickTranslates;
   bool selectWordBySingleClick;
@@ -485,7 +433,7 @@ struct WebSite
   QString id, name, url;
   bool enabled;
   QString iconFilename;
-  bool inside_iframe;
+  bool inside_iframe = false;
 
   WebSite():
     enabled( false )
@@ -691,7 +639,7 @@ struct Transliteration
 
 struct Lingua
 {
-  bool enable;
+  bool enable = false;
   QString languageCodes;
 
   bool operator==( Lingua const & other ) const
@@ -730,13 +678,16 @@ struct Forvo
 struct Program
 {
   bool enabled;
+  // NOTE: the value of this enum is used for config
   enum Type {
-    Audio,
-    PlainText,
-    Html,
-    PrefixMatch,
-    MaxTypeValue
-  } type;
+    Invalid      = -1, // Init value
+    Audio        = 0,
+    PlainText    = 1,
+    Html         = 2,
+    PrefixMatch  = 3,
+    MaxTypeValue = 4
+  };
+  Type type = Invalid;
   QString id, name, commandLine;
   QString iconFilename;
 
@@ -885,7 +836,7 @@ struct Class
   QString articleSavePath;   // Path to save articles
 
   bool pinPopupWindow;         // Last pin status
-  bool popupWindowAlwaysOnTop; // Last status of pinned popup window
+  bool popupWindowAlwaysOnTop = false; // Last status of pinned popup window
 
   QByteArray mainWindowState;    // Binary state saved by QMainWindow
   QByteArray mainWindowGeometry; // Geometry saved by QMainWindow
@@ -922,7 +873,7 @@ struct Class
   Group const * getGroup( unsigned id ) const;
   //disable tts dictionary. does not need to save to persistent file
   bool notts = false;
-  bool resetState;
+  bool resetState = false;
 };
 
 /// Configuration-specific events. Some parts of the program need to react
@@ -1028,5 +979,3 @@ QString getStylesDir();
 QString getCacheDir() noexcept;
 
 } // namespace Config
-
-#endif

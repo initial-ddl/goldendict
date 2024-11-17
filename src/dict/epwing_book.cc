@@ -541,11 +541,7 @@ bool EpwingBook::setSubBook( int book_nom )
   QFile f( fileName );
   if ( f.open( QFile::ReadOnly | QFile::Text ) ) {
     QTextStream ts( &f );
-  #if ( QT_VERSION < QT_VERSION_CHECK( 6, 0, 0 ) )
-    ts.setCodec( "UTF-8" );
-  #else
     ts.setEncoding( QStringConverter::Utf8 );
-  #endif
 
     QString line = ts.readLine();
     while ( !line.isEmpty() ) {
@@ -1141,7 +1137,7 @@ void EpwingBook::fixHeadword( QString & headword )
   //  return;
   //}
 
-  gd::wstring folded = Folding::applyPunctOnly( gd::toWString( fixed ) );
+  gd::wstring folded = Folding::applyPunctOnly( fixed.toStdU32String() );
   //fixed = QString::fromStdU32String( folded );
 
   //if( isHeadwordCorrect( fixed ) )

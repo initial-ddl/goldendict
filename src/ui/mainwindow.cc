@@ -167,7 +167,8 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
                  cfg.preferences.disallowContentFromOtherSites,
                  cfg.preferences.hideGoldenDictHeader ),
   dictNetMgr( this ),
-  audioPlayerFactory( cfg.preferences ),
+  audioPlayerFactory(
+    cfg.preferences.useInternalPlayer, cfg.preferences.internalPlayerBackend, cfg.preferences.audioPlaybackProgram ),
   wordFinder( this ),
   wordListSelChanged( false ),
   wasMaximized( false ),
@@ -401,15 +402,18 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
   connect( wordsZoomOut, &QAction::triggered, this, &MainWindow::doWordsZoomOut );
   connect( wordsZoomBase, &QAction::triggered, this, &MainWindow::doWordsZoomBase );
 
-  // tray icon
-  connect( trayIconMenu.addAction( tr( "Show &Main Window" ) ),
-           &QAction::triggered,
-           this,
-           &MainWindow::showMainWindow );
+// tray icon
+#ifndef Q_OS_MACOS // macOS uses the dock menu instead of the tray icon
+  connect( trayIconMenu.addAction( tr( "Show &Main Window" ) ), &QAction::triggered, this, [ this ] {
+    this->toggleMainWindow( true );
+  } );
+#endif
   trayIconMenu.addAction( enableScanningAction );
 
+#ifndef Q_OS_MACOS // macOS uses the dock menu instead of the tray icon
   trayIconMenu.addSeparator();
   connect( trayIconMenu.addAction( tr( "&Quit" ) ), &QAction::triggered, this, &MainWindow::quitApp );
+#endif
 
   addGlobalAction( &escAction, [ this ]() {
     handleEsc();
@@ -757,11 +761,7 @@ MainWindow::MainWindow( Config::Class & cfg_ ):
 
 
 #if defined( Q_OS_LINUX )
-  #if ( QT_VERSION >= QT_VERSION_CHECK( 6, 0, 0 ) )
   defaultInterfaceStyle = QApplication::style()->name();
-  #else
-  defaultInterfaceStyle = QApplication::style()->objectName();
-  #endif
 #elif defined( Q_OS_MAC )
   defaultInterfaceStyle = "Fusion";
 #endif
@@ -1421,6 +1421,11 @@ void MainWindow::updateAppearances( QString const & addonStyle,
 
 void MainWindow::trayIconUpdateOrInit()
 {
+#ifdef Q_OS_MACOS
+  trayIconMenu.setAsDockMenu();
+  ui.actionCloseToTray->setVisible( false );
+#else
+
   if ( !cfg.preferences.enableTrayIcon ) {
     if ( trayIcon ) {
       delete trayIcon;
@@ -1444,6 +1449,7 @@ void MainWindow::trayIconUpdateOrInit()
   // The 'Close to tray' action is associated with the tray icon, so we hide
   // or show it here.
   ui.actionCloseToTray->setVisible( cfg.preferences.enableTrayIcon );
+#endif
 }
 
 void MainWindow::wheelEvent( QWheelEvent * ev )
@@ -2351,7 +2357,9 @@ void MainWindow::editPreferences()
 #endif
     }
 
-    audioPlayerFactory.setPreferences( cfg.preferences );
+    audioPlayerFactory.setPreferences( cfg.preferences.useInternalPlayer,
+                                       cfg.preferences.internalPlayerBackend,
+                                       cfg.preferences.audioPlaybackProgram );
 
     trayIconUpdateOrInit();
     applyProxySettings();
@@ -2532,7 +2540,7 @@ void MainWindow::handleEsc()
   }
 
   if ( cfg.preferences.escKeyHidesMainWindow ) {
-    toggleMainWindow();
+    toggleMainWindow( false );
   }
   else {
     focusTranslateLine();
@@ -2873,7 +2881,7 @@ void MainWindow::showTranslationForDicts( QString const & inWord,
                         ignoreDiacritics );
 }
 
-void MainWindow::toggleMainWindow( bool onlyShow )
+void MainWindow::toggleMainWindow( bool ensureShow )
 {
   bool shown = false;
 
@@ -2906,7 +2914,7 @@ void MainWindow::toggleMainWindow( bool onlyShow )
     }
     shown = true;
   }
-  else if ( !onlyShow ) {
+  else if ( !ensureShow ) {
 
     // On Windows and Linux, a hidden window won't show a task bar icon
     // When trayicon is enabled, the duplication is unneeded
@@ -2990,7 +2998,7 @@ void MainWindow::installHotKeys()
 void MainWindow::hotKeyActivated( int hk )
 {
   if ( !hk ) {
-    toggleMainWindow();
+    toggleMainWindow( false );
   }
   else if ( scanPopup ) {
 #ifdef HAVE_X11
@@ -3075,7 +3083,7 @@ void MainWindow::trayIconActivated( QSystemTrayIcon::ActivationReason r )
   switch ( r ) {
     case QSystemTrayIcon::Trigger:
       // Left click toggles the visibility of main window
-      toggleMainWindow();
+      toggleMainWindow( false );
       break;
 
     case QSystemTrayIcon::MiddleClick:
@@ -3088,10 +3096,6 @@ void MainWindow::trayIconActivated( QSystemTrayIcon::ActivationReason r )
   }
 }
 
-void MainWindow::showMainWindow()
-{
-  toggleMainWindow( true );
-}
 
 void MainWindow::visitHomepage()
 {
@@ -3730,13 +3734,6 @@ void MainWindow::wordReceived( const QString & word )
   respondToTranslationRequest( word, false );
 }
 
-void MainWindow::headwordReceived( const QString & word, const QString & ID )
-{
-  toggleMainWindow( true );
-  setInputLineText( word, WildcardPolicy::EscapeWildcards, NoPopupChange );
-  respondToTranslationRequest( word, false, ArticleView::scrollToFromDictionaryId( ID ), false );
-}
-
 void MainWindow::updateFavoritesMenu()
 {
   if ( ui.favoritesPane->isVisible() ) {
@@ -4141,7 +4138,13 @@ void MainWindow::showDictionaryHeadwords( Dictionary::Class * dict )
       headwordsDlg = new DictHeadwords( this, cfg, dict );
       addGlobalActionsToDialog( headwordsDlg );
       addGroupComboBoxActionsToDialog( headwordsDlg, groupList );
-      connect( headwordsDlg, &DictHeadwords::headwordSelected, this, &MainWindow::headwordReceived );
+      connect( headwordsDlg,
+               &DictHeadwords::headwordSelected,
+               this,
+               [ this ]( QString const & headword, QString const & dictID ) {
+                 setInputLineText( headword, WildcardPolicy::EscapeWildcards, NoPopupChange );
+                 respondToTranslationRequest( headword, false, ArticleView::scrollToFromDictionaryId( dictID ), false );
+               } );
       connect( headwordsDlg,
                &DictHeadwords::closeDialog,
                this,

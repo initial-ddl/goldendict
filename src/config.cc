@@ -111,63 +111,12 @@ HotKey::HotKey( QKeySequence const & seq ):
 
 QKeySequence HotKey::toKeySequence() const
 {
-  if ( key2 != 0 || key2 != Qt::Key::Key_unknown ) {
+  if ( key2 != 0 && key2 != Qt::Key::Key_unknown ) {
     return { QKeyCombination( modifiers, static_cast< Qt::Key >( key1 ) ),
              QKeyCombination( modifiers, static_cast< Qt::Key >( key2 ) ) };
   }
   return { QKeyCombination( modifiers, static_cast< Qt::Key >( key1 ) ) };
   ;
-}
-
-
-bool InternalPlayerBackend::anyAvailable()
-{
-#if defined( MAKE_FFMPEG_PLAYER ) || defined( MAKE_QTMULTIMEDIA_PLAYER )
-  return true;
-#else
-  return false;
-#endif
-}
-
-InternalPlayerBackend InternalPlayerBackend::defaultBackend()
-{
-#if defined( MAKE_FFMPEG_PLAYER )
-  return ffmpeg();
-#elif defined( MAKE_QTMULTIMEDIA_PLAYER )
-  return qtmultimedia();
-#else
-  return InternalPlayerBackend( QString() );
-#endif
-}
-
-QStringList InternalPlayerBackend::nameList()
-{
-  QStringList result;
-#ifdef MAKE_FFMPEG_PLAYER
-  result.push_back( ffmpeg().uiName() );
-#endif
-#ifdef MAKE_QTMULTIMEDIA_PLAYER
-  result.push_back( qtmultimedia().uiName() );
-#endif
-  return result;
-}
-
-bool InternalPlayerBackend::isFfmpeg() const
-{
-#ifdef MAKE_FFMPEG_PLAYER
-  return *this == ffmpeg();
-#else
-  return false;
-#endif
-}
-
-bool InternalPlayerBackend::isQtmultimedia() const
-{
-#ifdef MAKE_QTMULTIMEDIA_PLAYER
-  return *this == qtmultimedia();
-#else
-  return false;
-#endif
 }
 
 QString Preferences::sanitizeInputPhrase( QString const & inputWord ) const
@@ -197,9 +146,6 @@ Preferences::Preferences():
   hideSingleTab( false ),
   mruTabOrder( false ),
   hideMenubar( false ),
-  enableTrayIcon( true ),
-  startToTray( false ),
-  closeToTray( true ),
   autoStart( false ),
   doubleClickTranslates( true ),
   selectWordBySingleClick( false ),
@@ -215,8 +161,8 @@ Preferences::Preferences():
   enableMainWindowHotkey( true ),
   enableClipboardHotkey( true ),
 #endif
-  mainWindowHotkey( QKeySequence( "Ctrl+F11,F11" ) ),
-  clipboardHotkey( QKeySequence( "Ctrl+C,C" ) ),
+  mainWindowHotkey( QKeySequence( "Ctrl+F11, Ctrl+F11" ) ),
+  clipboardHotkey( QKeySequence( "Ctrl+C, Ctrl+C" ) ),
   startWithScanPopupOn( false ),
   enableScanPopupModifiers( false ),
   scanPopupModifiers( 0 ),
@@ -903,10 +849,11 @@ Class load()
     c.preferences.hideSingleTab = ( preferences.namedItem( "hideSingleTab" ).toElement().text() == "1" );
     c.preferences.mruTabOrder   = ( preferences.namedItem( "mruTabOrder" ).toElement().text() == "1" );
     c.preferences.hideMenubar   = ( preferences.namedItem( "hideMenubar" ).toElement().text() == "1" );
-
+#ifndef Q_OS_MACOS // // macOS uses the dock menu instead of the tray icon
     c.preferences.enableTrayIcon = ( preferences.namedItem( "enableTrayIcon" ).toElement().text() == "1" );
     c.preferences.startToTray    = ( preferences.namedItem( "startToTray" ).toElement().text() == "1" );
     c.preferences.closeToTray    = ( preferences.namedItem( "closeToTray" ).toElement().text() == "1" );
+#endif
     c.preferences.autoStart      = ( preferences.namedItem( "autoStart" ).toElement().text() == "1" );
     c.preferences.alwaysOnTop    = ( preferences.namedItem( "alwaysOnTop" ).toElement().text() == "1" );
     c.preferences.searchInDock   = ( preferences.namedItem( "searchInDock" ).toElement().text() == "1" );

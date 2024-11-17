@@ -81,7 +81,6 @@ namespace {
 
 using Dictionary::exCantReadFile;
 DEF_EX_STR( exNotXdxfFile, "The file is not an XDXF file:", Dictionary::Ex )
-DEF_EX( exCorruptedIndex, "The index file is corrupted", Dictionary::Ex )
 DEF_EX_STR( exDictzipError, "DICTZIP error", Dictionary::Ex )
 
 enum {
@@ -904,7 +903,7 @@ void indexArticle( GzippedFile & gzFile,
         // Add words to index
 
         for ( const auto & word : words ) {
-          indexedWords.addWord( gd::toWString( word ), offset );
+          indexedWords.addWord( word.toStdU32String(), offset );
         }
 
         ++articleCount;
@@ -1227,7 +1226,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
                         while ( !( stream.isEndElement() && stream.name() == u"abbr_def" ) || !stream.atEnd() ) {
                           if ( stream.isStartElement() && stream.name() == u"abbr_k" ) {
                             s = readElementText( stream );
-                            keys.push_back( gd::toWString( s ) );
+                            keys.push_back( s.toStdU32String() );
                           }
                           else if ( stream.isStartElement() && stream.name() == u"abbr_v" ) {
                             s     = readElementText( stream );
@@ -1247,7 +1246,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
                         while ( !( stream.isEndElement() && stream.name() == u"abr_def" ) || !stream.atEnd() ) {
                           if ( stream.isStartElement() && stream.name() == u"k" ) {
                             s = readElementText( stream );
-                            keys.push_back( gd::toWString( s ) );
+                            keys.push_back( s.toStdU32String() );
                           }
                           else if ( stream.isStartElement() && stream.name() == u"v" ) {
                             s     = readElementText( stream );

@@ -1,5 +1,4 @@
-#ifndef __EPWING_BOOK_HH_INCLUDED__
-#define __EPWING_BOOK_HH_INCLUDED__
+#pragma once
 
 #include "dict/dictionary.hh"
 #include "ex.hh"
@@ -17,12 +16,7 @@
 #endif
 
 #include <QString>
-#if ( QT_VERSION >= QT_VERSION_CHECK( 6, 0, 0 ) )
-  #include <QtCore5Compat/QTextCodec>
-#else
-  #include <QTextCodec>
-#endif
-
+#include <QtCore5Compat/QTextCodec>
 
 #ifdef _MSC_VER
   #include <stub_msvc.h>
@@ -270,6 +264,3 @@ struct EContainer
 } // namespace Book
 
 } // namespace Epwing
-
-
-#endif // __EPWING_BOOK_HH_INCLUDED__
