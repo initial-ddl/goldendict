@@ -43,7 +43,6 @@
 
 #include <set>
 #include <map>
-#include "gddebug.hh"
 
 #include "dictinfo.hh"
 #include "historypanewidget.hh"
@@ -1294,7 +1293,7 @@ void MainWindow::commitData()
       Config::save( cfg );
     }
     catch ( std::exception & e ) {
-      gdWarning( "Configuration saving failed, error: %s\n", e.what() );
+      qWarning( "Configuration saving failed, error: %s", e.what() );
     }
 
     // Save history
@@ -1304,7 +1303,7 @@ void MainWindow::commitData()
     ui.favoritesPaneWidget->saveData();
   }
   catch ( std::exception & e ) {
-    gdWarning( "Commit data failed, error: %s\n", e.what() );
+    qWarning( "Commit data failed, error: %s", e.what() );
   }
 }
 
@@ -1356,8 +1355,10 @@ void MainWindow::updateAppearances( QString const & addonStyle,
     darkPalette.setColor( QPalette::Disabled, QPalette::HighlightedText, disabledColor );
 
     qApp->setPalette( darkPalette );
+    qApp->setStyle( "Fusion" );
   }
   else {
+    qApp->setStyle( "WindowsVista" );
     qApp->setPalette( QPalette() );
   }
 #endif
@@ -1575,7 +1576,7 @@ void MainWindow::setupNetworkCache( int maxSize )
   QString cacheDirectory = Config::getCacheDir();
   if ( !QDir().mkpath( cacheDirectory ) ) {
     cacheDirectory = QStandardPaths::writableLocation( QStandardPaths::CacheLocation );
-    gdWarning( "Cannot create a cache directory %s. use default cache path.", cacheDirectory.toUtf8().constData() );
+    qWarning( "Cannot create a cache directory %s. use default cache path.", cacheDirectory.toUtf8().constData() );
   }
 
   QNetworkDiskCache * const diskCache = new QNetworkDiskCache( this );
@@ -4491,7 +4492,7 @@ void MainWindow::setGroupByName( QString const & name, bool main_window )
       }
     }
     if ( i >= groupList->count() ) {
-      gdWarning( "Group \"%s\" for main window is not found\n", name.toUtf8().data() );
+      qWarning( "Group \"%s\" for main window is not found", name.toUtf8().data() );
     }
   }
   else {

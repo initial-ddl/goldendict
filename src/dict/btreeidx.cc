@@ -4,13 +4,9 @@
 #include "btreeidx.hh"
 #include "folding.hh"
 #include "utf8.hh"
-#include <QRunnable>
-#include <QThreadPool>
-#include <QSemaphore>
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-#include "gddebug.hh"
 #include "wstring_qt.hh"
 #include "utils.hh"
 
@@ -18,7 +14,7 @@
 #include "wildcard.hh"
 #include "globalbroadcaster.hh"
 
-#include <QtConcurrent>
+#include <QtConcurrentRun>
 #include <zlib.h>
 
 namespace BtreeIndexing {
@@ -91,11 +87,11 @@ BtreeIndex::findArticles( wstring const & search_word, bool ignoreDiacritics, ui
     }
   }
   catch ( std::exception & e ) {
-    gdWarning( "Articles searching failed, error: %s\n", e.what() );
+    qWarning( "Articles searching failed, error: %s", e.what() );
     result.clear();
   }
   catch ( ... ) {
-    qWarning( "Articles searching failed\n" );
+    qWarning( "Articles searching failed" );
     result.clear();
   }
 
@@ -268,7 +264,7 @@ void BtreeWordSearchRequest::findMatches()
             break;
           }
 
-          //GD_DPRINTF( "offset = %u, size = %u\n", chainOffset - &leaf.front(), leaf.size() );
+          //qDebug( "offset = %u, size = %u", chainOffset - &leaf.front(), leaf.size() );
 
           vector< WordArticleLink > chain = dict.readChain( chainOffset );
 
@@ -331,7 +327,7 @@ void BtreeWordSearchRequest::findMatches()
           if ( chainOffset >= leafEnd ) {
             // We're past the current leaf, fetch the next one
 
-            //GD_DPRINTF( "advancing\n" );
+            //qDebug( "advancing" );
 
             if ( nextLeaf ) {
               QMutexLocker _( dict.idxFileMutex );
@@ -345,7 +341,7 @@ void BtreeWordSearchRequest::findMatches()
               uint32_t leafEntries = *(uint32_t *)&leaf.front();
 
               if ( leafEntries == 0xffffFFFF ) {
-                //GD_DPRINTF( "bah!\n" );
+                //qDebug( "bah!" );
                 exit( 1 );
               }
             }
@@ -366,10 +362,10 @@ void BtreeWordSearchRequest::findMatches()
     }
   }
   catch ( std::exception & e ) {
-    qWarning( "Index searching failed: \"%s\", error: %s\n", dict.getName().c_str(), e.what() );
+    qWarning( "Index searching failed: \"%s\", error: %s", dict.getName().c_str(), e.what() );
   }
   catch ( ... ) {
-    gdWarning( "Index searching failed: \"%s\"\n", dict.getName().c_str() );
+    qWarning( "Index searching failed: \"%s\"", dict.getName().c_str() );
   }
 }
 
@@ -424,7 +420,7 @@ void BtreeIndex::readNode( uint32_t offset, vector< char > & out )
   uint32_t uncompressedSize = idxFile->read< uint32_t >();
   uint32_t compressedSize   = idxFile->read< uint32_t >();
 
-  //GD_DPRINTF( "%x,%x\n", uncompressedSize, compressedSize );
+  //qDebug( "%x,%x", uncompressedSize, compressedSize );
 
   out.resize( uncompressedSize );
 
@@ -505,7 +501,7 @@ char const * BtreeIndex::findChainOffsetExactOrPrefix(
     if ( leafEntries == 0xffffFFFF ) {
       // A node
 
-      //GD_DPRINTF( "=>a node\n" );
+      //qDebug( "=>a node" );
 
       uint32_t const * offsets = (uint32_t *)leaf + 1;
 
@@ -591,13 +587,13 @@ char const * BtreeIndex::findChainOffsetExactOrPrefix(
         currentNodeOffset = offsets[ entry + 1 ];
       }
 
-      //GD_DPRINTF( "reading node at %x\n", currentNodeOffset );
+      //qDebug( "reading node at %x", currentNodeOffset );
       readNode( currentNodeOffset, extLeaf );
       leaf    = &extLeaf.front();
       leafEnd = leaf + extLeaf.size();
     }
     else {
-      //GD_DPRINTF( "=>a leaf\n" );
+      //qDebug( "=>a leaf" );
       // A leaf
 
       // If this leaf is the root, there's no next leaf, it just can't be.
@@ -630,7 +626,7 @@ char const * BtreeIndex::findChainOffsetExactOrPrefix(
 
           memcpy( &chainSize, ptr, sizeof( uint32_t ) );
 
-          //GD_DPRINTF( "%s + %s\n", ptr + sizeof( uint32_t ), ptr + sizeof( uint32_t ) + strlen( ptr + sizeof( uint32_t ) ) + 1 );
+          //qDebug( "%s + %s", ptr + sizeof( uint32_t ), ptr + sizeof( uint32_t ) + strlen( ptr + sizeof( uint32_t ) ) + 1 );
 
           ptr += sizeof( uint32_t ) + chainSize;
         }
@@ -643,7 +639,7 @@ char const * BtreeIndex::findChainOffsetExactOrPrefix(
       unsigned windowSize  = chainOffsets.size();
 
       for ( ;; ) {
-        //GD_DPRINTF( "window = %u, ws = %u\n", window - &chainOffsets.front(), windowSize );
+        //qDebug( "window = %u, ws = %u", window - &chainOffsets.front(), windowSize );
 
         char const ** chainToCheck = window + windowSize / 2;
         ptr                        = *chainToCheck;
@@ -1059,7 +1055,7 @@ IndexInfo buildIndex( IndexedWords const & indexedWords, File::Index & file )
     btreeMaxElements = BtreeMaxElements;
   }
 
-  GD_DPRINTF( "Building a tree of %u elements\n", (unsigned)btreeMaxElements );
+  qDebug( "Building a tree of %u elements", (unsigned)btreeMaxElements );
 
 
   uint32_t lastLeafOffset = 0;
@@ -1419,7 +1415,7 @@ bool BtreeDictionary::getHeadwords( QStringList & headwords )
     }
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Failed headwords retrieving for \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "Failed headwords retrieving for \"%s\", reason: %s", getName().c_str(), ex.what() );
   }
 
   return headwords.size() > 0;

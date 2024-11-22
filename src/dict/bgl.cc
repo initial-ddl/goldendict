@@ -8,29 +8,22 @@
 #include "dictfile.hh"
 #include "folding.hh"
 #include "ftshelpers.hh"
-#include "gddebug.hh"
 #include "htmlescape.hh"
 #include "langcoder.hh"
 #include "language.hh"
 #include "utf8.hh"
 #include "utils.hh"
-
 #include <ctype.h>
 #include <list>
 #include <map>
 #include <set>
 #include <string.h>
 #include <zlib.h>
-
-#ifdef _MSC_VER
-  #include <stub_msvc.h>
-#endif
-
 #include <QAtomicInt>
+#include <QCryptographicHash>
+#include <QDir>
 #include <QPainter>
 #include <QRegularExpression>
-#include <QSemaphore>
-#include <QThreadPool>
 
 namespace Bgl {
 
@@ -85,7 +78,7 @@ static_assert( alignof( IdxHeader ) == 1 );
 
 bool indexIsOldOrBad( string const & indexFile )
 {
-  File::Index idx( indexFile, "rb" );
+  File::Index idx( indexFile, QIODevice::ReadOnly );
 
   IdxHeader header;
 
@@ -250,7 +243,7 @@ private:
 
 BglDictionary::BglDictionary( string const & id, string const & indexFile, string const & dictionaryFile ):
   BtreeDictionary( id, vector< string >( 1, dictionaryFile ) ),
-  idx( indexFile, "rb" ),
+  idx( indexFile, QIODevice::ReadOnly ),
   idxHeader( idx.read< IdxHeader >() ),
   chunks( idx, idxHeader.chunksOffset )
 {
@@ -258,15 +251,7 @@ BglDictionary::BglDictionary( string const & id, string const & indexFile, strin
 
   // Read the dictionary's name
 
-  size_t len = idx.read< uint32_t >();
-
-  if ( len ) {
-    vector< char > nameBuf( len );
-
-    idx.read( &nameBuf.front(), len );
-
-    dictionaryName = string( &nameBuf.front(), len );
-  }
+  idx.readU32SizeAndData<>( dictionaryName );
 
   // Initialize the index
 
@@ -424,7 +409,7 @@ void BglDictionary::getArticleText( uint32_t articleAddress, QString & headword,
     text = Html::unescape( QString::fromStdU32String( wstr ) );
   }
   catch ( std::exception & ex ) {
-    gdWarning( "BGL: Failed retrieving article from \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "BGL: Failed retrieving article from \"%s\", reason: %s", getName().c_str(), ex.what() );
   }
 }
 
@@ -440,14 +425,14 @@ void BglDictionary::makeFTSIndex( QAtomicInt & isCancelled )
   }
 
 
-  gdDebug( "Bgl: Building the full-text index for dictionary: %s\n", getName().c_str() );
+  qDebug( "Bgl: Building the full-text index for dictionary: %s", getName().c_str() );
 
   try {
     FtsHelpers::makeFTSIndex( this, isCancelled );
     FTS_index_completed.ref();
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Bgl: Failed building full-text search index for \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "Bgl: Failed building full-text search index for \"%s\", reason: %s", getName().c_str(), ex.what() );
     QFile::remove( QString::fromStdString( ftsIdxName ) );
   }
 }
@@ -733,7 +718,7 @@ void BglArticleRequest::run()
 
     } // try
     catch ( std::exception & ex ) {
-      gdWarning( "BGL: Failed loading article from \"%s\", reason: %s\n", dict.getName().c_str(), ex.what() );
+      qWarning( "BGL: Failed loading article from \"%s\", reason: %s", dict.getName().c_str(), ex.what() );
     }
   }
 
@@ -899,8 +884,8 @@ void BglResourceRequest::run()
       break;
     }
 
-    vector< char > nameData( idx.read< uint32_t >() );
-    idx.read( &nameData.front(), nameData.size() );
+    vector< char > nameData;
+    idx.readU32SizeAndData<>( nameData );
 
     for ( size_t x = nameData.size(); x--; ) {
       nameData[ x ] = tolower( nameData[ x ] );
@@ -917,9 +902,9 @@ void BglResourceRequest::run()
 
       data.resize( idx.read< uint32_t >() );
 
-      vector< unsigned char > compressedData( idx.read< uint32_t >() );
+      vector< unsigned char > compressedData;
 
-      idx.read( &compressedData.front(), compressedData.size() );
+      idx.readU32SizeAndData<>( compressedData );
 
       unsigned long decompressedLength = data.size();
 
@@ -929,7 +914,7 @@ void BglResourceRequest::run()
                        compressedData.size() )
              != Z_OK
            || decompressedLength != data.size() ) {
-        gdWarning( "Failed to decompress resource \"%s\", ignoring it.\n", name.c_str() );
+        qWarning( "Failed to decompress resource \"%s\", ignoring it.", name.c_str() );
       }
       else {
         hasAnyData = true;
@@ -1007,14 +992,14 @@ protected:
 
 void ResourceHandler::handleBabylonResource( string const & filename, char const * data, size_t size )
 {
-  //GD_DPRINTF( "Handling resource file %s (%u bytes)\n", filename.c_str(), size );
+  //qDebug( "Handling resource file %s (%u bytes)", filename.c_str(), size );
 
   vector< unsigned char > compressedData( compressBound( size ) );
 
   unsigned long compressedSize = compressedData.size();
 
   if ( compress( &compressedData.front(), &compressedSize, (unsigned char const *)data, size ) != Z_OK ) {
-    gdWarning( "Failed to compress the body of resource \"%s\", dropping it.\n", filename.c_str() );
+    qWarning( "Failed to compress the body of resource \"%s\", dropping it.", filename.c_str() );
     return;
   }
 
@@ -1065,7 +1050,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
     if ( Dictionary::needToRebuildIndex( dictFiles, indexFile ) || indexIsOldOrBad( indexFile ) ) {
       // Building the index
 
-      gdDebug( "Bgl: Building the index for dictionary: %s\n", fileName.c_str() );
+      qDebug( "Bgl: Building the index for dictionary: %s", fileName.c_str() );
 
       try {
         Babylon b( fileName );
@@ -1077,13 +1062,13 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
         std::string sourceCharset, targetCharset;
 
         if ( !b.read( sourceCharset, targetCharset ) ) {
-          gdWarning( "Failed to start reading from %s, skipping it\n", fileName.c_str() );
+          qWarning( "Failed to start reading from %s, skipping it", fileName.c_str() );
           continue;
         }
 
         initializing.indexingDictionary( b.title() );
 
-        File::Index idx( indexFile, "wb" );
+        File::Index idx( indexFile, QIODevice::WriteOnly );
 
         IdxHeader idxHeader;
 
@@ -1169,7 +1154,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
 
         idxHeader.chunksOffset = chunks.finish();
 
-        GD_DPRINTF( "Writing index...\n" );
+        qDebug( "Writing index..." );
 
         // Good. Now build the index
 
@@ -1205,7 +1190,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
         idx.write( &idxHeader, sizeof( idxHeader ) );
       }
       catch ( std::exception & e ) {
-        gdWarning( "BGL dictionary indexing failed: %s, error: %s\n", fileName.c_str(), e.what() );
+        qWarning( "BGL dictionary indexing failed: %s, error: %s", fileName.c_str(), e.what() );
       }
     }
 
@@ -1213,7 +1198,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       dictionaries.push_back( std::make_shared< BglDictionary >( dictId, indexFile, fileName ) );
     }
     catch ( std::exception & e ) {
-      gdWarning( "BGL dictionary initializing failed: %s, error: %s\n", fileName.c_str(), e.what() );
+      qWarning( "BGL dictionary initializing failed: %s, error: %s", fileName.c_str(), e.what() );
     }
   }
 

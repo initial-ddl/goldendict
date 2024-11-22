@@ -9,14 +9,9 @@
 #include "btreeidx.hh"
 
 #include "audiolink.hh"
-#include "gddebug.hh"
 
 #include <set>
 #include <string>
-
-#ifdef _MSC_VER
-  #include <stub_msvc.h>
-#endif
 
 #define OV_EXCLUDE_STATIC_CALLBACKS
 #include <vorbis/vorbisfile.h>
@@ -65,7 +60,7 @@ static_assert( alignof( IdxHeader ) == 1 );
 
 bool indexIsOldOrBad( string const & indexFile )
 {
-  File::Index idx( indexFile, "rb" );
+  File::Index idx( indexFile, QIODevice::ReadOnly );
 
   IdxHeader header;
 
@@ -201,7 +196,7 @@ string LsaDictionary::getName() noexcept
 
 LsaDictionary::LsaDictionary( string const & id, string const & indexFile, vector< string > const & dictionaryFiles ):
   BtreeDictionary( id, dictionaryFiles ),
-  idx( indexFile, "rb" ),
+  idx( indexFile, QIODevice::ReadOnly ),
   idxHeader( idx.read< IdxHeader >() )
 {
   // Initialize the index
@@ -405,7 +400,7 @@ sptr< Dictionary::DataRequest > LsaDictionary::getResource( string const & name 
     return std::make_shared< Dictionary::DataRequestInstant >( false ); // No such resource
   }
 
-  File::Index f( getDictionaryFilenames()[ 0 ], "rb" );
+  File::Index f( getDictionaryFilenames()[ 0 ], QIODevice::ReadOnly );
 
   f.seek( chain[ 0 ].articleOffset );
   Entry e( f );
@@ -468,13 +463,13 @@ sptr< Dictionary::DataRequest > LsaDictionary::getResource( string const & name 
     long result = ov_read( &vf, ptr, left, 0, 2, 1, &bitstream );
 
     if ( result <= 0 ) {
-      gdWarning( "Failed to read Vorbis data (code = %ld)\n", result );
+      qWarning( "Failed to read Vorbis data (code = %ld)", result );
       memset( ptr, 0, left );
       break;
     }
 
     if ( result > left ) {
-      GD_FDPRINTF( stderr, "Warning: Vorbis decode returned more data than requested.\n" );
+      qWarning( "Warning: Vorbis decode returned more data than requested." );
 
       result = left;
     }
@@ -522,7 +517,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
     }
 
     try {
-      File::Index f( *i, "rb" );
+      File::Index f( *i, QIODevice::ReadOnly );
 
       /// Check the signature
 
@@ -543,11 +538,11 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       if ( Dictionary::needToRebuildIndex( dictFiles, indexFile ) || indexIsOldOrBad( indexFile ) ) {
         // Building the index
 
-        gdDebug( "Lsa: Building the index for dictionary: %s\n", i->c_str() );
+        qDebug( "Lsa: Building the index for dictionary: %s", i->c_str() );
 
         initializing.indexingDictionary( Utils::Fs::basename( *i ) );
 
-        File::Index idx( indexFile, "wb" );
+        File::Index idx( indexFile, QIODevice::WriteOnly );
 
         IdxHeader idxHeader;
 
@@ -563,7 +558,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
         /// XXX handle big-endian machines here!
         auto entriesCount = f.read< uint32_t >();
 
-        GD_DPRINTF( "%s: %u entries\n", i->c_str(), entriesCount );
+        qDebug( "%s: %u entries", i->c_str(), entriesCount );
 
         idxHeader.soundsCount = entriesCount;
 
@@ -578,7 +573,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
           // Remove the extension, no need for that in the index
           e.name = stripExtension( e.name );
 
-          GD_DPRINTF( "Read filename %s (%u at %u)<\n", e.name.c_str(), e.samplesLength, e.samplesOffset );
+          qDebug( "Read filename %s (%u at %u)<", e.name.c_str(), e.samplesLength, e.samplesOffset );
 
           // Insert new entry into an index
 
@@ -617,7 +612,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       dictionaries.push_back( std::make_shared< LsaDictionary >( dictId, indexFile, dictFiles ) );
     }
     catch ( std::exception & e ) {
-      gdWarning( "Lingvo's LSA reading failed: %s, error: %s\n", i->c_str(), e.what() );
+      qWarning( "Lingvo's LSA reading failed: %s, error: %s", i->c_str(), e.what() );
     }
   }
 

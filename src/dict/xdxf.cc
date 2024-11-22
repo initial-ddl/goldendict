@@ -8,7 +8,6 @@
 #include "chunkedstorage.hh"
 #include "dictzip.hh"
 #include "htmlescape.hh"
-
 #include <map>
 #include <set>
 #include <string>
@@ -16,30 +15,19 @@
 #include <list>
 #include <wctype.h>
 #include <stdlib.h>
-#include "gddebug.hh"
-#include "wstring_qt.hh"
 #include "xdxf2html.hh"
 #include "ufile.hh"
-#include "dictzip.hh"
 #include "langcoder.hh"
 #include "indexedzip.hh"
 #include "filetype.hh"
 #include "tiff.hh"
 #include "ftshelpers.hh"
-
-#ifdef _MSC_VER
-  #include <stub_msvc.h>
-#endif
-
 #include <QIODevice>
 #include <QXmlStreamReader>
-#include <QTextDocument>
 #include <QFileInfo>
 #include <QDir>
 #include <QPainter>
 #include <QRegularExpression>
-#include <QSemaphore>
-#include <QThreadPool>
 #include <QAtomicInt>
 
 #include "utils.hh"
@@ -125,7 +113,7 @@ static_assert( alignof( IdxHeader ) == 1 );
 
 bool indexIsOldOrBad( string const & indexFile )
 {
-  File::Index idx( indexFile, "rb" );
+  File::Index idx( indexFile, QIODevice::ReadOnly );
 
   IdxHeader header;
 
@@ -152,10 +140,6 @@ public:
 
   ~XdxfDictionary();
 
-  string getName() noexcept override
-  {
-    return dictionaryName;
-  }
 
   map< Dictionary::Property, string > getProperties() noexcept override
   {
@@ -228,7 +212,7 @@ private:
 
 XdxfDictionary::XdxfDictionary( string const & id, string const & indexFile, vector< string > const & dictionaryFiles ):
   BtreeDictionary( id, dictionaryFiles ),
-  idx( indexFile, "rb" ),
+  idx( indexFile, QIODevice::ReadOnly ),
   idxHeader( idx.read< IdxHeader >() )
 {
   // Read the dictionary name
@@ -392,14 +376,14 @@ void XdxfDictionary::makeFTSIndex( QAtomicInt & isCancelled )
   }
 
 
-  gdDebug( "Xdxf: Building the full-text index for dictionary: %s\n", getName().c_str() );
+  qDebug( "Xdxf: Building the full-text index for dictionary: %s", getName().c_str() );
 
   try {
     FtsHelpers::makeFTSIndex( this, isCancelled );
     FTS_index_completed.ref();
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Xdxf: Failed building full-text search index for \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "Xdxf: Failed building full-text search index for \"%s\", reason: %s", getName().c_str(), ex.what() );
     QFile::remove( ftsIdxName.c_str() );
   }
 }
@@ -413,7 +397,7 @@ void XdxfDictionary::getArticleText( uint32_t articleAddress, QString & headword
     text = Html::unescape( QString::fromStdString( articleStr ) );
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Xdxf: Failed retrieving article from \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "Xdxf: Failed retrieving article from \"%s\", reason: %s", getName().c_str(), ex.what() );
   }
 }
 
@@ -537,7 +521,7 @@ void XdxfArticleRequest::run()
       articlesIncluded.insert( x.articleOffset );
     }
     catch ( std::exception & ex ) {
-      gdWarning( "XDXF: Failed loading article from \"%s\", reason: %s\n", dict.getName().c_str(), ex.what() );
+      qWarning( "XDXF: Failed loading article from \"%s\", reason: %s", dict.getName().c_str(), ex.what() );
     }
   }
 
@@ -878,7 +862,7 @@ void indexArticle( GzippedFile & gzFile,
 
       if ( words.empty() ) {
         // Nothing to index, this article didn't have any tags
-        gdWarning( "No <k> tags found in an article at offset 0x%x, article skipped.\n", (unsigned)articleOffset );
+        qWarning( "No <k> tags found in an article at offset 0x%x, article skipped.", (unsigned)articleOffset );
       }
       else {
         // Add an entry
@@ -898,7 +882,7 @@ void indexArticle( GzippedFile & gzFile,
         // Add also first header - it's needed for full-text search
         chunks.addToBlock( words.begin()->toUtf8().data(), words.begin()->toUtf8().length() + 1 );
 
-        //        GD_DPRINTF( "%x: %s\n", articleOffset, words.begin()->toUtf8().data() );
+        //        qDebug( "%x: %s", articleOffset, words.begin()->toUtf8().data() );
 
         // Add words to index
 
@@ -973,7 +957,7 @@ void XdxfResourceRequest::run()
 
   string n = dict.getContainingFolder().toStdString() + Utils::Fs::separator() + resourceName;
 
-  GD_DPRINTF( "xdxf resource name is %s\n", n.c_str() );
+  qDebug( "xdxf resource name is %s", n.c_str() );
 
   try {
     try {
@@ -1016,10 +1000,10 @@ void XdxfResourceRequest::run()
     hasAnyData = true;
   }
   catch ( std::exception & ex ) {
-    gdWarning( "XDXF: Failed loading resource \"%s\" for \"%s\", reason: %s\n",
-               resourceName.c_str(),
-               dict.getName().c_str(),
-               ex.what() );
+    qWarning( "XDXF: Failed loading resource \"%s\" for \"%s\", reason: %s",
+              resourceName.c_str(),
+              dict.getName().c_str(),
+              ex.what() );
     // Resource not loaded -- we don't set the hasAnyData flag then
   }
 
@@ -1073,11 +1057,11 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       if ( Dictionary::needToRebuildIndex( dictFiles, indexFile ) || indexIsOldOrBad( indexFile ) ) {
         // Building the index
 
-        gdDebug( "Xdxf: Building the index for dictionary: %s\n", fileName.c_str() );
+        qDebug( "Xdxf: Building the index for dictionary: %s", fileName.c_str() );
 
         //initializing.indexingDictionary( nameFromFileName( dictFiles[ 0 ] ) );
 
-        File::Index idx( indexFile, "wb" );
+        File::Index idx( indexFile, QIODevice::WriteOnly );
 
         IdxHeader idxHeader;
         map< string, string > abrv;
@@ -1162,7 +1146,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
                       chunks.addToBlock( n.data(), n.size() );
                     }
                     else {
-                      GD_DPRINTF( "Warning: duplicate full_name in %s\n", dictFiles[ 0 ].c_str() );
+                      qDebug( "Warning: duplicate full_name in %s", dictFiles[ 0 ].c_str() );
                     }
                   }
                   else if ( stream.name() == u"description" ) {
@@ -1186,7 +1170,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
                       chunks.addToBlock( n.data(), n.size() );
                     }
                     else {
-                      GD_DPRINTF( "Warning: duplicate description in %s\n", dictFiles[ 0 ].c_str() );
+                      qDebug( "Warning: duplicate description in %s", dictFiles[ 0 ].c_str() );
                     }
                   }
                   else if ( stream.name() == u"languages" ) {
@@ -1312,7 +1296,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
               // If there was a zip file, index it too
 
               if ( zipFileName.size() ) {
-                GD_DPRINTF( "Indexing zip file\n" );
+                qDebug( "Indexing zip file" );
 
                 idxHeader.hasZipFile = 1;
 
@@ -1363,17 +1347,17 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
         }
 
         if ( stream.hasError() ) {
-          gdWarning( "%s had a parse error %s at line %lu, and therefore was indexed only up to the point of error.",
-                     dictFiles[ 0 ].c_str(),
-                     stream.errorString().toUtf8().data(),
-                     (unsigned long)stream.lineNumber() );
+          qWarning( "%s had a parse error %s at line %lu, and therefore was indexed only up to the point of error.",
+                    dictFiles[ 0 ].c_str(),
+                    stream.errorString().toUtf8().data(),
+                    (unsigned long)stream.lineNumber() );
         }
       }
 
       dictionaries.push_back( std::make_shared< XdxfDictionary >( dictId, indexFile, dictFiles ) );
     }
     catch ( std::exception & e ) {
-      gdWarning( "Xdxf dictionary initializing failed: %s, error: %s\n", fileName.c_str(), e.what() );
+      qWarning( "Xdxf dictionary initializing failed: %s, error: %s", fileName.c_str(), e.what() );
     }
   }
 

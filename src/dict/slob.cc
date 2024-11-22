@@ -6,33 +6,25 @@
 #include "btreeidx.hh"
 
 #include "folding.hh"
-#include "gddebug.hh"
 #include "utf8.hh"
 #include "decompress.hh"
 #include "langcoder.hh"
-#include "wstring_qt.hh"
 #include "ftshelpers.hh"
 #include "htmlescape.hh"
 #include "filetype.hh"
 #include "tiff.hh"
 #include "utils.hh"
-
-#ifdef _MSC_VER
-  #include <stub_msvc.h>
-#endif
-
 #include "iconv.hh"
-
 #include <QString>
+#include <QStringBuilder>
 #include <QFile>
 #include <QFileInfo>
 #include <QDir>
 #include <QMap>
 #include <QProcess>
 #include <QList>
-
+#include <QtEndian>
 #include <QRegularExpression>
-
 #include <string>
 #include <vector>
 #include <utility>
@@ -97,7 +89,7 @@ struct RefEntry
 
 bool indexIsOldOrBad( string const & indexFile )
 {
-  File::Index idx( indexFile, "rb" );
+  File::Index idx( indexFile, QIODevice::ReadOnly );
 
   IdxHeader header;
 
@@ -618,10 +610,6 @@ public:
 
   ~SlobDictionary();
 
-  string getName() noexcept override
-  {
-    return dictionaryName;
-  }
 
   map< Dictionary::Property, string > getProperties() noexcept override
   {
@@ -702,7 +690,7 @@ private:
 SlobDictionary::SlobDictionary( string const & id, string const & indexFile, vector< string > const & dictionaryFiles ):
   BtreeDictionary( id, dictionaryFiles ),
   idxFileName( indexFile ),
-  idx( indexFile, "rb" ),
+  idx( indexFile, QIODevice::ReadOnly ),
   idxHeader( idx.read< IdxHeader >() )
 {
   // Open data file
@@ -947,7 +935,7 @@ void SlobDictionary::makeFTSIndex( QAtomicInt & isCancelled )
   }
 
 
-  gdDebug( "Slob: Building the full-text index for dictionary: %s\n", getName().c_str() );
+  qDebug( "Slob: Building the full-text index for dictionary: %s", getName().c_str() );
 
   try {
     const auto slob_dic = std::make_unique< SlobDictionary >( getId(), idxFileName, getDictionaryFilenames() );
@@ -955,7 +943,7 @@ void SlobDictionary::makeFTSIndex( QAtomicInt & isCancelled )
     FTS_index_completed.ref();
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Slob: Failed building full-text search index for \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "Slob: Failed building full-text search index for \"%s\", reason: %s", getName().c_str(), ex.what() );
     QFile::remove( ftsIdxName.c_str() );
   }
 }
@@ -985,7 +973,7 @@ void SlobDictionary::getArticleText( uint32_t articleAddress, QString & headword
     }
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Slob: Failed retrieving article from \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "Slob: Failed retrieving article from \"%s\", reason: %s", getName().c_str(), ex.what() );
   }
 }
 
@@ -1233,10 +1221,10 @@ void SlobResourceRequest::run()
     hasAnyData = true;
   }
   catch ( std::exception & ex ) {
-    gdWarning( "SLOB: Failed loading resource \"%s\" from \"%s\", reason: %s\n",
-               resourceName.c_str(),
-               dict.getName().c_str(),
-               ex.what() );
+    qWarning( "SLOB: Failed loading resource \"%s\" from \"%s\", reason: %s",
+              resourceName.c_str(),
+              dict.getName().c_str(),
+              ex.what() );
     // Resource not loaded -- we don't set the hasAnyData flag then
   }
 
@@ -1279,13 +1267,13 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       if ( Dictionary::needToRebuildIndex( dictFiles, indexFile ) || indexIsOldOrBad( indexFile ) ) {
         SlobFile sf;
 
-        gdDebug( "Slob: Building the index for dictionary: %s\n", fileName.c_str() );
+        qDebug( "Slob: Building the index for dictionary: %s", fileName.c_str() );
 
         sf.open( firstName );
 
         initializing.indexingDictionary( sf.getDictionaryName().toUtf8().constData() );
 
-        File::Index idx( indexFile, "wb" );
+        File::Index idx( indexFile, QIODevice::WriteOnly );
         IdxHeader idxHeader;
         memset( &idxHeader, 0, sizeof( idxHeader ) );
 
@@ -1373,11 +1361,11 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       dictionaries.push_back( std::make_shared< SlobDictionary >( dictId, indexFile, dictFiles ) );
     }
     catch ( std::exception & e ) {
-      gdWarning( "Slob dictionary initializing failed: %s, error: %s\n", fileName.c_str(), e.what() );
+      qWarning( "Slob dictionary initializing failed: %s, error: %s", fileName.c_str(), e.what() );
       continue;
     }
     catch ( ... ) {
-      qWarning( "Slob dictionary initializing failed\n" );
+      qWarning( "Slob dictionary initializing failed" );
       continue;
     }
   }

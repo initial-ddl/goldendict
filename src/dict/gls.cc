@@ -8,7 +8,6 @@
 #include "ufile.hh"
 #include "btreeidx.hh"
 #include "folding.hh"
-#include "gddebug.hh"
 #include "utf8.hh"
 #include "wstring_qt.hh"
 #include "chunkedstorage.hh"
@@ -16,32 +15,21 @@
 #include "dictzip.hh"
 #include "indexedzip.hh"
 #include "ftshelpers.hh"
-
 #include "htmlescape.hh"
 #include "filetype.hh"
 #include "tiff.hh"
 #include "audiolink.hh"
-
 #include <QString>
-#include <QSemaphore>
-#include <QThreadPool>
 #include <QAtomicInt>
-// For TIFF conversion
-#include <QImage>
 #include <QByteArray>
-#include <QBuffer>
-
+#include <QDir>
 #include <QRegularExpression>
 #include <QtCore5Compat/QTextCodec>
-
 #include <string>
 #include <list>
 #include <map>
 #include <set>
 
-#ifdef _MSC_VER
-  #include <stub_msvc.h>
-#endif
 
 namespace Gls {
 
@@ -335,7 +323,7 @@ static_assert( alignof( IdxHeader ) == 1 );
 
 bool indexIsOldOrBad( string const & indexFile, bool hasZipFile )
 {
-  File::Index idx( indexFile, "rb" );
+  File::Index idx( indexFile, QIODevice::ReadOnly );
 
   IdxHeader header;
 
@@ -360,11 +348,6 @@ public:
   GlsDictionary( string const & id, string const & indexFile, vector< string > const & dictionaryFiles );
 
   ~GlsDictionary();
-
-  string getName() noexcept override
-  {
-    return dictionaryName;
-  }
 
   map< Dictionary::Property, string > getProperties() noexcept override
   {
@@ -443,7 +426,7 @@ private:
 
 GlsDictionary::GlsDictionary( string const & id, string const & indexFile, vector< string > const & dictionaryFiles ):
   BtreeDictionary( id, dictionaryFiles ),
-  idx( indexFile, "rb" ),
+  idx( indexFile, QIODevice::ReadOnly ),
   idxHeader( idx.read< IdxHeader >() ),
   dz( 0 ),
   chunks( idx, idxHeader.chunksOffset )
@@ -461,11 +444,7 @@ GlsDictionary::GlsDictionary( string const & id, string const & indexFile, vecto
 
   idx.seek( sizeof( idxHeader ) );
 
-  vector< char > dName( idx.read< uint32_t >() );
-  if ( dName.size() > 0 ) {
-    idx.read( &dName.front(), dName.size() );
-    dictionaryName = string( &dName.front(), dName.size() );
-  }
+  idx.readU32SizeAndData<>( dictionaryName );
 
   // Initialize the index
 
@@ -543,7 +522,7 @@ QString const & GlsDictionary::getDescription()
     }
   }
   catch ( std::exception & e ) {
-    gdWarning( "GLS dictionary description reading failed: %s, error: %s\n", getName().c_str(), e.what() );
+    qWarning( "GLS dictionary description reading failed: %s, error: %s", getName().c_str(), e.what() );
   }
 
   if ( dictionaryDescription.isEmpty() ) {
@@ -574,14 +553,14 @@ void GlsDictionary::makeFTSIndex( QAtomicInt & isCancelled )
   }
 
 
-  gdDebug( "Gls: Building the full-text index for dictionary: %s\n", getName().c_str() );
+  qDebug( "Gls: Building the full-text index for dictionary: %s", getName().c_str() );
 
   try {
     FtsHelpers::makeFTSIndex( this, isCancelled );
     FTS_index_completed.ref();
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Gls: Failed building full-text search index for \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "Gls: Failed building full-text search index for \"%s\", reason: %s", getName().c_str(), ex.what() );
     QFile::remove( ftsIdxName.c_str() );
   }
 }
@@ -822,7 +801,7 @@ void GlsDictionary::getArticleText( uint32_t articleAddress, QString & headword,
     text = Html::unescape( QString::fromStdString( articleStr ) );
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Gls: Failed retrieving article from \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "Gls: Failed retrieving article from \"%s\", reason: %s", getName().c_str(), ex.what() );
   }
 }
 
@@ -1102,7 +1081,7 @@ void GlsResourceRequest::run()
   try {
     string n = dict.getContainingFolder().toStdString() + Utils::Fs::separator() + resourceName;
 
-    GD_DPRINTF( "gls resource name is %s\n", n.c_str() );
+    qDebug( "gls resource name is %s", n.c_str() );
 
     try {
       QMutexLocker _( &dataMutex );
@@ -1187,10 +1166,10 @@ void GlsResourceRequest::run()
     hasAnyData = true;
   }
   catch ( std::exception & ex ) {
-    gdWarning( "GLS: Failed loading resource \"%s\" for \"%s\", reason: %s\n",
-               resourceName.c_str(),
-               dict.getName().c_str(),
-               ex.what() );
+    qWarning( "GLS: Failed loading resource \"%s\" for \"%s\", reason: %s",
+              resourceName.c_str(),
+              dict.getName().c_str(),
+              ex.what() );
     // Resource not loaded -- we don't set the hasAnyData flag then
   }
 
@@ -1267,10 +1246,10 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
           // Building the index
           initializing.indexingDictionary( Utf8::encode( scanner.getDictionaryName() ) );
 
-          gdDebug( "Gls: Building the index for dictionary: %s\n",
-                   QString::fromStdU32String( scanner.getDictionaryName() ).toUtf8().data() );
+          qDebug( "Gls: Building the index for dictionary: %s",
+                  QString::fromStdU32String( scanner.getDictionaryName() ).toUtf8().data() );
 
-          File::Index idx( indexFile, "wb" );
+          File::Index idx( indexFile, QIODevice::WriteOnly );
 
           IdxHeader idxHeader;
 
@@ -1370,7 +1349,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
           // If there was a zip file, index it too
 
           if ( zipFileName.size() ) {
-            GD_DPRINTF( "Indexing zip file\n" );
+            qDebug( "Indexing zip file" );
 
             idxHeader.hasZipFile = 1;
 
@@ -1435,7 +1414,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       dictionaries.push_back( std::make_shared< GlsDictionary >( dictId, indexFile, dictFiles ) );
     }
     catch ( std::exception & e ) {
-      gdWarning( "GLS dictionary reading failed: %s:%u, error: %s\n", fileName.c_str(), atLine, e.what() );
+      qWarning( "GLS dictionary reading failed: %s:%u, error: %s", fileName.c_str(), atLine, e.what() );
     }
   }
 

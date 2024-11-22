@@ -10,7 +10,6 @@
 #include "audiolink.hh"
 #include "indexedzip.hh"
 #include "filetype.hh"
-#include "gddebug.hh"
 #include "chunkedstorage.hh"
 #include "htmlescape.hh"
 
@@ -19,9 +18,6 @@
 #include <QFile>
 #include <QDir>
 
-#ifdef _MSC_VER
-  #include <stub_msvc.h>
-#endif
 
 #include "utils.hh"
 
@@ -60,7 +56,7 @@ static_assert( alignof( IdxHeader ) == 1 );
 
 bool indexIsOldOrBad( string const & indexFile )
 {
-  File::Index idx( indexFile, "rb" );
+  File::Index idx( indexFile, QIODevice::ReadOnly );
 
   IdxHeader header;
 
@@ -140,7 +136,7 @@ ZipSoundsDictionary::ZipSoundsDictionary( string const & id,
                                           string const & indexFile,
                                           vector< string > const & dictionaryFiles ):
   BtreeDictionary( id, dictionaryFiles ),
-  idx( indexFile, "rb" ),
+  idx( indexFile, QIODevice::ReadOnly ),
   idxHeader( idx.read< IdxHeader >() )
 {
   chunks = std::shared_ptr< ChunkedStorage::Reader >( new ChunkedStorage::Reader( idx, idxHeader.chunksOffset ) );
@@ -403,9 +399,9 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       string indexFile = indicesDir + dictId;
 
       if ( Dictionary::needToRebuildIndex( dictFiles, indexFile ) || indexIsOldOrBad( indexFile ) ) {
-        gdDebug( "Zips: Building the index for dictionary: %s\n", fileName.c_str() );
+        qDebug( "Zips: Building the index for dictionary: %s", fileName.c_str() );
 
-        File::Index idx( indexFile, "wb" );
+        File::Index idx( indexFile, QIODevice::WriteOnly );
         IdxHeader idxHeader;
 
         memset( &idxHeader, 0, sizeof( idxHeader ) );
@@ -477,7 +473,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       dictionaries.push_back( std::make_shared< ZipSoundsDictionary >( dictId, indexFile, dictFiles ) );
     }
     catch ( std::exception & e ) {
-      gdWarning( "Zipped sounds pack reading failed: %s, error: %s\n", fileName.c_str(), e.what() );
+      qWarning( "Zipped sounds pack reading failed: %s, error: %s", fileName.c_str(), e.what() );
     }
   }
 

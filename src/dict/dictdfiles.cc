@@ -7,7 +7,6 @@
 #include "utf8.hh"
 #include "dictzip.hh"
 #include "htmlescape.hh"
-
 #include "langcoder.hh"
 #include <map>
 #include <set>
@@ -16,16 +15,12 @@
 #include <list>
 #include <wctype.h>
 #include <stdlib.h>
-#include "gddebug.hh"
 #include "ftshelpers.hh"
+#include <QDir>
 #include <QUrl>
 
 
 #include <QRegularExpression>
-
-#ifdef _MSC_VER
-  #include <stub_msvc.h>
-#endif
 
 namespace DictdFiles {
 
@@ -74,7 +69,7 @@ static_assert( alignof( IdxHeader ) == 1 );
 
 bool indexIsOldOrBad( string const & indexFile )
 {
-  File::Index idx( indexFile, "rb" );
+  File::Index idx( indexFile, QIODevice::ReadOnly );
 
   IdxHeader header;
 
@@ -95,11 +90,6 @@ public:
   DictdDictionary( string const & id, string const & indexFile, vector< string > const & dictionaryFiles );
 
   ~DictdDictionary();
-
-  string getName() noexcept override
-  {
-    return dictionaryName;
-  }
 
   map< Dictionary::Property, string > getProperties() noexcept override
   {
@@ -155,19 +145,15 @@ DictdDictionary::DictdDictionary( string const & id,
                                   string const & indexFile,
                                   vector< string > const & dictionaryFiles ):
   BtreeDictionary( id, dictionaryFiles ),
-  idx( indexFile, "rb" ),
-  indexFile( dictionaryFiles[ 0 ], "rb" ),
+  idx( indexFile, QIODevice::ReadOnly ),
+  indexFile( dictionaryFiles[ 0 ], QIODevice::ReadOnly ),
   idxHeader( idx.read< IdxHeader >() )
 {
 
   // Read the dictionary name
   idx.seek( sizeof( idxHeader ) );
 
-  vector< char > dName( idx.read< uint32_t >() );
-  if ( dName.size() > 0 ) {
-    idx.read( &dName.front(), dName.size() );
-    dictionaryName = string( &dName.front(), dName.size() );
-  }
+  idx.readU32SizeAndData<>( dictionaryName );
 
   // Open the .dict file
 
@@ -469,14 +455,14 @@ void DictdDictionary::makeFTSIndex( QAtomicInt & isCancelled )
   }
 
 
-  gdDebug( "DictD: Building the full-text index for dictionary: %s\n", getName().c_str() );
+  qDebug( "DictD: Building the full-text index for dictionary: %s", getName().c_str() );
 
   try {
     FtsHelpers::makeFTSIndex( this, isCancelled );
     FTS_index_completed.ref();
   }
   catch ( std::exception & ex ) {
-    gdWarning( "DictD: Failed building full-text search index for \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "DictD: Failed building full-text search index for \"%s\", reason: %s", getName().c_str(), ex.what() );
     QFile::remove( QString::fromStdString( ftsIdxName ) );
   }
 }
@@ -550,7 +536,7 @@ void DictdDictionary::getArticleText( uint32_t articleAddress, QString & headwor
     }
   }
   catch ( std::exception & ex ) {
-    gdWarning( "DictD: Failed retrieving article from \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "DictD: Failed retrieving article from \"%s\", reason: %s", getName().c_str(), ex.what() );
   }
 }
 
@@ -602,11 +588,11 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
         // Building the index
         string dictionaryName = nameFromFileName( dictFiles[ 0 ] );
 
-        gdDebug( "DictD: Building the index for dictionary: %s\n", dictionaryName.c_str() );
+        qDebug( "DictD: Building the index for dictionary: %s", dictionaryName.c_str() );
 
         initializing.indexingDictionary( dictionaryName );
 
-        File::Index idx( indexFile, "wb" );
+        File::Index idx( indexFile, QIODevice::WriteOnly );
 
         IdxHeader idxHeader;
 
@@ -619,7 +605,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
 
         IndexedWords indexedWords;
 
-        File::Index indexFile( dictFiles[ 0 ], "rb" );
+        File::Index indexFile( dictFiles[ 0 ], QIODevice::ReadOnly );
 
         // Read words from index until none's left.
 
@@ -641,7 +627,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
               if ( tab3 ) {
                 char * tab4 = strchr( tab3 + 1, '\t' );
                 if ( tab4 ) {
-                  GD_DPRINTF( "Warning: too many tabs present, skipping: %s\n", buf );
+                  qDebug( "Warning: too many tabs present, skipping: %s", buf );
                   continue;
                 }
 
@@ -686,7 +672,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
                         *endEol = 0;
                       }
 
-                      GD_DPRINTF( "DICT NAME: '%s'\n", eol );
+                      qDebug( "DICT NAME: '%s'", eol );
                       dictionaryName = eol;
                     }
                   }
@@ -698,12 +684,12 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
               }
             }
             else {
-              GD_DPRINTF( "Warning: only a single tab present, skipping: %s\n", buf );
+              qDebug( "Warning: only a single tab present, skipping: %s", buf );
               continue;
             }
           }
           else {
-            GD_DPRINTF( "Warning: no tabs present, skipping: %s\n", buf );
+            qDebug( "Warning: no tabs present, skipping: %s", buf );
             continue;
           }
 
@@ -747,7 +733,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       dictionaries.push_back( std::make_shared< DictdDictionary >( dictId, indexFile, dictFiles ) );
     }
     catch ( std::exception & e ) {
-      gdWarning( "Dictd dictionary \"%s\" reading failed, error: %s\n", fileName.c_str(), e.what() );
+      qWarning( "Dictd dictionary \"%s\" reading failed, error: %s", fileName.c_str(), e.what() );
     }
   }
 

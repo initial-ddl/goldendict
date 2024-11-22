@@ -7,11 +7,12 @@
 #include <QUrl>
 #include <QTcpSocket>
 #include <QString>
-#include <list>
 #include "htmlescape.hh"
-
+#include <QCryptographicHash>
+#include <QDir>
+#include <QFileInfo>
 #include <QRegularExpression>
-#include <QtConcurrent>
+#include <QtConcurrentRun>
 
 namespace DictServer {
 
@@ -176,7 +177,6 @@ class DictServerDictionary: public Dictionary::Class
 {
   Q_OBJECT
 
-  string name;
   QString url, icon;
   quint32 langId;
   QString errorString;
@@ -196,11 +196,13 @@ public:
                         QString const & strategies_,
                         QString const & icon_ ):
     Dictionary::Class( id, vector< string >() ),
-    name( name_ ),
     url( url_ ),
     icon( icon_ ),
     langId( 0 )
   {
+
+    dictionaryName = name_;
+
     int pos = url.indexOf( "://" );
     if ( pos < 0 ) {
       url = "dict://" + url;
@@ -299,11 +301,6 @@ public:
   ~DictServerDictionary() override
   {
     disconnectFromServer( socket );
-  }
-
-  string getName() noexcept override
-  {
-    return name;
   }
 
   map< Property, string > getProperties() noexcept override

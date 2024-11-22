@@ -1,26 +1,18 @@
 /* This file is (c) 2014 Abs62
  * Part of GoldenDict. Licensed under GPLv3 or later, see the LICENSE file */
+#include <QDir>
 #ifndef NO_EPWING_SUPPORT
 
   #include "epwing_book.hh"
   #include "epwing.hh"
-
   #include <QByteArray>
-  #include <QDir>
-  #include <QRunnable>
-  #include <QSemaphore>
-
   #include <map>
-  #include <QtConcurrent>
+  #include <QtConcurrentRun>
   #include <set>
   #include <string>
-
   #include "btreeidx.hh"
   #include "folding.hh"
-  #include "gddebug.hh"
-
   #include "chunkedstorage.hh"
-  #include "wstring_qt.hh"
   #include "filetype.hh"
   #include "ftshelpers.hh"
   #include "globalregex.hh"
@@ -66,7 +58,7 @@ static_assert( alignof( IdxHeader ) == 1 );
 
 bool indexIsOldOrBad( string const & indexFile )
 {
-  File::Index idx( indexFile, "rb" );
+  File::Index idx( indexFile, QIODevice::ReadOnly );
 
   IdxHeader header;
 
@@ -82,7 +74,6 @@ class EpwingDictionary: public BtreeIndexing::BtreeDictionary
   QMutex idxMutex;
   File::Index idx;
   IdxHeader idxHeader;
-  string bookName;
   ChunkedStorage::Reader chunks;
   Epwing::Book::EpwingBook eBook;
   QString cacheDirectory;
@@ -96,15 +87,6 @@ public:
 
   ~EpwingDictionary();
 
-  string getName() noexcept override
-  {
-    return bookName;
-  }
-
-  void setName( string _name ) noexcept override
-  {
-    bookName = _name;
-  }
 
   map< Dictionary::Property, string > getProperties() noexcept override
   {
@@ -219,7 +201,7 @@ EpwingDictionary::EpwingDictionary( string const & id,
                                     vector< string > const & dictionaryFiles,
                                     int subBook ):
   BtreeDictionary( id, dictionaryFiles ),
-  idx( indexFile, "rb" ),
+  idx( indexFile, QIODevice::ReadOnly ),
   idxHeader( idx.read< IdxHeader >() ),
   chunks( idx, idxHeader.chunksOffset )
 {
@@ -227,7 +209,7 @@ EpwingDictionary::EpwingDictionary( string const & id,
   idx.seek( sizeof( idxHeader ) );
   if ( data.size() > 0 ) {
     idx.read( &data.front(), idxHeader.nameSize );
-    bookName = string( &data.front(), idxHeader.nameSize );
+    dictionaryName = string( &data.front(), idxHeader.nameSize );
   }
 
   // Initialize eBook
@@ -431,16 +413,14 @@ void EpwingDictionary::makeFTSIndex( QAtomicInt & isCancelled )
     return;
 
 
-  gdDebug( "Epwing: Building the full-text index for dictionary: %s\n", getName().c_str() );
+  qDebug( "Epwing: Building the full-text index for dictionary: %s", getName().c_str() );
 
   try {
     FtsHelpers::makeFTSIndex( this, isCancelled );
     FTS_index_completed.ref();
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Epwing: Failed building full-text search index for \"%s\", reason: %s\n",
-               getName().c_str(),
-               ex.what() );
+    qWarning( "Epwing: Failed building full-text search index for \"%s\", reason: %s", getName().c_str(), ex.what() );
     QFile::remove( QString::fromStdString( ftsIdxName ) );
   }
 }
@@ -879,10 +859,10 @@ void EpwingResourceRequest::run()
     }
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Epwing: Failed loading resource \"%s\" for \"%s\", reason: %s\n",
-               resourceName.c_str(),
-               dict.getName().c_str(),
-               ex.what() );
+    qWarning( "Epwing: Failed loading resource \"%s\" for \"%s\", reason: %s",
+              resourceName.c_str(),
+              dict.getName().c_str(),
+              ex.what() );
     // Resource not loaded -- we don't set the hasAnyData flag then
   }
 
@@ -1156,7 +1136,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       subBooksNumber = dict.setBook( mainDirectory );
     }
     catch ( std::exception & e ) {
-      gdWarning( "Epwing dictionary initializing failed: %s, error: %s\n", mainDirectory.c_str(), e.what() );
+      qWarning( "Epwing dictionary initializing failed: %s, error: %s", mainDirectory.c_str(), e.what() );
       continue;
     }
 
@@ -1191,13 +1171,13 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
         string indexFile = indicesDir + dictId;
 
         if ( Dictionary::needToRebuildIndex( dictFiles, indexFile ) || indexIsOldOrBad( indexFile ) ) {
-          gdDebug( "Epwing: Building the index for dictionary in directory %s\n", dir.toUtf8().data() );
+          qDebug( "Epwing: Building the index for dictionary in directory %s", dir.toUtf8().data() );
 
           QString str         = dict.title();
           QByteArray nameData = str.toUtf8();
           initializing.indexingDictionary( nameData.data() );
 
-          File::Index idx( indexFile, "wb" );
+          File::Index idx( indexFile, QIODevice::WriteOnly );
 
           IdxHeader idxHeader{};
 
@@ -1271,7 +1251,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
         dictionaries.push_back( std::make_shared< EpwingDictionary >( dictId, indexFile, dictFiles, sb ) );
       }
       catch ( std::exception & e ) {
-        gdWarning( "Epwing dictionary initializing failed: %s, error: %s\n", dir.toUtf8().data(), e.what() );
+        qWarning( "Epwing dictionary initializing failed: %s, error: %s", dir.toUtf8().data(), e.what() );
         continue;
       }
     }

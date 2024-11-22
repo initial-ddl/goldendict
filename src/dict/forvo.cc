@@ -10,7 +10,6 @@
 #include "audiolink.hh"
 #include "htmlescape.hh"
 #include "utf8.hh"
-#include "gddebug.hh"
 
 namespace Forvo {
 
@@ -20,7 +19,6 @@ namespace {
 
 class ForvoDictionary: public Dictionary::Class
 {
-  string name;
   QString apiKey, languageCode;
   QNetworkAccessManager & netMgr;
 
@@ -32,17 +30,13 @@ public:
                    QString const & languageCode_,
                    QNetworkAccessManager & netMgr_ ):
     Dictionary::Class( id, vector< string >() ),
-    name( name_ ),
     apiKey( apiKey_ ),
     languageCode( languageCode_ ),
     netMgr( netMgr_ )
   {
+    dictionaryName = name_;
   }
 
-  string getName() noexcept override
-  {
-    return name;
-  }
 
   map< Property, string > getProperties() noexcept override
   {
@@ -169,7 +163,7 @@ ForvoArticleRequest::ForvoArticleRequest( wstring const & str,
 
 void ForvoArticleRequest::addQuery( QNetworkAccessManager & mgr, wstring const & str )
 {
-  gdDebug( "Forvo: requesting article %s\n", QString::fromStdU32String( str ).toUtf8().data() );
+  qDebug( "Forvo: requesting article %s", QString::fromStdU32String( str ).toUtf8().data() );
 
   QString key = apiKey;
 
@@ -184,7 +178,7 @@ void ForvoArticleRequest::addQuery( QNetworkAccessManager & mgr, wstring const &
                                 + "/language/" + languageCode + "/order/rate-desc" )
                          .toUtf8() );
 
-  //  GD_DPRINTF( "req: %s\n", reqUrl.toEncoded().data() );
+  //  qDebug( "req: %s", reqUrl.toEncoded().data() );
 
   sptr< QNetworkReply > netReply = std::shared_ptr< QNetworkReply >( mgr.get( QNetworkRequest( reqUrl ) ) );
 
@@ -193,7 +187,7 @@ void ForvoArticleRequest::addQuery( QNetworkAccessManager & mgr, wstring const &
 
 void ForvoArticleRequest::requestFinished( QNetworkReply * r )
 {
-  GD_DPRINTF( "Finished.\n" );
+  qDebug( "Finished." );
 
   if ( isFinished() ) { // Was cancelled
     return;
@@ -232,7 +226,7 @@ void ForvoArticleRequest::requestFinished( QNetworkReply * r )
           QString( tr( "XML parse error: %1 at %2,%3" ).arg( errorStr ).arg( errorLine ).arg( errorColumn ) ) );
       }
       else {
-        //        GD_DPRINTF( "%s\n", dd.toByteArray().data() );
+        //        qDebug( "%s", dd.toByteArray().data() );
 
         QDomNode items = dd.namedItem( "items" );
 
@@ -335,7 +329,7 @@ void ForvoArticleRequest::requestFinished( QNetworkReply * r )
           setErrorString( text );
         }
       }
-      GD_DPRINTF( "done.\n" );
+      qDebug( "done." );
     }
     else {
       setErrorString( netReply->errorString() );

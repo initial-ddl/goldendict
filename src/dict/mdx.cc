@@ -9,24 +9,17 @@
 #include "wstring.hh"
 #include "wstring_qt.hh"
 #include "chunkedstorage.hh"
-#include "gddebug.hh"
 #include "langcoder.hh"
-
 #include "audiolink.hh"
 #include "ex.hh"
 #include "mdictparser.hh"
 #include "filetype.hh"
 #include "ftshelpers.hh"
 #include "htmlescape.hh"
-
 #include <algorithm>
 #include <map>
 #include <set>
 #include <list>
-#ifdef _MSC_VER
-  #include <stub_msvc.h>
-#endif
-
 #include "globalregex.hh"
 #include "tiff.hh"
 #include "utils.hh"
@@ -35,8 +28,9 @@
 #include <QDir>
 #include <QRegularExpression>
 #include <QString>
+#include <QStringBuilder>
 #include <QThreadPool>
-#include <QtConcurrent>
+#include <QtConcurrentRun>
 
 namespace Mdx {
 
@@ -218,10 +212,6 @@ public:
 
   void deferredInit() override;
 
-  string getName() noexcept override
-  {
-    return dictionaryName;
-  }
 
   map< Dictionary::Property, string > getProperties() noexcept override
   {
@@ -302,7 +292,7 @@ private:
 
 MdxDictionary::MdxDictionary( string const & id, string const & indexFile, vector< string > const & dictionaryFiles ):
   BtreeDictionary( id, dictionaryFiles ),
-  idx( indexFile, "rb" ),
+  idx( indexFile, QIODevice::ReadOnly ),
   idxFileName( indexFile ),
   idxHeader( idx.read< IdxHeader >() ),
   chunks( idx, idxHeader.chunksOffset ),
@@ -310,12 +300,7 @@ MdxDictionary::MdxDictionary( string const & id, string const & indexFile, vecto
 {
   // Read the dictionary's name
   idx.seek( sizeof( idxHeader ) );
-  size_t len = idx.read< uint32_t >();
-  vector< char > buf( len );
-  if ( len > 0 ) {
-    idx.read( &buf.front(), len );
-    dictionaryName = string( &buf.front(), len );
-  }
+  idx.readU32SizeAndData<>( dictionaryName );
 
   //fallback, use filename as dictionary name
   if ( dictionaryName.empty() ) {
@@ -324,12 +309,7 @@ MdxDictionary::MdxDictionary( string const & id, string const & indexFile, vecto
   }
 
   // then read the dictionary's encoding
-  len = idx.read< uint32_t >();
-  if ( len > 0 ) {
-    buf.resize( len );
-    idx.read( &buf.front(), len );
-    encoding = string( &buf.front(), len );
-  }
+  idx.readU32SizeAndData<>( encoding );
 
   dictFile.setFileName( QString::fromUtf8( dictionaryFiles[ 0 ].c_str() ) );
   dictFile.open( QIODevice::ReadOnly );
@@ -467,7 +447,7 @@ void MdxDictionary::makeFTSIndex( QAtomicInt & isCancelled )
   //    return;
 
 
-  gdDebug( "MDict: Building the full-text index for dictionary: %s", getName().c_str() );
+  qDebug( "MDict: Building the full-text index for dictionary: %s", getName().c_str() );
 
   try {
     auto _dict = std::make_shared< MdxDictionary >( this->getId(), idxFileName, this->getDictionaryFilenames() );
@@ -478,7 +458,7 @@ void MdxDictionary::makeFTSIndex( QAtomicInt & isCancelled )
     FTS_index_completed.ref();
   }
   catch ( std::exception & ex ) {
-    gdWarning( "MDict: Failed building full-text search index for \"%s\", reason: %s", getName().c_str(), ex.what() );
+    qWarning( "MDict: Failed building full-text search index for \"%s\", reason: %s", getName().c_str(), ex.what() );
     QFile::remove( ftsIdxName.c_str() );
   }
 }
@@ -493,7 +473,7 @@ void MdxDictionary::getArticleText( uint32_t articleAddress, QString & headword,
     text = Html::unescape( QString::fromUtf8( articleText.data(), articleText.size() ) );
   }
   catch ( std::exception & ex ) {
-    gdWarning( "MDict: Failed retrieving article from \"%s\", reason: %s", getName().c_str(), ex.what() );
+    qWarning( "MDict: Failed retrieving article from \"%s\", reason: %s", getName().c_str(), ex.what() );
   }
 }
 
@@ -1141,7 +1121,7 @@ QString MdxDictionary::getCachedFileName( QString filename )
   QFileInfo info( cacheDirName );
   if ( !info.exists() || !info.isDir() ) {
     if ( !dir.mkdir( cacheDirName ) ) {
-      gdWarning( "Mdx: can't create cache directory \"%s\"", cacheDirName.toUtf8().data() );
+      qWarning( "Mdx: can't create cache directory \"%s\"", cacheDirName.toUtf8().data() );
       return QString();
     }
   }
@@ -1159,7 +1139,7 @@ QString MdxDictionary::getCachedFileName( QString filename )
       QFileInfo dirInfo( dirName );
       if ( !dirInfo.exists() ) {
         if ( !dir.mkdir( dirName ) ) {
-          gdWarning( "Mdx: can't create cache directory \"%s\"", dirName.toUtf8().data() );
+          qWarning( "Mdx: can't create cache directory \"%s\"", dirName.toUtf8().data() );
           return QString();
         }
       }
@@ -1174,7 +1154,7 @@ QString MdxDictionary::getCachedFileName( QString filename )
   }
   QFile f( fullName );
   if ( !f.open( QFile::WriteOnly ) ) {
-    gdWarning( R"(Mdx: file "%s" creating error: "%s")", fullName.toUtf8().data(), f.errorString().toUtf8().data() );
+    qWarning( R"(Mdx: file "%s" creating error: "%s")", fullName.toUtf8().data(), f.errorString().toUtf8().data() );
     return QString();
   }
   gd::wstring resourceName = filename.toStdU32String();
@@ -1214,7 +1194,7 @@ QString MdxDictionary::getCachedFileName( QString filename )
   f.close();
 
   if ( n < (qint64)data.size() ) {
-    gdWarning( R"(Mdx: file "%s" writing error: "%s")", fullName.toUtf8().data(), f.errorString().toUtf8().data() );
+    qWarning( R"(Mdx: file "%s" writing error: "%s")", fullName.toUtf8().data(), f.errorString().toUtf8().data() );
     return QString();
   }
   return fullName;
@@ -1307,7 +1287,7 @@ private:
 
 static bool indexIsOldOrBad( vector< string > const & dictFiles, string const & indexFile )
 {
-  File::Index idx( indexFile, "rb" );
+  File::Index idx( indexFile, QIODevice::ReadOnly );
   IdxHeader header;
 
   return idx.readRecords( &header, sizeof( header ), 1 ) != 1 || header.signature != kSignature
@@ -1362,7 +1342,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
     if ( Dictionary::needToRebuildIndex( dictFiles, indexFile ) || indexIsOldOrBad( dictFiles, indexFile ) ) {
       // Building the index
 
-      gdDebug( "MDict: Building the index for dictionary: %s\n", fileName.c_str() );
+      qDebug( "MDict: Building the index for dictionary: %s", fileName.c_str() );
 
       MdictParser parser;
       list< sptr< MdictParser > > mddParsers;
@@ -1378,14 +1358,14 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
         if ( File::exists( *mddIter ) ) {
           sptr< MdictParser > mddParser = std::make_shared< MdictParser >();
           if ( !mddParser->open( mddIter->c_str() ) ) {
-            gdWarning( "Broken mdd (resource) file: %s\n", mddIter->c_str() );
+            qWarning( "Broken mdd (resource) file: %s", mddIter->c_str() );
             continue;
           }
           mddParsers.push_back( mddParser );
         }
       }
 
-      File::Index idx( indexFile, "wb" );
+      File::Index idx( indexFile, QIODevice::WriteOnly );
       IdxHeader idxHeader;
       memset( &idxHeader, 0, sizeof( idxHeader ) );
       // We write a dummy header first. At the end of the process the header
@@ -1453,7 +1433,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       // Finish with the chunks
       idxHeader.chunksOffset = chunks.finish();
 
-      GD_DPRINTF( "Writing index...\n" );
+      qDebug( "Writing index..." );
 
       // Good. Now build the index
       IndexInfo idxInfo               = BtreeIndexing::buildIndex( indexedWords, idx );

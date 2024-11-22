@@ -10,40 +10,30 @@
 #include "xdxf2html.hh"
 #include "htmlescape.hh"
 #include "langcoder.hh"
-#include "gddebug.hh"
-
 #include "filetype.hh"
 #include "indexedzip.hh"
 #include "tiff.hh"
 #include "ftshelpers.hh"
 #include "audiolink.hh"
-
 #include <zlib.h>
 #include <map>
 #include <set>
 #include <string>
+#include <QString>
+#include <QAtomicInt>
+#include <QDomDocument>
+#include "ufile.hh"
+#include "utils.hh"
+#include <QRegularExpression>
+#include "globalregex.hh"
+#include <QDir>
+#include <stdlib.h>
 
 #ifndef Q_OS_WIN
   #include <arpa/inet.h>
 #else
   #include <winsock.h>
 #endif
-#include <stdlib.h>
-
-#ifdef _MSC_VER
-  #include <stub_msvc.h>
-#endif
-
-#include <QString>
-#include <QSemaphore>
-#include <QAtomicInt>
-#include <QStringList>
-#include <QDomDocument>
-#include "ufile.hh"
-#include "utils.hh"
-
-#include <QRegularExpression>
-#include "globalregex.hh"
 
 namespace Stardict {
 
@@ -76,13 +66,15 @@ DEF_EX_STR( exIncorrectOffset, "Incorrect offset encountered in file", Dictionar
 /// Contents of an ifo file
 struct Ifo
 {
-  string version;
   string bookname;
-  uint32_t wordcount, synwordcount, idxfilesize, idxoffsetbits;
+  uint32_t wordcount     = 0;
+  uint32_t synwordcount  = 0;
+  uint32_t idxfilesize   = 0;
+  uint32_t idxoffsetbits = 32;
   string sametypesequence, dicttype, description;
   string copyright, author, email, website, date;
 
-  explicit Ifo( File::Index & );
+  explicit Ifo( const QString & fileName );
 };
 
 enum {
@@ -116,7 +108,7 @@ static_assert( alignof( IdxHeader ) == 1 );
 
 bool indexIsOldOrBad( string const & indexFile )
 {
-  File::Index idx( indexFile, "rb" );
+  File::Index idx( indexFile, QIODevice::ReadOnly );
 
   IdxHeader header;
 
@@ -129,9 +121,8 @@ class StardictDictionary: public BtreeIndexing::BtreeDictionary
   QMutex idxMutex;
   File::Index idx;
   IdxHeader idxHeader;
-  string bookName;
   string sameTypeSequence;
-  ChunkedStorage::Reader chunks;
+  std::unique_ptr< ChunkedStorage::Reader > chunks;
   QMutex dzMutex;
   dictData * dz;
   QMutex resourceZipMutex;
@@ -142,17 +133,6 @@ public:
   StardictDictionary( string const & id, string const & indexFile, vector< string > const & dictionaryFiles );
 
   ~StardictDictionary();
-
-  string getName() noexcept override
-  {
-    return bookName;
-  }
-
-  void setName( string _name ) noexcept override
-  {
-    bookName = _name;
-  }
-
 
   map< Dictionary::Property, string > getProperties() noexcept override
   {
@@ -235,12 +215,14 @@ StardictDictionary::StardictDictionary( string const & id,
                                         string const & indexFile,
                                         vector< string > const & dictionaryFiles ):
   BtreeDictionary( id, dictionaryFiles ),
-  idx( indexFile, "rb" ),
-  idxHeader( idx.read< IdxHeader >() ),
-  bookName( loadString( idxHeader.bookNameSize ) ),
-  sameTypeSequence( loadString( idxHeader.sameTypeSequenceSize ) ),
-  chunks( idx, idxHeader.chunksOffset )
+  idx( indexFile, QIODevice::ReadOnly )
 {
+  // reading headers, note that reading order matters
+  idxHeader        = idx.read< IdxHeader >();
+  dictionaryName   = loadString( idxHeader.bookNameSize );
+  sameTypeSequence = loadString( idxHeader.sameTypeSequenceSize );
+  chunks           = std::make_unique< ChunkedStorage::Reader >( idx, idxHeader.chunksOffset );
+
   // Open the .dict file
 
   DZ_ERRORS error;
@@ -321,7 +303,7 @@ void StardictDictionary::getArticleProps( uint32_t articleAddress,
 
   QMutexLocker _( &idxMutex );
 
-  char * articleData = chunks.getBlock( articleAddress, chunk );
+  char * articleData = chunks->getBlock( articleAddress, chunk );
 
   memcpy( &offset, articleData, sizeof( uint32_t ) );
   articleData += sizeof( uint32_t );
@@ -950,9 +932,7 @@ void StardictDictionary::loadArticle( uint32_t address, string & headword, strin
         entrySize = size;
       }
       else if ( !size ) {
-        gdWarning( "Stardict: short entry for the word %s encountered in \"%s\".\n",
-                   headword.c_str(),
-                   getName().c_str() );
+        qWarning( "Stardict: short entry for the word %s encountered in \"%s\".", headword.c_str(), getName().c_str() );
         break;
       }
 
@@ -965,9 +945,9 @@ void StardictDictionary::loadArticle( uint32_t address, string & headword, strin
         }
 
         if ( size < entrySize ) {
-          gdWarning( "Stardict: malformed entry for the word %s encountered in \"%s\".\n",
-                     headword.c_str(),
-                     getName().c_str() );
+          qWarning( "Stardict: malformed entry for the word %s encountered in \"%s\".",
+                    headword.c_str(),
+                    getName().c_str() );
           break;
         }
 
@@ -985,9 +965,9 @@ void StardictDictionary::loadArticle( uint32_t address, string & headword, strin
 
         if ( !entrySizeKnown ) {
           if ( size < sizeof( uint32_t ) ) {
-            gdWarning( "Stardict: malformed entry for the word %s encountered in \"%s\".\n",
-                       headword.c_str(),
-                       getName().c_str() );
+            qWarning( "Stardict: malformed entry for the word %s encountered in \"%s\".",
+                      headword.c_str(),
+                      getName().c_str() );
             break;
           }
 
@@ -1000,9 +980,9 @@ void StardictDictionary::loadArticle( uint32_t address, string & headword, strin
         }
 
         if ( size < entrySize ) {
-          gdWarning( "Stardict: malformed entry for the word %s encountered in \"%s\".\n",
-                     headword.c_str(),
-                     getName().c_str() );
+          qWarning( "Stardict: malformed entry for the word %s encountered in \"%s\".",
+                    headword.c_str(),
+                    getName().c_str() );
           break;
         }
 
@@ -1012,10 +992,10 @@ void StardictDictionary::loadArticle( uint32_t address, string & headword, strin
         size -= entrySize;
       }
       else {
-        gdWarning( "Stardict: non-alpha entry type 0x%x for the word %s encountered in \"%s\".\n",
-                   type,
-                   headword.c_str(),
-                   getName().c_str() );
+        qWarning( "Stardict: non-alpha entry type 0x%x for the word %s encountered in \"%s\".",
+                  type,
+                  headword.c_str(),
+                  getName().c_str() );
         break;
       }
     }
@@ -1028,9 +1008,9 @@ void StardictDictionary::loadArticle( uint32_t address, string & headword, strin
         size_t len = strlen( ptr + 1 );
 
         if ( size < len + 2 ) {
-          gdWarning( "Stardict: malformed entry for the word %s encountered in \"%s\".\n",
-                     headword.c_str(),
-                     getName().c_str() );
+          qWarning( "Stardict: malformed entry for the word %s encountered in \"%s\".",
+                    headword.c_str(),
+                    getName().c_str() );
           break;
         }
 
@@ -1042,9 +1022,9 @@ void StardictDictionary::loadArticle( uint32_t address, string & headword, strin
       else if ( isupper( *ptr ) ) {
         // An entry which havs its size before contents
         if ( size < sizeof( uint32_t ) + 1 ) {
-          gdWarning( "Stardict: malformed entry for the word %s encountered in \"%s\".\n",
-                     headword.c_str(),
-                     getName().c_str() );
+          qWarning( "Stardict: malformed entry for the word %s encountered in \"%s\".",
+                    headword.c_str(),
+                    getName().c_str() );
           break;
         }
 
@@ -1055,9 +1035,9 @@ void StardictDictionary::loadArticle( uint32_t address, string & headword, strin
         entrySize = ntohl( entrySize );
 
         if ( size < sizeof( uint32_t ) + 1 + entrySize ) {
-          gdWarning( "Stardict: malformed entry for the word %s encountered in \"%s\".\n",
-                     headword.c_str(),
-                     getName().c_str() );
+          qWarning( "Stardict: malformed entry for the word %s encountered in \"%s\".",
+                    headword.c_str(),
+                    getName().c_str() );
           break;
         }
 
@@ -1067,10 +1047,10 @@ void StardictDictionary::loadArticle( uint32_t address, string & headword, strin
         size -= sizeof( uint32_t ) + 1 + entrySize;
       }
       else {
-        gdWarning( "Stardict: non-alpha entry type 0x%x for the word %s encountered in \"%s\".\n",
-                   (unsigned)*ptr,
-                   headword.c_str(),
-                   getName().c_str() );
+        qWarning( "Stardict: non-alpha entry type 0x%x for the word %s encountered in \"%s\".",
+                  (unsigned)*ptr,
+                  headword.c_str(),
+                  getName().c_str() );
         break;
       }
     }
@@ -1085,40 +1065,36 @@ QString const & StardictDictionary::getDescription()
     return dictionaryDescription;
   }
 
-  File::Index ifoFile( getDictionaryFilenames()[ 0 ], "r" );
-  Ifo ifo( ifoFile );
+  Ifo ifo( QString::fromStdString( getDictionaryFilenames()[ 0 ] ) );
 
   if ( !ifo.copyright.empty() ) {
-    QString copyright = QString::fromUtf8( ifo.copyright.c_str() ).replace( "<br>", "\n", Qt::CaseInsensitive );
-    dictionaryDescription += QObject::tr( "Copyright: %1%2" ).arg( copyright ).arg( "\n\n" );
+    QString copyright = QString::fromUtf8( ifo.copyright.c_str() );
+    dictionaryDescription += QObject::tr( "Copyright: %1%2" ).arg( copyright ).arg( "<br><br>" );
   }
 
   if ( !ifo.author.empty() ) {
     QString author = QString::fromUtf8( ifo.author.c_str() );
-    dictionaryDescription += QObject::tr( "Author: %1%2" ).arg( author ).arg( "\n\n" );
+    dictionaryDescription += QObject::tr( "Author: %1%2" ).arg( author ).arg( "<br><br>" );
   }
 
   if ( !ifo.email.empty() ) {
     QString email = QString::fromUtf8( ifo.email.c_str() );
-    dictionaryDescription += QObject::tr( "E-mail: %1%2" ).arg( email ).arg( "\n\n" );
+    dictionaryDescription += QObject::tr( "E-mail: %1%2" ).arg( email ).arg( "<br><br>" );
   }
 
   if ( !ifo.website.empty() ) {
     QString website = QString::fromUtf8( ifo.website.c_str() );
-    dictionaryDescription += QObject::tr( "Website: %1%2" ).arg( website ).arg( "\n\n" );
+    dictionaryDescription += QObject::tr( "Website: %1%2" ).arg( website ).arg( "<br><br>" );
   }
 
   if ( !ifo.date.empty() ) {
     QString date = QString::fromUtf8( ifo.date.c_str() );
-    dictionaryDescription += QObject::tr( "Date: %1%2" ).arg( date ).arg( "\n\n" );
+    dictionaryDescription += QObject::tr( "Date: %1%2" ).arg( date ).arg( "<br><br>" );
   }
 
   if ( !ifo.description.empty() ) {
     QString desc = QString::fromUtf8( ifo.description.c_str() );
-    desc.replace( "\t", "<br/>" );
-    desc.replace( "\\n", "<br/>" );
-    desc.replace( "<br>", "<br/>", Qt::CaseInsensitive );
-    dictionaryDescription += Html::unescape( desc, Html::HtmlOption::Keep );
+    dictionaryDescription += desc;
   }
 
   if ( dictionaryDescription.isEmpty() ) {
@@ -1149,16 +1125,14 @@ void StardictDictionary::makeFTSIndex( QAtomicInt & isCancelled )
   }
 
 
-  gdDebug( "Stardict: Building the full-text index for dictionary: %s\n", getName().c_str() );
+  qDebug( "Stardict: Building the full-text index for dictionary: %s", getName().c_str() );
 
   try {
     FtsHelpers::makeFTSIndex( this, isCancelled );
     FTS_index_completed.ref();
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Stardict: Failed building full-text search index for \"%s\", reason: %s\n",
-               getName().c_str(),
-               ex.what() );
+    qWarning( "Stardict: Failed building full-text search index for \"%s\", reason: %s", getName().c_str(), ex.what() );
     QFile::remove( ftsIdxName.c_str() );
   }
 }
@@ -1174,7 +1148,7 @@ void StardictDictionary::getArticleText( uint32_t articleAddress, QString & head
     text = Html::unescape( QString::fromStdString( articleStr ) );
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Stardict: Failed retrieving article from \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "Stardict: Failed retrieving article from \"%s\", reason: %s", getName().c_str(), ex.what() );
   }
 }
 
@@ -1457,84 +1431,76 @@ static char const * beginsWith( char const * substr, char const * str )
   return strncmp( str, substr, len ) == 0 ? str + len : 0;
 }
 
-Ifo::Ifo( File::Index & f ):
-  wordcount( 0 ),
-  synwordcount( 0 ),
-  idxfilesize( 0 ),
-  idxoffsetbits( 32 )
+Ifo::Ifo( const QString & fileName )
 {
-  static string const versionEq( "version=" );
+  QFile f( fileName );
+  if ( !f.open( QIODevice::ReadOnly ) ) {
+    throw exCantReadFile( "Cannot open IFO file -> " + fileName.toStdString() );
+  };
 
-  static string const booknameEq( "bookname=" );
-
-  //GD_DPRINTF( "%s<\n", f.gets().c_str() );
-  //GD_DPRINTF( "%s<\n", f.gets().c_str() );
-
-  if ( QString::fromUtf8( f.gets().c_str() ) != "StarDict's dict ifo file"
-       || f.gets().compare( 0, versionEq.size(), versionEq ) ) {
+  if ( !f.readLine().startsWith( "StarDict's dict ifo file" ) || !f.readLine().startsWith( "version=" ) ) {
     throw exNotAnIfoFile();
   }
 
   /// Now go through the file and parse options
+  {
+    while ( !f.atEnd() ) {
+      auto line   = f.readLine();
+      auto option = QByteArrayView( line ).trimmed();
+      // Empty lines are allowed in .ifo file
 
-  try {
-    char option[ 16384 ];
-
-    for ( ;; ) {
-      if ( !f.gets( option, sizeof( option ), true ) ) {
-        break;
+      if ( option.isEmpty() ) {
+        continue;
       }
 
-      if ( char const * val = beginsWith( "bookname=", option ) ) {
+      if ( char const * val = beginsWith( "bookname=", option.data() ) ) {
         bookname = val;
       }
-      else if ( char const * val = beginsWith( "wordcount=", option ) ) {
+      else if ( char const * val = beginsWith( "wordcount=", option.data() ) ) {
         if ( sscanf( val, "%u", &wordcount ) != 1 ) {
-          throw exBadFieldInIfo( option );
+          throw exBadFieldInIfo( option.data() );
         }
       }
-      else if ( char const * val = beginsWith( "synwordcount=", option ) ) {
+      else if ( char const * val = beginsWith( "synwordcount=", option.data() ) ) {
         if ( sscanf( val, "%u", &synwordcount ) != 1 ) {
-          throw exBadFieldInIfo( option );
+          throw exBadFieldInIfo( option.data() );
         }
       }
-      else if ( char const * val = beginsWith( "idxfilesize=", option ) ) {
+      else if ( char const * val = beginsWith( "idxfilesize=", option.data() ) ) {
         if ( sscanf( val, "%u", &idxfilesize ) != 1 ) {
-          throw exBadFieldInIfo( option );
+          throw exBadFieldInIfo( option.data() );
         }
       }
-      else if ( char const * val = beginsWith( "idxoffsetbits=", option ) ) {
+      else if ( char const * val = beginsWith( "idxoffsetbits=", option.data() ) ) {
         if ( sscanf( val, "%u", &idxoffsetbits ) != 1 || ( idxoffsetbits != 32 && idxoffsetbits != 64 ) ) {
-          throw exBadFieldInIfo( option );
+          throw exBadFieldInIfo( option.data() );
         }
       }
-      else if ( char const * val = beginsWith( "sametypesequence=", option ) ) {
+      else if ( char const * val = beginsWith( "sametypesequence=", option.data() ) ) {
         sametypesequence = val;
       }
-      else if ( char const * val = beginsWith( "dicttype=", option ) ) {
+      else if ( char const * val = beginsWith( "dicttype=", option.data() ) ) {
         dicttype = val;
       }
-      else if ( char const * val = beginsWith( "description=", option ) ) {
+      else if ( char const * val = beginsWith( "description=", option.data() ) ) {
         description = val;
       }
-      else if ( char const * val = beginsWith( "copyright=", option ) ) {
+      else if ( char const * val = beginsWith( "copyright=", option.data() ) ) {
         copyright = val;
       }
-      else if ( char const * val = beginsWith( "author=", option ) ) {
+      else if ( char const * val = beginsWith( "author=", option.data() ) ) {
         author = val;
       }
-      else if ( char const * val = beginsWith( "email=", option ) ) {
+      else if ( char const * val = beginsWith( "email=", option.data() ) ) {
         email = val;
       }
-      else if ( char const * val = beginsWith( "website=", option ) ) {
+      else if ( char const * val = beginsWith( "website=", option.data() ) ) {
         website = val;
       }
-      else if ( char const * val = beginsWith( "date=", option ) ) {
+      else if ( char const * val = beginsWith( "date=", option.data() ) ) {
         date = val;
       }
     }
-  }
-  catch ( File::exReadError & ) {
   }
 }
 
@@ -1595,7 +1561,7 @@ void StardictResourceRequest::run()
     string n =
       dict.getContainingFolder().toStdString() + Utils::Fs::separator() + "res" + Utils::Fs::separator() + resourceName;
 
-    GD_DPRINTF( "startdict resource name is %s\n", n.c_str() );
+    qDebug( "startdict resource name is %s", n.c_str() );
 
     try {
       QMutexLocker _( &dataMutex );
@@ -1672,10 +1638,10 @@ void StardictResourceRequest::run()
     hasAnyData = true;
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Stardict: Failed loading resource \"%s\" for \"%s\", reason: %s\n",
-               resourceName.c_str(),
-               dict.getName().c_str(),
-               ex.what() );
+    qWarning( "Stardict: Failed loading resource \"%s\" for \"%s\", reason: %s",
+              resourceName.c_str(),
+              dict.getName().c_str(),
+              ex.what() );
     // Resource not loaded -- we don't set the hasAnyData flag then
   }
   catch ( ... ) {
@@ -1757,7 +1723,7 @@ static void handleIdxSynFile( string const & fileName,
     size_t wordLen = strlen( ptr );
 
     if ( ptr + wordLen + 1 + ( isSynFile ? sizeof( uint32_t ) : sizeof( uint32_t ) * 2 ) > &image.back() ) {
-      GD_FDPRINTF( stderr, "Warning: sudden end of file %s\n", fileName.c_str() );
+      qWarning( "Warning: sudden end of file %s", fileName.c_str() );
       break;
     }
 
@@ -1847,7 +1813,7 @@ static void handleIdxSynFile( string const & fileName,
     }
   }
 
-  GD_DPRINTF( "%u entires made\n", (unsigned)indexedWords.size() );
+  qDebug( "%u entires made", (unsigned)indexedWords.size() );
 }
 
 
@@ -1897,11 +1863,9 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       if ( Dictionary::needToRebuildIndex( dictFiles, indexFile ) || indexIsOldOrBad( indexFile ) ) {
         // Building the index
 
-        File::Index ifoFile( fileName, "r" );
+        Ifo ifo( QString::fromStdString( fileName ) );
 
-        Ifo ifo( ifoFile );
-
-        gdDebug( "Stardict: Building the index for dictionary: %s\n", ifo.bookname.c_str() );
+        qDebug( "Stardict: Building the index for dictionary: %s", ifo.bookname.c_str() );
 
         if ( ifo.idxoffsetbits == 64 ) {
           throw ex64BitsNotSupported();
@@ -1913,24 +1877,24 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
 
         if ( synFileName.empty() ) {
           if ( ifo.synwordcount ) {
-            GD_DPRINTF(
+            qDebug(
               "Warning: dictionary has synwordcount specified, but no "
               "corresponding .syn file was found\n" );
             ifo.synwordcount = 0; // Pretend it wasn't there
           }
         }
         else if ( !ifo.synwordcount ) {
-          GD_DPRINTF( "Warning: ignoring .syn file %s, since there's no synwordcount in .ifo specified\n",
-                      synFileName.c_str() );
+          qDebug( "Warning: ignoring .syn file %s, since there's no synwordcount in .ifo specified",
+                  synFileName.c_str() );
         }
 
 
-        GD_DPRINTF( "bookname = %s\n", ifo.bookname.c_str() );
-        GD_DPRINTF( "wordcount = %u\n", ifo.wordcount );
+        qDebug( "bookname = %s", ifo.bookname.c_str() );
+        qDebug( "wordcount = %u", ifo.wordcount );
 
         initializing.indexingDictionary( ifo.bookname );
 
-        File::Index idx( indexFile, "wb" );
+        File::Index idx( indexFile, QIODevice::WriteOnly );
 
         IdxHeader idxHeader;
 
@@ -2011,7 +1975,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
         // If there was a zip file, index it too
 
         if ( zipFileName.size() ) {
-          GD_DPRINTF( "Indexing zip file\n" );
+          qDebug( "Indexing zip file" );
 
           idxHeader.hasZipFile = 1;
 
@@ -2050,7 +2014,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       dictionaries.push_back( std::make_shared< StardictDictionary >( dictId, indexFile, dictFiles ) );
     }
     catch ( std::exception & e ) {
-      gdWarning( "Stardict dictionary initializing failed: %s, error: %s\n", fileName.c_str(), e.what() );
+      qWarning( "Stardict dictionary initializing failed: %s, error: %s", fileName.c_str(), e.what() );
     }
   }
 

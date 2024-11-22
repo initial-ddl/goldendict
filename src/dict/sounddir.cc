@@ -51,7 +51,7 @@ static_assert( alignof( IdxHeader ) == 1 );
 
 bool indexIsOldOrBad( string const & indexFile )
 {
-  File::Index idx( indexFile, "rb" );
+  File::Index idx( indexFile, QIODevice::ReadOnly );
 
   IdxHeader header;
 
@@ -61,7 +61,6 @@ bool indexIsOldOrBad( string const & indexFile )
 
 class SoundDirDictionary: public BtreeIndexing::BtreeDictionary
 {
-  string name;
   QMutex idxMutex;
   File::Index idx;
   IdxHeader idxHeader;
@@ -76,10 +75,6 @@ public:
                       vector< string > const & dictionaryFiles,
                       QString const & iconFilename_ );
 
-  string getName() noexcept override
-  {
-    return name;
-  }
 
   map< Dictionary::Property, string > getProperties() noexcept override
   {
@@ -113,12 +108,13 @@ SoundDirDictionary::SoundDirDictionary( string const & id,
                                         vector< string > const & dictionaryFiles,
                                         QString const & iconFilename_ ):
   BtreeDictionary( id, dictionaryFiles ),
-  name( name_ ),
-  idx( indexFile, "rb" ),
+  idx( indexFile, QIODevice::ReadOnly ),
   idxHeader( idx.read< IdxHeader >() ),
   chunks( idx, idxHeader.chunksOffset ),
   iconFilename( iconFilename_ )
 {
+  dictionaryName = name_;
+
   // Initialize the index
 
   openIndex( IndexInfo( idxHeader.indexBtreeMaxElements, idxHeader.indexRootOffset ), idx, idxMutex );
@@ -370,7 +366,7 @@ sptr< Dictionary::DataRequest > SoundDirDictionary::getResource( string const & 
   // Now try loading that file
 
   try {
-    File::Index f( fileName.toStdString(), "rb" );
+    File::Index f( fileName.toStdString(), QIODevice::ReadOnly );
 
     sptr< Dictionary::DataRequestInstant > dr = std::make_shared< Dictionary::DataRequestInstant >( true );
 
@@ -479,7 +475,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( Config::SoundDirs const & 
 
       initializing.indexingDictionary( soundDir.name.toUtf8().data() );
 
-      File::Index idx( indexFile, "wb" );
+      File::Index idx( indexFile, QIODevice::WriteOnly );
 
       IdxHeader idxHeader;
 

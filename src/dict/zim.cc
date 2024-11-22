@@ -5,9 +5,7 @@
 
   #include "zim.hh"
   #include "btreeidx.hh"
-
   #include "folding.hh"
-  #include "gddebug.hh"
   #include "utf8.hh"
   #include "langcoder.hh"
   #include "filetype.hh"
@@ -17,24 +15,18 @@
   #include "ftshelpers.hh"
   #include "htmlescape.hh"
 
-  #ifdef _MSC_VER
-    #include <stub_msvc.h>
-  #endif
-
   #include <QByteArray>
   #include <QFile>
   #include <QString>
   #include <QAtomicInt>
   #include <QImage>
   #include <QDir>
-
   #include <QRegularExpression>
-
   #include <string>
   #include <set>
   #include <map>
   #include <algorithm>
-  #include <QtConcurrent>
+  #include <QtConcurrentRun>
   #include <utility>
   #include "globalregex.hh"
   #include <zim/zim.h>
@@ -93,7 +85,7 @@ static_assert( alignof( IdxHeader ) == 1 );
 // Some supporting functions
 bool indexIsOldOrBad( string const & indexFile )
 {
-  File::Index idx( indexFile, "rb" );
+  File::Index idx( indexFile, QIODevice::ReadOnly );
 
   IdxHeader header;
 
@@ -168,10 +160,6 @@ public:
 
   ~ZimDictionary() = default;
 
-  string getName() noexcept override
-  {
-    return dictionaryName;
-  }
 
   map< Dictionary::Property, string > getProperties() noexcept override
   {
@@ -241,7 +229,7 @@ private:
 
 ZimDictionary::ZimDictionary( string const & id, string const & indexFile, vector< string > const & dictionaryFiles ):
   BtreeDictionary( id, dictionaryFiles ),
-  idx( indexFile, "rb" ),
+  idx( indexFile, QIODevice::ReadOnly ),
   idxHeader( idx.read< IdxHeader >() ),
   df( dictionaryFiles[ 0 ] )
 {
@@ -295,7 +283,7 @@ void ZimDictionary::loadIcon() noexcept
     return;
   }
   catch ( zim::EntryNotFound & e ) {
-    gdDebug( "ZIM icon not loaded for: %s", dictionaryName.c_str() );
+    qDebug( "ZIM icon not loaded for: %s", dictionaryName.c_str() );
   }
 }
 
@@ -497,13 +485,13 @@ void ZimDictionary::makeFTSIndex( QAtomicInt & isCancelled )
     return;
   }
 
-  gdDebug( "Zim: Building the full-text index for dictionary: %s\n", getName().c_str() );
+  qDebug( "Zim: Building the full-text index for dictionary: %s", getName().c_str() );
   try {
     FtsHelpers::makeFTSIndex( this, isCancelled );
     FTS_index_completed.ref();
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Zim: Failed building full-text search index for \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "Zim: Failed building full-text search index for \"%s\", reason: %s", getName().c_str(), ex.what() );
     QFile::remove( ftsIdxName.c_str() );
   }
 }
@@ -518,7 +506,7 @@ void ZimDictionary::getArticleText( uint32_t articleAddress, QString & headword,
     text = Html::unescape( QString::fromUtf8( articleText.data(), articleText.size() ) );
   }
   catch ( std::exception & ex ) {
-    gdWarning( "Zim: Failed retrieving article from \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "Zim: Failed retrieving article from \"%s\", reason: %s", getName().c_str(), ex.what() );
   }
 }
 
@@ -767,10 +755,10 @@ void ZimResourceRequest::run()
     hasAnyData = true;
   }
   catch ( std::exception & ex ) {
-    gdWarning( "ZIM: Failed loading resource \"%s\" from \"%s\", reason: %s\n",
-               resourceName.c_str(),
-               dict.getName().c_str(),
-               ex.what() );
+    qWarning( "ZIM: Failed loading resource \"%s\" from \"%s\", reason: %s",
+              resourceName.c_str(),
+              dict.getName().c_str(),
+              ex.what() );
     // Resource not loaded -- we don't set the hasAnyData flag then
   }
 
@@ -822,7 +810,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
     try {
       //only check zim file.
       if ( Dictionary::needToRebuildIndex( dictFiles, indexFile ) || indexIsOldOrBad( indexFile ) ) {
-        gdDebug( "Zim: Building the index for dictionary: %s\n", fileName.c_str() );
+        qDebug( "Zim: Building the index for dictionary: %s", fileName.c_str() );
 
         unsigned articleCount = df.getArticleCount();
         unsigned wordCount    = 0;
@@ -832,7 +820,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
           initializing.indexingDictionary( firstName.mid( n + 1 ).toUtf8().constData() );
         }
 
-        File::Index idx( indexFile, "wb" );
+        File::Index idx( indexFile, QIODevice::WriteOnly );
         IdxHeader idxHeader;
         memset( &idxHeader, 0, sizeof( idxHeader ) );
         idxHeader.namePtr        = 0xFFFFFFFF;
@@ -910,11 +898,11 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       dictionaries.push_back( std::make_shared< ZimDictionary >( dictId, indexFile, dictFiles ) );
     }
     catch ( std::exception & e ) {
-      gdWarning( "Zim dictionary initializing failed: %s, error: %s\n", fileName.c_str(), e.what() );
+      qWarning( "Zim dictionary initializing failed: %s, error: %s", fileName.c_str(), e.what() );
       continue;
     }
     catch ( ... ) {
-      qWarning( "Zim dictionary initializing failed\n" );
+      qWarning( "Zim dictionary initializing failed" );
       continue;
     }
   }

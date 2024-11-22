@@ -11,48 +11,28 @@
 #include "htmlescape.hh"
 #include "iconv.hh"
 #include "filetype.hh"
-
 #include "audiolink.hh"
 #include "langcoder.hh"
 #include "wstring_qt.hh"
 #include "indexedzip.hh"
-#include "gddebug.hh"
 #include "tiff.hh"
 #include "ftshelpers.hh"
-
 #include <map>
 #include <set>
 #include <string>
 #include <vector>
 #include <list>
 #include <wctype.h>
-
-#ifdef _MSC_VER
-  #include <stub_msvc.h>
-#endif
-
-#include <QSemaphore>
 #include <QThreadPool>
 #include <QAtomicInt>
 #include <QUrl>
-
 #include <QDir>
 #include <QFileInfo>
 #include <QPainter>
-#include <QStringList>
-
 #include <QRegularExpression>
-
-// For TIFF conversion
-#include <QImage>
 #include <QByteArray>
-#include <QBuffer>
-
-// For SVG handling
-#include <QtSvg/QSvgRenderer>
-
-#include <QtConcurrent>
-
+#include <QSvgRenderer>
+#include <QtConcurrentRun>
 #include "utils.hh"
 
 namespace Dsl {
@@ -132,7 +112,7 @@ struct InsidedCard
 
 bool indexIsOldOrBad( string const & indexFile, bool hasZipFile )
 {
-  File::Index idx( indexFile, "rb" );
+  File::Index idx( indexFile, QIODevice::ReadOnly );
 
   IdxHeader header;
 
@@ -158,7 +138,6 @@ class DslDictionary: public BtreeIndexing::BtreeDictionary
   QAtomicInt deferredInitDone;
   QMutex deferredInitMutex;
   bool deferredInitRunnableStarted;
-  QSemaphore deferredInitRunnableExited;
 
   string initError;
 
@@ -176,10 +155,6 @@ public:
 
   ~DslDictionary();
 
-  string getName() noexcept override
-  {
-    return dictionaryName;
-  }
 
   map< Dictionary::Property, string > getProperties() noexcept override
   {
@@ -289,7 +264,7 @@ private:
 
 DslDictionary::DslDictionary( string const & id, string const & indexFile, vector< string > const & dictionaryFiles ):
   BtreeDictionary( id, dictionaryFiles ),
-  idx( indexFile, "rb" ),
+  idx( indexFile, QIODevice::ReadOnly ),
   idxHeader( idx.read< IdxHeader >() ),
   dz( 0 ),
   deferredInitRunnableStarted( false ),
@@ -303,17 +278,9 @@ DslDictionary::DslDictionary( string const & id, string const & indexFile, vecto
 
   idx.seek( sizeof( idxHeader ) );
 
-  vector< char > dName( idx.read< uint32_t >() );
-  if ( dName.size() > 0 ) {
-    idx.read( &dName.front(), dName.size() );
-    dictionaryName = string( &dName.front(), dName.size() );
-  }
+  idx.readU32SizeAndData<>( dictionaryName );
+  idx.readU32SizeAndData<>( preferredSoundDictionary );
 
-  vector< char > sName( idx.read< uint32_t >() );
-  if ( sName.size() > 0 ) {
-    idx.read( &sName.front(), sName.size() );
-    preferredSoundDictionary = string( &sName.front(), sName.size() );
-  }
 
   resourceDir1 = getDictionaryFilenames()[ 0 ] + ".files" + Utils::Fs::separator();
   QString s    = QString::fromStdString( getDictionaryFilenames()[ 0 ] );
@@ -407,7 +374,7 @@ void DslDictionary::doDeferredInit()
         memcpy( &total, abrvBlock, sizeof( uint32_t ) );
         abrvBlock += sizeof( uint32_t );
 
-        GD_DPRINTF( "Loading %u abbrv\n", total );
+        qDebug( "Loading %u abbrv", total );
 
         while ( total-- ) {
           uint32_t keySz;
@@ -527,7 +494,7 @@ void DslDictionary::loadArticle( uint32_t address,
     memcpy( &articleOffset, articleProps, sizeof( articleOffset ) );
     memcpy( &articleSize, articleProps + sizeof( articleOffset ), sizeof( articleSize ) );
 
-    GD_DPRINTF( "offset = %x\n", articleOffset );
+    qDebug( "offset = %x", articleOffset );
 
 
     char * articleBody;
@@ -1026,11 +993,11 @@ string DslDictionary::nodeToHtml( ArticleDom::Node const & node )
     result += "<br />";
   }
   else {
-    gdWarning( R"(DSL: Unknown tag "%s" with attributes "%s" found in "%s", article "%s".)",
-               QString::fromStdU32String( node.tagName ).toUtf8().data(),
-               QString::fromStdU32String( node.tagAttrs ).toUtf8().data(),
-               getName().c_str(),
-               QString::fromStdU32String( currentHeadword ).toUtf8().data() );
+    qWarning( R"(DSL: Unknown tag "%s" with attributes "%s" found in "%s", article "%s".)",
+              QString::fromStdU32String( node.tagName ).toUtf8().data(),
+              QString::fromStdU32String( node.tagAttrs ).toUtf8().data(),
+              getName().c_str(),
+              QString::fromStdU32String( currentHeadword ).toUtf8().data() );
 
     result += "<span class=\"dsl_unknown\">[" + string( QString::fromStdU32String( node.tagName ).toUtf8().data() );
     if ( !node.tagAttrs.empty() ) {
@@ -1138,14 +1105,14 @@ void DslDictionary::makeFTSIndex( QAtomicInt & isCancelled )
   }
 
 
-  gdDebug( "Dsl: Building the full-text index for dictionary: %s\n", getName().c_str() );
+  qDebug( "Dsl: Building the full-text index for dictionary: %s", getName().c_str() );
 
   try {
     FtsHelpers::makeFTSIndex( this, isCancelled );
     FTS_index_completed.ref();
   }
   catch ( std::exception & ex ) {
-    gdWarning( "DSL: Failed building full-text search index for \"%s\", reason: %s\n", getName().c_str(), ex.what() );
+    qWarning( "DSL: Failed building full-text search index for \"%s\", reason: %s", getName().c_str(), ex.what() );
     QFile::remove( ftsIdxName.c_str() );
   }
 }
@@ -1421,7 +1388,6 @@ class DslArticleRequest: public Dictionary::DataRequest
   bool ignoreDiacritics;
 
   QAtomicInt isCancelled;
-  QSemaphore hasExited;
   QFuture< void > f;
 
 public:
@@ -1567,7 +1533,7 @@ void DslArticleRequest::run()
       articleText += articleAfter;
     }
     catch ( std::exception & ex ) {
-      gdWarning( "DSL: Failed loading article from \"%s\", reason: %s\n", dict.getName().c_str(), ex.what() );
+      qWarning( "DSL: Failed loading article from \"%s\", reason: %s", dict.getName().c_str(), ex.what() );
       articleText =
         string( "<span class=\"dsl_article\">" ) + QObject::tr( "Article loading error" ).toStdString() + "</span>";
     }
@@ -1598,7 +1564,6 @@ class DslResourceRequest: public Dictionary::DataRequest
   string resourceName;
 
   QAtomicInt isCancelled;
-  QSemaphore hasExited;
   QFuture< void > f;
 
 public:
@@ -1643,7 +1608,7 @@ void DslResourceRequest::run()
 
   string n = dict.getContainingFolder().toStdString() + Utils::Fs::separator() + resourceName;
 
-  GD_DPRINTF( "dsl resource name is %s\n", n.c_str() );
+  qDebug( "dsl resource name is %s", n.c_str() );
 
   try {
     try {
@@ -1695,10 +1660,10 @@ void DslResourceRequest::run()
     hasAnyData = true;
   }
   catch ( std::exception & ex ) {
-    gdWarning( "DSL: Failed loading resource \"%s\" for \"%s\", reason: %s\n",
-               resourceName.c_str(),
-               dict.getName().c_str(),
-               ex.what() );
+    qWarning( "DSL: Failed loading resource \"%s\" for \"%s\", reason: %s",
+              resourceName.c_str(),
+              dict.getName().c_str(),
+              ex.what() );
     // Resource not loaded -- we don't set the hasAnyData flag then
   }
 
@@ -1745,11 +1710,10 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       continue;
     }
 
-    // Make sure it's not an abbreviation file
+    // Make sure it's not an abbreviation file. extSize of ".dsl" or ".dsl.dz"
 
-    int extSize = ( uncompressedDsl ? 4 : 7 );
-    if ( fileName.size() - extSize >= 5
-         && strncasecmp( fileName.c_str() + fileName.size() - extSize - 5, "_abrv", 5 ) == 0 ) {
+    if ( int extSize = ( uncompressedDsl ? 4 : 7 ); ( fileName.size() >= ( 5 + extSize ) )
+         && ( QByteArrayView( fileName ).chopped( extSize ).last( 5 ).compare( "_abrv", Qt::CaseInsensitive ) == 0 ) ) {
       // It is, skip it
       continue;
     }
@@ -1804,10 +1768,10 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
           // Building the index
           initializing.indexingDictionary( Utf8::encode( scanner.getDictionaryName() ) );
 
-          gdDebug( "Dsl: Building the index for dictionary: %s\n",
-                   QString::fromStdU32String( scanner.getDictionaryName() ).toUtf8().data() );
+          qDebug( "Dsl: Building the index for dictionary: %s",
+                  QString::fromStdU32String( scanner.getDictionaryName() ).toUtf8().data() );
 
-          File::Index idx( indexFile, "wb" );
+          File::Index idx( indexFile, QIODevice::WriteOnly );
 
           IdxHeader idxHeader;
 
@@ -1871,7 +1835,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
                   expandOptionalParts( curString, &keys );
 
                   if ( !abrvScanner.readNextLineWithoutComments( curString, curOffset ) || curString.empty() ) {
-                    gdWarning( "Premature end of file %s\n", abrvFileName.c_str() );
+                    qWarning( "Premature end of file %s", abrvFileName.c_str() );
                     eof = true;
                     break;
                   }
@@ -1910,7 +1874,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
               chunks.addToBlock( &sz, sizeof( uint32_t ) );
 
               for ( const auto & i : abrv ) {
-                //              GD_DPRINTF( "%s:%s\n", i->first.c_str(), i->second.c_str() );
+                //              qDebug( "%s:%s", i->first.c_str(), i->second.c_str() );
 
                 sz = i.first.size();
                 chunks.addToBlock( &sz, sizeof( uint32_t ) );
@@ -1921,7 +1885,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
               }
             }
             catch ( std::exception & e ) {
-              gdWarning( "Error reading abrv file \"%s\", error: %s. Skipping it.\n", abrvFileName.c_str(), e.what() );
+              qWarning( "Error reading abrv file \"%s\", error: %s. Skipping it.", abrvFileName.c_str(), e.what() );
             }
           }
 
@@ -1951,7 +1915,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
               // characters are blank, too.
               for ( size_t x = 1; x < curString.size(); ++x ) {
                 if ( !isDslWs( curString[ x ] ) ) {
-                  gdWarning( "Garbage string in %s at offset 0x%lX\n", fileName.c_str(), curOffset );
+                  qWarning( "Garbage string in %s at offset 0x%lX", fileName.c_str(), curOffset );
                   break;
                 }
               }
@@ -1967,13 +1931,13 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
 
             uint32_t articleOffset = curOffset;
 
-            //GD_DPRINTF( "Headword: %ls\n", curString.c_str() );
+            //qDebug( "Headword: %ls", curString.c_str() );
 
             // More headwords may follow
 
             for ( ;; ) {
               if ( !( hasString = scanner.readNextLineWithoutComments( curString, curOffset ) ) ) {
-                gdWarning( "Premature end of file %s\n", fileName.c_str() );
+                qWarning( "Premature end of file %s", fileName.c_str() );
                 break;
               }
 
@@ -2031,11 +1995,11 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
 
               if ( !hasString || ( curString.size() && !isDslWs( curString[ 0 ] ) ) ) {
                 if ( insideInsided ) {
-                  gdWarning( "Unclosed tag '@' at line %i", dogLine );
+                  qWarning( "Unclosed tag '@' at line %i", dogLine );
                   insidedCards.append( InsidedCard( offset, curOffset - offset, insidedHeadwords ) );
                 }
                 if ( noSignificantLines ) {
-                  gdWarning( "Orphan headword at line %i", headwordLine );
+                  qWarning( "Orphan headword at line %i", headwordLine );
                 }
 
                 break;
@@ -2049,7 +2013,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
               }
               else {
                 if ( wasEmptyLine && !Folding::applyWhitespaceOnly( curString ).empty() ) {
-                  gdWarning( "Orphan string at line %i", scanner.getLinesRead() - 1 );
+                  qWarning( "Orphan string at line %i", scanner.getLinesRead() - 1 );
                 }
               }
 
@@ -2070,7 +2034,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
               else {
                 // Embedded card tag must be placed at first position in line after spaces
                 if ( !isAtSignFirst( curString ) ) {
-                  gdWarning( "Unescaped '@' symbol at line %i", scanner.getLinesRead() - 1 );
+                  qWarning( "Unescaped '@' symbol at line %i", scanner.getLinesRead() - 1 );
 
                   if ( insideInsided ) {
                     linesInsideCard++;
@@ -2160,7 +2124,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
           // If there was a zip file, index it too
 
           if ( zipFileName.size() ) {
-            GD_DPRINTF( "Indexing zip file\n" );
+            qDebug( "Indexing zip file" );
 
             idxHeader.hasZipFile = 1;
 
@@ -2216,7 +2180,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       dictionaries.push_back( std::make_shared< DslDictionary >( dictId, indexFile, dictFiles ) );
     }
     catch ( std::exception & e ) {
-      gdWarning( "DSL dictionary reading failed: %s:%u, error: %s\n", fileName.c_str(), atLine, e.what() );
+      qWarning( "DSL dictionary reading failed: %s:%u, error: %s", fileName.c_str(), atLine, e.what() );
     }
   }
 
