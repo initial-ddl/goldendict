@@ -5,12 +5,14 @@
 
 #include <list>
 #include <map>
+#include <atomic>
 #include <QObject>
 #include <QTimer>
 #include <QMutex>
 #include <QWaitCondition>
 #include <QRunnable>
 #include "dict/dictionary.hh"
+#include "concurrent_list.hh"
 
 /// This component takes care of finding words. The search is asynchronous.
 /// This means the GUI doesn't get blocked during the sometimes lenghtly
@@ -28,13 +30,13 @@ private:
   SearchResults searchResults;
   QString searchErrorString;
   bool searchResultsUncertain;
-  std::list< sptr< Dictionary::WordSearchRequest > > queuedRequests, finishedRequests;
-  bool searchInProgress;
+  concurrent_list< sptr< Dictionary::WordSearchRequest > > queuedRequests;
+  std::atomic_bool searchInProgress;
+  QMutex mutex;
 
   QTimer updateResultsTimer;
 
   // Saved search params
-  bool searchQueued;
   QString inputWord;
   enum SearchType {
     PrefixMatch,
@@ -48,7 +50,7 @@ private:
 
   std::vector< sptr< Dictionary::Class > > const * inputDicts;
 
-  std::vector< std::u32string > allWordWritings; // All writings of the inputWord
+  std::vector< std::u32string > _allWordWritings; // All writings of the inputWord
 
   struct OneResult
   {
@@ -63,6 +65,19 @@ private:
   using ResultsIndex = std::map< std::u32string, ResultsArray::iterator >;
   ResultsArray resultsArray;
   ResultsIndex resultsIndex;
+
+  /// Mutex to protect the vector of allWordWritings
+  std::vector< std::u32string > getAllWordWritings()
+  {
+    QMutexLocker locker( &mutex );
+    return _allWordWritings;
+  }
+
+  void setAllWordWritings( std::vector< std::u32string > writings )
+  {
+    QMutexLocker locker( &mutex );
+    _allWordWritings = std::move( writings );
+  }
 
 public:
 
@@ -128,7 +143,6 @@ public:
   /// requests exist, and hence no dictionaries are used anymore. Unlike
   /// cancel(), this may take some time to finish.
   void clear();
-
 signals:
 
   /// Indicates that the search has got some more results, and continues

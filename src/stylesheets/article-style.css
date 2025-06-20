@@ -5,9 +5,10 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
+    Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", sans-serif;
 }
 
 .ipa,
@@ -16,9 +17,10 @@ body {
 .pron,
 .audio-gb,
 .audio-us {
-  font-family: "Segoe UI", "Lucida Grande", "Lucida Sans", "Droid Sans Mono",
-    "Droid Sans", "Arial Unicode MS", "Charis SIL", "Open Sans", Roboto,
-    Helvetica, Arial, normal;
+  font-family:
+    "Segoe UI", "Lucida Grande", "Lucida Sans", "Droid Sans Mono", "Droid Sans",
+    "Arial Unicode MS", "Charis SIL", "Open Sans", Roboto, Helvetica, Arial,
+    normal;
 }
 
 h1,
@@ -70,7 +72,7 @@ pre {
   user-select: none;
 }
 
-/* The anki plus button, which is shown if enabled. */
+/* The Anki plus button, which is shown if enabled. */
 .ankibutton {
   float: right;
   display: grid;
@@ -178,28 +180,28 @@ div.sdct_h {
 }
 
 /* StarDict type 'm' -- Pure meaning. Presented as <pre> */
-pre.sdct_m {
+.sdct_m {
 }
 
 /* StarDict type 'l' -- Pure meaning which used to be in locale encoding. */
-pre.sdct_l {
+.sdct_l {
 }
 
 /* StarDict type 'g' -- Pango Markup */
-div.sdct_g {
+.sdct_g {
 }
 
 /* StarDict type 't' -- Transcription */
-div.sdct_t {
+.sdct_t {
   font-weight: bold;
 }
 
 /* StarDict type 'y' -- Chinese YinBiao or Japanese KANA */
-div.sdct_y {
+.sdct_y {
 }
 
 /* StarDict type 'x'. Should have xdxf_*-styled elements inside */
-div.sdct_x {
+.sdct_x {
 }
 
 /* Blockquotes in XDXF-styled elements are used
@@ -376,16 +378,37 @@ div.xdxf {
   font-weight: bold;
 }
 
-/************* LSA audio archives **************/
+/************* audio archives **************/
 
-/* A table which contains a play icon and a word's link */
-.lsa_play {
-  margin-top: 8px;
-  margin-left: 8px;
+.audio-play {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.audio-play-item {
+  display: flex;
+  align-items: center;
+}
+.audio-play-item a {
+  text-decoration: none;
+  color: inherit;
+  margin-right: 10px;
+}
+.audio-play-item img {
+  border: 0;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
 }
 
-.lsa_play a {
-  text-decoration: none;
+.audio-play-icon {
+  display: inline-block;
+  width: 24px; /* Adjust the width as needed */
+  height: 24px; /* Adjust the height as needed */
+  background-image: url("qrc:///icons/playsound.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 /************* DSL dictionaries **************/
@@ -499,6 +522,8 @@ div.xdxf {
   color: blue;
   cursor: pointer;
   vertical-align: text-bottom;
+  width: 16px;
+  height: auto;
 }
 
 .dsl_s_wav img {
@@ -640,6 +665,14 @@ div.xdxf {
   clear: both;
 }
 
+.website-iframe {
+  overflow: auto;
+  width: 100%;
+  display: block;
+  border: none;
+  max-height: 800px;
+  min-height: 550px;
+}
 /************* Forvo **************/
 
 .forvo_headword {
@@ -674,34 +707,6 @@ div.xdxf {
   color: red;
 }
 
-/************* Programs **************/
-
-/* A table which contains a play icon and a word's link */
-.programs_play {
-  margin-top: 8px;
-  margin-left: 8px;
-}
-
-.programs_play a {
-  text-decoration: none;
-}
-
-.programs_plaintext,
-.programs_html {
-  margin-top: 15px;
-}
-
-/************* Voice engines **************/
-
-.voiceengines_play {
-  margin-top: 8px;
-  margin-left: 8px;
-}
-
-.voiceengines_play a {
-  text-decoration: none;
-}
-
 /************* MediaWiki articles *****************
  The following consist of excerpts from different .css files edited
  with a .mwiki prepended to each record.
@@ -715,6 +720,12 @@ div.xdxf {
 .mwiki .topicon {
   /* Those are padlocks on top and such -- we disable those for GoldenDict
      since they look really ugly here */
+  display: none;
+}
+
+/* Hide empty list items */
+.mwiki .mw-empty-li,
+.mwiki .mw-empty-elt {
   display: none;
 }
 
@@ -3012,27 +3023,31 @@ table#sv-hooks,
 .mwiki .infl-table {
   display: none;
 }
-/****default hide dict icon ***/
+
 .gddicticon {
   display: none;
 }
 
+.gddicticon img {
+  height: 1rem;
+}
+
 .gdexpandicon {
   cursor: pointer;
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
   vertical-align: text-bottom;
   background-size: contain;
-  content: url("qrc:///icons/arrow.png");
+  content: url("qrc:///icons/arrow.svg");
 }
 
 .gdcollapseicon {
   cursor: pointer;
-  width: 16px;
-  height: 16px;
+  width: 1rem;
+  height: 1rem;
   vertical-align: text-bottom;
   background-size: contain;
-  content: url("qrc:///icons/downarrow.png");
+  content: url("qrc:///icons/downarrow.svg");
 }
 
 /********** Slob dictionaries ***********/

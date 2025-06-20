@@ -1,5 +1,7 @@
 name: autofix.ci
-
+concurrency: 
+   group: ${{ github.workflow }}-${{ github.ref }}
+   cancel-in-progress: true
 on:
   pull_request:
     branches:
@@ -17,6 +19,7 @@ permissions:
   contents: read
 jobs:
   clang-format:
+    name: clang format the code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,11 +36,31 @@ jobs:
 
 
   css-js-html-format:
+    name: format css/js/html
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      - run: npm ci
+      - run: |
+          npm install -g prettier
       - run: npx prettier . --write
+      - uses: autofix-ci/action@ff86a557419858bb967097bfc916833f5647fa8c
+
+  update-crowdin:
+    name: update crowdin.ts file
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4.2.1
+        with:
+          version: '6.7.2'
+          target: 'desktop'
+          tools: 'tools_qtcreator,qt.tools.qtcreator'
+      - name: update crowdin.ts
+        run: |
+          lupdate -no-obsolete -no-ui-lines -locations none src -ts locale/crowdin.ts
       - uses: autofix-ci/action@ff86a557419858bb967097bfc916833f5647fa8c

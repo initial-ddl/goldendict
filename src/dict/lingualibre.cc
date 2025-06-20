@@ -270,7 +270,7 @@ void LinguaArticleRequest::addQuery( QNetworkAccessManager & mgr, const std::u32
 
   qDebug() << "lingualibre query " << reqUrl;
 
-  auto netRequest = QNetworkRequest( reqUrl );
+  auto netRequest = QNetworkRequest( QUrl( reqUrl ) );
   netRequest.setTransferTimeout( 3000 );
 
   auto netReply = std::shared_ptr< QNetworkReply >( mgr.get( netRequest ) );
@@ -342,23 +342,31 @@ void LinguaArticleRequest::requestFinished( QNetworkReply * r )
 
   if ( resultJson.contains( "query" ) ) {
 
-    string articleBody = "<p>";
+    string articleBody = "<div class=\"audio-play\">";
 
     for ( auto pageJsonVal : resultJson[ "query" ].toObject()[ "pages" ].toObject() ) {
       auto pageJsonObj = pageJsonVal.toObject();
       string title     = pageJsonObj[ "title" ].toString().toHtmlEscaped().toStdString();
       string audiolink =
         pageJsonObj[ "imageinfo" ].toArray().at( 0 ).toObject()[ "url" ].toString().toHtmlEscaped().toStdString();
-      articleBody += addAudioLink( audiolink, dictionaryId );
+      addAudioLink( audiolink, dictionaryId );
+
+      articleBody += "<div class=\"audio-play-item\">";
+      //play icon
       articleBody += R"(<a href=")";
       articleBody += audiolink;
-      articleBody += R"(">)";
-      articleBody += R"(<img src="qrc:///icons/playsound.png" border="0" alt="Play"/>)";
+      articleBody += R"(" role="button" class="audio-play-icon">)";
+      articleBody += "</a>";
+      //text
+      articleBody += R"(<a href=")";
+      articleBody += audiolink;
+      articleBody += R"(" role="link">)";
       articleBody += title;
-      articleBody += "</a><br>";
+      articleBody += "</a>";
+      articleBody += "</div>";
     }
 
-    articleBody += "</p>";
+    articleBody += "</div>";
 
     appendString( articleBody );
 
@@ -373,5 +381,8 @@ void LinguaArticleRequest::requestFinished( QNetworkReply * r )
   }
 }
 
-#include "lingualibre.moc"
 } // end namespace Lingua
+
+// fixes #2272
+// automoc include for Q_OBJECT should be at the very end of source code file, not inside a namespace
+#include "lingualibre.moc"

@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_CN" sourcelanguage="en">
+<TS version="2.1" language="zh-CN" sourcelanguage="en">
   <context>
     <name>About</name>
     <message>
       <source>About</source>
       <translation>关于</translation>
-    </message>
-    <message>
-      <source>GoldenDict-ng dictionary lookup program, version </source>
-      <translation>GoldenDict-ng 电子词典程序，版本 </translation>
     </message>
     <message>
       <source>Licensed under GNU GPLv3 or later</source>
@@ -19,36 +15,24 @@
       <source>Copy version info</source>
       <translation>复制版本信息</translation>
     </message>
-    <message>
-      <source>Copy dictionaries list</source>
-      <translation>复制词典列表</translation>
-    </message>
-    <message>
-      <source>Credits:</source>
-      <translation>致谢名单：</translation>
-    </message>
-    <message>
-      <source>Based on Qt %1 (%2, %3)</source>
-      <translation>基于 Qt %1 (%2, %3)</translation>
-    </message>
   </context>
   <context>
     <name>AnkiConnector</name>
     <message>
-      <source>anki: can&apos;t create a card without a word</source>
-      <translation>Anki: 无法创建一个没有单词的卡片</translation>
+      <source>Anki: can&apos;t create a card without a word</source>
+      <translation>Anki:&apos;t 可以创建一个没有单词的卡</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
       <translation>Anki 搜索：AnkiConnect 未启用。</translation>
     </message>
     <message>
-      <source>anki: post to anki failed</source>
-      <translation>anki:发布失败</translation>
+      <source>Anki: post to Anki failed</source>
+      <translation>Anki：发布到 Anki 失败</translation>
     </message>
     <message>
-      <source>anki: post to anki success</source>
-      <translation>anki: 发布成功</translation>
+      <source>Anki: post to Anki success</source>
+      <translation>Anki：发帖至Anki 成功</translation>
     </message>
   </context>
   <context>
@@ -60,14 +44,6 @@
   </context>
   <context>
     <name>ArticleMaker</name>
-    <message>
-      <source>Expand article</source>
-      <translation>展开文章</translation>
-    </message>
-    <message>
-      <source>Collapse article</source>
-      <translation>收起文章</translation>
-    </message>
     <message>
       <source>No translation for &lt;b dir=&quot;%3&quot;&gt;%1&lt;/b&gt; was found in group &lt;b&gt;%2&lt;/b&gt;.</source>
       <translation>在组 &lt;b&gt;%2&lt;/b&gt;中未找到 &lt;b dir=&quot;%3&quot;&gt;%1&lt;/b&gt; 的翻译。</translation>
@@ -96,16 +72,8 @@
   <context>
     <name>ArticleRequest</name>
     <message>
-      <source>Expand article</source>
-      <translation>展开文章</translation>
-    </message>
-    <message>
       <source>From </source>
       <translation>来自</translation>
-    </message>
-    <message>
-      <source>Collapse article</source>
-      <translation>收起文章</translation>
     </message>
     <message>
       <source>Make a new Anki note</source>
@@ -155,12 +123,12 @@
       <translation>资源</translation>
     </message>
     <message>
-      <source>Audio</source>
-      <translation>音频</translation>
-    </message>
-    <message>
       <source>TTS Voice</source>
       <translation>TTS 音频</translation>
+    </message>
+    <message>
+      <source>Audio</source>
+      <translation>音频</translation>
     </message>
     <message>
       <source>Video</source>
@@ -183,12 +151,12 @@
       <translation>错误：%1</translation>
     </message>
     <message>
-      <source>The referenced resource doesn&apos;t exist.</source>
-      <translation>所引用的资源不存在。</translation>
-    </message>
-    <message>
       <source>The referenced audio program doesn&apos;t exist.</source>
       <translation>引用的音频播放程序不存在。</translation>
+    </message>
+    <message>
+      <source>The referenced resource doesn&apos;t exist.</source>
+      <translation>所引用的资源不存在。</translation>
     </message>
     <message>
       <source>Op&amp;en Link</source>
@@ -240,7 +208,7 @@
     </message>
     <message>
       <source>Save &amp;Bookmark &quot;%1...&quot;</source>
-      <translation>保存为书签（&amp;S）“%1...”</translation>
+      <translation>保存为书签(&amp;B) “%1...”</translation>
     </message>
     <message>
       <source>&amp;Send Current Article to Anki</source>
@@ -322,24 +290,12 @@ between classic and school orthography in cyrillic)</source>
       <translation>启用从简体中文字符转换为正体中文（台湾）字符</translation>
     </message>
     <message>
-      <source>SC to TC (Taiwan variant)</source>
-      <translation>简体转正体（台湾）</translation>
-    </message>
-    <message>
       <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
       <translation>启用从简体中文字符转换为繁体中文（香港）字符</translation>
     </message>
     <message>
-      <source>SC to TC (Hong Kong variant)</source>
-      <translation>简体转繁体（香港）</translation>
-    </message>
-    <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>启用从繁体中文字符转换为简体中文字符</translation>
-    </message>
-    <message>
-      <source>TC to SC</source>
-      <translation>繁体转简体</translation>
     </message>
     <message>
       <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
@@ -353,31 +309,24 @@ between classic and school orthography in cyrillic)</source>
       <source>Traditional to simplified Chinese conversion</source>
       <translation>繁体中文至简体中文转换</translation>
     </message>
+    <message>
+      <source>Taiwan variant</source>
+      <translation>台湾变体</translation>
+    </message>
+    <message>
+      <source>Hong Kong variant</source>
+      <translation>香港变体</translation>
+    </message>
+    <message>
+      <source>Mainland variant</source>
+      <translation>内地变体</translation>
+    </message>
   </context>
   <context>
     <name>CustomTranslit</name>
     <message>
       <source>custom transliteration</source>
       <translation>自定义转写</translation>
-    </message>
-  </context>
-  <context>
-    <name>Dialog</name>
-    <message>
-      <source>Proxy authentication required</source>
-      <translation>代理服务器要求身份验证</translation>
-    </message>
-    <message>
-      <source>You need to supply a Username and a Password to access via proxy</source>
-      <translation>您需要提供代理服务器的用户名和密码</translation>
-    </message>
-    <message>
-      <source>Username:</source>
-      <translation>用户名：</translation>
-    </message>
-    <message>
-      <source>Password:</source>
-      <translation>密码：</translation>
     </message>
   </context>
   <context>
@@ -553,10 +502,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>通配符</translation>
     </message>
     <message>
-      <source>RegExp</source>
-      <translation>正则表达式</translation>
-    </message>
-    <message>
       <source>Unique headwords total: %1.</source>
       <translation>唯一的头字总数： %1</translation>
     </message>
@@ -591,6 +536,10 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Export finished</source>
       <translation>导出完成</translation>
+    </message>
+    <message>
+      <source>Regular Expression</source>
+      <translation>正则表达式</translation>
     </message>
   </context>
   <context>
@@ -739,6 +688,10 @@ between classic and school orthography in cyrillic)</source>
       <source>Open dictionary folder</source>
       <translation>打开词典文件夹</translation>
     </message>
+    <message>
+      <source>Restore selection</source>
+      <translation>恢复选择</translation>
+    </message>
   </context>
   <context>
     <name>EditDictionaries</name>
@@ -854,12 +807,28 @@ between classic and school orthography in cyrillic)</source>
       <translation>添加文件夹</translation>
     </message>
     <message>
+      <source>Clear All</source>
+      <translation>清除全部</translation>
+    </message>
+    <message>
       <source>Favorites:</source>
       <translation>收藏：</translation>
     </message>
     <message>
       <source>All selected items will be deleted. Continue?</source>
       <translation>所有选中项将被删除。是否继续？</translation>
+    </message>
+    <message>
+      <source>Clear All Items</source>
+      <translation>清除所有条目</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all items?</source>
+      <translation>您确实要清除所有条目吗？</translation>
+    </message>
+    <message>
+      <source>Make this folder the target of adding/removing words actions.</source>
+      <translation>将此文件夹作为添加/删除单词操作的目标。</translation>
     </message>
   </context>
   <context>
@@ -887,10 +856,6 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>from</source>
       <translation>来自</translation>
-    </message>
-    <message>
-      <source>Go to Edit|Dictionaries|Sources|Forvo and apply for our own API key to make this error disappear.</source>
-      <translation>进入 编辑|词典|词典来源|Forvo, 申请自己的 API-key 来消除此错误。</translation>
     </message>
   </context>
   <context>
@@ -979,24 +944,8 @@ between classic and school orthography in cyrillic)</source>
       <translation>将所选词典添加进群组(Ins)</translation>
     </message>
     <message>
-      <source>&gt;</source>
-      <translation>&gt;</translation>
-    </message>
-    <message>
-      <source>Ins</source>
-      <translation>Ins</translation>
-    </message>
-    <message>
       <source>Remove selected dictionaries from group (Del)</source>
       <translation>将所选词典从群组中移除(Del)</translation>
-    </message>
-    <message>
-      <source>&lt;</source>
-      <translation>&lt;</translation>
-    </message>
-    <message>
-      <source>Del</source>
-      <translation>Del</translation>
     </message>
     <message>
       <source>Groups:</source>
@@ -2057,10 +2006,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>阿尔巴尼亚语</translation>
     </message>
     <message>
-      <source>Serbian (Cyrillic)</source>
-      <translation>塞尔维亚语（西里尔文）</translation>
-    </message>
-    <message>
       <source>Swedish</source>
       <translation>瑞典语</translation>
     </message>
@@ -2125,10 +2070,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>艾马拉语</translation>
     </message>
     <message>
-      <source>Arabic, Saudi Arabia</source>
-      <translation>阿拉伯语（沙特阿拉伯）</translation>
-    </message>
-    <message>
       <source>Turkmen</source>
       <translation>土库曼语</translation>
     </message>
@@ -2148,6 +2089,18 @@ between classic and school orthography in cyrillic)</source>
       <source>English</source>
       <translation>英语</translation>
     </message>
+    <message>
+      <source>Arabic</source>
+      <translation>阿拉伯语</translation>
+    </message>
+    <message>
+      <source>Serbian</source>
+      <translation>塞尔维亚语</translation>
+    </message>
+    <message>
+      <source>Kabyle</source>
+      <translation>卡拜尔语</translation>
+    </message>
   </context>
   <context>
     <name>LoadDictionaries</name>
@@ -2165,10 +2118,6 @@ between classic and school orthography in cyrillic)</source>
   </context>
   <context>
     <name>MainWindow</name>
-    <message>
-      <source>Welcome!</source>
-      <translation>欢迎使用！</translation>
-    </message>
     <message>
       <source>&amp;File</source>
       <translation>文件(&amp;F)</translation>
@@ -2222,16 +2171,8 @@ between classic and school orthography in cyrillic)</source>
       <translation>词典(&amp;D)...</translation>
     </message>
     <message>
-      <source>F3</source>
-      <translation>F3</translation>
-    </message>
-    <message>
       <source>&amp;Preferences...</source>
       <translation>首选项(&amp;P)...</translation>
-    </message>
-    <message>
-      <source>F4</source>
-      <translation>F4</translation>
     </message>
     <message>
       <source>&amp;Homepage</source>
@@ -2254,10 +2195,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>退出程序</translation>
     </message>
     <message>
-      <source>Ctrl+Q</source>
-      <translation>Ctrl+Q</translation>
-    </message>
-    <message>
       <source>&amp;Forum</source>
       <translation>论坛(&amp;F)</translation>
     </message>
@@ -2270,10 +2207,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>最小化窗口至系统托盘</translation>
     </message>
     <message>
-      <source>Ctrl+F4</source>
-      <translation>Ctrl+F4</translation>
-    </message>
-    <message>
       <source>&amp;Save Article</source>
       <translation>保存文章(&amp;S)</translation>
     </message>
@@ -2282,16 +2215,8 @@ between classic and school orthography in cyrillic)</source>
       <translation>保存文章</translation>
     </message>
     <message>
-      <source>F2</source>
-      <translation>F2</translation>
-    </message>
-    <message>
       <source>&amp;Print</source>
       <translation>打印(&amp;P)</translation>
-    </message>
-    <message>
-      <source>Ctrl+P</source>
-      <translation>Ctrl+P</translation>
     </message>
     <message>
       <source>Page Set&amp;up</source>
@@ -2306,20 +2231,12 @@ between classic and school orthography in cyrillic)</source>
       <translation>重新扫描文件(&amp;R)</translation>
     </message>
     <message>
-      <source>Ctrl+F5</source>
-      <translation>Ctrl+F5</translation>
-    </message>
-    <message>
       <source>&amp;Clear</source>
       <translation>清除(&amp;C)</translation>
     </message>
     <message>
       <source>&amp;New Tab</source>
       <translation>新建标签页(&amp;N)</translation>
-    </message>
-    <message>
-      <source>Ctrl+T</source>
-      <translation>Ctrl+T</translation>
     </message>
     <message>
       <source>&amp;Configuration Folder</source>
@@ -2362,28 +2279,12 @@ between classic and school orthography in cyrillic)</source>
       <translation>页内搜索</translation>
     </message>
     <message>
-      <source>Ctrl+F</source>
-      <translation>Ctrl+F</translation>
-    </message>
-    <message>
       <source>Full-text search</source>
       <translation>全文搜索</translation>
     </message>
     <message>
-      <source>Ctrl+Shift+F</source>
-      <translation>Ctrl+Shift+F</translation>
-    </message>
-    <message>
       <source>GoldenDict reference</source>
       <translation>GoldenDict-ng 帮助</translation>
-    </message>
-    <message>
-      <source>F1</source>
-      <translation>F1</translation>
-    </message>
-    <message>
-      <source>Show</source>
-      <translation>显示</translation>
     </message>
     <message>
       <source>Export</source>
@@ -2402,16 +2303,20 @@ between classic and school orthography in cyrillic)</source>
       <translation>将当前标签页添加至收藏</translation>
     </message>
     <message>
-      <source>Ctrl+E</source>
-      <translation>Ctrl+E</translation>
-    </message>
-    <message>
-      <source>Export to list</source>
-      <translation>导出至列表</translation>
-    </message>
-    <message>
       <source>Show Names in Dictionary &amp;Bar</source>
       <translation>在词典栏中显示词典名称(&amp;B)</translation>
+    </message>
+    <message>
+      <source>Show &amp;Small Icons in Toolbars</source>
+      <translation>在工具栏中显示小图标(&amp;S)</translation>
+    </message>
+    <message>
+      <source>Show &amp;Large Icons in Toolbars</source>
+      <translation>在工具栏中显示大图标(&amp;L)</translation>
+    </message>
+    <message>
+      <source>Show &amp;Normal Icons in Toolbars</source>
+      <translation>在工具栏中显示常规图标(&amp;N)</translation>
     </message>
     <message>
       <source>&amp;Menubar</source>
@@ -2428,6 +2333,10 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Forward</source>
       <translation>前进</translation>
+    </message>
+    <message>
+      <source>Toggle clipboard monitoring</source>
+      <translation>切换剪贴板监控</translation>
     </message>
     <message>
       <source>Pronounce Word (Alt+S)</source>
@@ -2448,18 +2357,6 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Found in Dictionaries:</source>
       <translation>在以下词典中找到：</translation>
-    </message>
-    <message>
-      <source>Words Zoom In</source>
-      <translation>单词列表 - 放大</translation>
-    </message>
-    <message>
-      <source>Words Zoom Out</source>
-      <translation>单词列表 - 缩小</translation>
-    </message>
-    <message>
-      <source>Words Normal Size</source>
-      <translation>单词列表 - 正常大小</translation>
     </message>
     <message>
       <source>Show &amp;Main Window</source>
@@ -2488,6 +2385,10 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>New Tab</source>
       <translation>新建标签页</translation>
+    </message>
+    <message>
+      <source>Welcome!</source>
+      <translation>欢迎使用！</translation>
     </message>
     <message>
       <source>Accessibility API is not enabled</source>
@@ -2565,12 +2466,20 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>打印文章</translation>
     </message>
     <message>
-      <source>Article, Complete (*.html)</source>
-      <translation>文章, 完整 (*.html)</translation>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>完整的 HTML (*.html *.htm)</translation>
     </message>
     <message>
-      <source>Article, HTML Only (*.html)</source>
-      <translation>文章, 仅 HTML (*.html)</translation>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>单个 HTML (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Pdf (*.pdf)</source>
+      <translation>PDF（*.pdf）</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml)</translation>
     </message>
     <message>
       <source>Save Article As</source>
@@ -2637,24 +2546,20 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>导出收藏记录到文件</translation>
     </message>
     <message>
-      <source>XML files (*.xml);;All files (*.*)</source>
-      <translation>XML 文件 (*.xml);;所有文件 (*.*)</translation>
+      <source>Text files (*.txt);;XML files (*.xml)</source>
+      <translation>文本文件（*.txt）；XML 文件（*.xml）</translation>
     </message>
     <message>
       <source>Favorites export complete</source>
       <translation>收藏导出完成</translation>
     </message>
     <message>
-      <source>Export Favorites to file as plain list</source>
-      <translation>以纯列表形式导出收藏列表到文件</translation>
-    </message>
-    <message>
       <source>Import Favorites from file</source>
       <translation>导入收藏文件</translation>
     </message>
     <message>
-      <source>XML files (*.xml);;Txt files (*.txt);;All files (*.*)</source>
-      <translation>XML 文件(*.xml);;文本文件(*.txt);;所有文件(*.*)</translation>
+      <source>Text and XML files (*.txt *.xml);;All files (*.*)</source>
+      <translation>文本和 XML 文件 (*.txt *.xml);;所有文件 (*.*)</translation>
     </message>
     <message>
       <source>Data parsing error</source>
@@ -2685,20 +2590,16 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>从收藏中删除标题字“%1”？</translation>
     </message>
     <message>
-      <source>Show &amp;Small Icons in Toolbars</source>
-      <translation>在工具栏中显示小图标(&amp;S)</translation>
+      <source>Show</source>
+      <translation>显示</translation>
     </message>
     <message>
-      <source>Show &amp;Large Icons in Toolbars</source>
-      <translation>在工具栏中显示大图标(&amp;L)</translation>
+      <source>Save PDF complete</source>
+      <translation>保存 PDF 完成</translation>
     </message>
     <message>
-      <source>Show &amp;Normal Icons in Toolbars</source>
-      <translation>在工具栏中显示常规图标(&amp;N)</translation>
-    </message>
-    <message>
-      <source>Toggle clipboard monitoring</source>
-      <translation>切换剪贴板监控</translation>
+      <source>Save PDF failed</source>
+      <translation>保存 PDF 失败</translation>
     </message>
   </context>
   <context>
@@ -2975,22 +2876,6 @@ the application.</source>
       <translation>界面字体</translation>
     </message>
     <message>
-      <source>Interface language:</source>
-      <translation>界面语言：</translation>
-    </message>
-    <message>
-      <source>Article Display style:</source>
-      <translation>文章显示风格</translation>
-    </message>
-    <message>
-      <source>Add-on style:</source>
-      <translation>附加样式：</translation>
-    </message>
-    <message>
-      <source>Interface Style:</source>
-      <translation>界面风格：</translation>
-    </message>
-    <message>
       <source>Turn the UI to dark.</source>
       <translation>启用暗色界面</translation>
     </message>
@@ -3035,6 +2920,14 @@ the application.</source>
       <translation>屏幕取词(&amp;S)</translation>
     </message>
     <message>
+      <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
+      <translation>选择在程序&apos;启动时是否默认打开剪贴板监视。</translation>
+    </message>
+    <message>
+      <source>Start with clipboard monitoring turned on</source>
+      <translation>从打开剪贴板监视开始</translation>
+    </message>
+    <message>
       <source>Send translated word to main window instead of to show it in popup window</source>
       <translation>将翻译词条发送至主窗口，而非在取词窗口中显示</translation>
     </message>
@@ -3068,32 +2961,16 @@ in the pressed state when the word selection changes.</source>
       <translation>Alt 键</translation>
     </message>
     <message>
-      <source>Alt</source>
-      <translation>Alt</translation>
-    </message>
-    <message>
       <source>Ctrl key</source>
       <translation>Ctrl 键</translation>
-    </message>
-    <message>
-      <source>Ctrl</source>
-      <translation>Ctrl</translation>
     </message>
     <message>
       <source>Shift key</source>
       <translation>Shift 键</translation>
     </message>
     <message>
-      <source>Shift</source>
-      <translation>Shift</translation>
-    </message>
-    <message>
       <source>Windows key or Meta key</source>
       <translation>Windows 键或 Meta 键</translation>
-    </message>
-    <message>
-      <source>Win/Meta</source>
-      <translation>Win/Meta</translation>
     </message>
     <message>
       <source>Show a flag window before showing popup window, click the flag to show popup window. </source>
@@ -3146,6 +3023,10 @@ in the pressed state when the word selection changes.</source>
     <message>
       <source>Auto-pronounce words in main window</source>
       <translation>自动朗读主窗口中的词条</translation>
+    </message>
+    <message>
+      <source>Auto-pronounce words in the popup</source>
+      <translation>在弹出窗口中自动发音</translation>
     </message>
     <message>
       <source>Playback</source>
@@ -3512,8 +3393,8 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>灵格斯-蓝色调</translation>
     </message>
     <message>
-      <source> MB</source>
-      <translation> MB</translation>
+      <source>Auto does nothing on some systems.</source>
+      <translation>在某些系统上，自动不执行任何操作。</translation>
     </message>
     <message>
       <source>Restart the program to apply the language change.</source>
@@ -3532,16 +3413,48 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>需要重启</translation>
     </message>
     <message>
-      <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
-      <translation>选择在程序&apos;启动时是否默认打开剪贴板监视。</translation>
+      <source>Enable</source>
+      <translation>启用</translation>
     </message>
     <message>
-      <source>Start with clipboard monitoring turned on</source>
-      <translation>从打开剪贴板监视开始</translation>
+      <source>Disable</source>
+      <translation>禁用</translation>
     </message>
     <message>
-      <source>Auto-pronounce words in the popup</source>
-      <translation>在弹出窗口中自动发音</translation>
+      <source>Automatic</source>
+      <translation>自动</translation>
+    </message>
+    <message>
+      <source>Save debug messages to gd_log.txt in the config folder</source>
+      <translation>在配置文件夹中将调试消息保存到 gd_log.txt</translation>
+    </message>
+    <message>
+      <source>Interface Font Size</source>
+      <translation>界面字体大小</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>界面语言</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>文章显示样式</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>附加组件样式</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>界面风格</translation>
+    </message>
+    <message>
+      <source>Preview Font</source>
+      <translation>预览字体</translation>
+    </message>
+    <message>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng 是一个字典软件。</translation>
     </message>
   </context>
   <context>
@@ -3652,10 +3565,6 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>单词或句子查询。</translation>
     </message>
     <message>
-      <source>Save debug messages to gd_log.txt in the config folder.</source>
-      <translation>在配置文件夹中将调试消息保存到 gd_log.txt。</translation>
-    </message>
-    <message>
       <source>Reset window state.</source>
       <translation>重置窗口状态。</translation>
     </message>
@@ -3672,20 +3581,24 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>更改弹出窗口组。</translation>
     </message>
     <message>
-      <source>Force the word to be translated in scanpopup</source>
-      <translation>强制在取词弹窗中翻译单词</translation>
-    </message>
-    <message>
-      <source>Force the word to be translated in the mainwindow</source>
-      <translation>强制在主窗口中翻译该单词</translation>
-    </message>
-    <message>
       <source>Toggle popup.</source>
       <translation>切换扫描弹出窗口。</translation>
     </message>
     <message>
       <source>Print version and diagnosis info.</source>
       <translation>打印版本和诊断信息。</translation>
+    </message>
+    <message>
+      <source>Save debug messages to gd_log.txt in the config folder.</source>
+      <translation>在配置文件夹中将调试消息保存到 gd_log.txt。</translation>
+    </message>
+    <message>
+      <source>Force the word to be translated in Popup.</source>
+      <translation>强制在弹出窗口中翻译单词。</translation>
+    </message>
+    <message>
+      <source>Force the word to be translated in the mainwindow.</source>
+      <translation>强制在主窗口中翻译单词。</translation>
     </message>
   </context>
   <context>
@@ -3739,12 +3652,15 @@ from Stardict, Babylon and GLS dictionaries</source>
   <context>
     <name>ScanPopup</name>
     <message>
-      <source>Dialog</source>
-      <translation>对话框</translation>
+      <source>WARNING: %1</source>
+      <translation>警告： %1</translation>
     </message>
+  </context>
+  <context>
+    <name>ScanPopupToolBar</name>
     <message>
       <source>Back</source>
-      <translation>回退</translation>
+      <translation>后退</translation>
     </message>
     <message>
       <source>Forward</source>
@@ -3760,7 +3676,7 @@ from Stardict, Babylon and GLS dictionaries</source>
     </message>
     <message>
       <source>Send word to main window (Alt+W)</source>
-      <translation>将词条发送到主窗口 (Alt+W)</translation>
+      <translation>发送单词到主窗口 (Alt+W)</translation>
     </message>
     <message>
       <source>Alt+W</source>
@@ -3768,11 +3684,7 @@ from Stardict, Babylon and GLS dictionaries</source>
     </message>
     <message>
       <source>Add word to Favorites (Ctrl+E)</source>
-      <translation>将词条添加至收藏 (Ctrl+E)</translation>
-    </message>
-    <message>
-      <source>Shows or hides the dictionary bar</source>
-      <translation>显示或隐藏词典栏</translation>
+      <translation>添加单词到收藏夹 (Ctrl+E)</translation>
     </message>
     <message>
       <source>Always stay on top of all other windows</source>
@@ -3781,11 +3693,8 @@ from Stardict, Babylon and GLS dictionaries</source>
     <message>
       <source>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</source>
-      <translation>使用此按钮可以固定窗口，以便它能停留在屏幕上进行改变大小等相关窗口管理操作。</translation>
-    </message>
-    <message>
-      <source>WARNING: %1</source>
-      <translation>警告： %1</translation>
+      <translation>用它来固定窗口，使它保持在屏幕上，
+可以调整大小或以其他方式管理。</translation>
     </message>
   </context>
   <context>
@@ -3905,12 +3814,6 @@ of the appropriate groups to use them.</source>
       <translation>任意网站。%GDWORD% 字符串将会被搜索关键词替换：</translation>
     </message>
     <message>
-      <source>Alternatively, use %GD1251% for CP1251, %GDISO1%...%GDISO16% for ISO 8859-1...ISO 8859-16 respectively,
-%GDBIG5% for Big-5, %GDBIG5HKSCS% for Big5-HKSCS, %GDGBK% for GBK and GB18030, %GDSHIFTJIS% for Shift-JIS.</source>
-      <translation>%GD1251% 对应 CP1251, %GDISO1%...%GDISO16% 依次对应 ISO 8859-1...ISO 8859-16,
-%GDBIG5% 对应 Big-5, %GDBIG5HKSCS% 对应 Big5-HKSCS, %GDGBK% 对应 GBK 及 GB18030, %GDSHIFTJIS% 对应 Shift-JIS.</translation>
-    </message>
-    <message>
       <source>DICT servers</source>
       <translation>词典服务器</translation>
     </message>
@@ -4019,41 +3922,8 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
       <translation>方案：</translation>
     </message>
     <message>
-      <source>The most widely used method of transcription of Japanese,
-based on English phonology</source>
-      <translation>以英文语音学为基础建立的，最常用的日文转写方案</translation>
-    </message>
-    <message>
       <source>Hepburn</source>
       <translation>黑本式</translation>
-    </message>
-    <message>
-      <source>The most regular system, having a one-to-one relation to the
-kana writing systems. Standardized as ISO 3602
-
-Not implemented yet in GoldenDict.</source>
-      <translation>最常用的方案，跟假名系统一一对应。
-标准化为 ISO 3602。
-
-GoldenDict 尚不支持此方案。</translation>
-    </message>
-    <message>
-      <source>Nihon-shiki</source>
-      <translation>日本式</translation>
-    </message>
-    <message>
-      <source>Based on Nihon-shiki system, but modified for modern standard Japanese.
-Standardized as ISO 3602
-
-Not implemented yet in GoldenDict.</source>
-      <translation>以日本式为基础，针对现代日语做了一些修改。
-标准化为 ISO 3602。
-
-GoldenDict 尚不支持此方案。</translation>
-    </message>
-    <message>
-      <source>Kunrei-shiki</source>
-      <translation>训令式</translation>
     </message>
     <message>
       <source>Syllabaries:</source>
@@ -4110,6 +3980,10 @@ GoldenDict 尚不支持此方案。</translation>
     <message>
       <source>Remove program &lt;b&gt;%1&lt;/b&gt; from the list?</source>
       <translation>从列表中删除程序 &lt;b&gt;%1&lt;/b&gt;？</translation>
+    </message>
+    <message>
+      <source>The most widely used method of transcription of Japanese, based on English phonology</source>
+      <translation>基于英语音系的日语最广泛使用的转录方法</translation>
     </message>
   </context>
   <context>

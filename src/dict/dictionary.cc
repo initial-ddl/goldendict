@@ -19,6 +19,7 @@
 #include <QRegularExpression>
 #include "utils.hh"
 #include "zipfile.hh"
+#include <array>
 
 namespace Dictionary {
 
@@ -93,14 +94,10 @@ vector< WordMatch > & WordSearchRequest::getAllMatches()
 
 void WordSearchRequest::addMatch( WordMatch const & match )
 {
-  unsigned n;
-  for ( n = 0; n < matches.size(); n++ ) {
-    if ( matches[ n ].word.compare( match.word ) == 0 ) {
-      break;
-    }
-  }
+  QMutexLocker _( &dataMutex );
 
-  if ( n >= matches.size() ) {
+  // Check if the match already exists
+  if ( std::find( matches.begin(), matches.end(), match ) == matches.end() ) {
     matches.push_back( match );
   }
 }
@@ -247,53 +244,52 @@ int Class::getOptimalIconSize()
   return 64 * qGuiApp->devicePixelRatio();
 }
 
-bool Class::loadIconFromFile( QString const & _filename, bool isFullName )
+bool Class::loadIconFromFileName( QString const & mainDictFileName )
 {
-  QFileInfo info;
-  QString fileName( _filename );
+  const QFileInfo info( mainDictFileName );
+  QDir dir = info.absoluteDir();
 
-  if ( isFullName ) {
-    info = QFileInfo( fileName );
-  }
-  else {
-    fileName += "bmp";
-    info = QFileInfo( fileName );
-    if ( !info.isFile() ) {
-      fileName.chop( 3 );
-      fileName += "png";
-      info = QFileInfo( fileName );
-    }
-    if ( !info.isFile() ) {
-      fileName.chop( 3 );
-      fileName += "jpg";
-      info = QFileInfo( fileName );
-    }
-    if ( !info.isFile() ) {
-      fileName.chop( 3 );
-      fileName += "ico";
-      info = QFileInfo( fileName );
-    }
-  }
+  dir.setFilter( QDir::Files );
+  dir.setNameFilters( QStringList() << "*.bmp"  //
+                                    << "*.png"  //
+                                    << "*.jpg"  //
+                                    << "*.ico"  // below are GD-ng only
+                                    << "*.jpeg" //
+                                    << "*.gif"  //
+                                    << "*.webp" //
+                                    << "*.svg"  //
+                                    << "*.svgz" );
 
-  if ( info.isFile() ) {
-    auto iconSize = getOptimalIconSize();
-    QPixmap img( fileName );
-
-    if ( !img.isNull() ) {
-      // Load successful
-
-      auto result    = img.scaled( { iconSize, iconSize }, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation );
-      dictionaryIcon = QIcon( result );
-
-      return !dictionaryIcon.isNull();
+  const QString basename = info.baseName();
+  for ( const auto & f : dir.entryInfoList() ) {
+    if ( f.baseName() == basename && loadIconFromFilePath( f.absoluteFilePath() ) ) {
+      return true;
     }
   }
   return false;
 }
 
-bool Class::loadIconFromText( QString iconUrl, QString const & text )
+bool Class::loadIconFromFilePath( QString const & filename )
 {
-  if ( text.isEmpty() ) {
+  auto iconSize = getOptimalIconSize();
+  QImage img( filename );
+
+  if ( img.isNull() ) {
+    return false;
+  }
+  else {
+    auto result    = img.scaled( { iconSize, iconSize }, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation );
+    dictionaryIcon = QIcon( QPixmap::fromImage( result ) );
+
+    return !dictionaryIcon.isNull();
+  }
+}
+
+bool Class::loadIconFromText( const QString & iconUrl, QString const & text )
+{
+  //select a single char.
+  auto abbrName = getAbbrName( text );
+  if ( abbrName.isEmpty() ) {
     return false;
   }
   QImage img( iconUrl );
@@ -308,18 +304,25 @@ bool Class::loadIconFromText( QString iconUrl, QString const & text )
     painter.setCompositionMode( QPainter::CompositionMode_SourceAtop );
 
     QFont font = painter.font();
-    //the text should be a little smaller than the icon
-    font.setPixelSize( iconSize * 0.6 );
+    //the orderNum should be a little smaller than the icon
+    font.setPixelSize( iconSize * 0.8 );
     font.setWeight( QFont::Bold );
     painter.setFont( font );
 
     const QRect rectangle = QRect( 0, 0, iconSize, iconSize );
 
-    //select a single char.
-    auto abbrName = getAbbrName( text );
+    painter.setPen( intToFixedColor( qHash( abbrName ) ) );
 
-    painter.setPen( QColor( 4, 57, 108, 200 ) );
-    painter.drawText( rectangle, Qt::AlignCenter, abbrName );
+    // Draw first character
+    painter.drawText( rectangle, Qt::AlignCenter, abbrName.at( 0 ) );
+
+    //the orderNum should be a little smaller than the icon
+    font.setPixelSize( iconSize * 0.4 );
+    QFontMetrics fm1( font );
+    const QString & orderNum = abbrName.mid( 1 );
+
+    painter.setFont( font );
+    painter.drawText( rectangle, Qt::AlignRight | Qt::AlignBottom, orderNum );
 
     painter.end();
 
@@ -330,35 +333,30 @@ bool Class::loadIconFromText( QString iconUrl, QString const & text )
   return false;
 }
 
+QColor Class::intToFixedColor( int index )
+{
+  // Predefined list of colors
+  static const std::array colors = {
+    QColor( 255, 0, 0, 200 ),     // Red
+    QColor( 4, 57, 108, 200 ),    //Custom
+    QColor( 0, 255, 0, 200 ),     // Green
+    QColor( 0, 0, 255, 200 ),     // Blue
+    QColor( 255, 255, 0, 200 ),   // Yellow
+    QColor( 0, 255, 255, 200 ),   // Cyan
+    QColor( 255, 0, 255, 200 ),   // Magenta
+    QColor( 192, 192, 192, 200 ), // Gray
+    QColor( 255, 165, 0, 200 ),   // Orange
+    QColor( 128, 0, 128, 200 ),   // Violet
+    QColor( 128, 128, 0, 200 )    // Olive
+  };
+
+  // Use modulo operation to ensure index is within the range of the color list
+  return colors[ index % colors.size() ];
+}
+
 QString Class::getAbbrName( QString const & text )
 {
-  if ( text.isEmpty() ) {
-    return {};
-  }
-  //remove whitespace,number,mark,puncuation,symbol
-  QString simplified = text;
-  simplified.remove(
-    QRegularExpression( R"([\p{Z}\p{N}\p{M}\p{P}\p{S}])", QRegularExpression::UseUnicodePropertiesOption ) );
-
-  if ( simplified.isEmpty() ) {
-    return {};
-  }
-  int index = qHash( simplified ) % simplified.size();
-
-  QString abbrName;
-  if ( !Utils::isCJKChar( simplified.at( index ).unicode() ) ) {
-    // take two chars.
-    abbrName = simplified.mid( index, 2 );
-    if ( abbrName.size() == 1 ) {
-      //make up two characters.
-      abbrName = abbrName + simplified.at( 0 );
-    }
-  }
-  else {
-    abbrName = simplified.mid( index, 1 );
-  }
-
-  return abbrName;
+  return GlobalBroadcaster::instance()->getAbbrName( text );
 }
 
 void Class::isolateCSS( QString & css, QString const & wrapperSelector )
@@ -553,12 +551,12 @@ string makeDictionaryId( vector< string > const & dictionaryFiles ) noexcept
 // be fixed in the future when it's needed.
 bool needToRebuildIndex( vector< string > const & dictionaryFiles, string const & indexFile ) noexcept
 {
-  unsigned long lastModified = 0;
+  qint64 lastModified = 0;
 
   for ( const auto & dictionaryFile : dictionaryFiles ) {
     QString name = QString::fromUtf8( dictionaryFile.c_str() );
     QFileInfo fileInfo( name );
-    unsigned long ts;
+    qint64 ts;
 
     if ( fileInfo.isDir() ) {
       continue;
@@ -600,16 +598,13 @@ string getFtsSuffix()
 
 QString generateRandomDictionaryId()
 {
-  return QString(
-    QCryptographicHash::hash( QDateTime::currentDateTime().toString( "\"Random\"dd.MM.yyyy hh:mm:ss.zzz" ).toUtf8(),
-                              QCryptographicHash::Md5 )
-      .toHex() );
+  return QCryptographicHash::hash( QUuid::createUuid().toString().toUtf8(), QCryptographicHash::Md5 ).toHex();
 }
 
 QMap< std::string, sptr< Dictionary::Class > > dictToMap( std::vector< sptr< Dictionary::Class > > const & dicts )
 {
   QMap< std::string, sptr< Dictionary::Class > > dictMap;
-  for ( auto & dict : dicts ) {
+  for ( const auto & dict : dicts ) {
     if ( !dict ) {
       continue;
     }

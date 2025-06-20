@@ -44,6 +44,7 @@
 
 #include <QMessageBox>
 #include <QDir>
+#include <QString>
 
 #include <set>
 
@@ -57,7 +58,6 @@ LoadDictionaries::LoadDictionaries( Config::Class const & cfg ):
   soundDirs( cfg.soundDirs ),
   hunspell( cfg.hunspell ),
   transliteration( cfg.transliteration ),
-  exceptionText( "Load did not finish" ), // Will be cleared upon success
   maxHeadwordSize( cfg.maxHeadwordSize ),
   maxHeadwordToExpand( cfg.maxHeadwordsToExpand )
 {
@@ -94,7 +94,15 @@ void LoadDictionaries::run()
   try {
     for ( const auto & path : paths ) {
       qDebug() << "handle path:" << path.path;
-      handlePath( path );
+      try {
+        handlePath( path );
+      }
+      catch ( const std::exception & e ) {
+        qWarning() << "Error handling path:" << path.path << "-" << e.what();
+        //hold last exception message.
+        auto exception = "[" + path.path.toStdString() + "]:" + e.what();
+        exceptionTexts << QString::fromUtf8( exception );
+      }
     }
 
     // Make soundDirs
@@ -129,11 +137,9 @@ void LoadDictionaries::run()
         dict->setFtsEnable( dictMetaData->fullindex.value() );
       }
     }
-
-    exceptionText.clear();
   }
   catch ( std::exception & e ) {
-    exceptionText = e.what();
+    exceptionTexts << QString::fromUtf8( e.what() );
   }
 }
 
@@ -205,15 +211,14 @@ void loadDictionaries( QWidget * parent,
 {
   dictionaries.clear();
 
-  ::Initializing init( parent );
-
+  bool showSplashWindow = !cfg.preferences.enableTrayIcon || !cfg.preferences.startToTray;
   // Start a thread to load all the dictionaries
+  ::Initializing init( parent, showSplashWindow );
 
   LoadDictionaries loadDicts( cfg );
 
   QObject::connect( &loadDicts, &LoadDictionaries::indexingDictionarySignal, &init, &Initializing::indexing );
   QObject::connect( &loadDicts, &LoadDictionaries::loadingDictionarySignal, &init, &Initializing::loading );
-
   QEventLoop localLoop;
 
   QObject::connect( &loadDicts, &QThread::finished, &localLoop, &QEventLoop::quit );
@@ -228,8 +233,6 @@ void loadDictionaries( QWidget * parent,
     QMessageBox::critical( parent,
                            QCoreApplication::translate( "LoadDictionaries", "Error loading dictionaries" ),
                            QString::fromUtf8( loadDicts.getExceptionText().c_str() ) );
-
-    return;
   }
 
   dictionaries = loadDicts.getDictionaries();

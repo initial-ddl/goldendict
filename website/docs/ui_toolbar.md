@@ -1,4 +1,5 @@
 ## Toolbar
+
 ![toolbar](img/toolbar.webp)
 
 Type your word in Search Box and press `Enter` to search word in the current selected group. You can also choose a variant from a matches list.
@@ -7,9 +8,9 @@ Holding Ctrl or Shift will display the translation result in a new tab.
 
 ### Wildcard matching
 
-The search line can use wildcard or glob symbols for matching words.  
+The search line can use wildcard or glob symbols for matching words.
 
-| Wildcard | Description                                                            | 
+| Wildcard | Description                                                            |
 |----------|------------------------------------------------------------------------|
 | `?`      | Matches any single character.                                          |
 | `*`      | Matches zero or more of any characters.                                |
@@ -24,33 +25,23 @@ The search line can use wildcard or glob symbols for matching words.
 
 More information about wildcard matching can be found in [Wikipedia's glob article](https://en.wikipedia.org/wiki/Glob_(programming)).
 
-
 ## Dictionary Bar
 
-The dictionary bar contains all dictionaries from the current dictionaries group. Click the icons to disable/enable them.
+The dictionary bar shows dictionaries from the current group.
 
-### "Solo" mode
+Click the icons to select/unselect them.
 
-Temporally focus on a single dictionary and restore back to all dictionaries or previously selected dictionaries.
+### Single Selection
 
-To enter solo mode:
+++ctrl+"Click"++ will focus on a single dictionary.
 
-++ctrl+left-button++ -> Select a single dictionary.
+If a dictionary is the only one selected, clicking it with ++ctrl++ will reselect all dictionaries.
+### Temporary Selection
 
-To exit solo mode:
+Temporarily capture the selection and restore it later.
 
-++ctrl+left-button++ -> Reselect all dictionaries.
+- Capture Selection <-- ++shift+"Click"++ any dictionary icons.
+- Restore Selection <-- Click the "Restore selection" in the right click context menu
 
-++shift+left-button++ -> Reselect dictionaries that were previously selected before entering solo mode.
-
-For example, there are 4 dictionaries A,B,C,D with ABC selected.
-
-| Cases                                    | Note                                         |
-|------------------------------------------|----------------------------------------------|
-| Ctrl+Click A                             | select A only                                |
-| Ctrl+Click A, Ctrl+Click B               | select B only                                |
-| Ctrl+Click A, Ctrl+Click A               | A,B,C,D selected (all dictionaries selected) |
-| Ctrl+Click A, Shift+Click any dictionary | A,B,C selected                               |
-
-Note: This can also be used on the "Found in dictionaries" panel.
-
+!!! note
+     the "Found in dictionaries" panel can also use the above two special operations.

@@ -2,9 +2,6 @@
 
 | Shortcut              | Action                                                                                                                           |
 |-----------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| Alt++                 | Increase font size for matches list                                                                                              |
-| Alt+–                 | Decrease font size for matches list                                                                                              |
-| Alt+0                 | Restore default font size for matches list                                                                                       |
 | Alt+Left, Backspace   | (In main and popup windows) history navigation: show previous founded results                                                    |
 | Alt+Right             | (In main and popup windows) history navigation: show next founded results                                                        |
 | Alt+Down              | Jump to article from next dictionary                                                                                             |
@@ -53,4 +50,5 @@
 | F2                    | (In main window) save current page to html                                                                                       |
 | F3                    | Dictionaries dialog                                                                                                              |
 | F4                    | GoldenDict preferences                                                                                                           |
+| F11                   | Open configuration folder                                                                                                        |
 | F12                   | Inspector                                                                                                                        |

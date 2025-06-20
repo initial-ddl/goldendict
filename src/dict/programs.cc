@@ -83,7 +83,7 @@ sptr< Dictionary::DataRequest > ProgramsDictionary::getArticle( std::u32string c
 
       string wordUtf8( Text::toUtf8( word ) );
 
-      result += "<table class=\"programs_play\"><tr>";
+      result += "<div class=\"audio-play\"><div class=\"audio-play-item\">";
 
       QUrl url;
       url.setScheme( "gdprg" );
@@ -92,11 +92,11 @@ sptr< Dictionary::DataRequest > ProgramsDictionary::getArticle( std::u32string c
 
       string ref = string( "\"" ) + url.toEncoded().data() + "\"";
 
-      result += addAudioLink( url.toEncoded(), getId() );
+      addAudioLink( url.toEncoded(), getId() );
 
-      result += "<td><a href=" + ref + R"(><img src="qrc:///icons/playsound.png" border="0" alt="Play"/></a></td>)";
-      result += "<td><a href=" + ref + ">" + Html::escape( wordUtf8 ) + "</a></td>";
-      result += "</tr></table>";
+      result += "<a href=" + ref + R"( class="audio-play-icon"></a>)";
+      result += "<a href=" + ref + ">" + Html::escape( wordUtf8 ) + "</a>";
+      result += "</div></div>";
 
       auto ret = std::make_shared< DataRequestInstant >( true );
       ret->appendString( result );
@@ -121,7 +121,7 @@ void ProgramsDictionary::loadIcon() noexcept
   if ( !prg.iconFilename.isEmpty() ) {
     QFileInfo fInfo( QDir( Config::getConfigDir() ), prg.iconFilename );
     if ( fInfo.isFile() ) {
-      loadIconFromFile( fInfo.absoluteFilePath(), true );
+      loadIconFromFilePath( fInfo.absoluteFilePath() );
     }
   }
   if ( dictionaryIcon.isNull() ) {
@@ -330,7 +330,7 @@ void ProgramWordSearchRequest::instanceFinished( QByteArray output, QString erro
     output.replace( "\r\n", "\n" );
     QStringList result = QString::fromUtf8( output ).split( "\n", Qt::SkipEmptyParts );
 
-    for ( const auto & x : result ) {
+    for ( const auto & x : std::as_const( result ) ) {
       matches.push_back( Dictionary::WordMatch( x.toStdU32String() ) );
     }
 

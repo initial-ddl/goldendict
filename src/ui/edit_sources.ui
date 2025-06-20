@@ -739,64 +739,14 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
           <bool>true</bool>
          </property>
          <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_7">
-            <property name="text">
-             <string>Systems:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QCheckBox" name="enableHepburn">
-            <property name="toolTip">
-             <string>The most widely used method of transcription of Japanese,
-based on English phonology</string>
-            </property>
-            <property name="text">
-             <string>Hepburn</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QCheckBox" name="enableNihonShiki">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="toolTip">
-             <string>The most regular system, having a one-to-one relation to the
-kana writing systems. Standardized as ISO 3602
-
-Not implemented yet in GoldenDict.</string>
-            </property>
-            <property name="text">
-             <string>Nihon-shiki</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QCheckBox" name="enableKunreiShiki">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="toolTip">
-             <string>Based on Nihon-shiki system, but modified for modern standard Japanese.
-Standardized as ISO 3602
-
-Not implemented yet in GoldenDict.</string>
-            </property>
-            <property name="text">
-             <string>Kunrei-shiki</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
+          <item row="2" column="0">
            <widget class="QLabel" name="label_8">
             <property name="text">
              <string>Syllabaries:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="2">
+          <item row="2" column="2">
            <widget class="QCheckBox" name="enableHiragana">
             <property name="toolTip">
              <string>Hiragana Japanese syllabary</string>
@@ -806,13 +756,30 @@ Not implemented yet in GoldenDict.</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="3">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Systems:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="4">
            <widget class="QCheckBox" name="enableKatakana">
             <property name="toolTip">
              <string>Katakana Japanese syllabary</string>
             </property>
             <property name="text">
              <string>Katakana</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="label_10">
+            <property name="toolTip">
+             <string>The most widely used method of transcription of Japanese, based on English phonology</string>
+            </property>
+            <property name="text">
+             <string>Hepburn</string>
             </property>
            </widget>
           </item>
@@ -862,9 +829,6 @@ Not implemented yet in GoldenDict.</string>
   <tabstop>enableRussianTransliteration</tabstop>
   <tabstop>enableGermanTransliteration</tabstop>
   <tabstop>enableRomaji</tabstop>
-  <tabstop>enableHepburn</tabstop>
-  <tabstop>enableNihonShiki</tabstop>
-  <tabstop>enableKunreiShiki</tabstop>
   <tabstop>enableHiragana</tabstop>
   <tabstop>enableKatakana</tabstop>
   <tabstop>hunspellPath</tabstop>

@@ -8,6 +8,7 @@
 #include <QtXml>
 #include <QApplication>
 #include <QStyle>
+#include <QFont>
 
 #ifdef Q_OS_WIN32
   //this is a windows header file.
@@ -187,7 +188,6 @@ Preferences::Preferences():
   clearNetworkCacheOnExit( true ),
   zoomFactor( 1 ),
   helpZoomFactor( 1 ),
-  wordsZoomLevel( 0 ),
   maxStringsInHistory( 500 ),
   storeHistory( 1 ),
   alwaysExpandOptionalParts( true ),
@@ -198,11 +198,11 @@ Preferences::Preferences():
   inputPhraseLengthLimit( 1000 ),
   maxDictionaryRefsInContextMenu( 20 ),
   synonymSearchEnabled( true ),
-  stripClipboard( false ),
+  stripClipboard( false )
 #if !defined( Q_OS_WIN )
-  interfaceStyle( "Default" ),
+  ,
+  interfaceStyle( "Default" )
 #endif
-  raiseWindowOnSearch( true )
 {
 }
 
@@ -216,9 +216,6 @@ Chinese::Chinese():
 
 Romaji::Romaji():
   enable( false ),
-  enableHepburn( true ),
-  enableNihonShiki( false ),
-  enableKunreiShiki( false ),
   enableHiragana( true ),
   enableKatakana( true )
 {
@@ -660,9 +657,6 @@ Class load()
 
     if ( !romaji.isNull() ) {
       applyBoolOption( c.transliteration.romaji.enable, romaji.namedItem( "enable" ) );
-      applyBoolOption( c.transliteration.romaji.enableHepburn, romaji.namedItem( "enableHepburn" ) );
-      applyBoolOption( c.transliteration.romaji.enableNihonShiki, romaji.namedItem( "enableNihonShiki" ) );
-      applyBoolOption( c.transliteration.romaji.enableKunreiShiki, romaji.namedItem( "enableKunreiShiki" ) );
       applyBoolOption( c.transliteration.romaji.enableHiragana, romaji.namedItem( "enableHiragana" ) );
       applyBoolOption( c.transliteration.romaji.enableKatakana, romaji.namedItem( "enableKatakana" ) );
     }
@@ -833,6 +827,13 @@ Class load()
     c.preferences.interfaceLanguage = preferences.namedItem( "interfaceLanguage" ).toElement().text();
     c.preferences.displayStyle      = preferences.namedItem( "displayStyle" ).toElement().text();
     c.preferences.interfaceFont     = preferences.namedItem( "interfaceFont" ).toElement().text();
+    auto fontSize                   = preferences.namedItem( "interfaceFontSize_0" );
+    if ( !fontSize.isNull() ) {
+      c.preferences.interfaceFontSize = fontSize.toElement().text().toInt();
+    }
+    else {
+      c.preferences.interfaceFontSize = Config::DEFAULT_FONT_SIZE;
+    }
 #if !defined( Q_OS_WIN )
     c.preferences.interfaceStyle = preferences.namedItem( "interfaceStyle" ).toElement().text();
 #endif
@@ -892,10 +893,6 @@ Class load()
 
     if ( !preferences.namedItem( "helpZoomFactor" ).isNull() ) {
       c.preferences.helpZoomFactor = preferences.namedItem( "helpZoomFactor" ).toElement().text().toDouble();
-    }
-
-    if ( !preferences.namedItem( "wordsZoomLevel" ).isNull() ) {
-      c.preferences.wordsZoomLevel = preferences.namedItem( "wordsZoomLevel" ).toElement().text().toInt();
     }
 
     applyBoolOption( c.preferences.enableMainWindowHotkey, preferences.namedItem( "enableMainWindowHotkey" ) );
@@ -966,9 +963,7 @@ Class load()
       c.preferences.proxyServer.host     = proxy.namedItem( "host" ).toElement().text();
       c.preferences.proxyServer.port     = proxy.namedItem( "port" ).toElement().text().toULong();
       c.preferences.proxyServer.user     = proxy.namedItem( "user" ).toElement().text();
-      c.preferences.proxyServer.password = proxy.namedItem( "password" ).toElement().text();
-      c.preferences.proxyServer.systemProxyUser     = proxy.namedItem( "systemProxyUser" ).toElement().text();
-      c.preferences.proxyServer.systemProxyPassword = proxy.namedItem( "systemProxyPassword" ).toElement().text();
+      c.preferences.proxyServer.password       = proxy.namedItem( "password" ).toElement().text();
     }
 
     QDomNode ankiConnectServer = preferences.namedItem( "ankiConnectServer" );
@@ -1012,6 +1007,11 @@ Class load()
     if ( !preferences.namedItem( "removeInvalidIndexOnExit" ).isNull() ) {
       c.preferences.removeInvalidIndexOnExit =
         ( preferences.namedItem( "removeInvalidIndexOnExit" ).toElement().text() == "1" );
+    }
+
+    if ( !preferences.namedItem( "enableApplicationLog" ).isNull() ) {
+      c.preferences.enableApplicationLog =
+        ( preferences.namedItem( "enableApplicationLog" ).toElement().text() == "1" );
     }
 
     if ( !preferences.namedItem( "maxStringsInHistory" ).isNull() ) {
@@ -1114,13 +1114,13 @@ Class load()
   c.lastMainGroupId  = root.namedItem( "lastMainGroupId" ).toElement().text().toUInt();
   c.lastPopupGroupId = root.namedItem( "lastPopupGroupId" ).toElement().text().toUInt();
 
-  QDomNode popupWindowState = root.namedItem( "popupWindowState" );
+  QDomNode popupWindowState = root.namedItem( "popupWindowState2" );
 
   if ( !popupWindowState.isNull() ) {
     c.popupWindowState = QByteArray::fromBase64( popupWindowState.toElement().text().toLatin1() );
   }
 
-  QDomNode popupWindowGeometry = root.namedItem( "popupWindowGeometry" );
+  QDomNode popupWindowGeometry = root.namedItem( "popupWindowGeometry2" );
 
   if ( !popupWindowGeometry.isNull() ) {
     c.popupWindowGeometry = QByteArray::fromBase64( popupWindowGeometry.toElement().text().toLatin1() );
@@ -1473,18 +1473,6 @@ void save( Class const & c )
     opt.appendChild( dd.createTextNode( c.transliteration.romaji.enable ? "1" : "0" ) );
     romaji.appendChild( opt );
 
-    opt = dd.createElement( "enableHepburn" );
-    opt.appendChild( dd.createTextNode( c.transliteration.romaji.enableHepburn ? "1" : "0" ) );
-    romaji.appendChild( opt );
-
-    opt = dd.createElement( "enableNihonShiki" );
-    opt.appendChild( dd.createTextNode( c.transliteration.romaji.enableNihonShiki ? "1" : "0" ) );
-    romaji.appendChild( opt );
-
-    opt = dd.createElement( "enableKunreiShiki" );
-    opt.appendChild( dd.createTextNode( c.transliteration.romaji.enableKunreiShiki ? "1" : "0" ) );
-    romaji.appendChild( opt );
-
     opt = dd.createElement( "enableHiragana" );
     opt.appendChild( dd.createTextNode( c.transliteration.romaji.enableHiragana ? "1" : "0" ) );
     romaji.appendChild( opt );
@@ -1747,6 +1735,10 @@ void save( Class const & c )
     opt.appendChild( dd.createTextNode( c.preferences.interfaceFont ) );
     preferences.appendChild( opt );
 
+    opt = dd.createElement( "interfaceFontSize_0" );
+    opt.appendChild( dd.createTextNode( QString::number( c.preferences.interfaceFontSize ) ) );
+    preferences.appendChild( opt );
+
     opt             = dd.createElement( "customFonts" );
     auto customFont = c.preferences.customFonts.toElement( dd );
     preferences.appendChild( customFont );
@@ -1827,10 +1819,6 @@ void save( Class const & c )
 
     opt = dd.createElement( "helpZoomFactor" );
     opt.appendChild( dd.createTextNode( QString::number( c.preferences.helpZoomFactor ) ) );
-    preferences.appendChild( opt );
-
-    opt = dd.createElement( "wordsZoomLevel" );
-    opt.appendChild( dd.createTextNode( QString::number( c.preferences.wordsZoomLevel ) ) );
     preferences.appendChild( opt );
 
     opt = dd.createElement( "enableMainWindowHotkey" );
@@ -1971,17 +1959,9 @@ void save( Class const & c )
       opt = dd.createElement( "password" );
       opt.appendChild( dd.createTextNode( c.preferences.proxyServer.password ) );
       proxy.appendChild( opt );
-
-      opt = dd.createElement( "systemProxyUser" );
-      opt.appendChild( dd.createTextNode( c.preferences.proxyServer.systemProxyUser ) );
-      proxy.appendChild( opt );
-
-      opt = dd.createElement( "systemProxyPassword" );
-      opt.appendChild( dd.createTextNode( c.preferences.proxyServer.systemProxyPassword ) );
-      proxy.appendChild( opt );
     }
 
-    //anki connect
+    //Anki connect
     {
       QDomElement proxy = dd.createElement( "ankiConnectServer" );
       preferences.appendChild( proxy );
@@ -2041,6 +2021,10 @@ void save( Class const & c )
 
     opt = dd.createElement( "removeInvalidIndexOnExit" );
     opt.appendChild( dd.createTextNode( c.preferences.removeInvalidIndexOnExit ? "1" : "0" ) );
+    preferences.appendChild( opt );
+
+    opt = dd.createElement( "enableApplicationLog" );
+    opt.appendChild( dd.createTextNode( c.preferences.enableApplicationLog ? "1" : "0" ) );
     preferences.appendChild( opt );
 
     opt = dd.createElement( "maxStringsInHistory" );
@@ -2130,11 +2114,11 @@ void save( Class const & c )
     opt.appendChild( dd.createTextNode( QString::number( c.lastPopupGroupId ) ) );
     root.appendChild( opt );
 
-    opt = dd.createElement( "popupWindowState" );
+    opt = dd.createElement( "popupWindowState2" );
     opt.appendChild( dd.createTextNode( QString::fromLatin1( c.popupWindowState.toBase64() ) ) );
     root.appendChild( opt );
 
-    opt = dd.createElement( "popupWindowGeometry" );
+    opt = dd.createElement( "popupWindowGeometry2" );
     opt.appendChild( dd.createTextNode( QString::fromLatin1( c.popupWindowGeometry.toBase64() ) ) );
     root.appendChild( opt );
 
@@ -2327,11 +2311,12 @@ QString getProgramDataDir() noexcept
   if ( isPortableVersion() ) {
     return QCoreApplication::applicationDirPath();
   }
-  // TODO: rewrite this in QStandardPaths::AppDataLocation
-#ifdef PROGRAM_DATA_DIR
-  return PROGRAM_DATA_DIR;
-#else
+#if defined( Q_OS_WIN ) || defined( Q_OS_MACOS )
   return QCoreApplication::applicationDirPath();
+#else
+  // Hardcode a `$PREFIX/share/goldendict` instead of QStandardPaths::AppDataLocation
+  // to avoid unnecessary downstream packaging changes
+  return PROGRAM_DATA_DIR;
 #endif
 }
 

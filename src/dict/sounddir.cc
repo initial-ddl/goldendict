@@ -176,7 +176,7 @@ sptr< Dictionary::DataRequest > SoundDirDictionary::getArticle( std::u32string c
   vector< char > chunk;
   char * nameBlock;
 
-  result += "<table class=\"lsa_play\">";
+  result += "<div class=\"audio-play\">";
 
   for ( i = mainArticles.begin(); i != mainArticles.end(); ++i ) {
     uint32_t address = chain[ i->second ].articleOffset;
@@ -204,7 +204,7 @@ sptr< Dictionary::DataRequest > SoundDirDictionary::getArticle( std::u32string c
       }
     }
 
-    result += "<tr>";
+    result += "<div class=\"audio-play-item\">";
     auto _displayName = Html::escape( displayedName );
     QString file_name;
     if ( !get_file_name( address, file_name ) ) {
@@ -221,9 +221,9 @@ sptr< Dictionary::DataRequest > SoundDirDictionary::getArticle( std::u32string c
 
     result += addAudioLink( url.toEncoded(), getId() );
 
-    result += "<td><a href=" + ref + R"(><img src="qrc:///icons/playsound.png" border="0" alt="Play"/></a></td>)";
-    result += "<td><a href=" + ref + ">" + _displayName + "</a></td>";
-    result += "</tr>";
+    result += "<a href=" + ref + R"( class="audio-play-icon"></a>)";
+    result += "<a href=" + ref + ">" + _displayName + "</a>";
+    result += "</div>";
   }
 
   for ( i = alternateArticles.begin(); i != alternateArticles.end(); ++i ) {
@@ -252,7 +252,7 @@ sptr< Dictionary::DataRequest > SoundDirDictionary::getArticle( std::u32string c
       }
     }
 
-    result += "<tr>";
+    result += "<div class=\"audio-play-item\">";
     auto _displayName = Html::escape( displayedName );
     QString file_name;
     if ( !get_file_name( address, file_name ) ) {
@@ -267,14 +267,14 @@ sptr< Dictionary::DataRequest > SoundDirDictionary::getArticle( std::u32string c
 
     string ref = string( "\"" ) + url.toEncoded().data() + "\"";
 
-    result += addAudioLink( url.toEncoded(), getId() );
+    addAudioLink( url.toEncoded(), getId() );
 
-    result += "<td><a href=" + ref + R"(><img src="qrc:///icons/playsound.png" border="0" alt="Play"/></a></td>)";
-    result += "<td><a href=" + ref + ">" + _displayName + "</a></td>";
-    result += "</tr>";
+    result += "<a href=" + ref + R"( class="audio-play-icon"></a>)";
+    result += "<a href=" + ref + ">" + _displayName + "</a>";
+    result += "</div>";
   }
 
-  result += "</table>";
+  result += "</div>";
 
   auto ret = std::make_shared< Dictionary::DataRequestInstant >( true );
 
@@ -292,7 +292,7 @@ void SoundDirDictionary::loadIcon() noexcept
   if ( !iconFilename.isEmpty() ) {
     const QFileInfo fInfo( QDir( Config::getConfigDir() ), iconFilename );
     if ( fInfo.isFile() ) {
-      loadIconFromFile( fInfo.absoluteFilePath(), true );
+      loadIconFromFilePath( fInfo.absoluteFilePath() );
     }
   }
   if ( dictionaryIcon.isNull() ) {

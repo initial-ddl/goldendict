@@ -313,23 +313,28 @@ void ForvoArticleRequest::requestFinished( QNetworkReply * r )
 
         if ( !errors.isNull() ) {
           QString text( errors.namedItem( "error" ).toElement().text() );
-
-          if ( text == "Limit/day reached." && apiKey.simplified().isEmpty() ) {
-            // Give a hint that the user should apply for his own key.
-
-            text +=
-              "\n"
-              + tr(
-                "Go to Edit|Dictionaries|Sources|Forvo and apply for our own API key to make this error disappear." );
-          }
-
           setErrorString( text );
         }
       }
       qDebug( "done." );
     }
     else {
-      setErrorString( netReply->errorString() );
+      //forvo return the error message with http status code=400.
+      QDomDocument dd;
+
+      QString errorStr;
+      int errorLine, errorColumn;
+
+      if ( !dd.setContent( netReply.get(), false, &errorStr, &errorLine, &errorColumn ) ) {
+        setErrorString( netReply->errorString() );
+      }
+      else {
+        QDomNode errors = dd.namedItem( "errors" );
+        if ( !errors.isNull() ) {
+          QString text( errors.namedItem( "error" ).toElement().text() );
+          setErrorString( text );
+        }
+      }
     }
   }
 
@@ -384,5 +389,8 @@ makeDictionaries( Dictionary::Initializing &, Config::Forvo const & forvo, QNetw
   return result;
 }
 
-#include "forvo.moc"
 } // namespace Forvo
+
+// fixes #2272
+// automoc include for Q_OBJECT should be at the very end of source code file, not inside a namespace
+#include "forvo.moc"

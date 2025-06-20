@@ -10,6 +10,7 @@
 #include <QTextDocument>
 #include <QUrl>
 #include <QUrlQuery>
+#include <QFileInfo>
 #include <QWidget>
 #include "filetype.hh"
 #include <string>
@@ -37,6 +38,32 @@ inline QString rstrip( const QString & str )
     }
   }
   return {};
+}
+
+inline uint32_t leadingSpaceCount( const QString & str )
+{
+  for ( int i = 0; i < str.size(); i++ ) {
+    if ( str.at( i ).isSpace() ) {
+      continue;
+    }
+    else {
+      return i;
+    }
+  }
+  return 0;
+}
+
+inline QString trimQuotes( QString const & str )
+{
+  const auto * begin = str.cbegin();
+  const auto * end   = str.cend();
+  while ( begin < end && ( end[ -1 ] == '\'' || end[ -1 ] == '\"' ) ) {
+    --end;
+  }
+  while ( begin < end && ( *begin == '\'' || *begin == '\"' ) ) {
+    begin++;
+  }
+  return str.sliced( begin - str.cbegin(), end - begin );
 }
 
 std::string c_string( const QString & str );
@@ -259,7 +286,7 @@ inline bool isAudioUrl( QUrl const & url )
     return false;
 
   // gdau links are known to be audios, (sometimes they may not have file extension).
-  if ( url.scheme() == "gdau" ) {
+  if ( url.scheme() == "gdau" || url.scheme() == "gdprg" || url.scheme() == "gdtts" ) {
     return true;
   }
 
@@ -343,6 +370,45 @@ string basename( string const & );
 void removeDirectory( QString const & directory );
 
 void removeDirectory( string const & directory );
+
+inline QString findFirstExistingFile( std::initializer_list< QString > filePaths )
+{
+  for ( const QString & filePath : filePaths ) {
+    if ( QFileInfo::exists( filePath ) ) {
+      return filePath;
+    }
+  }
+  return QString();
+}
+
+inline std::string findFirstExistingFile( std::initializer_list< std::string > filePaths )
+{
+  for ( const std::string & filePath : filePaths ) {
+    auto fp = QString::fromStdString( filePath );
+    if ( QFileInfo::exists( fp ) ) {
+      return filePath;
+    }
+  }
+  return {};
+}
+
+inline bool anyExistingFile( std::initializer_list< std::string > filePaths )
+{
+  for ( const std::string & filePath : filePaths ) {
+    auto fp = QString::fromStdString( filePath );
+    if ( QFileInfo::exists( fp ) ) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// used for std::string and char*
+inline bool exists( std::string_view filename ) noexcept
+{
+  return QFileInfo::exists( QString::fromUtf8( filename.data(), filename.size() ) );
+}
+
 } // namespace Fs
 
 namespace WebSite {

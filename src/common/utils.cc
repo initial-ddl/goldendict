@@ -5,7 +5,6 @@
 #include <QMessageBox>
 #include <string>
 #include <QBuffer>
-#include <QTextCodec>
 
 using std::string;
 namespace Utils {
@@ -56,10 +55,23 @@ QString Utils::Path::combine( const QString & path1, const QString & path2 )
 
 QString Utils::Url::getSchemeAndHost( QUrl const & url )
 {
-  auto _url         = url.url();
-  auto index        = _url.indexOf( "://" );
-  auto hostEndIndex = _url.indexOf( "/", index + 3 );
-  return _url.mid( 0, hostEndIndex );
+  if ( !url.isValid() ) {
+    return QString();
+  }
+
+  QString scheme = url.scheme(); // http or https
+  QString host   = url.host();   // example.com
+  auto port      = url.port( -1 );
+
+  QString origin = scheme + "://" + host;
+
+  if ( port != -1 ) {
+    if ( ( scheme == "http" && port != 80 ) || ( scheme == "https" && port != 443 ) ) {
+      origin += ":" + QString::number( port );
+    }
+  }
+
+  return origin;
 }
 
 void Utils::Widget::setNoResultColor( QWidget * widget, bool noResult )
@@ -125,46 +137,6 @@ QString urlReplaceWord( const QString url, QString inputWord )
   auto urlString = url;
 
   urlString.replace( "%25GDWORD%25", inputWord.toUtf8().toPercentEncoding() );
-
-  QTextCodec * codec = QTextCodec::codecForName( "Windows-1251" );
-  if ( codec ) {
-    urlString.replace( "%25GD1251%25", codec->fromUnicode( inputWord ).toPercentEncoding() );
-  }
-
-  codec = QTextCodec::codecForName( "Big-5" );
-  if ( codec ) {
-    urlString.replace( "%25GDBIG5%25", codec->fromUnicode( inputWord ).toPercentEncoding() );
-  }
-
-  codec = QTextCodec::codecForName( "Big5-HKSCS" );
-  if ( codec ) {
-    urlString.replace( "%25GDBIG5HKSCS%25", codec->fromUnicode( inputWord ).toPercentEncoding() );
-  }
-
-  codec = QTextCodec::codecForName( "Shift-JIS" );
-  if ( codec ) {
-    urlString.replace( "%25GDSHIFTJIS%25", codec->fromUnicode( inputWord ).toPercentEncoding() );
-  }
-
-  codec = QTextCodec::codecForName( "GB18030" );
-  if ( codec ) {
-    urlString.replace( "%25GDGBK%25", codec->fromUnicode( inputWord ).toPercentEncoding() );
-  }
-
-
-  // Handle all ISO-8859 encodings
-  for ( int x = 1; x <= 16; ++x ) {
-    codec = QTextCodec::codecForName( QString( "ISO 8859-%1" ).arg( x ).toLatin1() );
-    if ( codec ) {
-      urlString.replace( QString( "%25GDISO%1%25" ).arg( x ).toUtf8(),
-                         codec->fromUnicode( inputWord ).toPercentEncoding() );
-    }
-
-    // Skip encodings 11..12, they don't exist
-    if ( x == 10 ) {
-      x = 12;
-    }
-  }
 
   return urlString;
 }

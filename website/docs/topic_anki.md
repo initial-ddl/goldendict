@@ -1,12 +1,10 @@
 # Anki Integration
 
-
-
 # prerequisite
-1. install anki
+1. install Anki
 2. install ankiconnect
 
-# configure anki
+# configure Anki
 
 ## 1. create a new model, or use an existing model
 
@@ -53,5 +51,3 @@ On your Anki card's template, you can add the code below to have a "1 click open
 ```
 <a href="goldendict://{{Front}}">{{Front}}</a>
 ```
-
-Note that this feature doesn't available on macOS 

@@ -30,7 +30,7 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
   helpAction.setShortcut( QKeySequence( "F1" ) );
   helpAction.setShortcutContext( Qt::WidgetWithChildrenShortcut );
 
-  connect( &helpAction, &QAction::triggered, [ this ]() {
+  connect( &helpAction, &QAction::triggered, this, [ this ]() {
     const auto * currentTab = ui.tabWidget->currentWidget();
     if ( ui.tab_popup == currentTab ) {
       Help::openHelpWebpage( Help::section::ui_popup );
@@ -44,38 +44,31 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
   } );
   connect( ui.buttonBox, &QDialogButtonBox::helpRequested, &helpAction, &QAction::trigger );
 
+  connect( ui.systemFont, &QFontComboBox::currentTextChanged, this, [ this ]( const QString & font ) {
+    previewInterfaceFont( font, ui.interfaceFontSize->value() );
+  } );
+
+  connect( ui.interfaceFontSize, &QSpinBox::valueChanged, this, [ this ]( int size ) {
+    previewInterfaceFont( ui.systemFont->currentText(), size );
+  } );
+  previewInterfaceFont( ui.systemFont->currentText(), ui.interfaceFontSize->value() );
+
   addAction( &helpAction );
 
   // Load values into form
-
   ui.interfaceLanguage->addItem( tr( "System default" ), QString() );
-  // See which other translations do we have
 
-  QStringList availLocs = QDir( Config::getLocDir() ).entryList( QStringList( "*.qm" ), QDir::Files );
+  {
+    QMap< QString, QString > sortedTranslations;
 
-  // We need to sort by language name -- otherwise list looks really weird
-  QMultiMap< QString, QString > sortedLocs;
-  sortedLocs.insert( Language::languageForLocale( "en_US" ), "en_US" );
-  for ( const auto & availLoc : availLocs ) {
-    // Here we assume the xx_YY naming, where xx is language and YY is region.
-    //remove .qm suffix.
-    QString locale = availLoc.left( availLoc.size() - 3 );
-
-    if ( locale == "qt" ) {
-      continue; // We skip qt's own localizations
+    // translate and sort languages
+    for ( const auto & [ k, v ] : Language::translationLangMap().asKeyValueRange() ) {
+      sortedTranslations.insert( Language::translationNameFromLangCode( k ), v );
     }
 
-    auto language = Language::languageForLocale( locale );
-    if ( language.isEmpty() ) {
-      qWarning() << "can not found the corresponding language from locale:" << locale;
+    for ( const auto & [ k, v ] : sortedTranslations.asKeyValueRange() ) {
+      ui.interfaceLanguage->addItem( k, v );
     }
-    else {
-      sortedLocs.insert( language, locale );
-    }
-  }
-
-  for ( auto i = sortedLocs.begin(); i != sortedLocs.end(); ++i ) {
-    ui.interfaceLanguage->addItem( i.key(), i.value() );
   }
 
   for ( int x = 0; x < ui.interfaceLanguage->count(); ++x ) {
@@ -91,9 +84,17 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
     ui.systemFont->setCurrentText( p.interfaceFont );
   }
 
+  if ( p.interfaceFontSize > 0 ) {
+    ui.interfaceFontSize->setValue( p.interfaceFontSize );
+  }
+  else {
+    ui.interfaceFontSize->setValue( QApplication::font().pixelSize() );
+  }
+
 
   prevWebFontFamily = p.customFonts;
   prevSysFont       = p.interfaceFont;
+  prevFontSize      = ui.interfaceFontSize->value();
 
   if ( !p.customFonts.standard.isEmpty() ) {
     ui.font_standard->setCurrentText( p.customFonts.standard );
@@ -165,7 +166,7 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
 
 #ifdef Q_OS_WIN32
   // 1 MB stands for 2^20 bytes on Windows. "MiB" is never used by this OS.
-  ui.maxNetworkCacheSize->setSuffix( tr( " MB" ) );
+  ui.maxNetworkCacheSize->setSuffix( " MB" );
 #endif
   ui.maxNetworkCacheSize->setToolTip( ui.maxNetworkCacheSize->toolTip().arg( Config::getCacheDir() ) );
 
@@ -187,25 +188,25 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
   ui.autoScrollToTargetArticle->setChecked( p.autoScrollToTargetArticle );
   ui.escKeyHidesMainWindow->setChecked( p.escKeyHidesMainWindow );
 
-  ui.darkMode->addItem( tr( "On" ), QVariant::fromValue( Config::Dark::On ) );
-  ui.darkMode->addItem( tr( "Off" ), QVariant::fromValue( Config::Dark::Off ) );
+  ui.darkMode->addItem( tr( "Enable" ), QVariant::fromValue( Config::Dark::On ) );
+  ui.darkMode->addItem( tr( "Disable" ), QVariant::fromValue( Config::Dark::Off ) );
 
   if ( auto i = ui.darkMode->findData( QVariant::fromValue( p.darkMode ) ); i != -1 ) {
     ui.darkMode->setCurrentIndex( i );
   }
 
-  ui.darkReaderMode->addItem( tr( "Auto" ), QVariant::fromValue( Config::Dark::Auto ) );
+  ui.darkReaderMode->addItem( tr( "Automatic" ), QVariant::fromValue( Config::Dark::Auto ) );
   ui.darkReaderMode->setItemData( 0, tr( "Auto does nothing on some systems." ), Qt::ToolTipRole );
-  ui.darkReaderMode->addItem( tr( "On" ), QVariant::fromValue( Config::Dark::On ) );
-  ui.darkReaderMode->addItem( tr( "Off" ), QVariant::fromValue( Config::Dark::Off ) );
+  ui.darkReaderMode->addItem( tr( "Enable" ), QVariant::fromValue( Config::Dark::On ) );
+  ui.darkReaderMode->addItem( tr( "Disable" ), QVariant::fromValue( Config::Dark::Off ) );
 
   if ( auto i = ui.darkReaderMode->findData( QVariant::fromValue( p.darkReaderMode ) ); i != -1 ) {
     ui.darkReaderMode->setCurrentIndex( i );
   }
 
 
-#ifndef Q_OS_WIN32
-  // TODO: make this availiable on other platforms
+#ifndef Q_OS_WIN
+  // For Linux & macOS, the interface darkMode is controlled by the platforms
   ui.darkModeLabel->hide();
   ui.darkMode->hide();
 #endif
@@ -344,13 +345,13 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
     ui.customSettingsGroup->setEnabled( p.proxyServer.enabled );
   }
 
-  //anki connect
+  //Anki connect
   ui.useAnkiConnect->setChecked( p.ankiConnectServer.enabled );
   ui.ankiHost->setText( p.ankiConnectServer.host );
   ui.ankiPort->setValue( p.ankiConnectServer.port );
   ui.ankiModel->setText( p.ankiConnectServer.model );
   ui.ankiDeck->setText( p.ankiConnectServer.deck );
-  //anki connect fields
+  //Anki connect fields
   ui.ankiText->setText( p.ankiConnectServer.text );
   ui.ankiWord->setText( p.ankiConnectServer.word );
   ui.ankiSentence->setText( p.ankiConnectServer.sentence );
@@ -367,6 +368,7 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
 
   //Misc
   ui.removeInvalidIndexOnExit->setChecked( p.removeInvalidIndexOnExit );
+  ui.enableApplicationLog->setChecked( p.enableApplicationLog );
 
   // Add-on styles
   ui.addonStylesLabel->setVisible( ui.addonStyles->count() > 1 );
@@ -399,6 +401,13 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
   ui.parallelThreads->setMaximum( QThread::idealThreadCount() );
   ui.parallelThreads->setValue( p.fts.parallelThreads );
 }
+void Preferences::previewInterfaceFont( QString family, int size )
+{
+  QFont f = QApplication::font();
+  f.setFamily( family );
+  f.setPixelSize( size );
+  this->ui.previewFont->setFont( f );
+}
 
 void Preferences::buildDisabledTypes( QString & disabledTypes, bool is_checked, QString name )
 {
@@ -417,6 +426,7 @@ Config::Preferences Preferences::getPreferences()
   p.interfaceLanguage = ui.interfaceLanguage->itemData( ui.interfaceLanguage->currentIndex() ).toString();
 
   p.interfaceFont = ui.systemFont->currentText();
+  p.interfaceFontSize = ui.interfaceFontSize->value();
 
   Config::CustomFonts c;
   c.standard    = ui.font_standard->currentText();
@@ -508,13 +518,13 @@ Config::Preferences Preferences::getPreferences()
   p.proxyServer.user     = ui.proxyUser->text();
   p.proxyServer.password = ui.proxyPassword->text();
 
-  //anki connect
+  //Anki connect
   p.ankiConnectServer.enabled = ui.useAnkiConnect->isChecked();
   p.ankiConnectServer.host    = ui.ankiHost->text();
   p.ankiConnectServer.port    = (unsigned)ui.ankiPort->value();
   p.ankiConnectServer.deck    = ui.ankiDeck->text();
   p.ankiConnectServer.model   = ui.ankiModel->text();
-  //anki connect fields
+  //Anki connect fields
   p.ankiConnectServer.text     = ui.ankiText->text();
   p.ankiConnectServer.word     = ui.ankiWord->text();
   p.ankiConnectServer.sentence = ui.ankiSentence->text();
@@ -526,6 +536,7 @@ Config::Preferences Preferences::getPreferences()
   p.clearNetworkCacheOnExit       = ui.clearNetworkCacheOnExit->isChecked();
 
   p.removeInvalidIndexOnExit = ui.removeInvalidIndexOnExit->isChecked();
+  p.enableApplicationLog     = ui.enableApplicationLog->isChecked();
 
   p.addonStyle = ui.addonStyles->getCurrentStyle();
 
@@ -590,7 +601,7 @@ void Preferences::on_buttonBox_accepted()
   }
 #endif
 
-  if ( ui.systemFont->currentText() != prevSysFont ) {
+  if ( ui.systemFont->currentText() != prevSysFont || ui.interfaceFontSize->value() != prevFontSize ) {
     promptText += tr( "Restart to apply the interface font change." );
   }
 
@@ -610,6 +621,11 @@ void Preferences::on_buttonBox_accepted()
                                                                     c.customFonts.monospace );
   }
 
+  if ( ui.interfaceFontSize->value() != prevFontSize ) {
+    auto font = QApplication::font();
+    font.setPixelSize( ui.interfaceFontSize->value() );
+    QApplication::setFont( font );
+  }
   //change interface font.
   if ( ui.systemFont->currentText() != prevSysFont ) {
     auto font = QApplication::font();

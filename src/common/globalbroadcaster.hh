@@ -5,6 +5,7 @@
 #include "config.hh"
 #include "pronounceengine.hh"
 #include <QCache>
+#include "dictionary_icon_name.hh"
 
 struct ActiveDictIds
 {
@@ -25,6 +26,7 @@ class GlobalBroadcaster: public QObject
 
   Config::Preferences * preference;
   QSet< QString > whitelist;
+  Icons::DictionaryIconName _icon_names;
 
 public:
   void setPreference( Config::Preferences * _pre );
@@ -37,9 +39,11 @@ public:
   QString translateLineText{};
   //hold the dictionary id;
   QSet< QString > collapsedDicts;
-  QMap< QString, QSet< QString > > folderFavoritesMap;
-  QMap< unsigned, QString > groupFolderMap;
+
+  std::function< bool( const QString & ) > isWordPresentedInFavorites;
+
   PronounceEngine pronounce_engine;
+  QString getAbbrName( QString const & text );
 signals:
   void dictionaryChanges( ActiveDictIds ad );
   void dictionaryClear( ActiveDictIds ad );

@@ -305,7 +305,9 @@ MdxDictionary::MdxDictionary( string const & id, string const & indexFile, vecto
   idx.readU32SizeAndData<>( encoding );
 
   dictFile.setFileName( QString::fromUtf8( dictionaryFiles[ 0 ].c_str() ) );
-  dictFile.open( QIODevice::ReadOnly );
+  if ( !dictFile.open( QIODevice::ReadOnly ) ) {
+    throw std::runtime_error( "mdx: failed to open main file" );
+  };
 
   // Full-text search parameters
 
@@ -644,7 +646,6 @@ class MddResourceRequest: public Dictionary::DataRequest
 public:
 
   MddResourceRequest( MdxDictionary & dict_, string const & resourceName_ ):
-    Dictionary::DataRequest( &dict_ ),
     dict( dict_ ),
     resourceName( Text::toUtf32( resourceName_ ) )
   {
@@ -816,11 +817,9 @@ void MdxDictionary::loadIcon() noexcept
 
   QString fileName = QDir::fromNativeSeparators( getDictionaryFilenames()[ 0 ].c_str() );
 
-  // Remove the extension
-  fileName.chop( 3 );
   QString text = QString::fromStdString( dictionaryName );
 
-  if ( !loadIconFromFile( fileName ) && !loadIconFromText( ":/icons/mdict-bg.png", text ) ) {
+  if ( !loadIconFromFileName( fileName ) && !loadIconFromText( ":/icons/mdict-bg.png", text ) ) {
     // Use default icons
     dictionaryIcon = QIcon( ":/icons/mdict.png" );
   }
@@ -877,8 +876,7 @@ QString & MdxDictionary::filterResource( QString & article )
 void MdxDictionary::replaceLinks( QString & id, QString & article )
 {
   QString articleNewText;
-  qsizetype linkPos = 0;
-
+  int linkPos                        = 0;
   QRegularExpressionMatchIterator it = RX::Mdx::allLinksRe.globalMatch( article );
   while ( it.hasNext() ) {
     QRegularExpressionMatch allLinksMatch = it.next();
@@ -954,14 +952,13 @@ void MdxDictionary::replaceLinks( QString & id, QString & article )
         articleNewText += linkTxt;
         match = RX::Mdx::closeScriptTagRe.match( article, linkPos );
         if ( match.hasMatch() ) {
-          articleNewText += QString( QStringLiteral( "gdOnReady(()=>{%1});</script>" ) )
-                              .arg( article.mid( linkPos, match.capturedStart() - linkPos ) );
+          articleNewText += article.mid( linkPos, match.capturedEnd() - linkPos );
           linkPos = match.capturedEnd();
         }
         continue;
       }
       else {
-        //audio ,script,video ,html5 tags fall here.
+        //audio ,video ,html5 tags fall here.
         match = RX::Mdx::srcRe.match( linkTxt );
         if ( match.hasMatch() ) {
           QString newText;
@@ -973,14 +970,8 @@ void MdxDictionary::replaceLinks( QString & id, QString & article )
           else {
             scheme = "bres://";
           }
-
           newText =
             match.captured( 1 ) + match.captured( 2 ) + scheme + id + "/" + match.captured( 3 ) + match.captured( 2 );
-
-          //add defer to script tag
-          if ( linkType.compare( "script" ) == 0 ) {
-            newText = newText + " defer ";
-          }
 
           newLink = linkTxt.replace( match.capturedStart(), match.capturedLength(), newText );
         }
@@ -1209,7 +1200,8 @@ void MdxDictionary::loadResourceFile( const std::u32string & resourceName, vecto
     newResourceName.insert( 0, 1, '\\' );
   }
   // local file takes precedence
-  if ( string fn = getContainingFolder().toStdString() + Utils::Fs::separator() + u8ResourceName; File::exists( fn ) ) {
+  if ( string fn = getContainingFolder().toStdString() + Utils::Fs::separator() + u8ResourceName;
+       Utils::Fs::exists( fn ) ) {
     File::loadFromFile( fn, data );
     return;
   }
@@ -1350,7 +1342,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( vector< string > const & f
       initializing.indexingDictionary( title );
 
       for ( vector< string >::const_iterator mddIter = dictFiles.begin() + 1; mddIter != dictFiles.end(); ++mddIter ) {
-        if ( File::exists( *mddIter ) ) {
+        if ( Utils::Fs::exists( *mddIter ) ) {
           sptr< MdictParser > mddParser = std::make_shared< MdictParser >();
           if ( !mddParser->open( mddIter->c_str() ) ) {
             qWarning( "Broken mdd (resource) file: %s", mddIter->c_str() );

@@ -60,10 +60,13 @@ signals:
 private:
 
   Config::MutedDictionaries * mutedDictionaries;
-  Config::Events & configEvents;
-  Config::MutedDictionaries storedMutedSet;
 
-  bool enterSoloMode = false;
+  // In temporary selection, shift+click capture selections.
+  std::optional< Config::MutedDictionaries > tempSelectionCapturedMuted;
+
+  Config::Events & configEvents;
+
+  void selectSingleDict( const QString & id );
 
   // how many dictionaries should be shown in the context menu:
   unsigned short const & maxDictionaryRefsInContextMenu;

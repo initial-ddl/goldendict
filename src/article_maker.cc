@@ -51,7 +51,8 @@ std::string ArticleMaker::makeHtmlHeader( QString const & word, QString const & 
     result += R"(<script> jQuery.noConflict(); </script>)";
 
     result += R"(<script src="qrc:///scripts/gd-custom.js"></script>)";
-    result += R"(<script src="qrc:///scripts/iframeResizer.min.js"></script>)";
+    result += R"(<script src="qrc:///scripts/iframe-resizer.jquery.js"></script>)";
+    result += R"(<script src="qrc:///scripts/iframe-resizer.parent.js"></script>)";
   }
 
   // add qwebchannel
@@ -146,10 +147,14 @@ std::string ArticleMaker::makeHtmlHeader( QString const & word, QString const & 
 
 #if QT_VERSION >= QT_VERSION_CHECK( 6, 5, 0 )
   if ( GlobalBroadcaster::instance()->getPreference()->darkReaderMode == Config::Dark::Auto
-  #if !defined( Q_OS_WINDOWS ) // not properly works on Windows.
+  #if !defined( Q_OS_WINDOWS )
+       // For macOS & Linux, uses "System's style hint". There is no darkMode setting in GD for them.
        && QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark
+  #else
+       // For Windows, uses the setting in GD
+       && GlobalBroadcaster::instance()->getPreference()->darkMode == Config::Dark::On
   #endif
-       && GlobalBroadcaster::instance()->getPreference()->darkMode == Config::Dark::On ) {
+  ) {
     darkReaderModeEnabled = true;
   }
 #endif
@@ -164,9 +169,6 @@ std::string ArticleMaker::makeHtmlHeader( QString const & word, QString const & 
     result += R"(
 <script src="qrc:///scripts/darkreader.js"></script>
 <style>
-body { background: #242525; }
-.gdarticle { background: initial;}
-
 .gdarticlebody img{
   background: white !important;
 }
@@ -605,7 +607,7 @@ void ArticleRequest::bodyFinished()
     return;
   }
 
-  qDebug( "some body finished" );
+  qDebug() << ">>>>";
 
   bool wasUpdated = false;
 
@@ -614,8 +616,6 @@ void ArticleRequest::bodyFinished()
     // Since requests should go in order, check the first one first
     if ( bodyRequests.front()->isFinished() ) {
       // Good
-
-      qDebug( "one finished." );
 
       Dictionary::DataRequest & req = *bodyRequests.front();
 
@@ -626,6 +626,7 @@ void ArticleRequest::bodyFinished()
 
         string dictId = activeDict->getId();
 
+        qDebug() << "dict:" << activeDict->getName().c_str() << " finished.";
 
         dictIds << QString::fromStdString( dictId );
         string head;
@@ -643,8 +644,8 @@ void ArticleRequest::bodyFinished()
         fmt::format_to( std::back_inserter( head ),
                         FMT_COMPILE(
                           R"( <div class="gdarticle {0} {1}" id="{2}"
-                              onClick="if(typeof gdMakeArticleActive !='undefined')  gdMakeArticleActive( '{3}', false );"
-                              onContextMenu="if(typeof gdMakeArticleActive !='undefined') gdMakeArticleActive( '{3}', false );">)" ),
+                              data-gd-id="{3}"
+                              >)" ),
                         closePrevSpan ? "" : " gdactivearticle",
                         collapse ? " gdcollapsedarticle" : "",
                         gdFrom,
@@ -652,22 +653,21 @@ void ArticleRequest::bodyFinished()
 
         closePrevSpan = true;
 
-        fmt::format_to(
-          std::back_inserter( head ),
-          FMT_COMPILE(
-            R"(<div class="gddictname" onclick="gdExpandArticle('{0}');"  {1}  id="gddictname-{0}" title="{2}">
+        fmt::format_to( std::back_inserter( head ),
+                        FMT_COMPILE(
+                          R"(<div class="gddictname" {1}  id="gddictname-{0}" title="{2}">
                       <span class="gddicticon"><img src="gico://{0}/dicticon.png"></span>
                       <span class="gdfromprefix">{3}</span>
                       <span class="gddicttitle">{4}</span>
                       <span class="collapse_expand_area"><img class="{5}" id="expandicon-{0}" title="{6}" ></span>
                      </div>)" ),
-          dictId,
-          collapse ? R"(style="cursor:pointer;")" : "",
-          "",
-          Html::escape( tr( "From " ).toStdString() ),
-          Html::escape( activeDict->getName() ),
-          collapse ? "gdexpandicon" : "gdcollapseicon",
-          "" );
+                        dictId,
+                        collapse ? R"(style="cursor:pointer;")" : "",
+                        "",
+                        Html::escape( tr( "From " ).toStdString() ),
+                        Html::escape( activeDict->getName() ),
+                        collapse ? "gdexpandicon" : "gdcollapseicon",
+                        "" );
 
         head += R"(<div class="gddictnamebodyseparator"></div>)";
 
@@ -715,12 +715,10 @@ void ArticleRequest::bodyFinished()
         //signal finished dictionary for pronounciation
         GlobalBroadcaster::instance()->pronounce_engine.finishDictionary( dictId );
       }
-      qDebug( "erasing.." );
       bodyRequests.pop_front();
-      qDebug( "erase done.." );
     }
     else {
-      qDebug( "one not finished." );
+      // qDebug() << "--- top not finished";
       break;
     }
   }

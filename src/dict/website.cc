@@ -21,7 +21,6 @@ namespace {
 class WebSiteDictionary: public Dictionary::Class
 {
   QByteArray urlTemplate;
-  bool experimentalIframe;
   QString iconFilename;
   bool inside_iframe;
   QNetworkAccessManager & netMgr;
@@ -37,15 +36,9 @@ public:
     Dictionary::Class( id, vector< string >() ),
     iconFilename( iconFilename_ ),
     inside_iframe( inside_iframe_ ),
-    netMgr( netMgr_ ),
-    experimentalIframe( false )
+    netMgr( netMgr_ )
   {
     dictionaryName = name_;
-
-    if ( urlTemplate_.startsWith( "http://" ) || urlTemplate_.startsWith( "https://" ) ) {
-      experimentalIframe = true;
-    }
-    //else file:/// local dictionary file path
 
     urlTemplate           = QUrl( urlTemplate_ ).toEncoded();
     dictionaryDescription = urlTemplate_;
@@ -122,7 +115,6 @@ public:
 private:
 
   void requestFinished( QNetworkReply * ) override;
-  static QTextCodec * codecForHtml( QByteArray const & ba );
 };
 
 void WebSiteArticleRequest::cancel()
@@ -150,11 +142,6 @@ WebSiteArticleRequest::WebSiteArticleRequest( QString const & url_, QNetworkAcce
 #ifndef QT_NO_SSL
   connect( netReply, SIGNAL( sslErrors( QList< QSslError > ) ), netReply, SLOT( ignoreSslErrors() ) );
 #endif
-}
-
-QTextCodec * WebSiteArticleRequest::codecForHtml( QByteArray const & ba )
-{
-  return QTextCodec::codecForHtml( ba, 0 );
 }
 
 void WebSiteArticleRequest::requestFinished( QNetworkReply * r )
@@ -188,7 +175,7 @@ void WebSiteArticleRequest::requestFinished( QNetworkReply * r )
     QByteArray replyData = netReply->readAll();
     QString articleString;
 
-    QTextCodec * codec = WebSiteArticleRequest::codecForHtml( replyData );
+    QTextCodec * codec = QTextCodec::codecForHtml( replyData, 0 );
     if ( codec ) {
       articleString = codec->toUnicode( replyData );
     }
@@ -323,22 +310,15 @@ sptr< DataRequest > WebSiteDictionary::getArticle( std::u32string const & str,
 
     //heuristic add url to global whitelist.
     QUrl url( urlString );
-    GlobalBroadcaster::instance()->addWhitelist( url.host() );
+    GlobalBroadcaster::instance()->addWhitelist( Utils::Url::getHostBase( url.host() ) );
 
-    QString encodeUrl;
-    if ( experimentalIframe ) {
-      encodeUrl = "ifr://localhost?url=" + QUrl::toPercentEncoding( urlString );
-    }
-    else {
-      encodeUrl = urlString;
-    }
+    QString encodeUrl = urlString;
 
     fmt::format_to( std::back_inserter( result ),
                     R"(<iframe id="gdexpandframe-{}" src="{}"
-onmouseover="processIframeMouseOver('gdexpandframe-{}');"
-onmouseout="processIframeMouseOut();" scrolling="no"
-style="overflow:visible; width:100%; display:block; border:none;"
-sandbox="allow-same-origin allow-scripts allow-popups"></iframe>)",
+scrolling="no" data-gd-id="{}" 
+class="website-iframe"
+sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>)",
                     getId(),
                     encodeUrl.toStdString(),
                     getId() );
@@ -465,7 +445,7 @@ void WebSiteDictionary::loadIcon() noexcept
   if ( !iconFilename.isEmpty() ) {
     QFileInfo fInfo( QDir( Config::getConfigDir() ), iconFilename );
     if ( fInfo.isFile() ) {
-      loadIconFromFile( fInfo.absoluteFilePath(), true );
+      loadIconFromFilePath( fInfo.absoluteFilePath() );
     }
   }
   if ( dictionaryIcon.isNull()
@@ -496,5 +476,8 @@ vector< sptr< Dictionary::Class > > makeDictionaries( Config::WebSites const & w
   return result;
 }
 
-#include "website.moc"
 } // namespace WebSite
+
+// fixes #2272
+// automoc include for Q_OBJECT should be at the very end of source code file, not inside a namespace
+#include "website.moc"

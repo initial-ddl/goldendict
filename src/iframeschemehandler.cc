@@ -1,6 +1,6 @@
 #include "iframeschemehandler.hh"
 
-#include <QTextCodec>
+#include "iconv.hh"
 
 IframeSchemeHandler::IframeSchemeHandler( QObject * parent ):
   QWebEngineUrlSchemeHandler( parent )
@@ -11,7 +11,10 @@ void IframeSchemeHandler::requestStarted( QWebEngineUrlRequestJob * requestJob )
   QUrl url = requestJob->requestUrl();
 
   // website dictionary iframe url
-  url = QUrl( Utils::Url::queryItemValue( url, "url" ) );
+  if ( url.scheme().startsWith( Config::WEBSITE_PROXY_PREFIX ) ) {
+    //"iframe-".length() == 7
+    url.setScheme( url.scheme().mid( 7 ) );
+  }
   QNetworkRequest request;
   request.setUrl( url );
   request.setAttribute( QNetworkRequest::RedirectPolicyAttribute,
@@ -36,9 +39,9 @@ void IframeSchemeHandler::requestStarted( QWebEngineUrlRequestJob * requestJob )
     QByteArray replyData = reply->readAll();
     QString articleString;
 
-    QTextCodec * codec = QTextCodec::codecForUtfText( replyData, QTextCodec::codecForName( codecName.toUtf8() ) );
-    if ( codec ) {
-      articleString = codec->toUnicode( replyData );
+    auto encoding = Iconv::findValidEncoding( { codecName } );
+    if ( !encoding.isEmpty() ) {
+      articleString = Iconv::toQString( encoding.toUtf8().constData(), replyData.data(), replyData.size() );
     }
     else {
       articleString = QString::fromUtf8( replyData );
@@ -74,14 +77,14 @@ void IframeSchemeHandler::requestStarted( QWebEngineUrlRequestJob * requestJob )
 
 
     if ( const auto match = baseTag.match( articleString ); match.hasMatch() ) {
-      base = reply->url().resolved( match.captured( 1 ) ).url();
+      base = reply->url().resolved( QUrl( match.captured( 1 ) ) ).url();
     }
 
     QString baseTagHtml = QString( R"(<base href="%1">)" ).arg( base );
 
     QString depressionFocus =
       R"(<script type="application/javascript"> HTMLElement.prototype.focus=function(){console.log("focus() has been disabled.");}</script>
-<script type="text/javascript" src="qrc:///scripts/iframeResizer.contentWindow.min.js">
+<script type="text/javascript" src="qrc:///scripts/iframe-resizer.child.js">
 </script><script type="text/javascript" src="qrc:///scripts/iframe-defer.js"></script>)";
 
     articleString.remove( baseTag );

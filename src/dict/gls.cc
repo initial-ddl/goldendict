@@ -23,7 +23,6 @@
 #include <QByteArray>
 #include <QDir>
 #include <QRegularExpression>
-#include <QtCore5Compat/QTextCodec>
 #include <string>
 #include <list>
 #include <map>
@@ -51,13 +50,12 @@ class GlsScanner
 {
   gzFile f;
   Encoding encoding;
-  QTextCodec * codec;
   std::u32string dictionaryName;
   std::u32string dictionaryDecription, dictionaryAuthor;
   std::u32string langFrom, langTo;
   char readBuffer[ 10000 ];
   char * readBufferPtr;
-  size_t readBufferLeft;
+  qsizetype readBufferLeft;
   LineFeed lineFeed;
   unsigned linesRead;
 
@@ -171,7 +169,6 @@ GlsScanner::GlsScanner( string const & fileName ):
     encoding = Encoding::Utf8;
   }
 
-  codec = QTextCodec::codecForName( Text::getEncodingNameFor( encoding ) );
   // We now can use our own readNextLine() function
   lineFeed = Text::initLineFeed( encoding );
 
@@ -257,7 +254,8 @@ bool GlsScanner::readNextLine( std::u32string & out, size_t & offset )
     if ( pos == -1 ) {
       return false;
     }
-    QString line = codec->toUnicode( readBufferPtr, pos );
+
+    QString line = Iconv::toQString( Text::getEncodingNameFor( encoding ), readBufferPtr, pos );
 
     line = Utils::rstrip( line );
 
@@ -287,7 +285,7 @@ DEF_EX_STR( exDictzipError, "DICTZIP error", Dictionary::Ex )
 
 enum {
   Signature                = 0x58534c47, // GLSX on little-endian, XSLG on big-endian
-  CurrentFormatVersion     = 1 + BtreeIndexing::FormatVersion + Folding::Version,
+  CurrentFormatVersion     = 1 + BtreeIndexing::FormatVersion + Folding::Version + BtreeIndexing::ZipParseLogicVersion,
   CurrentZipSupportVersion = 2,
   CurrentFtsIndexVersion   = 1
 };
@@ -478,15 +476,7 @@ void GlsDictionary::loadIcon() noexcept
 
   QString fileName = QDir::fromNativeSeparators( getDictionaryFilenames()[ 0 ].c_str() );
 
-  // Remove the extension
-  if ( fileName.endsWith( ".gls.dz", Qt::CaseInsensitive ) ) {
-    fileName.chop( 6 );
-  }
-  else {
-    fileName.chop( 3 );
-  }
-
-  if ( !loadIconFromFile( fileName ) ) {
+  if ( !loadIconFromFileName( fileName ) ) {
     // Load failed -- use default icon
     dictionaryIcon = QIcon( ":/icons/icon32_gls.png" );
   }

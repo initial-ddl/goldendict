@@ -9,7 +9,6 @@
 #include <zlib.h>
 #include "dictionary.hh"
 #include "iconv.hh"
-#include <QtCore5Compat/QTextCodec>
 #include <QByteArray>
 #include "text.hh"
 
@@ -102,14 +101,13 @@ class DslScanner
 {
   gzFile f;
   Encoding encoding;
-  QTextCodec * codec;
   std::u32string dictionaryName;
   std::u32string langFrom, langTo;
   std::u32string soundDictionary;
   char readBuffer[ 65536 ];
   char * readBufferPtr;
   LineFeed lineFeed;
-  size_t readBufferLeft;
+  qsizetype readBufferLeft;
   //qint64 pos;
   unsigned linesRead;
 

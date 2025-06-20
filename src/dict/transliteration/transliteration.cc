@@ -58,8 +58,6 @@ BaseTransliterationDictionary::findHeadwordsForSynonym( std::u32string const & s
 
   vector< std::u32string > alts = getAlternateWritings( str );
 
-  qDebug( "alts = %u", (unsigned)alts.size() );
-
   for ( const auto & alt : alts ) {
     result->getMatches().push_back( alt );
   }
@@ -72,11 +70,12 @@ void Table::ins( char const * from, char const * to )
 {
   std::u32string fr = Text::toUtf32( std::string( from ) );
 
-  if ( fr.size() > maxEntrySize ) {
-    maxEntrySize = fr.size();
-  }
-
   insert( std::pair< std::u32string, std::u32string >( fr, Text::toUtf32( std::string( to ) ) ) );
+}
+
+void Table::ins( std::string const & from, std::string const & to )
+{
+  insert( std::pair< std::u32string, std::u32string >( Text::toUtf32( from ), Text::toUtf32( to ) ) );
 }
 
 
@@ -111,7 +110,7 @@ vector< std::u32string > TransliterationDictionary::getAlternateWritings( std::u
   while ( left ) {
     unsigned x;
 
-    for ( x = table.getMaxEntrySize(); x >= 1; --x ) {
+    for ( x = table.size(); x >= 1; --x ) {
       if ( left >= x ) {
         i = table.find( std::u32string( ptr, x ) );
 

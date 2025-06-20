@@ -110,12 +110,20 @@ void DictionaryBar::showContextMenu( QContextMenuEvent * event, bool extended )
 {
   QMenu menu( this );
 
+  const QAction * restoreSelectionAction = nullptr;
+  if ( tempSelectionCapturedMuted.has_value() ) {
+    restoreSelectionAction = menu.addAction( tr( "Restore selection" ) );
+  }
+
   const QAction * editAction = menu.addAction( QIcon( ":/icons/bookcase.svg" ), tr( "Edit this group" ) );
 
   const QAction * infoAction           = nullptr;
   const QAction * headwordsAction      = nullptr;
   const QAction * openDictFolderAction = nullptr;
+
+
   QString dictFilename;
+
 
   const QAction * dictAction = actionAt( event->x(), event->y() );
   if ( dictAction ) {
@@ -147,7 +155,7 @@ void DictionaryBar::showContextMenu( QContextMenuEvent * event, bool extended )
 
   unsigned refsAdded = 0;
 
-  for ( const auto & dictAction : dictActions ) {
+  for ( const auto & dictAction : std::as_const( dictActions ) ) {
 
     // Enough! Or the menu would become too large.
     if ( refsAdded++ >= maxDictionaryRefsInContextMenu && !extended ) {
@@ -198,6 +206,12 @@ void DictionaryBar::showContextMenu( QContextMenuEvent * event, bool extended )
     showContextMenu( event, true );
   }
 
+  if ( result && result == restoreSelectionAction ) {
+    *mutedDictionaries = tempSelectionCapturedMuted.value();
+    tempSelectionCapturedMuted.reset();
+    configEvents.signalMutedDictionariesChanged();
+  }
+
   if ( result == editAction ) {
     emit editGroupRequested();
   }
@@ -220,7 +234,7 @@ void DictionaryBar::mutedDictionariesChanged()
 
   setUpdatesEnabled( false );
 
-  for ( const auto & dictAction : dictActions ) {
+  for ( const auto & dictAction : std::as_const( dictActions ) ) {
     bool const isUnmuted = !mutedDictionaries->contains( dictAction->data().toString() );
 
     if ( isUnmuted != dictAction->isChecked() ) {
@@ -243,78 +257,41 @@ void DictionaryBar::actionWasTriggered( QAction * action )
     return; // Some weird action, not our button
   }
 
-  if ( QApplication::keyboardModifiers() & ( Qt::ControlModifier | Qt::ShiftModifier ) ) {
-    // Ctrl ,solo mode with single dictionary
-    // Shift,toggle back the previous dictionaries
-    // Are we solo already?
-
-    bool isSolo = true;
-
-    // For solo, all dictionaries must be unchecked, since we're handling
-    // the result of the dictionary being (un)checked, and in case we were
-    // in solo, now we would end up with no dictionaries being checked at all.
-    for ( const auto & dictAction : dictActions ) {
-      if ( dictAction->isChecked() ) {
-        isSolo = false;
-        break;
-      }
-    }
-    if ( QApplication::keyboardModifiers() & Qt::ShiftModifier ) {
-      if ( enterSoloMode ) {
-        *mutedDictionaries = storedMutedSet;
-
-        storedMutedSet.clear();
-        enterSoloMode = false;
-      }
+  //  Ctrl Click Single Selection
+  if ( QApplication::keyboardModifiers().testFlag( Qt::ControlModifier ) ) {
+    // Ctrl+Clicked the only one selected
+    if ( ( dictActions.size() - mutedDictionaries->size() ) == 1 && !action->isChecked() ) {
+      mutedDictionaries->clear();
     }
     else {
-      // Save dictionaries state
-      if ( !enterSoloMode ) {
-        storedMutedSet = *mutedDictionaries;
-        enterSoloMode  = true;
-      }
-
-      if ( isSolo ) {
-        for ( const auto & dictAction : dictActions ) {
-          mutedDictionaries->remove( dictAction->data().toString() );
-        }
-      }
-      else {
-        // Make dictionary solo
-        for ( const auto & dictAction : dictActions ) {
-          QString const dictId = dictAction->data().toString();
-
-          if ( dictId == id ) {
-            mutedDictionaries->remove( dictId );
-          }
-          else {
-            mutedDictionaries->insert( dictId );
-          }
-        }
-      }
+      selectSingleDict( id );
     }
-    configEvents.signalMutedDictionariesChanged();
   }
-  else {
-    // Normal mode
-
-    storedMutedSet.clear();
-
+  ///  Shift Click Capturing
+  else if ( QApplication::keyboardModifiers().testFlag( Qt::ShiftModifier ) ) {
+    tempSelectionCapturedMuted.emplace( *mutedDictionaries );
+    selectSingleDict( id ); // Give user feedback that capturing success by select the one clicked
+  }
+  else { // Normal clicking
     if ( action->isChecked() ) {
-      // Unmute the dictionary
-
-      if ( mutedDictionaries->contains( id ) ) {
-        mutedDictionaries->remove( id );
-        configEvents.signalMutedDictionariesChanged();
-      }
+      mutedDictionaries->remove( id );
     }
     else {
-      // Mute the dictionary
+      mutedDictionaries->insert( id );
+    }
+  }
+  configEvents.signalMutedDictionariesChanged();
+}
 
-      if ( !mutedDictionaries->contains( id ) ) {
-        mutedDictionaries->insert( id );
-        configEvents.signalMutedDictionariesChanged();
-      }
+void DictionaryBar::selectSingleDict( const QString & id )
+{
+  for ( auto & dictAction : std::as_const( dictActions ) ) {
+    QString const dictId = dictAction->data().toString();
+    if ( dictId == id ) {
+      mutedDictionaries->remove( dictId );
+    }
+    else {
+      mutedDictionaries->insert( dictId );
     }
   }
 }
@@ -325,7 +302,7 @@ void DictionaryBar::dictsPaneClicked( const QString & id )
     return;
   }
 
-  for ( const auto & dictAction : dictActions ) {
+  for ( const auto & dictAction : std::as_const( dictActions ) ) {
     QString const dictId = dictAction->data().toString();
     if ( dictId == id ) {
       dictAction->activate( QAction::Trigger );

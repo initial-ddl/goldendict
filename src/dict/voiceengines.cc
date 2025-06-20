@@ -84,7 +84,7 @@ VoiceEnginesDictionary::getArticle( u32string const & word, vector< u32string > 
   string result;
   string wordUtf8( Text::toUtf8( word ) );
 
-  result += "<table class=\"voiceengines_play\"><tr>";
+  result += "<div class=\"audio-play\"><div class=\"audio-play-item\">";
 
   QUrl url;
   url.setScheme( "gdtts" );
@@ -96,11 +96,11 @@ VoiceEnginesDictionary::getArticle( u32string const & word, vector< u32string > 
 
   string encodedUrl = url.toEncoded().data();
   string ref        = string( "\"" ) + encodedUrl + "\"";
-  result += addAudioLink( encodedUrl, getId() );
+  addAudioLink( encodedUrl, getId() );
 
-  result += "<td><a href=" + ref + R"(><img src="qrc:///icons/playsound.png" border="0" alt="Play"/></a></td>)";
-  result += "<td><a href=" + ref + ">" + Html::escape( wordUtf8 ) + "</a></td>";
-  result += "</tr></table>";
+  result += "<a href=" + ref + R"( class="audio-play-icon"></a>)";
+  result += "<a href=" + ref + ">" + Html::escape( wordUtf8 ) + "</a>";
+  result += "</div></div>";
 
   auto ret = std::make_shared< DataRequestInstant >( true );
   ret->appendString( result );
@@ -115,7 +115,7 @@ void VoiceEnginesDictionary::loadIcon() noexcept
   if ( !voiceEngine.iconFilename.isEmpty() ) {
     QFileInfo fInfo( QDir( Config::getConfigDir() ), voiceEngine.iconFilename );
     if ( fInfo.isFile() )
-      loadIconFromFile( fInfo.absoluteFilePath(), true );
+      loadIconFromFilePath( fInfo.absoluteFilePath() );
   }
   if ( dictionaryIcon.isNull() )
     dictionaryIcon = QIcon( ":/icons/text2speech.svg" );

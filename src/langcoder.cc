@@ -230,7 +230,7 @@ quint32 LangCoder::findIdForLanguage( std::u32string const & lang )
 {
   const auto langFolded = QByteArrayView( Text::toUtf8( lang ) );
 
-  for ( auto const & lc : LANG_CODE_MAP ) {
+  for ( auto const & lc : std::as_const( LANG_CODE_MAP ) ) {
     if ( langFolded.compare( lc.lang, Qt::CaseInsensitive ) == 0 ) {
       return code2toInt( lc.code2.toStdString().c_str() );
     }
@@ -241,7 +241,7 @@ quint32 LangCoder::findIdForLanguage( std::u32string const & lang )
 
 quint32 LangCoder::findIdForLanguageCode3( std::string const & code )
 {
-  for ( auto const & lc : LANG_CODE_MAP ) {
+  for ( auto const & lc : std::as_const( LANG_CODE_MAP ) ) {
     if ( code == lc.code3 ) {
       return code2toInt( lc.code2 );
     }
@@ -261,7 +261,7 @@ quint32 LangCoder::guessId( const QString & lang )
 
   // check if it could be the whole language name
   if ( lstr.size() >= 3 ) {
-    for ( auto const & lc : LANG_CODE_MAP ) {
+    for ( auto const & lc : std::as_const( LANG_CODE_MAP ) ) {
       if ( lstr == ( lstr.size() == 3 ? QString::fromStdString( lc.code3 ) : QString::fromStdString( lc.lang ) ) ) {
         return code2toInt( lc.code2 );
       }
@@ -275,14 +275,18 @@ quint32 LangCoder::guessId( const QString & lang )
 
 std::pair< quint32, quint32 > LangCoder::findLangIdPairFromName( QString const & name )
 {
-  static QRegularExpression reg( "(?=([a-z]{2,3})-([a-z]{2,3}))", QRegularExpression::CaseInsensitiveOption );
+  static QRegularExpression reg( "(^|[^a-z])((?<lang1>[a-z]{2,3})-(?<lang2>[a-z]{2,3}))($|[^a-z])",
+                                 QRegularExpression::CaseInsensitiveOption );
 
   auto matches = reg.globalMatch( name );
   while ( matches.hasNext() ) {
     auto m = matches.next();
+    if ( matches.hasNext() ) {
+      continue; // We use only the last match, skip previous ones
+    }
 
-    auto fromId = guessId( m.captured( 1 ).toLower() );
-    auto toId   = guessId( m.captured( 2 ).toLower() );
+    auto fromId = guessId( m.captured( "lang1" ).toLower() );
+    auto toId   = guessId( m.captured( "lang2" ).toLower() );
 
     if ( code2Exists( intToCode2( fromId ) ) && code2Exists( intToCode2( toId ) ) ) {
       return { fromId, toId };
