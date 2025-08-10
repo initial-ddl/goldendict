@@ -256,7 +256,7 @@ struct IndexedWords: public map< string, vector< WordArticleLink > >
   /// Instead of adding to the map directly, use this function. It does folding
   /// itself, and for phrases/sentences it adds additional entries beginning with
   /// each new word.
-  void addWord( const std::u32string & word, uint32_t articleOffset, unsigned int maxHeadwordSize = 100U );
+  void addWord( const std::u32string & word, uint32_t articleOffset, unsigned int maxHeadwordSize = 256U );
 
   /// Differs from addWord() in that it only adds a single entry. We use this
   /// for zip's file names.
