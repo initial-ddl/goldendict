@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation type="unfinished">Anki: can&apos;t create a card without a word</translation>
+      <translation>Anki: ne povas fari karton sen vorto</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -57,16 +57,46 @@
       <translation>Bonvenon!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;Bonvenon al &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;Por komenci labori kun la programo, unue vizitu &lt;em&gt;Redakti | Vortaroj&lt;/em&gt; por aldoni kelkajn dosierujojn kie serĉi la vortarajn dosierojn, agordi diversajn Vikipediajn retejojn aŭ aliajn fontojn, ĝustigi vortaran ordon aŭ krei vortarajn grupojn.&lt;p&gt;Kaj tiam vi&apos;pretas serĉi viajn vortojn! Vi povas fari tion en ĉi tiu fenestro uzante panelon maldekstre, aŭ vi povas &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;serĉi vortojn de aliaj aktivaj aplikaĵoj&lt;/a&gt;. &lt;p&gt;Por personecigi programon, kontrolu la disponeblajn preferojn ĉe &lt;em&gt;Redaktu | Preferoj&lt;/em&gt;. Ĉiuj agordoj tie havas konsiletojn, nepre legu ilin se vi dubas pri io ajn.&lt;p&gt;Se vi bezonas plian helpon, havas demandojn, sugestojn aŭ simple scivolas, kion pensas la aliaj, vi bonvenas ĉe la programo&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forumo&lt;/a&gt;.&lt;p&gt;Kontrolu programon&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;retejon&lt;/a&gt; por la ĝisdatigoj. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licencite laŭ GPLv3 aŭ poste.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(sentitola)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(bildo)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation type="unfinished">
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>Frazo ne trovita</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 el %2 matĉoj</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Krei Anki-noton</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation type="unfinished">&amp;Copy sound to clipboard</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation type="unfinished">Failed to copy sound</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation type="unfinished">Failed to write complete audio data</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation type="unfinished">Sound copied to clipboard</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation type="unfinished">Failed to download sound</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 el %2 matĉoj</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Malfermi Artikolon en ekstera &amp;Retumilo</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation type="unfinished">GoldenDict Resource Viewer</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -275,52 +336,60 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Ĉina Konvertiĝo</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Tradicia al simpligita ĉina konvertiĝo</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Ebligu konvertiĝon inter simpligitaj kaj tradiciaj ĉinaj signoj</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Ebligu konvertiĝon de simpligitaj/tradiciaj ĉinaj signoj al japanaj Shinjitai-signoj</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>Ĉina Konvertiĝo</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Japana Shinjitai</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Ebligu konvertiĝon de simpligitaj signoj al tradiciaj (tajvana varianto) signoj</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>Konverto de ĉina al japana Ŝinĵitaj</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Ebligu konvertiĝon de simpligitaj signoj al tradiciaj (Honkonga varianto) signoj</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>Kon&amp;verto de Ĉinaj kaj Japanaj Karakteroj</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>Ebligi konverton inter simpligita ĉina, tradicia ĉina (Tajvano/Honkongo) kaj japanaj Ŝinĵitaj-karakteroj</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Ebligu konvertiĝon de tradiciaj signoj al simpligitaj signoj</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Simpligita al tradicia ĉina (tajvana varianto) konvertiĝo</translation>
+      <source>Simplified</source>
+      <translation>Simpligita</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Simpligita al tradicia ĉina (Honkonga varianto) konvertiĝo</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Ebligu konvertiĝon de simpligitaj signoj al tradiciaj (Tajvano) signoj</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Tradicia al simpligita ĉina konvertiĝo</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>Tradicia (Tajvano)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation type="unfinished">Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Ebligu konvertiĝon de simpligitaj signoj al tradiciaj (Honkonga) signoj</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation type="unfinished">Hong Kong variant</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Tradicia (Honkonga)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation type="unfinished">Mainland variant</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>Simpligita al tradicia ĉina (tajvana) konvertiĝo</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>Simpligita al tradicia ĉina (Honkonga) konvertiĝo</translation>
     </message>
   </context>
   <context>
@@ -408,10 +477,6 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
       <translation>Ĉu vi certas, ke vi volas generi aron da grupoj bazitaj sur enhavado de dosierujoj?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>Ĉu vi certas, ke vi volas generi aron da grupoj bazitaj sur metadata.toml?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Kombinu grupojn laŭ fontlingvo al &quot;%1-&gt;&quot;</translation>
     </message>
@@ -426,6 +491,18 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Kombinu grupojn kun &quot;%1&quot;</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Forigi grupon</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>Ĉu vi certas, ke vi volas forigi la grupon &lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>Ĉu vi certas, ke vi volas generi aron da grupoj bazitaj sur vortaraj metadatenaj dosieroj?</translation>
     </message>
   </context>
   <context>
@@ -455,10 +532,6 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
       <translation>Filtrilo:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Serĉreĝimo</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Ĉi tiu elemento determinas kiel filtrila ĉeno estos interpretita</translation>
     </message>
@@ -481,18 +554,6 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Indiku la maksimumajn filtritajn kapvortojn resenditajn.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Filtrilaj maksimumaj rezultoj:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Helpo</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>bone</translation>
     </message>
     <message>
       <source>Text</source>
@@ -540,7 +601,11 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
     </message>
     <message>
       <source>Regular Expression</source>
-      <translation type="unfinished">Regular Expression</translation>
+      <translation>Regula Esprimo</translation>
+    </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>Maksimumo:</translation>
     </message>
   </context>
   <context>
@@ -574,10 +639,6 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
       <translation>Traduki en:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Dosieroj kun ĉi tiu vortaro:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Priskribo:</translation>
     </message>
@@ -596,6 +657,18 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
     <message>
       <source>Full-text search disabled</source>
       <translation>Plenteksta serĉo malŝaltita</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Malebligu</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Ebligu</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>Komponantoj de vortaro:</translation>
     </message>
   </context>
   <context>
@@ -691,7 +764,35 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
     </message>
     <message>
       <source>Restore selection</source>
-      <translation type="unfinished">Restore selection</translation>
+      <translation>Restarigi elekton</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation type="unfinished">Cancel reindex</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation type="unfinished">Schedule for reindex</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation type="unfinished">Cancel schedule reindex</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation type="unfinished">The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation type="unfinished">Change display name</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation type="unfinished">New display name:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Malsukcesis plani la vortaron por reindeksado.</translation>
     </message>
   </context>
   <context>
@@ -808,10 +909,6 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
       <translation>Aldonu dosierujon</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Forigi Ĉion</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Plej ŝatataj:</translation>
     </message>
@@ -820,16 +917,20 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
       <translation>Ĉiuj elektitaj eroj estos forigitaj. Ĉu daŭrigi?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Forigi Ĉiujn Erojn</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>Ĉu vi certas, ke vi volas forigi ĉiujn erojn?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation type="unfinished">Clear</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation type="unfinished">Clear Favorites</translation>
     </message>
   </context>
   <context>
@@ -957,28 +1058,12 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
       <translation>Langeto 2</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>Krei novan vortaran grupon</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>&amp;Aldoni grupon</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>Alinomi nunan vortargrupon</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>Re&amp;nomi grupon</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Forigi nunan vortaran grupon</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>&amp;Forigi grupon</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1048,6 +1133,22 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>Ĉu vi certas, ke vi volas forigi ĉiujn grupojn?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation type="unfinished">Add a new dictionary group</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>&amp;Aldoni grupon</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation type="unfinished">Group already exists</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation type="unfinished">A group with the name &apos;%1&apos; already exists.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1081,6 +1182,18 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
     <message>
       <source>%1 Morphology</source>
       <translation>%1 Morfologio</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Ortografio ĝusta, neniuj aliaj vortformoj trovitaj.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>El %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Vortformoj por %1: </translation>
     </message>
   </context>
   <context>
@@ -2388,10 +2501,6 @@ inter klasika kaj lerneja ortografio en cirila)</translation>
       <translation>Nova langeto</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>Bonvenon!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>Alirebleco API ne estas ebligita</translation>
     </message>
@@ -2464,42 +2573,6 @@ Por trovi &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; simboloj uz
     <message>
       <source>Print Article</source>
       <translation>Presi artikolon</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Kompleta HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Ununura HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>Pdf (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Mime Html (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Konservi artikolon kiel</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Eraro</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Ne eblas konservi artikolon: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Konservante artikolon...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Konservu artikolon kompleta</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2594,12 +2667,56 @@ Por trovi &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; simboloj uz
       <translation>Montru</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation type="unfinished">Save PDF complete</translation>
+      <source>Lock Panels</source>
+      <translation type="unfinished">Lock Panels</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation type="unfinished">Save PDF failed</translation>
+      <source>Clear History</source>
+      <translation type="unfinished">Clear History</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation type="unfinished">Are you sure you want to clear all history items?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation type="unfinished">Save File</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>Aplikaĵo ankoraŭ funkcias en la fono. Alklaku la pleton-ikonon por montri la fenestron.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Malfermi en &amp;Ekstera Retumilo</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>Nun konstruante kapvortan kaŝmemoron: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Prefikso</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Sufikso</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Plurvorta</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Plenteksta serĉo…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Serĉreĝimo</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Serĉreĝimo: %1</translation>
     </message>
   </context>
   <context>
@@ -2616,15 +2733,15 @@ Por trovi &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; simboloj uz
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML-analizeraro: %1 at %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation type="unfinished">JSON parse error</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML-analizeraro: %1 at %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation type="unfinished">JSON parse error</translation>
     </message>
   </context>
   <context>
@@ -2700,10 +2817,6 @@ Por trovi &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; simboloj uz
       <translation>Priskribo:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Dosieroj kun ĉi tiu vortaro:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Alĝustigu la ordon trenante kaj faligante erojn en ĝi. Faligi vortarojn al la neaktiva grupo por malebligi ilian uzon.</translation>
     </message>
@@ -2722,6 +2835,18 @@ Por trovi &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; simboloj uz
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Aktivaj vortaroj: %1, neaktivaj: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation type="unfinished">Change display name</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation type="unfinished">New display name:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>Komponantoj de vortaro:</translation>
     </message>
   </context>
   <context>
@@ -2766,28 +2891,12 @@ Kun ĉi tio ŝaltita tamen, novaj langetoj estos malfermitaj sen
       <translation>Malfermu novajn langetojn en la fono</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Kun ĉi tio aktiva, novaj langetoj estas malfermitaj tuj post la
-nuna, aktiva. Alie ili aldoniĝas al
-esti la lastaj.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Malfermu novajn langetojn post la nuna</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Elektu ĉi tiun opcion se vi ne volas vidi la ĉefan langeton kiam nur unu sola langeto estas malfermita.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Kaŝi ununuran langeton</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>MRU-ordo: Plej lastatempe uzata mendo.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2876,8 +2985,100 @@ la aplikaĵon.</translation>
       <translation>Kuntekstmenuaj vortaroj limigas:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>Sistemo defaŭlta</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Defaŭlto</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Klasika</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Modernaj</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Babilono</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Lingvestoj</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Lingvoes-Blua</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Rekomencu la programon por apliki la lingvoŝanĝon.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Rekomencu por apliki la interfacan stilŝanĝon.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Rekomencu por apliki la interfacan tiparo-ŝanĝon.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Rekomenco necesas</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Ebligu</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Malebligu</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Aŭtomata</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Nenio</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation type="unfinished">With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation type="unfinished">&amp;Style</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Aspekto</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Interface language</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Article Display style</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Add-on style</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Interface Style</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2896,12 +3097,16 @@ la aplikaĵon.</translation>
       <translation>Malhela Leganto-Reĝimo</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Ĉi tiuj tiparoj estos aplikataj kiam la tiparoj specifitaj de vortaro ne estas trovitaj.</translation>
+      <source>Preview Font</source>
+      <translation>Preview Font</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Rezervaj Tiparoj</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation type="unfinished">GoldenDict-ng is a dictionary software.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Ĉi tiuj tiparoj estos aplikataj kiam la tiparoj specifitaj de vortaro ne estas trovitaj.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2918,10 +3123,6 @@ la aplikaĵon.</translation>
     <message>
       <source>Monospace Font</source>
       <translation>Monospaca Tiparo</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Skani Ŝprucfenestron</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2958,8 +3159,8 @@ in the pressed state when the word selection changes.</source>
 en la premita stato kiam la vortelekto ŝanĝiĝas.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Selektado de klavoj nur kiam ĉiuj elektitaj klavoj estas tenitaj premitaj:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation type="unfinished">Only track selection when all selected keys are kept pressed:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3042,20 +3243,8 @@ en la premita stato kiam la vortelekto ŝanĝiĝas.</translation>
       <translation>Ludu sondosierojn per enkonstruita sonsubteno</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Uzu internan ludilon:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Elektu sonan malantaŭan finon</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Uzu ajnan eksteran programon por ludi sondosierojn</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Uzu eksteran programon:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3120,28 +3309,12 @@ por ĉiuj retaj petoj de la programo.</translation>
       <translation>Ferdeko:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Modelo:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Vorto</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Vortfara kampo...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Teksto</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Difina kampo...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Frazo</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3158,42 +3331,6 @@ malpermesante enhavon (bildoj, kadroj) ne devenantaj de la retejo
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>Malpermesu ŝarĝi enhavon de aliaj retejoj (kaŝas plej multajn reklamojn)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Iuj retejoj detektas GoldenDict per HTTP-titoloj kaj blokas la petojn.
-Ebligu ĉi tiun opcion por solvi la problemon.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>Ne identigu GoldenDict en HTTP-kapoj</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Maksimuma reta kaŝmemorgrandeco:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Maksimuma diskospaco okupita de la retkaŝmemoro de GoldenDict
-%1
-Se agordita al 0, la retdiska kaŝmemoro estos malŝaltita.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>Kiam ĉi tiu opcio estas ebligita, GoldenDict
-forigas sian retan kaŝmemoron el disko dum eliro.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Malplenigi retan kaŝmemoron ĉe eliro</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3256,8 +3393,12 @@ elŝutan paĝon.</translation>
       <translation>Maksimuma historia grandeco:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Intervalo de konservado de historio. Se agordita al 0, la historio estos konservita nur dum eliro.</translation>
+      <source>Favorites</source>
+      <translation>Plej ŝatataj</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Intervalo de konservado de ŝatatoj. Se agordita al 0 Favoritoj estos konservitaj nur dum eliro.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3266,14 +3407,6 @@ elŝutan paĝon.</translation>
     <message>
       <source>minutes</source>
       <translation>minutoj</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Plej ŝatataj</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Intervalo de konservado de ŝatatoj. Se agordita al 0 Favoritoj estos konservitaj nur dum eliro.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3372,112 +3505,112 @@ el Stardict, Babylon kaj GLS-vortaroj</translation>
       <translation>Forigi nevalidan indekson ĉe eliro</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>Sistemo defaŭlta</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Defaŭlto</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Klasika</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Modernaj</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Babilono</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Lingvestoj</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Lingvoes-Blua</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Aŭtomo faras nenion en iuj sistemoj.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Rekomencu la programon por apliki la lingvoŝanĝon.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Rekomencu por apliki la interfacan stilŝanĝon.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Rekomencu por apliki la interfacan tiparo-ŝanĝon.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Rekomenco necesas</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Ebligu</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Malebligu</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Aŭtomata</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Save debug messages to gd_log.txt in the config folder</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Interface language</translation>
+      <source>S&amp;can</source>
+      <translation type="unfinished">S&amp;can</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Article Display style</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation type="unfinished">Suppress JavaScript alerts, confirms, and prompts in the article view.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Add-on style</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation type="unfinished">Suppress JavaScript dialogs</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Interface Style</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation type="unfinished">Open website dictionary in separate tab</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Preview Font</translation>
+      <source>Anki</source>
+      <translation type="unfinished">Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation type="unfinished">GoldenDict-ng is a dictionary software.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation type="unfinished">Allow JavaScript to access clipboard in the article view.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation type="unfinished">Enable Interface Font</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation type="unfinished">Enable JavaScript clipboard access (need restart)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation type="unfinished">Restart to apply the JavaScript clipboard access change.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation type="unfinished">Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>Kaŝi langetan stangon kiam nur unu langeto estas malfermita.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Nenio</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Uzu ajnan eksteran sonludilon por ludi sondosierojn</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Vidi detalan agordan gvidilon</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>La sona vojo estos transdonita kiel komandlinia argumento al la ekstera ludilo.</translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation type="unfinished">Internal Audio Player:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation type="unfinished">External Audio Player:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>Aŭtomate ŝanĝas laŭ la sistema temo.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>Agordi Tiparojn</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>La Doka ikono ĉiam estas montrata dum la ĉefa fenestro estas malfermita, tiel ke macOS povas montri la aplikaĵan nomon kaj menuojn. Ebligu ĉi tiun opcion por teni la Dokan ikonon videbla post kiam la ĉefa fenestro estas kaŝita.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>Tenu la Dokan ikonon videbla en fono</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>Aldoni sonaĵon al Anki-karto kiam disponeblas</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>Kiam ebligite, retejaj vortaroj malfermiĝas en sia propra langeto anstataŭ esti enkonstruitaj en la artikola vido. Ĉi tio evitas kadrajn aranĝajn kaj rulajn limigojn, kaj ebligas la Skriptan kolumnon por ĉiu vortaro en la dialogujo de Vortaroj.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Vorto:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>Teksto:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Frazo:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Interfaco Tiparo</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Propra familio</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Propra grandeco</translation>
     </message>
   </context>
   <context>
@@ -3621,7 +3754,59 @@ el Stardict, Babylon kaj GLS-vortaroj</translation>
     </message>
     <message>
       <source>Force the word to be translated in the mainwindow.</source>
-      <translation type="unfinished">Force the word to be translated in the mainwindow.</translation>
+      <translation>Devigu la vorton esti tradukita en la ĉeffenestro.</translation>
+    </message>
+    <message>
+      <source>Website Url:</source>
+      <translation type="unfinished">Website Url:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation type="unfinished">In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Kompleta HTML (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Ununura HTML (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation type="unfinished">PDF document (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Konservi artikolon kiel</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Konservu artikolon kompleta</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Eraro</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Ne eblas konservi artikolon: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Save PDF complete</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Save PDF failed</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation type="unfinished">Saving article... (%1/%2)</translation>
     </message>
   </context>
   <context>
@@ -3653,6 +3838,10 @@ el Stardict, Babylon kaj GLS-vortaroj</translation>
       <source>The referenced resource failed to download.</source>
       <translation>La referencita rimedo malsukcesis elŝuti.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>la rimedo estus konservita ekster la cel-dosierujo.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3678,6 +3867,26 @@ el Stardict, Babylon kaj GLS-vortaroj</translation>
       <source>WARNING: %1</source>
       <translation>AVERTO: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation type="unfinished">Definition</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Fermi aktualan langeton</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Fermi ĉiujn langetojn krom aktuala</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Fermi ĉiujn langetojn</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Malfermi en &amp;Ekstera Retumilo</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3702,10 +3911,6 @@ el Stardict, Babylon kaj GLS-vortaroj</translation>
       <translation>Send word to main window (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation type="unfinished">Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Add word to Favorites (Ctrl+E)</translation>
     </message>
@@ -3718,6 +3923,10 @@ el Stardict, Babylon kaj GLS-vortaroj</translation>
 could be resized or managed in other ways.</source>
       <translation>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Konservi Artikolon</translation>
     </message>
   </context>
   <context>
@@ -4113,18 +4322,21 @@ Plena listo de disponeblaj lingvoj troveblas &lt;a href=&quot;https://lingualibr
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Enigu artikolon kiel ligilon ene de &lt;iframe&gt; -etikedo</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation type="unfinished">This website dictionary is opened in a new tab</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Malŝaltu &quot;Malfermi retejan vortaron en aparta langeto&quot; en Preferoj por montri la retejon interne de la artikolo anstataŭe.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Ŝaltita</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Kiel ligilo</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4137,6 +4349,22 @@ Plena listo de disponeblaj lingvoj troveblas &lt;a href=&quot;https://lingualibr
     <message>
       <source>Icon</source>
       <translation>Bildsimbolo</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation type="unfinished">Script</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation type="unfinished">Icon file name. Relative to the config directory.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation type="unfinished">Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation type="unfinished">This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</translation>
     </message>
   </context>
   <context>

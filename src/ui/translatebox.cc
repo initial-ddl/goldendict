@@ -10,6 +10,7 @@
 #include <QApplication>
 #include <QStringListModel>
 #include <QTimer>
+#include <QPainter>
 
 TranslateBox::TranslateBox( QWidget * parent ):
   QWidget( parent ),
@@ -18,11 +19,13 @@ TranslateBox::TranslateBox( QWidget * parent ):
 {
   completer = new QCompleter( words, this );
   resize( 200, 90 );
-  QSizePolicy sizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+  QSizePolicy sizePolicy( QSizePolicy::Maximum, QSizePolicy::Preferred );
   setSizePolicy( sizePolicy );
 
   setFocusProxy( translate_line );
   translate_line->setObjectName( "translateLine" );
+  translate_line->setTextMargins( 0, 0, 0, 0 );
+  translate_line->setFrame( false );
   translate_line->setPlaceholderText( tr( "Type a word or phrase to search dictionaries" ) );
 
   auto layout = new QHBoxLayout( this );
@@ -30,7 +33,7 @@ TranslateBox::TranslateBox( QWidget * parent ):
   layout->setContentsMargins( 0, 0, 0, 0 );
   layout->addWidget( translate_line );
 
-  auto dropdown = new QAction( QIcon( ":/icons/1downarrow.svg" ), tr( "Drop-down" ), this );
+  dropdown = new QAction( QIcon( ":/icons/1downarrow.svg" ), tr( "Drop-down" ), this );
   connect( dropdown, &QAction::triggered, this, &TranslateBox::rightButtonClicked );
 
   translate_line->addAction( dropdown, QLineEdit::TrailingPosition );
@@ -45,6 +48,24 @@ TranslateBox::TranslateBox( QWidget * parent ):
   completer->setCompletionMode( QCompleter::UnfilteredPopupCompletion );
   completer->setMaxVisibleItems( 16 );
   completer->popup()->setMinimumHeight( 256 );
+
+  // QCompleter's popup comes with the Qt::Popup window flag, which grabs all key
+  // events on Wayland and breaks input methods while the popup is open (#3123).
+  // Use tooltip-like flags on non-xcb platforms instead, as Falkon's
+  // LocationCompleterView and KDE's KCompletionBox do: on Wayland it maps to an
+  // xdg_popup without a grab, so the keyboard focus stays on the line edit and
+  // IME processing keeps working.
+  if ( QApplication::platformName() != QLatin1String( "xcb" ) ) {
+    completer->popup()->setWindowFlags( Qt::ToolTip | Qt::FramelessWindowHint | Qt::BypassWindowManagerHint );
+  }
+
+  // Qt::Popup used to close the popup automatically on outside clicks; without
+  // it, hide the popup when the focus moves away from the line edit.
+  connect( qApp, &QApplication::focusChanged, this, [ this ]( QWidget * old, QWidget * now ) {
+    if ( old == translate_line && now != translate_line ) {
+      completer->popup()->hide();
+    }
+  } );
 
   connect( translate_line, &QLineEdit::returnPressed, this, [ this ]() {
     emit returnPressed();
@@ -89,6 +110,22 @@ void TranslateBox::setModel( QStringList & _words )
            } );
 }
 
+void TranslateBox::setNoResults( bool noResults )
+{
+  if ( noResults ) {
+    QIcon icon( ":/icons/1downarrow.svg" );
+    QPixmap pixmap = icon.pixmap( 32, 32 );
+    QPainter painter( &pixmap );
+    painter.setCompositionMode( QPainter::CompositionMode_SourceIn );
+    painter.fillRect( pixmap.rect(), QColor( 255, 0, 0, 200 ) );
+    painter.end();
+    dropdown->setIcon( QIcon( pixmap ) );
+  }
+  else {
+    dropdown->setIcon( QIcon( ":/icons/1downarrow.svg" ) );
+  }
+}
+
 void TranslateBox::showPopup()
 {
   if ( m_popupEnabled ) {
@@ -98,6 +135,40 @@ void TranslateBox::showPopup()
   else {
     completer->popup()->hide();
   }
+}
+
+bool TranslateBox::eventFilter( QObject * watched, QEvent * event )
+{
+  if ( watched == translate_line && event->type() == QEvent::KeyPress ) {
+    auto keyEvent   = static_cast< QKeyEvent * >( event );
+    QWidget * popup = completer->popup();
+
+    // The Qt::Popup keyboard grab used to route key events through the popup, where
+    // QCompleter::eventFilter handled the navigation. Without the grab the events
+    // arrive at the line edit directly, so the navigation keys are re-routed to the
+    // popup. Other keys (typing, Enter) stay with the line edit, which also keeps
+    // the input method working while the popup is open.
+    switch ( keyEvent->key() ) {
+      case Qt::Key_Up:
+      case Qt::Key_Down:
+      case Qt::Key_PageUp:
+      case Qt::Key_PageDown:
+        if ( popup->isVisible() ) {
+          QApplication::sendEvent( popup, event );
+          return true;
+        }
+        break;
+      case Qt::Key_Escape:
+        if ( popup->isVisible() ) {
+          popup->hide();
+          return true;
+        }
+        break;
+      default:
+        break;
+    }
+  }
+  return QObject::eventFilter( watched, event );
 }
 
 QLineEdit * TranslateBox::translateLine()

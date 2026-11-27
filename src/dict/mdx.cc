@@ -22,7 +22,6 @@
 #include "tiff.hh"
 #include "utils.hh"
 #include <QAtomicInt>
-#include <QCryptographicHash>
 #include <QDir>
 #include <QRegularExpression>
 #include <QString>
@@ -47,7 +46,7 @@ using namespace Mdict;
 
 enum {
   kSignature            = 0x4349444d, // MDIC
-  kCurrentFormatVersion = 11 + BtreeIndexing::FormatVersion + Folding::Version
+  kCurrentFormatVersion = 12 + BtreeIndexing::FormatVersion + Folding::Version
 };
 
 DEF_EX( exCorruptDictionary, "dictionary file was tampered or corrupted", std::exception )
@@ -84,6 +83,7 @@ struct IdxHeader
 
   uint32_t mddIndexInfosOffset; // address of IndexInfos for resource files (.mdd)
   uint32_t mddIndexInfosCount;  // count of IndexInfos for resource files
+  uint64_t sourceLastModified;  // Maximum lastModified timestamp of dictionary files
 };
 static_assert( alignof( IdxHeader ) == 1 );
 #pragma pack( pop )
@@ -92,7 +92,6 @@ static_assert( alignof( IdxHeader ) == 1 );
 class IndexedMdd: public BtreeIndexing::BtreeIndex
 {
   QMutex & idxMutex;
-  QMutex fileMutex;
   ChunkedStorage::Reader & chunks;
   QFile mddFile;
   bool isFileOpen;
@@ -115,23 +114,6 @@ public:
     mddFile.setFileName( QString::fromUtf8( fileName ) );
     isFileOpen = mddFile.open( QFile::ReadOnly );
     return isFileOpen;
-  }
-
-  /// Returns true if the mdd is open, false otherwise.
-  inline bool isOpen() const
-  {
-    return isFileOpen;
-  }
-
-  /// Checks whether the given file exists in the mdd file or not.
-  /// Note that this function is thread-safe, since it does not access mdd file.
-  bool hasFile( const std::u32string & name )
-  {
-    if ( !isFileOpen ) {
-      return false;
-    }
-    vector< WordArticleLink > links = findArticles( name );
-    return !links.empty();
   }
 
   /// Attempts loading the given file into the given vector. Returns true on
@@ -195,10 +177,9 @@ class MdxDictionary: public BtreeIndexing::BtreeDictionary
 
   QAtomicInt deferredInitDone;
   QMutex deferredInitMutex;
-  bool deferredInitRunnableStarted;
+  bool deferredInitRunnableStarted = false;
 
   string initError;
-  QString cacheDirName;
 
 public:
 
@@ -241,21 +222,21 @@ public:
 
   void makeFTSIndex( QAtomicInt & isCancelled ) override;
 
+  sptr< Dictionary::Class > duplicate() override;
+
   void setFTSParameters( const Config::FullTextSearch & fts ) override
   {
     if ( !ensureInitDone().empty() ) {
       return;
     }
     if ( metadata_enable_fts.has_value() ) {
-      can_FTS = fts.enabled && metadata_enable_fts.value();
+      can_FTS = metadata_enable_fts.value();
     }
     else {
       can_FTS = fts.enabled && !fts.disabledTypes.contains( "MDICT", Qt::CaseInsensitive )
         && ( fts.maxDictionarySize == 0 || getArticleCount() <= fts.maxDictionarySize );
     }
   }
-
-  QString getCachedFileName( QString name );
 
 protected:
 
@@ -273,6 +254,7 @@ private:
   QString & filterResource( QString & article );
 
   void replaceLinks( QString & id, QString & article );
+  QString isolateStyleCssInHtml( const QString & description );
   //@font-face
   void replaceStyleInHtml( QString & id, QString & article );
   void replaceFontLinks( QString & id, QString & article );
@@ -287,8 +269,7 @@ MdxDictionary::MdxDictionary( const string & id, const string & indexFile, const
   idx( indexFile, QIODevice::ReadOnly ),
   idxFileName( indexFile ),
   idxHeader( idx.read< IdxHeader >() ),
-  chunks( idx, idxHeader.chunksOffset ),
-  deferredInitRunnableStarted( false )
+  chunks( idx, idxHeader.chunksOffset )
 {
   // Read the dictionary's name
   idx.seek( sizeof( idxHeader ) );
@@ -297,7 +278,7 @@ MdxDictionary::MdxDictionary( const string & id, const string & indexFile, const
   //fallback, use filename as dictionary name
   if ( dictionaryName.empty() ) {
     QFileInfo f( QString::fromUtf8( dictionaryFiles[ 0 ].c_str() ) );
-    dictionaryName = f.baseName().toStdString();
+    dictionaryName = f.completeBaseName().toStdString();
   }
 
   // then read the dictionary's encoding
@@ -311,8 +292,6 @@ MdxDictionary::MdxDictionary( const string & id, const string & indexFile, const
   // Full-text search parameters
 
   ftsIdxName = indexFile + Dictionary::getFtsSuffix();
-
-  cacheDirName = QDir::tempPath() + QDir::separator() + QString::fromUtf8( getId().c_str() ) + ".cache";
 }
 
 MdxDictionary::~MdxDictionary()
@@ -320,8 +299,6 @@ MdxDictionary::~MdxDictionary()
   QMutexLocker _( &deferredInitMutex );
 
   dictFile.close();
-
-  Utils::Fs::removeDirectory( cacheDirName );
 }
 
 //////// MdxDictionary::deferredInit()
@@ -444,8 +421,10 @@ void MdxDictionary::makeFTSIndex( QAtomicInt & isCancelled )
   qDebug( "MDict: Building the full-text index for dictionary: %s", getName().c_str() );
 
   try {
-    auto _dict = std::make_shared< MdxDictionary >( this->getId(), idxFileName, this->getDictionaryFilenames() );
-    if ( !_dict->ensureInitDone().empty() ) {
+    // Create a new instance for indexing to avoid locking the main dictionary instance
+    // which may be used for queries during indexing
+    auto _dict = std::static_pointer_cast< MdxDictionary >( duplicate() );
+    if ( !_dict || !_dict->ensureInitDone().empty() ) {
       return;
     }
     FtsHelpers::makeFTSIndex( _dict.get(), isCancelled );
@@ -455,6 +434,15 @@ void MdxDictionary::makeFTSIndex( QAtomicInt & isCancelled )
     qWarning( "MDict: Failed building full-text search index for \"%s\", reason: %s", getName().c_str(), ex.what() );
     QFile::remove( ftsIdxName.c_str() );
   }
+}
+
+sptr< Dictionary::Class > MdxDictionary::duplicate()
+{
+  auto instance = std::make_shared< MdxDictionary >( getId(), idxFileName, getDictionaryFilenames() );
+  // Inherit FTS state from original instance
+  instance->metadata_enable_fts = this->metadata_enable_fts;
+  instance->can_FTS             = this->can_FTS;
+  return instance;
 }
 
 void MdxDictionary::getArticleText( uint32_t articleAddress, QString & headword, QString & text )
@@ -551,9 +539,6 @@ void MdxArticleRequest::run()
   // Some synonims make it that the articles appear several times. We combat this
   // by only allowing them to appear once.
   set< uint32_t > articlesIncluded;
-  // Sometimes the articles are physically duplicated. We store hashes of
-  // the bodies to account for this.
-  set< QByteArray > articleBodiesIncluded;
   string articleText;
 
   for ( unsigned x = 0; x < chain.size(); ++x ) {
@@ -590,15 +575,7 @@ void MdxArticleRequest::run()
       return;
     }
 
-    if ( articlesIncluded.find( chain[ x ].articleOffset ) != articlesIncluded.end() ) {
-      continue; // We already have this article in the body.
-    }
-
-    QCryptographicHash hash( QCryptographicHash::Md5 );
-    hash.addData( { articleBody.data(), static_cast< qsizetype >( articleBody.length() ) } );
-    if ( !articleBodiesIncluded.insert( hash.result() ).second ) {
-      continue; // Already had this body
-    }
+    articlesIncluded.insert( chain[ x ].articleOffset );
 
     // Handle internal redirects
     if ( strncmp( articleBody.c_str(), "@@@LINK=", 8 ) == 0 ) {
@@ -666,14 +643,49 @@ public:
     isCancelled.ref();
     f.waitForFinished();
   }
+
+private:
+  // Detect CSS file encoding:
+  // 1. BOM (UTF-8, UTF-16LE, UTF-16BE, UTF-32LE, UTF-32BE)
+  // 2. UTF-8 validity check (content-based detection)
+  // 3. Dictionary encoding fallback
+  // 4. UTF-8 fallback
+  static QString detectCssEncoding( const vector< char > & data, const string & dictEncoding )
+  {
+    if ( data.empty() ) {
+      return "UTF-8";
+    }
+
+    // Check for BOM using Text utility
+    string bomEncoding = Text::detectEncodingFromBom( data.data(), data.size() );
+    if ( !bomEncoding.empty() ) {
+      return QString::fromStdString( bomEncoding );
+    }
+
+    // Check if content is valid UTF-8 (heuristic for files without BOM)
+    if ( Text::isValidUtf8( data.data(), data.size() ) ) {
+      return "UTF-8";
+    }
+
+    // Fallback to dictionary encoding
+    if ( !dictEncoding.empty() ) {
+      return QString::fromStdString( dictEncoding );
+    }
+
+    // Final fallback
+    return "UTF-8";
+  }
 };
+
 
 QByteArray MddResourceRequest::isolate_css()
 {
 
   const QString id = QString::fromUtf8( dict.getId().c_str() );
 
-  QString css = QString::fromUtf8( data.data(), data.size() );
+  // Detect CSS encoding from BOM, @charset rule, or fallback to dictionary encoding
+  QString encoding = detectCssEncoding( data, dict.encoding );
+  QString css      = MdictParser::toUtf16( encoding, data.data(), data.size() );
 
   int pos = 0;
 
@@ -689,7 +701,11 @@ QByteArray MddResourceRequest::isolate_css()
     if ( url.indexOf( ":/" ) >= 0 || url.indexOf( "data:" ) >= 0 ) {
       // External link or base64-encoded data
       newCSS += match.captured();
+      continue;
+    }
 
+    if ( url.startsWith( "//" ) ) {
+      newCSS += "url(" + match.captured( 1 ) + "https:" + url + match.captured( 3 ) + ")";
       continue;
     }
 
@@ -701,7 +717,8 @@ QByteArray MddResourceRequest::isolate_css()
     css = newCSS;
     newCSS.clear();
   }
-  dict.isolateCSS( css, ".mdict" );
+
+  dict.isolateCSS( css );
   auto bytes = css.toUtf8();
 
   return bytes;
@@ -805,6 +822,11 @@ const QString & MdxDictionary::getDescription()
     dictionaryDescription = QString::fromUtf8( str.c_str(), str.size() );
   }
 
+  dictionaryDescription = MdictParser::substituteStylesheet( dictionaryDescription, styleSheets );
+  dictionaryDescription = filterResource( dictionaryDescription );
+
+  //unclosed tags
+  dictionaryDescription = dictionaryDescription + QString::fromStdString( Utils::Html::getHtmlCleaner() );
   return dictionaryDescription;
 }
 
@@ -818,7 +840,7 @@ void MdxDictionary::loadIcon() noexcept
 
   QString text = QString::fromStdString( dictionaryName );
 
-  if ( !loadIconFromFileName( fileName ) && !loadIconFromText( ":/icons/mdict-bg.png", text ) ) {
+  if ( !loadIconFromFileName( fileName ) && !loadIconFromText( ":/icons/mdict-bg.svg", text ) ) {
     // Use default icons
     dictionaryIcon = QIcon( ":/icons/mdict.png" );
   }
@@ -867,8 +889,26 @@ void MdxDictionary::loadArticle( uint32_t offset, string & articleText, bool noF
 QString & MdxDictionary::filterResource( QString & article )
 {
   QString id = QString::fromStdString( getId() );
+
+  // Handle protocol-relative URLs (//) - Replace them with https://
+  // This must be done before replaceLinks so they are seen as absolute URLs
+  article.replace( RX::Mdx::protocolRelativeUrlQuoted, R"(\1https://)" );
+  article.replace( RX::Mdx::protocolRelativeUrlUnquoted, R"(\1https://)" );
+
   replaceLinks( id, article );
+
+  // Replace html/body/head with custom tags to avoid hoisting by browser
+  article.replace( RX::Mdx::htmlTagStart, "<gd-section-html" );
+  article.replace( RX::Mdx::htmlTagEnd, "</gd-section-html>" );
+
+  article.replace( RX::Mdx::bodyTagStart, "<gd-section-body" );
+  article.replace( RX::Mdx::bodyTagEnd, "</gd-section-body>" );
+
+  article.replace( RX::Mdx::headTagStart, "<gd-section-head" );
+  article.replace( RX::Mdx::headTagEnd, "</gd-section-head>" );
+
   replaceStyleInHtml( id, article );
+  article = isolateStyleCssInHtml( article );
   return article;
 }
 
@@ -896,9 +936,13 @@ void MdxDictionary::replaceLinks( QString & id, QString & article )
 
       QRegularExpressionMatch match = RX::Mdx::audioRe.match( newLink );
       if ( match.hasMatch() ) {
-        // sounds and audio link script
+        // sounds and audio link script. The anchor must keep its default
+        // navigation: audio links are handled by
+        // ArticleWebPage::acceptNavigationRequest, which routes the click to
+        // ArticleView::playAudio. An inline "onclick=return false" would cancel
+        // the navigation before the page ever sees it.
         QString newTxt = match.captured( 1 ) + match.captured( 2 ) + "gdau://" + id + "/" + match.captured( 3 )
-          + match.captured( 2 ) + R"( onclick="return false;" )";
+          + match.captured( 2 );
         newLink = QString::fromUtf8(
                     addAudioLink( "gdau://" + getId() + "/" + match.captured( 3 ).toUtf8().data(), getId() ).c_str() )
           + newLink.replace( match.capturedStart(), match.capturedLength(), newTxt );
@@ -982,30 +1026,50 @@ void MdxDictionary::replaceLinks( QString & id, QString & article )
       // convert <img src="bres://{id}/a.png" srcset="a-1x.png 1x, b-2x.png 2x, c.png">
       // into    <img src="bres://{id}/a.png" srcset="bres://{id}/a-1x.png 1x,bres://{id}/b-2x.png 2x,bres://{id}/c.png">
 
-      if ( linkType.compare( "img" ) == 0 ) {
-        match = RX::Mdx::srcset.match( newLink ); // have to use newLink since linkTxt may already be modified
+      if ( linkType.compare( "img" ) == 0 || linkType.compare( "source" ) == 0 ) {
+        match = RX::Mdx::srcset.match( newLink );
         if ( match.hasMatch() ) {
-          auto srcsetOriginalText   = match.captured( "text" );
+          auto srcsetOriginalText = match.captured( "text" );
+
           QStringList srcsetNewText = {};
+          // Split only when a comma is followed by whitespace, as per HTML Living Standard.
+          QStringList chunks = srcsetOriginalText.split( QRegularExpression( R"(,\s+)" ), Qt::SkipEmptyParts );
 
-          auto ImageList = srcsetOriginalText.split( u',', Qt::SkipEmptyParts );
+          for ( QString chunk : chunks ) {
+            chunk = chunk.trimmed();
+            if ( chunk.isEmpty() ) {
+              continue;
+            }
 
-          for ( auto & img : ImageList ) {
-            auto imgPair = img.split( RX::whiteSpace );
+            QString url, desc;
+            int firstSpace = chunk.indexOf( QRegularExpression( R"(\s)" ) );
+            if ( firstSpace != -1 ) {
+              url  = chunk.left( firstSpace );
+              desc = chunk.mid( firstSpace ).trimmed();
+            }
+            else {
+              url = chunk;
+            }
 
-            if ( !imgPair.empty() && !imgPair.at( 0 ).contains( "//" ) ) {
-              if ( imgPair.length() == 1 ) {
-                srcsetNewText.append( QString( R"(bres://%1/%2)" ).arg( id, imgPair.at( 0 ) ) );
+            if ( !url.isEmpty() ) {
+              if ( url.startsWith( "//" ) ) {
+                url = "https:" + url;
+                srcsetNewText.append( desc.isEmpty() ? url : url + " " + desc );
               }
-              else if ( imgPair.length() == 2 ) {
-                srcsetNewText.append( QString( R"(bres://%1/%2 %3)" ).arg( id, imgPair.at( 0 ), imgPair.at( 1 ) ) );
+              else if ( !url.contains( "//" ) && !url.contains( ":" ) ) {
+                QString converted = QString( R"(bres://%1/%2)" ).arg( id, url );
+                srcsetNewText.append( desc.isEmpty() ? converted : converted + " " + desc );
+              }
+              else {
+                srcsetNewText.append( desc.isEmpty() ? url : url + " " + desc );
               }
             }
           }
-
-          newLink.replace( match.capturedStart(),
-                           match.capturedLength(),
-                           match.captured( "before" ) % srcsetNewText.join( ',' ) % match.captured( "after" ) );
+          if ( !srcsetNewText.isEmpty() ) {
+            newLink.replace( match.capturedStart(),
+                             match.capturedLength(),
+                             match.captured( "before" ) % srcsetNewText.join( ',' ) % match.captured( "after" ) );
+          }
         }
       }
 
@@ -1014,8 +1078,12 @@ void MdxDictionary::replaceLinks( QString & id, QString & article )
         if ( match.hasMatch() ) {
           auto srcsetOriginalText = match.captured( "text" );
           QString srcsetNewText;
-          if ( !srcsetOriginalText.contains( "//" ) ) {
+          if ( !srcsetOriginalText.contains( "//" ) && !srcsetOriginalText.contains( ":" ) ) {
             srcsetNewText = QString( R"(bres://%1/%2)" ).arg( id, srcsetOriginalText );
+          }
+          else {
+            // Fix: Keep external URLs for object data
+            srcsetNewText = srcsetOriginalText;
           }
 
           newLink.replace( match.capturedStart(),
@@ -1036,6 +1104,48 @@ void MdxDictionary::replaceLinks( QString & id, QString & article )
     articleNewText += article.mid( linkPos );
     article = articleNewText;
   }
+}
+
+QString MdxDictionary::isolateStyleCssInHtml( const QString & description )
+{
+  // Check if description contains <style> tags, if so, call isolateCSS to process them
+  if ( description.contains( "<style", Qt::CaseInsensitive ) ) {
+    // Extract content from <style> tags and process CSS isolation
+    QRegularExpression styleRegex( "<style[^>]*>(.*?)</style>",
+                                   QRegularExpression::CaseInsensitiveOption
+                                     | QRegularExpression::DotMatchesEverythingOption );
+    QRegularExpressionMatchIterator it = styleRegex.globalMatch( description );
+
+    // Construct a new string instead of modifying the original description
+    QString newDescription;
+    int lastPos = 0;
+
+    while ( it.hasNext() ) {
+      QRegularExpressionMatch match = it.next();
+      QString styleContent          = match.captured( 1 );
+
+
+      // Call isolateCSS to process CSS content in <style> tags
+      isolateCSS( styleContent, QString() );
+
+      // Simplified style tag construction as suggested by user
+      QString newStyleTag = "<style>" + styleContent + "</style>";
+
+      // Append content before the match and the new style tag
+      newDescription += description.mid( lastPos, match.capturedStart() - lastPos );
+      newDescription += newStyleTag;
+
+      // Update last position
+      lastPos = match.capturedEnd();
+    }
+
+    // Append any remaining content after the last match
+    newDescription += description.mid( lastPos );
+
+    return newDescription;
+  }
+
+  return description;
 }
 
 void MdxDictionary::replaceStyleInHtml( QString & id, QString & article )
@@ -1087,8 +1197,11 @@ void MdxDictionary::replaceFontLinks( QString & id, QString & article )
     QString linkType = allLinksMatch.captured( 1 );
     QString newLink  = linkTxt;
 
-    //skip remote url
-    if ( !linkType.contains( ":" ) ) {
+    // skip remote url and handle protocol-relative urls
+    if ( linkType.startsWith( "//" ) ) {
+      newLink = QString( "url(\"https:%1\")" ).arg( linkType );
+    }
+    else if ( !linkType.contains( ":" ) ) {
       newLink = QString( "url(\"bres://%1/%2\")" ).arg( id, linkType );
     }
     articleNewText += newLink;
@@ -1099,91 +1212,6 @@ void MdxDictionary::replaceFontLinks( QString & id, QString & article )
   }
 }
 
-
-QString MdxDictionary::getCachedFileName( QString filename )
-{
-  QDir dir;
-  QFileInfo info( cacheDirName );
-  if ( !info.exists() || !info.isDir() ) {
-    if ( !dir.mkdir( cacheDirName ) ) {
-      qWarning( "Mdx: can't create cache directory \"%s\"", cacheDirName.toUtf8().data() );
-      return QString();
-    }
-  }
-
-  // Create subfolders if needed
-
-  QString name = filename;
-  name.replace( '/', '\\' );
-  QStringList list = name.split( '\\' );
-  int subFolders   = list.size() - 1;
-  if ( subFolders > 0 ) {
-    QString dirName = cacheDirName;
-    for ( int i = 0; i < subFolders; i++ ) {
-      dirName += QDir::separator() + list.at( i );
-      QFileInfo dirInfo( dirName );
-      if ( !dirInfo.exists() ) {
-        if ( !dir.mkdir( dirName ) ) {
-          qWarning( "Mdx: can't create cache directory \"%s\"", dirName.toUtf8().data() );
-          return QString();
-        }
-      }
-    }
-  }
-
-  QString fullName = cacheDirName + QDir::separator() + filename;
-
-  info.setFile( fullName );
-  if ( info.exists() ) {
-    return fullName;
-  }
-  QFile f( fullName );
-  if ( !f.open( QFile::WriteOnly ) ) {
-    qWarning( R"(Mdx: file "%s" creating error: "%s")", fullName.toUtf8().data(), f.errorString().toUtf8().data() );
-    return QString();
-  }
-  std::u32string resourceName = filename.toStdU32String();
-  vector< char > data;
-
-  // In order to prevent recursive internal redirection...
-  set< std::u32string, std::less<> > resourceIncluded;
-
-  for ( ;; ) {
-    if ( !resourceIncluded.insert( resourceName ).second ) {
-      continue;
-    }
-
-    loadResourceFile( resourceName, data );
-
-    // Check if this file has a redirection
-    // Always encoded in UTF16-LE
-    // L"@@@LINK="
-    if ( static const char pattern[ 16 ] =
-           { '@', '\0', '@', '\0', '@', '\0', 'L', '\0', 'I', '\0', 'N', '\0', 'K', '\0', '=', '\0' };
-         data.size() > sizeof( pattern ) && memcmp( &data.front(), pattern, sizeof( pattern ) ) == 0 ) {
-      data.push_back( '\0' );
-      data.push_back( '\0' );
-      QString target =
-        MdictParser::toUtf16( "UTF-16LE", &data.front() + sizeof( pattern ), data.size() - sizeof( pattern ) );
-      resourceName = target.trimmed().toStdU32String();
-      continue;
-    }
-    break;
-  }
-
-  qint64 n = 0;
-  if ( !data.empty() ) {
-    n = f.write( data.data(), data.size() );
-  }
-
-  f.close();
-
-  if ( n < (qint64)data.size() ) {
-    qWarning( R"(Mdx: file "%s" writing error: "%s")", fullName.toUtf8().data(), f.errorString().toUtf8().data() );
-    return QString();
-  }
-  return fullName;
-}
 
 void MdxDictionary::loadResourceFile( const std::u32string & resourceName, vector< char > & data )
 {
@@ -1276,9 +1304,25 @@ static bool indexIsOldOrBad( const vector< string > & dictFiles, const string & 
   File::Index idx( indexFile, QIODevice::ReadOnly );
   IdxHeader header;
 
-  return idx.readRecords( &header, sizeof( header ), 1 ) != 1 || header.signature != kSignature
-    || header.formatVersion != kCurrentFormatVersion || header.parserVersion != MdictParser::kParserVersion
-    || header.foldingVersion != Folding::Version || header.mddIndexInfosCount != dictFiles.size() - 1;
+  if ( idx.readRecords( &header, sizeof( header ), 1 ) != 1 || header.signature != kSignature
+       || header.formatVersion != kCurrentFormatVersion || header.parserVersion != MdictParser::kParserVersion
+       || header.foldingVersion != Folding::Version ) {
+    return true;
+  }
+
+  // Check if any of the dictionary files were modified after the index was built
+  qint64 lastModified = 0;
+  for ( const auto & dictionaryFile : dictFiles ) {
+    QFileInfo fileInfo( QString::fromUtf8( dictionaryFile.c_str() ) );
+    if ( fileInfo.exists() ) {
+      qint64 ts = fileInfo.lastModified().toMSecsSinceEpoch();
+      if ( ts > lastModified ) {
+        lastModified = ts;
+      }
+    }
+  }
+
+  return header.sourceLastModified != (uint64_t)lastModified;
 }
 
 static void findResourceFiles( const string & mdx, vector< string > & dictFiles )
@@ -1484,6 +1528,19 @@ vector< sptr< Dictionary::Class > > makeDictionaries( const vector< string > & f
       idxHeader.foldingVersion = Folding::Version;
       idxHeader.articleCount   = parser.wordCount();
       idxHeader.wordCount      = parser.wordCount();
+
+      // Compute and store the source last modified timestamp
+      qint64 lastModified = 0;
+      for ( const auto & dictionaryFile : dictFiles ) {
+        QFileInfo fileInfo( QString::fromUtf8( dictionaryFile.c_str() ) );
+        if ( fileInfo.exists() ) {
+          qint64 ts = fileInfo.lastModified().toMSecsSinceEpoch();
+          if ( ts > lastModified ) {
+            lastModified = ts;
+          }
+        }
+      }
+      idxHeader.sourceLastModified = (uint64_t)lastModified;
 
       idx.rewind();
       idx.write( &idxHeader, sizeof( idxHeader ) );

@@ -126,7 +126,7 @@ public:
     if ( ensureInitDone().size() )
       return;
     if ( metadata_enable_fts.has_value() ) {
-      can_FTS = fts.enabled && metadata_enable_fts.value();
+      can_FTS = metadata_enable_fts.value();
     }
     else
       can_FTS = fts.enabled && !fts.disabledTypes.contains( "EPWING", Qt::CaseInsensitive )
@@ -621,7 +621,8 @@ void EpwingArticleRequest::run()
     // Now grab that article
 
     string headword, articleText;
-    int articlePage, articleOffset;
+    int articlePage   = 0;
+    int articleOffset = 0;
 
     try {
       dict.loadArticle( x.articleOffset, headword, articleText, articlePage, articleOffset );

@@ -1,4 +1,4 @@
-﻿/* This file is (c) 2008-2012 Konstantin Isakov <ikm@goldendict.org>
+/* This file is (c) 2008-2012 Konstantin Isakov <ikm@goldendict.org>
  * Part of GoldenDict. Licensed under GPLv3 or later, see the LICENSE file */
 
 #include "config.hh"
@@ -8,6 +8,7 @@
 #include <QByteArray>
 #include <QCommandLineParser>
 #include <QFile>
+#include <QFontDatabase>
 #include <QIcon>
 #include <QMessageBox>
 #include <QSessionManager>
@@ -38,7 +39,7 @@ using GD_QApplication = QtSingleApplication;
 #endif
 
 #if defined( USE_BREAKPAD )
-  #if defined( Q_OS_MAC )
+  #if defined( Q_OS_MACOS )
     #include "client/mac/handler/exception_handler.h"
   #elif defined( Q_OS_WIN32 )
     #include "client/windows/handler/exception_handler.h"
@@ -63,7 +64,7 @@ bool callback( const wchar_t * dump_path,
   return succeeded;
 }
   #endif
-  #ifdef Q_OS_MAC
+  #ifdef Q_OS_MACOS
 bool callback( const char * dump_dir, const char * minidump_id, void * context, bool succeeded )
 {
   if ( succeeded ) {
@@ -81,6 +82,7 @@ struct GDOptions
 {
   bool logFile     = false;
   bool togglePopup = false;
+  bool newTab      = false;
   QString word, groupName, popupGroupName;
   QString window;
 
@@ -214,28 +216,39 @@ void processCommandLine( QCoreApplication * app, GDOptions * result )
 
   const QStringList posArgs = qcmd.positionalArguments();
   if ( !posArgs.empty() ) {
-    result->word = posArgs.at( 0 );
+    QString originalArg = posArgs.at( 0 );
 
 #if defined( Q_OS_LINUX ) || defined( Q_OS_WIN )
     // handle url scheme like "goldendict://" or "dict://" on windows/linux
-    auto schemePos = result->word.indexOf( "://" );
+    auto schemePos = originalArg.indexOf( "://" );
     if ( schemePos != -1 ) {
-      result->word.remove( 0, schemePos + 3 );
-      // In microsoft Words, the / will be automatically appended
-      if ( result->word.endsWith( "/" ) ) {
-        result->word.chop( 1 );
+      QUrl url( originalArg );
+      QString query = url.query();
+
+      QString word = Utils::Url::extractWordFromUrl( originalArg );
+
+      result->word = word;
+
+      if ( !query.isEmpty() ) {
+        QUrlQuery urlQuery( query );
+        QString targetParam = urlQuery.queryItemValue( "target" );
+
+        if ( targetParam == "popup" ) {
+          result->window = "popup";
+        }
+        else if ( targetParam == "main" ) {
+          result->window = "main";
+        }
+        else if ( targetParam == "newtab" ) {
+          result->newTab = true;
+        }
       }
     }
-
-    // Handle cases where we get encoded URL
-    if ( result->word.startsWith( QStringLiteral( "xn--" ) ) ) {
-      // For `kde-open` or `gio` or others, URL are encoded into ACE or Punycode
-      result->word = QUrl::fromAce( result->word.toLatin1(), QUrl::IgnoreIDNWhitelist );
+    else {
+      result->word = originalArg;
     }
-    else if ( result->word.startsWith( QStringLiteral( "%" ) ) ) {
-      // For Firefox or other browsers where URL are percent encoded
-      result->word = QUrl::fromPercentEncoding( result->word.toLatin1() );
-    }
+#else
+    result->word = originalArg;
 #endif
   }
 }
@@ -243,20 +256,22 @@ void processCommandLine( QCoreApplication * app, GDOptions * result )
 int main( int argc, char ** argv )
 {
 #if defined( WITH_X11 )
-  // GoldenDict use lots of X11 functions and it currently cannot work
-  // natively on Wayland. This workaround will force GoldenDict to use
-  // XWayland.
+  // Platform selection: Higher priority to user intention
+  // 1. Respect QT_QPA_PLATFORM if already set.
+  // 2. GOLDENDICT_FORCE_XCB forces Xcb (fallback mode).
+  // 3. GOLDENDICT_FORCE_WAYLAND forces native Wayland.
+  // 4. By default, we let Qt decide (usually native Wayland on Wayland sessions).
+  //    This improves HiDPI support but might affect some X11-specific features.
 
-  if ( qEnvironmentVariableIsEmpty( "GOLDENDICT_FORCE_WAYLAND" ) ) {
-    char * xdg_envc     = getenv( "XDG_SESSION_TYPE" );
-    QString xdg_session = xdg_envc ? QString::fromLatin1( xdg_envc ) : QString();
-    if ( !QString::compare( xdg_session, QString( "wayland" ), Qt::CaseInsensitive ) ) {
-      setenv( "QT_QPA_PLATFORM", "xcb", 1 );
-    }
+  if ( qEnvironmentVariableIsSet( "GOLDENDICT_FORCE_XCB" ) ) {
+    setenv( "QT_QPA_PLATFORM", "xcb", 1 );
+  }
+  else if ( qEnvironmentVariableIsSet( "GOLDENDICT_FORCE_WAYLAND" ) ) {
+    setenv( "QT_QPA_PLATFORM", "wayland", 1 );
   }
 #endif
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
   setenv( "LANG", "en_US.UTF-8", 1 );
 #endif
 
@@ -274,12 +289,35 @@ int main( int argc, char ** argv )
   qputenv( "QT_QPA_PLATFORM", "windows:darkmode=1" );
 
 #endif
-  //high dpi screen support
-  if ( !qEnvironmentVariableIsSet( "QT_ENABLE_HIGHDPI_SCALING" )
-       || qEnvironmentVariableIsEmpty( "QT_ENABLE_HIGHDPI_SCALING" ) ) {
-    qputenv( "QT_ENABLE_HIGHDPI_SCALING", "1" );
+  // High DPI screen support
+  QGuiApplication::setHighDpiScaleFactorRoundingPolicy( Qt::HighDpiScaleFactorRoundingPolicy::PassThrough );
+  
+  // Registration of custom URL schemes must be done before QCoreApplication/QApplication is created.
+
+  // Schemes that use the host/path authority form (scheme://host/path).
+  const QStringList hostSchemes =
+    { "gdlookup", "gdwiki", "gdau", "gico", "qrcx", "bres", "gdprg", "gdvideo", "gdtts", "gdinternal", "entry" };
+
+  for ( const auto & localScheme : hostSchemes ) {
+    QWebEngineUrlScheme webUiScheme( localScheme.toLatin1() );
+    webUiScheme.setSyntax( QWebEngineUrlScheme::Syntax::Host );
+    webUiScheme.setFlags( QWebEngineUrlScheme::LocalAccessAllowed | QWebEngineUrlScheme::CorsEnabled
+                          | QWebEngineUrlScheme::SecureScheme );
+    QWebEngineUrlScheme::registerScheme( webUiScheme );
   }
-  QApplication::setHighDpiScaleFactorRoundingPolicy( Qt::HighDpiScaleFactorRoundingPolicy::PassThrough );
+
+  // bword is special: dictionaries emit it in opaque form (bword:word), not as
+  // an authority URL. Registering it as Path lets Chromium pass non-ASCII
+  // headwords (CJK, diacritics) through untouched as the URL's path, instead
+  // of forcing them into host() which QUrl cannot parse correctly for
+  // non-ASCII characters.
+  {
+    QWebEngineUrlScheme bwordScheme( "bword" );
+    bwordScheme.setSyntax( QWebEngineUrlScheme::Syntax::Path );
+    bwordScheme.setFlags( QWebEngineUrlScheme::LocalAccessAllowed | QWebEngineUrlScheme::CorsEnabled
+                          | QWebEngineUrlScheme::SecureScheme );
+    QWebEngineUrlScheme::registerScheme( bwordScheme );
+  }
 
   GD_QApplication app( "GoldenDict-ng", argc, argv );
 
@@ -290,12 +328,6 @@ int main( int argc, char ** argv )
   // macOS icon is defined in Info.plist
   GD_QApplication::setWindowIcon( QIcon( ":/icons/programicon.png" ) );
 #endif
-
-#ifdef Q_OS_WIN
-  // TODO: Force fusion because Qt6.7's "ModernStyle"'s dark theme have problems, need to test / reconsider in future
-  GD_QApplication::setStyle( QStyleFactory::create( "WindowsVista" ) );
-#endif
-
 
 #if defined( USE_BREAKPAD )
   QString appDirPath = Config::getConfigDir() + "crash";
@@ -311,7 +343,7 @@ int main( int argc, char ** argv )
                                         callback,
                                         NULL,
                                         google_breakpad::ExceptionHandler::HANDLER_ALL );
-  #elif defined( Q_OS_MAC )
+  #elif defined( Q_OS_MACOS )
 
   google_breakpad::ExceptionHandler eh( appDirPath.toStdString(), 0, callback, 0, true, NULL );
 
@@ -324,34 +356,13 @@ int main( int argc, char ** argv )
     processCommandLine( &app, &gdcl );
   }
 
-#ifdef __WIN32
+#ifdef Q_OS_WIN
 
   // Under Windows, increase the amount of fopen()-able file descriptors from
-  // the default 512 up to 2048.
-  _setmaxstdio( 2048 );
+  // the default 512 up to 8192.
+  _setmaxstdio( 8192 );
 
 #endif
-
-  const QStringList localSchemes = { "gdlookup",
-                                     "gdau",
-                                     "gico",
-                                     "qrcx",
-                                     "bres",
-                                     "bword",
-                                     "gdprg",
-                                     "gdvideo",
-                                     "gdtts",
-                                     "entry",
-                                     "iframe-http",
-                                     "iframe-https" };
-
-  for ( const auto & localScheme : localSchemes ) {
-    QWebEngineUrlScheme webUiScheme( localScheme.toLatin1() );
-    webUiScheme.setSyntax( QWebEngineUrlScheme::Syntax::Host );
-    webUiScheme.setFlags( QWebEngineUrlScheme::LocalScheme | QWebEngineUrlScheme::LocalAccessAllowed
-                          | QWebEngineUrlScheme::CorsEnabled );
-    QWebEngineUrlScheme::registerScheme( webUiScheme );
-  }
 
   QFont f = QApplication::font();
   f.setStyleStrategy( QFont::PreferAntialias );
@@ -360,29 +371,40 @@ int main( int argc, char ** argv )
   if ( app.isRunning() ) {
     bool wasMessage = false;
 
-    //TODO .all the following messages can be combined into one.
-    if ( gdcl.needSetGroup() ) {
-      app.sendMessage( QString( "setGroup: " ) + gdcl.getGroupName() );
-      wasMessage = true;
-    }
-
-    if ( gdcl.needSetPopupGroup() ) {
-      app.sendMessage( QString( "setPopupGroup: " ) + gdcl.getPopupGroupName() );
-      wasMessage = true;
-    }
-
-    if ( !gdcl.window.isEmpty() ) {
-      app.sendMessage( QString( "window:" ) + gdcl.window );
-      wasMessage = true;
-    }
-
+    // Combine messages into a single structured message
     if ( gdcl.needTranslateWord() ) {
-      app.sendMessage( QString( "translateWord: " ) + gdcl.wordToTranslate() );
+      QString message = "action:translate";
+      if ( !gdcl.window.isEmpty() ) {
+        message += "|window:" + gdcl.window;
+      }
+      if ( gdcl.needSetGroup() ) {
+        message += "|group:" + gdcl.getGroupName();
+      }
+      if ( gdcl.needSetPopupGroup() ) {
+        message += "|popupGroup:" + gdcl.getPopupGroupName();
+      }
+      if ( gdcl.newTab ) {
+        message += "|newtab:true";
+      }
+      QString encodedWord = QUrl::toPercentEncoding( gdcl.wordToTranslate() );
+      message += "|word:" + encodedWord;
+      app.sendMessage( message );
       wasMessage = true;
     }
-
-    if ( gdcl.needTogglePopup() ) {
-      app.sendMessage( QStringLiteral( "toggleScanPopup" ) );
+    else if ( gdcl.needSetGroup() ) {
+      app.sendMessage( QString( "action:setGroup|group:" ) + gdcl.getGroupName() );
+      wasMessage = true;
+    }
+    else if ( gdcl.needSetPopupGroup() ) {
+      app.sendMessage( QString( "action:setPopupGroup|popupGroup:" ) + gdcl.getPopupGroupName() );
+      wasMessage = true;
+    }
+    else if ( gdcl.needTogglePopup() ) {
+      app.sendMessage( QStringLiteral( "action:togglePopup" ) );
+      wasMessage = true;
+    }
+    else if ( !gdcl.window.isEmpty() ) {
+      app.sendMessage( QString( "action:show|window:" ) + gdcl.window );
       wasMessage = true;
     }
 
@@ -424,6 +446,14 @@ int main( int argc, char ** argv )
     break;
   }
 
+#ifdef Q_OS_MACOS
+  // The application starts in regular mode so Qt can initialize the native
+  // macOS application menu. It switches to menu-bar-only mode at runtime after
+  // the main window is hidden unless the user keeps the Dock icon visible.
+  cfg.preferences.enableTrayIcon = true;
+  cfg.preferences.closeToTray    = true;
+#endif
+
   if ( gdcl.notts ) {
     cfg.notts = true;
 #ifdef TTS_SUPPORT
@@ -436,23 +466,27 @@ int main( int argc, char ** argv )
   // Log to file enabled through command line or preference
   Logger::switchLoggingMethod( gdcl.logFile || cfg.preferences.enableApplicationLog );
 
-  //System Font
-  auto font = QApplication::font();
-  if ( cfg.preferences.enableInterfaceFont && !cfg.preferences.interfaceFont.isEmpty()
+  // System Font
+  //  Always read the OS default first — QApplication::font() can be polluted
+  //  by a previous setFont() call (e.g. after style reset on the main window).
+  const QFont systemFont = QFontDatabase::systemFont( QFontDatabase::GeneralFont );
+  auto font              = systemFont;
+  bool customApplied     = false;
+
+  if ( cfg.preferences.enableInterfaceFontFamily && !cfg.preferences.interfaceFont.isEmpty()
        && font.family() != cfg.preferences.interfaceFont ) {
     font.setFamily( cfg.preferences.interfaceFont );
-    QApplication::setFont( font );
+    customApplied = true;
   }
 
-  //system font size
-  if ( cfg.preferences.enableInterfaceFont && cfg.preferences.interfaceFontSize >= 8
+  if ( cfg.preferences.enableInterfaceFontSize && cfg.preferences.interfaceFontSize >= 8
        && cfg.preferences.interfaceFontSize <= 32 ) {
-    font.setPixelSize( cfg.preferences.interfaceFontSize );
-    QApplication::setFont( font );
+    font.setPointSize( cfg.preferences.interfaceFontSize );
+    customApplied = true;
   }
-  else {
-    qDebug() << "Invalid font size:" << cfg.preferences.interfaceFontSize << ", using default";
-    cfg.preferences.interfaceFontSize = Config::DEFAULT_FONT_SIZE;
+
+  if ( customApplied ) {
+    QApplication::setFont( font );
   }
 
   // Update default locale
@@ -484,10 +518,16 @@ int main( int argc, char ** argv )
     // If interfaceLanguage is explicitly set, uses filename-based loading, because GD have more languages than Qt & its locale database.
     // If not, then let Qt's qlocale mechanism decide which one to use, because "locale" handling is different in all 3 platforms, and we don't want to deal with that.
 
-    // Only load qt & webengine translators if GD's translation loading succeeds to avoid inconsistency
-    if ( cfg.preferences.interfaceLanguage.isEmpty() ?
-           loadTranslation_qlocale( *gd_ts, QString(), QString(), Config::getLocDir() ) :
-           gd_ts->load( cfg.preferences.interfaceLanguage, Config::getLocDir() ) ) {
+    bool loaded = false;
+    if ( cfg.preferences.interfaceLanguage.isEmpty() ) {
+      loaded = loadTranslation_qlocale( *gd_ts, QString(), QString(), Config::getLocDir() );
+    }
+    else if ( cfg.preferences.interfaceLanguage != "en" ) {
+      loaded = gd_ts->load( cfg.preferences.interfaceLanguage, Config::getLocDir() );
+    }
+
+    // Only install translator if loading succeeds
+    if ( loaded ) {
       QCoreApplication::installTranslator( gd_ts );
       qDebug() << "TS found: " << gd_ts->filePath();
 
@@ -510,7 +550,7 @@ int main( int argc, char ** argv )
       }
     }
     else {
-      qDebug() << "GD_TS not loaded.";
+      qDebug() << "Goldendict translations not loaded.";
     }
   }
 
@@ -561,7 +601,13 @@ int main( int argc, char ** argv )
   }
 
   if ( gdcl.needTranslateWord() ) {
-    m.wordReceived( gdcl.wordToTranslate() );
+    if ( gdcl.window == "popup" ) {
+      m.showTranslation( gdcl.wordToTranslate(), "popup" );
+    }
+    else {
+      // Default to main window when target parameter is not specified or set to "main"
+      m.showTranslation( gdcl.wordToTranslate(), "main", gdcl.newTab );
+    }
   }
 
 #ifdef Q_OS_UNIX

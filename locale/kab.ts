@@ -9,7 +9,7 @@
     </message>
     <message>
       <source>Licensed under GNU GPLv3 or later</source>
-      <translation>Licensed under GNU GPLv3 or later</translation>
+      <translation>Yettwasireg ddaw n turagt GNU GPLv3 naɣ taneggarut</translation>
     </message>
     <message>
       <source>Copy version info</source>
@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation type="unfinished">Anki: can&apos;t create a card without a word</translation>
+      <translation>Anki: can&apos;t create a card without a word</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -57,16 +57,46 @@
       <translation>Anṣuf !</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(war azwel)</translation>
     </message>
     <message>
       <source>(picture)</source>
-      <translation>(picture)</translation>
+      <translation>(tugna)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation type="unfinished">
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -81,7 +111,7 @@
     </message>
     <message>
       <source>Query error: %1</source>
-      <translation>Query error: %1</translation>
+      <translation>Tuccḍa n tuttra: %1</translation>
     </message>
     <message>
       <source>Close words: </source>
@@ -103,12 +133,8 @@
       <translation>Phrase not found</translation>
     </message>
     <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 of %2 matches</translation>
-    </message>
-    <message>
       <source>Select Current Article</source>
-      <translation>Select Current Article</translation>
+      <translation>Fren amagrad amiran</translation>
     </message>
     <message>
       <source>Copy as text</source>
@@ -160,7 +186,7 @@
     </message>
     <message>
       <source>Op&amp;en Link</source>
-      <translation>Op&amp;en Link</translation>
+      <translation>&amp;Ldi aseɣwen</translation>
     </message>
     <message>
       <source>Open Link in New &amp;Tab</source>
@@ -252,7 +278,42 @@
     </message>
     <message>
       <source>&amp;Create Anki note</source>
-      <translation>&amp;Create Anki note</translation>
+      <translation>&amp;Snulfu-d tabzimt n Anki</translation>
+    </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;Nɣel ameslaw ar tecfawit</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation type="unfinished">Failed to copy sound</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation type="unfinished">Failed to write complete audio data</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation type="unfinished">Sound copied to clipboard</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Tuccḍa deg usader n umeslaw</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 of %2 matches</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Ldi aḍris deg U&amp;myazan uffiɣ</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation type="unfinished">GoldenDict Resource Viewer</translation>
     </message>
   </context>
   <context>
@@ -275,52 +336,60 @@ between classic and school orthography in cyrillic)</translation>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Chinese Conversion</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Traditional to simplified Chinese conversion</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Enable conversion between simplified and traditional Chinese characters</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Serrer abeddel seg yisekkilen isehlan/imezwura n Ccinwa ɣer yisekkilen n Jappun Shinjitai</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>Chinese Con&amp;version</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Jappun Shinjitai</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Enable conversion from simplified characters to traditional (Taiwan variant) characters</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>Aslelli seg Taçinit ɣer Tajapunit Shinjitai</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>Aslelli n isekkilen icenwiyen d ijapuniyen</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>Slelli aslelli gar isekkilen icenwiyen yessefken, isekkilen icenwiyen n zik (Taiwan/Hong Kong) d isekkilen ijapuniyen n Shinjitai</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Enable conversion from traditional characters to simplified characters</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Simplified to traditional Chinese (Taiwan variant) conversion</translation>
+      <source>Simplified</source>
+      <translation>Afrar</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Simplified to traditional Chinese (Hong Kong variant) conversion</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Swel aserwes seg isekkilen ifraren ɣer isekkilen imenzayen (Taiwan)</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Traditional to simplified Chinese conversion</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>Amenzay (Taiwan)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation type="unfinished">Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Smed ambeddel seg yisekkilen issegzawiyen ɣer yisekkilen iqdimen (Hong Kong)</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation type="unfinished">Hong Kong variant</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Iqdimen (Hong Kong)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation type="unfinished">Mainland variant</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>Ambeddel n ussegzay ɣer uqdim n Ccinwa (Taiwan)</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>Ambeddel n ussegzay ɣer uqdim n Ccinwa (Hong Kong)</translation>
     </message>
   </context>
   <context>
@@ -334,7 +403,7 @@ between classic and school orthography in cyrillic)</translation>
     <name>DictGroupWidget</name>
     <message>
       <source>Form</source>
-      <translation>Form</translation>
+      <translation>Talɣa</translation>
     </message>
     <message>
       <source>Group icon:</source>
@@ -385,7 +454,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Confirmation</source>
-      <translation>Confirmation</translation>
+      <translation>Asentem</translation>
     </message>
     <message>
       <source>Are you sure you want to generate a set of groups based on language pairs?</source>
@@ -408,10 +477,6 @@ between classic and school orthography in cyrillic)</translation>
       <translation>Are you sure you want to generate a set of groups based on containing folders?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>Are you sure you want to generate a set of groups based on metadata.toml?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Combine groups by source language to &quot;%1-&gt;&quot;</translation>
     </message>
@@ -426,6 +491,18 @@ between classic and school orthography in cyrillic)</translation>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Combine groups with &quot;%1&quot;</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Kkes agraw</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>Teqqenḍaḍ ad tessnulfu agraw n tegrawin seg yifayliwen n isefka imettwan n yisefranen?</translation>
     </message>
   </context>
   <context>
@@ -444,7 +521,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Apply</source>
-      <translation>Apply</translation>
+      <translation>Snes</translation>
     </message>
     <message>
       <source>Filter string (fixed string, wildcards or regular expression)</source>
@@ -452,11 +529,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Filter:</source>
-      <translation>Filter:</translation>
-    </message>
-    <message>
-      <source>Search mode</source>
-      <translation>Search mode</translation>
+      <translation>Amsizdeg:</translation>
     </message>
     <message>
       <source>This element determines how filter string will be interpreted</source>
@@ -481,18 +554,6 @@ between classic and school orthography in cyrillic)</translation>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Specify the maximum filtered headwords returned.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Filter max results:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Tallelt</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>IH</translation>
     </message>
     <message>
       <source>Text</source>
@@ -542,6 +603,10 @@ between classic and school orthography in cyrillic)</translation>
       <source>Regular Expression</source>
       <translation type="unfinished">Regular Expression</translation>
     </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>Afellay:</translation>
+    </message>
   </context>
   <context>
     <name>DictInfo</name>
@@ -551,7 +616,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Total articles:</source>
-      <translation>Total articles:</translation>
+      <translation>Aɣrud n imagraden:</translation>
     </message>
     <message>
       <source>Index filename:</source>
@@ -559,7 +624,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Total words:</source>
-      <translation>Total words:</translation>
+      <translation>Aɣrud n wawalen:</translation>
     </message>
     <message>
       <source>Open folder</source>
@@ -572,10 +637,6 @@ between classic and school orthography in cyrillic)</translation>
     <message>
       <source>Translates to:</source>
       <translation>Tisuqilin ɣer:</translation>
-    </message>
-    <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Files comprising this dictionary:</translation>
     </message>
     <message>
       <source>Description:</source>
@@ -596,6 +657,18 @@ between classic and school orthography in cyrillic)</translation>
     <message>
       <source>Full-text search disabled</source>
       <translation>Full-text search disabled</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Kkes armad</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Sermed</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>Timsilɣin n umawal:</translation>
     </message>
   </context>
   <context>
@@ -628,7 +701,7 @@ between classic and school orthography in cyrillic)</translation>
     <name>DictServersModel</name>
     <message>
       <source>Enabled</source>
-      <translation>Enabled</translation>
+      <translation>D urdmid</translation>
     </message>
     <message>
       <source>Name</source>
@@ -675,7 +748,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Edit this group</source>
-      <translation>Edit this group</translation>
+      <translation>Ẓreg agraw-a</translation>
     </message>
     <message>
       <source>Dictionary info</source>
@@ -692,6 +765,34 @@ between classic and school orthography in cyrillic)</translation>
     <message>
       <source>Restore selection</source>
       <translation type="unfinished">Restore selection</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation type="unfinished">Cancel reindex</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation type="unfinished">Schedule for reindex</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation type="unfinished">Cancel schedule reindex</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation type="unfinished">The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation type="unfinished">Change display name</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation type="unfinished">New display name:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Yezger wakles n umyawal i walseɣrudes.</translation>
     </message>
   </context>
   <context>
@@ -767,7 +868,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Articles found: </source>
-      <translation>Articles found: </translation>
+      <translation>Imagraden i yettwafen: </translation>
     </message>
     <message>
       <source>Now indexing: </source>
@@ -808,10 +909,6 @@ between classic and school orthography in cyrillic)</translation>
       <translation>Rnu akaram</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Clear All</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Favorites:</translation>
     </message>
@@ -820,16 +917,20 @@ between classic and school orthography in cyrillic)</translation>
       <translation>All selected items will be deleted. Continue?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Clear All Items</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>Are you sure you want to clear all items?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Sfeḍ</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation type="unfinished">Clear Favorites</translation>
     </message>
   </context>
   <context>
@@ -848,11 +949,11 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Male</source>
-      <translation>Male</translation>
+      <translation>Awtem</translation>
     </message>
     <message>
       <source>Female</source>
-      <translation>Female</translation>
+      <translation>Unti</translation>
     </message>
     <message>
       <source>from</source>
@@ -863,7 +964,7 @@ between classic and school orthography in cyrillic)</translation>
     <name>FtsSearchPanel</name>
     <message>
       <source>&amp;Previous</source>
-      <translation>&amp;Previous</translation>
+      <translation>&amp;Uzwir</translation>
     </message>
     <message>
       <source>&amp;Next</source>
@@ -878,11 +979,11 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Mode:</source>
-      <translation>Mode:</translation>
+      <translation>Askar:</translation>
     </message>
     <message>
       <source>Articles found:</source>
-      <translation>Articles found:</translation>
+      <translation>Imagraden i yettwafen:</translation>
     </message>
     <message>
       <source>Available dictionaries in group:</source>
@@ -894,7 +995,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Total:</source>
-      <translation>Total:</translation>
+      <translation>Aɣrud:</translation>
     </message>
     <message>
       <source>Indexed:</source>
@@ -931,7 +1032,7 @@ between classic and school orthography in cyrillic)</translation>
     <name>GroupComboBox</name>
     <message>
       <source>Choose a Group (Alt+G)</source>
-      <translation>Choose a Group (Alt+G)</translation>
+      <translation>Fren agraw (Alt+G)</translation>
     </message>
   </context>
   <context>
@@ -950,19 +1051,11 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Groups:</source>
-      <translation>Groups:</translation>
+      <translation>Igrawen:</translation>
     </message>
     <message>
       <source>Tab 2</source>
-      <translation>Tab 2</translation>
-    </message>
-    <message>
-      <source>Create new dictionary group</source>
-      <translation>Create new dictionary group</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>&amp;Snulfu-d agraw</translation>
+      <translation>Iccer wis 2</translation>
     </message>
     <message>
       <source>Rename current dictionary group</source>
@@ -971,14 +1064,6 @@ between classic and school orthography in cyrillic)</translation>
     <message>
       <source>Re&amp;name group</source>
       <translation>Re&amp;name group</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Remove current dictionary group</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>&amp;Remove group</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -994,7 +1079,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Group by Languages</source>
-      <translation>Group by Languages</translation>
+      <translation>Segrew s tutlayin</translation>
     </message>
     <message>
       <source>Create folder-based groups.</source>
@@ -1038,7 +1123,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Remove group</source>
-      <translation>Remove group</translation>
+      <translation>Kkes agraw</translation>
     </message>
     <message>
       <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
@@ -1047,6 +1132,22 @@ between classic and school orthography in cyrillic)</translation>
     <message>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>Are you sure you want to remove all the groups?</translation>
+    </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation type="unfinished">Add a new dictionary group</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>&amp;Snulfu-d agraw</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation type="unfinished">Group already exists</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation type="unfinished">A group with the name &apos;%1&apos; already exists.</translation>
     </message>
   </context>
   <context>
@@ -1061,7 +1162,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>History:</source>
-      <translation>History:</translation>
+      <translation>Azray:</translation>
     </message>
     <message>
       <source>%1/%2</source>
@@ -1081,6 +1182,18 @@ between classic and school orthography in cyrillic)</translation>
     <message>
       <source>%1 Morphology</source>
       <translation>%1 Morphology</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Tasebḍart teṣṣeḥ, ulac talɣiwin n wawal nniḍen i yettwafen.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>Seg %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Talɣiwin n wawal i %1: </translation>
     </message>
   </context>
   <context>
@@ -1489,7 +1602,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Latin</source>
-      <translation>Latin</translation>
+      <translation>Talatinit</translation>
     </message>
     <message>
       <source>Luxembourgish</source>
@@ -1877,7 +1990,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Other</source>
-      <translation>Other</translation>
+      <translation>Tayeḍ</translation>
     </message>
     <message>
       <source>Other Simplified Chinese dialects</source>
@@ -2100,7 +2213,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Kabyle</source>
-      <translation type="unfinished">Kabyle</translation>
+      <translation>Taqbaylit</translation>
     </message>
   </context>
   <context>
@@ -2125,15 +2238,15 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>&amp;Edit</source>
-      <translation>&amp;Edit</translation>
+      <translation>Ẓ&amp;reg</translation>
     </message>
     <message>
       <source>&amp;Help</source>
-      <translation>&amp;Help</translation>
+      <translation>&amp;Tallalt</translation>
     </message>
     <message>
       <source>&amp;View</source>
-      <translation>&amp;View</translation>
+      <translation>&amp;Taskant</translation>
     </message>
     <message>
       <source>&amp;Zoom</source>
@@ -2141,7 +2254,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>H&amp;istory</source>
-      <translation>H&amp;istory</translation>
+      <translation>A&amp;zray</translation>
     </message>
     <message>
       <source>Search</source>
@@ -2149,7 +2262,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Favo&amp;rites</source>
-      <translation>Favo&amp;rites</translation>
+      <translation>I&amp;menyafen</translation>
     </message>
     <message>
       <source>&amp;Search Pane</source>
@@ -2181,15 +2294,15 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>&amp;About</source>
-      <translation>&amp;About</translation>
+      <translation>Ɣ&amp;ef</translation>
     </message>
     <message>
       <source>About GoldenDict-ng</source>
-      <translation>About GoldenDict-ng</translation>
+      <translation>Ɣef GoldenDict-ng</translation>
     </message>
     <message>
       <source>&amp;Quit</source>
-      <translation>&amp;Quit</translation>
+      <translation>&amp;Ffeɣ</translation>
     </message>
     <message>
       <source>Quit from application</source>
@@ -2209,15 +2322,15 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>&amp;Save Article</source>
-      <translation>&amp;Save Article</translation>
+      <translation>&amp;Sekles amagrad</translation>
     </message>
     <message>
       <source>Save Article</source>
-      <translation>Save Article</translation>
+      <translation>Sekles amagrad</translation>
     </message>
     <message>
       <source>&amp;Print</source>
-      <translation>&amp;Print</translation>
+      <translation>&amp;Siggez</translation>
     </message>
     <message>
       <source>Page Set&amp;up</source>
@@ -2233,19 +2346,19 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>&amp;Clear</source>
-      <translation>&amp;Clear</translation>
+      <translation>&amp;Sfeḍ</translation>
     </message>
     <message>
       <source>&amp;New Tab</source>
-      <translation>&amp;New Tab</translation>
+      <translation>&amp;Iccer amaynut</translation>
     </message>
     <message>
       <source>&amp;Configuration Folder</source>
-      <translation>&amp;Configuration Folder</translation>
+      <translation>&amp;Akaram n tawila</translation>
     </message>
     <message>
       <source>&amp;Show</source>
-      <translation>&amp;Show</translation>
+      <translation>&amp;Sken-d</translation>
     </message>
     <message>
       <source>Ctrl+H</source>
@@ -2277,7 +2390,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Search in page</source>
-      <translation>Search in page</translation>
+      <translation>Ned deg usebter</translation>
     </message>
     <message>
       <source>Full-text search</source>
@@ -2385,11 +2498,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>New Tab</source>
-      <translation>New Tab</translation>
-    </message>
-    <message>
-      <source>Welcome!</source>
-      <translation>Welcome!</translation>
+      <translation>Iccer amaynut</translation>
     </message>
     <message>
       <source>Accessibility API is not enabled</source>
@@ -2411,7 +2520,7 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
       <source>All</source>
-      <translation>All</translation>
+      <translation>Akk</translation>
     </message>
     <message>
       <source>Open Tabs List</source>
@@ -2439,7 +2548,7 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
       <source>Download</source>
-      <translation>Download</translation>
+      <translation>Sader</translation>
     </message>
     <message>
       <source>Skip This Release</source>
@@ -2455,7 +2564,7 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
       <source>Page Setup</source>
-      <translation>Page Setup</translation>
+      <translation>Tawila n usebter</translation>
     </message>
     <message>
       <source>No printer is available. Please install one first.</source>
@@ -2463,43 +2572,7 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
       <source>Print Article</source>
-      <translation>Print Article</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Complete Html (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Single Html (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>Pdf (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Mime Html (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Save Article As</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Tuccḍa</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Can&apos;t save article: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Saving article...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Save article complete</translation>
+      <translation>Siggez amagrad</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2507,7 +2580,7 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
       <source>&amp;Hide</source>
-      <translation>&amp;Hide</translation>
+      <translation>&amp;Ffer</translation>
     </message>
     <message>
       <source>Export history to file</source>
@@ -2594,12 +2667,56 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Sken</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation type="unfinished">Save PDF complete</translation>
+      <source>Lock Panels</source>
+      <translation type="unfinished">Lock Panels</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation type="unfinished">Save PDF failed</translation>
+      <source>Clear History</source>
+      <translation>Sfeḍ amazray</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation type="unfinished">Are you sure you want to clear all history items?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Sekles afaylu</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>Tunigt mazal tettruḥu deg deffir. Ssenqed ikun n ttray iwakken ad tban ttaqet.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Ldi deg &amp;Umeklas Uffiɣ</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>Tella tebni n ugbur n yirawen n yisefra: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Amezwaru</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Anagaruy</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>S waṭas n wawalen</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Anadi ačuran n uḍris…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Talɣa n unadi</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Talɣa n unadi: %1</translation>
     </message>
   </context>
   <context>
@@ -2616,15 +2733,15 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML parse error: %1 at %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation type="unfinished">JSON parse error</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML parse error: %1 at %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation type="unfinished">JSON parse error</translation>
     </message>
   </context>
   <context>
@@ -2647,7 +2764,7 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
       <source>Language Variant</source>
-      <translation>Language Variant</translation>
+      <translation>Tutlayt tamlellayt</translation>
     </message>
   </context>
   <context>
@@ -2700,10 +2817,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Aglam:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Files comprising this dictionary:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</translation>
     </message>
@@ -2713,7 +2826,7 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
       <source>Sort by name</source>
-      <translation>Sort by name</translation>
+      <translation>Smizzwer s yisem</translation>
     </message>
     <message>
       <source>Sort by languages</source>
@@ -2722,6 +2835,18 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Dictionaries active: %1, inactive: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation type="unfinished">Change display name</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation type="unfinished">New display name:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>Tifuriyin n umawal:</translation>
     </message>
   </context>
   <context>
@@ -2743,7 +2868,7 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
       <source>&amp;Interface</source>
-      <translation>&amp;Interface</translation>
+      <translation>&amp;Agrudem</translation>
     </message>
     <message>
       <source>Double-click translates the word clicked</source>
@@ -2766,28 +2891,12 @@ switching to them.</translation>
       <translation>Open new tabs in background</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Open new tabs after the current one</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Hide single tab</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>MRU order: Most recently used order.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2876,8 +2985,100 @@ the application.</translation>
       <translation>Context menu dictionaries limit:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>System default</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Default</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Classic</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Atrar</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Babylon</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Lingoes</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Lingoes-Blue</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Restart the program to apply the language change.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Restart to apply the interface style change.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Restart to apply the interface font change.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Restart needed</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Sermed</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Kkes armad</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Awurman</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Ula yiwen</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation type="unfinished">With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>Aɣa&amp;nib</translation>
+    </message>
+    <message>
       <source>Appearance</source>
-      <translation>Appearance</translation>
+      <translation>Udem</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Tutlayt n ugrudem</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Article Display style</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Add-on style</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Aɣanib n ugrudem</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2885,7 +3086,7 @@ the application.</translation>
     </message>
     <message>
       <source>Dark Mode</source>
-      <translation>Dark Mode</translation>
+      <translation>Askar ubrik</translation>
     </message>
     <message>
       <source>Turn the article display style to dark.</source>
@@ -2896,12 +3097,16 @@ the application.</translation>
       <translation>Dark Reader Mode</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>These fonts will be applied when the fonts specified by a dictionary are not found.</translation>
+      <source>Preview Font</source>
+      <translation>Preview Font</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Fallback Fonts</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation type="unfinished">GoldenDict-ng is a dictionary software.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>These fonts will be applied when the fonts specified by a dictionary are not found.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2918,10 +3123,6 @@ the application.</translation>
     <message>
       <source>Monospace Font</source>
       <translation>Monospace Font</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Popup</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2958,8 +3159,8 @@ in the pressed state when the word selection changes.</source>
 in the pressed state when the word selection changes.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Only tack selection when all selected keys are kept pressed:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation type="unfinished">Only track selection when all selected keys are kept pressed:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3019,7 +3220,7 @@ in the pressed state when the word selection changes.</translation>
     </message>
     <message>
       <source>&amp;Audio</source>
-      <translation>&amp;Audio</translation>
+      <translation>&amp;Ameslaw</translation>
     </message>
     <message>
       <source>Pronunciation</source>
@@ -3042,20 +3243,8 @@ in the pressed state when the word selection changes.</translation>
       <translation>Play audio files via built-in audio support</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Use internal player:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Choose audio back end</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Use any external program to play audio files</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Use external program:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3063,7 +3252,7 @@ in the pressed state when the word selection changes.</translation>
     </message>
     <message>
       <source>&amp;Network</source>
-      <translation>&amp;Network</translation>
+      <translation>&amp;Aẓeṭṭa</translation>
     </message>
     <message>
       <source>Enable if you wish to use a proxy server
@@ -3097,7 +3286,7 @@ for all program&apos;s network requests.</translation>
     </message>
     <message>
       <source>Port:</source>
-      <translation>Port:</translation>
+      <translation>Tawwurt:</translation>
     </message>
     <message>
       <source>User:</source>
@@ -3109,7 +3298,7 @@ for all program&apos;s network requests.</translation>
     </message>
     <message>
       <source>Anki Connect</source>
-      <translation>Anki Connect</translation>
+      <translation>Tuqqna n Anki</translation>
     </message>
     <message>
       <source>http://</source>
@@ -3120,28 +3309,12 @@ for all program&apos;s network requests.</translation>
       <translation>Deck:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Model:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Awal</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Vocabulary field...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Aḍris</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Definition field...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Sentence</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3158,42 +3331,6 @@ you are browsing. If some site breaks because of this, try disabling this.</tran
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>Disallow loading content from other sites (hides most advertisements)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>Do not identify GoldenDict in HTTP headers</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Maximum network cache size:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Clear network cache on exit</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3237,7 +3374,7 @@ download page.</translation>
     </message>
     <message>
       <source>History</source>
-      <translation>History</translation>
+      <translation>Azray</translation>
     </message>
     <message>
       <source>Turn this option on to store history of the translated words</source>
@@ -3256,24 +3393,20 @@ download page.</translation>
       <translation>Maximum history size:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>History saving interval. If set to 0 history will be saved only during exit.</translation>
-    </message>
-    <message>
-      <source>Save every</source>
-      <translation>Save every</translation>
-    </message>
-    <message>
-      <source>minutes</source>
-      <translation>minutes</translation>
-    </message>
-    <message>
       <source>Favorites</source>
       <translation>Favorites</translation>
     </message>
     <message>
       <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
       <translation>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</translation>
+    </message>
+    <message>
+      <source>Save every</source>
+      <translation>Sekles yal</translation>
+    </message>
+    <message>
+      <source>minutes</source>
+      <translation>minutes</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3285,7 +3418,7 @@ download page.</translation>
     </message>
     <message>
       <source>Articles</source>
-      <translation>Articles</translation>
+      <translation>Imagraden</translation>
     </message>
     <message>
       <source>Ignore punctuation while searching</source>
@@ -3297,7 +3430,7 @@ download page.</translation>
     </message>
     <message>
       <source>symbols</source>
-      <translation>symbols</translation>
+      <translation>izamulen</translation>
     </message>
     <message>
       <source>Select this option to automatic collapse big articles</source>
@@ -3372,112 +3505,112 @@ from Stardict, Babylon and GLS dictionaries</translation>
       <translation>Remove invalid index on exit</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>System default</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Default</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Classic</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Modern</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Babylon</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Lingoes</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Lingoes-Blue</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Auto does nothing on some systems.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Restart the program to apply the language change.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Restart to apply the interface style change.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Restart to apply the interface font change.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Restart needed</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Enable</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Disable</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Automatic</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Save debug messages to gd_log.txt in the config folder</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Interface language</translation>
+      <source>S&amp;can</source>
+      <translation type="unfinished">S&amp;can</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Article Display style</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation type="unfinished">Suppress JavaScript alerts, confirms, and prompts in the article view.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Add-on style</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation type="unfinished">Suppress JavaScript dialogs</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Interface Style</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation type="unfinished">Open website dictionary in separate tab</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Preview Font</translation>
+      <source>Anki</source>
+      <translation>Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation type="unfinished">GoldenDict-ng is a dictionary software.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation type="unfinished">Allow JavaScript to access clipboard in the article view.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation type="unfinished">Enable Interface Font</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation type="unfinished">Enable JavaScript clipboard access (need restart)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation type="unfinished">Restart to apply the JavaScript clipboard access change.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation type="unfinished">Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation type="unfinished">Hide tab bar when only one tab is open.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Ula yiwen</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Seqdec yal amezruy n ṣṣut n beṛṛa i wakken ad tizedreḍ ifuyla n ṣṣut</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Wali agbur n usetɣer imfarasen</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>Abrid n umaẓrag ad yettuseggem d amekkin n uḍris n yiqeddicen i umurar n berra.</translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation type="unfinished">Internal Audio Player:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation type="unfinished">External Audio Player:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>Yettbeddil s yiman-is ɣef leḥsab n usentel n unagraw.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>Ssemyif Tiṭṭawin</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>Ayen n "Dock" yettban-d dima mi ara yeldi uguggu amezwaru akken ad yezmer macOS ad yesken isem n usnas akked yimenuyen. Semres takemniwt-agi akken ad yeqqim wayen n "Dock" yettban-d ula mi ara yeffer uguggu amezwaru.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>Eg ayen n "Dock" yettban-d deg yidisan</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>Rnu imesli i tkarti n Anki mi yella</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>Mi yettwakerẓ, imawalen n ismal n internet ad ldin deg yiminigen-nsen, mačči deg uɛeṭṭaf n umagrad. Ayagi ad yegga i tlisa n usbeddi n iframe d usuddes, yerna ad yefk tallalt n Script s umawal deg tnedlist n yimawalen.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Awal:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>Aḍris:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Tafyirt:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Interface Font</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Tawacult yebnan</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Aqedduḥ yebnan</translation>
     </message>
   </context>
   <context>
@@ -3500,7 +3633,7 @@ from Stardict, Babylon and GLS dictionaries</translation>
     </message>
     <message>
       <source>Unknown</source>
-      <translation>Unknown</translation>
+      <translation>D arussin</translation>
     </message>
   </context>
   <context>
@@ -3581,11 +3714,11 @@ from Stardict, Babylon and GLS dictionaries</translation>
     </message>
     <message>
       <source>A dictionary lookup program.</source>
-      <translation>A dictionary lookup program.</translation>
+      <translation>Aseɣẓan n unadi deg uzegzawal.</translation>
     </message>
     <message>
       <source>Word or sentence to query.</source>
-      <translation>Word or sentence to query.</translation>
+      <translation>Awal naɣ tafyirt iɣef i tettnadiḍ.</translation>
     </message>
     <message>
       <source>Reset window state.</source>
@@ -3613,7 +3746,7 @@ from Stardict, Babylon and GLS dictionaries</translation>
     </message>
     <message>
       <source>Save debug messages to gd_log.txt in the config folder.</source>
-      <translation type="unfinished">Save debug messages to gd_log.txt in the config folder.</translation>
+      <translation>Save debug messages to gd_log.txt in the config folder.</translation>
     </message>
     <message>
       <source>Force the word to be translated in Popup.</source>
@@ -3621,7 +3754,59 @@ from Stardict, Babylon and GLS dictionaries</translation>
     </message>
     <message>
       <source>Force the word to be translated in the mainwindow.</source>
-      <translation type="unfinished">Force the word to be translated in the mainwindow.</translation>
+      <translation>Force the word to be translated in the mainwindow.</translation>
+    </message>
+    <message>
+      <source>Website Url:</source>
+      <translation type="unfinished">Website Url:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation type="unfinished">In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Html ummid (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Single Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation type="unfinished">PDF document (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Sekles amagrad am</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Asekles n umagrad yemmed</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Tuccḍa</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>D aweɣzi usekles n umagrad: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Asekles n PDF yemmed</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Asekles n PDF yecceḍ</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Yeseklas amagrad... (%1/%2)</translation>
     </message>
   </context>
   <context>
@@ -3632,7 +3817,7 @@ from Stardict, Babylon and GLS dictionaries</translation>
     </message>
     <message>
       <source>Clear Search</source>
-      <translation>Clear Search</translation>
+      <translation>Sfeḍ anadi</translation>
     </message>
   </context>
   <context>
@@ -3652,6 +3837,10 @@ from Stardict, Babylon and GLS dictionaries</translation>
     <message>
       <source>The referenced resource failed to download.</source>
       <translation>The referenced resource failed to download.</translation>
+    </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>Asɣan ad yettwakkes beṛṛa n ufaylu n unegzum.</translation>
     </message>
   </context>
   <context>
@@ -3678,6 +3867,26 @@ from Stardict, Babylon and GLS dictionaries</translation>
       <source>WARNING: %1</source>
       <translation>WARNING: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation type="unfinished">Definition</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Close current tab</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Close all tabs except current</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Close all tabs</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Ldi deg &amp;Umeklas Uffiɣ</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3702,10 +3911,6 @@ from Stardict, Babylon and GLS dictionaries</translation>
       <translation>Send word to main window (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation type="unfinished">Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Add word to Favorites (Ctrl+E)</translation>
     </message>
@@ -3718,6 +3923,10 @@ from Stardict, Babylon and GLS dictionaries</translation>
 could be resized or managed in other ways.</source>
       <translation>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Sekles amagrad</translation>
     </message>
   </context>
   <context>
@@ -3832,7 +4041,7 @@ of the appropriate groups to use them.</translation>
     </message>
     <message>
       <source>Websites</source>
-      <translation>Websites</translation>
+      <translation>Ismal Web</translation>
     </message>
     <message>
       <source>Any websites. A string %GDWORD% will be replaced with the query word:</source>
@@ -3916,7 +4125,7 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>Transliteration</source>
-      <translation>Transliteration</translation>
+      <translation>Asiskel</translation>
     </message>
     <message>
       <source>Greek transliteration</source>
@@ -3984,7 +4193,7 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>Text to Speech</source>
-      <translation>Text to Speech</translation>
+      <translation>Aḍris ar taɣect</translation>
     </message>
     <message>
       <source>Choose a directory</source>
@@ -3992,7 +4201,7 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>Confirm removal</source>
-      <translation>Confirm removal</translation>
+      <translation>Sentem tukksa</translation>
     </message>
     <message>
       <source>The most widely used method of transcription of Japanese, based on English phonology</source>
@@ -4023,11 +4232,11 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     <name>TextToSpeechSource</name>
     <message>
       <source>Selected voice engines:</source>
-      <translation>Selected voice engines:</translation>
+      <translation>Fren imseddayen n taɣect:</translation>
     </message>
     <message>
       <source>&amp;Add</source>
-      <translation>&amp;Add</translation>
+      <translation>&amp;Rnu</translation>
     </message>
     <message>
       <source>&amp;Remove</source>
@@ -4113,18 +4322,21 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Insert article as link inside &lt;iframe&gt; tag</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation type="unfinished">This website dictionary is opened in a new tab</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Ssens &quot;Ldi amawal n usmal deg yiminig n yiman-is&quot; deg Yisumarat akken ad tessekneḍ asmal deg umagrad.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Yermed</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Am useɣwen</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4137,6 +4349,22 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     <message>
       <source>Icon</source>
       <translation>Tignit</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Askript</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation type="unfinished">Icon file name. Relative to the config directory.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation type="unfinished">Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation type="unfinished">This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</translation>
     </message>
   </context>
   <context>

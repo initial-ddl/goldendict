@@ -57,16 +57,46 @@
       <translation>Καλώς ήλθατε!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;Καλώς ορίσατε στο &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;Για να ξεκινήσετε να εργάζεστε με το πρόγραμμα, επισκεφθείτε πρώτα &lt;em&gt;Επεξεργασία | Λεξικά&lt;/em&gt; για να προσθέσετε μερικές διαδρομές καταλόγου όπου μπορείτε να αναζητήσετε τα αρχεία του λεξικού, να ρυθμίσετε διάφορους ιστότοπους της Wikipedia ή άλλες πηγές, να προσαρμόσετε τη σειρά λεξικών ή να δημιουργήσετε ομάδες λεξικών.&lt;p&gt;Και τότε είστε&apos;να αναζητήσετε τα λόγια σας! Μπορείτε να το κάνετε αυτό σε αυτό το παράθυρο χρησιμοποιώντας ένα παράθυρο στα αριστερά ή μπορείτε &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;να αναζητήσετε λέξεις από άλλες ενεργές εφαρμογές&lt;/a&gt;. &lt;p&gt;Για να προσαρμόσετε το πρόγραμμα, δείτε τις διαθέσιμες προτιμήσεις στο &lt;em&gt;Επεξεργασία | Προτιμήσεις&lt;/em&gt;. Όλες οι ρυθμίσεις εκεί έχουν συμβουλές εργαλείων, φροντίστε να τις διαβάσετε εάν έχετε αμφιβολίες για οτιδήποτε.&lt;p&gt;Εάν χρειάζεστε περαιτέρω βοήθεια, έχετε ερωτήσεις, προτάσεις ή απλώς αναρωτιέστε τι πιστεύουν οι άλλοι, είστε ευπρόσδεκτοι στο φόρουμ του προγράμματος&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;&lt;/a&gt;.&lt;p&gt;Ελέγξτε το πρόγραμμα&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;ιστότοπο&lt;/a&gt; για τις ενημερώσεις. &lt;p&gt;(γ) 2008-2013 Konstantin Isakov. Άδεια χρήσης σύμφωνα με το GPLv3 ή νεότερη έκδοση.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(ανώνυμο)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(εικόνα)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Καλώς ήρθατε στο &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;Για να ξεκινήσετε&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Μεταβείτε στις &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Επεξεργασία&lt;/span&gt;&lt;span&gt;Λεξικά&lt;/span&gt;&lt;/span&gt; για να προσθέσετε τα αρχεία λεξικού σας, να ρυθμίσετε διαδικτυακές πηγές όπως η Wikipedia και να τα οργανώσετε σε ομάδες.&lt;/li&gt;
+          &lt;li&gt;Μόλις ολοκληρωθεί η ρύθμιση, μπορείτε να αναζητήσετε λέξεις σε αυτό το παράθυρο ή &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;από άλλες εφαρμογές χρησιμοποιώντας το Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;Για να προσαρμόσετε το πρόγραμμα, εξερευνήστε τις ρυθμίσεις στις &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Επεξεργασία&lt;/span&gt;&lt;span&gt;Προτιμήσεις&lt;/span&gt;&lt;/span&gt;. Όλες οι ρυθμίσεις έχουν επεξηγήσεις (tooltips), οπότε φροντίστε να τις διαβάσετε εάν κάτι δεν είναι σαφές.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Εάν χρειάζεστε περαιτέρω βοήθεια, έχετε απορίες ή προτάσεις, είστε ευπρόσδεκτοι στο &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;φόρουμ&lt;/a&gt; και την &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;ιστοσελίδα&lt;/a&gt; του προγράμματος.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Βασισμένο στο αρχικό GoldenDict του Konstantin Isakov (c) 2008-2013. Συντηρείται και αναπτύσσεται από την κοινότητα GoldenDict-NG. Αδειοδοτείται με την GPLv3 ή νεότερη έκδοση.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>Η φράση δεν βρέθηκε</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 από %2 ταιριάσματα</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Δημιουργία σημείωσης Ανκί</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;Αντιγραφή ήχου στο πρόχειρο</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>Αποτυχία αντιγραφής ήχου</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>Αποτυχία εγγραφής ολοκληρωμένων δεδομένων ήχου</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>Ο ήχος αντιγράφηκε στο πρόχειρο</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Αποτυχία λήψης ήχου</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 από %2 ταιριάσματα</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Άνοιγμα Άρθρου σε Εξωτερικό &amp;Περιηγητή</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>Προβολέας Πόρων GoldenDict</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -277,52 +338,60 @@ between classic and school orthography in cyrillic)</source>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Μετατροπή Κινέζικων</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Παραδοσιακά στην απλουστευμένη κινεζική μετατροπή</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Ενεργοποίηση μετατροπής μεταξύ απλουστευμένων και παραδοσιακών κινεζικών χαρακτήρων</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Ενεργοποίηση μετατροπής από απλοποιημένους/παραδοσιακούς κινεζικούς χαρακτήρες σε ιαπωνικούς χαρακτήρες Shinjitai</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>Μετατροπή Κινέζικων</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Ιαπωνικό Shinjitai</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Ενεργοποίηση μετατροπής από απλοποιημένους χαρακτήρες σε παραδοσιακούς (παραλλαγή Ταϊβάν) χαρακτήρες</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>Κινέζικα σε Ιαπωνικά Shinjitai μετατροπή</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Ενεργοποίηση μετατροπής από απλοποιημένους χαρακτήρες σε παραδοσιακούς (παραλλαγή Χονγκ Κονγκ) χαρακτήρες</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>Μετατροπή κινεζικών και ιαπωνικών χαρακτήρων</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>Ενεργοποίηση μετατροπής μεταξύ απλοποιημένων κινεζικών, παραδοσιακών κινεζικών (Ταϊβάν/Χονγκ Κονγκ) και ιαπωνικών χαρακτήρων Shinjitai</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Ενεργοποίηση μετατροπής από παραδοσιακούς χαρακτήρες σε απλοποιημένους χαρακτήρες</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Απλουστευμένο στην παραδοσιακή κινεζική (παραλλαγή του Ταϊβάν) μετατροπή</translation>
+      <source>Simplified</source>
+      <translation>Απλοποιημένο</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Μετατροπή απλουστευμένη στην παραδοσιακή κινεζική (παραλλαγή Χονγκ Κονγκ)</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Ενεργοποιήστε τη μετατροπή από απλοποιημένους χαρακτήρες σε παραδοσιακούς (Ταϊβάν) χαρακτήρες</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Παραδοσιακά στην απλουστευμένη κινεζική μετατροπή</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>Παραδοσιακό (Ταϊβάν)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation>Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Ενεργοποιήστε τη μετατροπή από απλοποιημένους χαρακτήρες σε παραδοσιακούς (Χονγκ Κονγκ) χαρακτήρες</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation>Παραλλαγή του Χονγκ Κονγκ</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Παραδοσιακό (Χονγκ Κονγκ)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation>Παραλλαγή ηπειρωτικής χώρας</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>Απλοποιημένη μετατροπή σε παραδοσιακά κινέζικα (Ταϊβάν)</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>Απλοποιημένη μετατροπή σε παραδοσιακά κινέζικα (Χονγκ Κονγκ)</translation>
     </message>
   </context>
   <context>
@@ -410,10 +479,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Είστε βέβαιοι ότι θέλετε να δημιουργήσετε ένα σύνολο ομάδων με βάση τους φακέλους που περιέχουν;</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>Είστε βέβαιοι ότι θέλετε να δημιουργήσετε ένα σύνολο ομάδων με βάση το metadata.toml;</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Συνδυασμός ομάδων ανά γλώσσα πηγή ως &quot;%1-&gt;&quot;</translation>
     </message>
@@ -428,6 +493,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Συνδυασμός των ομάδων με &quot;%1&quot;</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Αφαίρεση ομάδας</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>Σίγουρα θέλετε να αφαιρέσετε την ομάδα &lt;b&gt;%1&lt;/b&gt;;</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>Είστε σίγουροι ότι θέλετε να δημιουργήσετε ένα σύνολο ομάδων βασισμένο σε αρχεία μεταδεδομένων λεξικού;</translation>
     </message>
   </context>
   <context>
@@ -457,10 +534,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Φίλτρο:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Λειτουργία αναζήτησης</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Αυτό το στοιχείο καθορίζει πώς θα ερμηνεύεται η συμβολοσειρά φίλτρου</translation>
     </message>
@@ -483,18 +556,6 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Καθορίστε τα μέγιστα φιλτραρισμένα headwords που επιστρέφονται.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Φιλτράρισμα μέγιστων αποτελεσμάτων:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Βοήθεια</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>Εντάξει</translation>
     </message>
     <message>
       <source>Text</source>
@@ -544,6 +605,10 @@ between classic and school orthography in cyrillic)</source>
       <source>Regular Expression</source>
       <translation>Κανονική Έκφραση</translation>
     </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>Μέγιστο:</translation>
+    </message>
   </context>
   <context>
     <name>DictInfo</name>
@@ -576,10 +641,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Μεταφράζει σε:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Αρχεία λεξικού:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Περιγραφή:</translation>
     </message>
@@ -598,6 +659,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Full-text search disabled</source>
       <translation>Η αναζήτηση πλήρους κειμένου απενεργοποιήθηκε</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Καθιστώ ανίκανο</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Καθιστώ ικανό</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>Στοιχεία λεξικού:</translation>
     </message>
   </context>
   <context>
@@ -694,6 +767,34 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Restore selection</source>
       <translation>Επαναφορά επιλογής</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>Ακύρωση επαναευρετηρίου</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>Χρονοδιάγραμμα επαναευρετηρίου</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>Ακύρωση επαναευρετηρίου προγράμματος</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>Το λεξικό έχει προγραμματιστεί για την επαναδημιουργία ευρετηρίου. Το ευρετήριο θα ανακατασκευαστεί στην επόμενη επανεκκίνηση της εφαρμογής.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Αλλαγή ονόματος εμφάνισης</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Νέο όνομα προβολής:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Απέτυχε ο προγραμματισμός του λεξικού για εκ νέου ευρετηρίαση.</translation>
     </message>
   </context>
   <context>
@@ -810,10 +911,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Προσθήκη φακέλου</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Εκκαθάριση όλων</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Αγαπημένα:</translation>
     </message>
@@ -822,16 +919,20 @@ between classic and school orthography in cyrillic)</source>
       <translation>Όλα τα επιλεγμένα στοιχεία θα διαγραφούν. Συνέχεια?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Εκκαθάριση όλων των αντικειμένων</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>Είστε βέβαιοι ότι θέλετε να διαγράψετε όλα τα στοιχεία;</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Εκκαθάριση</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>Εκκαθάριση Αγαπημένων</translation>
     </message>
   </context>
   <context>
@@ -959,28 +1060,12 @@ between classic and school orthography in cyrillic)</source>
       <translation>Tab 2</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>Δημιουργία νέας ομάδας λεξικών</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>Προσ&amp;θήκη ομάδας</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>Μετονομασία τρέχουσας ομάδας λεξικών</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>&amp;Μετονομασία ομάδας</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Αφαίρεση τρέχουσας ομάδας λεξικών</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>Α&amp;φαίρεση ομάδας</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1050,6 +1135,22 @@ between classic and school orthography in cyrillic)</source>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>Σίγουρα θέλετε να αφαιρέσετε όλες τις ομάδες;</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>Προσθέστε μια νέα ομάδα λεξικών</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>Προσ&amp;θήκη ομάδας</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>Η ομάδα υπάρχει ήδη</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>Μια ομάδα με το όνομα &apos;%1&apos; υπάρχει ήδη.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1083,6 +1184,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>%1 Morphology</source>
       <translation>Μορφολογία για %1</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Ορθογραφία σωστή, δεν βρέθηκαν άλλες μορφές λέξεων.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>Από %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Φόρμες Word για %1: </translation>
     </message>
   </context>
   <context>
@@ -2390,10 +2503,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Νέα καρτέλα</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>Καλώς ήλθατε!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>Δεν είναι ενεργοποιημένο το API προσβασιμότητας</translation>
     </message>
@@ -2466,42 +2575,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Print Article</source>
       <translation>Εκτύπωση αποτελέσματος</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Ολοκληρώστε το Html (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Μονό Html (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>Pdf (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Mime Html (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Αποθήκευση αποτελέσματος ως</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Σφάλμα</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Αδύνατη η αποθήκευση του άρθρου: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Αποθήκευση άρθρου...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Η αποθήκευση του άρθρου ολοκληρώθηκε</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2596,12 +2669,56 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Εμφάνιση</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation>Αποθήκευση PDF ολοκληρώθηκε</translation>
+      <source>Lock Panels</source>
+      <translation>Κλείδωμα Πάνελ</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation>Αποτυχία αποθήκευσης PDF</translation>
+      <source>Clear History</source>
+      <translation>Εκκαθάριση Ιστορικού</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>Είστε βέβαιοι ότι θέλετε να καθαρίσετε όλα τα στοιχεία ιστορικού?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Αποθήκευση Αρχείου</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>Η εφαρμογή εξακολουθεί να εκτελείται στο παρασκήνιο. Κάντε κλικ στο εικονίδιο του δίσκου για να εμφανιστεί το παράθυρο.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Άνοιγμα σε &amp;εξωτερικό πρόγραμμα περιήγησης</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>Τώρα δημιουργείτε κρυφή μνήμη λέξεων-κλειδιών: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Πρόθεμα</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Επίθημα</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Πολλές λέξεις</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Αναζήτηση πλήρους κειμένου…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Λειτουργία αναζήτησης</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Λειτουργία αναζήτησης: %1</translation>
     </message>
   </context>
   <context>
@@ -2618,15 +2735,15 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Σφάλμα ανάλυσης XML: %1 στο %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>Σφάλμα ανάλυσης JSON</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Σφάλμα ανάλυσης XML: %1 στο %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>Σφάλμα ανάλυσης JSON</translation>
     </message>
   </context>
   <context>
@@ -2702,10 +2819,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Περιγραφή:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Αρχεία λεξικού:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Μπορείτε να αλλάξετε τη σειρά εμφάνισης των λεξικών, σέρνοντάς τα με το ποντίκι. Σύρετε λεξικά στην ομάδα των ανενεργών για να τα απενεργοποιήσετε.</translation>
     </message>
@@ -2724,6 +2837,18 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Ενεργά λεξικά: %1, ανενεργό: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Αλλαγή ονόματος εμφάνισης</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Νέο όνομα προβολής:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>Εξαρτήματα λεξικού:</translation>
     </message>
   </context>
   <context>
@@ -2767,28 +2892,12 @@ switching to them.</source>
       <translation>Άνοιγμα νέων καρτελών στο παρασκήνιο</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Αν σημειώσετε αυτή την επιλογή, οι νέες καρτέλες 
-θα ανοίγουν ακριβώς δίπλα στην τρέχουσα ενεργή καρτέλα. 
-Στην αντίθετη περίπτωση θα ανοίγουν στο τέλος.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Άνοιγμα νέων καρτελών δίπλα στην τρέχουσα</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Αν ενεργοποιηθεί, η γραμμή καρτελών δεν θα εμφανίζεται όταν είναι ανοιχτή μόνο μία καρτέλα.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Απόκρυψη μοναδικής καρτέλας</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>Σειρά MRU: Πιο πρόσφατα χρησιμοποιημένη διαταγή.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2877,8 +2986,100 @@ the application.</source>
       <translation>Αριθμός λεξικών μενού περιεχομένου:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>Συστήματος</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Κλασική</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Κλασικό</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Μοντέρνα</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Βαβυλώνα</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Lingoes</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Μπίνγκο-μπλε</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Απαιτείται επανεκκίνηση του προγράμματος για να εφαρμοστεί η αλλαγή γλώσσας.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Κάντε επανεκκίνηση για να εφαρμόσετε την αλλαγή στυλ διεπαφής.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Επανεκκινήστε για να εφαρμόσετε την αλλαγή γραμματοσειράς της διασύνδεσης.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Απαιτείται επανεκκίνηση</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Καθιστώ ικανό</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Καθιστώ ανίκανο</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Αυτόματο</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Κανένα</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>Με αυτό, οι νέες καρτέλες ανοίγονται αμέσως μετά την τρέχουσα
+ενεργή. Διαφορετικά, προστίθενται σε
+είναι οι τελευταίες.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp;Στυλ</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Εμφάνιση</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Γλώσσα διεπαφής</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Στυλ εμφάνισης άρθρου</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Στυλ πρόσθετου</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Στυλ Διεπαφής</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2897,12 +3098,16 @@ the application.</source>
       <translation>Σκοτεινή Λειτουργία Ανάγνωσης</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Αυτές οι γραμματοσειρές θα εφαρμοστούν όταν δεν βρεθούν οι γραμματοσειρές που καθορίζονται από ένα λεξικό.</translation>
+      <source>Preview Font</source>
+      <translation>Προεπισκόπηση Γραμματοσειράς</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Εναλλακτικές γραμματοσειρές</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>Το GoldenDict-ng είναι ένα λεξικό λογισμικό.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Αυτές οι γραμματοσειρές θα εφαρμοστούν όταν δεν βρεθούν οι γραμματοσειρές που καθορίζονται από ένα λεξικό.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2919,10 +3124,6 @@ the application.</source>
     <message>
       <source>Monospace Font</source>
       <translation>Γραμματοσειρά Monospace</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>Ανα&amp;δυόμενο παράθυρο</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2959,8 +3160,8 @@ in the pressed state when the word selection changes.</source>
 πατημένα όλα τα παρακάτω πλήκτρα όταν γίνεται η επιλογή της λέξης.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Επιλογή μόνο όταν όλα τα επιλεγμένα πλήκτρα διατηρούνται πατημένα:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>Μόνο επιλογή κομματιού όταν όλα τα επιλεγμένα πλήκτρα διατηρούνται πατημένα:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3043,20 +3244,8 @@ in the pressed state when the word selection changes.</source>
       <translation>Αναπαραγωγή αρχείων ήχου μέσω ενσωματωμένης υποστήριξης ήχου</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Χρήση εσωτερικού παίκτη:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Επιλέξτε πίσω τέλος ήχου</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Χρήση οποιουδήποτε εξωτερικού προγράμματος για την αναπαραγωγή αρχείων ήχου</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Χρήση εξωτερικού προγράμματος:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3121,28 +3310,12 @@ for all program&apos;s network requests.</source>
       <translation>Τράπουλα:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Μοντέλο:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Λέξη</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Πεδίο λεξιλογίου...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Κείμενο</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Πεδίο ορισμού...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Πρόταση</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3160,42 +3333,6 @@ you are browsing. If some site breaks because of this, try disabling this.</sour
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>Φραγή περιεχομένου από άλλους ιστοτόπους (εξαφανίζει τις περισσότερες διαφημίσεις)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Ορισμένες ιστοσελίδες εντοπίζουν το GoldenDict μέσω των κεφαλίδων HTTP και μπλοκάρουν τα αιτήματά του.
-Ενεργοποιήστε αυτή την επιλογή για να παρακάμψετε το πρόβλημα.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>Μη ταυτοποίηση του GoldenDict στις κεφαλίδες HTTP</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Μέγιστο μέγεθος προσωρινής μνήμης δικτύου:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Ο μέγιστος χώρος στο δίσκο που καταλαμβάνει η μνήμη cache δικτύου GoldenDict&apos;s στο
-%1
-Εάν οριστεί στο 0, η μνήμη cache στο δίσκο δικτύου θα απενεργοποιηθεί.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>Όταν αυτή η επιλογή είναι ενεργοποιημένη, το GoldenDict
-καθαρίζει την προσωρινή μνήμη δικτύου από το δίσκο κατά την έξοδο.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Εκκαθάριση προσωρινής μνήμης δικτύου κατά την έξοδο</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3257,9 +3394,12 @@ GoldenDict. Αν ναι, το πρόγραμμα θα ειδοποιεί το
       <translation>Μέγιστο μέγεθος ιστορικού:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Συχνότητα αποθήκευσης ιστορικού. Αν χρησιμοποιήσετε 0, 
-το ιστορικό θα αποθηκεύεται μόνο κατά την έξοδο.</translation>
+      <source>Favorites</source>
+      <translation>Αγαπημένα</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Αγαπημένα διάστημα αποθήκευσης. Αν οριστεί στα 0 Αγαπημένα θα αποθηκευτεί μόνο κατά την έξοδο.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3268,14 +3408,6 @@ GoldenDict. Αν ναι, το πρόγραμμα θα ειδοποιεί το
     <message>
       <source>minutes</source>
       <translation>λεπτά</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Αγαπημένα</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Αγαπημένα διάστημα αποθήκευσης. Αν οριστεί στα 0 Αγαπημένα θα αποθηκευτεί μόνο κατά την έξοδο.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3374,112 +3506,112 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>Καταργήστε το μη έγκυρο ευρετήριο κατά την έξοδο</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>Συστήματος</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Κλασική</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Κλασικό</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Μοντέρνα</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Βαβυλώνα</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Lingoes</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Μπίνγκο-μπλε</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Το Auto δεν κάνει τίποτα σε ορισμένα συστήματα.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Απαιτείται επανεκκίνηση του προγράμματος για να εφαρμοστεί η αλλαγή γλώσσας.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Κάντε επανεκκίνηση για να εφαρμόσετε την αλλαγή στυλ διεπαφής.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Επανεκκινήστε για να εφαρμόσετε την αλλαγή γραμματοσειράς της διασύνδεσης.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Απαιτείται επανεκκίνηση</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Καθιστώ ικανό</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Καθιστώ ανίκανο</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Αυτόματο</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Αποθήκευση μηνυμάτων αποσφαλμάτωσης στο gd_log.txt στο φάκελο ρυθμίσεων</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Γλώσσα διεπαφής</translation>
+      <source>S&amp;can</source>
+      <translation>Σ&amp;άρωση</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Στυλ εμφάνισης άρθρου</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>Καταστολή ειδοποιήσεων JavaScript, επιβεβαιώνει και ζητά στην προβολή άρθρου.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Στυλ πρόσθετου</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>Καταστολή διαλόγων JavaScript</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Στυλ Διεπαφής</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>Άνοιγμα λεξικού ιστοσελίδας σε ξεχωριστή καρτέλα</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Προεπισκόπηση Γραμματοσειράς</translation>
+      <source>Anki</source>
+      <translation>Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation>Το GoldenDict-ng είναι ένα λεξικό λογισμικό.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>Επιτρέψτε στην JavaScript να έχει πρόσβαση στο πρόχειρο στην προβολή άρθρου.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation>Ενεργοποίηση Γραμματοσειράς Διεπαφής</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>Ενεργοποίηση πρόσβασης στο πρόχειρο JavaScript (χρειάζεται επανεκκίνηση)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation>Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>Επανεκκίνηση για να εφαρμόσετε την αλλαγή πρόσβασης στο πρόχειρο JavaScript.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation>Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>Απόκρυψη γραμμής καρτελών όταν μόνο μία καρτέλα είναι ανοιχτή.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Κανένα</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Χρησιμοποιήστε οποιοδήποτε εξωτερικό πρόγραμμα αναπαραγωγής ήχου για την αναπαραγωγή αρχείων ήχου</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Προβολή λεπτομερούς οδηγού ρύθμισης παραμέτρων</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>Η διαδρομή ήχου θα περάσει ως μια παράμετρο γραμμής εντολών στον εξωτερικό παίκτη. </translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation>Εσωτερική συσκευή αναπαραγωγής ήχου:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation>Εξωτερική συσκευή αναπαραγωγής ήχου:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>Αλλάζει αυτόματα με βάση το θέμα του συστήματος.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>Προσαρμογή γραμματοσειρών</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>Το εικονίδιο του Dock εμφανίζεται πάντα όταν το κύριο παράθυρο είναι ανοιχτό, έτσι ώστε το macOS να μπορεί να εμφανίζει το όνομα της εφαρμογής και τα μενού. Ενεργοποιήστε αυτήν την επιλογή για να διατηρήσετε το εικονίδιο Dock ορατό μετά την απόκρυψη του κύριου παραθύρου.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>Διατηρήστε το εικονίδιο Dock ορατό στο παρασκήνιο</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>Προσθέστε ήχο στην κάρτα Anki όταν είναι διαθέσιμος</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>Όταν είναι ενεργοποιημένα, τα λεξικά τοποθεσιών Web ανοίγουν στη δική τους καρτέλα αντί να ενσωματώνονται στην προβολή άρθρου. Με αυτόν τον τρόπο αποφεύγονται οι περιορισμοί διάταξης iframe και κύλισης και ενεργοποιείται η στήλη Δέσμη ενεργειών ανά λεξικό στο παράθυρο διαλόγου Λεξικά.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Λέξη:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>Κείμενο:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Πρόταση:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Γραμματοσειρά Διεπαφής</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Προσαρμοσμένη οικογένεια</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Προσαρμοσμένο μέγεθος</translation>
     </message>
   </context>
   <context>
@@ -3625,6 +3757,58 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>Force the word to be translated in the mainwindow.</source>
       <translation>Εξαναγκασμός μετάφρασης της λέξης στο κύριο παράθυρο.</translation>
     </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>Url Ιστοσελίδας:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>Στο Url, &quot;%GDWORD%&quot; θα αντικατασταθεί με τη λέξη που θα αναζητηθεί.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Complete Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Μονό Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>PDF έγγραφο (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Αποθήκευση Άρθρου Ως</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Αποθήκευση πλήρους άρθρου</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Σφάλμα</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Αδύνατη η αποθήκευση του άρθρου: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Αποθήκευση PDF ολοκληρώθηκε</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Αποτυχία αποθήκευσης PDF</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Αποθήκευση άρθρου... (%1/%2)</translation>
+    </message>
   </context>
   <context>
     <name>QuickFilterLine</name>
@@ -3655,6 +3839,10 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>The referenced resource failed to download.</source>
       <translation>Απέτυχε η λήψη του ζητούμενου πόρου.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>Ο πόρος θα αποθηκευτεί εκτός του φακέλου προορισμού.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3680,6 +3868,26 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>WARNING: %1</source>
       <translation>ΠΡΟΕΙΔΟΠΟΙΗΣΗ: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>Ορισμός</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Κλείσιμο τρέχουσας καρτέλας</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Κλείσιμο όλων των άλλων καρτελών</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Κλείσιμο όλων των καρτελών</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Άνοιγμα σε &amp;εξωτερικό πρόγραμμα περιήγησης</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3704,10 +3912,6 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>Αποστολή λέξης στο κύριο παράθυρο (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation>Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Προσθήκη λέξης στα αγαπημένα (Ctrl+E)</translation>
     </message>
@@ -3720,6 +3924,10 @@ from Stardict, Babylon and GLS dictionaries</source>
 could be resized or managed in other ways.</source>
       <translation>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Αποθήκευση άρθρου</translation>
     </message>
   </context>
   <context>
@@ -4114,18 +4322,21 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Εισαγωγή άρθρου ως σύνδεσμος μέσα στην ετικέτα &lt;iframe&gt;</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>Αυτό το λεξικό ιστοσελίδας ανοίγει σε νέα καρτέλα</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Σβήνω &quot;Ανοίξτε το λεξικό ιστότοπου σε ξεχωριστή καρτέλα&quot; στις Προτιμήσεις για να εμφανίσετε τον ιστότοπο μέσα στο άρθρο.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Ενεργή</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Ως σύνδεσμος</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4138,6 +4349,22 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     <message>
       <source>Icon</source>
       <translation>Εικονίδιο</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Σενάριο</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>Όνομα αρχείου εικονιδίου. Σε σχέση με τον κατάλογο ρυθμίσεων.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>Διαθέσιμο μόνο όταν ανοίγετε ιστοσελίδες σε ξεχωριστές καρτέλες. Μπορεί να είναι μια διαδρομή αρχείου (σε σχέση με τον κατάλογο ρύθμισης ή απόλυτο) ή άμεση δέσμη ενεργειών περιεχομένου.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>Αυτή η στήλη είναι απενεργοποιημένη επειδή το λεξικό &quot;Open website σε ξεχωριστή καρτέλα&quot; επιλογή δεν είναι ενεργοποιημένη στις Προτιμήσεις.</translation>
     </message>
   </context>
   <context>

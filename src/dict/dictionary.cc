@@ -7,10 +7,12 @@
 #include "dictionary.hh"
 
 // For needToRebuildIndex(), read below
+#include <QFile>
 #include <QFileInfo>
 #include <QDateTime>
 
 #include "config.hh"
+#include "common/globalbroadcaster.hh"
 #include <QDir>
 #include <QCryptographicHash>
 #include <QImage>
@@ -182,6 +184,16 @@ sptr< WordSearchRequest > Class::stemmedMatch( const std::u32string & /*str*/,
   return std::make_shared< WordSearchRequestInstant >();
 }
 
+sptr< WordSearchRequest > Class::suffixMatch( const std::u32string & /*str*/, unsigned long /*maxResults*/ )
+{
+  return std::make_shared< WordSearchRequestInstant >();
+}
+
+sptr< WordSearchRequest > Class::multiWordMatch( const std::u32string & /*str*/, unsigned long /*maxResults*/ )
+{
+  return std::make_shared< WordSearchRequestInstant >();
+}
+
 sptr< WordSearchRequest > Class::findHeadwordsForSynonym( const std::u32string & )
 {
   return std::make_shared< WordSearchRequestInstant >();
@@ -205,6 +217,16 @@ QString Class::getContainingFolder() const
   return {};
 }
 
+string Class::getMetadataFileStem() const
+{
+  if ( dictionaryFiles.empty() ) {
+    return {};
+  }
+  // fileName() returns the file name with extension for files, and the
+  // directory name for directories (e.g. Epwing dictionaries).
+  return QFileInfo( QString::fromStdString( dictionaryFiles[ 0 ] ) ).fileName().toStdString();
+}
+
 sptr< DataRequest > Class::getResource( const string & /*name*/ )
 
 {
@@ -220,6 +242,19 @@ const QString & Class::getDescription()
 {
   return dictionaryDescription;
 }
+
+void Class::setIndexedFtsDoc( long _indexedFtsDoc )
+{
+  indexedFtsDoc = _indexedFtsDoc;
+
+  auto newProgress = getIndexingFtsProgress();
+  if ( newProgress != lastProgress ) {
+    lastProgress = newProgress;
+    emit GlobalBroadcaster::instance()
+      -> indexingDictionary( QString( "%1......%%2" ).arg( QString::fromStdString( getName() ) ).arg( newProgress ) );
+  }
+}
+
 
 QString Class::getMainFilename()
 {
@@ -288,7 +323,7 @@ bool Class::loadIconFromFilePath( const QString & filename )
 bool Class::loadIconFromText( const QString & iconUrl, const QString & text )
 {
   //select a single char.
-  auto abbrName = getAbbrName( text );
+  auto abbrName = getAbbrName( text, QString::fromStdString( getId() ) );
   if ( abbrName.isEmpty() ) {
     return false;
   }
@@ -300,29 +335,44 @@ bool Class::loadIconFromText( const QString & iconUrl, const QString & text )
     QImage result = img.scaled( { iconSize, iconSize }, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation );
 
     QPainter painter( &result );
+    const QRect rectangle = result.rect();
     painter.setRenderHints( QPainter::Antialiasing | QPainter::TextAntialiasing );
     painter.setCompositionMode( QPainter::CompositionMode_SourceAtop );
 
     QFont font = painter.font();
-    //the orderNum should be a little smaller than the icon
-    font.setPixelSize( iconSize * 0.8 );
+    // the main character size should be slightly smaller to avoid crowding
+    font.setPixelSize( iconSize * 0.75 );
     font.setWeight( QFont::Bold );
     painter.setFont( font );
 
-    const QRect rectangle = QRect( 0, 0, iconSize, iconSize );
+    const auto & id = getId();
+    // Use ID hash for more unique colors
+    unsigned int idHash = qHash( QString::fromStdString( id ) );
 
-    painter.setPen( intToFixedColor( qHash( abbrName ) ) );
+    // Draw first character with a shadow for better contrast and depth
+    painter.setPen( QColor( 0, 0, 0, 80 ) );
+    painter.drawText( rectangle.adjusted( 1, 1, 1, 1 ), Qt::AlignCenter, abbrName.at( 0 ) );
 
-    // Draw first character
+    // Draw first character with a primary color
+    painter.setPen( intToFixedColor( idHash ) );
     painter.drawText( rectangle, Qt::AlignCenter, abbrName.at( 0 ) );
 
-    //the orderNum should be a little smaller than the icon
-    font.setPixelSize( iconSize * 0.4 );
+    // The orderNum should be a little smaller than the icon
+    font.setPixelSize( iconSize * 0.5 );
     QFontMetrics fm1( font );
     const QString & orderNum = abbrName.mid( 1 );
 
     painter.setFont( font );
-    painter.drawText( rectangle, Qt::AlignRight | Qt::AlignBottom, orderNum );
+
+    // Draw the order number with a shadow
+    painter.setPen( QColor( 0, 0, 0, 100 ) );
+    QRect orderRect = rectangle;
+    orderRect.setLeft( rectangle.left() + rectangle.width() / 2 );
+    painter.drawText( orderRect.adjusted( 1, 1, 1, 1 ), Qt::AlignHCenter | Qt::AlignBottom, orderNum );
+
+    // Draw the order number with a slightly different color
+    painter.setPen( intToFixedColor( idHash + 5 ) );
+    painter.drawText( orderRect, Qt::AlignHCenter | Qt::AlignBottom, orderNum );
 
     painter.end();
 
@@ -335,29 +385,36 @@ bool Class::loadIconFromText( const QString & iconUrl, const QString & text )
 
 QColor Class::intToFixedColor( int index )
 {
-  // Predefined list of colors
+  // Extended list of high-contrast colors for better variety
   static const std::array colors = {
-    QColor( 255, 0, 0, 200 ),     // Red
-    QColor( 4, 57, 108, 200 ),    //Custom
-    QColor( 0, 255, 0, 200 ),     // Green
-    QColor( 0, 0, 255, 200 ),     // Blue
-    QColor( 255, 255, 0, 200 ),   // Yellow
-    QColor( 0, 255, 255, 200 ),   // Cyan
-    QColor( 255, 0, 255, 200 ),   // Magenta
-    QColor( 192, 192, 192, 200 ), // Gray
-    QColor( 255, 165, 0, 200 ),   // Orange
-    QColor( 128, 0, 128, 200 ),   // Violet
-    QColor( 128, 128, 0, 200 )    // Olive
+    QColor( 255, 0, 0, 220 ),     // Red
+    QColor( 0, 0, 255, 220 ),     // Blue
+    QColor( 230, 200, 0, 220 ),   // Gold/Yellow
+    QColor( 100, 0, 200, 220 ),   // Purple
+    QColor( 255, 0, 255, 220 ),   // Magenta
+    QColor( 255, 120, 0, 220 ),   // Orange
+    QColor( 0, 150, 255, 220 ),   // Sky Blue
+    QColor( 128, 0, 0, 220 ),     // Maroon
+    QColor( 180, 0, 180, 220 ),   // Violet
+    QColor( 75, 0, 130, 220 ),    // Indigo
+    QColor( 210, 105, 30, 220 ),  // Chocolate
+    QColor( 255, 69, 0, 220 ),    // Red-Orange
+    QColor( 255, 20, 147, 220 ),  // Deep Pink
+    QColor( 105, 105, 105, 220 ), // Dim Gray
+    QColor( 70, 130, 180, 220 )   // Steel Blue
   };
 
   // Use modulo operation to ensure index is within the range of the color list
   return colors[ index % colors.size() ];
 }
 
-QString Class::getAbbrName( const QString & text )
+QString Class::getAbbrName( const QString & text, const QString & key )
 {
-  return GlobalBroadcaster::instance()->getAbbrName( text );
+  return GlobalBroadcaster::instance()->getAbbrName( text, key );
 }
+
+// Forward declaration
+qsizetype findMatchingBracket( const QString & css, qsizetype startPos );
 
 void Class::isolateCSS( QString & css, const QString & wrapperSelector )
 {
@@ -365,145 +422,162 @@ void Class::isolateCSS( QString & css, const QString & wrapperSelector )
     return;
   }
 
-  //comment syntax like:/* */
-  QRegularExpression reg1( R"(\/\*(?:.(?!\*\/))*.?\*\/)", QRegularExpression::DotMatchesEverythingOption );
-  QRegularExpression reg2( R"([ \*\>\+,;:\[\{\]])" );
-  QRegularExpression reg3( "[,;\\{]" );
+  // 1. Remove comments
+  static const QRegularExpression commentRegex( R"(\/\*.*?\*\/)", QRegularExpression::DotMatchesEverythingOption );
+  css.remove( commentRegex );
 
-
-  int currentPos = 0;
-  QString newCSS;
-  QString prefix( "#gdfrom-" );
-  prefix += QString::fromLatin1( getId().c_str() );
+  // 2. Prepare prefix
+  QString idSelector = "#gd-" + QString::fromStdString( getId() );
+  QString prefix     = idSelector;
   if ( !wrapperSelector.isEmpty() ) {
     prefix += " " + wrapperSelector;
   }
 
-  // Strip comments
-  css.replace( reg1, QString() );
+  // Helper for selector isolation
+  auto isolateSelector = [ & ]( QString selectorsPart ) {
+    static const QString leaderSeparators   = " \t\r\n,>~+(";
+    static const QString followerSeparators = " \t\r\n.#[:>~+,)";
 
-  //replace the pseudo root selector with the prefix,like ":root  {"  to  "html{"
-  css.replace( QRegularExpression( R"(:root\s*{)" ), "html{" );
+    QStringList selectors = selectorsPart.split( ',', Qt::SkipEmptyParts );
+    QStringList isolated;
 
-  for ( ;; ) {
-    if ( currentPos >= css.length() ) {
-      break;
-    }
-    QChar ch = css[ currentPos ];
-
-    if ( ch == '@' ) {
-      // @ rules
-
-      int n = currentPos;
-      if ( css.mid( currentPos, 7 ).compare( "@import", Qt::CaseInsensitive ) == 0
-           || css.mid( currentPos, 10 ).compare( "@font-face", Qt::CaseInsensitive ) == 0
-           || css.mid( currentPos, 10 ).compare( "@namespace", Qt::CaseInsensitive ) == 0
-           || css.mid( currentPos, 8 ).compare( "@charset", Qt::CaseInsensitive ) == 0 ) {
-        // Copy rule as is.
-        n      = css.indexOf( ';', currentPos );
-        int n2 = css.indexOf( '{', currentPos );
-        if ( n2 > 0 && n > n2 ) {
-          n = n2 - 1;
-        }
-      }
-      else if ( css.mid( currentPos, 6 ).compare( "@media", Qt::CaseInsensitive ) == 0 ) {
-        // We must to parse it content to isolate it.
-        // Copy all up to '{' and continue parse inside.
-        n = css.indexOf( '{', currentPos );
-      }
-      else if ( css.mid( currentPos, 5 ).compare( "@page", Qt::CaseInsensitive ) == 0 ) {
-        // Don't copy rule. GD use own page layout.
-        n = css.indexOf( '}', currentPos );
-        if ( n < 0 ) {
-          break;
-        }
-        currentPos = n + 1;
+    for ( QString s : selectors ) {
+      s = s.trimmed();
+      if ( s.isEmpty() ) {
         continue;
       }
-      else {
-        // Copy rule as is.
-        n = css.indexOf( '}', currentPos );
+
+      // 1. Replace tags (body, html, :root) carefully checking boundaries
+      auto replaceTag = [ & ]( const QString & tag, const QString & replacement ) {
+        qsizetype p = 0;
+        while ( ( p = s.indexOf( tag, p, Qt::CaseInsensitive ) ) != -1 ) {
+          bool leaderOk   = ( p == 0 || leaderSeparators.contains( s[ p - 1 ] ) );
+          bool followerOk = ( p + tag.length() == s.length() || followerSeparators.contains( s[ p + tag.length() ] ) );
+          if ( leaderOk && followerOk ) {
+            s.replace( p, tag.length(), replacement );
+            p += replacement.length();
+          }
+          else {
+            p += tag.length();
+          }
+        }
+      };
+
+      replaceTag( "body", "gd-section-body" );
+      replaceTag( "html", "gd-section-html" );
+      replaceTag( ":root", "gd-section-html" );
+
+      // 2. Prefix the selector if not already prefixed
+      if ( !s.startsWith( idSelector ) ) {
+        // Special case: if the selector matches the root tags, allow it to apply to the container itself
+        if ( s == "gd-section-body" || s == "gd-section-html" ) {
+          isolated << idSelector;
+        }
+        isolated << prefix + " " + s;
       }
+      else {
+        isolated << s;
+      }
+    }
+    return isolated.join( ", " );
+  };
 
-      newCSS.append( css.mid( currentPos, n < 0 ? n : n - currentPos + 1 ) );
+  QString result;
+  int pos = 0;
+  int len = css.length();
 
-      if ( n < 0 ) {
+  while ( pos < len ) {
+    int openBrace = css.indexOf( '{', pos );
+    int atRule    = css.indexOf( '@', pos );
+
+    if ( atRule != -1 && ( openBrace == -1 || atRule < openBrace ) ) {
+      // Handle @rule
+      int semicolon = css.indexOf( ';', atRule );
+      int brace     = css.indexOf( '{', atRule );
+
+      if ( brace != -1 && ( semicolon == -1 || brace < semicolon ) ) {
+        // Block-based @rule (@media, @supports, etc.)
+        qsizetype matchingBrace = findMatchingBracket( css, brace );
+        if ( matchingBrace != -1 ) {
+          QString header = css.mid( atRule, brace - atRule + 1 );
+          result.append( header );
+
+          QString sub = css.mid( brace + 1, matchingBrace - brace - 1 );
+          // Recurse for rules that contain other rules
+          QString lowerHeader = header.toLower();
+          if ( lowerHeader.contains( "@media" ) || lowerHeader.contains( "@supports" )
+               || lowerHeader.contains( "@container" ) || lowerHeader.contains( "@layer" ) ) {
+            isolateCSS( sub, wrapperSelector );
+          }
+          result.append( sub );
+          result.append( '}' );
+          pos = matchingBrace + 1;
+        }
+        else {
+          result.append( css.mid( atRule ) );
+          break;
+        }
+      }
+      else if ( semicolon != -1 ) {
+        // Inline @rule (@import, @charset, etc.)
+        result.append( css.mid( atRule, semicolon - atRule + 1 ) );
+        pos = semicolon + 1;
+      }
+      else {
+        result.append( css.mid( atRule ) );
         break;
       }
+    }
+    else if ( openBrace != -1 ) {
+      // Handle selector block
+      QString selectors = css.mid( pos, openBrace - pos );
+      result.append( isolateSelector( selectors ) );
+      result.append( " {" );
 
-      currentPos = n + 1;
+      qsizetype matchingBrace = findMatchingBracket( css, openBrace );
+      if ( matchingBrace != -1 ) {
+        result.append( css.mid( openBrace + 1, matchingBrace - openBrace ) );
+        pos = matchingBrace + 1;
+      }
+      else {
+        result.append( css.mid( openBrace + 1 ) );
+        break;
+      }
+    }
+    else {
+      // Rest of the CSS
+      result.append( css.mid( pos ) );
+      break;
+    }
+  }
+
+  css = result;
+}
+
+// Helper function to find matching closing bracket considering nesting and escaped characters
+qsizetype findMatchingBracket( const QString & css, qsizetype startPos )
+{
+  qsizetype depth = 1;
+  for ( qsizetype i = startPos + 1; i < css.length(); i++ ) {
+    QChar ch = css.at( i );
+
+    // Skip escaped characters
+    if ( ch == '\\' && i + 1 < css.length() ) {
+      i++;
       continue;
     }
 
     if ( ch == '{' ) {
-      // Selector declaration block.
-      // We copy it up to '}' as is.
-
-      int n = css.indexOf( '}', currentPos );
-      newCSS.append( css.mid( currentPos, n == -1 ? n : n - currentPos + 1 ) );
-      if ( n < 0 ) {
-        break;
-      }
-      currentPos = n + 1;
-      continue;
+      depth++;
     }
-
-    if ( ch.isLetter() || ch == '.' || ch == '#' || ch == '*' || ch == '\\' || ch == ':' ) {
-      if ( ch.isLetter() || ch == '*' ) {
-        // Check for namespace prefix
-        QChar chr;
-        for ( int i = currentPos; i < css.length(); i++ ) {
-          chr = css[ i ];
-          if ( chr.isLetterOrNumber() || chr.isMark() || chr == '_' || chr == '-'
-               || ( chr == '*' && i == currentPos ) ) {
-            continue;
-          }
-
-          if ( chr == '|' ) {
-            // Namespace prefix found, copy it as is
-            newCSS.append( css.mid( currentPos, i - currentPos + 1 ) );
-            currentPos = i + 1;
-          }
-          break;
-        }
-        if ( chr == '|' ) {
-          continue;
-        }
+    else if ( ch == '}' ) {
+      depth--;
+      if ( depth == 0 ) {
+        return i;
       }
-
-      // This is some selector.
-      // We must to add the isolate prefix to it.
-
-      int n     = css.indexOf( reg2, currentPos + 1 );
-      QString s = css.mid( currentPos, n < 0 ? n : n - currentPos );
-      if ( n < 0 ) {
-        newCSS.append( s );
-        break;
-      }
-      QString trimmed = s.trimmed();
-      if ( trimmed.compare( "body", Qt::CaseInsensitive ) == 0
-           || trimmed.compare( "html", Qt::CaseInsensitive ) == 0 ) {
-        newCSS.append( s + " " + prefix + " " );
-        currentPos += 4;
-      }
-      else {
-        newCSS.append( prefix + " " );
-      }
-
-      n = css.indexOf( reg3, currentPos );
-      s = css.mid( currentPos, n < 0 ? n : n - currentPos );
-      newCSS.append( s );
-      if ( n < 0 ) {
-        break;
-      }
-      currentPos = n;
-      continue;
     }
-
-    newCSS.append( ch );
-    ++currentPos;
   }
-  css = newCSS;
+  return -1; // No matching bracket found
 }
 
 string makeDictionaryId( const vector< string > & dictionaryFiles ) noexcept
@@ -551,6 +625,20 @@ string makeDictionaryId( const vector< string > & dictionaryFiles ) noexcept
 // be fixed in the future when it's needed.
 bool needToRebuildIndex( const vector< string > & dictionaryFiles, const string & indexFile ) noexcept
 {
+  // "Schedule for reindex" in the dictionary bar creates an empty
+  // "<indexFile>.stale" marker next to the index file. Its presence forces a
+  // rebuild, and the marker is consumed here so that the rebuild happens only
+  // once. Unlike a config-based list of dictionary ids, this does not depend on
+  // how a particular format derives its id (ZIM uses the file checksum,
+  // SoundDir hashes a mixin, ...), and it works for the FTS index as well,
+  // since that index has its own "<id>_FTS_x" file name.
+  const QString staleMarker = QString::fromStdString( indexFile ) + QLatin1String( ".stale" );
+  if ( QFileInfo::exists( staleMarker ) ) {
+    QFile::remove( staleMarker );
+    return true;
+  }
+
+  // Original logic: check file modification times
   qint64 lastModified = 0;
 
   for ( const auto & dictionaryFile : dictionaryFiles ) {
@@ -573,7 +661,7 @@ bool needToRebuildIndex( const vector< string > & dictionaryFiles, const string 
       if ( !fileInfo.exists() ) {
         continue;
       }
-      ts = fileInfo.lastModified().toSecsSinceEpoch();
+      ts = fileInfo.lastModified().toMSecsSinceEpoch();
     }
 
     if ( ts > lastModified ) {
@@ -588,12 +676,29 @@ bool needToRebuildIndex( const vector< string > & dictionaryFiles, const string 
     return true;
   }
 
-  return fileInfo.lastModified().toSecsSinceEpoch() < lastModified;
+  return fileInfo.lastModified().toMSecsSinceEpoch() < lastModified;
 }
 
 string getFtsSuffix()
 {
   return "_FTS_x";
+}
+
+string getHeadwordsSuffix()
+{
+  return "_HW_x";
+}
+
+void Class::setIndexedHeadwordsCount( long count )
+{
+  indexedHeadwordsCount = count;
+
+  auto newProgress = getHeadwordsCacheProgress();
+  if ( newProgress != lastHWProgress ) {
+    lastHWProgress = newProgress;
+    emit GlobalBroadcaster::instance() -> indexingHeadwordsCache(
+      QString( "%1......%%2" ).arg( QString::fromStdString( getName() ) ).arg( newProgress ) );
+  }
 }
 
 QString generateRandomDictionaryId()

@@ -3,6 +3,7 @@
 #pragma once
 
 #include <QJsonObject>
+#include <QJsonArray>
 #include <QJsonDocument>
 #include <QKeyEvent>
 #include <QString>
@@ -10,6 +11,8 @@
 #include <QUrl>
 #include <QUrlQuery>
 #include <QFileInfo>
+#include <QDir>
+#include <QStringList>
 #include <QWidget>
 #include "filetype.hh"
 #include <string>
@@ -18,6 +21,9 @@
 using std::string;
 
 namespace Utils {
+
+/// Checks if the application is running under a Wayland session.
+bool isWayland();
 QMap< QString, QString > str2map( const QString & contextsEncoded );
 
 inline bool isCJKChar( ushort ch )
@@ -27,6 +33,44 @@ inline bool isCJKChar( ushort ch )
 
   return false;
 }
+
+/// Returns true when \a name, decoded from a custom-scheme resource URL path
+/// (with the leading slash already removed), is safe to join onto a base
+/// directory: non-empty and containing no ".." segments, treating both '/' and
+/// '\\' as separators. Leading separators are permitted, because some formats
+/// (e.g. MDict) conventionally use names like "\\img\\x.png"; such names still
+/// stay inside the base directory -- only ".." segments can escape it.
+inline bool isSafeResourceName( const QString & name )
+{
+  if ( name.isEmpty() ) {
+    return false;
+  }
+  QString normalized = name;
+  normalized.replace( QLatin1Char( '\\' ), QLatin1Char( '/' ) );
+  const QStringList segments = normalized.split( QLatin1Char( '/' ) );
+  for ( const QString & segment : segments ) {
+    if ( segment == QLatin1String( ".." ) ) {
+      return false;
+    }
+  }
+  return true;
+}
+
+/// Stricter variant of isSafeResourceName() for user files: the name must in
+/// addition be strictly relative -- no absolute paths (including Windows drive
+/// and UNC forms, which QDir::filePath() would silently honor) and no leading
+/// separators, so that "bres://user//etc/passwd" or "..%2F" style requests
+/// cannot escape the user's directory.
+inline bool isSafeUserFileName( const QString & name )
+{
+  if ( !isSafeResourceName( name ) ) {
+    return false;
+  }
+  QString normalized = name;
+  normalized.replace( QLatin1Char( '\\' ), QLatin1Char( '/' ) );
+  return !QDir::isAbsolutePath( normalized );
+}
+
 /**
  * remove right end space
  */
@@ -161,6 +205,16 @@ inline QString json2String( const QJsonObject & json )
   return QString( QJsonDocument( json ).toJson( QJsonDocument::Compact ) );
 }
 
+inline QString json2String( const QJsonArray & json )
+{
+  return QString( QJsonDocument( json ).toJson( QJsonDocument::Compact ) );
+}
+
+inline QString json2String( const QString & str )
+{
+  return QString( QJsonDocument( QJsonArray{ str } ).toJson( QJsonDocument::Compact ) ).mid( 1 ).chopped( 1 );
+}
+
 inline QStringList repeat( const QString str, const int times )
 {
   QStringList list;
@@ -178,6 +232,14 @@ inline int loadAcquire( const QAtomicInt & ref )
 }
 
 } // namespace AtomicInt
+
+/**
+ * Get MIME type for audio file based on file path
+ * @param path File path to determine MIME type for
+ * @param extension Output parameter for the file extension
+ * @return The determined MIME type
+ */
+QString getAudioMimeType( const QString & path, QString & extension );
 
 namespace Url {
 
@@ -212,6 +274,18 @@ inline void addQueryItem( QUrl & url, const QString & key, const QString & value
   QUrlQuery urlQuery( url );
   urlQuery.addQueryItem( key, value );
   url.setQuery( urlQuery );
+}
+
+inline QString getWordFromPathOrHost( const QUrl & url )
+{
+  // Use FullyDecoded so percent-encoded headwords (CJK, diacritics, spaces)
+  // are returned as their original characters instead of %XX sequences.
+  auto path = url.path( QUrl::FullyDecoded );
+  if ( !path.isEmpty() ) {
+    return path.startsWith( "/" ) ? path.mid( 1 ) : path;
+  }
+  auto host = url.host( QUrl::FullyDecoded );
+  return host != "localhost" ? host : QString();
 }
 
 inline void removeQueryItem( QUrl & url, const QString & key )
@@ -255,36 +329,42 @@ inline std::pair< bool, QString > getQueryWord( const QUrl & url )
       word = queryItemValue( url, "word" );
     }
     else {
-      word = url.path().mid( 1 );
+      word = Url::getWordFromPathOrHost( url );
     }
   }
   if ( url.scheme().compare( "bword" ) == 0 || url.scheme().compare( "entry" ) == 0 ) {
     validScheme = true;
-
-    auto path = url.path();
-    // url like this , bword:word  or bword://localhost/word
-    if ( !path.isEmpty() ) {
-      //url,bword://localhost/word
-      if ( path.startsWith( "/" ) )
-        word = path.mid( 1 );
-      else
-        word = path;
-    }
-    else {
-      // url looks like this, bword://word,or bword://localhost
-      auto host = url.host();
-      if ( host != "localhost" ) {
-        word = host;
-      }
+    word        = Url::getWordFromPathOrHost( url );
+  }
+  if ( url.scheme().compare( "gdwiki" ) == 0 ) {
+    validScheme = true;
+    word        = url.path( QUrl::FullyDecoded );
+    if ( word.startsWith( '/' ) ) {
+      word = word.mid( 1 );
     }
   }
   return std::make_pair( validScheme, word );
 }
 
+inline QString getParams( const QUrl & url, const QString & key )
+{
+  if ( url.scheme().compare( "gdlookup" ) == 0 ) {
+    if ( hasQueryItem( url, key ) ) {
+      return queryItemValue( url, key );
+    }
+    return Url::getWordFromPathOrHost( url );
+  }
+  if ( url.scheme().compare( "bword" ) == 0 || url.scheme().compare( "entry" ) == 0 ) {
+    return Url::getWordFromPathOrHost( url );
+  }
+  return QString();
+}
+
 inline bool isAudioUrl( const QUrl & url )
 {
-  if ( !url.isValid() )
+  if ( !url.isValid() ) {
     return false;
+  }
 
   // gdau links are known to be audios, (sometimes they may not have file extension).
   if ( url.scheme() == "gdau" || url.scheme() == "gdprg" || url.scheme() == "gdtts" ) {
@@ -298,8 +378,9 @@ inline bool isAudioUrl( const QUrl & url )
 
 inline bool isWebAudioUrl( const QUrl & url )
 {
-  if ( !url.isValid() )
+  if ( !url.isValid() ) {
     return false;
+  }
   // Note: we check for forvo sound links explicitly, as they don't have extensions
 
   return ( url.scheme() == "http" || url.scheme() == "https" )
@@ -315,12 +396,14 @@ inline QString getHostBase( const QString & host )
   int left = domains.size();
 
   // Skip last <=3-letter domain name
-  if ( left && domains[ left - 1 ].size() <= 3 )
+  if ( left && domains[ left - 1 ].size() <= 3 ) {
     --left;
+  }
 
   // Skip another <=3-letter domain name
-  if ( left && domains[ left - 1 ].size() <= 3 )
+  if ( left && domains[ left - 1 ].size() <= 3 ) {
     --left;
+  }
 
   if ( left > 1 ) {
     // We've got something like www.foobar.co.uk -- we can chop off the first
@@ -328,8 +411,9 @@ inline QString getHostBase( const QString & host )
 
     return host.mid( domains[ 0 ].size() + 1 );
   }
-  else
+  else {
     return host;
+  }
 }
 
 inline QString getHostBaseFromUrl( const QUrl & url )
@@ -339,7 +423,65 @@ inline QString getHostBaseFromUrl( const QUrl & url )
   return getHostBase( host );
 }
 
+/// \brief Extract the base domain from a given domain string.
+///
+/// This method handles several cases:
+/// 1. Standard domains like "example.com" -> "example.com"
+/// 2. Subdomains like "www.example.com" -> "example.com"
+/// 3. Generic patterns like ".com.xx", ".co.xx", ".org.xx" where xx is a 2-3 character TLD -> "example.com"
+///
+/// Examples:
+/// - "www.example.com.jp" -> "example.com"
+/// - "subdomain.example.org.uk" -> "example.org"
+///
+/// \param domain The domain string to process
+/// \return The extracted base domain
+QString extractBaseDomain( const QString & domain );
+
 QString getSchemeAndHost( const QUrl & url );
+
+inline QString decodeUrlEncodedWord( QString word )
+{
+  if ( word.startsWith( QStringLiteral( "xn--" ) ) ) {
+    word = QUrl::fromAce( word.toLatin1(), QUrl::IgnoreIDNWhitelist );
+  }
+  else if ( word.contains( QStringLiteral( "%" ) ) ) {
+    word = QUrl::fromPercentEncoding( word.toLatin1() );
+  }
+  return word;
+}
+
+inline QString extractWordFromUrl( const QUrl & url )
+{
+  QString word = url.authority();
+
+  if ( word.isEmpty() && !url.path().isEmpty() ) {
+    word = url.path().startsWith( "/" ) ? url.path().mid( 1 ) : url.path();
+  }
+
+  if ( word.endsWith( "/" ) ) {
+    word.chop( 1 );
+  }
+
+  return word;
+}
+
+inline QString extractWordFromUrl( const QString & urlStr )
+{
+  QString word = extractWordFromUrl( QUrl( urlStr ) );
+
+  if ( word.isEmpty() ) {
+    auto schemePos = urlStr.indexOf( "://" );
+    if ( schemePos != -1 ) {
+      int startPos = schemePos + 3;
+      int endPos   = urlStr.indexOf( "/", startPos );
+
+      word = ( endPos == -1 ) ? urlStr.mid( startPos ) : urlStr.mid( startPos, endPos - startPos );
+    }
+  }
+
+  return decodeUrlEncodedWord( word );
+}
 
 } // namespace Url
 
@@ -419,5 +561,13 @@ QString urlReplaceWord( const QString url, QString word );
 QString escapeAmps( const QString & str );
 
 QString unescapeAmps( const QString & str );
+
+/**
+ * Ellipsize a string to a maximum length, adding ellipsis if necessary
+ * @param str The string to ellipsize
+ * @param maxLength The maximum length of the ellipsized string
+ * @return The ellipsized string
+ */
+QString ellipsizeString( const QString & str, int maxLength );
 
 } // namespace Utils

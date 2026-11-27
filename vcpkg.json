@@ -1,8 +1,9 @@
 {
   "name": "goldendict-ng",
-  "version": "25.02.0",
+  "version-string": "25.12.0",
   "dependencies": [
     "bzip2",
+    "dirent",
     "hunspell",
     "libiconv",
     "liblzma",
@@ -12,7 +13,9 @@
     "opencc",
     "xapian",
     "zlib",
-    "openssl"
+    "openssl",
+    "fmt",
+    "tomlplusplus"
   ],
   "features": {
     "breakpad": {

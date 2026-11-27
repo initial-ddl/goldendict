@@ -77,6 +77,7 @@ IndentPPDirectives: BeforeHash
 IndentExternBlock: AfterExternBlock
 IndentWidth: 2
 IndentWrappedFunctionNames: false
+InsertBraces: true
 InsertNewlineAtEOF: true
 InsertTrailingCommas: None
 KeepEmptyLinesAtTheStartOfBlocks: true
@@ -99,7 +100,6 @@ PenaltyIndentedWhitespace: 0
 PointerAlignment: Middle
 PPIndentWidth: -1
 ReferenceAlignment: Pointer
-ReflowComments: Never
 SortIncludes: Never
 RemoveBracesLLVM: false
 SeparateDefinitionBlocks: Leave

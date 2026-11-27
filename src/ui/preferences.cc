@@ -50,9 +50,13 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
     previewInterfaceFont( ui.systemFont->currentText(), size );
   } );
 
-  connect( ui.enableInterfaceFont, &QGroupBox::toggled, this, [ this ]( bool on ) {
+  auto refreshFontPreview = [ this ]() {
+    ui.systemFont->setEnabled( ui.enableInterfaceFontFamily->isChecked() );
+    ui.interfaceFontSize->setEnabled( ui.enableInterfaceFontSize->isChecked() );
     previewInterfaceFont( ui.systemFont->currentText(), ui.interfaceFontSize->value() );
-  } );
+  };
+  connect( ui.enableInterfaceFontFamily, &QCheckBox::stateChanged, this, refreshFontPreview );
+  connect( ui.enableInterfaceFontSize, &QCheckBox::stateChanged, this, refreshFontPreview );
 
   previewInterfaceFont( ui.systemFont->currentText(), ui.interfaceFontSize->value() );
 
@@ -86,18 +90,34 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
   if ( !p.interfaceFont.isEmpty() ) {
     ui.systemFont->setCurrentText( p.interfaceFont );
   }
-  ui.enableInterfaceFont->setChecked( p.enableInterfaceFont );
+  ui.enableInterfaceFontFamily->setChecked( p.enableInterfaceFontFamily );
+  ui.enableInterfaceFontSize->setChecked( p.enableInterfaceFontSize );
+  ui.systemFont->setEnabled( p.enableInterfaceFontFamily );
+  ui.interfaceFontSize->setEnabled( p.enableInterfaceFontSize );
 
-  if ( p.interfaceFontSize > 0 ) {
+  // Resolve the OS default font size. QFontDatabase::systemFont() is the
+  // authoritative source — QApplication::font() may already have been
+  // polluted by a previous setFont() call. pointSize() can return -1 on
+  // platforms where the system font is specified in pixels, so fall back
+  // to converting pixelSize() using Qt's logical 96-DPI assumption.
+  const QFont systemFont = QFontDatabase::systemFont( QFontDatabase::GeneralFont );
+  int systemPointSize    = systemFont.pointSize();
+  if ( systemPointSize <= 0 ) {
+    const int px    = systemFont.pixelSize();
+    systemPointSize = px > 0 ? qRound( px * 72.0 / 96.0 ) : 9; // 9pt ≈ Windows Qt default
+  }
+
+  if ( p.enableInterfaceFontSize && p.interfaceFontSize > 0 ) {
     ui.interfaceFontSize->setValue( p.interfaceFontSize );
   }
   else {
-    ui.interfaceFontSize->setValue( QApplication::font().pixelSize() );
+    ui.interfaceFontSize->setValue( systemPointSize );
   }
 
 
   prevWebFontFamily = p.customFonts;
   prevSysFont       = p.interfaceFont;
+  prevEnableJavaScriptClipboardAccess = p.enableJavaScriptClipboardAccess;
   prevFontSize      = ui.interfaceFontSize->value();
 
   if ( !p.customFonts.standard.isEmpty() ) {
@@ -132,8 +152,10 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
       QWebEngineProfile::defaultProfile()->settings()->fontFamily( QWebEngineSettings::FixedFont ) );
   }
 
-  ui.displayStyle->addItem( QIcon( ":/icons/programicon_old.png" ), tr( "Default" ), QString() );
-  ui.displayStyle->addItem( QIcon( ":/icons/programicon.png" ), tr( "Classic" ), QString( "classic" ) );
+  ui.fallbackFontsGroupBox->setChecked( p.useFallbackFonts );
+
+  ui.displayStyle->addItem( QIcon( ":/icons/programicon.png" ), tr( "Default" ), QString() );
+  ui.displayStyle->addItem( QIcon( ":/icons/programicon_old.png" ), tr( "Classic" ), QString( "classic" ) );
   ui.displayStyle->addItem( QIcon( ":/icons/programicon.png" ), tr( "Modern" ), QString( "modern" ) );
   ui.displayStyle->addItem( QIcon( ":/icons/icon32_dsl.png" ), tr( "Lingvo" ), QString( "lingvo" ) );
   ui.displayStyle->addItem( QIcon( ":/icons/icon32_bgl.png" ), tr( "Babylon" ), QString( "babylon" ) );
@@ -168,11 +190,6 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
   ui.InterfaceStyle->hide();
 #endif
 
-#ifdef Q_OS_WIN32
-  // 1 MB stands for 2^20 bytes on Windows. "MiB" is never used by this OS.
-  ui.maxNetworkCacheSize->setSuffix( " MB" );
-#endif
-  ui.maxNetworkCacheSize->setToolTip( ui.maxNetworkCacheSize->toolTip().arg( Config::getCacheDir() ) );
 
   ui.newTabsOpenAfterCurrentOne->setChecked( p.newTabsOpenAfterCurrentOne );
   ui.newTabsOpenInBackground->setChecked( p.newTabsOpenInBackground );
@@ -180,18 +197,27 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
   ui.mruTabOrder->setChecked( p.mruTabOrder );
   ui.enableTrayIcon->setChecked( p.enableTrayIcon );
 
-#ifdef Q_OS_MACOS // macOS uses the dock menu instead of the tray icon
-  ui.enableTrayIcon->hide();
-#endif
-
   ui.startToTray->setChecked( p.startToTray );
   ui.closeToTray->setChecked( p.closeToTray );
+  ui.showDockIcon->setChecked( p.showDockIcon );
+#ifdef Q_OS_MACOS
+  // Menu-bar-only mode has no Dock icon, so its status icon is mandatory.
+  // Keep "Start to system tray" configurable, but prevent configurations that
+  // would leave no way to restore a hidden main window.
+  ui.enableTrayIcon->setCheckable( false );
+  ui.closeToTray->setChecked( true );
+  ui.closeToTray->setEnabled( false );
+#else
+  ui.showDockIcon->hide();
+#endif
   ui.cbAutostart->setChecked( p.autoStart );
   ui.doubleClickTranslates->setChecked( p.doubleClickTranslates );
   ui.selectBySingleClick->setChecked( p.selectWordBySingleClick );
   ui.autoScrollToTargetArticle->setChecked( p.autoScrollToTargetArticle );
   ui.escKeyHidesMainWindow->setChecked( p.escKeyHidesMainWindow );
 
+  ui.darkMode->addItem( tr( "Automatic" ), QVariant::fromValue( Config::Dark::Auto ) );
+  ui.darkMode->setItemData( 0, tr( "Automatically switches based on system theme." ), Qt::ToolTipRole );
   ui.darkMode->addItem( tr( "Enable" ), QVariant::fromValue( Config::Dark::On ) );
   ui.darkMode->addItem( tr( "Disable" ), QVariant::fromValue( Config::Dark::Off ) );
 
@@ -200,7 +226,7 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
   }
 
   ui.darkReaderMode->addItem( tr( "Automatic" ), QVariant::fromValue( Config::Dark::Auto ) );
-  ui.darkReaderMode->setItemData( 0, tr( "Auto does nothing on some systems." ), Qt::ToolTipRole );
+  ui.darkReaderMode->setItemData( 0, tr( "Automatically switches based on system theme." ), Qt::ToolTipRole );
   ui.darkReaderMode->addItem( tr( "Enable" ), QVariant::fromValue( Config::Dark::On ) );
   ui.darkReaderMode->addItem( tr( "Disable" ), QVariant::fromValue( Config::Dark::Off ) );
 
@@ -240,7 +266,6 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
 
   ui.storeHistory->setChecked( p.storeHistory );
   ui.historyMaxSizeField->setValue( p.maxStringsInHistory );
-  ui.historySaveIntervalField->setValue( p.historyStoreInterval );
   ui.alwaysExpandOptionalParts->setChecked( p.alwaysExpandOptionalParts );
 
   ui.favoritesSaveIntervalField->setValue( p.favoritesStoreInterval );
@@ -269,10 +294,10 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
 
   // Different platforms have different keys available
 
-#ifdef Q_OS_WIN32
+#if defined( Q_OS_WIN )
   ui.winKey->hide();
 #else
-  #ifdef Q_OS_MAC
+  #ifdef Q_OS_MACOS
   ui.altKey->setText( "Opt" );
   ui.winKey->setText( "Ctrl" );
   ui.ctrlKey->setText( "Cmd" );
@@ -324,12 +349,23 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
 
   ui.audioPlaybackProgram->setText( p.audioPlaybackProgram );
 
+  ui.externalPlayerHint->setText(
+    tr( "The audio path will be passed as a command-line argument to the external player. " )
+    + R"(<a href="https://xiaoyifang.github.io/goldendict-ng/ui_audioengine/">)"
+    + tr( "View detailed configuration guide" ) + "</a>" );
+  ui.externalPlayerHint->setOpenExternalLinks( true );
+  QFont hintFont = ui.externalPlayerHint->font();
+  hintFont.setPointSize( hintFont.pointSize() - 1 );
+  ui.externalPlayerHint->setFont( hintFont );
+  QColor hintColor = palette().color( QPalette::Disabled, QPalette::Text );
+  ui.externalPlayerHint->setStyleSheet( QString( "color: %1;" ).arg( hintColor.name() ) );
+
   // Proxy server
 
   ui.useProxyServer->setChecked( p.proxyServer.enabled );
 
   ui.proxyType->addItem( "SOCKS5" );
-  ui.proxyType->addItem( "HTTP Transp." );
+  ui.proxyType->addItem( "HTTP Connect" );
   ui.proxyType->addItem( "HTTP Caching" );
 
   ui.proxyType->setCurrentIndex( p.proxyServer.type );
@@ -359,6 +395,7 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
   ui.ankiText->setText( p.ankiConnectServer.text );
   ui.ankiWord->setText( p.ankiConnectServer.word );
   ui.ankiSentence->setText( p.ankiConnectServer.sentence );
+  ui.ankiAddAudio->setChecked( p.ankiConnectServer.addAudio );
 
   connect( ui.customProxy, &QAbstractButton::toggled, this, &Preferences::customProxyToggled );
 
@@ -366,13 +403,13 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
 
   ui.checkForNewReleases->setChecked( p.checkForNewReleases );
   ui.disallowContentFromOtherSites->setChecked( p.disallowContentFromOtherSites );
-  ui.hideGoldenDictHeader->setChecked( p.hideGoldenDictHeader );
-  ui.maxNetworkCacheSize->setValue( p.maxNetworkCacheSize );
-  ui.clearNetworkCacheOnExit->setChecked( p.clearNetworkCacheOnExit );
 
   //Misc
   ui.removeInvalidIndexOnExit->setChecked( p.removeInvalidIndexOnExit );
   ui.enableApplicationLog->setChecked( p.enableApplicationLog );
+  ui.openWebsiteInNewTab->setChecked( p.openWebsiteInNewTab );
+  ui.suppressWebDialogs->setChecked( p.suppressWebDialogs );
+  ui.enableJavaScriptClipboard->setChecked( p.enableJavaScriptClipboardAccess );
 
   //initialize add-on styles
   QString stylesDir = Config::getStylesDir();
@@ -421,16 +458,30 @@ Preferences::Preferences( QWidget * parent, Config::Class & cfg_ ):
 }
 void Preferences::previewInterfaceFont( QString family, int size )
 {
-  auto fontName = family;
-  auto fontSize = size;
-  if ( !ui.enableInterfaceFont->isChecked() ) {
-    QFont defaultFont = QFontDatabase::systemFont( QFontDatabase::SystemFont::GeneralFont );
-    fontName          = defaultFont.family();
-    fontSize          = defaultFont.pixelSize() > -1 ? defaultFont.pixelSize() : Config::DEFAULT_FONT_SIZE;
+  // Start from the OS general font (systemFont, not QApplication::font(),
+  // because the latter is polluted after main.cc applied a custom font).
+  // Then override each attribute only when its own toggle is enabled.
+  const QFont systemFont = QFontDatabase::systemFont( QFontDatabase::GeneralFont );
+  bool sizeResolved      = systemFont.pointSize() > 0;
+  int systemSize         = systemFont.pointSize();
+  if ( !sizeResolved && systemFont.pixelSize() > 0 ) {
+    systemSize   = qRound( systemFont.pixelSize() * 72.0 / 96.0 );
+    sizeResolved = true;
   }
-  QFont f = QApplication::font();
-  f.setFamily( fontName );
-  f.setPixelSize( fontSize );
+  if ( !sizeResolved ) {
+    systemSize = 9; // final fallback, see loading path above
+  }
+
+  QFont f( systemFont );
+  if ( ui.enableInterfaceFontFamily->isChecked() && !family.isEmpty() ) {
+    f.setFamily( family );
+  }
+  if ( ui.enableInterfaceFontSize->isChecked() && size > 0 ) {
+    f.setPointSize( size );
+  }
+  else {
+    f.setPointSize( systemSize );
+  }
   this->ui.previewFont->setFont( f );
 }
 
@@ -451,8 +502,9 @@ Config::Preferences Preferences::getPreferences()
   p.interfaceLanguage = ui.interfaceLanguage->itemData( ui.interfaceLanguage->currentIndex() ).toString();
 
   p.interfaceFont       = ui.systemFont->currentText();
-  p.interfaceFontSize   = ui.interfaceFontSize->value();
-  p.enableInterfaceFont = ui.enableInterfaceFont->isChecked();
+  p.interfaceFontSize         = ui.enableInterfaceFontSize->isChecked() ? ui.interfaceFontSize->value() : 0;
+  p.enableInterfaceFontFamily = ui.enableInterfaceFontFamily->isChecked();
+  p.enableInterfaceFontSize   = ui.enableInterfaceFontSize->isChecked();
 
   Config::CustomFonts c;
   c.standard    = ui.font_standard->currentText();
@@ -460,7 +512,7 @@ Config::Preferences Preferences::getPreferences()
   c.sansSerif   = ui.font_sans->currentText();
   c.monospace   = ui.font_monospace->currentText();
   p.customFonts = c;
-
+  p.useFallbackFonts = ui.fallbackFontsGroupBox->isChecked();
 
   p.displayStyle = ui.displayStyle->itemData( ui.displayStyle->currentIndex() ).toString();
 #if !defined( Q_OS_WIN )
@@ -474,6 +526,13 @@ Config::Preferences Preferences::getPreferences()
   p.enableTrayIcon             = ui.enableTrayIcon->isChecked();
   p.startToTray                = ui.startToTray->isChecked();
   p.closeToTray                = ui.closeToTray->isChecked();
+  p.showDockIcon               = ui.showDockIcon->isChecked();
+#ifdef Q_OS_MACOS
+  // These keep the application reachable after its main window and optional
+  // Dock icon have been hidden.
+  p.enableTrayIcon = true;
+  p.closeToTray    = true;
+#endif
   p.autoStart                  = ui.cbAutostart->isChecked();
   p.doubleClickTranslates      = ui.doubleClickTranslates->isChecked();
   p.selectWordBySingleClick    = ui.selectBySingleClick->isChecked();
@@ -507,7 +566,6 @@ Config::Preferences Preferences::getPreferences()
 
   p.storeHistory              = ui.storeHistory->isChecked();
   p.maxStringsInHistory       = ui.historyMaxSizeField->text().toUInt();
-  p.historyStoreInterval      = ui.historySaveIntervalField->text().toUInt();
   p.alwaysExpandOptionalParts = ui.alwaysExpandOptionalParts->isChecked();
 
   p.favoritesStoreInterval   = ui.favoritesSaveIntervalField->text().toUInt();
@@ -554,15 +612,16 @@ Config::Preferences Preferences::getPreferences()
   p.ankiConnectServer.text     = ui.ankiText->text();
   p.ankiConnectServer.word     = ui.ankiWord->text();
   p.ankiConnectServer.sentence = ui.ankiSentence->text();
+  p.ankiConnectServer.addAudio = ui.ankiAddAudio->isChecked();
 
   p.checkForNewReleases           = ui.checkForNewReleases->isChecked();
   p.disallowContentFromOtherSites = ui.disallowContentFromOtherSites->isChecked();
-  p.hideGoldenDictHeader          = ui.hideGoldenDictHeader->isChecked();
-  p.maxNetworkCacheSize           = ui.maxNetworkCacheSize->value();
-  p.clearNetworkCacheOnExit       = ui.clearNetworkCacheOnExit->isChecked();
 
   p.removeInvalidIndexOnExit = ui.removeInvalidIndexOnExit->isChecked();
   p.enableApplicationLog     = ui.enableApplicationLog->isChecked();
+  p.openWebsiteInNewTab             = ui.openWebsiteInNewTab->isChecked();
+  p.suppressWebDialogs       = ui.suppressWebDialogs->isChecked();
+  p.enableJavaScriptClipboardAccess = ui.enableJavaScriptClipboard->isChecked();
 
   p.addonStyle = ui.addonStyles->currentText();
 
@@ -631,12 +690,25 @@ void Preferences::on_buttonBox_accepted()
     promptText += tr( "Restart to apply the interface font change." );
   }
 
+  auto c = getPreferences();
+  if ( c.enableJavaScriptClipboardAccess != prevEnableJavaScriptClipboardAccess ) {
+    if ( !promptText.isEmpty() ) {
+      promptText += "\n";
+    }
+    promptText += tr( "Restart to apply the JavaScript clipboard access change." );
+  }
+
   if ( !promptText.isEmpty() ) {
     QMessageBox::information( this, tr( "Restart needed" ), promptText );
   }
 
-  auto c = getPreferences();
-  if ( c.customFonts != prevWebFontFamily ) {
+  if ( !c.useFallbackFonts ) {
+    QWebEngineProfile::defaultProfile()->settings()->resetFontFamily( QWebEngineSettings::StandardFont );
+    QWebEngineProfile::defaultProfile()->settings()->resetFontFamily( QWebEngineSettings::SerifFont );
+    QWebEngineProfile::defaultProfile()->settings()->resetFontFamily( QWebEngineSettings::SansSerifFont );
+    QWebEngineProfile::defaultProfile()->settings()->resetFontFamily( QWebEngineSettings::FixedFont );
+  }
+  else if ( c.customFonts != prevWebFontFamily ) {
     QWebEngineProfile::defaultProfile()->settings()->setFontFamily( QWebEngineSettings::StandardFont,
                                                                     c.customFonts.standard );
     QWebEngineProfile::defaultProfile()->settings()->setFontFamily( QWebEngineSettings::SerifFont,
@@ -671,10 +743,6 @@ void Preferences::customProxyToggled( bool )
   ui.customSettingsGroup->setEnabled( ui.customProxy->isChecked() && ui.useProxyServer->isChecked() );
 }
 
-void Preferences::on_maxNetworkCacheSize_valueChanged( int value )
-{
-  ui.clearNetworkCacheOnExit->setEnabled( value != 0 );
-}
 
 void Preferences::on_collapseBigArticles_toggled( bool checked )
 {

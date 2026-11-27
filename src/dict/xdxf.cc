@@ -177,7 +177,7 @@ public:
   void setFTSParameters( const Config::FullTextSearch & fts ) override
   {
     if ( metadata_enable_fts.has_value() ) {
-      can_FTS = fts.enabled && metadata_enable_fts.value();
+      can_FTS = metadata_enable_fts.value();
     }
     else {
       can_FTS = fts.enabled && !fts.disabledTypes.contains( "XDXF", Qt::CaseInsensitive )
@@ -715,8 +715,8 @@ qint64 GzippedFile::readData( char * data, qint64 maxSize )
 
 char * GzippedFile::readDataArray( unsigned long startPos, unsigned long size )
 {
-  if ( dz == NULL ) {
-    return NULL;
+  if ( dz == nullptr ) {
+    return nullptr;
   }
   return dict_data_read_( dz, startPos, size, 0, 0 );
 }
@@ -791,7 +791,7 @@ void addAllKeyTags( QXmlStreamReader & stream, list< QString > & words )
 void checkArticlePosition( GzippedFile & gzFile, uint32_t * pOffset, uint32_t * pSize )
 {
   char * data = gzFile.readDataArray( *pOffset, *pSize );
-  if ( data == NULL ) {
+  if ( data == nullptr ) {
     return;
   }
   QString s = QString::fromUtf8( data );

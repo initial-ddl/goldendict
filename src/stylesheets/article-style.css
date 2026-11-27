@@ -2,9 +2,18 @@
 
 html {
   height: 100%;
+  scrollbar-gutter: stable;
 }
 
 body {
+  --text-color: #222;
+  --secondary-text-color: #555;
+  --link-color: #005a9c;
+  --container-bg: #f9f9f9;
+  --border-color: #e3e3e3;
+  --accent-color: #c00;
+  --selection-bg: #c00;
+  --selection-text: #fff;
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
     Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji",
@@ -34,9 +43,25 @@ h6 {
 
 p,
 em,
+article,
+header,
+section,
+main,
 span,
-div {
+div,
+gd-section-html,
+gd-section-body,
+gd-section-head {
   unicode-bidi: plaintext;
+}
+
+gd-section-html,
+gd-section-body {
+  display: block;
+}
+
+gd-section-head {
+  display: none;
 }
 /* This stylesheet is used to highligh current selection when doing a search.
   It changes the default selection color (e.g. blue under Windows, orange under Ubuntu) */
@@ -44,8 +69,8 @@ div {
 /* highlight/select color in Windows when a widget is inactive is nearly impossible to read (light gray).
  * then change it to green to use with the find option. */
 ::selection {
-  background: #c00;
-  color: #fff;
+  background: var(--selection-bg);
+  color: var(--selection-text);
 }
 
 /* Don't allow to select [] */
@@ -57,11 +82,13 @@ div {
 /* Plaintext dictionaries are usually 80-column formatted and take a lot
  * of space. We try to use smaller fonts for them therefore. */
 pre {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 /* Dictionary's name heading */
+gd-dict-header,
 .gddictname {
+  display: flow-root;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   font-weight: bold;
@@ -71,30 +98,50 @@ pre {
   background: #def;
   user-select: none;
 }
-
 /* The Anki plus button, which is shown if enabled. */
 .ankibutton {
-  float: right;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
+  float: none;
+  display: flex;
+  margin-left: auto;
+  margin-right: 0;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
   border-radius: 4px;
-  padding: 3px;
-  transition: background-color 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
 }
+
+.ankibutton:hover {
+  transform: scale(1.1);
+}
+
 .ankibutton:active {
   background-color: hsl(0deg 0% 70%);
+  transform: scale(0.95);
+}
+
+.ankibutton:focus {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
 }
 
 .ankibutton img {
-  width: 32px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
-
 .gddicttitle {
   user-select: none;
 }
 
-.gddictnamebodyseparator {
+.gdarticlebody {
   clear: both;
 }
 
@@ -106,7 +153,7 @@ pre {
 /* The article span. Here we have a padding/margin hack to make fragment links
    behave better (have some space before the start of article) */
 .gdarticle {
-  display: block;
+  display: flow-root;
   padding-top: 1px;
   margin-top: -8px;
   margin-bottom: 8px;
@@ -136,8 +183,9 @@ pre {
 /* Dictionary query error description string */
 .gderrordesc {
   font-style: italic;
-  background: url("qrc:///icons/warning.png") center left no-repeat !important;
-  padding-left: 22px !important;
+  background: url("qrc:///icons/warning.svg") center left no-repeat !important;
+  background-size: auto min(100%, 24px);
+  padding-left: 2em !important;
   margin: 1em;
 }
 
@@ -504,7 +552,7 @@ div.xdxf {
 .dsl_opt,
 .dsl_opt .dsl_ex,
 .dsl_opt .dsl_ex :not(a),
-.dsl_opt .dsl_ex font[color] /* DSL Feature: Enforce the optional zone color even if the children tags say otherwise */ {
+.dsl_opt .dsl_ex [color] /* DSL Feature: Enforce the optional zone color even if the children tags say otherwise */ {
   color: gray;
 }
 
@@ -532,7 +580,7 @@ div.xdxf {
 
 .dsl_video .img {
   display: inline-block;
-  background: url("qrc:///icons/video.png");
+  background: url("qrc:///icons/video.svg");
   background-repeat: no-repeat;
   vertical-align: middle;
   width: 22px;
@@ -573,6 +621,11 @@ div.xdxf {
   margin-top: 1em;
 }
 
+.gdmorphology {
+  /* Add some vertical space before the article */
+  margin-top: 1em;
+}
+
 /************* Stemmed suggestions *****************/
 
 .gdstemmedsuggestion {
@@ -582,11 +635,18 @@ div.xdxf {
 }
 
 .gdstemmedsuggestion_head {
-  margin-left: 11px;
+  margin-left: 12px;
   font-style: italic;
 }
 
 .gdstemmedsuggestion_body {
+  display: block;
+  width: 100%;
+  margin: 12px;
+
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  line-height: 1.5;
 }
 
 /************* Dictd articles *****************/
@@ -663,6 +723,26 @@ div.xdxf {
 .website_padding {
   height: 1em;
   clear: both;
+}
+
+.website-new-tab-notice {
+  margin: 0.5em 0;
+  padding: 0.75em 1em;
+  border: 1px dashed var(--border-color);
+  border-radius: 4px;
+  background-color: var(--container-bg);
+  color: var(--secondary-text-color);
+}
+
+.website-new-tab-notice-title {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.website-new-tab-notice-hint {
+  margin: 0.35em 0 0;
+  font-size: 0.9em;
 }
 
 .website-iframe {
@@ -1343,7 +1423,6 @@ div.xdxf {
   vertical-align: top;
 }
 .mwiki abbr,
-.mwiki acronym,
 .mwiki .explain {
   border-bottom: 1px dotted black;
   color: black;
@@ -1531,7 +1610,14 @@ in the bottom-right corner of the content area */
 .mwiki #toc .toctitle,
 .mwiki .toc .toctitle {
   text-align: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: -5px; /* Offset parent's padding */
+  padding: 5px 0;
+  background-color: inherit;
+  z-index: 10;
 }
+
 .mwiki #toc ul,
 .mwiki .toc ul {
   list-style-type: none;
@@ -1547,6 +1633,76 @@ in the bottom-right corner of the content area */
 .mwiki #toc .toctoggle,
 .mwiki .toc .toctoggle {
   font-size: 94%;
+}
+
+/* Bypass toclimit wrapper to ensure sticky positioning works correctly */
+.mwiki div[class*="toclimit-"],
+.mwiki div.tocright {
+  display: contents;
+}
+
+/* Sticky and auto-expanding TOC on hover (Overlay mode) */
+.mwiki #toc,
+.mwiki .toc {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10px;
+  float: right;
+  z-index: 1000;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0 0 1em 5px;
+  overflow: hidden;
+  opacity: 0.7;
+  background-color: #f8f9fa;
+  border: 1px solid #a2a9b1;
+  border-radius: 4px;
+  transition: opacity 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.mwiki #toc:hover,
+.mwiki .toc:hover {
+  overflow: visible;
+  opacity: 1;
+}
+
+.mwiki #toc:hover .toctitle,
+.mwiki #toc:hover > ul {
+  display: block;
+  position: absolute;
+  right: 0;
+  width: 280px;
+  background-color: #ffffff;
+  border: 1px solid #a2a9b1;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.mwiki #toc:hover .toctitle {
+  top: 0;
+  z-index: 1001;
+  padding: 8px;
+  border-radius: 4px 4px 0 0;
+  text-align: center;
+}
+
+.mwiki #toc:hover > ul {
+  top: 35px;
+  margin: 0;
+  padding: 8px;
+  max-height: 75vh;
+  overflow-y: auto;
+  border-radius: 0 0 4px 4px;
+}
+
+.mwiki #toc ul li {
+  padding: 2px 0;
+  transition: background-color 0.2s;
+}
+
+.mwiki #toc ul li:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .mwiki .mw-warning {
@@ -1705,7 +1861,7 @@ in the bottom-right corner of the content area */
 .mwiki #bodyContent a.external[href$=".mpg"],
 .mwiki #bodyContent a.external[href$=".MPG"],
 .mwiki .link-video {
-  background: url("qrc:///icons/video.png") center right no-repeat;
+  background: url("qrc:///icons/video.svg") center right no-repeat;
   padding-right: 1em;
 }
 .mwiki #bodyContent a.external[href$=".pdf"],
@@ -2040,7 +2196,7 @@ in bg url to hide it from iemac */
   z-index: 3;
 }
 
-/* TODO: #t-iscite is only used by the Cite extension, come up with some
+/* #t-iscite is only used by the Cite extension, come up with some
  * system which allows extensions to add to this file on the fly
  */
 .mwiki #t-ispermalink,
@@ -2694,14 +2850,8 @@ table#sv-hooks,
   font-size: 90%;
 }
 
-/* VALIDATOR NOTICE: the following is correct, but the W3C validator doesn't accept it */
-/* -moz-* is a vendor-specific extension (CSS 2.1 4.1.2.1) */
-/* column-count is from the CSS3 module "CSS Multi-column Layout" */
-/* Please ignore any validator errors caused by these two lines */
 .mwiki .references-2column {
   font-size: 90%;
-  -moz-column-count: 2;
-  -webkit-column-count: 2;
   column-count: 2;
 }
 
@@ -3037,7 +3187,6 @@ table#sv-hooks,
   width: 1rem;
   height: 1rem;
   vertical-align: text-bottom;
-  background-size: contain;
   content: url("qrc:///icons/arrow.svg");
 }
 
@@ -3046,8 +3195,13 @@ table#sv-hooks,
   width: 1rem;
   height: 1rem;
   vertical-align: text-bottom;
-  background-size: contain;
   content: url("qrc:///icons/downarrow.svg");
+}
+
+.gdexpandicon:focus,
+.gdcollapseicon:focus {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
 }
 
 /********** Slob dictionaries ***********/
@@ -3060,6 +3214,84 @@ table#sv-hooks,
   vertical-align: baseline !important;
 }
 
+/************* Welcome Page **************/
+
+.welcome-container {
+  max-width: 850px;
+  margin: 2em auto;
+  padding: 1.5em 2em;
+  line-height: 1.7;
+  color: var(--text-color);
+  /* Optional: background and border-radius for a card-like look */
+  /* background-color: var(--container-bg); */
+  /* border-radius: 8px; */
+}
+.welcome-container h3,
+.welcome-container h4 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+.welcome-container h3 {
+  font-size: 1.6em;
+  font-weight: 600;
+}
+.welcome-container h4 {
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-top: 2em;
+}
+.welcome-container p,
+.welcome-container ul {
+  margin-bottom: 1.2em;
+}
+.welcome-container ul {
+  list-style: none;
+  padding-left: 20px;
+}
+.welcome-container li {
+  margin-bottom: 0.5em;
+  position: relative;
+  padding-left: 25px;
+}
+.welcome-container li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--link-color);
+}
+.welcome-container a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.welcome-container a:hover {
+  text-decoration: underline;
+}
+.welcome-footer {
+  margin-top: 2.5em;
+  text-align: center;
+  font-size: 0.85em;
+  color: var(--secondary-text-color);
+}
+
+.menu-path > span {
+  --menu-path-text-color: #3b5998;
+  --menu-path-arrow-color: #8b9dc3;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--menu-path-text-color);
+}
+.menu-path > span + span::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0 0.3em;
+  vertical-align: -0.15em;
+  background-color: var(--menu-path-arrow-color);
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6z"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"><path d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6z"/></svg>');
+}
 /************* GLS dictionaries **************/
 
 .glsdict_headwords {

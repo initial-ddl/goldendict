@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2019 Vitaly Zaitsev <vitaly@easycoding.org> -->
+<?xml version='1.0' encoding='utf-8'?>
 <component type="desktop">
   <id>io.github.xiaoyifang.goldendict_ng</id>
   <metadata_license>CC0-1.0</metadata_license>
@@ -14,19 +13,22 @@
   </categories>
   <description>
     <p>
-      GoldenDict-ng is a advanced dictionary lookup program, supporting many
-      dictionary formats.
+      GoldenDict-ng is an advanced dictionary lookup program, supporting multiple
+      dictionary formats and features.
     </p>
   </description>
   <screenshots>
     <screenshot type="default">
       <image>https://user-images.githubusercontent.com/20123683/255323975-4f12d2aa-c8c9-4dc6-b3d4-cfbc46d70889.png</image>
+      <caption>The main application window</caption>
     </screenshot>
     <screenshot>
       <image>https://user-images.githubusercontent.com/20123683/255323667-e76a55bc-4c81-487c-9f2b-14ece7e25f7c.png</image>
+      <caption>Dark mode</caption>
     </screenshot>
     <screenshot>
       <image>https://user-images.githubusercontent.com/20123683/239691144-5145f844-ed88-4a24-ac86-4904ede13a32.png</image>
+      <caption>Suggestion list</caption>
     </screenshot>
   </screenshots>
   <url type="homepage">https://xiaoyifang.github.io/goldendict-ng/</url>
@@ -36,17 +38,25 @@
   <url type="vcs-browser">https://github.com/xiaoyifang/goldendict-ng</url>
   <update_contact>https://github.com/xiaoyifang/goldendict-ng</update_contact>
   <launchable type="desktop-id">io.github.xiaoyifang.goldendict_ng.desktop</launchable>
-  <content_rating type="oars-1.0"/>
+  <content_rating type="oars-1.0" />
   <provides>
     <id>org.goldendict_ng.desktop</id>
   </provides>
   <releases>
-    <release version="25.05.1" date="2025-05-19" />
-    <release version="25.05.0" date="2025-04-04" />
-    <release version="25.02.0" date="2025-01-24" />
-    <release version="24.09.1" date="2024-11-02" />
-    <release version="24.09.0" date="2024-09-13" />
-    <release version="24.05.05" date="2024-05-05" />
-    <release version="1.0.0" date="2010-12-03" />
+    <release version="26.5.7" date="2026-6-4">
+      <description>
+        <ul>
+          <li>Check the full release notes for more details.</li>
+        </ul>
+      </description>
+      <url type="details">https://github.com/xiaoyifang/goldendict-ng/releases/tag/v26.5.7</url>
+    </release>
+    <release version="26.5.6" date="2026-5-26">
+      </release>
+    <release version="26.5.5" date="2026-5-15">
+      </release>
+    <release version="26.5.4" date="2026-5-11">
+      </release>
+    <release version="26.5.3" date="2026-5-8" />
   </releases>
 </component>

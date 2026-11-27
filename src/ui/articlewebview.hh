@@ -22,6 +22,13 @@ public:
   explicit ArticleWebView( QWidget * parent );
   void setUp( Config::Class * _cfg );
 
+  /// Updates (or installs) the DocumentCreation script that enforces
+  /// GoldenDict-ng's preferred color scheme onto the embedded page, overriding
+  /// the OS-level appearance so @media (prefers-color-scheme) / color-scheme
+  /// reflect the application theme rather than the system theme.
+  /// @param isDark whether the application is currently in dark mode.
+  void updatePreferredColorSchemeScript( bool isDark );
+
   bool isMidButtonPressed() const
   {
     return midButtonPressed;
@@ -34,6 +41,7 @@ public:
   {
     selectionBySingleClick = set;
   }
+  void setPopup( bool isPopup );
 
   bool eventFilter( QObject * obj, QEvent * ev ) override;
 
@@ -47,10 +55,14 @@ signals:
 
   void linkClicked( const QUrl & url );
 
+  /// Signals that Return/Enter was pressed while the view had a text selection.
+  /// @param inNewTab true when Ctrl was held, i.e. look the selection up in a new tab.
+  void searchSelectedText( bool inNewTab );
+
 protected:
   QWebEngineView * createWindow( QWebEnginePage::WebWindowType type ) override;
   bool event( QEvent * event ) override;
-  void singleClickAction( QMouseEvent * event );
+  void singleClickAction();
   void sendCustomMouseEvent( QEvent::Type type );
   void doubleClickAction( QMouseEvent * event );
   void wheelEvent( QWheelEvent * event ) override;
@@ -67,8 +79,13 @@ private:
   bool singleClickToDbClick;
   bool dbClicked;
 
-public slots:
+  /// Link currently under the mouse cursor, as reported by page's linkHovered.
+  /// Empty when the cursor is not over a link. Used to tell link clicks from
+  /// plain single clicks on text.
+  QString hoveredLink;
 
-  //receive signal ,a link has been clicked.
-  void linkClickedInHtml( const QUrl & url );
+private slots:
+
+  /// Tracks the link under the mouse cursor.
+  void linkHovered( const QString & link );
 };

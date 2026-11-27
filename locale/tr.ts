@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation type="unfinished">Anki: can&apos;t create a card without a word</translation>
+      <translation>Anki: kelime olmadan kart oluşturulamaz</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -28,11 +28,11 @@
     </message>
     <message>
       <source>Anki: post to Anki failed</source>
-      <translation type="unfinished">Anki: post to Anki failed</translation>
+      <translation>Anki: Anki'ye gönderim başarısız oldu</translation>
     </message>
     <message>
       <source>Anki: post to Anki success</source>
-      <translation type="unfinished">Anki: post to Anki success</translation>
+      <translation>Anki: Anki başarısına gönderi</translation>
     </message>
   </context>
   <context>
@@ -57,16 +57,46 @@
       <translation>Hoşgeldiniz!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt; &lt;b&gt;GoldenDict&lt;/b&gt;hoş geldiniz!&lt;/h3&gt;&lt;p&gt;Programla çalışmaya başlamak için önce şu adresi ziyaret edin &lt;em&gt;Düzenle | Sözlükler&lt;/em&gt; sözlük dosyalarının aranacağı, çeşitli Vikipedi sitelerinin veya diğer kaynakların kurulacağı, sözlük sırasının ayarlanacağı veya sözlük gruplarının oluşturulacağı bazı dizin yolları eklemek için kullanılır.&lt;p&gt;Ve sonra kelimelerinize bakmaya&apos;! Bunu soldaki bölmeyi kullanarak bu pencerede yapabilir veya diğer etkin uygulamalardaki &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;sözcükleri arayabilirsiniz&lt;/a&gt; &lt;p&gt;Programı özelleştirmek için &lt;em&gt;Düzenle | Tercihler&lt;/em&gt;. Oradaki tüm ayarların araç ipuçları var, herhangi bir konuda şüpheniz varsa bunları okuduğunuzdan emin olun.&lt;p&gt;Daha fazla yardıma ihtiyacınız varsa, herhangi bir sorunuz veya öneriniz varsa ya da sadece diğerlerinin ne düşündüğünü merak ediyorsanız program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;hoş geldiniz.&lt;p&gt;Güncellemeler için program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;web sitesi&lt;/a&gt; kontrol edin. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. GPLv3 veya üzeri lisanslıdır.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(başlıksız)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(resim)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Hoş geldiniz &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;Başlamak için&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Ziyaret edin &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Düzenleme&lt;/span&gt;&lt;span&gt;Sözlükler&lt;/span&gt;&lt;/span&gt; sözlük dosyalarınızı eklemek için, Wikipedia gibi çevrimiçi kaynaklar oluşturun ve gruplara ayırın.&lt;/li&gt;
+          &lt;li&gt;Kurulum yaptıktan sonra, bu pencerede kelimeleri arayabilir veya &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;Tarama açılır penceresi kullanan diğer uygulamalardan&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;Programı özelleştirmek için, aşağıdaki ayarları keşfedin. &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Düzenleme&lt;/span&gt;&lt;span&gt;Tercihler&lt;/span&gt;&lt;/span&gt;. Tüm ayarlarda araç ipuçları var, bu yüzden bir şey belirsizse mutlaka okuyun.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Daha fazla yardıma ihtiyacınız olursa, herhangi bir soru veya öneriniz varsa, programa katılabilirsiniz&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;Forum&lt;/a&gt; ve &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;Web sitesi&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Konstantin Isakov'un (c) 2008-2013 yılları arasında yazdığı orijinal GoldenDict'e dayanmaktadır. GoldenDict-NG Topluluğu tarafından korunmuş ve geliştirilmiştir. GPLv3 veya daha sonrası lisanslı.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>ifade bulunamadı</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 / %2 maç</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Anki notu oluştur</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp; Sesi panoya kopyala</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>Sesi kopyalayamadım</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>Tam ses verisi yazamadı</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>Ses panoya kopyalandı</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Ses indirilemedi</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 / %2 maç</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Makaleyi Harici &amp;Tarayıcıda Aç</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>GoldenDict Resource Viewer</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -275,52 +336,60 @@ arasındaki farkı giderir)</translation>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Çince Dönüşüm</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Basitleştirilmiş Çince dönüşümü için geleneksel</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Basitleştirilmiş ve geleneksel Çince karakterler arasında dönüştürmeyi etkinleştir</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Basitleştirilmiş/geleneksel Çin karakterlerinden Japon Shinjitai karakterlerine dönüştürmeyi mümkün kılın</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>Çince &amp;Dönüşüm</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Japon Shinjitai</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Basitleştirilmiş karakterlerden geleneksel (Tayvan değişkeni) karakterlere dönüştürmeyi etkinleştir</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>Çin'den Japon'a Shinjitai'ye dönüşüm</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Basitleştirilmiş karakterlerden geleneksel (Hong Kong değişken) karakterlere dönüştürmeyi etkinleştir</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>Çince ve Japonca Karakter Değişimi</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>Basitleştirilmiş Çince, geleneksel Çince (Tayvan/Hong Kong) ve Japon Shinjitai karakterleri arasında dönüşümü etkinleştirin</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Geleneksel karakterlerden basitleştirilmiş karakterlere dönüştürmeyi etkinleştir</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Geleneksel Çince (Tayvan değişkeni) dönüşümüyle basitleştirildi</translation>
+      <source>Simplified</source>
+      <translation>Basitleştirilmiş</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Geleneksel Çince (Hong Kong değişkeni) dönüşümüyle basitleştirildi</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Basitleştirilmiş karakterlerden geleneksel (Tayvan) karakterlere dönüştürmeyi etkinleştirin</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Basitleştirilmiş Çince dönüşümü için geleneksel</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>Geleneksel (Tayvan)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation type="unfinished">Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Basitleştirilmiş karakterlerden geleneksel (Hong Kong) karakterlere dönüştürmeyi etkinleştirin</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation type="unfinished">Hong Kong variant</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Geleneksel (Hong Kong)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation type="unfinished">Mainland variant</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>Geleneksel Çince (Tayvan) dönüşümüne basitleştirilmiş</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>Geleneksel Çin (Hong Kong) dönüşümüne basitleştirilmiş</translation>
     </message>
   </context>
   <context>
@@ -408,10 +477,6 @@ arasındaki farkı giderir)</translation>
       <translation>İçerdiği klasörlere göre bir dizi grup oluşturmak istediğinizden emin misiniz?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>metadata.toml tabanlı bir grup grubu oluşturmak istediğinizden emin misiniz?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Grupları kaynak dile göre &quot;%1-&gt;&quot; ile birleştir</translation>
     </message>
@@ -426,6 +491,18 @@ arasındaki farkı giderir)</translation>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>&quot;%1&quot; ile grupları birleştir</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Grubu kaldır</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>&lt;b&gt;%1&lt;/b&gt; isimli grubu kaldırmak istiyor musunuz?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>Sözlük meta veri dosyalarına dayalı bir grup seti oluşturmak istediğinizden emin misiniz?</translation>
     </message>
   </context>
   <context>
@@ -455,10 +532,6 @@ arasındaki farkı giderir)</translation>
       <translation>Süzgeç:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Arama kipi</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Bu eleman süzgeç dizesinin nasıl yorumlanacağını belirler</translation>
     </message>
@@ -481,18 +554,6 @@ arasındaki farkı giderir)</translation>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Döndürülen maksimum filtrelenmiş başlık kelimelerini belirtin.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Maksimum sonuçları filtrele:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Yardım</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>Tamam</translation>
     </message>
     <message>
       <source>Text</source>
@@ -540,7 +601,11 @@ arasındaki farkı giderir)</translation>
     </message>
     <message>
       <source>Regular Expression</source>
-      <translation type="unfinished">Regular Expression</translation>
+      <translation>Düzenli İfade</translation>
+    </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>Maksimum:</translation>
     </message>
   </context>
   <context>
@@ -574,10 +639,6 @@ arasındaki farkı giderir)</translation>
       <translation>Bu dile:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Bu sözlüğü oluşturan dosyalar:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Açıklama:</translation>
     </message>
@@ -596,6 +657,18 @@ arasındaki farkı giderir)</translation>
     <message>
       <source>Full-text search disabled</source>
       <translation>Tam metin arama devre dışı</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Devre dışı bırakmak</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Olanak vermek</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>Sözlük Bileşenleri:</translation>
     </message>
   </context>
   <context>
@@ -691,7 +764,35 @@ arasındaki farkı giderir)</translation>
     </message>
     <message>
       <source>Restore selection</source>
-      <translation type="unfinished">Restore selection</translation>
+      <translation>Restore seçimi</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>Yeniden indeksleme iptal et</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>Yeniden indeksleme takvimi</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>Program yeniden indeksini iptal et</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>Sözlük yeniden indekslenmek üzere planlandı. Indeks, bir sonraki uygulama yeniden başlatmasında yeniden oluşturulacaktır.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Gösterim adını değiştir</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Yeni gösterim adı:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Sözlüğü yeniden indeksleme için zamanlamayı başaramadı.</translation>
     </message>
   </context>
   <context>
@@ -808,10 +909,6 @@ arasındaki farkı giderir)</translation>
       <translation>Klasöre ekle</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Tümünü Temizle</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Favoriler:</translation>
     </message>
@@ -820,16 +917,20 @@ arasındaki farkı giderir)</translation>
       <translation>Seçilen bütün öğeler silinecek. Devam edilsin mi?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Tüm Öğeleri Temizle</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>Tüm öğeleri temizlemek istediğinizden emin misiniz?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Temiz</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>Açık Favoriler</translation>
     </message>
   </context>
   <context>
@@ -957,28 +1058,12 @@ arasındaki farkı giderir)</translation>
       <translation>2. Sekme</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>Yeni sözlük grubu oluştur</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>Grup &amp;ekle</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>Geçerli grubu yeniden adlandır</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>Grubu &amp; yeniden adlandır</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Geçerli grubu sil</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>Grubu &amp;kaldır</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1048,6 +1133,22 @@ arasındaki farkı giderir)</translation>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>Bütün grupları kaldırmak istiyor musunuz?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>Yeni bir sözlük grubu ekle</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>Grup &amp;ekle</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>Grup zaten var</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>Isimli bir grup &apos;%1&apos; zaten var.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1081,6 +1182,18 @@ arasındaki farkı giderir)</translation>
     <message>
       <source>%1 Morphology</source>
       <translation>%1 Morfoloji</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Yazım doğru, başka kelime formu bulunamadı.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>From %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Kelime biçimleri %1: </translation>
     </message>
   </context>
   <context>
@@ -2100,7 +2213,7 @@ arasındaki farkı giderir)</translation>
     </message>
     <message>
       <source>Kabyle</source>
-      <translation type="unfinished">Kabyle</translation>
+      <translation>Kabyle</translation>
     </message>
   </context>
   <context>
@@ -2388,10 +2501,6 @@ arasındaki farkı giderir)</translation>
       <translation>Yeni Sekme</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>Hoşgeldiniz!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>Erişilebilirlik API&apos;si açılmadı</translation>
     </message>
@@ -2464,42 +2573,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Print Article</source>
       <translation>Maddeyi Yazdır</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Tam Html (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Tek Html (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>PDF (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Mim Html (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Maddeyi Farklı Kaydet</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Hata</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Kurtarılmamış yazı: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Madde kaydediliyor...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Makaleyi kaydetme tamamlandı</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2594,12 +2667,56 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Göster</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation type="unfinished">Save PDF complete</translation>
+      <source>Lock Panels</source>
+      <translation>Kilit Panelleri</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation type="unfinished">Save PDF failed</translation>
+      <source>Clear History</source>
+      <translation>Clear History</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>Tüm tarih öğelerini temizlemek istediğinizden emin misiniz?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Kayıt Dosyası</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>Uygulama hâlâ arka planda çalışıyor. Pencereyi göstermek için tepsi simgesine tıklayın.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Aç &amp; Dış Tarayıcı</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>Şimdi başlık önbelleği oluşturuyor: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Ön ek</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Eki</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Çok kelimeli</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Tam metin arama…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Arama modu</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Arama modu: %1</translation>
     </message>
   </context>
   <context>
@@ -2616,15 +2733,15 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML ayrıştırma hatası: %1 içinde %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>JSON ayrıştırma hatası</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML ayrıştırma hatası: %1 içinde %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>JSON ayrıştırma hatası</translation>
     </message>
   </context>
   <context>
@@ -2700,10 +2817,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Açıklama:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Bu sözlüğü içeren dosyalar:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>İçindeki öğeleri sürükleyip bırakarak sırayı ayarlayın. Kullanımlarını devre dışı bırakmak için sözlükleri aktif olmayan gruba bırakın.</translation>
     </message>
@@ -2722,6 +2835,18 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Açık sözlükler: %1, kapalı sözlükler: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Gösterim adını değiştir</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Yeni gösterim adı:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>Sözlük bileşenleri:</translation>
     </message>
   </context>
   <context>
@@ -2765,27 +2890,12 @@ Bu seçenekleyse, yeni sekmeler açıldığında hemen o sekmeye geçilmeyecek.<
       <translation>Yeni sekmeleri arkaplanda aç</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Bu seçenekle, yeni sekmeler etkin sekmede açılır.
-Aksi takdirde sekmelerin sonuna eklenecektir.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Geçerli sekmeden sonra yeni sekme aç</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Yalnızca tek bir sekme açtığınızda ana sekme çubuğunun görmek istemiyorsanız bu seçeneği seçin.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Tek sekmeyi gizle</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>MRU sırası: En son kullanılan sıra.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2873,8 +2983,100 @@ yerine onu gizler.</translation>
       <translation>Bağlam menüsü sözlükleri sınırı:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>Sistem varsayılanı</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Varsayılan</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Klasik</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Modern</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Babil</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Lingolar</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Lingoes-Mavi</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Dil değişikliğini tamamlamak için programı yeniden başlatın.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Arayüz stili değişikliğini uygulamak için yeniden başlatın.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Arayüz yazı tipi değişikliğini uygulamak için yeniden başlatın.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Yeniden başlatma gerekli</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Olanak vermek</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Devre dışı bırakmak</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Otomatik</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Yok</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>Bu açıkken, yeni sekmeler hemen ardından açılır
+akım, aktif olan. Aksi takdirde,
+Son olanlar ol.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp; Stil</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Dış görünüş</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Interface language</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Article Display style</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Add-on style</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Interface Style</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2893,12 +3095,16 @@ yerine onu gizler.</translation>
       <translation>Karanlık Okuyucu Modu</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Bu yazı tipleri, bir sözlük tarafından belirtilen yazı tipleri bulunamadığında uygulanacaktır.</translation>
+      <source>Preview Font</source>
+      <translation>Preview Font</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Yedek Yazı Tipleri</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng bir sözlük yazılımıdır.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Bu yazı tipleri, bir sözlük tarafından belirtilen yazı tipleri bulunamadığında uygulanacaktır.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2915,10 +3121,6 @@ yerine onu gizler.</translation>
     <message>
       <source>Monospace Font</source>
       <translation>Tek Aralıklı Yazı Tipi</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Ekranda Kelime Yakala</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2955,8 +3157,8 @@ in the pressed state when the word selection changes.</source>
 Aksi halde fare, sözcüğün üzerine geldiğinde çeviri yapılır.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Yalnızca tüm seçili tuşlar basılı tutulduğunda teyel seçimi:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>Seçimi yalnızca tüm seçilmiş tuşlar basılı tutulduğunda takip eder:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3039,20 +3241,8 @@ Aksi halde fare, sözcüğün üzerine geldiğinde çeviri yapılır.</translati
       <translation>Yerleşik ses desteği aracılığıyla ses dosyalarını oynatın</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Dahili oynatıcı kullan:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Ses arka ucunu seçin</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Ses dosyalarını oynatmak için harici bir program kullan</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Harici program kullanın:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3117,28 +3307,12 @@ proxy sunucusu kullanmak istiyorsanız etkinleştirin.</translation>
       <translation>Güverte:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>modeli:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Kelime</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Kelime alanı...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Metin</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>tanım alanı...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Cümle</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3155,42 +3329,6 @@ engellemesini sağlar. Bazı siteler bu nedenle bozulursa, bunu devre dışı b�
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>İçeriğin diğer sitelerden yüklenmesine izin verme (çoğu reklamı gizler)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Bazı siteler GoldenDict'i HTTP başlıkları aracılığıyla algılar ve istekleri engeller.
-Sorunu çözmek için bu seçeneği etkinleştirin.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>GoldenDict'i HTTP başlıklarında tanımlamayın</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Maksimum ağ önbelleği boyutu:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Goldendict'in ağ önbelleğinin kapladığı maksimum disk alanı
-%1
-0 olarak ayarlanırsa, ağ disk önbelleği devre dışı bırakılır.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>Bu seçenek etkinleştirildiğinde, GoldenDict
-çıkış sırasında ağ önbelleğini diskten temizler.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Çıkışta ağ önbelleğini temizle</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3251,8 +3389,12 @@ ve muhtemelen indirme sayfasını açar.</translation>
       <translation>Azami geçmiş boyutu:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Tarih kaydetme aralığı. 0 olarak ayarlanırsa, geçmiş yalnızca çıkış sırasında kaydedilir.</translation>
+      <source>Favorites</source>
+      <translation>Favoriler</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Favori kaydetme aralığı. 0 olarak ayarlanırsa Favoriler yalnızca çıkış sırasında kaydedilecektir.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3261,14 +3403,6 @@ ve muhtemelen indirme sayfasını açar.</translation>
     <message>
       <source>minutes</source>
       <translation>dakika</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Favoriler</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Favori kaydetme aralığı. 0 olarak ayarlanırsa Favoriler yalnızca çıkış sırasında kaydedilecektir.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3367,112 +3501,112 @@ eşanlamlı listeleri aracılığıyla ekstra makale aramasını etkinleştirmek
       <translation>Çıkışta geçersiz dizini kaldır</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>Sistem varsayılanı</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Varsayılan</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Klasik</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Modern</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Babil</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Lingolar</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Lingoes-Mavi</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Bazı sistemlerde Auto hiçbir şey yapmaz.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Dil değişikliğini tamamlamak için programı yeniden başlatın.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Arayüz stili değişikliğini uygulamak için yeniden başlatın.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Arayüz yazı tipi değişikliğini uygulamak için yeniden başlatın.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Yeniden başlatma gerekli</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Olanak vermek</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Devre dışı bırakmak</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Otomatik</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Save debug messages to gd_log.txt in the config folder</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Interface language</translation>
+      <source>S&amp;can</source>
+      <translation>S&amp;can</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Article Display style</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>Makale görünümünde JavaScript uyarılarını, onaylarını ve isteklerini gizleyin.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Add-on style</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>JavaScript dialoglarını bastır</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Interface Style</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>Web sitesi sözlüğünü ayrı sekmede aç</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Preview Font</translation>
+      <source>Anki</source>
+      <translation type="unfinished">Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation type="unfinished">GoldenDict-ng is a dictionary software.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>JavaScript'in makale görünümünde panoya erişmesine izin verin.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation type="unfinished">Enable Interface Font</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>JavaScript pano erişimini etkinleştir (yeniden başlatma gerekiyor)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>JavaScript pano erişim değişikliğini uygulamak için yeniden başlatın.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation type="unfinished">Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>Sadece bir sekme açıkken sekme çubuğunu gizle.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Yok</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Ses dosyalarını oynatmak için herhangi bir harici ses oynatıcıyı kullanın</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Detaylı yapılandırma rehberini görüntüleyin</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>Ses yolu, harici oynatıcıya komut satırı argümanı olarak iletilir. </translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation>Dahili Ses Oynatıcı:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation>Dış Ses Oynatıcı:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>Sistem temasına göre otomatik olarak değişir.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>Fontları Özelleştirin</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>Ana pencere açıkken Dock simgesi her zaman görünür, böylece macOS uygulama adını ve menüleri gösterebilir. Ana pencere gizlendikten sonra Dock simgesinin görünür kalması için bu seçeneği etkinleştirin.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>Dock simgesi arka planda görünür kalın</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>Anki kartına ses ekle mümkün olduğunda</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>Etkinleştirildiğinde, web sitesi sözlükleri makale görünümüne gömülü olmak yerine kendi sekmelerinde açılır. Bu, iframe düzeni ve kaydırma kısıtlamalarını önler ve Sözlükler diyalogunda sözlük başına Script sütununu etkinleştirir.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Kelime:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>Metin:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Cümle:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Arayüz Yazı Tipi</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Özel aile</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Özel boyut</translation>
     </message>
   </context>
   <context>
@@ -3612,11 +3746,63 @@ eşanlamlı listeleri aracılığıyla ekstra makale aramasını etkinleştirmek
     </message>
     <message>
       <source>Force the word to be translated in Popup.</source>
-      <translation type="unfinished">Force the word to be translated in Popup.</translation>
+      <translation>Kelimenin Popup'ta çevrilmesini zorla.</translation>
     </message>
     <message>
       <source>Force the word to be translated in the mainwindow.</source>
-      <translation type="unfinished">Force the word to be translated in the mainwindow.</translation>
+      <translation>Ana pencerede çevrilecek kelimeyi zorla.</translation>
+    </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>Web sitesi URL'si:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>URL'de, &quot;%GDWORD%&quot; aranan kelime ile değiştirilecek.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Tam Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Tek Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>PDF belgesi (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mim Html (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Maddeyi Farklı Kaydet</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Makaleyi kaydetme tamamlandı</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Hata</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Kurtarılmamış yazı: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Save PDF complete</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Save PDF failed</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Maddeyi kaydediyorum... (%1/%2)</translation>
     </message>
   </context>
   <context>
@@ -3648,6 +3834,10 @@ eşanlamlı listeleri aracılığıyla ekstra makale aramasını etkinleştirmek
       <source>The referenced resource failed to download.</source>
       <translation>Başvurulan kaynak indirilemedi.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>Kaynak hedef klasörün dışında kaydedilirdi.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3673,6 +3863,26 @@ eşanlamlı listeleri aracılığıyla ekstra makale aramasını etkinleştirmek
       <source>WARNING: %1</source>
       <translation>UYARI: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>Tanım</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Bu Sekmeyi Kapat</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Bu sekmenin dışındaki bütün sekmeleri kapat</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Bütün sekmeleri kapat</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Aç &amp; Dış Tarayıcı</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3697,10 +3907,6 @@ eşanlamlı listeleri aracılığıyla ekstra makale aramasını etkinleştirmek
       <translation>Send word to main window (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation type="unfinished">Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Add word to Favorites (Ctrl+E)</translation>
     </message>
@@ -3713,6 +3919,10 @@ eşanlamlı listeleri aracılığıyla ekstra makale aramasını etkinleştirmek
 could be resized or managed in other ways.</source>
       <translation>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Maddeyi Kaydet</translation>
     </message>
   </context>
   <context>
@@ -3990,27 +4200,27 @@ Mevcut dillerin tam listesi burada bulunabilir &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>The most widely used method of transcription of Japanese, based on English phonology</source>
-      <translation type="unfinished">The most widely used method of transcription of Japanese, based on English phonology</translation>
+      <translation>İngilizce fonolojiye dayanan Japonca transkripsiyonunun en yaygın yöntemi</translation>
     </message>
     <message>
       <source>Remove selected directories from the list?</source>
-      <translation type="unfinished">Remove selected directories from the list?</translation>
+      <translation>Seçilmiş dizinleri listeden çıkaralım mı?</translation>
     </message>
     <message>
       <source>Remove %1 directories from the list?</source>
-      <translation type="unfinished">Remove %1 directories from the list?</translation>
+      <translation>Kaldır %1 Listeden dizinler?</translation>
     </message>
     <message>
       <source>Remove %1 sites from the list?</source>
-      <translation type="unfinished">Remove %1 sites from the list?</translation>
+      <translation>Kaldır %1 Listedeki siteler mi?</translation>
     </message>
     <message>
       <source>Remove %1 servers from the list?</source>
-      <translation type="unfinished">Remove %1 servers from the list?</translation>
+      <translation>Kaldır %1 Listedeki sunucular mı?</translation>
     </message>
     <message>
       <source>Remove %1 programs from the list?</source>
-      <translation type="unfinished">Remove %1 programs from the list?</translation>
+      <translation>Kaldır %1 Listedeki programlar mı?</translation>
     </message>
   </context>
   <context>
@@ -4107,18 +4317,21 @@ Mevcut dillerin tam listesi burada bulunabilir &lt;a href=&quot;https://linguali
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Maddeyi &lt;iframe&gt; etiketinin içine bağlantı olarak ekle</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>Bu web sitesi sözlüğü yeni bir sekmede açılıyor</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Kapal &quot;Web sitesi sözlüğünü ayrı sekmede aç&quot; Tercihler'de web sitesini makalenin içinde göstermek için kullanabilir.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Etkin</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Bağlantı olarak</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4131,6 +4344,22 @@ Mevcut dillerin tam listesi burada bulunabilir &lt;a href=&quot;https://linguali
     <message>
       <source>Icon</source>
       <translation>Simge</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Senaryo</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>Simge dosya adı. Yapılandırma dizinine göre.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>Sadece web sitelerini ayrı sekmelerde açıldığında kullanılabilir. Dosya yolu (yapılandırma dizinine veya mutlak olarak göreli) veya doğrudan script içeriği olabilir.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>Bu sütun devre dışı bırakıldı çünkü &quot;Web sitesi sözlüğünü ayrı sekmede aç&quot; seçeneği Tercihler'de etkinleştirilmemiştir.</translation>
     </message>
   </context>
   <context>

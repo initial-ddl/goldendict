@@ -48,10 +48,6 @@ pre {
   user-select: none;
 }
 
-.gddictnamebodyseparator {
-  clear: both;
-}
-
 /* The 'From ' string which precedes dictionary name in the heading */
 .gdfromprefix {
   display: none;
@@ -87,8 +83,9 @@ pre {
 /* Dictionary query error description string */
 .gderrordesc {
   font-style: italic;
-  background: url("qrc:///icons/warning.png") center left no-repeat !important;
-  padding-left: 22px !important;
+  background: url("qrc:///icons/warning.svg") center left no-repeat !important;
+  background-size: auto min(100%, 24px);
+  padding-left: 2em !important;
   margin: 1em;
 }
 
@@ -416,7 +413,7 @@ div.xdxf {
 .dsl_opt,
 .dsl_opt .dsl_ex,
 .dsl_opt .dsl_ex :not(a),
-.dsl_opt .dsl_ex font[color] /* DSL Feature: Enforce the optional zone color even if the children tags say otherwise */ {
+.dsl_opt .dsl_ex [color] /* DSL Feature: Enforce the optional zone color even if the children tags say otherwise */ {
   color: gray;
 }
 
@@ -440,7 +437,7 @@ div.xdxf {
 
 .dsl_video .img {
   display: inline-block;
-  background: url("qrc:///icons/video.png");
+  background: url("qrc:///icons/video.svg");
   background-repeat: no-repeat;
   vertical-align: middle;
   width: 22px;
@@ -476,6 +473,11 @@ div.xdxf {
 /************* Spelling suggestions *****************/
 
 .gdspellsuggestion {
+  /* Add some vertical space before the article */
+  margin-top: 1em;
+}
+
+.gdmorphology {
   /* Add some vertical space before the article */
   margin-top: 1em;
 }
@@ -1222,7 +1224,6 @@ div.xdxf {
   vertical-align: top;
 }
 .mwiki abbr,
-.mwiki acronym,
 .mwiki .explain {
   border-bottom: 1px dotted black;
   color: black;
@@ -1584,7 +1585,7 @@ in the bottom-right corner of the content area */
 .mwiki #bodyContent a.external[href$=".mpg"],
 .mwiki #bodyContent a.external[href$=".MPG"],
 .mwiki .link-video {
-  background: url("qrc:///icons/video.png") center right no-repeat;
+  background: url("qrc:///icons/video.svg") center right no-repeat;
   padding-right: 1em;
 }
 .mwiki #bodyContent a.external[href$=".pdf"],
@@ -1919,7 +1920,7 @@ in bg url to hide it from iemac */
   z-index: 3;
 }
 
-/* TODO: #t-iscite is only used by the Cite extension, come up with some
+/* #t-iscite is only used by the Cite extension, come up with some
  * system which allows extensions to add to this file on the fly
  */
 .mwiki #t-ispermalink,
@@ -2573,14 +2574,8 @@ table#sv-hooks,
   font-size: 90%;
 }
 
-/* VALIDATOR NOTICE: the following is correct, but the W3C validator doesn't accept it */
-/* -moz-* is a vendor-specific extension (CSS 2.1 4.1.2.1) */
-/* column-count is from the CSS3 module "CSS Multi-column Layout" */
-/* Please ignore any validator errors caused by these two lines */
 .mwiki .references-2column {
   font-size: 90%;
-  -moz-column-count: 2;
-  -webkit-column-count: 2;
   column-count: 2;
 }
 
@@ -2912,7 +2907,7 @@ table#sv-hooks,
   width: 16px;
   height: 16px;
   vertical-align: text-bottom;
-  content: url("qrc:///icons/old-arrow.png");
+  content: url("qrc:///icons/old-arrow.svg");
 }
 
 .gdcollapseicon {
@@ -2920,7 +2915,7 @@ table#sv-hooks,
   width: 16px;
   height: 16px;
   vertical-align: text-bottom;
-  content: url("qrc:///icons/old-downarrow.png");
+  content: url("qrc:///icons/old-downarrow.svg");
 }
 
 /********** Slob dictionaries ***********/

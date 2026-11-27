@@ -26,6 +26,7 @@ markdown_extensions:
 nav:
   - Getting started: index.md
   - Download & Install: install.md
+  - Command Line: cli.md
   - Dictionary Formats: dictformats.md
   - Manage Dictionaries:
       - Sources: manage_sources.md
@@ -39,9 +40,11 @@ nav:
       - Shortcuts: ui_shortcuts.md
   - Advanced Usages:
       - External Programs as Dict: howto/how to add a program as dictionary.md
-      - Custom Stylesheet & JavaScript: topic_userstyle.md
+      - User Style Customization: topic_userstyle.md
+      - Website Scripting: topic_website_scripting.md
+      - Website Whitelist: topic_website_whitelist.md
       - Portable Mode: topic_portablemode.md
-      - Custom transliteration: topic_transliteration.md
+      - Transliteration: topic_transliteration.md
       - Customize Dictionary: custom_dictionary.md
       - Debug dictionary JS: howto/how to debug dictionary js.md
       - Flatpak/FlatHub: topic_flatpak.md
@@ -58,6 +61,7 @@ nav:
     - Start develop: developer.md
     - Build from source: howto/build_from_source.md
     - Architecture: architecture.md
+    - Sound dir index format: sounddir_format.md
     - Customize the opencc: howto/how to customize the opencc.md
     - Breadpad crash analysis: howto/how to use breadpad crash analysis.md
     - Update the crowdin.ts file: howto/how to update crowdin.ts file.md

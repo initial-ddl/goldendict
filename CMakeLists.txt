@@ -9,8 +9,7 @@ option(WITH_TTS "enable QTexttoSpeech support" OFF)
 option(WITH_X11 "Experimental flag. Don't disable this. Disable means pure Wayland." ON)
 
 # options for linux packaging
-option(USE_SYSTEM_FMT "use system fmt instead of bundled one" OFF)
-option(USE_SYSTEM_TOML "use system toml++ instead of bundled one" OFF)
+
 
 ## This should be avoided because of small regressions, as some scripts and icons themes assume the binary name and resources folder to be `goldendict`
 option(USE_ALTERNATIVE_NAME "For Linux, change the binary name and resource folder to goldendict-ng to parallel install with the original GD" OFF)
@@ -25,12 +24,19 @@ if (WIN32)
         include(FetchContent)
         FetchContent_Declare(
                 vcpkg-export
-                URL https://github.com/xiaoyifang/goldendict-ng/releases/download/vcpkg_250123_b588ddc8230705392c53448597f5892966a8db15/goldendict-ng-vcpkg-export.tar.zst
-                URL_HASH SHA512=E8286C6C08BEE93F01E63A1BEAAC0FD88157B9F3AD7C2AABC172BD2F33834AF08A07321AB1823AD167DA4F82320DCE0EC56C75BB19A38402831D126068F8888E
+                URL https://github.com/xiaoyifang/goldendict-ng/releases/download/vcpkg_260930_b3ae22aef2b857af6e80d756c13f15db12be4e8a/goldendict-ng-vcpkg-export.zip
+                URL_HASH SHA512=8D600B13A51CD15A31A9914F8B9E545C66C47A4184A8790B081DE9D71DC324E0669A08ACF8359147FFF3F949A352324AF7DA4448979544F1DB7502EF7F1A0EF1
         )
         FetchContent_MakeAvailable(vcpkg-export)
         set(VCPKG_MANIFEST_MODE OFF CACHE BOOL "disable existing manifest mode caused by the existrance of vcpkg.json" FORCE)
-        set(CMAKE_TOOLCHAIN_FILE "${CMAKE_BINARY_DIR}/_deps/vcpkg-export-src/scripts/buildsystems/vcpkg.cmake")
+        # Locate the toolchain regardless of the archive layout: newer vcpkg
+        # export wraps everything in a top-level folder named after --output,
+        # while older versions put scripts/ at the archive root.
+        file(GLOB _gd_vcpkg_toolchain
+                "${vcpkg-export_SOURCE_DIR}/scripts/buildsystems/vcpkg.cmake"
+                "${vcpkg-export_SOURCE_DIR}/*/scripts/buildsystems/vcpkg.cmake")
+        list(GET _gd_vcpkg_toolchain 0 _gd_vcpkg_toolchain)
+        set(CMAKE_TOOLCHAIN_FILE "${_gd_vcpkg_toolchain}")
     endif ()
     if (WITH_VCPKG_BREAKPAD)
         list(APPEND VCPKG_MANIFEST_FEATURES "breakpad")
@@ -39,8 +45,10 @@ endif ()
 
 include(FeatureSummary)
 
+file(READ "VERSION" PROJECT_VERSION_ST)
+string(STRIP "${PROJECT_VERSION_ST}" PROJECT_VERSION_ST)
 project(goldendict-ng
-        VERSION 25.07.0
+        VERSION ${PROJECT_VERSION_ST}
         LANGUAGES CXX C)
 
 if (APPLE)
@@ -68,7 +76,14 @@ if (WITH_TTS)
     list(APPEND GD_QT_COMPONENTS TextToSpeech)
 endif ()
 
-find_package(Qt6 REQUIRED COMPONENTS ${GD_QT_COMPONENTS})
+find_package(Qt6 6.2 REQUIRED COMPONENTS ${GD_QT_COMPONENTS})
+
+# QTBUG-111538: Qt 6.5.0 introduces a crash in QDockAreaLayout::updateSeparatorWidgets
+# when restoring a saved dock/toolbar state. Fixed in 6.5.1 and 6.6.0.
+if (Qt6Core_VERSION VERSION_EQUAL "6.5.0")
+    message(FATAL_ERROR "Qt 6.5.0 has a known crash on state restore (QTBUG-111538). "
+            "Please build with Qt 6.2-6.4.x, or 6.5.1+.")
+endif ()
 
 qt_standard_project_setup()
 set(CMAKE_AUTORCC ON) # not included in the qt_standard_project_setup
@@ -77,13 +92,21 @@ set(CMAKE_AUTORCC ON) # not included in the qt_standard_project_setup
 block() # generate version.txt
     string(TIMESTAMP build_time UTC)
     find_package(Git)
+    set(GIT_HASH "")
     if (EXISTS "${CMAKE_SOURCE_DIR}/.git" AND GIT_FOUND)
         execute_process(
-                COMMAND ${GIT_EXECUTABLE} -C "${CMAKE_SOURCE_DIR}" rev-parse --short HEAD
+                COMMAND ${GIT_EXECUTABLE} -C "${CMAKE_SOURCE_DIR}" rev-parse --short=10 HEAD
                 OUTPUT_STRIP_TRAILING_WHITESPACE
                 OUTPUT_VARIABLE GIT_HASH)
-        file(WRITE "${CMAKE_SOURCE_DIR}/version.txt" "${PROJECT_VERSION}.${GIT_HASH} at ${build_time}")
-    else () # not built in a git repo
+        execute_process(
+                COMMAND ${GIT_EXECUTABLE} -C "${CMAKE_SOURCE_DIR}" rev-parse --abbrev-ref HEAD
+                OUTPUT_STRIP_TRAILING_WHITESPACE
+                OUTPUT_VARIABLE GIT_BRANCH)
+    endif ()
+    
+    if (GIT_HASH)
+        file(WRITE "${CMAKE_SOURCE_DIR}/version.txt" "${PROJECT_VERSION}-${GIT_HASH} (${GIT_BRANCH}) at ${build_time}")
+    else ()
         file(WRITE "${CMAKE_SOURCE_DIR}/version.txt" "${PROJECT_VERSION} at ${build_time}")
     endif ()
 endblock()
@@ -136,9 +159,6 @@ target_sources(${GOLDENDICT} PRIVATE
         ${WINDOWS_ICON_RC}
 )
 
-if (NOT USE_SYSTEM_FMT)
-    target_sources(${GOLDENDICT} PRIVATE thirdparty/fmt/format.cc)
-endif ()
 
 ### Common parts amount all platforms
 
@@ -155,6 +175,7 @@ target_link_libraries(${GOLDENDICT} PRIVATE
         Qt6::Widgets
         Qt6::Svg
         $<$<BOOL:${WITH_TTS}>:Qt6::TextToSpeech>
+        $<$<PLATFORM_ID:Windows>:dwmapi>
 )
 
 target_include_directories(${GOLDENDICT} PRIVATE
@@ -166,13 +187,8 @@ target_include_directories(${GOLDENDICT} PRIVATE
         ${PROJECT_SOURCE_DIR}/src/ui
 )
 
-if (NOT USE_SYSTEM_TOML)
-    target_include_directories(${GOLDENDICT} PRIVATE ${PROJECT_SOURCE_DIR}/thirdparty/tomlplusplus)
-endif ()
 
-if (NOT USE_SYSTEM_FMT)
-    target_include_directories(${GOLDENDICT} PRIVATE ${PROJECT_SOURCE_DIR}/thirdparty/fmt/include)
-endif ()
+
 
 #### Compile definitions
 

@@ -57,16 +57,46 @@
       <translation>rinsa</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>to no da cmene toi</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>to pixra toi</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;coi lo nu do klama lo &lt;strong&gt;goldendik-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;lo nu co'a&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;klama lo &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;galfi&lt;/span&gt;&lt;span&gt;vlacku&lt;/span&gt;&lt;/span&gt; lo nu jmina lo do vlacku ciska, galfi lo netli ciska le'o la uikipedias, je jaurbe'i ri lo girzu.&lt;/li&gt;
+          &lt;li&gt;de'u lo nu se galfi, do kakne sisku valsi e'o ti gletca ja &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;lo drata samtci lo nu pilno lo sisku bloti&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;lo nu galfi lo samtci, sisku lo setycku e'o lo &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;galfi&lt;/span&gt;&lt;span&gt;setycku&lt;/span&gt;&lt;/span&gt;. ro setycku cu cmima lo bloti cinri, ji'a jinru lo nu do cadzu ri de'u lo nu na'e cladu ro.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;de'u do jbena lo drata sidju, ja lo du'u do preti, ja lo du'u do ciksi, do klama lo samtci's &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;stura ke preti&lt;/a&gt; .e lo &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;kibystu&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;se cinki lo purci'e goldendik fa la konstantin. isakov. (c) 2008-2013. se jaurbe'i .e se cupra fa lo goldendik-ng prenu bende. se jilka lo GPLv3 ja lo purci'e.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>Phrase not found</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 of %2 matches</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Create Anki note</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>pli lo cusku lo kliptci</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>na'e jmaji lo nu pli cusku</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>na'e jmaji lo nu vreji ro cusku datni</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>lo cusku se pli lo kliptci</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>na'e jmaji lo nu benji fi lo cusku</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 of %2 matches</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>claxu lo cukta fi'o lo jitro &amp;Browser</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>goldendik gajutmi viska</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -275,52 +336,60 @@ between classic and school orthography in cyrillic)</translation>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Chinese Conversion</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Traditional to simplified Chinese conversion</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Enable conversion between simplified and traditional Chinese characters</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>gasnu lo cfika be'o lo lerfu poi sampu ja prulamorfi xunto lo lerfu nihon be'o sincitai</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>Chinese Con&amp;version</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>sincitai poi nihon</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Enable conversion from simplified characters to traditional (Taiwan variant) characters</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>cirmu be'o lo cninu lo ponjo shinjitai</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>cninu .e ponjo cifnu &amp;cirmu be'o</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>galfi le cirmu be'o lo sampu cninu .e lo banro cninu be'o taivan. .e xon.kong. .e lo ponjo shinjitai cifnu</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Enable conversion from traditional characters to simplified characters</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Simplified to traditional Chinese (Taiwan variant) conversion</translation>
+      <source>Simplified</source>
+      <translation>cfipu</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Simplified to traditional Chinese (Hong Kong variant) conversion</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>jbari lo fraso be'o lo cfipu cirocmu loi jai taiuan relcli cirocmu</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Traditional to simplified Chinese conversion</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>taiuan relcli</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation>Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation type="unfinished">Enable conversion from simplified characters to traditional (Hong Kong) characters</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation>Hong Kong variant</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation type="unfinished">Traditional (Hong Kong)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation>Mainland variant</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation type="unfinished">Simplified to traditional Chinese (Taiwan) conversion</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation type="unfinished">Simplified to traditional Chinese (Hong Kong) conversion</translation>
     </message>
   </context>
   <context>
@@ -408,10 +477,6 @@ between classic and school orthography in cyrillic)</translation>
       <translation>Are you sure you want to generate a set of groups based on containing folders?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>Are you sure you want to generate a set of groups based on metadata.toml?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Combine groups by source language to &quot;%1-&gt;&quot;</translation>
     </message>
@@ -426,6 +491,18 @@ between classic and school orthography in cyrillic)</translation>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Combine groups with &quot;%1&quot;</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>vimcu pa selcmi</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>.i xu do djica lo ka vimcu la&apos;o zoi. &lt;b&gt;%1&lt;/b&gt; .zoi noi selcmi</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>Xu do selydi'a lo nu do ciksi lo nu finti lo girzu fi'o se cni lo jbobli'i cmavo datni faile?</translation>
     </message>
   </context>
   <context>
@@ -455,10 +532,6 @@ between classic and school orthography in cyrillic)</translation>
       <translation>julne</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>tadji lo nu sisku</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>This element determines how filter string will be interpreted</translation>
     </message>
@@ -481,18 +554,6 @@ between classic and school orthography in cyrillic)</translation>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Specify the maximum filtered headwords returned.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Filter max results:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>sidju</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>mipri</translation>
     </message>
     <message>
       <source>Text</source>
@@ -542,6 +603,10 @@ between classic and school orthography in cyrillic)</translation>
       <source>Regular Expression</source>
       <translation>Regular Expression</translation>
     </message>
+    <message>
+      <source>Maximum:</source>
+      <translation type="unfinished">Maximum:</translation>
+    </message>
   </context>
   <context>
     <name>DictInfo</name>
@@ -574,10 +639,6 @@ between classic and school orthography in cyrillic)</translation>
       <translation>te fanva</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>datnyvei fi pa vlacku</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>ve skicu</translation>
     </message>
@@ -596,6 +657,18 @@ between classic and school orthography in cyrillic)</translation>
     <message>
       <source>Full-text search disabled</source>
       <translation>Full-text search disabled</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Disable</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Enable</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>lo vlacku se nilce:</translation>
     </message>
   </context>
   <context>
@@ -692,6 +765,34 @@ between classic and school orthography in cyrillic)</translation>
     <message>
       <source>Restore selection</source>
       <translation>Restore selection</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>rivbi lo nu galfi lisri</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>skedju lo nu galfi lisri</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>rivbi lo skedju be lo nu galfi lisri</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>lo vlacku se skedju lo nu galfi lisri. lo lisri co'a se zbasu galfi de'u lo pa cnino samtci frica cisku.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>galfi lo cusku cmene</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>cnino cusku cmene:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>lo nu sisku lo valsi ciska lo nu zifre seltapla cu na sarcu</translation>
     </message>
   </context>
   <context>
@@ -808,10 +909,6 @@ between classic and school orthography in cyrillic)</translation>
       <translation>Add folder</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Clear All</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Favorites:</translation>
     </message>
@@ -820,16 +917,20 @@ between classic and school orthography in cyrillic)</translation>
       <translation>All selected items will be deleted. Continue?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Clear All Items</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>Are you sure you want to clear all items?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>vimcu</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>vimcu lo ciksi'i</translation>
     </message>
   </context>
   <context>
@@ -957,28 +1058,12 @@ between classic and school orthography in cyrillic)</translation>
       <translation>re moi lo&apos;i vanbi poi sepli</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>cupra pa vlacku selcmi</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>cupra pa selcmi</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>basti fi lo ka cmene lo vlacku selcmi poi ca se cuxna</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>basti fi lo ka cmene lo selcmi</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>vimcu pa vlacku selcmi poi ca se cuxna</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>vimcu pa selcmi</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1048,6 +1133,22 @@ between classic and school orthography in cyrillic)</translation>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>.i xu do djica lo ka vimcu ro selcmi</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>jmina pa cnino vlacku girzu</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>cupra pa selcmi</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>lo girzu ji'a zasti</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>pa girzu poi cmene zo'e la'o zoi. '&apos;%1&apos;' .zoi ji'a zasti.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1081,6 +1182,18 @@ between classic and school orthography in cyrillic)</translation>
     <message>
       <source>%1 Morphology</source>
       <translation>%1 Morphology</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>lo speli cu selyru'u. no drata valsi klesi na zvati.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>fi lo %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>valsi klesi fe lo %1: </translation>
     </message>
   </context>
   <context>
@@ -2100,7 +2213,7 @@ between classic and school orthography in cyrillic)</translation>
     </message>
     <message>
       <source>Kabyle</source>
-      <translation type="unfinished">Kabyle</translation>
+      <translation>kabil.</translation>
     </message>
   </context>
   <context>
@@ -2388,10 +2501,6 @@ between classic and school orthography in cyrillic)</translation>
       <translation>cupra pa vanbi poi sepli</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>rinsa</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>Accessibility API is not enabled</translation>
     </message>
@@ -2464,42 +2573,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Print Article</source>
       <translation>prina je cu vreji fi pa notci</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Complete Html (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Single Html (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>Pdf (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Mime Html (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>pa drata co&apos;a vreji fi pa notci</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>nabmi</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Can&apos;t save article: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>.i ca&apos;o co&apos;a vreji fi pa notci</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Save article complete</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2594,12 +2667,56 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>viska</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation>Save PDF complete</translation>
+      <source>Lock Panels</source>
+      <translation>claxu lo vupma'u</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation>Save PDF failed</translation>
+      <source>Clear History</source>
+      <translation>vimcu lo citri</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>xu do jinru lo nu do djica lo nu do vimcu ro citri cmima?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>vreji ciska</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>le programe ca'o preja lo nu'u jukpa. vokre le sraku pixra fi'o nu sidbo le cukla</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation type="unfinished">Open in &amp;External Browser</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation type="unfinished">Now building headwords cache: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>prerje'a</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>purje'a</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>munje'a</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>sisku fi ro lerpoi…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>tadji lo nu sisku</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>tadji lo nu sisku: %1</translation>
     </message>
   </context>
   <context>
@@ -2616,15 +2733,15 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML parse error: %1 at %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>JASON finti fliba</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML parse error: %1 at %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>JASON finti fliba</translation>
     </message>
   </context>
   <context>
@@ -2700,10 +2817,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>ve skicu</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>datnyvei fi pa vlacku</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</translation>
     </message>
@@ -2722,6 +2835,18 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>.i %1 vlacku jai se katci .i %2 vlacku jai se ganda</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>galfi lo cusku cmene</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>cnino cusku cmene:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>srana fi lo'i vlacku:</translation>
     </message>
   </context>
   <context>
@@ -2766,28 +2891,12 @@ switching to them.</translation>
       <translation>Open new tabs in background</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Open new tabs after the current one</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>mipri pa vanbi kajna ca ro nu pa je nai za&apos;u pa da vanbi je cu sepli</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>MRU order: Most recently used order.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2876,8 +2985,98 @@ the application.</translation>
       <translation>Context menu dictionaries limit:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>samcmu ke zmiku se cuxna</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>zmiku se cuxna</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Classic</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>la cabna sarxe</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>la .linvos.</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>la .babilon.</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>la .lingos.</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>la blanu .lingos.</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>.i pa nu do za&apos;u re&apos;u katcygau lo samtci cu rinka pa nu mo&apos;u basti fi lo ka bangu</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Restart to apply the interface style change.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Restart to apply the interface font change.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Restart needed</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Enable</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Disable</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Automatic</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>no da</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>.i de'u ti se cfagau, pa cnino nitslu se cisku xrapli lo jorne'i nitslu. ja'a, co'a se jmina lo purci'e.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>kelci</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Appearance</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Interface language</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Article Display style</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Add-on style</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Interface Style</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2896,12 +3095,16 @@ the application.</translation>
       <translation>Dark Reader Mode</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>These fonts will be applied when the fonts specified by a dictionary are not found.</translation>
+      <source>Preview Font</source>
+      <translation>Preview Font</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Fallback Fonts</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng is a dictionary software.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>These fonts will be applied when the fonts specified by a dictionary are not found.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2918,10 +3121,6 @@ the application.</translation>
     <message>
       <source>Monospace Font</source>
       <translation>Monospace Font</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Popup</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2958,8 +3157,8 @@ in the pressed state when the word selection changes.</source>
 in the pressed state when the word selection changes.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Only tack selection when all selected keys are kept pressed:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>pajy sisku lo se jicmu de'u ro se jicmu bangu se daski'i:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3042,20 +3241,8 @@ in the pressed state when the word selection changes.</translation>
       <translation>Play audio files via built-in audio support</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Use internal player:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Choose audio back end</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Use any external program to play audio files</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Use external program:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3120,28 +3307,12 @@ for all program&apos;s network requests.</translation>
       <translation>Deck:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Model:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Word</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Vocabulary field...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Text</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Definition field...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Sentence</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3158,42 +3329,6 @@ you are browsing. If some site breaks because of this, try disabling this.</tran
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>Disallow loading content from other sites (hides most advertisements)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>Do not identify GoldenDict in HTTP headers</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Maximum network cache size:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Clear network cache on exit</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3256,8 +3391,12 @@ download page.</translation>
       <translation>Maximum history size:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>History saving interval. If set to 0 history will be saved only during exit.</translation>
+      <source>Favorites</source>
+      <translation>Favorites</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3266,14 +3405,6 @@ download page.</translation>
     <message>
       <source>minutes</source>
       <translation>cu temci</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Favorites</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3372,112 +3503,112 @@ from Stardict, Babylon and GLS dictionaries</translation>
       <translation>Remove invalid index on exit</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>samcmu ke zmiku se cuxna</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>zmiku se cuxna</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Classic</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>la cabna sarxe</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>la .linvos.</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>la .babilon.</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>la .lingos.</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>la blanu .lingos.</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Auto does nothing on some systems.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>.i pa nu do za&apos;u re&apos;u katcygau lo samtci cu rinka pa nu mo&apos;u basti fi lo ka bangu</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Restart to apply the interface style change.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Restart to apply the interface font change.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Restart needed</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Enable</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Disable</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Automatic</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Save debug messages to gd_log.txt in the config folder</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Interface language</translation>
+      <source>S&amp;can</source>
+      <translation>sisku</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Article Display style</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>rivbi lo jakvasli smuni ciska .e lo jakvasli pilno cinri .e lo jakvasli pilno dunda e'o lo notci viska.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Add-on style</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>rivbi lo jakvasli samcni</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Interface Style</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>cisku lo kibystu vlacku lo panitslu</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Preview Font</translation>
+      <source>Anki</source>
+      <translation type="unfinished">Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation>GoldenDict-ng is a dictionary software.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>jmaji lo jakvasli lo nu jorne lo kliptci e'o lo notci viska.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation type="unfinished">Enable Interface Font</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>cfagau lo jakvasli kliptci jorne (jbena lo frica cisku)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>frica cisku lo nu smani lo jakvasli kliptci jorne galfi.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation type="unfinished">Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation type="unfinished">Hide tab bar when only one tab is open.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>no da</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>zukte lo drata snimei ple'i fi'o ple'i lo snimei fleku</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>viska le slabu ciste cuxna jmaji</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>le snimei cadzu co'a se benji fi'o lisri selcu'a le drata ple'i.</translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation type="unfinished">Internal Audio Player:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation type="unfinished">External Audio Player:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation type="unfinished">Automatically switches based on system theme.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>galfi jdaselsku</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>la dak. jikmu cu ro roi claxra fo lo nu le ralju bloti cu pinxe fi'o nu la makos. klama ciska le kantu cmene .e le meniu. cipni le facki lo ka claxra la dak. jikmu lo nu le ralju bloti cu jundi.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>klama claxra la dak. jikmu lo'i jundi</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>jmina samci lo anki karce ti'e zasti</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>lo ka zifre cu rinka lo du'u lo web cukta cu selcu'e lo tabli ce'o na sefta lo lisri skepi. ti cu fanza lo re'iskafi selkai .e lo galri tcana. gi'e jmina lo skriptu stani be roi cukta fi lo cukta bangu ke xusra'a.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Valsi:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>Textu:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Bacru:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Interface Font</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>kusfa girzu</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>kusfa nilce</translation>
     </message>
   </context>
   <context>
@@ -3623,6 +3754,58 @@ from Stardict, Babylon and GLS dictionaries</translation>
       <source>Force the word to be translated in the mainwindow.</source>
       <translation>Force the word to be translated in the mainwindow.</translation>
     </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>kibystu kanro:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>.i e'o lo kanro, la'o zoi. "&quot;%GDWORD%&quot;" .zoi co'a se krixa fi lo valsi poi se sisku.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Complete Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Single Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>PDF ciska (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>pa drata co&apos;a vreji fi pa notci</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Save article complete</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>nabmi</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Can&apos;t save article: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Save PDF complete</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Save PDF failed</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>ca'o vreji notci... (la'o zoi. %1 .zoi / la'o zoi. %2 .zoi)</translation>
+    </message>
   </context>
   <context>
     <name>QuickFilterLine</name>
@@ -3653,6 +3836,10 @@ from Stardict, Babylon and GLS dictionaries</translation>
       <source>The referenced resource failed to download.</source>
       <translation>The referenced resource failed to download.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>lo se rirni cu ka'o se finti claxu lo fatri da'u.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3678,6 +3865,26 @@ from Stardict, Babylon and GLS dictionaries</translation>
       <source>WARNING: %1</source>
       <translation>WARNING: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>smuni</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>mipri pa vanbi poi sepli je ca se cuxna</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>mipri ro vanbi poi sepli je ca na se cuxna</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>mipri ro vanbi poi sepli</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation type="unfinished">Open in &amp;External Browser</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3702,10 +3909,6 @@ from Stardict, Babylon and GLS dictionaries</translation>
       <translation>Send word to main window (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation type="unfinished">Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Add word to Favorites (Ctrl+E)</translation>
     </message>
@@ -3718,6 +3921,10 @@ from Stardict, Babylon and GLS dictionaries</translation>
 could be resized or managed in other ways.</source>
       <translation>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>co&apos;a vreji fi pa notci</translation>
     </message>
   </context>
   <context>
@@ -4000,23 +4207,23 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>Remove selected directories from the list?</source>
-      <translation type="unfinished">Remove selected directories from the list?</translation>
+      <translation>xu do vimcu lo se jicmu datnyveimei lo se liste?</translation>
     </message>
     <message>
       <source>Remove %1 directories from the list?</source>
-      <translation type="unfinished">Remove %1 directories from the list?</translation>
+      <translation>xu do vimcu la'o zoi. %1 .zoi datnyveimei lo se liste?</translation>
     </message>
     <message>
       <source>Remove %1 sites from the list?</source>
-      <translation type="unfinished">Remove %1 sites from the list?</translation>
+      <translation>xu do vimcu la'o zoi. %1 .zoi kibystu lo se liste?</translation>
     </message>
     <message>
       <source>Remove %1 servers from the list?</source>
-      <translation type="unfinished">Remove %1 servers from the list?</translation>
+      <translation>xu do vimcu la'o zoi. %1 .zoi sarv lo se liste?</translation>
     </message>
     <message>
       <source>Remove %1 programs from the list?</source>
-      <translation type="unfinished">Remove %1 programs from the list?</translation>
+      <translation>xu do vimcu la'o zoi. %1 .zoi samtci lo se liste?</translation>
     </message>
   </context>
   <context>
@@ -4113,18 +4320,21 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Insert article as link inside &lt;iframe&gt; tag</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>ti kibystu vlacku se cisku lo pa nitslu</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>cipni lo &quot;selcu'e lo web cukta fi lo jamna tabli&quot; fi lo prefre ke'e lo ka sefta lo web site fi lo lisri.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>katci</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>As link</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4137,6 +4347,22 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     <message>
       <source>Icon</source>
       <translation>pixra</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>jaitci</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>pilka ciska cmene. se jaurbe'i lo setyveimei.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>.i pajyrai de'u lo nu cisku kibystu lo nitslu. ku'o jai fi lo ciska veimei (se jaurbe'i lo setyveimei kei ja lo dunli) ja lo dunli jaitci kancu.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>ti danlu na'e se cfagau ki'u lo nu la'o zoi. "&quot;Open website dictionary in separate tab&quot;" .zoi rincukla na'e se cfagau e'o lo setycku.</translation>
     </message>
   </context>
   <context>

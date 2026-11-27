@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation>Anki: puede&apos;t crear una tarjeta sin palabra</translation>
+      <translation>Anki: no se puede crear una carta sin una palabra</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -57,16 +57,46 @@
       <translation>¡Bienvenido!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;¡Bienvenido a &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;Para comenzar a trabajar con el programa, primero visite &lt;em&gt;Editar | Diccionarios&lt;/em&gt; para agregar algunas rutas de directorio donde buscar archivos de diccionario, configurar varios sitios de Wikipedia u otras fuentes, ajustar el orden de los diccionarios o crear grupos de diccionarios.&lt;p&gt;¡Entonces estará&apos;listo para buscar palabras! Puede hacerlo en esta ventana usando un panel a la izquierda, o puede &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;buscar palabras en otras aplicaciones activas&lt;/a&gt;. &lt;p&gt;Para personalizar el programa, consulte las preferencias disponibles en &lt;em&gt;Editar | Preferencias&lt;/em&gt;. Todas las configuraciones tienen descripciones, asegúrese de leerlas si tiene dudas sobre algo.&lt;p&gt;Si necesita más ayuda, tiene alguna pregunta, sugerencia o simplemente se pregunta qué piensan los demás, puede visitar el &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;foro&lt;/a&gt; del programa.&lt;p&gt;Consulte el &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;sitio web&lt;/a&gt; del programa para ver las actualizaciones disponibles. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licenciado bajo GPLv3 o posterior.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(sin título)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(imagen)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;¡Bienvenido a &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;Para empezar&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Ir a &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Editar&lt;/span&gt;&lt;span&gt;diccionarios&lt;/span&gt;&lt;/span&gt; para añadir tus archivos de diccionario, establecer fuentes en línea como Wikipedia, y organizarlas en grupos.&lt;/li&gt;
+          &lt;li&gt;Una vez configurado, puede buscar palabras en esta ventana o &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;de otras aplicaciones usando la ventana emergente de Escaneo&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;Para personalizar el programa explorar la configuración en &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Editar&lt;/span&gt;&lt;span&gt;Preferencias&lt;/span&gt;&lt;/span&gt;. Todos los ajustes tienen consejos de herramientas, así que asegúrese de leerlos si algo no está claro.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;En caso de necesitar más ayuda, tiene cualquier pregunta, o sugerencia, usted es bienvenido en el programa&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;foro&lt;/a&gt; y &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;sitio web&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Basado en el GoldenDict original de Konstantin Isakov (c) 2008-2013. Mantenido y desarrollado por la Comunidad GoldenDict-NG bajo licencia GPLv3 o posterior.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>Frase no encontrada</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 de %2 partidas</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Crear nota Anki</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;Copiar sonido al portapapeles</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>Error al copiar el sonido</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>Error al escribir datos de audio completos</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>Sonido copiado al portapapeles</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Error al descargar el sonido</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 de %2 partidas</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Abrir artículo en un &amp;navegador externo</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>Visor de recursos de GoldenDict</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -275,52 +336,60 @@ entre ortografía clásica y escolar en cirílico)</translation>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Conversión china</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Tradicional a la conversión simplificada de China</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Habilita la conversión entre caracteres chinos simplificados y tradicionales</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Permitir la conversión de caracteres chinos simplificados/tradicionales a caracteres japoneses de Shinjitai</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>Conversión china</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Shinjitai japonés</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Habilitar la conversión de caracteres simplificados a caracteres tradicionales (variantes de Taiwán)</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>Conversión de Shinjitai de chino a japonés</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Habilita la conversión de caracteres simplificados a caracteres tradicionales (variante de Hong Kong)</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>Conversión y conversión de caracteres chinos y japoneses</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>Permitir la conversión entre caracteres Shinjitai simplificados, chinos tradicionales (Taiwán/Hong Kong) y japoneses Shinjitai</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Habilitar conversión desde los caracteres tradicionales a los simplificados</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Simplificado a la conversión tradicional china (variante Taiwán)</translation>
+      <source>Simplified</source>
+      <translation>Simplificado</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Fácil para la conversión de Chino tradicional (variante de Hong Kong)</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Habilitar la conversión de caracteres simplificados a caracteres tradicionales (de Taiwán)</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Tradicional a la conversión simplificada de China</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>Tradicional (Taiwán)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation>Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Habilitar la conversión de caracteres simplificados a caracteres tradicionales (de Hong Kong)</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation>Variante de Hong Kong</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Tradicional (Hong Kong)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation>Variante principal</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>Conversión simplificada al chino tradicional (Taiwán)</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>Conversión simplificada al chino tradicional (Hong Kong)</translation>
     </message>
   </context>
   <context>
@@ -408,10 +477,6 @@ entre ortografía clásica y escolar en cirílico)</translation>
       <translation>¿Está seguro de que desea generar un conjunto de grupos basados en carpetas contenedoras?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>¿Está seguro que desea generar un conjunto de grupos basados en metadata.toml?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Combinar grupos por lengua de origen a &quot;%1-&gt;&quot;</translation>
     </message>
@@ -426,6 +491,18 @@ entre ortografía clásica y escolar en cirílico)</translation>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Combinar grupos con &quot;%1&quot;</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Eliminar grupo</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>¿Esta seguro de que quiere eliminar el grupo &lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>¿Estás seguro de que quieres generar un conjunto de grupos basados en archivos de metadatos de diccionario?</translation>
     </message>
   </context>
   <context>
@@ -455,10 +532,6 @@ entre ortografía clásica y escolar en cirílico)</translation>
       <translation>Filtro:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Modo de búsqueda</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Este elemento determina cómo se interpreta la cadena de filtro</translation>
     </message>
@@ -481,18 +554,6 @@ entre ortografía clásica y escolar en cirílico)</translation>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Especifique el máximo filtrado de palabras de cabecera devueltas.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Filtrar máximos resultados:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Ayuda</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>Vale</translation>
     </message>
     <message>
       <source>Text</source>
@@ -542,6 +603,10 @@ entre ortografía clásica y escolar en cirílico)</translation>
       <source>Regular Expression</source>
       <translation>Expresión regular</translation>
     </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>Máximo:</translation>
+    </message>
   </context>
   <context>
     <name>DictInfo</name>
@@ -574,10 +639,6 @@ entre ortografía clásica y escolar en cirílico)</translation>
       <translation>Idioma destino:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Ficheros que componen este diccionario:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Descripción:</translation>
     </message>
@@ -596,6 +657,18 @@ entre ortografía clásica y escolar en cirílico)</translation>
     <message>
       <source>Full-text search disabled</source>
       <translation>Búsqueda de texto completo deshabilitada</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Desactivar</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Permitir</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>Componentes del diccionario:</translation>
     </message>
   </context>
   <context>
@@ -692,6 +765,34 @@ entre ortografía clásica y escolar en cirílico)</translation>
     <message>
       <source>Restore selection</source>
       <translation>Restaurar selección</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>Cancelar reindexación</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>Programar para reindexar</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>Cancelar reindexación de horario</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>El diccionario ha sido programado para reindexar. El índice se reconstruirá en el próximo reinicio de la aplicación.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Cambiar nombre a mostrar</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Nuevo nombre de pantalla:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>No programé el diccionario para reindexar.</translation>
     </message>
   </context>
   <context>
@@ -808,10 +909,6 @@ entre ortografía clásica y escolar en cirílico)</translation>
       <translation>Añadir carpeta</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Limpiar todo</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Favoritos:</translation>
     </message>
@@ -820,16 +917,20 @@ entre ortografía clásica y escolar en cirílico)</translation>
       <translation>Todos los elementos seleccionados serán eliminados. ¿Continuar?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Borrar todos los elementos</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>¿Está seguro de que desea borrar todos los elementos?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Claro</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>Borrar favoritos</translation>
     </message>
   </context>
   <context>
@@ -957,28 +1058,12 @@ entre ortografía clásica y escolar en cirílico)</translation>
       <translation>Pestaña 2</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>Crear un nuevo grupo de diccionarios</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>Añad&amp;ir grupo</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>Renombrar el grupo de diccionarios actual</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>Re&amp;nombrar grupo</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Eliminar el grupo de diccionarios actual</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>&amp;Eliminar grupo</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1048,6 +1133,22 @@ entre ortografía clásica y escolar en cirílico)</translation>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>¿Esta seguro que quiere eliminar todos los grupos?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>Añadir un nuevo grupo de diccionarios</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>Añad&amp;ir grupo</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>El grupo ya existe</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>Ya existe un grupo con el nombre &apos;%1&apos;</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1081,6 +1182,18 @@ entre ortografía clásica y escolar en cirílico)</translation>
     <message>
       <source>%1 Morphology</source>
       <translation>Morfología del %1</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Ortografía correcta, no se han encontrado otras formas de palabras.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>De %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Formas de palabra para %1: </translation>
     </message>
   </context>
   <context>
@@ -2388,10 +2501,6 @@ entre ortografía clásica y escolar en cirílico)</translation>
       <translation>Nueva Pestaña</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>¡Bienvenido!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>La API de accesibilidad no está activada</translation>
     </message>
@@ -2464,42 +2573,6 @@ Para encontrar &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; símbo
     <message>
       <source>Print Article</source>
       <translation>Imprimir Artículo</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>HTML completo (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>HTML único (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>Pdf (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>HTML MIME (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Guardar Artículo Como</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Error</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>No se puede guardar el artículo: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Guardando articulo...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Guardar artículo completo</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2594,12 +2667,56 @@ Para encontrar &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; símbo
       <translation>Mostrar</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation>Guardar PDF completo</translation>
+      <source>Lock Panels</source>
+      <translation>Bloquear paneles</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation>Fallo al guardar PDF</translation>
+      <source>Clear History</source>
+      <translation>Borrar historial</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>¿Está seguro que desea borrar todos los elementos del historial?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Guardar archivo</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>La aplicación sigue ejecutándose en segundo plano. Haz clic en el icono de la bandeja para mostrar la ventana.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Abrir en y Navegador externo</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>Ahora construyendo caché de palabras principales: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Prefijo</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Sufijo</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Palabra múltiple</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Búsqueda en texto completo…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Modo de búsqueda</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Modo de búsqueda: %1</translation>
     </message>
   </context>
   <context>
@@ -2616,15 +2733,15 @@ Para encontrar &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; símbo
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Error de sintaxis XML: %1 en %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>Error de análisis JSON</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Error de sintaxis XML: %1 en %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>Error de análisis JSON</translation>
     </message>
   </context>
   <context>
@@ -2700,10 +2817,6 @@ Para encontrar &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; símbo
       <translation>Descripción:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Ficheros que componen este diccionario:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Ajuste el orden arrastrando y soltando diccionarios. Arrastre diccionarios al grupo de no activos para deshabilitar su uso.</translation>
     </message>
@@ -2722,6 +2835,18 @@ Para encontrar &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; símbo
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Diccionarios activos: %1, inactivo: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Cambiar nombre a mostrar</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Nuevo nombre de pantalla:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>Componentes de diccionario:</translation>
     </message>
   </context>
   <context>
@@ -2765,27 +2890,12 @@ Con esta opción activada, en cambio, las nuevas pestañas se abrirán sin que s
       <translation>Abrir nuevas pestañas en segundo plano</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Con esta opción activada, las nuevas pestañas se abrirán
-justo después de la actual. Si no, se situarán las últimas.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Abrir nuevas pestañas después de la actual</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Seleccione esta opción si no quiere que se muestre la barra de pestañas cuando sólo hay abierta una pestaña.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Ocultar una pesaña</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>Orden MRU: Pedido más reciente usado.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2874,8 +2984,100 @@ en lugar de cerrrarse.</translation>
       <translation>Límite de diccionarios para el menú contextual:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>Idioma por defecto del sistema</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Por defecto</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Clásico</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Moderno</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Babylon</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Lingoes</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Lingoes-Azul</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Vuelva a ejecutar el programa para hacer efectivo el cambio de idioma.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Reinicie para aplicar el cambio de estilo de interfaz.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Reinicie para aplicar el cambio de fuente de la interfaz.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Reinicio necesario</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Permitir</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Desactivar</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Automático</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Ninguno</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>Con esto, las nuevas pestañas se abren justo después de la
+actual y activa. De lo contrario, se añadirán a
+ser las últimas.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp;Estilo</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Apariencia</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Idioma de la interfaz</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Estilo de visualización de artículo</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Estilo de complemento</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Estilo de interfaz</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2894,12 +3096,16 @@ en lugar de cerrrarse.</translation>
       <translation>Modo Lector Oscuro</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Estas fuentes se aplicarán cuando no se encuentren las fuentes especificadas por un diccionario.</translation>
+      <source>Preview Font</source>
+      <translation>Previsualizar fuente</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Fuentes alternativas</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng es un software de diccionario.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Estas fuentes se aplicarán cuando no se encuentren las fuentes especificadas por un diccionario.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2916,10 +3122,6 @@ en lugar de cerrrarse.</translation>
     <message>
       <source>Monospace Font</source>
       <translation>Fuente monoespaciada</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Ventana emergente de búsqueda</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2956,8 +3158,8 @@ in the pressed state when the word selection changes.</source>
 las teclas elegidas cuando cambia la palabra seleccionada.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Sólo la selección de toques cuando todas las teclas seleccionadas se mantienen presionadas:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>Solo la selección de rastreo cuando todas las teclas seleccionadas se mantienen presionadas:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3040,20 +3242,8 @@ las teclas elegidas cuando cambia la palabra seleccionada.</translation>
       <translation>Reproducir archivos de audio mediante el soporte de audio integrado</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Usar reproductor interno:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Elegir reverso de audio</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Utilizar cualquier programa externo para reproducir ficheros de audio</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Utilizar un programa externo:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3118,28 +3308,12 @@ para todos los accesos a la red del programa.</translation>
       <translation>Masco:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Modelo:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Palabra</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Campo vocabulario...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Texto</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Campo de definición...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Frase</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3156,42 +3330,6 @@ que está accediendo. Si algunos sitios web dejan de funcionar, intente desactiv
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>No permitir la descarga de contenido desde otros sitios (oculta la mayoría de los anuncios)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Algunos sitios web detectan GoldenDict mediante las cabeceras HTTP y bloquean las peticiones.
-Active esta opción para evitar el problema.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>Impedir la identificación de GoldenDict a partir de las cabeceras HTTP</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Tamaño máximo de caché de red:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Espacio máximo en disco ocupado por la caché de red de GoldenDict en
-%1
-Si se establece en 0, la memoria caché del disco de red se desactivará.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>Cuando esta opción está activada, GoldenDict
-borra su caché de red del disco durante la salida.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Borrar caché de red al salir</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3253,8 +3391,12 @@ para su descarga.</translation>
       <translation>Tamaño máximo del historial:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Intervalo de tiempo para guardar el historial. Si se pone a 0, el historial se guardará sólo al terminar.</translation>
+      <source>Favorites</source>
+      <translation>Favoritos</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Intervalo de ahorro de favoritos. Si se establece en 0 Favoritos sólo se guardará durante la salida.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3263,14 +3405,6 @@ para su descarga.</translation>
     <message>
       <source>minutes</source>
       <translation>minutos</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Favoritos</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Intervalo de ahorro de favoritos. Si se establece en 0 Favoritos sólo se guardará durante la salida.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3369,112 +3503,112 @@ de diccionarios Stardict, Babylon y GLS</translation>
       <translation>Eliminar índices no válidos al salir</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>Idioma por defecto del sistema</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Por defecto</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Clásico</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Moderno</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Babylon</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Lingoes</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Lingoes-Azul</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>En algunos sistemas, el modo automático no hace nada.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Vuelva a ejecutar el programa para hacer efectivo el cambio de idioma.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Reinicie para aplicar el cambio de estilo de interfaz.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Reinicie para aplicar el cambio de fuente de la interfaz.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Reinicio necesario</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Permitir</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Desactivar</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Automático</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Guardar mensajes de depuración en gd_log.txt en la carpeta de configuración</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Idioma de la interfaz</translation>
+      <source>S&amp;can</source>
+      <translation>&amp;Escanear</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Estilo de visualización de artículo</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>Suprime las alertas de JavaScript, confirma y solicita en la vista de artículos.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Estilo de complemento</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>Suprimir diálogos de JavaScript</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Estilo de interfaz</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>Abrir diccionario del sitio web en una pestaña separada</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Previsualizar fuente</translation>
+      <source>Anki</source>
+      <translation>Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation>GoldenDict-ng es un software de diccionario.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>Permitir que JavaScript acceda al portapapeles en la vista de artículos.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation>Activar fuente de interfaz</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>Activar acceso al portapapeles JavaScript (es necesario reiniciar)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation>Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>Reinicie para aplicar el cambio de acceso al portapapeles de JavaScript.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation>Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>Ocultar barra de pestañas cuando sólo una pestaña está abierta.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Ninguno</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Usa cualquier reproductor de audio externo para reproducir archivos de audio</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Ver guía de configuración detallada</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>La ruta de audio se pasará como argumento de línea de comandos al reproductor externo. </translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation>Reproductor de audio interno:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation>Reproductor de audio externo:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>Cambia automáticamente según el tema del sistema.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>Personalizar fuentes</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>El icono del Dock siempre aparece mientras la ventana principal está abierta para que macOS pueda mostrar el nombre de la aplicación y los menús. Activa esta opción para mantener visible el icono de la base después de ocultar la ventana principal.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>Mantén el icono de la base visible en el fondo</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>Añadir audio a la tarjeta Anki cuando esté disponible</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>Cuando están habilitados, los diccionarios del sitio web se abren en su propia pestaña en lugar de incrustarse en la vista de artículos. Esto evita limitaciones de diseño de iframe y desplazamiento, y permite la columna Script por diccionario en el diálogo de Diccionarios.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Word:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>Texto:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Frase:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Fuente de interfaz</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Familia personalizada</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Tamaño personalizado</translation>
     </message>
   </context>
   <context>
@@ -3620,6 +3754,58 @@ de diccionarios Stardict, Babylon y GLS</translation>
       <source>Force the word to be translated in the mainwindow.</source>
       <translation>Forzar la traducción de la palabra en la ventana principal.</translation>
     </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>Url del sitio web:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>En la Url, &quot;%GDWORD%&quot; será reemplazado por la palabra que se está buscando.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Complete Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Html único (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>Documento PDF (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Guardar artículo como</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Guardar artículo completo</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Error</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Puede&apos;t guardar artículo: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Guardar PDF completo</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Fallo al guardar PDF</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Guardando artículo... (%1/%2)</translation>
+    </message>
   </context>
   <context>
     <name>QuickFilterLine</name>
@@ -3650,6 +3836,10 @@ de diccionarios Stardict, Babylon y GLS</translation>
       <source>The referenced resource failed to download.</source>
       <translation>No se ha podido descargar recurso referenciado.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>El recurso se guardaría fuera de la carpeta de destino.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3675,6 +3865,26 @@ de diccionarios Stardict, Babylon y GLS</translation>
       <source>WARNING: %1</source>
       <translation>ADVERTENCIA: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>Definición</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Cerrrar la pestaña actual</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Cerrar todas las pestañas excepto la actual</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Cerrar todas las pestañas</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Abrir en y Navegador externo</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3699,10 +3909,6 @@ de diccionarios Stardict, Babylon y GLS</translation>
       <translation>Enviar palabra a la ventana principal (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation>Alt + W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Añadir palabra a favoritos (Ctrl+E)</translation>
     </message>
@@ -3715,6 +3921,10 @@ de diccionarios Stardict, Babylon y GLS</translation>
 could be resized or managed in other ways.</source>
       <translation>Usa esto para fijar la ventana para que permanezca en la pantalla,
 podría redimensionarse o gestionarse de otras maneras.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Guardar artículo</translation>
     </message>
   </context>
   <context>
@@ -4110,18 +4320,21 @@ Puede encontrar la lista completa de idiomas disponibles &lt;a href=&quot;https:
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Insertar artículo como enlace dentro de la etiqueta &lt;iframe&gt;</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>Este diccionario web está abierto en una nueva pestaña</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Apaga &quot;Abrir diccionario web en una pestaña separada&quot; en Preferencias para mostrar la web dentro del artículo en su lugar.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Activado</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Como enlace</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4134,6 +4347,22 @@ Puede encontrar la lista completa de idiomas disponibles &lt;a href=&quot;https:
     <message>
       <source>Icon</source>
       <translation>Icono</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Escribir</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>Nombre del archivo de icono. Relativo al directorio de configuración.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>Sólo disponible al abrir sitios web en pestañas separadas. Puede ser una ruta de archivo (relativa al directorio de configuración o absoluto) o el contenido de script directo.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>Esta columna está desactivada porque &quot;Abrir diccionario del sitio web en la pestaña separada&quot; opción no está habilitada en Preferencias.</translation>
     </message>
   </context>
   <context>

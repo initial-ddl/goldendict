@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation type="unfinished">Anki: can&apos;t create a card without a word</translation>
+      <translation>Anki: nuk mund të krijosh një kartë pa një fjalë</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -28,11 +28,11 @@
     </message>
     <message>
       <source>Anki: post to Anki failed</source>
-      <translation type="unfinished">Anki: post to Anki failed</translation>
+      <translation>Anki: dërgimi te Anki dështoi</translation>
     </message>
     <message>
       <source>Anki: post to Anki success</source>
-      <translation type="unfinished">Anki: post to Anki success</translation>
+      <translation>Anki: dërgimi te Anki u krye me sukses</translation>
     </message>
   </context>
   <context>
@@ -57,16 +57,46 @@
       <translation>Mirë se erdhët!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;Mirë se vini në &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;Për të filluar punën me programin, së pari vizitoni &lt;em&gt;Edit | Fjalorët&lt;/em&gt; për të shtuar disa shtigje drejtorie ku mund të kërkoni për skedarët e fjalorit, të konfiguroni sajte të ndryshme të Wikipedia-s ose burime të tjera, të rregulloni renditjen e fjalorëve ose të krijoni grupe fjalorësh.&lt;p&gt;Dhe pastaj ju&apos;jeni gati të kërkoni fjalët tuaja! Ju mund ta bëni këtë në këtë dritare duke përdorur një panel në të majtë, ose mund &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;kërkoni fjalë nga aplikacione të tjera aktive&lt;/a&gt;. &lt;p&gt;Për të personalizuar programin, shikoni preferencat e disponueshme në &lt;em&gt;Edit | Preferencat&lt;/em&gt;. Të gjitha cilësimet atje kanë këshilla veglash, sigurohuni t'i lexoni nëse keni dyshime për ndonjë gjë.&lt;p&gt;Nëse keni nevojë për ndihmë të mëtejshme, keni ndonjë pyetje, sugjerim ose thjesht pyesni veten se çfarë mendojnë të tjerët, jeni të mirëpritur në forumin e programit&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;&lt;/a&gt;.&lt;p&gt;Kontrolloni programin&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;faqen e internetit&lt;/a&gt; për përditësimet. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licencuar sipas GPLv3 ose më vonë.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(pa titull)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(figurë)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Mirësevini në &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;Për të filluar&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Shkoni te &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Redakto&lt;/span&gt;&lt;span&gt;Fjalorë&lt;/span&gt;&lt;/span&gt; për të shtuar skedarët tuaj të fjalorit, konfiguroni burime online si Wikipedia dhe organizojini ato në grupe.&lt;/li&gt;
+          &lt;li&gt;Pasi të konfigurohet, mund të kërkoni fjalë në këtë dritare ose &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;nga aplikacione të tjera duke përdorur dritaren kërcyese të skanimit&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;Për të personalizuar programin, eksploroni cilësimet te &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Redakto&lt;/span&gt;&lt;span&gt;Preferenca&lt;/span&gt;&lt;/span&gt;. Të gjitha cilësimet kanë shpjegime, prandaj sigurohuni t'i lexoni nëse diçka është e paqartë.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Nëse keni nevojë për ndihmë të mëtejshme, keni pyetje ose sugjerime, jeni të mirëpritur në &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forumin&lt;/a&gt; dhe &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;faqen e internetit&lt;/a&gt; të programit.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Bazuar në GoldenDict origjinal nga Konstantin Isakov (c) 2008-2013. Mirëmbajtur dhe zhvilluar nga Komuniteti GoldenDict-NG. Licencuar nën GPLv3 ose më vonë.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>Fraza nuk u gjet</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 nga %2 ndeshje</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Krijoni shënimin Anki</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;Kopjo zërin në clipboard</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>Dështoi kopjimi i zërit</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>Dështoi shkrimi i të dhënave të plota audio</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>Zëri u kopjua në clipboard</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Dështoi shkarkimi i zërit</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 nga %2 ndeshje</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Hap artikullin në &amp;shfletues të jashtëm</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>Shfletuesi i Burimeve GoldenDict</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -274,52 +335,60 @@ between classic and school orthography in cyrillic)</source>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Konvertimi kinez</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Konvertimi tradicional në kinezisht i thjeshtuar</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Aktivizo konvertimin midis karaktereve të thjeshtuara dhe tradicionale kineze</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Mundësoni konvertimin nga karakteret kineze të thjeshtuara/tradicionale në karaktere japoneze Shinjitai</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>Konvertimi kinez</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Shinjitai japonez</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Aktivizo konvertimin nga karaktere të thjeshtuara në karaktere tradicionale (varianti i Tajvanit).</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>Konvertimi nga Shinjitai nga kinezja në japoneze</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Aktivizo konvertimin nga karaktere të thjeshtuara në karaktere tradicionale (varianti i Hong Kongut).</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>Konversioni i Karaktereve Kineze dhe Japoneze</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>Mundësoni konvertimin midis kinezishtes së thjeshtuar, kinezishtes tradicionale (Taiwan/Hong Kong) dhe karaktereve japoneze Shinjitai</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Aktivizo konvertimin nga karaktere tradicionale në karaktere të thjeshtuara</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Konvertimi i thjeshtuar në tradicional kinez (varianti i Tajvanit).</translation>
+      <source>Simplified</source>
+      <translation>Thjeshtuar</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Konvertimi i thjeshtuar në kinezisht tradicional (varianti i Hong Kongut).</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Mundësoni konvertimin nga karakteret e thjeshtuara në karaktere tradicionale (tajvaneze)</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Konvertimi tradicional në kinezisht i thjeshtuar</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>Tradicionale (Tajvan)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation type="unfinished">Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Mundësimi i konvertimit nga karakteret e thjeshtuara në karaktere tradicionale (Hong Kongu)</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation type="unfinished">Hong Kong variant</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Tradicionale (Hong Kong)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation type="unfinished">Mainland variant</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>Konvertimi i thjeshtuar në kinezisht tradicional (Taiwan)</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>Konvertimi i thjeshtuar në kinezisht tradicional (Hong Kong)</translation>
     </message>
   </context>
   <context>
@@ -407,10 +476,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Jeni i sigurt që dëshironi të krijoni një grup grupesh bazuar në dosjet që përmbajnë?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>Jeni i sigurt që dëshironi të krijoni një grup grupesh bazuar në metadata.toml?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Kombinoj grupet sipas gjuhës së burimit në &quot;%1-&gt;&quot;</translation>
     </message>
@@ -425,6 +490,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Kombinoj grupet me &quot;%1&quot;</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Heq grupin</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>Jeni i sigurt për heqjen e grupit &lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>Je i sigurt që dëshiron të gjenerosh një grup grupesh bazuar në skedarët e metadata-s së fjalorit?</translation>
     </message>
   </context>
   <context>
@@ -454,10 +531,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Filtri:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Mënyra e kërkimit</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Ky element përcakton se si do të interpretohet vargu i filtrit</translation>
     </message>
@@ -480,18 +553,6 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Specifikoni kryefjalët maksimale të filtruara të kthyera.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Filtro rezultatet maksimale:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Ndihmë</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>Ne rregull</translation>
     </message>
     <message>
       <source>Text</source>
@@ -539,7 +600,11 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Regular Expression</source>
-      <translation type="unfinished">Regular Expression</translation>
+      <translation>Shprehje e rregullt</translation>
+    </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>Maksimumi:</translation>
     </message>
   </context>
   <context>
@@ -573,10 +638,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Përkthen në:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Skedat që përbëjnë fjalorin:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Përshkrimi:</translation>
     </message>
@@ -595,6 +656,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Full-text search disabled</source>
       <translation>Kërkimi në tekst të plotë është çaktivizuar</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Çaktivizo</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Aktivizo</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>Komponentët e fjalorit:</translation>
     </message>
   </context>
   <context>
@@ -690,7 +763,35 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Restore selection</source>
-      <translation type="unfinished">Restore selection</translation>
+      <translation>Rivendosni zgjedhjen</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>Anulo riindeksimin</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>Planifiko për riindeksim</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>Anulo planifikimin e riindeksimit</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>Fjalori është planifikuar për riindeksim. Indeksi do të rindërtohet në restartimin e ardhshëm të aplikacionit.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Ndrysho emrin e shfaqjes</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Emri i ri i shfaqjes:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Dështova të caktoj fjalorin për riindeksim.</translation>
     </message>
   </context>
   <context>
@@ -807,10 +908,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Shto dosje</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Pastro të gjitha</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Të preferuarat:</translation>
     </message>
@@ -819,16 +916,20 @@ between classic and school orthography in cyrillic)</source>
       <translation>Të gjithë artikujt e zgjedhur do të fshihen. Të vazhdohet?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Pastro të gjithë artikujt</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>Jeni i sigurt që dëshironi të pastroni të gjithë artikujt?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Pastro</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>Pastro të preferuarat</translation>
     </message>
   </context>
   <context>
@@ -956,28 +1057,12 @@ between classic and school orthography in cyrillic)</source>
       <translation>Skeda 2</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>Krijoj grupin e ri të fjalorëve</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>&amp;Shtoj grupin</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>Riemërtoj grupin aktual të fjalorëve</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>Ri&amp;emërtoj grupin</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Heq grupin aktual të fjalorëve</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>&amp;Heq grupin</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1047,6 +1132,22 @@ between classic and school orthography in cyrillic)</source>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>Jeni i sigurt për heqjen e të gjitha grupeve?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>Shto një grup të ri fjalorësh</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>&amp;Shtoj grupin</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>Grupi ekziston tashmë</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>Një grup me emrin &apos;%1&apos; ekziston tashmë.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1080,6 +1181,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>%1 Morphology</source>
       <translation>%1 Morfologjia</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Drejtshkrimi i saktë, nuk u gjetën forma të tjera fjalësh.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>Nga %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Format e fjalëve për %1: </translation>
     </message>
   </context>
   <context>
@@ -2099,7 +2212,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Kabyle</source>
-      <translation type="unfinished">Kabyle</translation>
+      <translation>Kabilisht</translation>
     </message>
   </context>
   <context>
@@ -2387,10 +2500,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Fushë e re</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>Mirë se erdhët!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>Accessibility API është joaktiv</translation>
     </message>
@@ -2463,42 +2572,6 @@ Për të gjetur &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; simbo
     <message>
       <source>Print Article</source>
       <translation>Printoj artikullin</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Plotësoni Html (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Html e vetme (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>PDF (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Mime Html (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Ruaj artikullin si</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Gabim</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Nuk ruan artikullin: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Ruan artikullin...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Ruaj artikullin i plotë</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2593,12 +2666,56 @@ Për të gjetur &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; simbo
       <translation>Shfaqje</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation type="unfinished">Save PDF complete</translation>
+      <source>Lock Panels</source>
+      <translation>Blloko panelet</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation type="unfinished">Save PDF failed</translation>
+      <source>Clear History</source>
+      <translation>Pastro historinë</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>Jeni i sigurt që dëshironi të pastroni të gjithë elementët e historisë?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Ruaj skedarin</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>Aplikacioni është ende duke funksionuar në sfond. Klikoni ikonën e tabakës për të shfaqur dritaren.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Hap në &amp;Shfletuesin e jashtëm</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>Tani ndërtimi i cache-it të fjalëve kryesore: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Parashtesa</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Prapashtesa</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Me shumë fjalë</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Kërkimi me tekst të plotë…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Mënyra e kërkimit</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Mënyra e kërkimit: %1</translation>
     </message>
   </context>
   <context>
@@ -2615,15 +2732,15 @@ Për të gjetur &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; simbo
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Gabim në analizimin e XML: %1 në %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>Gabim në analizimin e JSON</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Gabim në analizimin e XML: %1 në %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>Gabim në analizimin e JSON</translation>
     </message>
   </context>
   <context>
@@ -2699,10 +2816,6 @@ Për të gjetur &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; simbo
       <translation>Përshkrimi:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Skedat që përbëjnë fjalorin:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Ndreqeni radhën duke kapur e lëshuar elementet. Kalojini fjalorët te grupi joaktiv për t&apos;i çaktivizuar.</translation>
     </message>
@@ -2721,6 +2834,18 @@ Për të gjetur &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; simbo
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Fjalorë aktivë: %1, joaktiv: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Ndrysho emrin e shfaqjes</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Emri i ri i shfaqjes:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>Komponentët e fjalorit:</translation>
     </message>
   </context>
   <context>
@@ -2764,27 +2889,12 @@ Por, kur e ndez këtë, fushat e reja hapen pa kaluar te to.</translation>
       <translation>Hap fushat e reja në sfond</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Kur e ndez, fushat e reja hapen direkt pas aktuales,
-asaj aktive. Përndryshe ato i shtohen më të fundit.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Hap fushat e reja pas aktuales</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Zgjedh a duhet shfaqur brezi i fushave kur është hapur vetëm një fushë.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Fsheh fushën e vetme</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>Urdhri MRU: Urdhri më i përdorur së fundmi.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2870,8 +2980,99 @@ the application.</source>
       <translation>Limiti i fjalorëve në meny:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>Standardi i sistemit</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Standard</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Klasike</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Moderne</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Babilonia</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Lingoes</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Lingoes Blu</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Riniseni programin për të zbatuar ndryshimin e gjuhës.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Rinisni për të aplikuar ndryshimin e stilit të ndërfaqes.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Rinisni për të aplikuar ndryshimin e fontit të ndërfaqes.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Nevojitet rinisja</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Aktivizo</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Çaktivizo</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Automatik</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Asnjë</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>Kur kjo është aktivizuar, skedat e reja hapen menjëherë pas asaj aktuale,
+aktive. Përndryshe, ato shtohen si të fundit.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp;Stil</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Pamja e jashtme</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Interface language</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Article Display style</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Add-on style</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Interface Style</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2890,12 +3091,16 @@ the application.</source>
       <translation>Modaliteti i lexuesit të errët</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Këto fonte do të aplikohen kur fontet e specifikuara nga një fjalor nuk gjenden.</translation>
+      <source>Preview Font</source>
+      <translation>Preview Font</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Fontet e kthimit</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng është një program fjalori.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Këto fonte do të aplikohen kur fontet e specifikuara nga një fjalor nuk gjenden.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2912,10 +3117,6 @@ the application.</source>
     <message>
       <source>Monospace Font</source>
       <translation>Fonti Monospace</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Skanimi i jashtëm</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2952,8 +3153,8 @@ in the pressed state when the word selection changes.</source>
 janë në gjendjen e shtypur.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Zgjedhja e ngjitjes vetëm kur të gjithë tastet e zgjedhur mbahen të shtypur:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>Gjurmo zgjedhjen vetëm kur të gjithë tastet e zgjedhur mbahen të shtypur:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3036,20 +3237,8 @@ janë në gjendjen e shtypur.</translation>
       <translation>Luaj skedarë audio përmes mbështetjes së integruar audio</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Përdorni luajtësin e brendshëm:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Zgjidhni fundin e pasëm audio</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Riprodhon skedat zanore me një program tjetër</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Përdor programin e jashtëm:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3114,28 +3303,12 @@ për tërë kërkesat e programit për internet.</translation>
       <translation>Kuvertë:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Modeli:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>fjalë</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Fusha e fjalorit...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Teksti</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Fusha e përkufizimit...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Fjali</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3152,42 +3325,6 @@ faqe shfaq probleme prej kësaj, çaktivizojeni.</translation>
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>Mohoj përmbajtjen nga faqet e tjera (fsheh shumicën e reklamave)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Disa faqe e njohin GoldenDict me anë të kokëve HTTP, dhe i bllokojnë kërkesat.
-Ky opsion e anashkalon problemin.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>Nuk identifikoj GoldenDict në kokët HTTP</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Madhësia maksimale e memories së rrjetit:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Hapësira maksimale e diskut të zënë nga cache-i i rrjetit të GoldenDict në
-%1
-Nëse vendoset në 0 cache-i i diskut të rrjetit do të çaktivizohet.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>Kur ky opsion aktivizohet, GoldenDict
-fshin cache-in e rrjetit të tij nga disku gjatë daljes.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Pastro memorien e rrjetit në dalje</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3248,8 +3385,12 @@ kërkon ta shkarkojë.</translation>
       <translation>Masa maksimale e historikut:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Intervali i ruajtjes së historikut. Kur vendoset 0, historiku ruhet vetëm gjatë mbylljes së programit.</translation>
+      <source>Favorites</source>
+      <translation>Të preferuarat</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Intervali i ruajtjes së të preferuarave. Nëse vendoset në 0 Të preferuarat do të ruhen vetëm gjatë daljes.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3258,14 +3399,6 @@ kërkon ta shkarkojë.</translation>
     <message>
       <source>minutes</source>
       <translation>minuta</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Të preferuarat</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Intervali i ruajtjes së të preferuarave. Nëse vendoset në 0 Të preferuarat do të ruhen vetëm gjatë daljes.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3364,112 +3497,112 @@ nga fjalorët Stardict, Babylon dhe GLS</translation>
       <translation>Hiq indeksin e pavlefshëm në dalje</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>Standardi i sistemit</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Standard</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Klasike</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Moderne</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Babilonia</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Lingoes</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Lingoes Blu</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Auto nuk bën asgjë në disa sisteme.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Riniseni programin për të zbatuar ndryshimin e gjuhës.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Rinisni për të aplikuar ndryshimin e stilit të ndërfaqes.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Rinisni për të aplikuar ndryshimin e fontit të ndërfaqes.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Nevojitet rinisja</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Aktivizo</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Çaktivizo</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Automatik</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Ruani mesazhet e korrigjimit në gd_log.txt në dosjen e konfigurimit</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Interface language</translation>
+      <source>S&amp;can</source>
+      <translation>S&amp;kano</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Article Display style</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>Shtyp sinjalizimet, konfirmimet dhe kërkesat e JavaScript në pamjen e artikullit.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Add-on style</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>Shtyp dialogët JavaScript</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Interface Style</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>Hap fjalorin e uebsajtit në skedë të veçantë</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Preview Font</translation>
+      <source>Anki</source>
+      <translation type="unfinished">Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation type="unfinished">GoldenDict-ng is a dictionary software.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>Lejo JavaScript-in të ketë qasje në clipboard në pamjen e artikullit.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation type="unfinished">Enable Interface Font</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>Aktivizo qasjen e JavaScript-it në clipboard (kërkon restart)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>Restartoni për të aplikuar ndryshimin e qasjes së JavaScript-it në clipboard.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation type="unfinished">Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>Fshih shiritin e skedave kur është hapur vetëm një skedë.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Asnjë</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Përdorni çdo luajtës audio të jashtëm për të luajtur skedarë audio</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Shikoni udhëzuesin e detajuar të konfigurimit</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>Rruga audio do të kalojë si një argument i linjës së komandës tek luajtësi i jashtëm. </translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation>Luajtësi i brendshëm audio:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation>Luajtësi i jashtëm audio:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>Ndërrohet automatikisht bazuar në temën e sistemit.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>Personalizoni fontet</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>Ikona e Dock-ut shfaqet gjithmonë ndërsa dritarja kryesore është e hapur, në mënyrë që macOS të shfaqë emrin e aplikacionit dhe menutë. Aktivizoni këtë opsion për të mbajtur ikonën e dokut të dukshme pasi dritarja kryesore të jetë fshehur.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>Mbani ikonën e dokut të dukshme në sfond</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>Shto audio në kartën Anki kur të jetë e disponueshme</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>Kur aktivizohet, fjalorët e faqeve të internetit hapen në skedën e tyre në vend që të jenë të integruar në pamjen e artikullit. Kjo shmang kufizimet e paraqitjes së iframe dhe lëvizjes, dhe aktivizon kolonën Script për çdo fjalor në dialogun e Fjalorëve.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Fjala:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>Teksti:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Fjalia:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Fonti i ndërfaqes</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Familja e personalizuar</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Madhësia e personalizuar</translation>
     </message>
   </context>
   <context>
@@ -3609,11 +3742,63 @@ nga fjalorët Stardict, Babylon dhe GLS</translation>
     </message>
     <message>
       <source>Force the word to be translated in Popup.</source>
-      <translation type="unfinished">Force the word to be translated in Popup.</translation>
+      <translation>Forco fjalën të përkthehet në Dritaren kërcyese.</translation>
     </message>
     <message>
       <source>Force the word to be translated in the mainwindow.</source>
-      <translation type="unfinished">Force the word to be translated in the mainwindow.</translation>
+      <translation>Detyrojeni fjalën të përkthehet në dritaren kryesore.</translation>
+    </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>URL e uebsajtit:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>Në URL, &quot;%GDWORD%&quot; do të zëvendësohet me fjalën e kërkuar.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Plotësoni Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Html e vetme (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>Dokument PDF (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Ruaj artikullin si</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Ruaj artikullin i plotë</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Gabim</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Nuk ruan artikullin: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Save PDF complete</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Save PDF failed</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Duke ruajtur artikullin... (%1/%2)</translation>
     </message>
   </context>
   <context>
@@ -3645,6 +3830,10 @@ nga fjalorët Stardict, Babylon dhe GLS</translation>
       <source>The referenced resource failed to download.</source>
       <translation>Dështoi shkarkimi i resursit të referuar.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>Burimi do të ruhej jashtë dosjes së destinacionit.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3670,6 +3859,26 @@ nga fjalorët Stardict, Babylon dhe GLS</translation>
       <source>WARNING: %1</source>
       <translation>PARALAJMËRIM: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>Përkufizimi</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Mbyll fushën</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Mbyll të gjitha fushat veç kësaj</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Mbyll të gjitha fushat</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Hap në &amp;Shfletuesin e jashtëm</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3694,10 +3903,6 @@ nga fjalorët Stardict, Babylon dhe GLS</translation>
       <translation>Send word to main window (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation type="unfinished">Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Add word to Favorites (Ctrl+E)</translation>
     </message>
@@ -3710,6 +3915,10 @@ nga fjalorët Stardict, Babylon dhe GLS</translation>
 could be resized or managed in other ways.</source>
       <translation>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Ruaj artikullin</translation>
     </message>
   </context>
   <context>
@@ -3987,27 +4196,27 @@ Lista e plotë e gjuhëve të disponueshme mund të gjendet &lt;a href=&quot;htt
     </message>
     <message>
       <source>The most widely used method of transcription of Japanese, based on English phonology</source>
-      <translation type="unfinished">The most widely used method of transcription of Japanese, based on English phonology</translation>
+      <translation>Metoda më e përdorur e transkriptimit të japonishtes, bazuar në fonologjinë angleze</translation>
     </message>
     <message>
       <source>Remove selected directories from the list?</source>
-      <translation type="unfinished">Remove selected directories from the list?</translation>
+      <translation>Të hiqen direktoritë e zgjedhura nga lista?</translation>
     </message>
     <message>
       <source>Remove %1 directories from the list?</source>
-      <translation type="unfinished">Remove %1 directories from the list?</translation>
+      <translation>Të hiqen %1 direktoritë nga lista?</translation>
     </message>
     <message>
       <source>Remove %1 sites from the list?</source>
-      <translation type="unfinished">Remove %1 sites from the list?</translation>
+      <translation>Të hiqen %1 faqe nga lista?</translation>
     </message>
     <message>
       <source>Remove %1 servers from the list?</source>
-      <translation type="unfinished">Remove %1 servers from the list?</translation>
+      <translation>Të hiqen %1 servera nga lista?</translation>
     </message>
     <message>
       <source>Remove %1 programs from the list?</source>
-      <translation type="unfinished">Remove %1 programs from the list?</translation>
+      <translation>Të hiqen %1 programe nga lista?</translation>
     </message>
   </context>
   <context>
@@ -4104,18 +4313,21 @@ Lista e plotë e gjuhëve të disponueshme mund të gjendet &lt;a href=&quot;htt
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Fut artikullin si lidhje brenda etiketës &lt;iframe&gt;</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>Ky fjalor uebsajti hapet në një skedë të re</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Fike &quot;Hapni fjalorin e faqes në skedë të veçantë&quot; në Preferenca për të shfaqur faqen brenda artikullit.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Aktiv</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Si lidhje</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4128,6 +4340,22 @@ Lista e plotë e gjuhëve të disponueshme mund të gjendet &lt;a href=&quot;htt
     <message>
       <source>Icon</source>
       <translation>Ikona</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Skripta</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>Emri i skedarit të ikonës. Relativisht me drejtorinë e konfigurimit.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>E disponueshme vetëm kur hapni uebsajte në skeda të ndara. Mund të jetë një shteg skedari (relativ me drejtorinë e konfigurimit ose absolut) ose përmbajtje e drejtpërdrejtë e skriptës.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>Kjo kolonë është çaktivizuar sepse opsioni &quot;Hap fjalorin e uebsajtit në skedë të veçantë&quot; nuk është aktivizuar në Preferenca.</translation>
     </message>
   </context>
   <context>

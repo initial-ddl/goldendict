@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation type="unfinished">Anki: can&apos;t create a card without a word</translation>
+      <translation>अंकी: क्या बिना किसी शब्द के कार्ड&apos;बनाया जा सकता</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -28,11 +28,11 @@
     </message>
     <message>
       <source>Anki: post to Anki failed</source>
-      <translation type="unfinished">Anki: post to Anki failed</translation>
+      <translation>अंकी: अंकी को पोस्ट विफल</translation>
     </message>
     <message>
       <source>Anki: post to Anki success</source>
-      <translation type="unfinished">Anki: post to Anki success</translation>
+      <translation>Anki: Anki की सफलता के लिए पोस्ट</translation>
     </message>
   </context>
   <context>
@@ -57,16 +57,46 @@
       <translation>स्वागत है!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt; &lt;b&gt;गोल्डनडिक्ट&lt;/b&gt;में आपका स्वागत है!&lt;/h3&gt;&lt;p&gt;प्रोग्राम के साथ काम शुरू करने के लिए सबसे पहले &lt;em&gt;संपादित करें | पर जाएँ शब्दकोश&lt;/em&gt; कुछ निर्देशिका पथ जोड़ने के लिए जहां शब्दकोश फ़ाइलों की खोज करें, विभिन्न विकिपीडिया साइटों या अन्य स्रोतों को सेट करें, शब्दकोश क्रम को समायोजित करें या शब्दकोश समूह बनाएं।&lt;p&gt;और फिर आप&apos;अपने शब्दों पर गौर करने के लिए तैयार हैं! आप इस विंडो में बाईं ओर एक फलक का उपयोग करके ऐसा कर सकते हैं, या आप &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;अन्य सक्रिय अनुप्रयोगों&lt;/a&gt;से शब्दों को देख सकते हैं। &lt;p&gt;प्रोग्राम को अनुकूलित करने के लिए, &lt;em&gt;संपादन | पर उपलब्ध प्राथमिकताएँ देखें प्राथमिकताएँ&lt;/em&gt;. वहां सभी सेटिंग्स में टूलटिप्स हैं, यदि आप किसी भी चीज़ के बारे में संदेह में हैं तो उन्हें पढ़ना सुनिश्चित करें।&lt;p&gt;यदि आपको और सहायता की आवश्यकता हो, कोई प्रश्न, सुझाव हो या आप आश्चर्य करें कि दूसरे क्या सोचते हैं, तो कार्यक्रम&apos;एस &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;फोरम&lt;/a&gt;में आपका स्वागत है।&lt;p&gt;अपडेट के लिए प्रोग्राम&apos;एस &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;वेबसाइट&lt;/a&gt; जांच करें। &lt;p&gt;(सी) 2008-2013 कॉन्स्टेंटिन इसाकोव। GPLv3 या बाद के संस्करण के अंतर्गत लाइसेंस प्राप्त।</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(शीर्षकहीन)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(छवि)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;में आपका स्वागत है &lt;strong&gt;गोल्डनडिक्ट-एनजी&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;शुरू करने के लिए&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;यहाँ जाओ &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;संपादित करें&lt;/span&gt;&lt;span&gt;शब्दकोश&lt;/span&gt;&lt;/span&gt; अपनी शब्दकोश फ़ाइलों को जोड़ने के लिए, विकिपीडिया जैसे ऑनलाइन स्रोत सेट करें, और उन्हें समूहों में व्यवस्थित करें।&lt;/li&gt;
+          &lt;li&gt;एक बार सेट हो जाने के बाद, आप इस विंडो में शब्दों को देख सकते हैं या &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;स्कैन पॉपअप का उपयोग करने वाले अन्य अनुप्रयोगों से&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;प्रोग्राम को अनुकूलित करने के लिए, सेटिंग्स का अन्वेषण करें &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;संपादित करें&lt;/span&gt;&lt;span&gt;प्राथमिकताएं&lt;/span&gt;&lt;/span&gt;. सभी सेटिंग्स में टूलटिप्स हैं, इसलिए यदि कुछ भी अस्पष्ट है तो उन्हें पढ़ना सुनिश्चित करें।&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;यदि आपको और सहायता की आवश्यकता है, कोई प्रश्न या सुझाव है, तो कार्यक्रम में आपका स्वागत है&apos;दक्षिणी &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;फ़ोरम&lt;/a&gt; तथा &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;वेबसाइट&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;कॉन्स्टेंटिन इसाकोव (सी) 2008-2013 द्वारा मूल गोल्डनडिक्ट पर आधारित। GoldenDict-NG समुदाय द्वारा बनाए रखा और विकसित। GPLv3 या बाद के संस्करण के तहत लाइसेंस प्राप्त।&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>वाक्यांश नहीं मिला</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%2 मैचों में से %1</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;अंकी नोट बनाएं</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;क्लिपबोर्ड पर ध्वनि कॉपी करें</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>ध्वनि की प्रतिलिपि बनाने में विफल</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>पूर्ण ऑडियो डेटा लिखने में विफल रहा</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>ध्वनि को क्लिपबोर्ड पर कॉपी किया गया</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>ध्वनि डाउनलोड करने में विफल रहा</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%2 मैचों में से %1</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>लेख को बाहरी ब्राउज़र में खोलें</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>गोल्डनडिक्ट रिसोर्स व्यूअर</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -274,52 +335,60 @@ between classic and school orthography in cyrillic)</source>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>चीनी रूपांतरण</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>पारंपरिक से सरलीकृत चीनी में रूपांतरण</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>सरलीकृत और पारंपरिक चीनी अक्षरों के बीच रूपांतरण सक्षम करें</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>सरलीकृत/पारंपरिक चीनी वर्णों से जापानी शिंजिताई वर्णों में रूपांतरण सक्षम करें</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>चीनी कान्टोनी संस्करण</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>जापानी शिंजिताई</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>सरलीकृत वर्णों से पारंपरिक (ताइवान संस्करण) वर्णों में रूपांतरण सक्षम करें</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>चीनी से जापानी शिंजिताई रूपांतरण</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>सरलीकृत वर्णों से पारंपरिक (हांगकांग संस्करण) वर्णों में रूपांतरण सक्षम करें</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>चीनी और जापानी चरित्र Con&amp;version</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>सरलीकृत चीनी, पारंपरिक चीनी (ताइवान/हांगकांग) और जापानी शिंजिताई वर्णों के बीच रूपांतरण सक्षम करें</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>पारंपरिक वर्णों से सरलीकृत वर्णों में रूपांतरण सक्षम करें</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>सरलीकृत से पारंपरिक चीनी (ताइवान संस्करण) रूपांतरण</translation>
+      <source>Simplified</source>
+      <translation>सरलीकृत</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>सरलीकृत से पारंपरिक चीनी (हांगकांग संस्करण) रूपांतरण</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>सरल अक्षरों से पारंपरिक (ताइवान) अक्षरों में रूपांतरण सक्षम करें</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>पारंपरिक से सरलीकृत चीनी में रूपांतरण</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>पारंपरिक (ताइवान)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation type="unfinished">Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>सरल अक्षरों से पारंपरिक (हांगकांग) अक्षरों में रूपांतरण सक्षम करें</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation type="unfinished">Hong Kong variant</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>पारंपरिक (हांगकांग)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation type="unfinished">Mainland variant</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>पारंपरिक चीनी (ताइवान) रूपांतरण के लिए सरलीकृत</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>पारंपरिक चीनी (हांगकांग) रूपांतरण में सरलीकृत</translation>
     </message>
   </context>
   <context>
@@ -407,10 +476,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>क्या आप वाकई फ़ोल्डरों के आधार पर समूहों का एक सेट तैयार करना चाहते हैं?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>क्या आप वाकई मेटाडेटा.टीओएमएल पर आधारित समूहों का एक सेट तैयार करना चाहते हैं?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>स्रोत भाषा द्वारा समूहों को &quot;%1-&gt;&quot; में मिलाएं</translation>
     </message>
@@ -425,6 +490,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>&quot;%1&quot;के साथ समूहों को मिलाएं</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>समूह निकालें</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>क्या आप वस्तुतः &lt;b&gt;%1&lt;/b&gt; समूह को निकालना चाहते हैं?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>क्या आप सुनिश्चित हैं कि आप डिक्शनरी मेटाडेटा फ़ाइलों के आधार पर समूहों का एक सेट जनरेट करना चाहते हैं?</translation>
     </message>
   </context>
   <context>
@@ -454,10 +531,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>छाँटें :</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>खोज पद्धति</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>यह तत्व निर्धारित करता है कि छँटाई स्ट्रिंग की व्याख्या कैसे की जाएगी</translation>
     </message>
@@ -480,18 +553,6 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>लौटाए गए अधिकतम फ़िल्टर किए गए हेडवर्ड निर्दिष्ट करें.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>अधिकतम परिणाम फ़िल्टर करें:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>सहायता</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>ठीक</translation>
     </message>
     <message>
       <source>Text</source>
@@ -539,7 +600,11 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Regular Expression</source>
-      <translation type="unfinished">Regular Expression</translation>
+      <translation>नियमित अभिव्यक्ति</translation>
+    </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>अधिकतम:</translation>
     </message>
   </context>
   <context>
@@ -573,10 +638,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>जिस भाषा में अनुवाद करता हैः</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>इस शब्दकोश में सम्मिलित फाइलें:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>विवरण:</translation>
     </message>
@@ -595,6 +656,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Full-text search disabled</source>
       <translation>पूर्ण-पाठ खोज अक्षम की गई</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>अक्षम करना</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>सक्षम</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>शब्दकोश घटक:</translation>
     </message>
   </context>
   <context>
@@ -690,7 +763,35 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Restore selection</source>
-      <translation type="unfinished">Restore selection</translation>
+      <translation>चयन पुनर्स्थापित करें</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>पुन: अनुक्रमणिका रद्द करें</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>पुन: अनुक्रमणिका के लिए अनुसूची</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>शेड्यूल रीइंडेक्स रद्द करें</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>शब्दकोश को पुन: अनुक्रमण के लिए निर्धारित किया गया है। अगले एप्लिकेशन पुनरारंभ होने पर इंडेक्स को फिर से बनाया जाएगा।</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>प्रदर्शन नाम बदलें</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>नया प्रदर्शन नाम:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>पुन: अनुक्रमणिका के लिए शब्दकोश शेड्यूल करने में विफल।</translation>
     </message>
   </context>
   <context>
@@ -807,10 +908,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>फ़ोल्डर जोड़ें</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>सभी साफ करें</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>पसंदीदा:</translation>
     </message>
@@ -819,16 +916,20 @@ between classic and school orthography in cyrillic)</source>
       <translation>सभी चयनित मद हटा दिए जाएंगे। जारी रखें?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>सभी आइटम साफ़ करें</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>क्या आप वाकई सभी आइटम साफ़ करना चाहते हैं?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>साफ़ करें</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>पसंदीदा साफ़ करें</translation>
     </message>
   </context>
   <context>
@@ -956,28 +1057,12 @@ between classic and school orthography in cyrillic)</source>
       <translation>टैब २</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>नया शब्दकोश समूह बनाएँ</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>तथा समूह जोड़ें</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>वर्तमान शब्दकोश समूह का नाम बदलें</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>समूह का नाम बदलें</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>वर्तमान शब्दकोश समूह निकालें</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>तथा समूह निकालें</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1047,6 +1132,22 @@ between classic and school orthography in cyrillic)</source>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>क्या आप वस्तुतः सभी समूहों को निकालना चाहते हैं?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>कोई नया शब्दकोश समूह जोड़ना</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>तथा समूह जोड़ें</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>समूह पहले से मौजूद है</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>नाम वाला समूह &apos;%1&apos; पहले से मौजूद है।</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1080,6 +1181,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>%1 Morphology</source>
       <translation>%1 आकारिकी</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>वर्तनी सही है, कोई अन्य शब्द रूप नहीं मिला।</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>से %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>के लिए शब्द रूप %1: </translation>
     </message>
   </context>
   <context>
@@ -2099,7 +2212,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Kabyle</source>
-      <translation type="unfinished">Kabyle</translation>
+      <translation>काबाइल</translation>
     </message>
   </context>
   <context>
@@ -2387,10 +2500,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Nouvel onglet</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>Bienvenue !</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>L&apos;API d&apos;accessibilité n&apos;est pas activée</translation>
     </message>
@@ -2463,42 +2572,6 @@ Pour rechercher les symboles &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;
     <message>
       <source>Print Article</source>
       <translation>Imprimer l&apos;article</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>पूर्ण HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>एकल HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>पीडीएफ (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>माइम HTML (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Enregister l&apos;article sous</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Erreur</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Impossible d&apos;enregistrer l&apos;article : %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Sauvegarde de l&apos;article...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>आलेख पूर्ण सहेजें</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2593,12 +2666,56 @@ Pour rechercher les symboles &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;
       <translation>दिखाना</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation type="unfinished">Save PDF complete</translation>
+      <source>Lock Panels</source>
+      <translation>लॉक पैनल</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation type="unfinished">Save PDF failed</translation>
+      <source>Clear History</source>
+      <translation>इतिहास साफ़ करें</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>क्या आप वाकई इतिहास के सभी आइटम साफ़ करना चाहते हैं?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>फ़ाइल सहेजें</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>अनुप्रयोग अभी भी पृष्ठभूमि में चल रहा है। विंडो दिखाने के लिए ट्रे आइकन पर क्लिक करें।</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>&amp;बाहरी ब्राउज़र में खोलें</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>अब हेडवर्ड कैश का निर्माण: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>पूर्वसर्ग</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>अनुलग्‍न</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>बहु शब्द</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>पूर्ण-पाठ खोज…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>खोज मोड</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>खोज मोड: %1</translation>
     </message>
   </context>
   <context>
@@ -2615,15 +2732,15 @@ Pour rechercher les symboles &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>एक्स.एम.एल पदव्याख्या त्रुटि: %2,%3 पर %1</translation>
+      <source>JSON parse error</source>
+      <translation>JSON पार्स त्रुटि</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>एक्स.एम.एल पदव्याख्या त्रुटि: %2,%3 पर %1</translation>
+      <source>JSON parse error</source>
+      <translation>JSON पार्स त्रुटि</translation>
     </message>
   </context>
   <context>
@@ -2699,10 +2816,6 @@ Pour rechercher les symboles &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;
       <translation>विवरण:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>इस शब्दकोश में सम्मिलित फाइलें:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation> इसमें मदों को खींचकर और छोडकर क्रम समायोजित करें।शब्दकोशों के उपयोग को अक्षम करने के लिए उन्हें निष्क्रिय समूह में छोड़ दें।</translation>
     </message>
@@ -2721,6 +2834,18 @@ Pour rechercher les symboles &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>शब्दकोश सक्रिय: %1, निष्क्रिय: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>प्रदर्शन नाम बदलें</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>नया प्रदर्शन नाम:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>शब्दकोश घटक:</translation>
     </message>
   </context>
   <context>
@@ -2763,26 +2888,12 @@ switching to them.</source>
       <translation>पृष्ठभूमि में नए टैब खोलें</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>इसके चालू होने पर, नया टैब वर्तमान सक्रिय टैब के ठीक बाद खोला जाता है अन्यथा उन्हें अंतिम में जोड़ा जाता है।</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>वर्तमान के बाद नए टैब खोलें</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>यदि आप केवल एक टैब खोले जाने पर मुख्य टैब रेखिका नहीं देखना चाहते हैं, तो इस विकल्प का चयन करें।</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>एकल टैब छिपाएँ</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>एमआरयू ऑर्डर: सबसे हाल ही में इस्तेमाल किया गया ऑर्डर।</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2868,8 +2979,100 @@ the application.</source>
       <translation>संदर्भ मेनू में शब्दकोशों की सीमा:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>तंन्त्र औत्सर्गिक</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>औत्सर्गिक</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>क्लासिक</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>आधुनिक</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>लिंग्वो</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>बेबीलोन</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>लिंगोज</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>लिंगोज-नीला</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>भाषा परिवर्तन लागू करने के लिए प्रोग्राम को पुनरारंभ करें।</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>इंटरफ़ेस शैली परिवर्तन लागू करने के लिए पुनरारंभ करें।</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>इंटरफ़ेस फ़ॉन्ट परिवर्तन लागू करने के लिए पुनरारंभ करें।</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>पुनः प्रारंभ करने की आवश्यकता है</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>सक्षम</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>अक्षम करना</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>स्वचालित</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>कोई नही</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>इसके साथ, नए टैब खुलते हैं
+वर्तमान, सक्रिय। अन्यथा, उन्हें इसमें जोड़ा जाता है
+अंतिम बनो।</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp;शैली</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>उपस्थिति</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Interface language</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Article Display style</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Add-on style</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Interface Style</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2888,12 +3091,16 @@ the application.</source>
       <translation>डार्क रीडर मोड</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>ये फ़ॉन्ट तब लागू किए जाएंगे जब शब्दकोश द्वारा निर्दिष्ट फ़ॉन्ट नहीं मिलेंगे।</translation>
+      <source>Preview Font</source>
+      <translation>Preview Font</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>फ़ॉलबैक फ़ॉन्ट्स</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>गोल्डनडिक्ट-एनजी एक शब्दकोश सॉफ्टवेयर है।</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>ये फ़ॉन्ट तब लागू किए जाएंगे जब शब्दकोश द्वारा निर्दिष्ट फ़ॉन्ट नहीं मिलेंगे।</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2910,10 +3117,6 @@ the application.</source>
     <message>
       <source>Monospace Font</source>
       <translation>मोनोस्पेस फ़ॉन्ट</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;स्कैन पॉपअप</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2949,8 +3152,8 @@ in the pressed state when the word selection changes.</source>
       <translation>इसके सक्षम होने पर, जब शब्द चयन बदलता है तो पॉपअप केवल तभी दिखाई देगा जब सभी चुनी हुई कुंजियों की स्थिति दबी हुई हो।</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>केवल तभी चयन करें जब सभी चयनित कुंजियाँ दबाई जाएं:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>चयन को केवल तभी ट्रैक करें जब सभी चयनित कुंजियों को दबाया जाता है:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3033,20 +3236,8 @@ in the pressed state when the word selection changes.</source>
       <translation>अंतर्निहित श्रव्य समर्थन के माध्यम से श्रव्य फ़ाइलें चलाएं</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>आन्तरिक वादक प्रयोग करे</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>श्रव्य पश्च भाग चुने</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>श्रव्य फ़ाइलों को चलाने के लिए किसी भी बाहरी प्रोग्राम का उपयोग करें</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>बाह्य प्रोग्रामों का उपयोग करें:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3110,28 +3301,12 @@ for all program&apos;s network requests.</source>
       <translation>जहाज़ की छत:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>नमूना:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>शब्द</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>शब्दावली क्षेत्र...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>मूलपाठ</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>परिभाषा फ़ील्ड...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>वाक्य</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3146,42 +3321,6 @@ you are browsing. If some site breaks because of this, try disabling this.</sour
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>अन्य साइटों से लोडिंग सामग्री को अस्वीकार करें (अधिकांश विज्ञापनों को छुपाता है)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>कुछ साइटें एच.टी.टी.पी. शीर्षक के माध्यम से गोल्डेनडिक्ट का पता लगाती हैं और अनुरोधों को रोकती हैं।
-समस्या को हल करने के लिए इस विकल्प को सक्षम करें।</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>एच.टी.टी.पी शीर्षक में गोलेडेनडिक्ट की पहचान न करें</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>अधिकतम नेटवर्क कैश आकार:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>
-%1
-में गोल्डनडिक्ट&apos;एस नेटवर्क कैश द्वारा कब्जा किया गया अधिकतम डिस्क स्थान यदि 0 पर सेट किया गया है तो नेटवर्क डिस्क कैश अक्षम हो जाएगा।</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> एमआईबी</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>जब यह विकल्प सक्षम होता है, तो गोल्डनडिक्ट
-बाहर निकलने के दौरान डिस्क से अपना नेटवर्क कैश साफ़ कर देता है।</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>बाहर निकलने पर नेटवर्क कैश साफ़ करें</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3240,8 +3379,12 @@ download page.</source>
       <translation>अधिकतम इतिहास का आकार:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>इतिहास रक्षण अंतराल। यदि 0 पर सेट किया जाता है तो इतिहास केवल निकास के दौरान ही सहेजा जाएगा।</translation>
+      <source>Favorites</source>
+      <translation>पसंदीदा</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>पसंदीदा रक्षण अंतराल। यदि 0 पर सेट किया जाता है तो पसंदीदा केवल निकास के समय रक्षण किया जाएगा।</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3250,14 +3393,6 @@ download page.</source>
     <message>
       <source>minutes</source>
       <translation>मिनट</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>पसंदीदा</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>पसंदीदा रक्षण अंतराल। यदि 0 पर सेट किया जाता है तो पसंदीदा केवल निकास के समय रक्षण किया जाएगा।</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3355,112 +3490,112 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>बाहर निकलने पर अमान्य अनुक्रमणिका हटाएँ</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>तंन्त्र औत्सर्गिक</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>औत्सर्गिक</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>क्लासिक</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>आधुनिक</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>लिंग्वो</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>बेबीलोन</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>लिंगोज</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>लिंगोज-नीला</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>कुछ प्रणालियों पर ऑटो कुछ भी नहीं करता।</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>भाषा परिवर्तन लागू करने के लिए प्रोग्राम को पुनरारंभ करें।</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>इंटरफ़ेस शैली परिवर्तन लागू करने के लिए पुनरारंभ करें।</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>इंटरफ़ेस फ़ॉन्ट परिवर्तन लागू करने के लिए पुनरारंभ करें।</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>पुनः प्रारंभ करने की आवश्यकता है</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>सक्षम</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>अक्षम करना</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>स्वचालित</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Save debug messages to gd_log.txt in the config folder</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Interface language</translation>
+      <source>S&amp;can</source>
+      <translation>एस एंड कैन</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Article Display style</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>लेख दृश्य में JavaScript चेतावनियों, पुष्टि करता है और संकेत देता है, दबाएँ.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Add-on style</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>JavaScript संवादों को दबाना</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Interface Style</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>वेबसाइट शब्दकोश को अलग टैब में खोलें</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Preview Font</translation>
+      <source>Anki</source>
+      <translation type="unfinished">Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation type="unfinished">GoldenDict-ng is a dictionary software.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>जावास्क्रिप्ट को आलेख दृश्य में क्लिपबोर्ड तक पहुंचने की अनुमति दें।</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation type="unfinished">Enable Interface Font</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>जावास्क्रिप्ट क्लिपबोर्ड एक्सेस सक्षम करें (पुनरारंभ करने की आवश्यकता है)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>JavaScript क्लिपबोर्ड पहुँच परिवर्तन लागू करने के लिए पुनरारंभ करें.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation type="unfinished">Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>केवल एक टैब खुला होने पर टैब पट्टी छुपाएँ.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>कोई नही</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>ऑडियो फ़ाइलों को चलाने के लिए किसी भी बाहरी ऑडियो प्लेयर का उपयोग करें</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>विस्तृत कॉन्फ़िगरेशन गाइड देखें</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>ऑडियो पथ को बाहरी प्लेयर को कमांड-लाइन तर्क के रूप में पारित किया जाएगा। </translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation>आंतरिक ऑडियो प्लेयर:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation>बाहरी ऑडियो प्लेयर:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>सिस्टम थीम के आधार पर स्वचालित रूप से स्विच करता है।</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>फ़ॉन्ट्स अनुकूलित करें</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>मुख्य विंडो खुली रहने पर डॉक आइकन हमेशा दिखाया जाता है ताकि macOS एप्लिकेशन का नाम और मेनू प्रदर्शित कर सके। मुख्य विंडो छिपे होने के बाद डॉक आइकन को दृश्यमान रखने के लिए इस विकल्प को सक्षम करें।</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>पृष्ठभूमि में डॉक आइकन दृश्यमान रखें</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>उपलब्ध होने पर Anki कार्ड में ऑडियो जोड़ें</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>सक्षम होने पर, वेबसाइट शब्दकोश आलेख दृश्य में एम्बेड किए जाने के बजाय अपने स्वयं के टैब में खुलते हैं. यह iframe लेआउट और स्क्रॉलिंग सीमाओं से बचता है, और शब्दकोश संवाद में प्रति-शब्दकोश स्क्रिप्ट स्तंभ को सक्षम करता है.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>शब्द:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>टेक्स्ट:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>वाक्य:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>इंटरफ़ेस फ़ॉन्ट</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>कस्टम परिवार</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>कस्टम आकार</translation>
     </message>
   </context>
   <context>
@@ -3600,11 +3735,63 @@ from Stardict, Babylon and GLS dictionaries</source>
     </message>
     <message>
       <source>Force the word to be translated in Popup.</source>
-      <translation type="unfinished">Force the word to be translated in Popup.</translation>
+      <translation>पॉपअप में अनुवाद किए जाने वाले शब्द को मजबूर करें।</translation>
     </message>
     <message>
       <source>Force the word to be translated in the mainwindow.</source>
-      <translation type="unfinished">Force the word to be translated in the mainwindow.</translation>
+      <translation>शब्द को mainwindow में अनुवाद करने के लिए बाध्य करें।</translation>
+    </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>वेबसाइट यूआरएल:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>यूआरएल में, &quot;%GDWORD%&quot; खोजे जा रहे शब्द से बदल दिया जाएगा।</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>पूर्ण HTML (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>एकल HTML (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>पीडीएफ दस्तावेज़ (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>माइम HTML (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Enregister l&apos;article sous</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>आलेख पूर्ण सहेजें</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>त्रुटि</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Impossible d&apos;enregistrer l&apos;article : %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Save PDF complete</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Save PDF failed</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>लेख सहेज रहा है... (%1/%2)</translation>
     </message>
   </context>
   <context>
@@ -3636,6 +3823,10 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>The referenced resource failed to download.</source>
       <translation>संदर्भित संसाधन डाउनलोड करने में विफल रहा।</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>संसाधन गंतव्य फ़ोल्डर के बाहर सहेजा जाएगा।</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3661,6 +3852,26 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>WARNING: %1</source>
       <translation>चेतावनी: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>परिभाषा</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Fermer l&apos;onglet courant</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Fermer tous les onglets sauf l&apos;onglet courant</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Fermer tous les onglets</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>&amp;बाहरी ब्राउज़र में खोलें</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3685,10 +3896,6 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>Send word to main window (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation type="unfinished">Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Add word to Favorites (Ctrl+E)</translation>
     </message>
@@ -3701,6 +3908,10 @@ from Stardict, Babylon and GLS dictionaries</source>
 could be resized or managed in other ways.</source>
       <translation>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Sauver l&apos;article</translation>
     </message>
   </context>
   <context>
@@ -3974,27 +4185,27 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>The most widely used method of transcription of Japanese, based on English phonology</source>
-      <translation type="unfinished">The most widely used method of transcription of Japanese, based on English phonology</translation>
+      <translation>अंग्रेजी स्वर विज्ञान के आधार पर जापानी के प्रतिलेखन की सबसे व्यापक रूप से इस्तेमाल की जाने वाली विधि</translation>
     </message>
     <message>
       <source>Remove selected directories from the list?</source>
-      <translation type="unfinished">Remove selected directories from the list?</translation>
+      <translation>चयनित निर्देशिकाओं को सूची से निकालें?</translation>
     </message>
     <message>
       <source>Remove %1 directories from the list?</source>
-      <translation type="unfinished">Remove %1 directories from the list?</translation>
+      <translation>हटाना %1 निर्देशिकाओं सूची से?</translation>
     </message>
     <message>
       <source>Remove %1 sites from the list?</source>
-      <translation type="unfinished">Remove %1 sites from the list?</translation>
+      <translation>हटाना %1 सूची से साइटें?</translation>
     </message>
     <message>
       <source>Remove %1 servers from the list?</source>
-      <translation type="unfinished">Remove %1 servers from the list?</translation>
+      <translation>हटाना %1 सूची से सर्वर?</translation>
     </message>
     <message>
       <source>Remove %1 programs from the list?</source>
-      <translation type="unfinished">Remove %1 programs from the list?</translation>
+      <translation>हटाना %1 सूची से कार्यक्रम?</translation>
     </message>
   </context>
   <context>
@@ -4091,18 +4302,21 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>लेख को लिंक के रूप में &lt;iframe&gt; टैग के अंदर डालें</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>यह वेबसाइट शब्दकोश एक नए टैब में खोला गया है</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>बंद करें &quot;वेबसाइट शब्दकोश को अलग टैब में खोलें&quot; इसके बजाय लेख के अंदर वेबसाइट दिखाने के लिए प्राथमिकताएं।</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>सक्रिय</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>कड़ी के रूप में</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4115,6 +4329,22 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     <message>
       <source>Icon</source>
       <translation>चित्रक</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>लिपि</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>आइकन फ़ाइल का नाम। कॉन्फ़िगरेशन निर्देशिका के सापेक्ष।</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>केवल अलग-अलग टैब में वेबसाइट खोलते समय उपलब्ध है। एक फ़ाइल पथ (कॉन्फ़िगरेशन निर्देशिका या निरपेक्ष के सापेक्ष) या प्रत्यक्ष स्क्रिप्ट सामग्री हो सकती है।</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>यह स्तंभ अक्षम किया गया है क्योंकि &quot;वेबसाइट शब्दकोश को अलग टैब में खोलें&quot; प्राथमिकताएँ में विकल्प सक्षम नहीं है।</translation>
     </message>
   </context>
   <context>

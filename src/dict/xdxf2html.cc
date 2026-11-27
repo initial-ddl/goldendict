@@ -623,7 +623,7 @@ string convert( const string & in,
     }
 
     //    if( type == XDXF && dictPtr != NULL && !el.hasAttribute( "start" ) )
-    if ( dictPtr != NULL && !el.hasAttribute( "start" ) ) {
+    if ( dictPtr != nullptr && !el.hasAttribute( "start" ) ) {
       string filename = Text::toUtf8( el.text().toStdU32String() );
 
       if ( Filetype::isNameOfPicture( filename ) ) {
@@ -668,7 +668,7 @@ string convert( const string & in,
           el_span.appendChild( el_a );
 
           QDomElement el_img = dd.createElement( "img" );
-          el_img.setAttribute( "src", "qrc:///icons/playsound.png" );
+          el_img.setAttribute( "src", "qrc:///icons/playsound.svg" );
           el_img.setAttribute( "border", "0" );
           el_img.setAttribute( "align", "absmiddle" );
           el_img.setAttribute( "alt", "Play" );

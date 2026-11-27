@@ -26,6 +26,7 @@
 #include "dict/gls.hh"
 #include "dict/lingualibre.hh"
 #include "metadata.hh"
+#include "common/globalbroadcaster.hh"
 
 #include "dict/transliteration/belarusian.hh"
 #include "dict/transliteration/custom.hh"
@@ -42,6 +43,7 @@
   #include "dict/transliteration/chinese.hh"
 #endif
 
+#include <QThreadPool>
 #include <QMessageBox>
 #include <QDir>
 #include <QString>
@@ -89,7 +91,7 @@ LoadDictionaries::LoadDictionaries( const Config::Class & cfg ):
     ;
 }
 
-void LoadDictionaries::run()
+void LoadDictionaries::load()
 {
   try {
     for ( const auto & path : paths ) {
@@ -120,6 +122,22 @@ void LoadDictionaries::run()
       dictionaries.insert( dictionaries.end(), hunspellDictionaries.begin(), hunspellDictionaries.end() );
     }
 
+    // One-time migration of the legacy per-folder `metadata.toml` to the
+    // per-dictionary file of the first dictionary in the folder. A shared file
+    // could never represent several dictionaries correctly anyway.
+    {
+      std::set< QString > handledFolders;
+
+      for ( const auto & dict : dictionaries ) {
+        auto baseDir = dict->getContainingFolder();
+        if ( baseDir.isEmpty() || !handledFolders.insert( baseDir ).second ) {
+          continue;
+        }
+
+        Metadata::migrateLegacyFile( baseDir.toStdString(), dict->getMetadataFileStem() );
+      }
+    }
+
     //handle the custom dictionary name&fts option
     for ( const auto & dict : dictionaries ) {
       auto baseDir = dict->getContainingFolder();
@@ -127,20 +145,27 @@ void LoadDictionaries::run()
         continue;
       }
 
-      auto filePath = Utils::Path::combine( baseDir, "metadata.toml" );
-
-      auto dictMetaData = Metadata::load( filePath.toStdString() );
+      auto dictMetaData = Metadata::loadForDictionary( baseDir.toStdString(), dict->getMetadataFileStem() );
       if ( dictMetaData && dictMetaData->name ) {
         dict->setName( dictMetaData->name.value() );
       }
       if ( dictMetaData && dictMetaData->fullindex ) {
-        dict->setFtsEnable( dictMetaData->fullindex.value() );
+        dict->setFtsEnabled( dictMetaData->fullindex.value() );
       }
+    }
+
+    // Save configuration to ensure custom dictionary names and FTS options are preserved
+    Config::Class * cfg = GlobalBroadcaster::instance()->getConfig();
+
+    if ( cfg && cfg->dirty ) {
+      Config::save( *cfg );
     }
   }
   catch ( std::exception & e ) {
     exceptionTexts << QString::fromUtf8( e.what() );
   }
+
+  emit finished();
 }
 
 void LoadDictionaries::addDicts( const std::vector< sptr< Dictionary::Class > > & dicts )
@@ -172,23 +197,24 @@ void LoadDictionaries::handlePath( const Config::Path & path )
     }
   }
 
-  addDicts( Bgl::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this ) );
-  addDicts( Stardict::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this, maxHeadwordToExpand ) );
-  addDicts( Lsa::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this ) );
-  addDicts( Dsl::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this, maxHeadwordSize ) );
-  addDicts( DictdFiles::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this ) );
-  addDicts( Xdxf::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this ) );
-  addDicts( Sdict::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this ) );
-  addDicts( Aard::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this, maxHeadwordToExpand ) );
-  addDicts( ZipSounds::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this ) );
-  addDicts( Mdx::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this ) );
-  addDicts( Gls::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this ) );
-  addDicts( Slob::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this, maxHeadwordToExpand ) );
+  auto indexDir = Config::getIndexDir().toStdString();
+  addDicts( Bgl::makeDictionaries( allFiles, indexDir, *this ) );
+  addDicts( Stardict::makeDictionaries( allFiles, indexDir, *this, maxHeadwordToExpand ) );
+  addDicts( Lsa::makeDictionaries( allFiles, indexDir, *this ) );
+  addDicts( Dsl::makeDictionaries( allFiles, indexDir, *this, maxHeadwordSize ) );
+  addDicts( DictdFiles::makeDictionaries( allFiles, indexDir, *this ) );
+  addDicts( Xdxf::makeDictionaries( allFiles, indexDir, *this ) );
+  addDicts( Sdict::makeDictionaries( allFiles, indexDir, *this ) );
+  addDicts( Aard::makeDictionaries( allFiles, indexDir, *this, maxHeadwordToExpand ) );
+  addDicts( ZipSounds::makeDictionaries( allFiles, indexDir, *this ) );
+  addDicts( Mdx::makeDictionaries( allFiles, indexDir, *this ) );
+  addDicts( Gls::makeDictionaries( allFiles, indexDir, *this ) );
+  addDicts( Slob::makeDictionaries( allFiles, indexDir, *this, maxHeadwordToExpand ) );
 #ifdef MAKE_ZIM_SUPPORT
-  addDicts( Zim::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this, maxHeadwordToExpand ) );
+  addDicts( Zim::makeDictionaries( allFiles, indexDir, *this, maxHeadwordToExpand ) );
 #endif
 #ifdef EPWING_SUPPORT
-  addDicts( Epwing::makeDictionaries( allFiles, Config::getIndexDir().toStdString(), *this ) );
+  addDicts( Epwing::makeDictionaries( allFiles, indexDir, *this ) );
 #endif
 }
 
@@ -209,11 +235,12 @@ void loadDictionaries( QWidget * parent,
                        QNetworkAccessManager & dictNetMgr,
                        bool doDeferredInit_ )
 {
+  GlobalBroadcaster::instance()->clearDictMap();
   dictionaries.clear();
 
   bool showSplashWindow = !cfg.preferences.enableTrayIcon || !cfg.preferences.startToTray;
   // Start a thread to load all the dictionaries
-  ::Initializing init( parent, showSplashWindow );
+  ::Initializing init( nullptr, showSplashWindow );
 
   LoadDictionaries loadDicts( cfg );
 
@@ -221,13 +248,13 @@ void loadDictionaries( QWidget * parent,
   QObject::connect( &loadDicts, &LoadDictionaries::loadingDictionarySignal, &init, &Initializing::loading );
   QEventLoop localLoop;
 
-  QObject::connect( &loadDicts, &QThread::finished, &localLoop, &QEventLoop::quit );
+  QObject::connect( &loadDicts, &LoadDictionaries::finished, &localLoop, &QEventLoop::quit );
 
-  loadDicts.start();
+  QThreadPool::globalInstance()->start( [ &loadDicts ]() {
+    loadDicts.load();
+  } );
 
   localLoop.exec();
-
-  loadDicts.wait();
 
   if ( loadDicts.getExceptionText().size() ) {
     QMessageBox::critical( parent,

@@ -1,11 +1,11 @@
 ## Index file
 
-Each index file have 4 sections.
+Each index file has 4 sections.
 
-1. `IdxHeader`
-2. `ExtraInfo` (Being used but unnamed in source code)
-3. `Chunks`
-4. `BtreeIndex`
+1. `IdxHeader`:
+2. `ExtraInfo` (Being used but unnamed in source code):
+3. `Chunks`:
+4. `BtreeIndex`:
 
 The `IdxHeader` are 32bits blocks of various meta info of the index. The most important info are `chunksOffset` and `indexRootOffset` pointing to the starting offset of `BtreeIndex` and `Chunks`.
 
@@ -27,4 +27,3 @@ The exact data in `chunk` is decided and interpreted by dictionary implementatio
 
 After typing a word into the search box and press enter, the embedded browser will load `gdlookup://localhost?word=<wantted word>`. This url will be handled by Qt webengine's Url Scheme handler. The returned html page will be composed in the ArticleMaker which will initiate some DataRequest on dictionary formats. Resource files will be requested via `bres://` or `qrc://` which will went through a similar process.
 
-TODO: other subsystems.

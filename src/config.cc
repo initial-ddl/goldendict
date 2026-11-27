@@ -6,10 +6,6 @@
 #include <QtXml>
 #include <QApplication>
 
-#ifdef Q_OS_WIN32
-  //this is a windows header file.
-  #include <Shlobj.h>
-#endif
 
 #include <stdint.h>
 
@@ -42,39 +38,6 @@ QString portableHomeDirPath()
   return QCoreApplication::applicationDirPath() + "/portable";
 }
 
-QDir getHomeDir()
-{
-  if ( isPortableVersion() ) {
-    return QDir( portableHomeDirPath() );
-  }
-
-  QDir result;
-
-  result = QDir::home();
-#ifdef Q_OS_WIN32
-  if ( result.cd( "Application Data/GoldenDict" ) )
-    return result;
-  const char * pathInHome = "GoldenDict";
-  result                  = QDir::fromNativeSeparators( QString::fromWCharArray( _wgetenv( L"APPDATA" ) ) );
-#else
-  char const * pathInHome = ".goldendict";
-  #ifdef XDG_BASE_DIRECTORY_COMPLIANCE
-  // check if an old config dir is present, otherwise use standards-compliant location
-  if ( !result.exists( pathInHome ) ) {
-    result.setPath( QStandardPaths::writableLocation( QStandardPaths::ConfigLocation ) );
-    pathInHome = xdgSubdirName;
-  }
-  #endif
-#endif
-
-  result.mkpath( pathInHome );
-
-  if ( !result.cd( pathInHome ) ) {
-    throw exCantUseHomeDir();
-  }
-
-  return result;
-}
 
 } // namespace
 
@@ -92,7 +55,8 @@ AnkiConnectServer::AnkiConnectServer():
   port( 8765 ),
   word( "word" ),
   text( "selected_text" ),
-  sentence( "marked_sentence" )
+  sentence( "marked_sentence" ),
+  addAudio( true )
 {
 }
 
@@ -177,9 +141,7 @@ Preferences::Preferences():
   useInternalPlayer( InternalPlayerBackend::anyAvailable() ),
   checkForNewReleases( true ),
   disallowContentFromOtherSites( false ),
-  hideGoldenDictHeader( false ),
-  maxNetworkCacheSize( 50 ),
-  clearNetworkCacheOnExit( true ),
+
   zoomFactor( 1 ),
   helpZoomFactor( 1 ),
   maxStringsInHistory( 500 ),
@@ -192,19 +154,13 @@ Preferences::Preferences():
   inputPhraseLengthLimit( 1000 ),
   maxDictionaryRefsInContextMenu( 20 ),
   synonymSearchEnabled( true ),
-  stripClipboard( false )
-#if !defined( Q_OS_WIN )
-  ,
+  stripClipboard( false ),
   interfaceStyle( "Default" )
-#endif
 {
 }
 
 Chinese::Chinese():
-  enable( false ),
-  enableSCToTWConversion( true ),
-  enableSCToHKConversion( true ),
-  enableTCToSCConversion( true )
+  enable( false )
 {
 }
 
@@ -233,11 +189,6 @@ const Group * Class::getGroup( unsigned id ) const
     }
   }
   return 0;
-}
-
-void Events::signalMutedDictionariesChanged()
-{
-  emit mutedDictionariesChanged();
 }
 
 namespace {
@@ -305,26 +256,22 @@ WebSites makeDefaultWebSites()
                          "Google En-En (Oxford)",
                          "https://www.google.com/search?q=define:%GDWORD%&hl=en",
                          false,
-                         "",
-                         true ) );
+                         "" ) );
   ws.push_back( WebSite( "f376365a0de651fd7505e7e5e683aa45",
                          "Urban Dictionary",
                          "https://www.urbandictionary.com/define.php?term=%GDWORD%",
                          false,
-                         "",
-                         true ) );
+                         "" ) );
   ws.push_back( WebSite( "324ca0306187df7511b26d3847f4b07c",
                          "Multitran (En-Ru)",
                          "https://www.multitran.com/m.exe?s=%GDWORD%&l1=1&l2=2",
                          false,
-                         "",
-                         true ) );
+                         "" ) );
   ws.push_back( WebSite( "379a0ce02a34747d642cb0d7de1b2882",
                          "Merriam-Webster (En)",
                          "https://www.merriam-webster.com/dictionary/%GDWORD%",
                          false,
-                         "",
-                         true ) );
+                         "" ) );
 
   return ws;
 }
@@ -371,7 +318,7 @@ void applyBoolOption( bool & option, const QDomNode & node )
   }
 }
 
-Group loadGroup( QDomElement grp, unsigned * nextId = 0 )
+Group loadGroup( QDomElement grp )
 {
   Group g;
 
@@ -379,7 +326,12 @@ Group loadGroup( QDomElement grp, unsigned * nextId = 0 )
     g.id = grp.attribute( "id" ).toUInt();
   }
   else {
-    g.id = nextId ? ( *nextId )++ : 0;
+    g.name = grp.attribute( "name" );
+    g.id   = static_cast< unsigned >( qHash( g.name ) );
+    // Ensure ID is not 0 (reserved for NoGroupId)
+    if ( g.id == 0 ) {
+      g.id = 1;
+    }
   }
 
   g.name            = grp.attribute( "name" );
@@ -415,12 +367,12 @@ Group loadGroup( QDomElement grp, unsigned * nextId = 0 )
   return g;
 }
 
-MutedDictionaries loadMutedDictionaries( const QDomNode & mutedDictionaries )
+QSet< QString > loadDictionaries( const QDomNode & mutedDictionaries, const QString & elementName = "mutedDictionary" )
 {
-  MutedDictionaries result;
+  QSet< QString > result;
 
   if ( !mutedDictionaries.isNull() ) {
-    QDomNodeList nl = mutedDictionaries.toElement().elementsByTagName( "mutedDictionary" );
+    QDomNodeList nl = mutedDictionaries.toElement().elementsByTagName( elementName );
 
     for ( int x = 0; x < nl.length(); ++x ) {
       result.insert( nl.item( x ).toElement().text() );
@@ -430,10 +382,13 @@ MutedDictionaries loadMutedDictionaries( const QDomNode & mutedDictionaries )
   return result;
 }
 
-void saveMutedDictionaries( QDomDocument & dd, QDomElement & muted, const MutedDictionaries & mutedDictionaries )
+void saveDictionaries( QDomDocument & dd,
+                       QDomElement & muted,
+                       const QSet< QString > & mutedDictionaries,
+                       const QString & elementName = "mutedDictionary" )
 {
   for ( const auto & mutedDictionarie : mutedDictionaries ) {
-    QDomElement dict = dd.createElement( "mutedDictionary" );
+    QDomElement dict = dd.createElement( elementName );
     muted.appendChild( dict );
 
     QDomText value = dd.createTextNode( mutedDictionarie );
@@ -442,14 +397,6 @@ void saveMutedDictionaries( QDomDocument & dd, QDomElement & muted, const MutedD
 }
 
 } // namespace
-
-bool fromConfig2Preference( const QDomNode & node, const QString & expectedValue, bool defaultValue = false )
-{
-  if ( !node.isNull() ) {
-    return ( node.toElement().text() == expectedValue );
-  }
-  return defaultValue;
-}
 
 Class load()
 {
@@ -550,6 +497,11 @@ Class load()
 
   Class c;
 
+  int configVersion = Config::CONFIG_VERSION_LEGACY;
+  if ( root.isElement() && !root.toElement().attribute( "version" ).isEmpty() ) {
+    configVersion = root.toElement().attribute( "version" ).toInt();
+  }
+
   // Put the hard-code portable directory to the first.
   // To allow additional directories, this path should not be saved.
   if ( isPortableVersion() ) {
@@ -595,14 +547,12 @@ Class load()
   QDomNode groups = root.namedItem( "groups" );
 
   if ( !groups.isNull() ) {
-    c.groups.nextId = groups.toElement().attribute( "nextId", "1" ).toUInt();
-
     QDomNodeList nl = groups.toElement().elementsByTagName( "group" );
 
     for ( int x = 0; x < nl.length(); ++x ) {
       QDomElement grp = nl.item( x ).toElement();
 
-      c.groups.push_back( loadGroup( grp, &c.groups.nextId ) );
+      c.groups.push_back( loadGroup( grp ) );
     }
   }
 
@@ -644,6 +594,8 @@ Class load()
                        chinese.namedItem( "enableSCToHKConversion" ) );
       applyBoolOption( c.transliteration.chinese.enableTCToSCConversion,
                        chinese.namedItem( "enableTCToSCConversion" ) );
+      applyBoolOption( c.transliteration.chinese.enableJapaneseConversion,
+                       chinese.namedItem( "enableJapaneseConversion" ) );
     }
 #endif
 
@@ -748,7 +700,7 @@ Class load()
       w.url           = ws.attribute( "url" );
       w.enabled       = ( ws.attribute( "enabled" ) == "1" );
       w.iconFilename  = ws.attribute( "icon" );
-      w.inside_iframe = ( ws.attribute( "inside_iframe", "1" ) == "1" );
+      w.script        = ws.attribute( "script" );
 
       c.webSites.push_back( w );
     }
@@ -812,8 +764,8 @@ Class load()
   }
 #endif
 
-  c.mutedDictionaries      = loadMutedDictionaries( root.namedItem( "mutedDictionaries" ) );
-  c.popupMutedDictionaries = loadMutedDictionaries( root.namedItem( "popupMutedDictionaries" ) );
+  c.mutedDictionaries      = loadDictionaries( root.namedItem( "mutedDictionaries" ) );
+  c.popupMutedDictionaries = loadDictionaries( root.namedItem( "popupMutedDictionaries" ) );
 
   QDomNode preferences = root.namedItem( "preferences" );
 
@@ -826,28 +778,56 @@ Class load()
       c.preferences.interfaceFontSize = fontSize.toElement().text().toInt();
     }
     else {
-      c.preferences.interfaceFontSize = Config::DEFAULT_FONT_SIZE;
-    }
-    auto enableInterfaceFont = preferences.namedItem( "enableInterfaceFont" );
-    if ( !enableInterfaceFont.isNull() ) {
-      c.preferences.enableInterfaceFont = enableInterfaceFont.toElement().text() == "1";
+      // 0 means "not set"; the actual size falls back to the system default
+      // when enableInterfaceFontSize is unchecked, or to the spin box min (8)
+      // when the user enables the toggle later.
+      c.preferences.interfaceFontSize = 0;
     }
 
-#if !defined( Q_OS_WIN )
+    // v1: interfaceFontSize was stored as physical pixels; v2+ use Qt logical
+    // point size which scales with the system DPI. Convert on load so the
+    // visible size at 96 DPI is preserved and the font now scales correctly.
+    // Some legacy values (e.g. 8px → 6pt) fall below the supported range, so
+    // clamp to the minimum accepted at application time.
+    if ( configVersion <= Config::CONFIG_VERSION_LEGACY && c.preferences.interfaceFontSize > 0 ) {
+      c.preferences.interfaceFontSize = qBound( 8, qRound( c.preferences.interfaceFontSize * 72.0 / 96.0 ), 32 );
+    }
+
+    // v1: single enableInterfaceFont toggle controlled both family and size;
+    // v2+: enableInterfaceFontFamily and enableInterfaceFontSize are independent.
+    auto enableFamily = preferences.namedItem( "enableInterfaceFontFamily" );
+    auto enableSize   = preferences.namedItem( "enableInterfaceFontSize" );
+    if ( !enableFamily.isNull() && !enableSize.isNull() ) {
+      c.preferences.enableInterfaceFontFamily = enableFamily.toElement().text() == "1";
+      c.preferences.enableInterfaceFontSize   = enableSize.toElement().text() == "1";
+    }
+    else {
+      // Migrate v1 legacy: the old single toggle enables both family and size.
+      auto legacy                             = preferences.namedItem( "enableInterfaceFont" );
+      const bool both                         = !legacy.isNull() ? legacy.toElement().text() == "1" : false;
+      c.preferences.enableInterfaceFontFamily = both;
+      c.preferences.enableInterfaceFontSize   = both;
+      c.preferences.enableInterfaceFont       = both; // keep for completeness
+    }
+
     c.preferences.interfaceStyle = preferences.namedItem( "interfaceStyle" ).toElement().text();
-#endif
     c.preferences.newTabsOpenAfterCurrentOne =
       ( preferences.namedItem( "newTabsOpenAfterCurrentOne" ).toElement().text() == "1" );
     c.preferences.newTabsOpenInBackground =
       ( preferences.namedItem( "newTabsOpenInBackground" ).toElement().text() == "1" );
     c.preferences.hideSingleTab = ( preferences.namedItem( "hideSingleTab" ).toElement().text() == "1" );
     c.preferences.mruTabOrder   = ( preferences.namedItem( "mruTabOrder" ).toElement().text() == "1" );
-    c.preferences.hideMenubar   = ( preferences.namedItem( "hideMenubar" ).toElement().text() == "1" );
-#ifndef Q_OS_MACOS // // macOS uses the dock menu instead of the tray icon
+    c.preferences.hideMenubar    = ( preferences.namedItem( "hideMenubar" ).toElement().text() == "1" );
     c.preferences.enableTrayIcon = ( preferences.namedItem( "enableTrayIcon" ).toElement().text() == "1" );
+
+    if ( !preferences.namedItem( "panelsLocked" ).isNull() ) {
+      c.preferences.panelsLocked = ( preferences.namedItem( "panelsLocked" ).toElement().text() == "1" );
+    }
     c.preferences.startToTray    = ( preferences.namedItem( "startToTray" ).toElement().text() == "1" );
     c.preferences.closeToTray    = ( preferences.namedItem( "closeToTray" ).toElement().text() == "1" );
-#endif
+    if ( !preferences.namedItem( "showDockIcon" ).isNull() ) {
+      c.preferences.showDockIcon = ( preferences.namedItem( "showDockIcon" ).toElement().text() == "1" );
+    }
     c.preferences.autoStart    = ( preferences.namedItem( "autoStart" ).toElement().text() == "1" );
     c.preferences.alwaysOnTop  = ( preferences.namedItem( "alwaysOnTop" ).toElement().text() == "1" );
     c.preferences.searchInDock = ( preferences.namedItem( "searchInDock" ).toElement().text() == "1" );
@@ -855,6 +835,10 @@ Class load()
     if ( !preferences.namedItem( "customFonts" ).isNull() ) {
       CustomFonts fonts         = CustomFonts::fromElement( preferences.namedItem( "customFonts" ).toElement() );
       c.preferences.customFonts = fonts;
+    }
+
+    if ( !preferences.namedItem( "useFallbackFonts" ).isNull() ) {
+      c.preferences.useFallbackFonts = preferences.namedItem( "useFallbackFonts" ).toElement().text() == "1";
     }
 
     if ( !preferences.namedItem( "doubleClickTranslates" ).isNull() ) {
@@ -913,6 +897,20 @@ Class load()
       ( preferences.namedItem( "ignoreOwnClipboardChanges" ).toElement().text() == "1" );
     c.preferences.scanToMainWindow = ( preferences.namedItem( "scanToMainWindow" ).toElement().text() == "1" );
     c.preferences.ignoreDiacritics = ( preferences.namedItem( "ignoreDiacritics" ).toElement().text() == "1" );
+
+    if ( !preferences.namedItem( "searchMode" ).isNull() ) {
+      const QString searchMode = preferences.namedItem( "searchMode" ).toElement().text();
+      if ( searchMode == "suffix" ) {
+        c.preferences.searchMode = SearchMode::Suffix;
+      }
+      else if ( searchMode == "multiWord" ) {
+        c.preferences.searchMode = SearchMode::MultiWord;
+      }
+      else {
+        c.preferences.searchMode = SearchMode::Prefix;
+      }
+    }
+
     if ( !preferences.namedItem( "ignorePunctuation" ).isNull() ) {
       c.preferences.ignorePunctuation = ( preferences.namedItem( "ignorePunctuation" ).toElement().text() == "1" );
     }
@@ -977,6 +975,11 @@ Class load()
       c.preferences.ankiConnectServer.word     = ankiConnectServer.namedItem( "word" ).toElement().text();
       c.preferences.ankiConnectServer.text     = ankiConnectServer.namedItem( "text" ).toElement().text();
       c.preferences.ankiConnectServer.sentence = ankiConnectServer.namedItem( "sentence" ).toElement().text();
+
+      if ( !ankiConnectServer.namedItem( "addAudio" ).isNull() ) {
+        c.preferences.ankiConnectServer.addAudio =
+          ( ankiConnectServer.namedItem( "addAudio" ).toElement().text() == "1" );
+      }
     }
 
     if ( !preferences.namedItem( "checkForNewReleases" ).isNull() ) {
@@ -988,21 +991,6 @@ Class load()
         ( preferences.namedItem( "disallowContentFromOtherSites" ).toElement().text() == "1" );
     }
 
-    if ( !preferences.namedItem( "hideGoldenDictHeader" ).isNull() ) {
-      c.preferences.hideGoldenDictHeader =
-        ( preferences.namedItem( "hideGoldenDictHeader" ).toElement().text() == "1" );
-    }
-
-    if ( !preferences.namedItem( "maxNetworkCacheSize" ).isNull() ) {
-      c.preferences.maxNetworkCacheSize = preferences.namedItem( "maxNetworkCacheSize" ).toElement().text().toInt();
-    }
-
-    if ( !preferences.namedItem( "clearNetworkCacheOnExit" ).isNull() ) {
-      c.preferences.clearNetworkCacheOnExit =
-        ( preferences.namedItem( "clearNetworkCacheOnExit" ).toElement().text() == "1" );
-    }
-
-
     if ( !preferences.namedItem( "removeInvalidIndexOnExit" ).isNull() ) {
       c.preferences.removeInvalidIndexOnExit =
         ( preferences.namedItem( "removeInvalidIndexOnExit" ).toElement().text() == "1" );
@@ -1011,6 +999,19 @@ Class load()
     if ( !preferences.namedItem( "enableApplicationLog" ).isNull() ) {
       c.preferences.enableApplicationLog =
         ( preferences.namedItem( "enableApplicationLog" ).toElement().text() == "1" );
+    }
+
+    if ( !preferences.namedItem( "openWebsiteInNewTab" ).isNull() ) {
+      c.preferences.openWebsiteInNewTab = ( preferences.namedItem( "openWebsiteInNewTab" ).toElement().text() == "1" );
+    }
+
+    if ( !preferences.namedItem( "suppressWebDialogs" ).isNull() ) {
+      c.preferences.suppressWebDialogs = ( preferences.namedItem( "suppressWebDialogs" ).toElement().text() == "1" );
+    }
+
+    if ( !preferences.namedItem( "enableJavaScriptClipboardAccess" ).isNull() ) {
+      c.preferences.enableJavaScriptClipboardAccess =
+        ( preferences.namedItem( "enableJavaScriptClipboardAccess" ).toElement().text() == "1" );
     }
 
     if ( !preferences.namedItem( "maxStringsInHistory" ).isNull() ) {
@@ -1028,10 +1029,6 @@ Class load()
 
     if ( !preferences.namedItem( "addonStyle" ).isNull() ) {
       c.preferences.addonStyle = preferences.namedItem( "addonStyle" ).toElement().text();
-    }
-
-    if ( !preferences.namedItem( "historyStoreInterval" ).isNull() ) {
-      c.preferences.historyStoreInterval = preferences.namedItem( "historyStoreInterval" ).toElement().text().toUInt();
     }
 
     if ( !preferences.namedItem( "favoritesStoreInterval" ).isNull() ) {
@@ -1139,6 +1136,14 @@ Class load()
 
   if ( !mainWindowGeometry.isNull() ) {
     c.mainWindowGeometry = QByteArray::fromBase64( mainWindowGeometry.toElement().text().toLatin1() );
+  }
+
+  QDomElement dockWidgetSizes = root.namedItem( "dockWidgetSizes" ).toElement();
+
+  for ( QDomElement dock = dockWidgetSizes.firstChildElement( "dockWidget" ); !dock.isNull();
+        dock             = dock.nextSiblingElement( "dockWidget" ) ) {
+    c.dockWidgetSizes.insert( dock.attribute( "name" ),
+                              QSize( dock.attribute( "width" ).toInt(), dock.attribute( "height" ).toInt() ) );
   }
 
   QDomNode dictInfoGeometry = root.namedItem( "dictInfoGeometry" );
@@ -1313,6 +1318,9 @@ void saveGroup( const Group & data, QDomElement & group )
 
 void save( const Class & c )
 {
+  // Always save configuration regardless of dirty flag
+  // The dirty flag is still used to track changes in other parts of the code
+
   QSaveFile configFile( getConfigFileName() );
 
   if ( !configFile.open( QFile::WriteOnly ) ) {
@@ -1323,6 +1331,12 @@ void save( const Class & c )
 
   QDomElement root = dd.createElement( "config" );
   dd.appendChild( root );
+
+  // Persist the config format version so older configs can be migrated when
+  // a persisted value changes semantics.
+  QDomAttr versionAttr = dd.createAttribute( "version" );
+  versionAttr.setValue( QString::number( Config::CONFIG_VERSION ) );
+  root.setAttributeNode( versionAttr );
 
   {
     QDomElement paths = dd.createElement( "paths" );
@@ -1383,10 +1397,6 @@ void save( const Class & c )
   {
     QDomElement groups = dd.createElement( "groups" );
     root.appendChild( groups );
-
-    QDomAttr nextId = dd.createAttribute( "nextId" );
-    nextId.setValue( QString::number( c.groups.nextId ) );
-    groups.setAttributeNode( nextId );
 
     for ( const auto & i : c.groups ) {
       QDomElement group = dd.createElement( "group" );
@@ -1460,6 +1470,10 @@ void save( const Class & c )
 
     opt = dd.createElement( "enableTCToSCConversion" );
     opt.appendChild( dd.createTextNode( c.transliteration.chinese.enableTCToSCConversion ? "1" : "0" ) );
+    chinese.appendChild( opt );
+
+    opt = dd.createElement( "enableJapaneseConversion" );
+    opt.appendChild( dd.createTextNode( c.transliteration.chinese.enableJapaneseConversion ? "1" : "0" ) );
     chinese.appendChild( opt );
 #endif
 
@@ -1589,9 +1603,9 @@ void save( const Class & c )
       icon.setValue( webSite.iconFilename );
       ws.setAttributeNode( icon );
 
-      QDomAttr inside_iframe = dd.createAttribute( "inside_iframe" );
-      inside_iframe.setValue( webSite.inside_iframe ? "1" : "0" );
-      ws.setAttributeNode( inside_iframe );
+      QDomAttr script = dd.createAttribute( "script" );
+      script.setValue( webSite.script );
+      ws.setAttributeNode( script );
     }
   }
 
@@ -1713,13 +1727,13 @@ void save( const Class & c )
   {
     QDomElement muted = dd.createElement( "mutedDictionaries" );
     root.appendChild( muted );
-    saveMutedDictionaries( dd, muted, c.mutedDictionaries );
+    saveDictionaries( dd, muted, c.mutedDictionaries );
   }
 
   {
     QDomElement muted = dd.createElement( "popupMutedDictionaries" );
     root.appendChild( muted );
-    saveMutedDictionaries( dd, muted, c.popupMutedDictionaries );
+    saveDictionaries( dd, muted, c.popupMutedDictionaries );
   }
 
   {
@@ -1738,23 +1752,29 @@ void save( const Class & c )
     opt.appendChild( dd.createTextNode( QString::number( c.preferences.interfaceFontSize ) ) );
     preferences.appendChild( opt );
 
-    opt = dd.createElement( "enableInterfaceFont" );
-    opt.appendChild( dd.createTextNode( c.preferences.enableInterfaceFont ? "1" : "0" ) );
+    opt = dd.createElement( "enableInterfaceFontFamily" );
+    opt.appendChild( dd.createTextNode( c.preferences.enableInterfaceFontFamily ? "1" : "0" ) );
+    preferences.appendChild( opt );
+
+    opt = dd.createElement( "enableInterfaceFontSize" );
+    opt.appendChild( dd.createTextNode( c.preferences.enableInterfaceFontSize ? "1" : "0" ) );
     preferences.appendChild( opt );
 
     opt             = dd.createElement( "customFonts" );
     auto customFont = c.preferences.customFonts.toElement( dd );
     preferences.appendChild( customFont );
 
+    opt = dd.createElement( "useFallbackFonts" );
+    opt.appendChild( dd.createTextNode( c.preferences.useFallbackFonts ? "1" : "0" ) );
+    preferences.appendChild( opt );
+
     opt = dd.createElement( "displayStyle" );
     opt.appendChild( dd.createTextNode( c.preferences.displayStyle ) );
     preferences.appendChild( opt );
 
-#if !defined( Q_OS_WIN )
     opt = dd.createElement( "interfaceStyle" );
     opt.appendChild( dd.createTextNode( c.preferences.interfaceStyle ) );
     preferences.appendChild( opt );
-#endif
 
     opt = dd.createElement( "newTabsOpenAfterCurrentOne" );
     opt.appendChild( dd.createTextNode( c.preferences.newTabsOpenAfterCurrentOne ? "1" : "0" ) );
@@ -1776,6 +1796,10 @@ void save( const Class & c )
     opt.appendChild( dd.createTextNode( c.preferences.hideMenubar ? "1" : "0" ) );
     preferences.appendChild( opt );
 
+    opt = dd.createElement( "panelsLocked" );
+    opt.appendChild( dd.createTextNode( c.preferences.panelsLocked ? "1" : "0" ) );
+    preferences.appendChild( opt );
+
     opt = dd.createElement( "enableTrayIcon" );
     opt.appendChild( dd.createTextNode( c.preferences.enableTrayIcon ? "1" : "0" ) );
     preferences.appendChild( opt );
@@ -1786,6 +1810,10 @@ void save( const Class & c )
 
     opt = dd.createElement( "closeToTray" );
     opt.appendChild( dd.createTextNode( c.preferences.closeToTray ? "1" : "0" ) );
+    preferences.appendChild( opt );
+
+    opt = dd.createElement( "showDockIcon" );
+    opt.appendChild( dd.createTextNode( c.preferences.showDockIcon ? "1" : "0" ) );
     preferences.appendChild( opt );
 
     opt = dd.createElement( "autoStart" );
@@ -1864,6 +1892,18 @@ void save( const Class & c )
     opt.appendChild( dd.createTextNode( c.preferences.ignoreDiacritics ? "1" : "0" ) );
     preferences.appendChild( opt );
 
+    opt = dd.createElement( "searchMode" );
+    if ( c.preferences.searchMode == SearchMode::Suffix ) {
+      opt.appendChild( dd.createTextNode( "suffix" ) );
+    }
+    else if ( c.preferences.searchMode == SearchMode::MultiWord ) {
+      opt.appendChild( dd.createTextNode( "multiWord" ) );
+    }
+    else {
+      opt.appendChild( dd.createTextNode( "prefix" ) );
+    }
+    preferences.appendChild( opt );
+
     opt = dd.createElement( "ignorePunctuation" );
     opt.appendChild( dd.createTextNode( c.preferences.ignorePunctuation ? "1" : "0" ) );
     preferences.appendChild( opt );
@@ -1917,10 +1957,6 @@ void save( const Class & c )
 
     opt = dd.createElement( "searchInDock" );
     opt.appendChild( dd.createTextNode( c.preferences.searchInDock ? "1" : "0" ) );
-    preferences.appendChild( opt );
-
-    opt = dd.createElement( "historyStoreInterval" );
-    opt.appendChild( dd.createTextNode( QString::number( c.preferences.historyStoreInterval ) ) );
     preferences.appendChild( opt );
 
     opt = dd.createElement( "favoritesStoreInterval" );
@@ -2000,6 +2036,10 @@ void save( const Class & c )
       opt = dd.createElement( "sentence" );
       opt.appendChild( dd.createTextNode( c.preferences.ankiConnectServer.sentence ) );
       proxy.appendChild( opt );
+
+      opt = dd.createElement( "addAudio" );
+      opt.appendChild( dd.createTextNode( c.preferences.ankiConnectServer.addAudio ? "1" : "0" ) );
+      proxy.appendChild( opt );
     }
 
     opt = dd.createElement( "checkForNewReleases" );
@@ -2010,17 +2050,6 @@ void save( const Class & c )
     opt.appendChild( dd.createTextNode( c.preferences.disallowContentFromOtherSites ? "1" : "0" ) );
     preferences.appendChild( opt );
 
-    opt = dd.createElement( "hideGoldenDictHeader" );
-    opt.appendChild( dd.createTextNode( c.preferences.hideGoldenDictHeader ? "1" : "0" ) );
-    preferences.appendChild( opt );
-
-    opt = dd.createElement( "maxNetworkCacheSize" );
-    opt.appendChild( dd.createTextNode( QString::number( c.preferences.maxNetworkCacheSize ) ) );
-    preferences.appendChild( opt );
-
-    opt = dd.createElement( "clearNetworkCacheOnExit" );
-    opt.appendChild( dd.createTextNode( c.preferences.clearNetworkCacheOnExit ? "1" : "0" ) );
-    preferences.appendChild( opt );
 
     opt = dd.createElement( "removeInvalidIndexOnExit" );
     opt.appendChild( dd.createTextNode( c.preferences.removeInvalidIndexOnExit ? "1" : "0" ) );
@@ -2028,6 +2057,18 @@ void save( const Class & c )
 
     opt = dd.createElement( "enableApplicationLog" );
     opt.appendChild( dd.createTextNode( c.preferences.enableApplicationLog ? "1" : "0" ) );
+    preferences.appendChild( opt );
+
+    opt = dd.createElement( "openWebsiteInNewTab" );
+    opt.appendChild( dd.createTextNode( c.preferences.openWebsiteInNewTab ? "1" : "0" ) );
+    preferences.appendChild( opt );
+
+    opt = dd.createElement( "suppressWebDialogs" );
+    opt.appendChild( dd.createTextNode( c.preferences.suppressWebDialogs ? "1" : "0" ) );
+    preferences.appendChild( opt );
+
+    opt = dd.createElement( "enableJavaScriptClipboardAccess" );
+    opt.appendChild( dd.createTextNode( c.preferences.enableJavaScriptClipboardAccess ? "1" : "0" ) );
     preferences.appendChild( opt );
 
     opt = dd.createElement( "maxStringsInHistory" );
@@ -2139,6 +2180,16 @@ void save( const Class & c )
 
     opt = dd.createElement( "mainWindowGeometry" );
     opt.appendChild( dd.createTextNode( QString::fromLatin1( c.mainWindowGeometry.toBase64() ) ) );
+    root.appendChild( opt );
+
+    opt = dd.createElement( "dockWidgetSizes" );
+    for ( auto it = c.dockWidgetSizes.cbegin(); it != c.dockWidgetSizes.cend(); ++it ) {
+      QDomElement dock = dd.createElement( "dockWidget" );
+      dock.setAttribute( "name", it.key() );
+      dock.setAttribute( "width", it.value().width() );
+      dock.setAttribute( "height", it.value().height() );
+      opt.appendChild( dock );
+    }
     root.appendChild( opt );
 
     opt = dd.createElement( "dictInfoGeometry" );
@@ -2263,6 +2314,39 @@ QString getPidFileName()
   return getHomeDir().filePath( "pid" );
 }
 
+QDir getHomeDir()
+{
+  if ( isPortableVersion() ) {
+    return QDir( portableHomeDirPath() );
+  }
+
+  QDir result;
+
+  result = QDir::home();
+#ifdef Q_OS_WIN32
+  if ( result.cd( "Application Data/GoldenDict" ) )
+    return result;
+  const char * pathInHome = "GoldenDict";
+  result                  = QDir::fromNativeSeparators( QString::fromWCharArray( _wgetenv( L"APPDATA" ) ) );
+#else
+  char const * pathInHome = ".goldendict";
+  #ifdef XDG_BASE_DIRECTORY_COMPLIANCE
+  // check if an old config dir is present, otherwise use standards-compliant location
+  if ( !result.exists( pathInHome ) ) {
+    result.setPath( QStandardPaths::writableLocation( QStandardPaths::ConfigLocation ) );
+    pathInHome = xdgSubdirName;
+  }
+  #endif
+#endif
+
+  result.mkpath( pathInHome );
+
+  if ( !result.cd( pathInHome ) ) {
+    throw exCantUseHomeDir();
+  }
+
+  return result;
+}
 QString getHistoryFileName()
 {
   QString homeHistoryPath = getHomeDir().filePath( "history" );
@@ -2292,7 +2376,7 @@ std::optional< std::string > getUserJsFileName()
 {
   QString userJsPath = getHomeDir().filePath( "article-script.js" );
   if ( QFileInfo::exists( userJsPath ) ) {
-    return userJsPath.toStdString();
+    return "article-script.js";
   }
   else {
     return std::nullopt;
@@ -2351,7 +2435,7 @@ QString getOpenCCDir() noexcept
     return "opencc";
   else
     return QCoreApplication::applicationDirPath() + "/opencc";
-  #elif defined( Q_OS_MAC )
+  #elif defined( Q_OS_MACOS )
   QString path = QCoreApplication::applicationDirPath() + "/opencc";
   if ( QDir( path ).exists() ) {
     return path;

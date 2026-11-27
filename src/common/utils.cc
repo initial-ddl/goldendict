@@ -3,9 +3,21 @@
 #include <QMessageBox>
 #include <string>
 #include <QBuffer>
+#include <QMimeDatabase>
+#include <QGuiApplication>
 
 using std::string;
 namespace Utils {
+
+bool isWayland()
+{
+  // QGuiApplication::platformName() is the most reliable way for a Qt application
+  // to check the windowing system it is running on.
+  // It returns "wayland" or "wayland-egl" for Wayland sessions.
+  // It returns "xcb" for X11 sessions.
+  return QGuiApplication::platformName().startsWith( "wayland", Qt::CaseInsensitive );
+}
+
 QMap< QString, QString > str2map( const QString & contextsEncoded )
 {
   QMap< QString, QString > contexts;
@@ -44,6 +56,23 @@ QString unescapeAmps( const QString & str )
   result.replace( "&&", "&" );
   return result;
 }
+
+QString ellipsizeString( const QString & str, int maxLength )
+{
+  if ( str.length() <= maxLength ) {
+    return str;
+  }
+
+  // Try to find a meaningful truncation point
+  int spacePos = str.lastIndexOf( ' ', maxLength );
+  if ( spacePos > 0 ) {
+    return str.left( spacePos ) + "...";
+  }
+  else {
+    // If no space found, just truncate
+    return str.left( maxLength ) + "...";
+  }
+}
 } // namespace Utils
 
 QString Utils::Path::combine( const QString & path1, const QString & path2 )
@@ -72,20 +101,49 @@ QString Utils::Url::getSchemeAndHost( const QUrl & url )
   return origin;
 }
 
+QString Utils::Url::extractBaseDomain( const QString & domain )
+{
+  // More generic approach for detecting two-part TLDs
+  // Look for patterns like com.xx, co.xx, org.xx, gov.xx, net.xx, edu.xx
+  QStringList parts = domain.split( '.' );
+  if ( parts.size() >= 3 ) {
+    QString secondLevel = parts[ parts.size() - 2 ];
+    QString topLevel    = parts[ parts.size() - 1 ];
+
+    // Check if the second level is a common second-level domain indicator
+    // and the top level is a standard TLD (2-3 characters)
+    if ( ( secondLevel == "com" || secondLevel == "co" || secondLevel == "org" || secondLevel == "gov"
+           || secondLevel == "net" || secondLevel == "edu" )
+         && ( topLevel.length() == 2 || topLevel.length() == 3 ) ) {
+      // Extract the registrable domain (e.g., "example.com" from "www.example.com.jp")
+      if ( parts.size() >= 3 ) {
+        return parts[ parts.size() - 3 ] + "." + secondLevel;
+      }
+      return secondLevel + "." + topLevel;
+    }
+  }
+
+  // For domains with multiple parts, extract the last two parts as base domain
+  int dotCount = domain.count( '.' );
+  if ( dotCount >= 2 ) {
+    if ( parts.isEmpty() ) {
+      parts = domain.split( '.' );
+    }
+    if ( parts.size() >= 2 ) {
+      return parts[ parts.size() - 2 ] + "." + parts[ parts.size() - 1 ];
+    }
+  }
+
+  // For domains with one or no dots, return as is
+  return domain;
+}
+
 void Utils::Widget::setNoResultColor( QWidget * widget, bool noResult )
 {
-  if ( noResult ) {
-    auto font = widget->font();
-    font.setItalic( true );
-
-    widget->setFont( font );
-  }
-  else {
-    auto font = widget->font();
-    font.setItalic( false );
-
-    widget->setFont( font );
-  }
+  (void)widget;
+  (void)noResult;
+  // Italic font for no results is removed in favor of other visual cues like
+  // changing the dropdown button color in TranslateBox.
 }
 
 std::string Utils::Html::getHtmlCleaner()
@@ -134,8 +192,28 @@ QString urlReplaceWord( const QString url, QString inputWord )
   //copy temp url
   auto urlString = url;
 
-  urlString.replace( "%25GDWORD%25", inputWord.toUtf8().toPercentEncoding() );
+  urlString.replace( "%GDWORD%", inputWord.toUtf8().toPercentEncoding() );
 
   return urlString;
 }
 } // namespace Utils::WebSite
+
+QString Utils::getAudioMimeType( const QString & path, QString & extension )
+{
+  // Default values
+  extension        = ".wav";
+  QString mimeType = "audio/wav";
+
+  // Use QMimeDatabase to determine MIME type based on file extension
+  QMimeDatabase mimeDb;
+  QFileInfo fileInfo( path );
+  if ( !fileInfo.suffix().isEmpty() ) {
+    extension      = "." + fileInfo.suffix().toLower();
+    QMimeType mime = mimeDb.mimeTypeForFile( fileInfo, QMimeDatabase::MatchExtension );
+    if ( mime.isValid() && mime.name().startsWith( "audio/" ) ) {
+      mimeType = mime.name();
+    }
+  }
+
+  return mimeType;
+}

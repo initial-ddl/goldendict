@@ -4,6 +4,7 @@
 #include "xapian.h"
 #include <cstdlib>
 #include "fulltextsearch.hh"
+#include "folding.hh"
 #include "ftshelpers.hh"
 #include "dictfile.hh"
 #include "utils.hh"
@@ -23,8 +24,13 @@ const static std::string finish_mark = std::string( "dehsinif" );
 bool ftsIndexIsOldOrBad( BtreeIndexing::BtreeDictionary * dict )
 {
   try {
-    const Xapian::WritableDatabase db( dict->ftsIndexName() );
-    auto docid    = db.get_lastdocid();
+    const QByteArray encodedPath = QFile::encodeName( QString::fromStdString( dict->ftsIndexName() ) );
+    const Xapian::Database db( encodedPath.toStdString() );
+
+    auto docid = db.get_lastdocid();
+    if ( docid == 0 ) {
+      return true; // No documents in database
+    }
     auto document = db.get_document( docid );
 
     const string lastDoc = document.get_data();
@@ -34,7 +40,7 @@ bool ftsIndexIsOldOrBad( BtreeIndexing::BtreeDictionary * dict )
   catch ( Xapian::Error & e ) {
     qWarning() << e.get_description().c_str();
     //the file is corrupted,remove it.
-    QFile::remove( QString::fromStdString( dict->ftsIndexName() ) );
+    Utils::Fs::removeDirectory( dict->ftsIndexName() );
     return true;
   }
   catch ( ... ) {
@@ -48,16 +54,20 @@ void makeFTSIndex( BtreeIndexing::BtreeDictionary * dict, QAtomicInt & isCancell
 
   //check the index again.
   if ( dict->haveFTSIndex() ) {
+    qDebug() << "fts index already exists";
     return;
   }
 
   try {
     if ( Utils::AtomicInt::loadAcquire( isCancelled ) ) {
+      qDebug() << "user abort the fts index creation";
       throw exUserAbort();
     }
 
     // Open the database for update, creating a new database if necessary.
-    Xapian::WritableDatabase db( dict->ftsIndexName() + "_temp", Xapian::DB_CREATE_OR_OPEN );
+    const std::string path       = dict->ftsIndexName() + "_temp";
+    const QByteArray encodedPath = QFile::encodeName( QString::fromStdString( path ) );
+    Xapian::WritableDatabase db( encodedPath.toStdString(), Xapian::DB_CREATE_OR_OPEN );
 
     Xapian::TermGenerator indexer;
     //  Xapian::Stem stemmer("english");
@@ -76,14 +86,11 @@ void makeFTSIndex( BtreeIndexing::BtreeDictionary * dict, QAtomicInt & isCancell
       throw exUserAbort();
     }
 
-    QList< uint32_t > offsets;
-    offsets.resize( setOfOffsets.size() );
-    uint32_t * ptr = offsets.data();
-
-    for ( QSet< uint32_t >::ConstIterator it = setOfOffsets.constBegin(); it != setOfOffsets.constEnd(); ++it ) {
-      *ptr = *it;
-      ptr++;
-    }
+    // More efficient way to get a sorted list of offsets
+    std::vector< uint32_t > offsets;
+    offsets.assign( setOfOffsets.begin(), setOfOffsets.end() );
+    // Sort offsets to allow for binary search resume
+    std::sort( offsets.begin(), offsets.end() );
 
     // Free memory
     setOfOffsets.clear();
@@ -112,20 +119,22 @@ void makeFTSIndex( BtreeIndexing::BtreeDictionary * dict, QAtomicInt & isCancell
 
     long indexedDoc = 0L;
 
-    for ( const auto & address : offsets ) {
+    auto start_it = offsets.cbegin();
+    if ( skip ) {
+      start_it         = std::upper_bound( offsets.cbegin(), offsets.cend(), lastAddress );
+      long num_skipped = std::distance( offsets.cbegin(), start_it );
+      qDebug() << "Resuming FTS indexing from offset" << ( start_it != offsets.cend() ? *start_it : -1 ) << "at index"
+               << num_skipped;
+      indexedDoc += num_skipped;
+    }
+
+    for ( auto it = start_it; it != offsets.cend(); ++it ) {
+      const auto & address = *it;
       indexedDoc++;
 
-      if ( address == lastAddress && skip ) {
-        skip = false;
-        continue;
-      }
-      //skip until to the lastAddress;
-      if ( skip ) {
-        continue;
-      }
-
-      if ( Utils::AtomicInt::loadAcquire( isCancelled ) ) {
-        return;
+      if ( Utils::AtomicInt::loadAcquire( isCancelled ) || !dict->canFTS() ) {
+        qDebug() << "user abort the fts index creation" << isCancelled << "canFTS:" << dict->canFTS();
+        throw exUserAbort();
       }
 
       QString headword, articleStr;
@@ -136,8 +145,8 @@ void makeFTSIndex( BtreeIndexing::BtreeDictionary * dict, QAtomicInt & isCancell
 
       indexer.set_document( doc );
 
-      indexer.index_text( articleStr.toStdString() );
-      indexer.index_text( headword.toStdString() );
+      indexer.index_text( Folding::applyForIndex( articleStr ) );
+      indexer.index_text( Folding::applyForIndex( headword ) );
 
       doc.set_data( std::to_string( address ) );
       // Add the document to the database.
@@ -156,14 +165,22 @@ void makeFTSIndex( BtreeIndexing::BtreeDictionary * dict, QAtomicInt & isCancell
 
     db.commit();
 
-    db.compact( dict->ftsIndexName() );
+    const QByteArray encodedFtsPath = QFile::encodeName( QString::fromStdString( dict->ftsIndexName() ) );
+    db.compact( encodedFtsPath.toStdString() );
 
     db.close();
 
     Utils::Fs::removeDirectory( dict->ftsIndexName() + "_temp" );
   }
   catch ( Xapian::Error & e ) {
-    qWarning() << "create xapian index:" << QString::fromStdString( e.get_description() );
+    qWarning() << "create xapian index failed:" << QString::fromStdString( e.get_description() );
+    Utils::Fs::removeDirectory( dict->ftsIndexName() );
+    Utils::Fs::removeDirectory( dict->ftsIndexName() + "_temp" );
+    throw;
+  }
+  catch ( ... ) {
+    Utils::Fs::removeDirectory( dict->ftsIndexName() + "_temp" );
+    throw;
   }
 }
 
@@ -180,7 +197,8 @@ void FTSResultsRequest::run()
       //no need to parse the search string,  use xapian directly.
       //if the search mode is wildcard, change xapian search query flag?
       // Open the database for searching.
-      Xapian::Database db( dict.ftsIndexName() );
+      const QByteArray encodedPath = QFile::encodeName( QString::fromStdString( dict.ftsIndexName() ) );
+      Xapian::Database db( encodedPath.toStdString() );
 
       // Start an enquire session.
       Xapian::Enquire enquire( db );
@@ -188,7 +206,7 @@ void FTSResultsRequest::run()
       // Combine the rest of the command line arguments with spaces between
       // them, so that simple queries don't have to be quoted at the shell
       // level.
-      string query_string( searchString.toStdString() );
+      string query_string( Folding::applyForIndex( searchString ) );
 
       // Parse the query string to produce a Xapian::Query object.
       Xapian::QueryParser qp;

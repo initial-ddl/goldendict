@@ -15,8 +15,8 @@
 #include <QUrl>
 #include <QStyleHints>
 
-#include "fmt/core.h"
-#include "fmt/compile.h"
+#include <fmt/core.h>
+#include <fmt/compile.h>
 
 using std::vector;
 using std::string;
@@ -43,6 +43,7 @@ std::string ArticleMaker::makeHtmlHeader( const QString & word, const QString & 
   string result = R"(<!DOCTYPE html>
 <html><head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 )";
 
   // add jquery
@@ -51,8 +52,6 @@ std::string ArticleMaker::makeHtmlHeader( const QString & word, const QString & 
     result += R"(<script> jQuery.noConflict(); </script>)";
 
     result += R"(<script src="qrc:///scripts/gd-custom.js"></script>)";
-    result += R"(<script src="qrc:///scripts/iframe-resizer.jquery.js"></script>)";
-    result += R"(<script src="qrc:///scripts/iframe-resizer.parent.js"></script>)";
   }
 
   // add qwebchannel
@@ -138,26 +137,7 @@ std::string ArticleMaker::makeHtmlHeader( const QString & word, const QString & 
   result += R"(<script src="qrc:///scripts/mark.min.js"></script>)";
 
   /// Handling Dark reader mode.
-
-  bool darkReaderModeEnabled = false;
-
-  if ( GlobalBroadcaster::instance()->getPreference()->darkReaderMode == Config::Dark::On ) {
-    darkReaderModeEnabled = true;
-  }
-
-#if QT_VERSION >= QT_VERSION_CHECK( 6, 5, 0 )
-  if ( GlobalBroadcaster::instance()->getPreference()->darkReaderMode == Config::Dark::Auto
-  #if !defined( Q_OS_WINDOWS )
-       // For macOS & Linux, uses "System's style hint". There is no darkMode setting in GD for them.
-       && QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark
-  #else
-       // For Windows, uses the setting in GD
-       && GlobalBroadcaster::instance()->getPreference()->darkMode == Config::Dark::On
-  #endif
-  ) {
-    darkReaderModeEnabled = true;
-  }
-#endif
+  bool darkReaderModeEnabled = GlobalBroadcaster::instance()->isDarkReaderModeEnabled();
 
   if ( darkReaderModeEnabled ) {
     //only enable this darkmode on modern style.
@@ -214,7 +194,7 @@ std::string ArticleMaker::makeHtmlHeader( const QString & word, const QString & 
 
   // load the `article-style.js` in user's config folder
   if ( auto userJsFile = Config::getUserJsFileName(); userJsFile.has_value() ) {
-    result += fmt::format( FMT_COMPILE( R"(<script src="file://{}" defer></script>)" ), userJsFile.value() );
+    result += fmt::format( FMT_COMPILE( R"(<script src="bres://user/{}" defer></script>)" ), userJsFile.value() );
   }
 
   result += "</head><body>";
@@ -264,29 +244,45 @@ std::string ArticleMaker::makeNotFoundBody( const QString & word, const QString 
 
 string ArticleMaker::makeWelcomeHtml() const
 {
-  string result = makeHtmlHeader( tr( "Welcome!" ), QString(), cfg.alwaysExpandOptionalParts );
+  string result = makeHtmlHeader( welcomeWord(), QString(), cfg.alwaysExpandOptionalParts );
 
-  result +=
-    tr(
-      "<h3 align=\"center\">Welcome to <b>GoldenDict</b>!</h3>"
-      "<p>To start working with the program, first visit <em>Edit | Dictionaries</em> to add some directory paths where to search "
-      "for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups."
-      "<p>And then you're ready to look up your words! You can do that in this window "
-      "by using a pane to the left, or you can <a href=\"https://xiaoyifang.github.io/goldendict-ng/ui_popup/\">look up words from other active applications</a>. "
-      "<p>To customize program, check out the available preferences at <em>Edit | Preferences</em>. "
-      "All settings there have tooltips, be sure to read them if you are in doubt about anything."
-      "<p>Should you need further help, have any questions, "
-      "suggestions or just wonder what the others think, you are welcome at the program's <a href=\"https://github.com/xiaoyifang/goldendict/discussions\">forum</a>."
-      "<p>Check program's <a href=\"https://github.com/xiaoyifang/goldendict\">website</a> for the updates. "
-      "<p>(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later."
-
-      )
-      .toUtf8()
-      .data();
+  result += tr( R"(
+    <div class="welcome-container">
+      <h3>Welcome to <strong>GoldenDict-ng</strong>!</h3>
+      <section>
+        <h4>To get started</h4>
+        <ul>
+          <li>Go to <span class="menu-path"><span>Edit</span><span>Dictionaries</span></span> to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.</li>
+          <li>Once set up, you can look up words in this window or <a href="https://xiaoyifang.github.io/goldendict-ng/ui_popup/">from other applications using the Scan Popup</a>.</li>
+          <li>To customize the program, explore the settings in <span class="menu-path"><span>Edit</span><span>Preferences</span></span>. All settings have tooltips, so be sure to read them if anything is unclear.</li>
+        </ul>
+      </section>
+      <p>Should you need further help, have any questions, or suggestions, you are welcome at the program's <a href="https://github.com/xiaoyifang/goldendict-ng/discussions">forum</a> and <a href="https://github.com/xiaoyifang/goldendict-ng">website</a>.</p>
+      <footer class="welcome-footer">
+        <small>Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.</small>
+      </footer>
+    </div>)" )
+              .toUtf8()
+              .data();
 
   result += "</body></html>";
 
   return result;
+}
+
+QString ArticleMaker::welcomeWord()
+{
+  return tr( "Welcome!" );
+}
+
+sptr< Dictionary::DataRequest > ArticleMaker::makeWelcomePage() const
+{
+  string welcome                           = makeWelcomeHtml();
+  sptr< Dictionary::DataRequestInstant > r = std::make_shared< Dictionary::DataRequestInstant >( true );
+
+  r->appendString( welcome );
+
+  return r;
 }
 
 sptr< Dictionary::DataRequest > ArticleMaker::makeDefinitionFor( const QString & word,
@@ -320,23 +316,9 @@ sptr< Dictionary::DataRequest > ArticleMaker::makeDefinitionFor( const QString &
                                                true );
   }
 
-  if ( groupId == GroupId::HelpGroupId ) {
-    if ( word == tr( "Welcome!" ) ) {
-      string welcome                           = makeWelcomeHtml();
-      sptr< Dictionary::DataRequestInstant > r = std::make_shared< Dictionary::DataRequestInstant >( true );
-
-      r->appendString( welcome );
-      return r;
-    }
-    else {
-      // Not found
-      return makeNotFoundTextFor( word, "help" );
-    }
-  }
-
   // Find the given group
 
-  const Instances::Group * activeGroup = 0;
+  const Instances::Group * activeGroup = nullptr;
 
   for ( const auto & group : groups ) {
     if ( group.id == groupId ) {
@@ -386,6 +368,7 @@ sptr< Dictionary::DataRequest > ArticleMaker::makeDefinitionFor( const QString &
       ignoreDiacritics );
   }
 }
+
 
 sptr< Dictionary::DataRequest > ArticleMaker::makeNotFoundTextFor( const QString & word, const QString & group ) const
 {
@@ -464,6 +447,16 @@ ArticleRequest::ArticleRequest( const QString & word,
 
   hasAnyData = true;
 
+  // A group "has content" when at least one of its enabled dictionaries
+  // produces articles. Morphology-only dictionaries (Hunspell) don't count.
+  morphologyOnly = !activeDicts.empty();
+  for ( const auto & activeDict : activeDicts ) {
+    if ( !activeDict->isMorphologyDictionary() ) {
+      morphologyOnly = false;
+      break;
+    }
+  }
+
   appendString( header );
 
   //clear founded dicts.
@@ -518,18 +511,27 @@ void ArticleRequest::altSearchFinished()
 
     for ( const auto & activeDict : activeDicts ) {
       try {
-        sptr< Dictionary::DataRequest > r = activeDict->getArticle(
-          wordStd,
-          altsVector,
-          Text::removeTrailingZero( contexts.value( QString::fromStdString( activeDict->getId() ) ) ),
-          ignoreDiacritics );
+        if ( word == ":about" ) {
+          QString description = activeDict->getDescription();
+          auto r              = std::make_shared< Dictionary::DataRequestInstant >( true );
+          r->appendString( description.toStdString() );
+          bodyRequests.push_back( r );
+        }
+        else {
+          sptr< Dictionary::DataRequest > r = activeDict->getArticle(
+            wordStd,
+            altsVector,
+            Text::removeTrailingZero( contexts.value( QString::fromStdString( activeDict->getId() ) ) ),
+            ignoreDiacritics );
 
-        connect( r.get(), &Dictionary::Request::finished, this, &ArticleRequest::bodyFinished, Qt::QueuedConnection );
+          connect( r.get(), &Dictionary::Request::finished, this, &ArticleRequest::bodyFinished, Qt::QueuedConnection );
 
-        bodyRequests.push_back( r );
+          bodyRequests.push_back( r );
+        }
       }
-      catch ( std::exception & e ) {
-        qWarning( "getArticle request error (%s) in \"%s\"", e.what(), activeDict->getName().c_str() );
+      catch ( const std::exception & e ) {
+        qWarning() << "getArticle request error:" << e.what() << "in"
+                   << QString::fromStdString( activeDict->getName() );
       }
     }
 
@@ -607,8 +609,6 @@ void ArticleRequest::bodyFinished()
     return;
   }
 
-  qDebug() << ">>>>";
-
   bool wasUpdated = false;
 
   QStringList dictIds;
@@ -633,43 +633,38 @@ void ArticleRequest::bodyFinished()
 
         string gdFrom = "gdfrom-" + Html::escape( dictId );
 
-        if ( closePrevSpan ) {
-          head += R"(</div></div><div style="clear:both;"></div><span class="gdarticleseparator"></span>)";
-        }
-
         bool collapse = isCollapsable( req, QString::fromStdString( dictId ) );
 
         string jsVal = Html::escapeForJavaScript( dictId );
 
         fmt::format_to( std::back_inserter( head ),
                         FMT_COMPILE(
-                          R"( <div class="gdarticle {0} {1}" id="{2}"
+                          R"( <article class="gdarticle {0} {1}" id="{2}"
                               data-gd-id="{3}"
                               >)" ),
-                        closePrevSpan ? "" : " gdactivearticle",
+                        "",
                         collapse ? " gdcollapsedarticle" : "",
                         gdFrom,
                         jsVal );
 
-        closePrevSpan = true;
-
-        fmt::format_to( std::back_inserter( head ),
-                        FMT_COMPILE(
-                          R"(<div class="gddictname" {1}  id="gddictname-{0}" title="{2}">
-                      <span class="gddicticon"><img src="gico://{0}/dicticon.png"></span>
+        fmt::format_to(
+          std::back_inserter( head ),
+          FMT_COMPILE(
+            R"(<gd-dict-header class="gddictname" {1}  id="gddictname-{0}" title="{2}" role="button" aria-expanded="{7}">
+                      <span class="gddicticon"><img src="gico://{0}/dicticon.png" alt=""></span>
                       <span class="gdfromprefix">{3}</span>
                       <span class="gddicttitle">{4}</span>
-                      <span class="collapse_expand_area"><img class="{5}" id="expandicon-{0}" title="{6}" ></span>
-                     </div>)" ),
-                        dictId,
-                        collapse ? R"(style="cursor:pointer;")" : "",
-                        "",
-                        Html::escape( tr( "From " ).toStdString() ),
-                        Html::escape( activeDict->getName() ),
-                        collapse ? "gdexpandicon" : "gdcollapseicon",
-                        "" );
+                      <span class="collapse_expand_area"><img class="{5}" id="expandicon-{0}" title="{6}" alt="" ></span>
+                     </gd-dict-header>)" ),
+          dictId,
+          collapse ? R"(style="cursor:pointer;")" : "",
+          "",
+          Html::escape( tr( "From " ).toStdString() ),
+          Html::escape( activeDict->getName() ),
+          collapse ? "gdexpandicon" : "gdcollapseicon",
+          "",
+          collapse ? "false" : "true" );
 
-        head += R"(<div class="gddictnamebodyseparator"></div>)";
 
         // If the user has enabled Anki integration in settings,
         // Show a (+) button that lets the user add a new Anki card.
@@ -684,11 +679,10 @@ void ArticleRequest::bodyFinished()
 
         fmt::format_to(
           std::back_inserter( head ),
-          FMT_COMPILE(
-            R"(<div class="gdarticlebody gdlangfrom-{}" lang="{}" style="display:{}" id="gdarticlefrom-{}">)" ),
+          FMT_COMPILE( R"(<section class="gdarticlebody gdlangfrom-{}" lang="{}" style="display:{}" id="gd-{}">)" ),
           LangCoder::intToCode2( activeDict->getLangFrom() ).toStdString(),
           LangCoder::intToCode2( activeDict->getLangTo() ).toStdString(),
-          collapse ? "none" : "inline",
+          collapse ? "none" : "block",
           dictId );
 
         if ( errorString.size() ) {
@@ -704,9 +698,12 @@ void ArticleRequest::bodyFinished()
             appendDataSlice( &d.front(), d.size() );
           }
         }
-        catch ( std::exception & e ) {
-          qWarning( "getDataSlice error: %s", e.what() );
+        catch ( const std::exception & e ) {
+          qWarning() << "getDataSlice error:" << e.what();
         }
+
+        auto separator = R"(</section></article><div style="clear:both;"></div><span class="gdarticleseparator"></span>)";
+        appendString( separator );
 
         wasUpdated = true;
 
@@ -731,13 +728,25 @@ void ArticleRequest::bodyFinished()
     bodyDone = true;
 
     string footer;
+    string morphologyContent;
 
-    if ( closePrevSpan ) {
-      footer += "</div></div>";
-      closePrevSpan = false;
+    if ( !foundAnyDefinitions && morphologyOnly ) {
+      // The group contains only morphology dictionaries (e.g. Hunspell), which
+      // can't provide articles. Show the word forms they know instead.
+      const std::u32string wordStd = Text::removeTrailingZero( word );
+
+      for ( const auto & activeDict : activeDicts ) {
+        morphologyContent += activeDict->getMorphologyContent( wordStd );
+      }
     }
 
-    if ( !foundAnyDefinitions ) {
+    if ( !morphologyContent.empty() ) {
+      // Morphology data is available; there's no need for the generic
+      // "not found" message.
+      footer += morphologyContent;
+      footer += "</body></html>";
+    }
+    else if ( !foundAnyDefinitions ) {
       // No definitions were ever found, say so to the user.
 
       // Larger words are usually whole sentences - don't clutter the output
@@ -875,7 +884,7 @@ void ArticleRequest::compoundSearchNextStep( bool lastSearchSucceeded )
         // Append the beginning
         footer += R"(<div class="gdstemmedsuggestion"><span class="gdstemmedsuggestion_head">)"
           + Html::escape( tr( "Compound expressions: " ).toUtf8().data() )
-          + "</span><span class=\"gdstemmedsuggestion_body\">";
+          + "</span><div class=\"gdstemmedsuggestion_body\">";
 
         firstCompoundWasFound = true;
       }
@@ -895,14 +904,13 @@ void ArticleRequest::compoundSearchNextStep( bool lastSearchSucceeded )
       // The last word was the last possible to start from
 
       if ( firstCompoundWasFound ) {
-        footer += "</span>";
+        footer += "</div>";
       }
 
       // Now add links to all the individual words. They conclude the result.
 
       footer += R"(<div class="gdstemmedsuggestion"><span class="gdstemmedsuggestion_head">)"
-        + Html::escape( tr( "Individual words: " ).toUtf8().data() )
-        + "</span><span class=\"gdstemmedsuggestion_body\"";
+        + Html::escape( tr( "Individual words: " ).toUtf8().data() ) + "</span><div class=\"gdstemmedsuggestion_body\"";
       if ( splittedWords.first[ 0 ].isRightToLeft() ) {
         footer += " dir=\"rtl\"";
       }
@@ -915,7 +923,7 @@ void ArticleRequest::compoundSearchNextStep( bool lastSearchSucceeded )
         footer += escapeSpacing( splittedWords.second[ x + 1 ] );
       }
 
-      footer += "</span>";
+      footer += "</div>";
 
       footer += "</body></html>";
 

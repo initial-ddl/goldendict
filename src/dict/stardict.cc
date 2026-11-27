@@ -24,6 +24,7 @@
 #include <QDomDocument>
 #include "ufile.hh"
 #include "utils.hh"
+#include <charconv>
 #include <QRegularExpression>
 #include "globalregex.hh"
 #include <QDir>
@@ -77,7 +78,7 @@ struct Ifo
 
 enum {
   Signature            = 0x58444953, // SIDX on little-endian, XDIS on big-endian
-  CurrentFormatVersion = 9 + BtreeIndexing::FormatVersion + Folding::Version + BtreeIndexing::ZipParseLogicVersion
+  CurrentFormatVersion = 10 + BtreeIndexing::FormatVersion + Folding::Version + BtreeIndexing::ZipParseLogicVersion
 };
 
 #pragma pack( push, 1 )
@@ -98,20 +99,37 @@ struct IdxHeader
   uint32_t zipIndexBtreeMaxElements; // Two fields from IndexInfo of the zip
                                      // resource index.
   uint32_t zipIndexRootOffset;
+  uint64_t sourceLastModified; // Maximum lastModified timestamp of dictionary files
 };
 static_assert( alignof( IdxHeader ) == 1 );
 #pragma pack( pop )
 
 ;
 
-bool indexIsOldOrBad( const string & indexFile )
+bool indexIsOldOrBad( const string & indexFile, const vector< string > & dictFiles )
 {
   File::Index idx( indexFile, QIODevice::ReadOnly );
 
   IdxHeader header;
 
-  return idx.readRecords( &header, sizeof( header ), 1 ) != 1 || header.signature != Signature
-    || header.formatVersion != CurrentFormatVersion;
+  if ( idx.readRecords( &header, sizeof( header ), 1 ) != 1 || header.signature != Signature
+       || header.formatVersion != CurrentFormatVersion ) {
+    return true;
+  }
+
+  // Check if any of the dictionary files were modified after the index was built
+  qint64 lastModified = 0;
+  for ( const auto & dictionaryFile : dictFiles ) {
+    QFileInfo fileInfo( QString::fromUtf8( dictionaryFile.c_str() ) );
+    if ( fileInfo.exists() ) {
+      qint64 ts = fileInfo.lastModified().toMSecsSinceEpoch();
+      if ( ts > lastModified ) {
+        lastModified = ts;
+      }
+    }
+  }
+
+  return header.sourceLastModified != (uint64_t)lastModified;
 }
 
 class StardictDictionary: public BtreeIndexing::BtreeDictionary
@@ -174,7 +192,7 @@ public:
   void setFTSParameters( const Config::FullTextSearch & fts ) override
   {
     if ( metadata_enable_fts.has_value() ) {
-      can_FTS = fts.enabled && metadata_enable_fts.value();
+      can_FTS = metadata_enable_fts.value();
     }
     else {
       can_FTS = fts.enabled && !fts.disabledTypes.contains( "STARDICT", Qt::CaseInsensitive )
@@ -267,7 +285,7 @@ void StardictDictionary::loadIcon() noexcept
 
   if ( !loadIconFromFileName( fileName ) ) {
     // Load failed -- use default icons
-    dictionaryIcon = QIcon( ":/icons/icon32_stardict.png" );
+    dictionaryIcon = QIcon( ":/icons/icon32_stardict.svg" );
   }
 
   dictionaryIconLoaded = true;
@@ -528,7 +546,7 @@ string StardictDictionary::handleResource( char type, const char * resource, siz
           std::string newTag = addAudioLink( audioLink, getId() ) + "<span class=\"sdict_h_wav\"><a href=" + href + ">";
           newTag += match.captured( 4 ).toUtf8().constData();
           if ( match.captured( 4 ).indexOf( "<img " ) < 0 ) {
-            newTag += R"( <img src="qrc:///icons/playsound.png" border="0" alt="Play">)";
+            newTag += R"( <img src="qrc:///icons/playsound.svg" border="0" alt="Play">)";
           }
           newTag += "</a></span>";
 
@@ -1437,12 +1455,29 @@ sptr< Dictionary::DataRequest > StardictDictionary::getArticle( const std::u32st
 }
 
 
+/**
+ * @brief Checks if the string 'str' begins with the substring 'substr'.
+ *
+ * Compares the characters of 'substr' with the beginning of 'str'. If all characters
+ * in 'substr' match the corresponding characters in 'str', returns a pointer to the
+ * position in 'str' immediately after the matched substring. If 'substr' is not a
+ * prefix of 'str', or if either pointer is null, returns nullptr.
+ *
+ * @param substr The substring to check as a prefix.
+ * @param str The string to check against.
+ * @return const char* Pointer to the character in 'str' after the matched prefix,
+ *         or nullptr if 'substr' is not a prefix of 'str' or if any argument is null.
+ */
 static const char * beginsWith( const char * substr, const char * str )
 {
-  size_t len = strlen( substr );
-
-  return strncmp( str, substr, len ) == 0 ? str + len : 0;
+  if ( !substr || !str )
+    return nullptr;
+  for ( ; *substr; ++substr, ++str )
+    if ( *substr != *str )
+      return nullptr;
+  return str;
 }
+
 
 Ifo::Ifo( const QString & fileName )
 {
@@ -1451,68 +1486,67 @@ Ifo::Ifo( const QString & fileName )
     throw exCantReadFile( "Cannot open IFO file -> " + fileName.toStdString() );
   };
 
-  if ( !f.readLine().startsWith( "StarDict's dict ifo file" ) || !f.readLine().startsWith( "version=" ) ) {
+  // Set up text stream with automatic Unicode detection
+  QTextStream stream( &f );
+  stream.setAutoDetectUnicode( true );
+
+  // Read and validate file format
+  QString firstLine  = stream.readLine();
+  QString secondLine = stream.readLine();
+
+  // Ensure proper file format detection even with BOM
+  if ( !firstLine.startsWith( "StarDict's dict ifo file" ) || !secondLine.startsWith( "version=" ) ) {
     throw exNotAnIfoFile();
   }
 
   /// Now go through the file and parse options
   {
-    while ( !f.atEnd() ) {
-      auto line   = f.readLine();
-      auto option = QByteArrayView( line ).trimmed();
+    while ( !stream.atEnd() ) {
+      QString line       = stream.readLine();
+      QStringView option = QStringView( line ).trimmed();
       // Empty lines are allowed in .ifo file
 
       if ( option.isEmpty() ) {
         continue;
       }
 
-      if ( const char * val = beginsWith( "bookname=", option.data() ) ) {
-        bookname = val;
-      }
-      else if ( const char * val = beginsWith( "wordcount=", option.data() ) ) {
-        if ( sscanf( val, "%u", &wordcount ) != 1 ) {
-          throw exBadFieldInIfo( option.data() );
+      // Convert QStringView to UTF-8 encoded const char*
+      QByteArray optionUtf8   = option.toString().toUtf8();
+      const char * optionData = optionUtf8.constData();
+
+      // Better parsing of key=value pairs, handling potential whitespace
+      auto parseValue = [ & ]( const char * key, string & target ) -> bool {
+        if ( const char * val = beginsWith( key, optionData ) ) {
+          // Skip leading whitespace after '='
+          while ( *val && ( *val == ' ' || *val == '\t' ) )
+            ++val;
+          target = val;
+          return true;
         }
-      }
-      else if ( const char * val = beginsWith( "synwordcount=", option.data() ) ) {
-        if ( sscanf( val, "%u", &synwordcount ) != 1 ) {
-          throw exBadFieldInIfo( option.data() );
+        return false;
+      };
+
+      auto parseUint32 = [ & ]( const char * key, uint32_t & target, bool validateOffset = false ) -> bool {
+        if ( const char * val = beginsWith( key, optionData ) ) {
+          // Skip leading whitespace after '='
+          while ( *val && ( *val == ' ' || *val == '\t' ) )
+            ++val;
+          auto [ ptr, ec ] = std::from_chars( val, val + strlen( val ), target );
+          if ( ec != std::errc{} || ( validateOffset && target != 32 && target != 64 ) ) {
+            throw exBadFieldInIfo( optionData );
+          }
+          return true;
         }
-      }
-      else if ( const char * val = beginsWith( "idxfilesize=", option.data() ) ) {
-        if ( sscanf( val, "%u", &idxfilesize ) != 1 ) {
-          throw exBadFieldInIfo( option.data() );
-        }
-      }
-      else if ( const char * val = beginsWith( "idxoffsetbits=", option.data() ) ) {
-        if ( sscanf( val, "%u", &idxoffsetbits ) != 1 || ( idxoffsetbits != 32 && idxoffsetbits != 64 ) ) {
-          throw exBadFieldInIfo( option.data() );
-        }
-      }
-      else if ( const char * val = beginsWith( "sametypesequence=", option.data() ) ) {
-        sametypesequence = val;
-      }
-      else if ( const char * val = beginsWith( "dicttype=", option.data() ) ) {
-        dicttype = val;
-      }
-      else if ( const char * val = beginsWith( "description=", option.data() ) ) {
-        description = val;
-      }
-      else if ( const char * val = beginsWith( "copyright=", option.data() ) ) {
-        copyright = val;
-      }
-      else if ( const char * val = beginsWith( "author=", option.data() ) ) {
-        author = val;
-      }
-      else if ( const char * val = beginsWith( "email=", option.data() ) ) {
-        email = val;
-      }
-      else if ( const char * val = beginsWith( "website=", option.data() ) ) {
-        website = val;
-      }
-      else if ( const char * val = beginsWith( "date=", option.data() ) ) {
-        date = val;
-      }
+        return false;
+      };
+
+      // Try to match the line against one of the known fields; unknown fields are silently ignored.
+      [[maybe_unused]] const bool parsed = parseValue( "bookname=", bookname ) || parseUint32( "wordcount=", wordcount )
+        || parseUint32( "synwordcount=", synwordcount ) || parseUint32( "idxfilesize=", idxfilesize )
+        || parseUint32( "idxoffsetbits=", idxoffsetbits, true ) || parseValue( "sametypesequence=", sametypesequence )
+        || parseValue( "dicttype=", dicttype ) || parseValue( "description=", description )
+        || parseValue( "copyright=", copyright ) || parseValue( "author=", author ) || parseValue( "email=", email )
+        || parseValue( "website=", website ) || parseValue( "date=", date );
     }
   }
 }
@@ -1867,7 +1901,7 @@ vector< sptr< Dictionary::Class > > makeDictionaries( const vector< string > & f
 
       string indexFile = indicesDir + dictId;
 
-      if ( Dictionary::needToRebuildIndex( dictFiles, indexFile ) || indexIsOldOrBad( indexFile ) ) {
+      if ( Dictionary::needToRebuildIndex( dictFiles, indexFile ) || indexIsOldOrBad( indexFile, dictFiles ) ) {
         // Building the index
 
         Ifo ifo( QString::fromStdString( fileName ) );
@@ -1911,6 +1945,19 @@ vector< sptr< Dictionary::Class > > makeDictionaries( const vector< string > & f
         // will be rewritten with the right values.
 
         idx.write( idxHeader );
+
+        // Compute and store the source last modified timestamp
+        qint64 lastModified = 0;
+        for ( const auto & dictionaryFile : dictFiles ) {
+          QFileInfo fileInfo( QString::fromUtf8( dictionaryFile.c_str() ) );
+          if ( fileInfo.exists() ) {
+            qint64 ts = fileInfo.lastModified().toMSecsSinceEpoch();
+            if ( ts > lastModified ) {
+              lastModified = ts;
+            }
+          }
+        }
+        idxHeader.sourceLastModified = (uint64_t)lastModified;
 
         idx.write( ifo.bookname.data(), ifo.bookname.size() );
         idx.write( ifo.sametypesequence.data(), ifo.sametypesequence.size() );

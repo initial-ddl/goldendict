@@ -47,6 +47,11 @@ public:
   /// Remove item with given index from list
   void removeItem( int index )
   {
+    // Save to temporary file before removing an item
+    if ( index >= 0 && index < items.size() ) {
+      saveTemp( items.at( index ), '-' );
+    }
+
     items.removeAt( index );
     dirty = true;
     emit itemsChanged();
@@ -80,8 +85,6 @@ public:
 
   void setMaxSize( unsigned maxSize_ );
 
-  void setSaveInterval( unsigned interval );
-
   unsigned getMaxSize()
   {
     return maxSize;
@@ -103,13 +106,20 @@ private:
   /// in order to fit into the constraints.
   bool ensureSizeConstraints();
 
+  /// Save history to temporary file for crash recovery
+  void saveTemp( const Item & item, QChar operation );
+
+  /// Load history from temporary file if main file is corrupted or missing
+  void loadTemp();
+
+  /// Remove temporary file
+  void removeTemp();
+
   QList< Item > items;
   unsigned maxSize;
   unsigned maxItemLength;
   bool addingEnabled;
   bool dirty;
-  int timerId;
 
 protected:
-  virtual void timerEvent( QTimerEvent * );
 };

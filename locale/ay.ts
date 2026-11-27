@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation type="unfinished">Anki: can&apos;t create a card without a word</translation>
+      <translation>Anki: can&apos;t mä tarjeta jan arut luraspa</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -28,11 +28,11 @@
     </message>
     <message>
       <source>Anki: post to Anki failed</source>
-      <translation type="unfinished">Anki: post to Anki failed</translation>
+      <translation>Anki: Anki-ru apayañax pantjasi</translation>
     </message>
     <message>
       <source>Anki: post to Anki success</source>
-      <translation type="unfinished">Anki: post to Anki success</translation>
+      <translation>Anki: Anki-ru apayañax askiwa</translation>
     </message>
   </context>
   <context>
@@ -58,16 +58,31 @@ No se ha encontrado la palabra en el grupo &lt;b&gt;%1&lt;/b&gt;.</translation>
       <translation>¡Aski jutawi!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt; &lt;b&gt;GoldenDict&lt;/b&gt;ukarux walikpun jutapxtaxa!&lt;/h3&gt;&lt;p&gt;Programa ukampi irnaqaña qalltañatakixa nayraqata &lt;em&gt;Editar | Diccionarios&lt;/em&gt; mä qawqha directorio thakhinak yapxatañataki kawkhantix diccionario qillqatanaka thaqhaña, kunayman Wikipedia ukan chiqanakap jan ukax yaqha phunchhawinak utt’ayaña, diccionario orden chiqañchaña jan ukax diccionario tamanak luraña.&lt;p&gt;Ukat ukatsti jumax&apos;re wakicht’ataw arunakam uñakipañataki! Ukxa aka ventana ukanxa ch’iqa tuqiru mä panel ukampiwa lurasispa, jan ukaxa &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;yaqha activos aplicaciones ukanakata aru thaqhaña&lt;/a&gt;. &lt;p&gt;Programa ukarjam lurañatakix, &lt;em&gt;Editar | Munañanakapa&lt;/em&gt;. Taqi configuración ukanx herramientas ukanakaw utji, jan armasimti ullart’añamawa kuna tuqit pächassta ukhaxa.&lt;p&gt;Juk’amp yanapt’awinak munasmati, kuna jiskt’awinakas utjaspa, amuyt’awinakas utjaspa jan ukax mayninakax kuns amuyapxi uk jiskt’asiñakiw wakisispa, ukax programa&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;foro&lt;/a&gt;ukanx wali askiwa.&lt;p&gt;Programa&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;sitio web&lt;/a&gt; uñakipaña uñakipaña. &lt;p&gt;(c) 2008-2013 maranakanxa Konstantin Isakov. GPLv3 jan ukax qhipa uñt’ayat ukarjam licenciat uñt’ayata.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(jan sutini)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(jamuqa)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>&lt;div class=&quot;welcome-container&quot;&gt;&lt;h3&gt;¡&lt;strong&gt;GoldenDict-ng&lt;/strong&gt;-ar qamasa!&lt;/h3&gt;&lt;section&gt;&lt;h4&gt;Qalltañataki&lt;/h4&gt;&lt;ul&gt;&lt;li&gt;&lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Jichhakiptayaña&lt;/span&gt;&lt;span&gt;Aru-pirwanaka&lt;/span&gt;&lt;/span&gt;-ru saraña, juma pachpa aru-pirwa q'ipinaka yapxatañataki, Wikipedia ukham línea uñt'atanaka wakichañataki, ukat qutu-rakinakaru wakichaña.&lt;/li&gt;&lt;li&gt;Wakicht'ata ukhaxa, akax ventana ukan jan ukax &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;yaqha aplicaciónanakan Scan Popup ukamp thaqhañataki&lt;/a&gt; aru-nak thaqhañasa.&lt;/li&gt;&lt;li&gt;Programax juma pachpa wakicht'añataki, &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Jichhakiptayaña&lt;/span&gt;&lt;span&gt;Preferencias&lt;/span&gt;&lt;/span&gt; ukan wakichäwinaka uñjaña. Taqi wakichäwinakax tooltips ukanakawa, ukhamarakiw jiwaki janiw qhanäxchi ukaxa liyt'aña.&lt;/li&gt;&lt;/ul&gt;&lt;/section&gt;&lt;p&gt;Juk'amp yanapt'a munapkta, kuna jiskt'anaka jan ukax amtanaka utjapkta, programan &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;foro&lt;/a&gt; ukan jan ukax &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;web utjawi&lt;/a&gt; ukan qamasa.&lt;/p&gt;&lt;footer class=&quot;welcome-footer&quot;&gt;&lt;small&gt;Konstantin Isakov-an (c) 2008-2013 nayra GoldenDict ukar uñtata. GoldenDict-NG Jakhutapan apnaqata ukat luratata. GPLv3 jan ukax juk'amp nayrapamp licencia churatäxiwa.&lt;/small&gt;&lt;/footer&gt;&lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -102,10 +117,6 @@ No se ha encontrado la palabra en el grupo &lt;b&gt;%1&lt;/b&gt;.</translation>
     <message>
       <source>Phrase not found</source>
       <translation>Frase ukax janiw jikxataskiti</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 ukat %2 uñt’ayata</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -255,6 +266,41 @@ No se ha encontrado la palabra en el grupo &lt;b&gt;%1&lt;/b&gt;.</translation>
       <source>&amp;Create Anki note</source>
       <translation>&amp;Anki qillqata luraña</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;Ist'awi clipboard-aru kutt'ayaña</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>Ist'awi kutt'ayañax pantjasi</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>Taqa ist'awi datonak qillqañax pantjasi</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>Ist'awi clipboard-aru kutt'ayatäxiwa</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Ist'awi apkatasiñax pantjasi</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 ukat %2 uñt’ayata</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Qillqata Jawt'a &amp;Browser-na Jist'araña</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>GoldenDict Recursos Uñakipiri</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -275,52 +321,60 @@ between classic and school orthography in cyrillic)</source>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>&amp;Chino aru tukuyawi</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Chino tradicional ukat chino simplificado tukuyawi</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Chino simplificado ukhamaraki chino tradicional uka tukuyawi naktayaña</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>China qillqanaka jisk'achata/tradicional uka japonés Shinjitai qillqanaka ukar tukuyayaña naktayaña</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>&amp;Chino aru tukuyawi</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Japonés Shinjitai</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Chino simplificado ukat chino tradicional (aru Taiwan) ukaru tukuyawi naktayaña</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>Chinu Japonés Shinjitai tikxatäwi</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Chino simplificado ukat chino tradicional (aru Hong Kong) ukaru tukuyawi naktayaña</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>Chinu ukat Japonés Qillqa &amp;Tikxatäwi</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>Juk'achata Chinu, Nayra Chinu (Taiwan/Hong Kong) ukat Japonés Shinjitai qillqanak taypin tikxatäw wakiyaña</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Chino aru tradicional uk chino aru simplificado ukar tukuyawi</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
+      <source>Simplified</source>
+      <translation>Simplificado</translation>
+    </message>
+    <message>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Chino simplificado ukat chino tradicional (aru Taiwan) ukaru tukuyawi naktayaña</translation>
+    </message>
+    <message>
+      <source>Traditional (Taiwan)</source>
+      <translation>Tradicional (Taiwan)</translation>
+    </message>
+    <message>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Chino simplificado ukat chino tradicional (aru Hong Kong) ukaru tukuyawi naktayaña</translation>
+    </message>
+    <message>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Tradicional (Hong Kong)</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
       <translation>Chino simplificado ukat chino tradicional (aru Taiwan) tukuyawi</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
       <translation>Chino simplificado ukat chino tradicional (aru Hong Kong) tukuyawi</translation>
-    </message>
-    <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Chino tradicional ukat chino simplificado tukuyawi</translation>
-    </message>
-    <message>
-      <source>Taiwan variant</source>
-      <translation type="unfinished">Taiwan variant</translation>
-    </message>
-    <message>
-      <source>Hong Kong variant</source>
-      <translation type="unfinished">Hong Kong variant</translation>
-    </message>
-    <message>
-      <source>Mainland variant</source>
-      <translation type="unfinished">Mainland variant</translation>
     </message>
   </context>
   <context>
@@ -410,10 +464,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>¿Jumaxa mä qutu qutuchata luraña muntati carpetas ukanaka utjatapata?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>¿Jumax metadata.toml ukarjam mä tama tamanak lurañ munasmati?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Aru qalltampi &quot;%1-&gt;&quot; ukarjama qutunak kisantaña</translation>
     </message>
@@ -428,6 +478,19 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>&quot;%1&quot; ukampi qutunak kisantaña</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Qutu chhaqtayaña</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>Chiqpacha &lt;b&gt;%1&lt;/b&gt; qutu chhaqtayañ muntati?&lt;br&gt;&lt;br&gt;
+¿Esta seguro de que quiere eliminar el grupo &lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>¿Jumax diccionario metadata qillqanak ukarjam mä tama tamanak lurañ munasmati?</translation>
     </message>
   </context>
   <context>
@@ -457,10 +520,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Susuña:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Kunjams thaqhaña</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Kunjamatixa akaxa, aru-pirwanakxa susuyasini</translation>
     </message>
@@ -483,18 +542,6 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Uñacht’ayaña jilpacha filtrado p’iqinchawinaka kutt’ayata.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Filtro max ukax akhamawa:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Yanapa</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>Jisa saña</translation>
     </message>
     <message>
       <source>Text</source>
@@ -542,7 +589,11 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Regular Expression</source>
-      <translation type="unfinished">Regular Expression</translation>
+      <translation>Regular Uñakipawi</translation>
+    </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>Jach'a:</translation>
     </message>
   </context>
   <context>
@@ -576,10 +627,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Jaqukipaña akar:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Apkata wayaqanaka, aka aru-pirwana:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Qillqatax kunjamasa:</translation>
     </message>
@@ -598,6 +645,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Full-text search disabled</source>
       <translation>Phuqat qillqat thaqhañax ch’amanchatawa</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Suyt'ayaña</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Pirmitiña</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>Arupirwan jisk'anaka:</translation>
     </message>
   </context>
   <context>
@@ -693,7 +752,35 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Restore selection</source>
-      <translation type="unfinished">Restore selection</translation>
+      <translation>Ajllita kutt'ayaña</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>Reindexación jawsaña</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>Reindexación lurayaña</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>Reindexación lurayaña jawsaña</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>Aru-pirwax reindexación lurayañatakix churatäxiwa. Indexax juti aplicación qalltawixat mayamp lurataxäni.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Uñacht'awi suti mayjt'ayaña</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Machaq uñacht'awi suti:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Janiw aru pirwa jichhastayañataki sawkañjamäkänti.</translation>
     </message>
   </context>
   <context>
@@ -814,10 +901,6 @@ Se han modificado algunas fuentes.
       <translation>Q&apos;ipi yapaña</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Taqi kunat q’umachaña</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Munat arunaka:</translation>
     </message>
@@ -828,16 +911,20 @@ Se han modificado algunas fuentes.
 Todos los items seleccionados serán borrados. ¿Quiere continuar?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Taqi yänaka Q’umachaña</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>¿Taqi yänak q’umachañ munasmati?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Q'umachaña</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>Munatanaka Q'umachaña</translation>
     </message>
   </context>
   <context>
@@ -971,16 +1058,6 @@ Eliminar los diccionarios seleccionados del grupo (SUPR)</translation>
       <translation>Phichhu 2</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>Machaq qutu aru-pirwanak uñstayana.
-
-Crear un nuevo grupo de diccionarios.</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>Qutu &amp;yapaña</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>Jichha qutu aru-pirwanak mayampi suticht&apos;aña.
 
@@ -989,16 +1066,6 @@ Renombrar el grupo de diccionarios actual.</translation>
     <message>
       <source>Re&amp;name group</source>
       <translation>&amp;Mayamp qutur suticht&apos;aña</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Jiccha qutu aru-pirwanaka chhaqtayaña.
-
-Eliminar el grupo actual de diccionarios.</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>Qutu &amp;chhaqtayaña</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1078,6 +1145,22 @@ Abrir una lista de grupos</translation>
 
 ¿Esta seguro que quiere eliminar todos los grupos?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>Machaq aru-pirwa qutu yapxataña</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>Qutu &amp;yapaña</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>Qutux waliwa</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>Mä qutux '%1' sutimpix waliwa.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1111,6 +1194,18 @@ Abrir una lista de grupos</translation>
     <message>
       <source>%1 Morphology</source>
       <translation>Morfología %1</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Ortugrafiya chiqapawa, janiw yaqha arunaka jikxatapkiti.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>Ukata %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Aru formanakapa %1: </translation>
     </message>
   </context>
   <context>
@@ -2130,7 +2225,7 @@ Abrir una lista de grupos</translation>
     </message>
     <message>
       <source>Kabyle</source>
-      <translation type="unfinished">Kabyle</translation>
+      <translation>Kabyle</translation>
     </message>
   </context>
   <context>
@@ -2432,10 +2527,6 @@ Pronunciar palabra (Alt+S)</translation>
 Pestaña nueva</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>¡Aski jutawi!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>API jaqiwisanakataki janiw naktatakiti</translation>
     </message>
@@ -2523,42 +2614,6 @@ instale una primero.</translation>
     <message>
       <source>Print Article</source>
       <translation>Laphin qillqata liq&apos;suña</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Html (*.html *.htm) ukax phuqhatawa.</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Mä sapa Html (*.html *.htm) .</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>Pdf (*.pdf) ukat juk’ampinaka.</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Mime Html (*.mhtml) ukax mä juk’a pachanakanwa.</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Kunjam qillqata imaña</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Pantja</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Janiw qillqa imañ atiykiti: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Qillqatax imasiskiwa...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Artículo completo ukar imaña</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2657,12 +2712,56 @@ Error de importación: datos incorrectos en el fichero.</translation>
       <translation>Uñachayaña</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation type="unfinished">Save PDF complete</translation>
+      <source>Lock Panels</source>
+      <translation>Panelanak Jisk'achaña</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation type="unfinished">Save PDF failed</translation>
+      <source>Clear History</source>
+      <translation>Uñjat Q'umachaña</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>¿Taqa uñjat yänak q'umachañ munasmati?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Q'ipi Imaña</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>Aplicación ukax qhipatakiw llamkt'askakiwa. Ventana uñacht'ayañatakiw bandeja icono ukar ch'iqt'añama.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>&amp;Anqa Tuyurinxa jist'araña</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>Jichha arunaka qullqichata wakichaskaski: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Nayraqata</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Tukuyana</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Walja arunaka</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Taqi qillqan thaqhaña…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Kunjams thaqhaña</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Kunjams thaqhaña: %1</translation>
     </message>
   </context>
   <context>
@@ -2679,15 +2778,15 @@ Error de importación: datos incorrectos en el fichero.</translation>
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML uyllaña pantja: %1 en %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>JSON ullasiñ pantjasiwi</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML uyllaña pantja: %1 en %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>JSON ullasiñ pantjasiwi</translation>
     </message>
   </context>
   <context>
@@ -2763,10 +2862,6 @@ Error de importación: datos incorrectos en el fichero.</translation>
       <translation>Qillqatax kunjamasa:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Aka aru-pirwan wayaqanaka:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Qatatiyam ukat aru-pirwanak uskuña, kunjams jumax siqi siqi sarayañ munta. Jiwt&apos;ayañatakixa, aru-pirwanak jiwt&apos;at qutunakan ukan uskuña.</translation>
     </message>
@@ -2785,6 +2880,18 @@ Error de importación: datos incorrectos en el fichero.</translation>
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Aru-pirwanaka naktata: %1, jiwayata: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Uñacht'awi suti mayjt'ayaña</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Machaq uñacht'awi suti:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>Aru pirwanakana wakichäwinakapa:</translation>
     </message>
   </context>
   <context>
@@ -2831,29 +2938,12 @@ jichha phicchun qhiparasi.</translation>
       <translation>Manqhajanx machaq phichhunak jist&apos;araña</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Abrir nuevas pestañas después de la actual
-
-Phantat layku, mach&apos;aq phicchunaka tukuwin uskutawa listata.
-Akampi machaq phichhunakawa phichhu chiqan ist&apos;aratatawal.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Jiccha phichhu ukjaruxa, machaq phichhunak jist&apos;araña</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Aka amtawixa ajlliñawa jani&apos;t jach’a tabla uñakipaña munkipana kunapachatixa mä sapa tabla jist’aratäki ukhaxa.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Mä phichhukisa ukjaxa imantaña</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>MRU orden: Jichhax apnaqat orden.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2955,8 +3045,98 @@ Aka jakhu mayjacham jach&apos;a menus jithiqañataki.</translation>
       <translation>Qawqha aru-pirwanakas menú ukan uñachayi:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>Sistemaw phanti</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Phanta layku</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Clásico ukat juk’ampinaka</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Qhipa uñsta</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo satänwa</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Babilonia markanwa</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Lingoes ukax mä juk’a pachanakanwa</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Lingoes-Larama</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Mayat programa aktayan sun apñaqañataki.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Interfaz ukan estilo mayjt’awip apnaqañatakix wasitat qalltaña.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Interfaz ukan qillqañ mayjt’awip apnaqañatakix wasitat qalltaña.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Wasitat qalltañaw wakisi</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Pirmitiña</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Suyt'ayaña</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Automático ukhamawa</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Ni maya</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>Akampix, machaq ficha-nakax jichha, apnaqasa uka qhipat jist'aratäni. Jan ukhamäspax, tukuyar jawst'ayatäni.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp;Uñt'awi</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Aparinsya</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Interface language</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Article Display style</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Add-on style</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Interface Style</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2975,12 +3155,16 @@ Aka jakhu mayjacham jach&apos;a menus jithiqañataki.</translation>
       <translation>Ch’amaka Uñakipiri Modo</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Aka qillqatanakax kunapachatix mä aru pirwan uñt’ayat qillqatanakax jan jikxataskan ukhax apnaqatäniwa.</translation>
+      <source>Preview Font</source>
+      <translation>Preview Font</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Fallback ukax mä juk’a pachanakanwa</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng ukax mä aru-pirwa software ukawa.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Aka qillqatanakax kunapachatix mä aru pirwan uñt’ayat qillqatanakax jan jikxataskan ukhax apnaqatäniwa.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2997,10 +3181,6 @@ Aka jakhu mayjacham jach&apos;a menus jithiqañataki.</translation>
     <message>
       <source>Monospace Font</source>
       <translation>Monoespacio ukax Fuente ukawa</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Uñstir wintanampi ullaña</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -3042,8 +3222,8 @@ Akamp naktayataxa, taqpach teclanak limt&apos;atakis ukjakiw
 uñstiri wintanaxa uñstaraki, ajllit aru mayjt&apos;i ukja.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Tack ajlliwikiw kunapachatix taqi ajllit teclas ukanakax ch’amanchatäki ukhaxa:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>Ajllita uñakipañax ajllita tecleanak ch'amanchata uñjatäki ukhakiw.</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3133,20 +3313,8 @@ Sistema ist&apos;añataki ukampi, ist&apos;añataki wayaqanak arst&apos;ayaña.
 Reproducir archivos de audio con el audio por defecto del sistema.</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Manqhax ist&apos;awi apnaqaña:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Arst&apos;ayiri ist&apos;añataki ajllim</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Taxpach wakist&apos;awi arunakax apnakaskaniwa </translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Anqat programa apnaqaña:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3214,28 +3382,12 @@ para todos los accesos a la red del programa.</translation>
       <translation>Imantata:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Murilu:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Aru</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Vocabulario ukan yapupax...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Panka</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Qhanancht’awi yapu...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Urasyuna</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3252,44 +3404,6 @@ ukan uñstkiti. Yaqhip sitio ukax uka tuqit p’akintaspa ukhax aka jan ch’ama
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>Yaqha web laphinakat janiw apaqañakiti (yatiyanaka imantañataki)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Impedir la identificación de GoldenDict a partir de las cabeceras HTTP.
-
-Yaqhiq web laphi GoldenDict uk uñt&apos;apxi HTTP p&apos;iqi laphi kuampi 
-mayiwinakap jakt&apos;rakiwa. Jani wali utjañapatakixa, ak naktayam.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>GoldenDict-ng janiw uskañakiti HTTP p&apos;iqi tuqi laphina</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Llika cachep ukax kawkch&apos;akamasa:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Máximo espacio disco ocupado por GoldenDict&apos;s red caché en
-%1
-Ukaxa 0 ukjamaru utt’ayatawa red disco caché ukaxa janiwa ch’amanchatäkiti.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>Programa ukat mistusinxa, GoldenDict
-ukax llikat cachep chhaqtayi.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Mistjani ukjax llika cache uk chhaqtayaña</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3355,21 +3469,6 @@ Jakhu qillqatanakata uskuña imañataki.</translation>
       <translation>Thaqhat arunak qawqhch&apos;asa:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Guardar cada N minutos.
-
-Kunapachanakas thaqhat arunaka imt&apos;aña. 
-0 ukanixa thaqhat arunakaxa imt&apos;asiniwa mistxani ukja.</translation>
-    </message>
-    <message>
-      <source>Save every</source>
-      <translation>Imaña sapa</translation>
-    </message>
-    <message>
-      <source>minutes</source>
-      <translation>k&apos;atanaka</translation>
-    </message>
-    <message>
       <source>Favorites</source>
       <translation>Munat arunaka</translation>
     </message>
@@ -3379,6 +3478,14 @@ Kunapachanakas thaqhat arunaka imt&apos;aña.
 
 Qawqha pachas munat arunaka imañataki. 
 0 ukanixa, munat arunakaxa mistjan ukjaw imasini.</translation>
+    </message>
+    <message>
+      <source>Save every</source>
+      <translation>Imaña sapa</translation>
+    </message>
+    <message>
+      <source>minutes</source>
+      <translation>k&apos;atanaka</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3488,112 +3595,112 @@ Activar esta opción para realizar búsquedas adicionales con listas de sinónim
       <translation>Uka jan wali índice ukax mistuñkamaw apsuña</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>Sistemaw phanti</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Phanta layku</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Clásico ukat juk’ampinaka</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Qhipa uñsta</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo satänwa</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Babilonia markanwa</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Lingoes ukax mä juk’a pachanakanwa</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Lingoes-Larama</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Auto ukax janiw kuns yaqhip sistemas ukan lurkiti.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Mayat programa aktayan sun apñaqañataki.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Interfaz ukan estilo mayjt’awip apnaqañatakix wasitat qalltaña.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Interfaz ukan qillqañ mayjt’awip apnaqañatakix wasitat qalltaña.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Wasitat qalltañaw wakisi</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Pirmitiña</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Suyt'ayaña</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Automático ukhamawa</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Save debug messages to gd_log.txt in the config folder</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Interface language</translation>
+      <source>S&amp;can</source>
+      <translation>S&amp;can</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Article Display style</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>JavaScript alertanak, confirmacionanak, ukat promptanak qillqata uñakipañan jark'aqaña.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Add-on style</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>JavaScript dialogonak jark'aqaña</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Interface Style</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>Web aru-pirwax sapaqata ficha-n jist'araña</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Preview Font</translation>
+      <source>Anki</source>
+      <translation type="unfinished">Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation type="unfinished">GoldenDict-ng is a dictionary software.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>JavaScript-r qillqata uñakipañan clipboard ukar mantayaña saqtaña.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation type="unfinished">Enable Interface Font</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>JavaScript clipboard mantaña churaña (mayamp qalltaña wakisi)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>Mayamp qalltaña JavaScript clipboard mantaña mayjt'awix lurañataki.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation type="unfinished">Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>Mä ficha ukakiw jist'arata ukjaxa, ficha barra imantaña.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Ni maya</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Aru qillqatanaka phust'ayañataki, mayjawjankiri phust'iriwa apnaqaña.</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Jach'a qhanañchäwi yatichäwi uñjaña</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>Awdiyu thakhiw anqa pukllirir kamanda lini arxatawi ukham apatañani.</translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation type="unfinished">Internal Audio Player:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation type="unfinished">External Audio Player:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>Sistema tuqin kunjama uñtata ukhamarjama mayjt'asi.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>Qillqanak kunjams munta</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>Dock uñakipawi utjawa jach'a ventana jist'aratäkipan, ukhamaraki macOS ukax uñacht'ayañapataki aplicación sutipa ukat menunaka. Aka opción jist'araña Dock uñakipawi uñstayañataki jach'a ventana imantatäxipan.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>Dock uñakipawi qhipatx uñstayaña</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>Anki k'uchururu uywa yapt'aña utjki ukhaxa</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>Aktibata ukhaxa, internet aru qillqatanakax jupanakpachpa patatjanjaman jist'arasi, yatichäwi uñjawi taypin juch'usa uñacht'ayata ukhama jan ukata. Aka jan juch'usa markachawi ukat muytayaña jark'anakaru chhaqaya, ukat Aru Qillqatanaka dialogon mayat mayaru Qillqawi qillqa qalltawa.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Aru:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>Panka:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Urasyuna:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Interfaz ukax Fuente ukawa</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Sapan qillqa laya</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Sapan tama</translation>
     </message>
   </context>
   <context>
@@ -3733,11 +3840,63 @@ Activar esta opción para realizar búsquedas adicionales con listas de sinónim
     </message>
     <message>
       <source>Force the word to be translated in Popup.</source>
-      <translation type="unfinished">Force the word to be translated in Popup.</translation>
+      <translation>Arux Popup-an jaqukipayañapawa.</translation>
     </message>
     <message>
       <source>Force the word to be translated in the mainwindow.</source>
-      <translation type="unfinished">Force the word to be translated in the mainwindow.</translation>
+      <translation>Jaqukipaña aru jach’a ventanana ch’amañchaña.</translation>
+    </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>Web Url:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>Url ukanxa, &quot;%GDWORD%&quot; ukax thaqat aru tuqiw mayjt'ayatäni.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Html (*.html *.htm) ukax phuqhatawa.</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Mä sapa Html (*.html *.htm) .</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>PDF qillqata (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml) ukax mä juk’a pachanakanwa.</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Kunjam qillqata imaña</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Artículo completo ukar imaña</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Pantja</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Janiw qillqa imañ atiykiti: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Save PDF complete</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Save PDF failed</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Qillqata imasiñana... (%1/%2)</translation>
     </message>
   </context>
   <context>
@@ -3769,6 +3928,10 @@ Activar esta opción para realizar búsquedas adicionales con listas de sinónim
       <source>The referenced resource failed to download.</source>
       <translation>Internet ukat apaqasinxa pantjiwa.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>utjiri puriñ q'ipit anqan imataspawa.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3794,6 +3957,26 @@ Activar esta opción para realizar búsquedas adicionales con listas de sinónim
       <source>WARNING: %1</source>
       <translation>AKHAM LURASMA: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>Qhanañchaña</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Jichha phichhu ist&apos;antaña</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Taqi phichhu jist&apos;antaña, jichhakis ukax janiwa</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Taqi phichhu jist&apos;antaña</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>&amp;Anqa Tuyurinxa jist'araña</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3818,10 +4001,6 @@ Activar esta opción para realizar búsquedas adicionales con listas de sinónim
       <translation>Send word to main window (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation type="unfinished">Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Add word to Favorites (Ctrl+E)</translation>
     </message>
@@ -3834,6 +4013,12 @@ Activar esta opción para realizar búsquedas adicionales con listas de sinónim
 could be resized or managed in other ways.</source>
       <translation>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Qillqat imaña
+
+Guardar artículo</translation>
     </message>
   </context>
   <context>
@@ -4118,27 +4303,27 @@ Taqi lista utjki uka arunakax &lt;a href=&quot;https://lingualibre.org/wiki/Ling
     </message>
     <message>
       <source>The most widely used method of transcription of Japanese, based on English phonology</source>
-      <translation type="unfinished">The most widely used method of transcription of Japanese, based on English phonology</translation>
+      <translation>Japonés qillqañatakix juk'amp uñt'at lurawi, inglés arunakan ist'awi tuqita</translation>
     </message>
     <message>
       <source>Remove selected directories from the list?</source>
-      <translation type="unfinished">Remove selected directories from the list?</translation>
+      <translation>Ajllita q'ipinaka tantat apaqt'añ munasmati?</translation>
     </message>
     <message>
       <source>Remove %1 directories from the list?</source>
-      <translation type="unfinished">Remove %1 directories from the list?</translation>
+      <translation>%1 q'ipinaka tantat apaqt'añ munasmati?</translation>
     </message>
     <message>
       <source>Remove %1 sites from the list?</source>
-      <translation type="unfinished">Remove %1 sites from the list?</translation>
+      <translation>%1 utjawinaka tantat apaqt'añ munasmati?</translation>
     </message>
     <message>
       <source>Remove %1 servers from the list?</source>
-      <translation type="unfinished">Remove %1 servers from the list?</translation>
+      <translation>%1 servernaka tantat apaqt'añ munasmati?</translation>
     </message>
     <message>
       <source>Remove %1 programs from the list?</source>
-      <translation type="unfinished">Remove %1 programs from the list?</translation>
+      <translation>%1 programanaka tantat apaqt'añ munasmati?</translation>
     </message>
   </context>
   <context>
@@ -4236,20 +4421,21 @@ Taqi lista utjki uka arunakax &lt;a href=&quot;https://lingualibre.org/wiki/Ling
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>&lt;iframe&gt; manqhanxa chinuñjam qillqat unchataña.
-
-Insertar artículo como un enlace adentro de un &lt;iframe&gt;.</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>Aka web aru-pirwax machaq ficha-n jist'aratäni</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Ispiya &quot;Internet aru qillqata may maya patatjanjan jist'araña&quot; Kamachinakan, yatichäwi taypin internet uñacht'ayañataki.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Naktata</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Chinuñjama</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4262,6 +4448,22 @@ Insertar artículo como un enlace adentro de un &lt;iframe&gt;.</translation>
     <message>
       <source>Icon</source>
       <translation>Salta</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Script</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>Icono q'ipi suti. Configuración q'ipi ukar jikxatañawa.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>Sapaqata ficha-n web uñstatanak jist'arañatakikiw utji. Mä q'ipi thakhixa (configuración q'ipi tuqita jan ukax jach'a) jan ukax script uñnaqawa.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>Aka columna ukax jark'atäxiwa, &quot;Web aru-pirwax sapaqata ficha-n jist'araña&quot; ajlliwix Preferencias ukan janiw churatäkiti.</translation>
     </message>
   </context>
   <context>

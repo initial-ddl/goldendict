@@ -2,6 +2,8 @@ name: Build Check
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 on:
   workflow_dispatch:
   pull_request:
@@ -13,18 +15,29 @@ on:
 jobs:
   job_ubuntu_build_check:
     name: ubuntu Build and analyze
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     steps:
+      - name: Cache apt packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            /var/cache/apt/archives
+            /var/lib/apt/lists
+          key: ubuntu-24.04-apt-${{ hashFiles('.github/workflows/PR-check-cmake.yml') }}
+          restore-keys: |
+            ubuntu-24.04-apt-
       - name: Install dependencies
         run: |
           sudo apt-get update
 
-          sudo apt-get install build-essential ninja-build \
+          sudo apt-get install -y --fix-missing build-essential ninja-build ccache \
           libvorbis-dev zlib1g-dev libhunspell-dev x11proto-record-dev \
           libxtst-dev liblzo2-dev libbz2-dev \
           libavutil-dev libavformat-dev libeb16-dev \
           libzstd-dev libxkbcommon-dev \
-          libxapian-dev libzim-dev libopencc-dev \
+          libxapian-dev libzim-dev libopencc-dev libfmt-dev \
           qt6-5compat-dev \
           qt6-base-dev \
           qt6-multimedia-dev \
@@ -33,10 +46,15 @@ jobs:
           qt6-tools-dev \
           qt6-tools-dev-tools \
           qt6-webchannel-dev \
+          libtomlplusplus-dev \
           qt6-webengine-dev
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: false
+      - name: ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: ${{ runner.os }}-ubuntu
       - name: Run build
         run: |
           export CXXFLAGS="-Wall"
@@ -44,23 +62,28 @@ jobs:
           cmake -S . \
             -B ./build_dir \
             -DCMAKE_COMPILE_WARNING_AS_ERROR=ON \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
             -G Ninja
           cd ./build_dir
           ninja -k 0
   job_macos_build_check:
     name: macos Build and analyze
-    runs-on: macos-14
+    permissions:
+      contents: read
+    runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
-          submodules: false
-      - name: Update brew
-        run: |
-          brew update
+          submodules: true
       - name: Install dependencies
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: 1
+          HOMEBREW_NO_INSTALL_CLEANUP: 1
         run: |
           brew install --force --overwrite \
-          ninja \
+          create-dmg \
+          ccache \
           opencc \
           ffmpeg@6 \
           libao \
@@ -70,13 +93,14 @@ jobs:
           libvorbis \
           hunspell \
           xapian \
+          fmt \
           libzim \
+          tomlplusplus \
           qt || true
-      - name: Install eb
-        run: |
-          wget https://github.com/mistydemeo/eb/releases/download/v4.4.3/eb-4.4.3.tar.bz2
-          tar xvjf eb-4.4.3.tar.bz2
-          cd eb-4.4.3 && ./configure && make -j 8 && sudo make install && cd ..
+      - name: ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: ${{ runner.os }}-macos
       - name: Run build
         run: |
           mkdir build_dir
@@ -85,31 +109,48 @@ jobs:
           cmake -S . \
             -B ./build_dir \
             -G Ninja \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
             -DWITH_FFMPEG_PLAYER=ON \
             -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
           cd ./build_dir
           ninja -k 0
+      - name: Verify eb target was built
+        run: |
+          set -euo pipefail
+          echo "== libeb*.dylib built in the build tree =="
+          find ./build_dir -name 'libeb*.dylib' -print
+          if ! find ./build_dir -name 'libeb*.dylib' | grep -q .; then
+            echo "::error::libeb.dylib was not built. Did the thirdparty/eb submodule get checked out?"
+            exit 1
+          fi
+          echo "OK: libeb.dylib was built."
 
   job_window_build_check:
     name: windows Build and analyze
+    permissions:
+      contents: read
     runs-on: windows-latest
     steps:
       - name: Install Qt
-        uses: jurplel/install-qt-action@v4.2.1
+        uses: jurplel/install-qt-action@v4.5.0
         with:
-          version: 6.7.3
-          arch: win64_msvc2019_64
+          version: 6.12.0
+          arch: win64_msvc2022_64
           modules: qtwebengine qtwebchannel qtpositioning qt5compat qtmultimedia qtimageformats qtspeech
-          # setup-python: 'false'
-      - uses: actions/checkout@v4
+          # aqtinstall PR #1048 (Qt 6.12 support) is merged into master but not yet
+          # released (latest is v3.3.0), so pin the merge commit. Drop the pin once a
+          # release newer than v3.3.0 includes it.
+          aqtsource: git+https://github.com/miurahr/aqtinstall.git@8e4ea786f8a4f9dc578516738a137dec80a0362c
+      - uses: actions/checkout@v6
         with:
           submodules: true
+      - name: Setup MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
       - name: Run build
         run: |
-          # Launch-VsDevShell also provides Ninja
-          & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' `
-            -SkipAutomaticLocation -Arch amd64 -HostArch amd64
-
           New-Item -Path './build_dir' -ItemType Directory
           cmake -S . -B "./build_dir" `
             -G Ninja `
@@ -121,43 +162,61 @@ jobs:
 
   job_archlinux_build_check:
     name: archlinux Build and analyze
+    permissions:
+      contents: read
     runs-on: ubuntu-24.04
     container:
       image: ghcr.io/archlinux/archlinux:base-devel
     steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: false
       - name: Print Version
         run: |
           if [[ -f /etc/os-release ]]; then
             cat /etc/os-release
           fi
+      - uses: actions/cache@v4
+        with:
+          path: /var/cache/pacman/pkg
+          key: arch-pkg-${{ hashFiles('.github/workflows/PR-check-cmake.yml') }}
+          restore-keys: |
+            arch-pkg-
       - name: Install dependencies
         run: |
-          # https://github.com/archlinux/archlinux-docker
-          # base-devel is already included in the `base-devel` image
-          pacman --noconfirm -Syuu \
-          cmake \
-          ffmpeg \
-          fmt \
-          hunspell \
-          libvorbis \
-          libxtst \
-          libzim \
-          lzo \
-          ninja \
-          opencc \
-          qt6-5compat \
-          qt6-base \
-          qt6-multimedia \
-          qt6-speech \
-          qt6-svg \
-          qt6-tools \
-          qt6-webengine \
-          tomlplusplus \
-          xapian-core
+          # Make pacman fall back to the official mirror if the primary CDN flips out
+          # (e.g. fastly-backed geo.mirror.pkgbuild.com returning 404 mid-transaction).
+          printf '%s\n' \
+            'Server = https://geo.mirror.pkgbuild.com/$repo/os/$arch' \
+            'Server = https://mirror.archlinux.org/$repo/os/$arch' \
+            > /etc/pacman.d/mirrorlist
 
-      - uses: actions/checkout@v4
-        with:
-          submodules: false
+          # https://github.com/archlinux/archlinux-docker
+          # base-devel image brings gcc / make / patch etc., but NOT cmake / ninja —
+          # those still need to be installed explicitly.
+          # -Syu must run first so that the package DB matches the local state.
+          pacman -Syu --noconfirm --disable-download-timeout
+          pacman -S --noconfirm --needed --disable-download-timeout \
+            cmake \
+            ninja \
+            ffmpeg \
+            fmt \
+            hunspell \
+            libvorbis \
+            libxtst \
+            libzim \
+            lzo \
+            opencc \
+            qt6-5compat \
+            qt6-base \
+            qt6-multimedia \
+            qt6-speech \
+            qt6-svg \
+            qt6-tools \
+            qt6-webengine \
+            tomlplusplus \
+            xapian-core
+
       - name: Run build
         run: |
           mkdir build_dir
@@ -169,8 +228,6 @@ jobs:
             -DCMAKE_COMPILE_WARNING_AS_ERROR=ON \
             -DWITH_EPWING_SUPPORT=OFF \
             -DWITH_FFMPEG_PLAYER=ON \
-            -DWITH_TTS=ON \
-            -DUSE_SYSTEM_FMT=ON \
-            -DUSE_SYSTEM_TOML=ON
+            -DWITH_TTS=ON
           cd "./build_dir"
           ninja -k 0

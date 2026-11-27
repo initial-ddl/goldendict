@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation type="unfinished">Anki: can&apos;t create a card without a word</translation>
+      <translation>Anki: gali&apos;t sukurti kortelę be žodžio</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -28,11 +28,11 @@
     </message>
     <message>
       <source>Anki: post to Anki failed</source>
-      <translation type="unfinished">Anki: post to Anki failed</translation>
+      <translation>Anki: paštu į Anki nepavyko</translation>
     </message>
     <message>
       <source>Anki: post to Anki success</source>
-      <translation type="unfinished">Anki: post to Anki success</translation>
+      <translation>Anki: po Anki sėkmės</translation>
     </message>
   </context>
   <context>
@@ -57,16 +57,46 @@
       <translation>Jus sveikina GoldenDict!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;Sveiki atvykę į &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;Norėdami pradėti dirbti su programa, pirmiausia apsilankykite &lt;em&gt;Redaguoti | Žodynai&lt;/em&gt; pridėti keletą katalogų kelių, kuriuose galima ieškoti žodyno failų, nustatyti įvairias Vikipedijos svetaines ar kitus šaltinius, koreguoti žodynų tvarką arba kurti žodynų grupes.&lt;p&gt;Ir tada jūs&apos;esate pasiruošę ieškoti savo žodžių! Tai galite padaryti šiame lange naudodami sritį kairėje arba &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;ieškoti žodžių iš kitų aktyvių programų&lt;/a&gt;. &lt;p&gt;Norėdami tinkinti programą, peržiūrėkite galimas nuostatas &lt;em&gt;Redaguoti | Parinktys&lt;/em&gt;. Visuose nustatymuose yra patarimai, būtinai perskaitykite juos, jei dėl ko nors abejojate.&lt;p&gt;Jei jums reikia papildomos pagalbos, turite klausimų, pasiūlymų ar tiesiog įdomu, ką galvoja kiti, kviečiame apsilankyti programos&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forume&lt;/a&gt;.&lt;p&gt;Patikrinkite programos&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;svetainę&lt;/a&gt; , ar nėra atnaujinimų. &lt;p&gt;(c) 2008–2013 Konstantinas Isakovas. Licencijuota pagal GPLv3 arba naujesnę versiją.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(bevardis)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(paveikslėlis)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Sveiki atvykę į &lt;strong&gt;Auksinis diktas&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;Norėdami pradėti&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Eiti į &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Redaguoti&lt;/span&gt;&lt;span&gt;Žodynai&lt;/span&gt;&lt;/span&gt; norėdami pridėti žodyno failus, nustatykite internetinius šaltinius, pvz., Vikipediją, ir suskirstykite juos į grupes.&lt;/li&gt;
+          &lt;li&gt;Nustatę galite ieškoti žodžių šiame lange arba &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;iš kitų programų naudodami iššokantįjį nuskaitymo langą&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;Norėdami tinkinti programą, naršykite parametrus &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Redaguoti&lt;/span&gt;&lt;span&gt;Nuostatos&lt;/span&gt;&lt;/span&gt;. Visi nustatymai turi patarimus, todėl būtinai perskaitykite juos, jei kas nors neaišku.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Jei jums reikia papildomos pagalbos, turite klausimų ar pasiūlymų, esate laukiami programoje&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;Forumas&lt;/a&gt; ir &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;Svetainė&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Pagal originalų Konstantino Isakovo (c) 2008-2013 m. "GoldenDict". Prižiūri ir plėtoja GoldenDict-NG bendruomenė. Licencijuota pagal GPLv3 arba naujesnę versiją.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>Frazė nerasta</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 iš %2 rungtynių</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Sukurti Anki užrašą</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;Kopijuoti garsą į mainų sritį</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>Nepavyko nukopijuoti garso</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>Nepavyko įrašyti visų garso duomenų</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>Garsas nukopijuotas į mainų sritį</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Nepavyko atsisiųsti garso</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 iš %2 rungtynių</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Atidaryti straipsnį išorinėje &amp;naršyklėje</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>"GoldenDict" išteklių peržiūros programa</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -274,52 +335,60 @@ between classic and school orthography in cyrillic)</source>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Kinų kalbos rašto ženklų konvertavimas</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Tradicinis konvertavimas į supaprastintą kinų kalbą</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Įgalinti konvertavimą tarp supaprastintos ir tradicinės kinų kalbos ženklų</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Galimybė konvertuoti supaprastintus/tradicinius kinų simbolius į japoniškus Shinjitai simbolius</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>&amp;Kinų kalbos rašto ženklų konvertavimas</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Japonų Shinjitai</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Įgalinti konvertavimą iš supaprastintų simbolių į tradicinius (Taivano variantas) simbolius</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>Kinų į japonų Shinjitai konvertavimas</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Įgalinti konvertavimą iš supaprastintų simbolių į tradicinius (Honkongo variantas) simbolius</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>Kinų ir japonų simbolių konversija</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>Leisti konvertuoti supaprastintus kinų, tradicinius kinų (Taivanas/Honkongas) ir japonų Shinjitai simbolius</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Įgalinti tradicinių simbolių konvertavimą į supaprastintus simbolius</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Supaprastinta į tradicinę kinų (Taivano variantą) konversiją</translation>
+      <source>Simplified</source>
+      <translation>Supaprastinta</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Supaprastinta į tradicinę kinų (Honkongo variantą) konversiją</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Galimybė konvertuoti supaprastintus simbolius į tradicinius (Taivano) simbolius</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Tradicinis konvertavimas į supaprastintą kinų kalbą</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>Tradicinis (Taivanas)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation type="unfinished">Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Galimybė konvertuoti supaprastintus simbolius į tradicinius (Honkongo) simbolius</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation type="unfinished">Hong Kong variant</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Tradicinis (Honkongas)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation type="unfinished">Mainland variant</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>Supaprastinta į tradicinę kinų (Taivano) konversiją</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>Supaprastinta į tradicinę kinų (Honkongo) konversija</translation>
     </message>
   </context>
   <context>
@@ -407,10 +476,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Ar tikrai norite sugeneruoti grupių rinkinį pagal aplankus, kuriuose yra?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>Ar tikrai norite sugeneruoti grupių rinkinį pagal metadata.toml?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Apjungti grupes pagal kalbą, iš kurios verčiama („%1-&gt;“)</translation>
     </message>
@@ -425,6 +490,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Apjungti grupes pagal „%1“</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Pašalinti grupę</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>Tikrai norite pašalinti &lt;b&gt;%1&lt;/b&gt; grupę?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>Ar tikrai norite generuoti grupių rinkinį pagal žodyno metaduomenų failus?</translation>
     </message>
   </context>
   <context>
@@ -454,10 +531,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Atranka:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Paieškos veiksena</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Šis elementas nurodo, kaip bus interpretuojama atrankos užklausa</translation>
     </message>
@@ -480,18 +553,6 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Nurodykite maksimalų grąžinamų filtruotų antraščių skaičių.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Filtruoti maks. rezultatus:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Pagalba</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>Gerai</translation>
     </message>
     <message>
       <source>Text</source>
@@ -539,7 +600,11 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Regular Expression</source>
-      <translation type="unfinished">Regular Expression</translation>
+      <translation>Reguliarioji išraiška</translation>
+    </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>Maksimalus:</translation>
     </message>
   </context>
   <context>
@@ -573,10 +638,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Verčia į:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Žodyną sudarantys failai:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Aprašas:</translation>
     </message>
@@ -595,6 +656,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Full-text search disabled</source>
       <translation>Viso teksto paieška išjungta</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Išjungti</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Įgalinti</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>Žodyno komponentai:</translation>
     </message>
   </context>
   <context>
@@ -690,7 +763,35 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Restore selection</source>
-      <translation type="unfinished">Restore selection</translation>
+      <translation>Atkurti pasirinkimą</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>Atšaukti pakartotinį indeksavimą</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>Pakartotinio indeksavimo tvarkaraštis</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>Atšaukti tvarkaraščio pakartotinį indeksavimą</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>Žodyną suplanuota indeksuoti iš naujo. Indeksas bus atkurtas kitą kartą paleidus programą iš naujo.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Keisti rodomą vardą</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Naujas rodomas vardas:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Nepavyko suplanuoti žodyno perindeksavimui.</translation>
     </message>
   </context>
   <context>
@@ -807,10 +908,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Pridėti aplanką</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Išvalyti viską</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Žymelės:</translation>
     </message>
@@ -819,16 +916,20 @@ between classic and school orthography in cyrillic)</source>
       <translation>Ištrinsimos visos pažymėtos žymelės. Tęsti?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Išvalyti visus elementus</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>Ar tikrai norite išvalyti visus elementus?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Išvalyti</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>Išvalyti parankinius</translation>
     </message>
   </context>
   <context>
@@ -956,28 +1057,12 @@ between classic and school orthography in cyrillic)</source>
       <translation>Kortelė</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>Sukurti naują žodynų grupę</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>Pri&amp;dėti grupę</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>Pervadinti esamą žodynų grupę</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>Per&amp;vadinti grupę</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Pašalinti esamą žodynų grupę</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>Pašali&amp;nti grupę</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1047,6 +1132,22 @@ between classic and school orthography in cyrillic)</source>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>Tikrai norite pašalinti visas grupes?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>Naujos žodynų grupės įtraukimas</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>Pri&amp;dėti grupę</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>Grupė jau yra</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>Grupė su pavadinimu &apos;%1&apos; jau egzistuoja.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1080,6 +1181,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>%1 Morphology</source>
       <translation>%1 (morfologija)</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Rašyba teisinga, jokių kitų žodžių formų nerasta.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>Nuo %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Žodžių formos %1: </translation>
     </message>
   </context>
   <context>
@@ -2099,7 +2212,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Kabyle</source>
-      <translation type="unfinished">Kabyle</translation>
+      <translation>Kabilė</translation>
     </message>
   </context>
   <context>
@@ -2387,10 +2500,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Nauja kortelė</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>Jus sveikina GoldenDict!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>API prieinamumui nėra įgalinta</translation>
     </message>
@@ -2464,42 +2573,6 @@ Norėdami atverti parsisiuntimo puslapį, spauskite &lt;b&gt;Parsisiųsti&lt;/b&
     <message>
       <source>Print Article</source>
       <translation>Spausdinti straipsnį</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Pilnas HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Vienas HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>Pdf (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>MIM HTML (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Įrašyti straipsnį kaip</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Klaida</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Nepavyksta įrašyti straipsnio: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Įrašomas straipsnis...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Išsaugoti straipsnį baigtas</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2594,12 +2667,56 @@ Norėdami atverti parsisiuntimo puslapį, spauskite &lt;b&gt;Parsisiųsti&lt;/b&
       <translation>Rodyti</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation type="unfinished">Save PDF complete</translation>
+      <source>Lock Panels</source>
+      <translation>Užrakto plokštės</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation type="unfinished">Save PDF failed</translation>
+      <source>Clear History</source>
+      <translation>Išvalyti istoriją</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>Ar tikrai norite išvalyti visus retrospektyvos elementus?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Įrašyti failą</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>Programa vis dar veikia fone. Spustelėkite dėklo piktogramą, kad būtų rodomas langas.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Atidaryti ir išorinėje naršyklėje</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>Dabar kuriant headwords talpyklą: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Priešdėlis</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Priesaga</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Daugiažodis</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Pilno teksto paieška…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Paieškos režimas</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Paieškos režimas: %1</translation>
     </message>
   </context>
   <context>
@@ -2616,15 +2733,15 @@ Norėdami atverti parsisiuntimo puslapį, spauskite &lt;b&gt;Parsisiųsti&lt;/b&
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML nagrinėjimo klaida: %1 ties %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>JSON analizės klaida</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML nagrinėjimo klaida: %1 ties %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>JSON analizės klaida</translation>
     </message>
   </context>
   <context>
@@ -2700,10 +2817,6 @@ Norėdami atverti parsisiuntimo puslapį, spauskite &lt;b&gt;Parsisiųsti&lt;/b&
       <translation>Aprašas:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Žodyną sudarantys failai:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Žodynų tvarką pakeisite tiesiog juos tempdami. Norėdami uždrausti žodyną, tiesiog nutempkite jį į neaktyviųjų grupę.</translation>
     </message>
@@ -2722,6 +2835,18 @@ Norėdami atverti parsisiuntimo puslapį, spauskite &lt;b&gt;Parsisiųsti&lt;/b&
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Aktyvių žodynų: %1. Neaktyvių: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Keisti rodomą vardą</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Naujas rodomas vardas:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>Žodyno komponentai:</translation>
     </message>
   </context>
   <context>
@@ -2766,28 +2891,12 @@ Pažymėjus šią parinktį, naujos kortelės nebus aktyvuojamos.
       <translation>Naujas korteles atverti fone</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Pažymėjus šią parinktį, naujos kortelės atveriamos
-greta aktyviosios. Priešingu atveju, jos pridedamos
-prie paskutiniųjų.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Naujas korteles atverti už dabartinės</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Rinkitės, jei nenorite matyti kortelių juostos tuomet, kai atverta tik viena kortelė.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Slėpti vienintelę kortelę</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>MRU užsakymas: paskutinis naudotas užsakymas.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2876,8 +2985,100 @@ tiesiog paslepiama.</translation>
       <translation>Žodynų kiekio riba kontekstiniame meniu:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>Sistemoje numatyta</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Numatytasis</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Klasika</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Šiuolaikinis</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Babilonas</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Lingos</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Lingoes mėlynas</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Naująją kalbą programa naudos po to, kai ją atversite iš naujo.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Paleiskite iš naujo, kad pritaikytumėte sąsajos stiliaus pakeitimą.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Paleiskite iš naujo, kad pritaikytumėte sąsajos šrifto pakeitimą.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Reikia paleisti iš naujo</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Įgalinti</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Išjungti</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Automatinis</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Nieko</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>Įjungus šią funkciją, nauji skirtukai atidaromi iškart po
+dabartinis, aktyvus. Priešingu atveju jie pridedami prie
+būkite paskutiniai.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp;Stilius</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Išvaizda</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Interface language</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Article Display style</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Add-on style</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Interface Style</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2896,12 +3097,16 @@ tiesiog paslepiama.</translation>
       <translation>Tamsus skaitytuvo režimas</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Šie šriftai bus taikomi, kai žodyne nurodyti šriftai nebus rasti.</translation>
+      <source>Preview Font</source>
+      <translation>Preview Font</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Atsarginiai šriftai</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng yra žodyno programinė įranga.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Šie šriftai bus taikomi, kai žodyne nurodyti šriftai nebus rasti.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2918,10 +3123,6 @@ tiesiog paslepiama.</translation>
     <message>
       <source>Monospace Font</source>
       <translation>Monospace šriftas</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Iškylantis langas</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2958,8 +3159,8 @@ in the pressed state when the word selection changes.</source>
 po to, kai pasikeis pažymėtas žodis.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Tack pasirinkimas tik tada, kai visi pasirinkti klavišai laikomi nuspausti:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>Takelio pasirinkimas tik tada, kai visi pasirinkti klavišai yra nuspausti:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3042,20 +3243,8 @@ po to, kai pasikeis pažymėtas žodis.</translation>
       <translation>Groti garso kūrinius naudojant integruotą garso sistemą</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Nautoti integruotą grotuvę:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Pasirinkite garso sąsają</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Naudoti bet kokią išorinę programą garso failų grojimui</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Naudoti išorinę programą:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3120,28 +3309,12 @@ užklausoms naudoti įgaliotąjį serverį.</translation>
       <translation>Denis:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Modelis:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Žodis</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Žodyno laukas...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Tekstas</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Apibrėžimo laukas...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Sakinys</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3156,42 +3329,6 @@ you are browsing. If some site breaks because of this, try disabling this.</sour
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>Neleisti įkelti turinio iš kitų svetainių (dažniausiai reklamos)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Kai kurios svetainės aptinka GoldenDict pagal HTTP antraštę ir dėl to blokuoja užklausas.
-Ši parinktis leidžia apeiti problemą.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>HTTP antraštėse neidentifikuoti GoldenDict-ng</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Maksimalus tinklo talpyklos dydis:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Maksimali vieta diske, kurią užima GoldenDict&apos;s tinklo talpykla per
-%1
-Jei nustatyta į 0, tinklo disko talpykla bus išjungta.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>Kai ši parinktis įjungta, „GoldenDict
-išvalo savo tinklo talpyklą iš disko.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Išvalykite tinklo talpyklą išeinant</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3254,8 +3391,12 @@ ir pasiūlys atverti parsisiuntimo puslapį.
       <translation>Žurnalo įrašų didžiausias kiekis:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Žurnalo įrašymo dažnumas. 0 reiškia įrašymą tik užveriant programą.</translation>
+      <source>Favorites</source>
+      <translation>Žymelės</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Žymelių įsiminimo dažnumas. Jei 0, žymelės įrašysimos tik užveriant programą.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3264,14 +3405,6 @@ ir pasiūlys atverti parsisiuntimo puslapį.
     <message>
       <source>minutes</source>
       <translation>min</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Žymelės</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Žymelių įsiminimo dažnumas. Jei 0, žymelės įrašysimos tik užveriant programą.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3369,112 +3502,112 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>Išeidami pašalinkite netinkamą indeksą</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>Sistemoje numatyta</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Numatytasis</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Klasika</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Šiuolaikinis</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Babilonas</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Lingos</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Lingoes mėlynas</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Automatinis kai kuriose sistemose nieko nedaro.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Naująją kalbą programa naudos po to, kai ją atversite iš naujo.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Paleiskite iš naujo, kad pritaikytumėte sąsajos stiliaus pakeitimą.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Paleiskite iš naujo, kad pritaikytumėte sąsajos šrifto pakeitimą.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Reikia paleisti iš naujo</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Įgalinti</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Išjungti</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Automatinis</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Save debug messages to gd_log.txt in the config folder</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Interface language</translation>
+      <source>S&amp;can</source>
+      <translation>S&amp;can</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Article Display style</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>Slopinti JavaScript įspėjimus, patvirtinimus ir raginimus straipsnio rodinyje.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Add-on style</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>Slopinti JavaScript dialogus</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Interface Style</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>Atidarykite svetainės žodyną atskirame skirtuke</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Preview Font</translation>
+      <source>Anki</source>
+      <translation type="unfinished">Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation type="unfinished">GoldenDict-ng is a dictionary software.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>Leisti JavaScript pasiekti mainų sritį straipsnio rodinyje.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation type="unfinished">Enable Interface Font</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>Įgalinti JavaScript mainų srities prieigą (reikia paleisti iš naujo)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>Paleiskite iš naujo, kad pritaikytumėte "JavaScript" mainų srities prieigos pakeitimą.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation type="unfinished">Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>Slėpti skirtukų juostą, kai atidarytas tik vienas skirtukas.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Nieko</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Garso failams leisti naudokite bet kurį išorinį garso grotuvą</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Peržiūrėkite išsamų konfigūracijos vadovą</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>Garso kelias bus perduotas kaip komandų eilutės argumentas išoriniam leistuvui. </translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation>Vidinis garso grotuvas:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation>Išorinis garso grotuvas:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>Automatiškai persijungia pagal sistemos temą.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>Tinkinti šriftus</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>Dock piktograma visada rodoma, kai pagrindinis langas atidarytas, kad macOS galėtų rodyti programos pavadinimą ir meniu. Įjunkite šią parinktį, kad Doko piktograma būtų matoma po pagrindinio lango paslėpimo.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>Laikykite doko piktogramą matomą fone</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>Pridėkite garsą į Anki kortelę, kai tik bus prieinama</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>Įjungus, interneto svetainių žodynai atsidaro atskiroje kortelėje, o ne įterpiami į straipsnio peržiūrą. Tai leidžia išvengti iframe išdėstymo ir slinkimo apribojimų, taip pat leidžia žodyno Script stulpelį Dictionaries dialoge.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Žodis:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>SMS žinutė:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Sakinys:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Sąsajos šriftas</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Individuali šeima</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Individualus dydis</translation>
     </message>
   </context>
   <context>
@@ -3614,11 +3747,63 @@ from Stardict, Babylon and GLS dictionaries</source>
     </message>
     <message>
       <source>Force the word to be translated in Popup.</source>
-      <translation type="unfinished">Force the word to be translated in Popup.</translation>
+      <translation>Priverskite žodį išversti iššokančiajame lange.</translation>
     </message>
     <message>
       <source>Force the word to be translated in the mainwindow.</source>
-      <translation type="unfinished">Force the word to be translated in the mainwindow.</translation>
+      <translation>Priverskite žodį išversti pagrindiniame lange.</translation>
+    </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>Svetainės URL:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>URL &quot;%GDWORD%&quot; bus pakeistas ieškomu žodžiu.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Pilnas HTML (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Vienas HTML (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>PDF dokumentas (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>MIM HTML (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Įrašyti straipsnį kaip</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Išsaugoti straipsnį baigtas</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Klaida</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Nepavyksta įrašyti straipsnio: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Save PDF complete</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Save PDF failed</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Taupomas straipsnis... (%1/%2)</translation>
     </message>
   </context>
   <context>
@@ -3650,6 +3835,10 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>The referenced resource failed to download.</source>
       <translation>Nepavyko parsiųsti nurodytų šaltinių.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>Resursas būtų išsaugotas už paskirties aplanko ribų.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3675,6 +3864,26 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>WARNING: %1</source>
       <translation>ĮSPĖJIMAS: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>Apibrėžimas</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Užverti veikiamąją kortelę</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Užverti visas korteles, iškyrus veikiamąją</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Užverti visas korteles</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Atidaryti ir išorinėje naršyklėje</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3699,10 +3908,6 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>Send word to main window (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation type="unfinished">Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Add word to Favorites (Ctrl+E)</translation>
     </message>
@@ -3715,6 +3920,10 @@ from Stardict, Babylon and GLS dictionaries</source>
 could be resized or managed in other ways.</source>
       <translation>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Įrašyti straipsnį</translation>
     </message>
   </context>
   <context>
@@ -3992,27 +4201,27 @@ visą galimų kalbų sąrašą rasite &lt;a href=&quot;https://lingualibre.org/w
     </message>
     <message>
       <source>The most widely used method of transcription of Japanese, based on English phonology</source>
-      <translation type="unfinished">The most widely used method of transcription of Japanese, based on English phonology</translation>
+      <translation>Plačiausiai naudojamas japonų kalbos transkripcijos metodas, pagrįstas anglų fonologija</translation>
     </message>
     <message>
       <source>Remove selected directories from the list?</source>
-      <translation type="unfinished">Remove selected directories from the list?</translation>
+      <translation>Pašalinti pasirinktus katalogus iš sąrašo?</translation>
     </message>
     <message>
       <source>Remove %1 directories from the list?</source>
-      <translation type="unfinished">Remove %1 directories from the list?</translation>
+      <translation>Pašalinti %1 katalogai iš sąrašo?</translation>
     </message>
     <message>
       <source>Remove %1 sites from the list?</source>
-      <translation type="unfinished">Remove %1 sites from the list?</translation>
+      <translation>Pašalinti %1 svetaines iš sąrašo?</translation>
     </message>
     <message>
       <source>Remove %1 servers from the list?</source>
-      <translation type="unfinished">Remove %1 servers from the list?</translation>
+      <translation>Pašalinti %1 serverius iš sąrašo?</translation>
     </message>
     <message>
       <source>Remove %1 programs from the list?</source>
-      <translation type="unfinished">Remove %1 programs from the list?</translation>
+      <translation>Pašalinti %1 programų iš sąrašo?</translation>
     </message>
   </context>
   <context>
@@ -4109,18 +4318,21 @@ visą galimų kalbų sąrašą rasite &lt;a href=&quot;https://lingualibre.org/w
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Straipsnelį tarp &lt;iframe&gt; gairių įterpti kaip nuorodą</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>Šis svetainės žodynas atidaromas naujame skirtuke</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Išjunk &quot;Atidarykite svetainės žodyną atskirame skirtuke&quot; Nustatymuose, kad vietoje to straipsnyje būtų rodoma svetainė.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Įgalinta</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Kaip nuorodą</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4133,6 +4345,22 @@ visą galimų kalbų sąrašą rasite &lt;a href=&quot;https://lingualibre.org/w
     <message>
       <source>Icon</source>
       <translation>Ženkliukas</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Scenarijus</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>Piktogramos failo pavadinimas. Palyginti su konfigūracijos katalogu.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>Galima tik atidarant svetaines atskiruose skirtukuose. Gali būti failo kelias (atsižvelgiant į konfigūracijos katalogą arba absoliutus) arba tiesioginis scenarijaus turinys.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>Šis stulpelis išjungtas, nes &quot;Atidarykite svetainės žodyną atskirame skirtuke&quot; parinktis neįjungta nuostatose.</translation>
     </message>
   </context>
   <context>

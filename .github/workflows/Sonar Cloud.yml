@@ -1,7 +1,11 @@
 name: SonarCloud
+permissions:
+  contents: read
 concurrency: 
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 on:
   workflow_dispatch:
   push:
@@ -14,17 +18,19 @@ jobs:
   build:
     name: Build and analyze
     runs-on: ubuntu-24.04
+    environment: sonar-cloud
     steps:            
       - name: ubuntu install thirdparty dependencies
         run: |
           sudo apt-get update
           
-          sudo apt-get install build-essential ninja-build \
+          sudo apt-get install -y --fix-missing build-essential ninja-build \
           libvorbis-dev zlib1g-dev libhunspell-dev x11proto-record-dev \
           libxtst-dev liblzo2-dev libbz2-dev \
           libavutil-dev libavformat-dev libeb16-dev \
           libzstd-dev libxkbcommon-dev \
-          libxapian-dev libzim-dev libopencc-dev \
+          libxapian-dev libzim-dev libopencc-dev libfmt-dev \
+          libtomlplusplus-dev \
           qt6-5compat-dev \
           qt6-base-dev \
           qt6-multimedia-dev \
@@ -34,7 +40,7 @@ jobs:
           qt6-tools-dev-tools \
           qt6-webchannel-dev \
           qt6-webengine-dev
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
           submodules: true    
@@ -43,10 +49,10 @@ jobs:
           mkdir build_dir
           cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -S . -B build_dir -G Ninja
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5.1.0
+        uses: SonarSource/sonarqube-scan-action@v8.1.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            --define sonar.cfamily.compile-commands="./build_dir/compile_commands.json"
+            --define "sonar.cfamily.compile-commands=build_dir/compile_commands.json"
     

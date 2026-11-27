@@ -34,6 +34,7 @@ class ArticleView: public QWidget
   const AudioPlayerPtr & audioPlayer;
   std::unique_ptr< DictionaryGroup > dictionaryGroup;
   bool popupView;
+  QString customTitle;
   const Config::Class & cfg;
   QWebChannel * channel;
   ArticleViewAgent * agent;
@@ -50,6 +51,9 @@ class ArticleView: public QWidget
 
   /// For resources opened via desktop services
   QSet< QString > desktopOpenedTempFiles;
+
+  /// For audio temporary files created for clipboard operations
+  QSet< QString > audioTempFiles;
 
   QAction * dictionaryBarToggled;
 
@@ -68,12 +72,25 @@ class ArticleView: public QWidget
   QString activeDictId;
 
   QString audioLink_;
+  QByteArray lastAudioData;
+  QString lastAudioUrl;
 
   /// Search in results of full-text search
   QString firstAvailableText;
   QStringList uniqueMatches;
 
   QString delayedHighlightText;
+
+  /// Flag indicating if this view is dedicated for website browsing
+  bool isWebsiteView = false;
+
+  /// Host part of the website URL for identification
+  QString websiteHost;
+
+  /// Whether the "articleview" QWebChannel object is currently registered
+  /// on the page. The registration follows the trust state of the
+  /// top-level document, see updateWebChannelAccess().
+  bool webChannelAttached = false;
 
   void highlightFTSResults();
   void performFtsFindOperation( bool backwards );
@@ -84,15 +101,11 @@ public:
   /// The groups aren't copied -- rather than that, the reference is kept
   ArticleView( QWidget * parent,
                ArticleNetworkAccessManager &,
-               const AudioPlayerPtr &,
-               const std::vector< sptr< Dictionary::Class > > & allDictionaries,
-               const Instances::Groups &,
                bool popupView,
                const Config::Class & cfg,
                const QLineEdit * translateLine,
                QAction * dictionaryBarToggled = nullptr,
                unsigned currentGroupId        = 0 );
-
 
   void setCurrentGroupId( unsigned currengGrgId );
   unsigned getCurrentGroupId();
@@ -105,6 +118,12 @@ public:
 
   ~ArticleView();
 
+  /// Loads a page at @p url into view.
+  void load( const QUrl & url, const QString & customTitle = {} );
+
+  void load( QString url, const QString & customTitle = {} );
+
+  void setCustomTitle( const QString & customTitle );
 
   /// Returns "gdfrom-" + dictionaryId.
   static QString scrollToFromDictionaryId( const QString & dictionaryId );
@@ -122,15 +141,25 @@ public:
 
   void showDefinition( const QString & word,
                        const QStringList & dictIDs,
-                       const QRegularExpression & searchRegExp,
+                       const QString & searchRegExp,
                        unsigned group,
                        bool ignoreDiacritics );
   void showDefinition( const QString & word, const QStringList & dictIDs, unsigned group, bool ignoreDiacritics );
 
-  void sendToAnki( const QString & word, const QString & text, const QString & sentence );
-  /// Clears the view and sets the application-global waiting cursor,
-  /// which will be restored when some article loads eventually.
-  void showAnticipation();
+  void sendToAnki( const QString & word,
+                   const QString & text,
+                   const QString & sentence,
+                   const QByteArray & audioData  = QByteArray(),
+                   const QString & audioFileName = QString() );
+
+  /// Attempt to fetch audio for the given gdau:// url and send the Anki note
+  /// with the audio attached. Returns true if the note has been (or will be)
+  /// sent via this path; false if the caller should send the note without
+  /// audio (dictionary not found, resource fetch threw, etc.).
+  bool fetchAnkiAudioAndSend( const QString & word,
+                              const QString & dict_definition,
+                              const QString & sentence,
+                              const QUrl & audioUrl );
 
   /// Create a new Anki card from a currently displayed article with the provided id.
   /// This function will call QWebEnginePage::runJavaScript() to fetch the corresponding HTML.
@@ -165,8 +194,16 @@ public:
   void syncBackgroundColorWithCfgDarkReader() const;
 
   QString getCurrentWord();
+  void setCurrentWord( const QString & word );
+
+  /// Returns whether this view is an internal page (welcome, untitled, etc.)
+  bool isInternalPage() const
+  {
+    return webview->url().scheme() == "gdinternal";
+  }
 
 private:
+
   // widgets
   ArticleWebView * webview;
   SearchPanel * searchPanel;
@@ -194,6 +231,12 @@ public:
   /// Reloads the view
   void reload();
 
+  /// Re-evaluates the dark-reader color scheme (e.g. after a system theme
+  /// change in Auto mode) and then reloads, so the embedded web view's
+  /// prefers-color-scheme script stays in sync with the reload instead of
+  /// carrying a stale light/dark script into the freshly loaded page.
+  void applyColorSchemeAndReload();
+
   void stopSound();
 
   /// Returns true if there's an audio reference on the page, false otherwise.
@@ -211,6 +254,33 @@ public:
       //webview->page()->setZoomFactor(factor);
     }
   }
+
+  /// Returns whether this view is for website browsing
+  bool isWebsite() const
+  {
+    return isWebsiteView;
+  }
+
+  /// Sets whether this view is for website browsing
+  void setWebsite( bool website )
+  {
+    isWebsiteView = website;
+  }
+
+  /// Returns the website host
+  QString getWebsiteHost() const
+  {
+    return websiteHost;
+  }
+
+  /// Sets website host
+  void setWebsiteHost( const QString & host );
+
+  /// Returns whether the current top-level document is trusted to use the
+  /// "articleview" QWebChannel bridge. Untrusted documents (remote websites
+  /// opened in the view, pages reached through a meta refresh, file:// pages,
+  /// etc.) must not be able to invoke native actions through the bridge.
+  bool isBridgeTrusted() const;
 
   /// Returns current article's text in .html format
   void toHtml( const std::function< void( QString & ) > & callback );
@@ -246,7 +316,7 @@ public:
   QString getActiveArticleId();
   void setActiveArticleId( const QString & );
 
-  ResourceToSaveHandler * saveResource( const QUrl & url, const QString & fileName );
+  ResourceToSaveHandler * saveResource( const QUrl & url, const QString & fileName, const QString & rootDir = QString() );
 
   void findText( QString & text,
                  const QWebEnginePage::FindFlags & f,
@@ -306,6 +376,9 @@ signals:
 
   void saveBookmarkSignal( const QString & bookmark );
 
+  /// Signal that the user has double-clicked a word and wants to translate it
+  void translateSelectedText( const QString & word, const QUrl & url, const QString & currentArticle );
+
 public slots:
 
   /// Opens the search (Ctrl+F)
@@ -321,15 +394,18 @@ public slots:
 
   /// Selects an entire text of the current article
   void selectCurrentArticle();
-  //receive signal from weburlinterceptor.
+  // Handles link clicks reported by ArticleWebPage / weburlinterceptor:
+  // internal schemes look up or play audio, external ones go to the desktop.
   void linkClicked( const QUrl & );
-  //aim to receive signal from html. the fragment url click to  navigation through page wil not be intecepted by weburlinteceptor
-  Q_INVOKABLE void linkClickedInHtml( const QUrl & );
 private slots:
   void inspectElement();
   void loadFinished( bool ok );
   void handleTitleChanged( const QString & title );
   void attachWebChannelToHtml();
+
+  /// Registers or deregisters the "articleview" QWebChannel object so that
+  /// only trusted top-level documents can see the bridge.
+  void updateWebChannelAccess();
 
   void linkHovered( const QString & link );
   void contextMenuRequested( const QPoint & );
@@ -363,21 +439,27 @@ private slots:
   /// Handles the double-click from the definition.
   void doubleClicked( QPoint pos );
 
+  /// Looks up the current text selection (Enter / Ctrl+Enter in the article).
+  void searchSelectedText( bool inNewTab );
+
   /// Handles audio player error message
   void audioPlayerError( const QString & message );
 
   /// Copy current selection as plain text
   void copyAsText();
+  void copyResourceToClipboard( const QUrl & url );
 
   void setActiveDictIds( const ActiveDictIds & ad );
 
   void dictionaryClear( const ActiveDictIds & ad );
 
-private:
+public:
 
   /// Deduces group from the url. If there doesn't seem to be any group,
   /// returns 0.
   unsigned getGroup( const QUrl & );
+
+private:
 
   /// Returns current article in the view, in the form of "gdfrom-xxx" id.
   QString getCurrentArticle();
@@ -396,8 +478,14 @@ private:
   /// url to the appropriate "contexts" entry.
   void tryMangleWebsiteClickedUrl( QUrl & url, Contexts & contexts );
 
-  /// Loads a page at @p url into view.
-  void load( const QUrl & url );
+  /// Injects Dark Reader JavaScript for dark mode support
+  void injectDarkModeJavaScript();
+
+  /// Injects website-specific configuration script
+  void injectWebsiteConfigScript();
+
+  bool isDarkModeEnabled() const;
+
 
   /// Attempts removing last temporary file created.
   void cleanupTemp();
@@ -405,12 +493,6 @@ private:
   bool eventFilter( QObject * obj, QEvent * ev ) override;
 
   void performFindOperation( bool backwards );
-
-  /// Returns the comma-separated list of dictionary ids which should be muted
-  /// for the given group. If there are none, returns empty string.
-  QString getMutedForGroup( unsigned group );
-
-  QStringList getMutedDictionaries( unsigned group );
 };
 
 class ResourceToSaveHandler: public QObject
@@ -418,7 +500,7 @@ class ResourceToSaveHandler: public QObject
   Q_OBJECT
 
 public:
-  explicit ResourceToSaveHandler( ArticleView * view, QString fileName );
+  explicit ResourceToSaveHandler( ArticleView * view, QString fileName, QString rootDir = QString() );
   void addRequest( const sptr< Dictionary::DataRequest > & req );
   bool isEmpty()
   {
@@ -435,6 +517,7 @@ public slots:
 private:
   std::list< sptr< Dictionary::DataRequest > > downloadRequests;
   QString fileName;
+  QString rootDir; // Destination writes are only allowed inside this directory; empty means no root confinement.
   bool alreadyDone;
 };
 
@@ -449,6 +532,5 @@ public:
 
 public slots:
   Q_INVOKABLE void onJsActiveArticleChanged( const QString & id );
-  Q_INVOKABLE void linkClickedInHtml( const QUrl & );
   Q_INVOKABLE void collapseInHtml( const QString & dictId, bool on = true ) const;
 };

@@ -4,7 +4,7 @@ To use local dictionaries, add them via `Sources` -> `Files`.
 
 To inspect or disable individual dictionaries, go `Edit` -> `Dictionaries` -> `Dictionaries`.
 
-If you have too many dictionaries, consider use `Groups` to manage them.
+If you have too many dictionaries, consider using `Groups` to manage them.
 
 ## Files
 
@@ -13,11 +13,11 @@ If you have too many dictionaries, consider use `Groups` to manage them.
 
 Here you can add local dictionaries.
 
-Press the "Add" button and select folders that includes your local dictionaries. To search every subfolders, enable the "Recursive".
+Press the "Add" button and select folders that include your local dictionaries. To search every subfolder, enable the "Recursive":
 
-GoldenDict will scan these folders and add found dictionaries into dictionaries list.
+GoldenDict will scan these folders and add found dictionaries to the dictionaries list.
 
-"Rescan" button start forced scan of all folders in list.
+The "Rescan" button starts a forced scan of all folders in the list.
 
 
 ## Sound Dirs
@@ -32,7 +32,7 @@ A word could have several forms, but sometimes a dictionary only contains one fo
 
 Morphology dictionary uses Hunspell's morphological analysis to obtain word's variant forms.
 
-You can specify a path that includes Hunspell format data files (`.aff` + `.dic`). GoldenDict scan this folder and create a list of available dictionaries.
+You can specify a path that includes Hunspell format data files (`.aff` + `.dic`). GoldenDict will scan this folder and create a list of available dictionaries.
 
 One possible source of Hunspell dictionaries is LibreOffice's [dictionaries](https://github.com/LibreOffice/dictionaries).
 
@@ -43,21 +43,34 @@ There are some specially tailored hunspell dicts to use for Morphology. Such as
 
 * <https://sourceforge.net/projects/goldendict/files/better%20morphologies/1.0/>
 * <https://github.com/Ajatt-Tools/hunspell-ja>
+* <https://github.com/yx-wh/hunspell_zh_CN> — Chinese traditional/simplified and variant forms; complements OpenCC by expanding one simplified form to several traditional ones (e.g. 发 → 發 / 髪).
 
 ## Websites
 
-Here you can add any website which allow to set target word in url. To add such site you should set it url with target word template, name for dictionaries list and set mark in "Enabled" column. In the "Icon" column you can set custom icon for this site. If you add icon file name without path GoldenDict will search this file in configuration folder. "As link" column define method of article insertion into common page. If this option is set article will be inserted as link inside `<iframe>` tag (preferable mode). If articles are not loaded in this mode turn this option off, then articles will be inserted as html-code.
+Here you can add any website that allows you to specify the query word in the URL. To add a site, provide its URL using one of the placeholders below, give it a name for the dictionary list, and check the "Enabled" column. You can also set a custom icon in the "Icon" column.If you add an icon file name without a path, GoldenDict will search for this file in the configuration folder.
 
-Target word can be inserted into url in next encodings::
+The query word can be inserted into the URL using the following placeholders:
 
 | Target word template   | Encoding                                |
 |------------------------|-----------------------------------------|
 | %GDWORD%               | UTF-8                                   |
 
 
+### Open in New Tab
+
+By default, website dictionaries are embedded directly into the article view using an iframe. If you prefer to open a website in a separate tab within GoldenDict-ng:
+
+1.  Go to **Preferences -> Interface**.
+2.  Enable **Open websites in a new tab**.
+
+When this option is enabled:
+-   Websites will load in their own dedicated tabs instead of inside the article definition page.
+-   [Website Scripting](./topic_website_scripting.md) can be used to customize these pages.
+-   The layout is often cleaner as it bypasses iframe-related styling issues.
+
 ## DICT servers
 
-Here you can add servers which uses DICT protocol. To add such server you should set its url, name for dictionaries list, server bases list, search strategies list and set mark in "Enabled" column. If bases list is empty GoldenDict will use all server bases. If search strategies list is empty GoldenDict will use "prefix" strategy (comparing the first part of the word).
+Here you can add servers which use the DICT protocol. To add such a server, you should set its URL, name for the dictionaries list, server bases list, search strategies list, and set a mark in the "Enabled" column. If the bases list is empty, GoldenDict will use all server bases. If the search strategies list is empty, GoldenDict will use the "prefix" strategy (comparing the first part of the word).
 
 In the "Icon" column you can set custom icon for every server. If you add icon file name without path GoldenDict will search this file in configuration folder.
 
@@ -72,7 +85,7 @@ The `%GDWORD%` in command line will be replaced by word from search line.
 |--------------|---------------------------------------------------------------------------------------|
 | Audio        | Play sound.                                                                           |
 | Text         | Text printed by the program will be shown as separate article.                        |
-| HTML         | HTML printed by the program Will be shown as separate article.                        |
+| HTML         | HTML printed by the program will be shown as separate article.                        |
 | Prefix match | A list of words printed by the program will be added to search bar's completion list. |
 
 Other than "Audio", the program should print the content to standard output.
@@ -95,7 +108,22 @@ In the "Icon" column, you can set a custom icon for every application. If you ad
 
 ## Transliteration
 
-Here you can add transliteration algorithms. To add algorithm into dictionaries list just set mark beside it. When such dictionary added into current dictionaries group GoldenDict will search word in the input line as well as result of its handling by corresponding transliteration algorithm.
+Here you can add transliteration algorithms. To add an algorithm to the dictionaries list, just set a mark beside it. When such a dictionary is added to the current dictionaries group, GoldenDict will search for the word in the input line as well as the result of its handling by the corresponding transliteration algorithm.
+
+### Chinese and Japanese character conversion
+
+GoldenDict-ng ships with a built-in conversion between the Chinese character variants and Japanese Shinjitai. Tick the target variants in the "Chinese and Japanese Character Conversion" group:
+
+| Option | Effect |
+|--------|--------|
+| Simplified (Mainland) | Traditional Chinese and Japanese Shinjitai input is also searched as simplified Chinese. |
+| Traditional (Taiwan/Standard) | Simplified Chinese and Japanese Shinjitai input is also searched as traditional Chinese (Taiwan standard). |
+| Hong Kong variant | Simplified Chinese and Japanese Shinjitai input is also searched as traditional Chinese (Hong Kong variant). |
+| Japanese Shinjitai | Simplified and traditional Chinese input is also searched as Japanese Shinjitai. |
+
+Every ticked option is registered as a separate dictionary in the list below, so it can be enabled per dictionary group. The word can be typed in any of the variants and still match the entries, for example searching `図書館` also finds `圖書館` and `图书馆`.
+
+The conversion data is provided by [OpenCC](https://github.com/BYVoid/OpenCC); see [Customize the opencc](<howto/how to customize the opencc.md>) for the configuration files in use. If you want to define your own transliteration rules, see [Custom transliteration](topic_transliteration.md).
 
 ## System Text-to-speech engines
 

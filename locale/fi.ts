@@ -57,16 +57,46 @@
       <translation>Tervetuloa!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;Tervetuloa &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;Aloita työskentely ohjelman kanssa käymällä ensin osoitteessa &lt;em&gt;Muokkaa | Sanakirjat&lt;/em&gt; lisätäksesi hakemistopolkuja, joihin voit etsiä sanakirjatiedostoja, perustaa erilaisia Wikipedia-sivustoja tai muita lähteitä, säätää sanakirjajärjestystä tai luoda sanakirjaryhmiä.&lt;p&gt;Ja sitten&apos;valmis etsimään sanojasi! Voit tehdä sen tässä ikkunassa käyttämällä vasemmalla olevaa ruutua tai voit &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;sanoja muista aktiivisista sovelluksista&lt;/a&gt;. &lt;p&gt;Voit mukauttaa ohjelmaa tutustumalla käytettävissä oleviin asetuksiin kohdassa &lt;em&gt;Muokkaa | Asetukset&lt;/em&gt;. Kaikissa asetuksissa on työkaluvihjeitä, muista lukea ne, jos olet epävarma jostain.&lt;p&gt;Jos tarvitset lisäapua, sinulla on kysyttävää, ehdotuksia tai vain ihmettelet muiden mielipiteitä, olet tervetullut ohjelman&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;foorumille&lt;/a&gt;.&lt;p&gt;Tarkista ohjelman&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;verkkosivuilta&lt;/a&gt; päivitykset. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Lisensoitu GPLv3:lla tai uudemmalla.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(nimetön)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(kuva)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Tervetuloa &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;Aloittaaksesi&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Siirry &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Muokkaa&lt;/span&gt;&lt;span&gt;sanakirjoja&lt;/span&gt;&lt;/span&gt; lisätäksesi sanakirjatiedostojasi, perustaa online-lähteitä, kuten Wikipediaa, ja järjestää ne ryhmiin.&lt;/li&gt;
+          &lt;li&gt;Kun asetus on asetettu, voit etsiä sanoja tässä ikkunassa tai &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;muista sovelluksista käyttämällä Skannaa ponnahdusikkuna&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;mukauttaaksesi ohjelmaa, tutki asetuksia &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Muokkaa&lt;/span&gt;&lt;span&gt;Asetukset&lt;/span&gt;&lt;/span&gt;. Kaikissa asetuksissa on työkaluvihjeitä, joten muista lukea ne, jos jokin on epäselvä.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Jos tarvitset lisäapua, sinulla on kysyttävää tai ehdotuksia, olet tervetullut ohjelmaan&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;foorumi&lt;/a&gt; ja &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;verkkosivuilla&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Perustuu Konstantin Isakovin alkuperäiseen GoldenDictiin (c) 2008-2013. GoldenDict-NG yhteisön ylläpitämä ja kehittämä. Lisenssi GPLv3 tai uudempi.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>Ilmausta ei löydy</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 / %2 ottelua</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Luo Anki-muistio</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;Kopioi ääni leikepöydälle</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>Äänen kopiointi epäonnistui</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>Valmiiden äänitietojen kirjoittaminen epäonnistui</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>Ääni kopioitu leikepöydälle</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Äänen lataaminen epäonnistui</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 / %2 ottelua</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Avaa artikkeli ulkoisessa &amp;selaimessa</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>GoldenDict Resurssikatselin</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -275,52 +336,60 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Kiinalainen Muuntaminen</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Perinteinen yksinkertaistettu Kiinan muuntaminen</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Ota käyttöön muuntaminen yksinkertaistettujen ja perinteisten kiinalaisten merkkien välillä</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Mahdollista muuntaminen yksinkertaistetuista/perinteisistä kiinalaisista merkeistä japanilaisiin Shinjitai-merkkeihin</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>Kiinan&amp;muunnos</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Japanilainen Shinjitai</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Ota käyttöön muuntaminen yksinkertaistetuista merkeistä perinteisiin (Taiwan variantti) merkkeihin</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>Kiinasta japanilaiseen Shinjitai-muunnos</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Ota käyttöön muuntaminen yksinkertaistetuista merkeistä perinteisiin (Hong Kong -variantti) merkkeihin</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>Kiinan ja japanin merkkien muunnos</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>Mahdollista muunnos yksinkertaistetun kiinan, perinteisen kiinan (Taiwan/Hongkong) ja japanilaisen shinjitai-merkkien välillä</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Ota käyttöön muuntaminen perinteisistä merkeistä yksinkertaistettuihin merkkeihin</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Yksinkertaistettu perinteiseen kiinalaiseen (Taiwan variantti) muuntamiseen</translation>
+      <source>Simplified</source>
+      <translation>Yksinkertaistettu</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Yksinkertaistettu perinteiseen kiinalaiseen (Hong Kong -versioon) muuntamiseen</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Ota muuntaminen yksinkertaistetuista merkeistä perinteisiksi (Taiwan) merkeiksi</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Perinteinen yksinkertaistettu Kiinan muuntaminen</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>Perinteinen (Taiwan)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation>Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Ota käyttöön muuntaminen yksinkertaistetuista merkeistä perinteisiin (Hongkongin) merkkeihin</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation>Hongkongin muunnos</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Perinteinen (Hongkong)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation>Manner-Euroopan variantti</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>Yksinkertaistettu perinteiseen kiinalaiseen (Taiwan) muunnokseen</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>Yksinkertaistettu perinteiseen kiinalaiseen (Hongkong) muunnokseen</translation>
     </message>
   </context>
   <context>
@@ -408,10 +477,6 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
       <translation>Haluatko varmasti luoda joukon ryhmiä sisältävien kansioiden perusteella?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>Haluatko varmasti luoda joukon ryhmiä metadata.toml-tiedoston perusteella?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Yhdistä ryhmät lähdekielen mukaan &quot;%1-&gt;&quot;</translation>
     </message>
@@ -426,6 +491,18 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Yhdistä ryhmät &quot;%1&quot;</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Poista ryhmä</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>Oletko varma, että haluat poistaa ryhmän &lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>Oletko varma, että haluat luoda joukon ryhmiä sanakirjan metatietotiedostojen perusteella?</translation>
     </message>
   </context>
   <context>
@@ -455,10 +532,6 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
       <translation>Suodatin:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Hakutila</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Tämä elementti määrittää, miten suodatinmerkkijono tulkitaan</translation>
     </message>
@@ -481,18 +554,6 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Määritä suurin suodatetut otsikot.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Suodatin max tulokset:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Ohje</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>Ok</translation>
     </message>
     <message>
       <source>Text</source>
@@ -542,6 +603,10 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
       <source>Regular Expression</source>
       <translation>Säännöllinen Lauseke</translation>
     </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>Maksimi:</translation>
+    </message>
   </context>
   <context>
     <name>DictInfo</name>
@@ -574,10 +639,6 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
       <translation>Käännös:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Tämän sanakirjan sisältämät tiedostot:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Kuvaus:</translation>
     </message>
@@ -596,6 +657,18 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
     <message>
       <source>Full-text search disabled</source>
       <translation>Koko tekstihaku pois käytöstä</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Poista käytöstä</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Ota käyttöön</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>Sanakirjakomponentit:</translation>
     </message>
   </context>
   <context>
@@ -692,6 +765,34 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
     <message>
       <source>Restore selection</source>
       <translation>Palauta valinta</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>Peru uudelleenindeksointi</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>Ajastus uudelleenindeksointia varten</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>Peruuta ajoitettu uudelleenindeksointi</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>Sanasto on tarkoitus indeksoida uudelleen. Indeksi rakennetaan uudelleen seuraavan sovelluksen uudelleenkäynnistyksen yhteydessä.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Muuta näytön nimeä</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Uusi näytön nimi:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Sanakirjan uudelleenindeksointi ei onnistunut.</translation>
     </message>
   </context>
   <context>
@@ -808,10 +909,6 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
       <translation>Lisää kansio</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Tyhjennä kaikki</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Suosikit:</translation>
     </message>
@@ -820,16 +917,20 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
       <translation>Kaikki valitut kohteet poistetaan. Jatketaanko?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Tyhjennä kaikki kohteet</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>Haluatko varmasti tyhjentää kaikki kohteet?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Tyhjennä</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>Tyhjennä Suosikit</translation>
     </message>
   </context>
   <context>
@@ -957,28 +1058,12 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
       <translation>Tab 2</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>Luo uusi sanakirja ryhmä</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>&amp;Lisää ryhmä</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>Nimeä nykyinen sanakirja uudestaan</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>Ni&amp;meä ryhmä uudelleen</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Poista nykyinen sanakirja ryhmä</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>&amp;Poista ryhmä</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1048,6 +1133,22 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>Oletko varma, että haluat poistaa kaikki ryhmät?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>Lisää uusi sanakirja ryhmä</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>&amp;Lisää ryhmä</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>Ryhmä on jo olemassa</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>Ryhmä jonka nimi on &apos;%1&apos; on jo olemassa.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1081,6 +1182,18 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
     <message>
       <source>%1 Morphology</source>
       <translation>%1 Morfologia</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Oikeinkirjoitus, muita sanamuotoja ei löytynyt.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>Lähde %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Sanamuodot %1: </translation>
     </message>
   </context>
   <context>
@@ -2388,10 +2501,6 @@ klassisen ja kouluortografian välillä kyrillisessä)</translation>
       <translation>Uusi välilehti</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>Tervetuloa!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>Esteettömyyden API ei ole käytössä</translation>
     </message>
@@ -2464,42 +2573,6 @@ Löytääksesi &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; tunnus
     <message>
       <source>Print Article</source>
       <translation>Tulosta artikkeli</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Täydellinen HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Yksittäinen HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>Pdf (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Mime-HTML (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Tallenna artikkeli nimellä</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Virhe</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Voi&apos;t tallentaa artikkeli: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Tallennetaan artikkelia...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Artikkelin tallennus valmis</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2594,12 +2667,56 @@ Löytääksesi &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; tunnus
       <translation>Näytä</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation>Tallennus PDF-muodossa valmis</translation>
+      <source>Lock Panels</source>
+      <translation>Lukitse Paneelit</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation>PDF-tiedostojen tallennus epäonnistui</translation>
+      <source>Clear History</source>
+      <translation>Tyhjennä Historia</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>Oletko varma, että haluat tyhjentää kaikki historian kohteet?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Tallenna Tiedosto</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>Sovellus pyörii edelleen taustalla. Klikkaa tarjottimen kuvaketta näyttääksesi ikkunan.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Avaa sisään &amp; ulkoinen selain</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>Nyt rakennamme otsikkosanavarastoa: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Etuliite</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Päätte</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Monisanainen</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Koko tekstin haku…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Hakutila</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Hakutila: %1</translation>
     </message>
   </context>
   <context>
@@ -2616,15 +2733,15 @@ Löytääksesi &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; tunnus
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML-jäsennysvirhe: %1 %2:lla,%3</translation>
+      <source>JSON parse error</source>
+      <translation>JSON jäsennysvirhe</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML-jäsennysvirhe: %1 %2:lla,%3</translation>
+      <source>JSON parse error</source>
+      <translation>JSON jäsennysvirhe</translation>
     </message>
   </context>
   <context>
@@ -2700,10 +2817,6 @@ Löytääksesi &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; tunnus
       <translation>Kuvaus:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Tämän sanakirjan sisältämät tiedostot:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Säädä tilausta vetämällä ja pudottamalla kohteita siihen. Pudota sanakirjoja passiiviseen ryhmään poistaaksesi käytöstä niiden käytön.</translation>
     </message>
@@ -2722,6 +2835,18 @@ Löytääksesi &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; tunnus
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Sanakirjat aktiivisia: %1, ei aktiivisia: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Muuta näytön nimeä</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Uusi näytön nimi:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>Sanakirjalliset komponentit:</translation>
     </message>
   </context>
   <context>
@@ -2766,28 +2891,12 @@ vaihtamista niihin.</translation>
       <translation>Avaa uudet välilehdet taustalla</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Tämän avulla avataan uudet välilehdet heti
-virtauksen jälkeen, aktiivinen välilehti. Muuten ne lisätään
-ovat viimeisiä.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Avaa uudet välilehdet nykyisen välilehtien jälkeen</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Valitse tämä vaihtoehto, jos et halua&apos;t nähdä päävälilehden palkin, kun vain yksi välilehti on avattu.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Piilota yksi välilehti</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>MRU-tilaus: Viimeksi käytetty tilaus.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2876,8 +2985,100 @@ sovellus.</translation>
       <translation>Kontekstivalikon sanakirjojen raja:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>Järjestelmän oletus</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Oletus</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Klassinen</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Moderni</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Babylon</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Lingot</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Lingo-sininen</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Ohjelma pitää käynnistää uudelleen jotta kieli voidaan vaihtaa.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Käynnistä käyttöliittymän tyylin muutos uudelleen.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Käynnistä uudelleen ottaaksesi käyttöön käyttöliittymän kirjasimen muutokset.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Uudelleenkäynnistys tarvitaan</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Ota käyttöön</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Poista käytöstä</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Automaattinen</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Tyhjä</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>Tämän avulla uudet välilehdet avataan juuri
+-virran jälkeen. Muuten ne lisätään
+ovat viimeisiä.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp;Tyyli</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Ulkomuoto</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Käyttöliittymän kieli</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Artikkelin esitystyyli</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Lisäosan tyyli</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Käyttöliittymän Tyyli</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2896,12 +3097,16 @@ sovellus.</translation>
       <translation>Tumma Lukija -tila</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Näitä fontteja käytetään, kun sanakirjan määrittämiä fontteja ei löydy.</translation>
+      <source>Preview Font</source>
+      <translation>Esikatsele Kirjasinta</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Varafontit</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng on sanakirja ohjelmisto.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Näitä fontteja käytetään, kun sanakirjan määrittämiä fontteja ei löydy.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2918,10 +3123,6 @@ sovellus.</translation>
     <message>
       <source>Monospace Font</source>
       <translation>Monospace fontti</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Kartoita Ponnahdusikkuna</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2958,8 +3159,8 @@ in the pressed state when the word selection changes.</source>
 painettuna tilassa, kun sana valinta muuttuu.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Valitse vain kun kaikki valitut näppäimet pidetään painettuna:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>Vain raidan valinta kun kaikkia valittuja näppäimiä pidetään painettuna:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3042,20 +3243,8 @@ painettuna tilassa, kun sana valinta muuttuu.</translation>
       <translation>Toista äänitiedostoja sisäänrakennetun äänituen kautta</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Käytä sisäistä pelaajaa:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Valitse audio back end</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Käytä mitä tahansa ulkoista ohjelmaa äänitiedostojen toistamiseen</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Käytä ulkoista ohjelmaa:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3120,28 +3309,12 @@ kaikille ohjelmille&apos;s verkkopyyntöille.</translation>
       <translation>Pakka:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Malli:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Sana</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Sanaston kenttä...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Teksti</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Määritelmän kenttä...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Lause</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3158,42 +3331,6 @@ joita selailet. Jos jokin sivusto rikkoo tämän vuoksi, kokeile poistaa tämä 
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>Estä sisällön lataaminen muilta sivustoilta (piilottaa useimmat mainokset)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Jotkut sivustot havaitsevat GoldenDictin HTTP-otsikoiden kautta ja estävät pyynnöt.
-Ota tämä asetus käyttöön korjataksesi ongelman.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>Älä tunnista GoldenDictia HTTP-otsikoissa</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Verkon välimuistin enimmäiskoko:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>GoldenDict&apos;s -verkkovälimuistin käyttämä levytila maksimissaan
-%1
-Jos arvo on 0, verkkovälimuisti ei ole käytössä.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>Kun tämä asetus on käytössä, GoldenDict
-tyhjentää verkon välimuistin levyltä poistumisen aikana.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Tyhjennä verkkovälimuisti poistuttaessa</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3256,8 +3393,12 @@ lataussivun.</translation>
       <translation>Historian enimmäiskoko:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Historian tallennus aika. Jos asetettu 0 historiaan, tallennetaan vain poistumisen aikana.</translation>
+      <source>Favorites</source>
+      <translation>Suosikit</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Suosikkien tallennusväli. Jos arvo on 0 Suosikkia, tallennetaan vain ulostulon aikana.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3266,14 +3407,6 @@ lataussivun.</translation>
     <message>
       <source>minutes</source>
       <translation>minuuttia</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Suosikit</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Suosikkien tallennusväli. Jos arvo on 0 Suosikkia, tallennetaan vain ulostulon aikana.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3372,112 +3505,112 @@ alkaen alkaen alkupisteestä, Babylonista ja GLS-sanakirjoista</translation>
       <translation>Poista virheellinen indeksi poistuessasi</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>Järjestelmän oletus</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Oletus</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Klassinen</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Moderni</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Babylon</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Lingot</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Lingo-sininen</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Auto ei tee mitään joissain järjestelmissä.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Ohjelma pitää käynnistää uudelleen jotta kieli voidaan vaihtaa.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Käynnistä käyttöliittymän tyylin muutos uudelleen.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Käynnistä uudelleen ottaaksesi käyttöön käyttöliittymän kirjasimen muutokset.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Uudelleenkäynnistys tarvitaan</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Ota käyttöön</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Poista käytöstä</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Automaattinen</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Tallenna debug viestit gd_log.txt asetuskansioon</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Käyttöliittymän kieli</translation>
+      <source>S&amp;can</source>
+      <translation>S&amp;can</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Artikkelin esitystyyli</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>Piilota JavaScript-hälytykset, vahvistukset ja kehotukset artikkelin näkymässä.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Lisäosan tyyli</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>Piilota JavaScript-ikkunat</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Käyttöliittymän Tyyli</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>Avaa verkkosivuston sanakirja erillisessä välilehdessä</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Esikatsele Kirjasinta</translation>
+      <source>Anki</source>
+      <translation>Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation>GoldenDict-ng on sanakirja ohjelmisto.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>Salli JavaScript käyttää leikepöytää artikkelin näkymässä.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation>Ota Käyttöön Käyttöliittymän Kirjasin</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>Salli JavaScript-leikepöydälle pääsy (täytyy käynnistää uudelleen)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation>Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>Käynnistä uudelleen, jos haluat ottaa käyttöön JavaScript-leikepöydälle pääsyn muutoksen.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation>Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>Piilota välilehti kun vain yksi välilehti on auki.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Tyhjä</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Käytä mitä tahansa ulkoista äänisaajaa toistaaksesi äänitiedostoja</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Näytä yksityiskohtaiset asetusohjeet</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>Äänipolku siirtyy ulkoiselle pelaajalle komentorivin argumentina. Tämä on komentorivinen parametri. </translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation>Sisäinen äänisoitin:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation>Ulkoinen äänisoitin:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>Vaihtaa automaattisesti järjestelmän teeman mukaan.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>Fonttien räätälöinti</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>Dock-kuvake näkyy aina, kun pääikkuna on auki, jotta macOS voi näyttää sovelluksen nimen ja valikot. Ota tämä asetus käyttöön, jotta Dock-kuvake pysyy näkyvissä, kun pääikkuna on piilotettu.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>Pidä telakkakuvake näkyvissä taustalla</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>Lisää ääni Anki-kortille, kun se on saatavilla</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>Kun ne ovat käytössä, verkkosivuston sanakirjat avautuvat omalla välilehdellään artikkelinäkymän sijaan. Tämä välttää iframe-asettelun ja vieritysrajoitukset, ja mahdollistaa sanakirjakohtaisen Script-sarakkeen sanakirja-ikkunassa.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Sana:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>Tekstiviesti:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Lause:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Käyttöliittymän Kirjasin</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Mukautettu perhe</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Mukautettu koko</translation>
     </message>
   </context>
   <context>
@@ -3623,6 +3756,58 @@ alkaen alkaen alkupisteestä, Babylonista ja GLS-sanakirjoista</translation>
       <source>Force the word to be translated in the mainwindow.</source>
       <translation>Pakota sana kääntämään se verkkoikkunaan.</translation>
     </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>Sivuston URL-osoite:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>URL-osoitteessa, &quot;%GDWORD%&quot; korvataan haettavalla sanalla.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Complete Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Yksittäinen Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>PDF-asiakirja (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Tallenna Artikkeli Nimellä</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Tallenna artikkeli valmistui</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Virhe</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Voi&apos;t tallentaa artikkeli: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Tallennus PDF-muodossa valmis</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>PDF-tiedostojen tallennus epäonnistui</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Tallennetaan artikkelia... (%1/%2)</translation>
+    </message>
   </context>
   <context>
     <name>QuickFilterLine</name>
@@ -3653,6 +3838,10 @@ alkaen alkaen alkupisteestä, Babylonista ja GLS-sanakirjoista</translation>
       <source>The referenced resource failed to download.</source>
       <translation>Viitattua resurssia ei voitu ladata.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>Resurssi tallennettaisiin kohdekansion ulkopuolelle.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3678,6 +3867,26 @@ alkaen alkaen alkupisteestä, Babylonista ja GLS-sanakirjoista</translation>
       <source>WARNING: %1</source>
       <translation>VAROITUS: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>Määritelmä</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Sulje nykyinen välilehti</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Sulje kaikki välilehdet paitsi nykyisen</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Sulje kaikki välilehdet</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Avaa sisään &amp; ulkoinen selain</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3702,10 +3911,6 @@ alkaen alkaen alkupisteestä, Babylonista ja GLS-sanakirjoista</translation>
       <translation>Lähetä sana pääikkunaan (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation>Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Lisää sana suosikeihin (Ctrl+E)</translation>
     </message>
@@ -3718,6 +3923,10 @@ alkaen alkaen alkupisteestä, Babylonista ja GLS-sanakirjoista</translation>
 could be resized or managed in other ways.</source>
       <translation>Tämän avulla voit kiinnittää ikkunan alaspäin, jotta se pysyisi ruudulla,
 voidaan muuttaa tai hallita muulla tavoin.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Tallenna artikkeli</translation>
     </message>
   </context>
   <context>
@@ -4113,18 +4322,21 @@ Täydellinen luettelo saatavilla olevista kielistä löytyy &lt;a href=&quot;htt
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Lisää artikkeli linkkinä &lt;iframe&gt; -tagin sisälle</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>Tämä sivusto sanakirja on avattu uudessa välilehdessä</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Virta poikki &quot;Avaa verkkosivuston sanakirja erillisessä välilehdessä&quot; asetuksissa näyttääksesi verkkosivuston artikkelin sisällä.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Käytössä</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Linkinä</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4137,6 +4349,22 @@ Täydellinen luettelo saatavilla olevista kielistä löytyy &lt;a href=&quot;htt
     <message>
       <source>Icon</source>
       <translation>Ikoni</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Skripti</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>Kuvakkeen tiedoston nimi. Suhteellinen asetuskansioon.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>Saatavilla vain, kun sivustoja avataan erillisillä välilehdillä. Voi olla tiedostopolku (suhteessa config hakemistoon tai absoluuttiin) tai suora skriptin sisältö.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>Tämä sarake on pois päältä, koska &quot;Avaa verkkosivujen sanakirja erillisessä välilehdessä&quot; ei ole käytössä asetuksissa.</translation>
     </message>
   </context>
   <context>

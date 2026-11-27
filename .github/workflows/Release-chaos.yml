@@ -1,0 +1,292 @@
+name: Release Chaos
+concurrency:
+   group: ${{ github.workflow }}-${{ github.ref }}
+   cancel-in-progress: true
+env:
+  prerelease: true
+  versionSuffix: 'chaos'
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chaos
+    paths-ignore:
+      - 'docs/**'
+      - "howto/**"
+      - "*.md"
+      - ".clang-format"
+jobs:
+  build_macOS:
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-15,macos-15-intel]
+        # Qt 6.12 LTS (also fixes the tray icon crash on macOS 27 that 6.8/6.10 lack)
+        qt_ver: [ 6.12.0 ]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+      - name: Install dependencies
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: 1
+          HOMEBREW_NO_INSTALL_CLEANUP: 1
+        run: |
+          brew install --force --overwrite \
+            bzip2 \
+            create-dmg \
+            hunspell \
+            libiconv \
+            libogg \
+            libvorbis \
+            libzim \
+            lmdb \
+            lzip \
+            ccache \
+            opencc \
+            fmt \
+            ffmpeg@6 \
+            tomlplusplus \
+            xapian || true
+      - name: ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: ${{ runner.os }}-${{ runner.arch }}-${{ matrix.qt_ver }}
+      - uses: jurplel/install-qt-action@v4.5.0
+        with:
+          version: ${{ matrix.qt_ver }}
+          arch: clang_64
+          modules: qtwebengine qtwebchannel qtpositioning qt5compat qtmultimedia qtimageformats qtspeech
+          # aqtinstall PR #1048 (Qt 6.12 support) is merged into master but not yet
+          # released (latest is v3.3.0), so pin the merge commit. Drop the pin once a
+          # release newer than v3.3.0 includes it.
+          aqtsource: git+https://github.com/miurahr/aqtinstall.git@8e4ea786f8a4f9dc578516738a137dec80a0362c
+      - name: Build
+        run: |
+          mkdir build_dir
+          export PKG_CONFIG_PATH="`brew --prefix ffmpeg@6`/lib/pkgconfig:$PKG_CONFIG_PATH"
+          cmake -S . -B build_dir \
+            -G Ninja \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            -DWITH_FFMPEG_PLAYER=ON \
+            -DWITH_QT_MULTIMEDIA=OFF \
+            -DWITH_TTS=OFF \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_OSX_DEPLOYMENT_TARGET="12.0"
+          cmake --build build_dir
+      - name: Package
+        run: |
+          cmake --install build_dir/
+      - name: Print package content
+        run: |
+          ls -Rl ./build_dir/redist
+      - name: Verify eb is bundled
+        run: |
+          set -euo pipefail
+          APP="./build_dir/redist/GoldenDict-ng.app"
+          BIN="$APP/Contents/MacOS/GoldenDict-ng"
+          echo "== otool -L $BIN (eb entries) =="
+          otool -L "$BIN" | grep -i eb || echo "(no eb entry in main binary link list)"
+          echo "== Contents/Frameworks (eb entries) =="
+          ls -1 "$APP/Contents/Frameworks" | grep -i eb || echo "(no eb dylib in Frameworks)"
+          echo "== Bundled libeb*.dylib files =="
+          find "$APP" -name 'libeb*.dylib' -print
+          # Fail the build if eb was not deployed into the bundle.
+          if ! find "$APP" -name 'libeb*.dylib' | grep -q .; then
+            echo "::error::libeb.dylib was not bundled into the .app (epwing support would be broken at runtime)."
+            exit 1
+          fi
+          echo "OK: libeb.dylib is bundled."
+      - uses: actions/upload-artifact@v7
+        with:
+          name: macOS-${{ matrix.os }}-Qt${{ matrix.qt_ver }}
+          if-no-files-found: error
+          retention-days: 7
+          archive: false
+          path: '*.dmg'
+
+  build_Windows:
+    permissions:
+      contents: read
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-2022]
+        qt_ver: [ 6.12.0 ]
+        arch: [ win64_msvc2022_64 ]
+        include:
+          - arch: win64_msvc2022_64
+            vs_arch: amd64
+    steps:
+      - uses: jurplel/install-qt-action@v4.5.0
+        with:
+          version: ${{ matrix.qt_ver }}
+          arch: ${{ matrix.arch }}
+          modules: qtwebengine qtwebchannel qtpositioning qt5compat qtmultimedia qtimageformats qtspeech
+          # aqtinstall PR #1048 (Qt 6.12 support) is merged into master but not yet
+          # released (latest is v3.3.0), so pin the merge commit. Drop the pin once a
+          # release newer than v3.3.0 includes it.
+          aqtsource: git+https://github.com/miurahr/aqtinstall.git@8e4ea786f8a4f9dc578516738a137dec80a0362c
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+      - name: Setup MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.vs_arch }}
+      - name: Build
+        id: build
+        run: |
+          New-Item -Path './build_dir' -ItemType Directory
+
+          cmake -S . -B "./build_dir" `
+            -G Ninja `
+            -DCMAKE_C_COMPILER="cl.exe" -DCMAKE_CXX_COMPILER="cl.exe" `
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo `
+            -DWITH_FFMPEG_PLAYER=OFF `
+            -DWITH_VCPKG_BREAKPAD=ON
+          cmake --build "./build_dir"
+      - name: Package
+        run: |
+          cd './build_dir'
+          cpack --verbose --trace
+          cd ..
+      - name: Move files
+        shell: bash
+        run: |
+          namePrefix=$(basename "$(ls ./build_dir/*.7z)" .7z)
+
+          cd ./build_dir
+          mv "${namePrefix}.7z" "${namePrefix}-Windows.7z"
+          EXE_PATH=$(find . -name "goldendict.exe" | head -n 1)
+          PDB_PATH=$(find . -name "goldendict.pdb" | head -n 1)
+          mv "$EXE_PATH" "./${namePrefix}-Windows-exe-only.exe"
+          mv "$PDB_PATH" "./${namePrefix}-Windows-pdb.pdb"
+          cd ..
+          ls -R
+      - uses: actions/upload-artifact@v7
+        with:
+          name: Windows-${{ matrix.arch }}-Qt${{ matrix.qt_ver }}
+          if-no-files-found: error
+          retention-days: 7
+          path: |
+            ./build_dir/*.exe
+            ./build_dir/*.7z
+            ./build_dir/*.pdb
+
+  generate_other_staffs:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    outputs:
+      newTag: ${{ steps.getNewTag.outputs.newTag }}
+      releaseTitle: ${{steps.getReleaseTitle.outputs.releaseTitle}}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Load version from VERSION file
+        run: echo "version=$(xargs < VERSION)" >> $GITHUB_ENV
+      - name: Get previous tag
+        id: changelogTags
+        run: |
+          previousTag=$(git tag --sort=-creatordate | grep "_chaos" | grep -v -e "vcpkg" | head -n 1)
+          echo "prev_tag=$previousTag" >> $GITHUB_OUTPUT
+          echo "previousTag : $previousTag"
+      - name: Build Changelog
+        id: build_changelog
+        uses: orhun/git-cliff-action@v4.3.0
+        with:
+          config: cliff.toml
+          args: ${{ steps.changelogTags.outputs.prev_tag }}..HEAD
+        env:
+          OUTPUT: changelog.txt
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Add chaos warning to changelog
+        run: |
+          cat > chaos_warning.txt << 'EOF'
+          > [!CAUTION]
+          > ## ⚠️ THIS BUILD CONTAINS BREAKING CHANGES AND IS NOT BACKWARDS COMPATIBLE!
+          >
+          > - **May cause all dictionaries to be reindexed**
+          > - **Data format may change significantly**
+          > - **No guarantee of data compatibility with previous versions**
+          > - **Backup dictionary data before upgrading**
+          >
+          > Based on branch: ${{ github.ref_name }}
+          EOF
+
+          cat chaos_warning.txt >> changelog.txt
+      - name: Print changelog.txt
+        run: |
+          cat changelog.txt
+      - name: Get git short SHA
+        id: shortSHA
+        run: |
+          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+      - name: Get new tag
+        id: getNewTag
+        run: |
+          echo "newTag=v${{ env.version }}_${{ env.versionSuffix }}.${{ steps.shortSHA.outputs.sha_short }}" >> $GITHUB_OUTPUT
+      - name: Get release title
+        id: getReleaseTitle
+        run: |
+          echo "releaseTitle=Chaos Build v${{env.version}}-${{ steps.shortSHA.outputs.sha_short }}" >> $GITHUB_OUTPUT
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: changelog.txt
+          if-no-files-found: error
+          retention-days: 7
+          archive: false
+          path: ./changelog.txt
+
+  publish:
+    needs: [build_macOS, build_Windows, generate_other_staffs]
+    permissions:
+      contents: write
+    runs-on: ubuntu-24.04
+    env:
+        newTag: ${{ needs.generate_other_staffs.outputs.newTag }}
+        releaseTitle: ${{ needs.generate_other_staffs.outputs.releaseTitle }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          merge-multiple: true
+      - name: List all files
+        run: ls -R
+      - name: Create annotated tag
+        run: |
+          # Annotated tag date (= publish time) is what GitHub uses to order
+          # the Releases page; lightweight tags fall back to the commit date
+          # and make daily builds sort out of order.
+          if gh api "repos/${GITHUB_REPOSITORY}/git/ref/tags/${{ env.newTag }}" >/dev/null 2>&1; then
+            echo "Tag ${{ env.newTag }} already exists, skip tag creation"
+          else
+            tag_obj=$(gh api "repos/${GITHUB_REPOSITORY}/git/tags" \
+              -f tag="${{ env.newTag }}" \
+              -f message="${{ env.releaseTitle }}" \
+              -f type="commit" \
+              -f object="${{ github.sha }}" \
+              --jq .sha)
+            gh api "repos/${GITHUB_REPOSITORY}/git/refs" \
+              -f ref="refs/tags/${{ env.newTag }}" \
+              -f sha="$tag_obj"
+          fi
+      - name: Create release
+        run: |
+          gh release create '${{ env.newTag }}' \
+            -t '${{ env.releaseTitle }}' \
+            --notes-file=./changelog.txt \
+            --latest=false \
+            --prerelease \
+            --repo ${GITHUB_REPOSITORY}
+      - name: Upload artifacts
+        run: |
+          gh release upload '${{ env.newTag }}' --repo ${GITHUB_REPOSITORY} --clobber \
+            *.7z *.exe *.pdb *.dmg

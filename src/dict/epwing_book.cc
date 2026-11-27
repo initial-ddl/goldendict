@@ -13,7 +13,7 @@
   #include "epwing_charmap.hh"
   #include "htmlescape.hh"
   #include "iconv.hh"
-  #if defined( Q_OS_WIN32 ) || defined( Q_OS_MAC )
+  #if defined( Q_OS_WIN32 ) || defined( Q_OS_MACOS )
     #define _FILE_OFFSET_BITS 64
   #endif
 
@@ -1511,7 +1511,7 @@ QByteArray EpwingBook::handleWave( EB_Hook_Code code, const unsigned int * argv 
 
   if ( code == EB_HOOK_END_WAVE )
     return QByteArray(
-      R"(<img src="qrc:///icons/playsound.png" border="0" align="absmiddle" alt="Play"/></a></span>)" );
+      R"(<img src="qrc:///icons/playsound.svg" border="0" align="absmiddle" alt="Play"/></a></span>)" );
 
   // Handle EB_HOOK_BEGIN_WAVE
 

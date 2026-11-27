@@ -2,6 +2,8 @@ name: Manual Build Action(for testing)
 concurrency: 
    group: ${{ github.workflow }}-${{ github.ref }}
    cancel-in-progress: true
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 on: 
   workflow_dispatch:
     inputs:
@@ -17,46 +19,58 @@ on:
 jobs:
   build_macOS:
     if: github.event.inputs.build_macOS == 'true'
+    permissions:
+      contents: read
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-14]
-        qt_ver: [ 6.7.2 ]
+        os: [macos-15]
+        # Qt 6.12 LTS (also fixes the tray icon crash on macOS 27 that 6.8/6.10 lack)
+        qt_ver: [ 6.12.0 ]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: true
-      - name: Update brew
-        run: |
-          brew update
       - name: Install dependencies
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: 1
+          HOMEBREW_NO_INSTALL_CLEANUP: 1
         run: |
           brew install --force --overwrite \
-            bzip2  \
+            bzip2 \
             create-dmg \
             hunspell \
             libiconv \
             libogg \
             libvorbis \
             libzim \
+            lmdb \
             lzip \
-            ninja \
+            ccache \
             opencc \
+            fmt \
+            tomlplusplus \
             xapian || true
-      - name: Install eb
-        run: |
-          git clone https://github.com/xiaoyifang/eb.git
-          cd eb && ./configure && make -j 8 && sudo make install && cd ..         
-      - uses: jurplel/install-qt-action@v4.2.1
+      - name: ccache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: ${{ runner.os }}-${{ runner.arch }}-${{ matrix.qt_ver }}
+      - uses: jurplel/install-qt-action@v4.5.0
         with:
           version: ${{ matrix.qt_ver }}
           arch: clang_64
-          modules: qtwebengine qtwebchannel qtpositioning qt5compat qtmultimedia qtimageformats qtspeech      
+          modules: qtwebengine qtwebchannel qtpositioning qt5compat qtmultimedia qtimageformats qtspeech
+          # aqtinstall PR #1048 (Qt 6.12 support) is merged into master but not yet
+          # released (latest is v3.3.0), so pin the merge commit. Drop the pin once a
+          # release newer than v3.3.0 includes it.
+          aqtsource: git+https://github.com/miurahr/aqtinstall.git@8e4ea786f8a4f9dc578516738a137dec80a0362c
       - name: Build
         run: |
           mkdir build_dir
           cmake -S . -B build_dir \
             -G Ninja \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
             -DWITH_FFMPEG_PLAYER=OFF \
             -DWITH_TTS=OFF \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
@@ -68,36 +82,72 @@ jobs:
       - name: Print package content
         run: |
           ls -Rl ./build_dir/redist
-      - uses: actions/upload-artifact@v4
+          echo "--- binary arch info ---"
+          BIN="./build_dir/redist/GoldenDict-ng.app/Contents/MacOS/GoldenDict-ng"
+          if [ -f "$BIN" ]; then
+            file "$BIN"
+            lipo -info "$BIN"
+          else
+            echo "Binary not found at $BIN"
+          fi
+      - name: Verify eb is bundled
+        run: |
+          set -euo pipefail
+          APP="./build_dir/redist/GoldenDict-ng.app"
+          BIN="$APP/Contents/MacOS/GoldenDict-ng"
+          echo "== otool -L $BIN (eb entries) =="
+          otool -L "$BIN" | grep -i eb || echo "(no eb entry in main binary link list)"
+          echo "== Contents/Frameworks (eb entries) =="
+          ls -1 "$APP/Contents/Frameworks" | grep -i eb || echo "(no eb dylib in Frameworks)"
+          echo "== Bundled libeb*.dylib files =="
+          find "$APP" -name 'libeb*.dylib' -print
+          # Fail the build if eb was not deployed into the bundle.
+          if ! find "$APP" -name 'libeb*.dylib' | grep -q .; then
+            echo "::error::libeb.dylib was not bundled into the .app (epwing support would be broken at runtime)."
+            exit 1
+          fi
+          echo "OK: libeb.dylib is bundled."
+      - uses: actions/upload-artifact@v7
         with:
           name: macOS-${{ matrix.os }}-Qt${{ matrix.qt_ver }}
           if-no-files-found: error
           retention-days: 7
+          archive: false
           path: '*.dmg'
 
   build_Windows:
     if: github.event.inputs.build_Windows == 'true'
+    permissions:
+      contents: read
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [windows-2022]
-        qt_ver: [ 6.7.2 ]
+        qt_ver: [ 6.12.0 ]
+        arch: [ win64_msvc2022_64 ]
+        include:
+          - arch: win64_msvc2022_64
+            vs_arch: amd64
     steps:
-      - uses: jurplel/install-qt-action@v4.2.1
+      - uses: jurplel/install-qt-action@v4.5.0
         with:
           version: ${{ matrix.qt_ver }}
-          arch: win64_msvc2019_64
+          arch: ${{ matrix.arch }}
           modules: qtwebengine qtwebchannel qtpositioning qt5compat qtmultimedia qtimageformats qtspeech
-          # setup-python: 'false'
-      - uses: actions/checkout@v4
+          # aqtinstall PR #1048 (Qt 6.12 support) is merged into master but not yet
+          # released (latest is v3.3.0), so pin the merge commit. Drop the pin once a
+          # release newer than v3.3.0 includes it.
+          aqtsource: git+https://github.com/miurahr/aqtinstall.git@8e4ea786f8a4f9dc578516738a137dec80a0362c
+      - uses: actions/checkout@v6
         with:
           submodules: true
+      - name: Setup MSVC environment
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.vs_arch }}
       - name: Build
         id: build
         run: |
-          # Launch-VsDevShell also provides Ninja
-          & 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' `
-            -SkipAutomaticLocation -Arch amd64 -HostArch amd64
           New-Item -Path './build_dir' -ItemType Directory
           
           # RelWithDebInfo + msvc's = .pdb file beside program file.
@@ -118,31 +168,39 @@ jobs:
         run: |
           namePrefix=$(basename "$(ls ./build_dir/*.7z)" .7z)
 
-          # note the name will ensure `installer` ranked higher after sorting
           cd ./build_dir
-          mv "${namePrefix}.7z" "${namePrefix}-Windows-installer.7z"
-          mv "${namePrefix}.exe" "${namePrefix}-Windows-installer.exe"
-          mv ./goldendict/goldendict.exe "./${namePrefix}-Windows-main-exe-file-only.exe" 
-          mv ./goldendict/goldendict.pdb "./${namePrefix}-Windows-pdb-debug-file.pdb"
+          mv "${namePrefix}.7z" "${namePrefix}-Windows.7z"
+          EXE_PATH=$(find . -name "goldendict.exe" | head -n 1)
+          PDB_PATH=$(find . -name "goldendict.pdb" | head -n 1)
+          mv "$EXE_PATH" "./${namePrefix}-Windows-exe-only.exe"
+          mv "$PDB_PATH" "./${namePrefix}-Windows-pdb.pdb"
           cd ..
           ls -R
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
-          name: Windows-Qt${{ matrix.qt_ver }}
+          name: Windows-${{ matrix.arch }}-Qt${{ matrix.qt_ver }}
           if-no-files-found: error
           retention-days: 7
+          archive: false
           path: |
-            ./build_dir/*.exe
             ./build_dir/*.7z
-            ./build_dir/*.pdb
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
-          name: Windows-only-exe-Qt${{ matrix.qt_ver }}
+          name: Windows-only-exe-${{ matrix.arch }}-Qt${{ matrix.qt_ver }}
           if-no-files-found: error
           retention-days: 7
+          archive: false
           path: |
             ./build_dir/*only.exe
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: Windows-pdb-${{ matrix.arch }}-Qt${{ matrix.qt_ver }}
+          if-no-files-found: error
+          retention-days: 7
+          path: |
+            ./build_dir/*.pdb
          
   
   

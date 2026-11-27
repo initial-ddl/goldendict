@@ -13,6 +13,7 @@
 #include <QMessageBox>
 #include <QMutexLocker>
 #include <memory>
+#include <limits>
 
 
 enum SearchType {
@@ -23,8 +24,7 @@ enum SearchType {
 DictHeadwords::DictHeadwords( QWidget * parent, Config::Class & cfg_, Dictionary::Class * dict_ ):
   QDialog( parent ),
   cfg( cfg_ ),
-  dict( dict_ ),
-  helpAction( this )
+  dict( dict_ )
 {
   ui.setupUi( this );
 
@@ -46,7 +46,6 @@ DictHeadwords::DictHeadwords( QWidget * parent, Config::Class & cfg_, Dictionary
   ui.searchModeCombo->setCurrentIndex( cfg.headwordsDialog.searchMode );
 
   ui.exportButton->setAutoDefault( false );
-  ui.OKButton->setAutoDefault( false );
   ui.applyButton->setAutoDefault( true );
   ui.applyButton->setDefault( true );
 
@@ -82,23 +81,11 @@ DictHeadwords::DictHeadwords( QWidget * parent, Config::Class & cfg_, Dictionary
   connect( this, &QDialog::finished, this, &DictHeadwords::savePos );
 
   if ( !fromMainWindow ) {
-    ui.helpButton->hide();
     connect( this, &DictHeadwords::closeDialog, this, &QDialog::accept );
   }
   else {
-
-    helpAction.setShortcut( QKeySequence( "F1" ) );
-    helpAction.setShortcutContext( Qt::WidgetWithChildrenShortcut );
-
-    connect( ui.helpButton, &QAbstractButton::clicked, &helpAction, &QAction::trigger );
-    connect( &helpAction, &QAction::triggered, this, []() {
-      Help::openHelpWebpage( Help::section::ui_headwords );
-    } );
-
-    addAction( &helpAction );
   }
 
-  connect( ui.OKButton, &QAbstractButton::clicked, this, &DictHeadwords::okButtonClicked );
   connect( ui.exportButton, &QAbstractButton::clicked, this, &DictHeadwords::exportButtonClicked );
   connect( ui.applyButton, &QAbstractButton::clicked, this, &DictHeadwords::filterChanged );
 
@@ -136,7 +123,13 @@ void DictHeadwords::setup( Dictionary::Class * dict_ )
   model->setMaxFilterResults( ui.filterMaxResult->value() );
   model->setDict( dict );
   proxy->setSourceModel( model.get() );
-  proxy->sort( 0 );
+
+  // In cache mode the source rows are already sorted (the cache file is
+  // built sorted) -- sorting the proxy over ~100k rows here costs seconds
+  // for nothing.
+  if ( !model->usingCache() ) {
+    proxy->sort( 0 );
+  }
   filterChanged();
 
   ui.autoApply->setEnabled( true );
@@ -147,6 +140,12 @@ void DictHeadwords::setup( Dictionary::Class * dict_ )
   //arbitrary number.
   bool exceedLimit = model->totalCount() > HEADWORDS_MAX_LIMIT;
   ui.filterMaxResult->setEnabled( exceedLimit );
+
+  // A disabled spinbox means "no limit" -- don't cap filter results with the
+  // stale default value. Use INT_MAX rather than 0: the legacy prefixMatch
+  // request breaks immediately on matches.size() >= maxResults, so 0 would
+  // return an empty result set.
+  model->setMaxFilterResults( exceedLimit ? ui.filterMaxResult->value() : std::numeric_limits< int >::max() );
 
   setWindowIcon( dict->getIcon() );
 
@@ -265,8 +264,14 @@ void DictHeadwords::filterChanged()
 
   model->setFilter( regExp );
 
-  proxy->setFilterRegularExpression( regExp );
-  proxy->sort( 0 );
+  // In cache mode the model is pre-sorted and does its own filtering
+  // (binary range / match list); the proxy must pass everything through.
+  // A stale proxy filter can only exist right after a legacy->cache switch,
+  // and is cleared at that transition point (refreshModelCache).
+  if ( !model->usingCache() ) {
+    proxy->setFilterRegularExpression( regExp );
+    proxy->sort( 0 );
+  }
 
   QApplication::restoreOverrideCursor();
 
@@ -298,6 +303,27 @@ void DictHeadwords::showHeadwordsNumber()
   }
 }
 
+void DictHeadwords::refreshModelCache()
+{
+  if ( !model || !dict ) {
+    return;
+  }
+  model->refreshCache();
+
+  if ( model->usingCache() ) {
+    // Legacy->cache transition: drop any proxy filter left over from the
+    // legacy phase -- cache-mode rows are already filtered/sorted by the
+    // model itself.
+    proxy->setFilterRegularExpression( QRegularExpression() );
+  }
+
+  // Re-apply the current filter if any
+  if ( !ui.filterLine->text().isEmpty() ) {
+    filterChanged();
+  }
+  showHeadwordsNumber();
+}
+
 void DictHeadwords::exportAllWords( QProgressDialog & progress, QTextStream & out )
 {
   if ( const QRegularExpression regExp = getFilterRegex(); regExp.isValid() && !regExp.pattern().isEmpty() ) {
@@ -305,42 +331,19 @@ void DictHeadwords::exportAllWords( QProgressDialog & progress, QTextStream & ou
     return;
   }
 
-  const int headwordsNumber = model->totalCount();
-
-  const QMutexLocker _( &mutex );
-  QSet< QString > allHeadwords;
-
   int totalCount = 0;
-  for ( int i = 0; i < headwordsNumber && i < model->wordCount(); ++i ) {
-    if ( progress.wasCanceled() ) {
-      break;
-    }
-
-    QVariant value = model->getRow( i );
-    if ( !value.canConvert< QString >() ) {
-      continue;
-    }
-
-    allHeadwords.insert( value.toString() );
-  }
-
-  for ( const auto & item : allHeadwords ) {
-    progress.setValue( totalCount++ );
-
-    writeWordToFile( out, item );
-  }
-
-  // continue to write the remaining headword
-  int nodeIndex  = model->getCurrentIndex();
+  // Continue to write the remaining headwords in batches
+  int nodeIndex  = 0;
   auto headwords = model->getRemainRows( nodeIndex );
   while ( !headwords.isEmpty() ) {
     if ( progress.wasCanceled() ) {
       break;
     }
-
-    for ( const auto & item : std::as_const( headwords ) ) {
-      progress.setValue( totalCount++ );
-
+    // Sort and write the batch
+    QList< QString > sortedBatch = headwords.values();
+    sortedBatch.sort( Qt::CaseInsensitive );
+    for ( const auto & item : sortedBatch ) {
+      progress.setValue( ++totalCount );
       writeWordToFile( out, item );
     }
 
@@ -351,29 +354,19 @@ void DictHeadwords::exportAllWords( QProgressDialog & progress, QTextStream & ou
 
 void DictHeadwords::loadRegex( QProgressDialog & progress, QTextStream & out )
 {
-
-  const QMutexLocker _( &mutex );
-  QSet< QString > allHeadwords;
-
   int totalCount = 0;
-  for ( int i = 0; i < model->wordCount(); ++i ) {
+  // Process already loaded (and filtered) words from proxy
+  for ( int i = 0; i < proxy->rowCount(); ++i ) {
     if ( progress.wasCanceled() ) {
       break;
     }
 
-    QVariant value = model->getRow( i );
-    if ( !value.canConvert< QString >() ) {
-      continue;
+    QModelIndex proxyIndex = proxy->index( i, 0 );
+    QVariant value         = proxy->data( proxyIndex, Qt::DisplayRole );
+    if ( value.canConvert< QString >() ) {
+      writeWordToFile( out, value.toString() );
+      progress.setValue( ++totalCount );
     }
-
-    allHeadwords.insert( value.toString() );
-  }
-
-  progress.setMaximum( allHeadwords.size() );
-  for ( const auto & item : allHeadwords ) {
-    progress.setValue( totalCount++ );
-
-    writeWordToFile( out, item );
   }
 }
 

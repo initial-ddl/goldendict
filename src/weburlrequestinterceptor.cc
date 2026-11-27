@@ -3,6 +3,9 @@
 #include "globalbroadcaster.hh"
 #include "config.hh"
 
+#include <QWebEngineProfile>
+#include <QDebug>
+
 WebUrlRequestInterceptor::WebUrlRequestInterceptor( QObject * p ):
   QWebEngineUrlRequestInterceptor( p )
 {
@@ -10,20 +13,34 @@ WebUrlRequestInterceptor::WebUrlRequestInterceptor( QObject * p ):
 void WebUrlRequestInterceptor::interceptRequest( QWebEngineUrlRequestInfo & info )
 {
   auto url = info.requestUrl();
-  if ( url.scheme().startsWith( Config::WEBSITE_PROXY_PREFIX ) ) {
-    url.setScheme( url.scheme().mid( 7 ) );
+
+  // If moving from a local GoldenDict page (gdlookup, etc.) to a remote URL,
+  // we must normalize the Referer to avoid triggering anti-bot protection (like Cloudflare).
+  if ( QUrl firstPartyUrl = info.firstPartyUrl(); firstPartyUrl.isValid()
+       && ( firstPartyUrl.scheme() == "gdlookup" || firstPartyUrl.scheme() == "gdinternal" )
+       && Utils::isExternalLink( url ) ) {
+    info.setHttpHeader( "referer", Utils::Url::getSchemeAndHost( url ).toUtf8() + "/" );
   }
 
-  info.setHttpHeader( "origin", Utils::Url::getSchemeAndHost( url ).toUtf8() );
-  info.setHttpHeader( "referer", url.url().toUtf8() );
   if ( GlobalBroadcaster::instance()->getPreference()->disallowContentFromOtherSites && Utils::isExternalLink( url ) ) {
-    //file:// link ,pass
+    // Block file:// links to prevent local file access
     if ( url.scheme() == "file" ) {
+      info.block( true );
       return;
     }
-    auto hostBase = url.host();
-    if ( GlobalBroadcaster::instance()->existedInWhitelist( hostBase ) ) {
-      //whitelist url does not block
+
+    if ( info.resourceType() == QWebEngineUrlRequestInfo::ResourceTypeMainFrame ) {
+      return;
+    }
+
+    // Allow same host content even if "disallowContentFromOtherSites" is enabled
+    if ( !url.host().isEmpty() && url.host() == info.firstPartyUrl().host() ) {
+      return;
+    }
+
+    if ( GlobalBroadcaster::instance()->existedInHostWhitelist( url.host() )
+         || GlobalBroadcaster::instance()->existedInRefererWhitelist( info.firstPartyUrl().host() ) ) {
+      // Target host or referring site is in respective whitelist - do not block
       return;
     }
     if ( info.resourceType() == QWebEngineUrlRequestInfo::ResourceTypeImage
@@ -36,6 +53,7 @@ void WebUrlRequestInterceptor::interceptRequest( QWebEngineUrlRequestInfo & info
 
     // block external links
     {
+      qDebug() << "Blocked external link: " << url.toString();
       info.block( true );
       return;
     }
@@ -47,8 +65,23 @@ void WebUrlRequestInterceptor::interceptRequest( QWebEngineUrlRequestInfo & info
     if ( url.scheme() == "devtools" ) {
       return;
     }
-    emit linkClicked( url );
-    info.block( true );
+
+    // Allow qrc:// protocol for Resource Viewer to display resources
+    if ( url.scheme() == "qrc" ) {
+      return;
+    }
+
+    // If the domain is the same as the current page, allow normal navigation
+    // This enables links in website dictionaries to work normally within the same site.
+    if ( !url.host().isEmpty() && url.host() == info.firstPartyUrl().host() ) {
+      return;
+    }
+
+    // Link clicks are decided by ArticleWebPage::acceptNavigationRequest: internal
+    // schemes (gdlookup, gdau, gdvideo, ...) trigger dictionary lookup / audio /
+    // video playback there, and external links go to the desktop handler. Blocking
+    // here would drop those requests before the page ever sees them.
+    return;
   }
 
   //window.location=audio link

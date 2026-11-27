@@ -57,16 +57,46 @@
       <translation>Хуш омадед!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;Хуш омадед ба &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;Барои оғоз кардани кор бо барнома, аввал ба &lt;em&gt;Таҳрир | Луғатҳо&lt;/em&gt; барои илова кардани баъзе роҳҳои феҳрист, ки дар он ҷо ҷустуҷӯи файлҳои луғат, насб кардани сайтҳои гуногуни Википедиа ё дигар манбаъҳо, танзим кардани тартиби луғат ё сохтани гурӯҳҳои луғат.&lt;p&gt;Ва он гоҳ шумо&apos;омодаед, ки суханони худро ҷустуҷӯ кунед! Шумо метавонед ин корро дар ин равзана бо истифода аз панели тарафи чап анҷом диҳед ё шумо метавонед &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;аз дигар замимаҳои фаъол калимаҳоро ҷустуҷӯ кунед&lt;/a&gt;. &lt;p&gt;Барои танзими барнома, афзалиятҳои мавҷударо дар &lt;em&gt;Таҳрир | Афзалиятҳо&lt;/em&gt;. Ҳама танзимотҳо маслиҳатҳои асбобҳо доранд, агар шумо ба чизе шубҳа дошта бошед, ҳатман онҳоро хонед.&lt;p&gt;Агар ба шумо кӯмаки иловагӣ ниёз дошта бошед, ягон савол, пешниҳод дошта бошед ё танҳо дар ҳайрат бошед, ки дигарон чӣ фикр доранд, шумо ба барномаи&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;хуш омадед.&lt;p&gt;Барномаи&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;вебсайти&lt;/a&gt; барои навсозиҳо санҷед. &lt;p&gt;(в) 2008-2013 Константин Исаков. Иҷозатнома дар доираи GPLv3 ё дертар.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(беном)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(тасвир)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+    &lt;div class="welcome-container">
+      &lt;h3>Хуш омадед ба &lt;strong>GoldenDict-ng&lt;/strong>!&lt;/h3>
+      &lt;section>
+        &lt;h4>Барои оғоз кардан&lt;/h4>
+        &lt;ul>
+          &lt;li>Ба &lt;span class="menu-path">&lt;span>Таҳрир&lt;/span>&lt;span>Луғатҳо&lt;/span>&lt;/span> гузаред, то файлҳои луғати худро илова кунед, манбаъҳои онлайнӣ, ба монанди Википедияро танзим кунед ва онҳоро ба гурӯҳҳо тақсим кунед.&lt;/li>
+          &lt;li>Пас аз танзим, шумо метавонед калимаҳоро дар ин равзана ё &lt;a href="https://xiaoyifang.github.io/goldendict-ng/ui_popup/">аз дигар барномаҳо бо истифода аз равзанаи поп-апи скан&lt;/a> ҷустуҷӯ кунед.&lt;/li>
+          &lt;li>Барои танзими барнома, танзимотро дар &lt;span class="menu-path">&lt;span>Таҳрир&lt;/span>&lt;span>Афзалиятҳо&lt;/span>&lt;/span> омӯзед. Ҳама танзимот дорои маслиҳатҳо мебошанд, бинобар ин, агар чизе норавшан бошад, ҳатман онҳоро хонед.&lt;/li>
+        &lt;/ul>
+      &lt;/section>
+      &lt;p>Агар ба шумо кӯмаки иловагӣ, саволҳо ё пешниҳодҳо лозим бошад, шумо ба &lt;a href="https://github.com/xiaoyifang/goldendict-ng/discussions">форум&lt;/a> ва &lt;a href="https://github.com/xiaoyifang/goldendict-ng">вебсайти&lt;/a> барнома хуш омадед.&lt;/p>
+      &lt;footer class="welcome-footer">
+        &lt;small>Дар асоси GoldenDict-и аслии Константин Исаков (c) 2008-2013. Нигоҳдорӣ ва таҳия аз ҷониби Ҷамъияти GoldenDict-NG. Иҷозатномаи GPLv3 ё дертар.&lt;/small>
+      &lt;/footer>
+    &lt;/div></translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>Ибора ёфт нашуд</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 аз %2 бозӣ</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Эҷод кардани ёддошти Anki</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;Овозро ба силули мухобиротӣ нусхабардорӣ кунед</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>Нусхабардории овоз ноком шуд</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>Навиштани маълумоти пурраи аудио ноком шуд</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>Овоз ба силули мухобиротӣ нусхабардорӣ шуд</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Зеркашии овоз ноком шуд</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 аз %2 бозӣ</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Мақоларо дар &amp;браузери беруна кушоед</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>Намоишгари захираҳои GoldenDict</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -275,52 +336,60 @@ between classic and school orthography in cyrillic)</source>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Табдилдиҳии Чин</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Табдилдиҳӣ аз хитоии оддӣ ба анъанавӣ</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Фаъол кардани табдил байни аломатҳои хитоии оддӣ ва анъанавӣ</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Фаъол кардани табдил аз аломатҳои содакардашуда/анъанавии хитоӣ ба аломатҳои Шинҷитайи ҷопонӣ</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>&amp;Табдилдиҳии хитоӣ</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Шинҷитайи ҷопонӣ</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Фаъол кардани табдил аз аломатҳои оддӣ ба анъанавӣ (Варианти тайванӣ)</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation type="unfinished">Chinese to Japanese Shinjitai conversion</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Фаъол кардани табдил аз аломатҳои оддӣ ба анъанавӣ (Варианти ҳонконгӣ)</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation type="unfinished">Chinese and Japanese Character Con&amp;version</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation type="unfinished">Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Фаъол кардани табдил аз аломатҳои оддӣ ба аломатҳои анъанавӣ</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Табдилдиҳӣ аз хитоии оддӣ ба анъанавӣ (Варианти тайванӣ)</translation>
+      <source>Simplified</source>
+      <translation type="unfinished">Simplified</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Табдилдиҳӣ аз хитоии анъанавӣ ба оддӣ (Варианти ҳонконгӣ)</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation type="unfinished">Enable conversion from simplified characters to traditional (Taiwan) characters</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Табдилдиҳӣ аз хитоии оддӣ ба анъанавӣ</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation type="unfinished">Traditional (Taiwan)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation>Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation type="unfinished">Enable conversion from simplified characters to traditional (Hong Kong) characters</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation>Hong Kong variant</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation type="unfinished">Traditional (Hong Kong)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation>Mainland variant</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation type="unfinished">Simplified to traditional Chinese (Taiwan) conversion</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation type="unfinished">Simplified to traditional Chinese (Hong Kong) conversion</translation>
     </message>
   </context>
   <context>
@@ -408,10 +477,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Шумо мутмаин ҳастед, ки мехоҳед маҷмӯи гурӯҳҳоро дар асоси ҷузвдонҳои дорои ҷузвдонҳо тавлид кунед?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>Шумо мутмаин ҳастед, ки мехоҳед маҷмӯи гурӯҳҳоро дар асоси metadata.toml эҷод кунед?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Муттаҳид кардани гурӯҳҳо аз рӯи забони аслӣ ба &quot;%1-&gt;&quot;</translation>
     </message>
@@ -426,6 +491,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Муттаҳид кардани гурӯҳҳо бо &quot;%1&quot;</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Гурӯҳро тоза кардан</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>Шумо мутмаин ҳастед, ки мехоҳед гурӯҳи &lt;b&gt;%1&lt;/b&gt;-ро тоза кунед?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>Шумо мутмаин ҳастед, ки мехоҳед маҷмӯи гурӯҳҳоро дар асоси файлҳои метамаълумоти луғат эҷод кунед?</translation>
     </message>
   </context>
   <context>
@@ -455,10 +532,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Филтр:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Ҳолати ҷустуҷӯ</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Ин унсур муайян мекунад, ки чӣ тавр фитри сатр иҷро мешавад</translation>
     </message>
@@ -481,18 +554,6 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Сарлавҳаҳои ҳадди аксар филтршудаи баргардонидашударо муайян кунед.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Натиҷаҳои максималии филтр:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Кумак</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>ДУРУСТ</translation>
     </message>
     <message>
       <source>Text</source>
@@ -542,6 +603,10 @@ between classic and school orthography in cyrillic)</source>
       <source>Regular Expression</source>
       <translation>Regular Expression</translation>
     </message>
+    <message>
+      <source>Maximum:</source>
+      <translation type="unfinished">Maximum:</translation>
+    </message>
   </context>
   <context>
     <name>DictInfo</name>
@@ -574,10 +639,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Тарҷума ба забони:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Файлҳои ин луғат:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Тавсиф:</translation>
     </message>
@@ -596,6 +657,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Full-text search disabled</source>
       <translation>Ҷустуҷӯи пурраи матн ғайрифаъол аст</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Хомӯш кардан</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Фаъол кардан</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation type="unfinished">Dictionary Components:</translation>
     </message>
   </context>
   <context>
@@ -692,6 +765,34 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Restore selection</source>
       <translation>Restore selection</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>Бекор кардани индексатсияи дубора</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>Банақшагирии индексатсияи дубора</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>Бекор кардани банақшагирии индексатсияи дубора</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>Луғат барои индексатсияи дубора банақша гирифта шудааст. Индекс ҳангоми бозоғозии навбатии барнома аз нав сохта мешавад.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Тағйир додани номи намоиш</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Номи нави намоиш:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Луғатро барои индексатсияи дубора ба нақша гирифтан муяссар нашуд.</translation>
     </message>
   </context>
   <context>
@@ -808,10 +909,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Илова кардани папка</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Ҳамаро тоза кунед</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Дӯстдоштаҳо:</translation>
     </message>
@@ -820,16 +917,20 @@ between classic and school orthography in cyrillic)</source>
       <translation>Ҳамаи ҷузъҳои интихобшуда нест карда мешаванд. Давом додан?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Ҳама ҷузъҳоро тоза кунед</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>Шумо мутмаин ҳастед, ки мехоҳед ҳамаи ҷузъҳоро тоза кунед?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Пок кардан</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>Пок кардани дӯстдоштаҳо</translation>
     </message>
   </context>
   <context>
@@ -957,28 +1058,12 @@ between classic and school orthography in cyrillic)</source>
       <translation>Варақаи 2</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>Гурӯҳи нави луғатро эҷод кардан</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>&amp;Гурӯҳро илова кардан</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>Номи гурӯҳи луғати ҷориро иваз кардан</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>&amp;Номи гурӯҳро иваз кардан</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Гурӯҳи луғати ҷориро тоза кардан</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>&amp;Гурӯҳро тоза кардан</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1048,6 +1133,22 @@ between classic and school orthography in cyrillic)</source>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>Шумо мутмаин ҳастед, ки мехоҳед ҳамаи гурӯҳҳоро тоза кунед?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>Илова кардани гурӯҳи нави луғат</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>&amp;Гурӯҳро илова кардан</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>Гурӯҳ аллакай вуҷуд дорад</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>Гурӯҳе бо номи '%1' аллакай вуҷуд дорад.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1081,6 +1182,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>%1 Morphology</source>
       <translation>Морфологияи %1</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Имло дуруст аст, шаклҳои дигари калима ёфт нашуданд.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>Аз %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Шаклҳои калима барои %1: </translation>
     </message>
   </context>
   <context>
@@ -2100,7 +2213,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Kabyle</source>
-      <translation type="unfinished">Kabyle</translation>
+      <translation>Кабилӣ</translation>
     </message>
   </context>
   <context>
@@ -2388,10 +2501,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Варақаи нав</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>Хуш омадед!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>Қобилияти API фаъол нашудааст</translation>
     </message>
@@ -2464,42 +2573,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Print Article</source>
       <translation>Мақоларо чоп кардан</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Html-ро пурра кунед (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Html ягона (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>PDF (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Mime Html (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Мақоларо захира кардан ҳамчун</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Хато</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Мақола захира нашуд: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Захиракунии мақола...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Мақоларо пурра захира кунед</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2594,12 +2667,56 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Намоиш</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation>Save PDF complete</translation>
+      <source>Lock Panels</source>
+      <translation>Панелҳоро қулф кунед</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation>Save PDF failed</translation>
+      <source>Clear History</source>
+      <translation>Пок кардани таърих</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>Оё шумо мутмаин ҳастед, ки мехоҳед ҳамаи ашёи таърихро пок кунед?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Захира кардани файл</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation type="unfinished">Application is still running in the background. Click the tray icon to show the window.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation type="unfinished">Open in &amp;External Browser</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation type="unfinished">Now building headwords cache: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Префикс</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Суффикс</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Калимаи бисёрҷузъа</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Ҷустуҷӯ дар тамоми матн…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Ҳолати ҷустуҷӯ</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Ҳолати ҷустуҷӯ: %1</translation>
     </message>
   </context>
   <context>
@@ -2616,15 +2733,15 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Хатои таҳлили XML: %1 дар %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>Хатогии таҳлили JSON</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Хатои таҳлили XML: %1 дар %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>Хатогии таҳлили JSON</translation>
     </message>
   </context>
   <context>
@@ -2700,10 +2817,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Тавсиф:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Файлҳои луғат:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation> Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</translation>
     </message>
@@ -2722,6 +2835,18 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Луғатҳои фаъол: %1, ғайрифаъол: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Тағйир додани номи намоиш</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Номи нави намоиш:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation type="unfinished">Dictionary components:</translation>
     </message>
   </context>
   <context>
@@ -2766,28 +2891,12 @@ switching to them.</source>
       <translation>Варақаҳои навро дар равзанаи асосӣ кушодан</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Фаъол кардани ин имконот варақаҳои навро пас аз варақаи
-кушодашуда мекушояд. Агар ин имконотро фаъол намекунед
-варақаҳои нав дар охири рӯйхат кушода мешаванд.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Варақаҳои навро пас аз варақаи ҷорӣ кушодан</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Имконоти зеринро интихоб кунед, агар ҳангоми кушода будани варақаи ягона нахоҳед лавҳаи варақаҳоро намоиш диҳед.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Варақаи ягонаро пинҳон кардан</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>Тартиби MRU: Тартиби охирин истифодашуда.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2876,8 +2985,99 @@ the application.</source>
       <translation>Ҳудуди луғатҳои менюи марбуд:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>Системаи пешфарз</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Пешфарз</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Классик</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Ҳозира</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Луғати Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Луғати Babylon</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Лингоҳо</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Lingoes-кабуд</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Барои татбиқ кардани забони интихобшуда барномаро аз нав оғоз кунед.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Барои татбиқи тағири услуби интерфейс аз нав оғоз кунед.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Барои татбиқи тағири ҳуруфи интерфейс аз нав оғоз кунед.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Аз нав оғоз кардан лозим аст</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Фаъол кардан</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Хомӯш кардан</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Автоматӣ</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Ҳеҷ чиз</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>Бо фаъол кардани ин, варақаҳои нав фавран пас аз варақаи
+ҷорӣ ва фаъол кушода мешаванд. Дар акси ҳол, онҳо ба охири рӯйхат илова карда мешаванд.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp;Услуб</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Намуди зоҳирӣ</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Interface language</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Article Display style</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Add-on style</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Interface Style</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2896,12 +3096,16 @@ the application.</source>
       <translation>Ҳолати торикии хонанда</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Ин ҳуруфҳо вақте истифода мешаванд, ки ҳуруфҳои аз ҷониби луғат муайяншуда ёфт нашуданд.</translation>
+      <source>Preview Font</source>
+      <translation>Preview Font</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Шрифтҳои бозгашт</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng is a dictionary software.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Ин ҳуруфҳо вақте истифода мешаванд, ки ҳуруфҳои аз ҷониби луғат муайяншуда ёфт нашуданд.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2918,10 +3122,6 @@ the application.</source>
     <message>
       <source>Monospace Font</source>
       <translation>Шрифти Monospace</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Тарҷумаи пайдошаванда</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2958,8 +3158,8 @@ in the pressed state when the word selection changes.</source>
 агар ҳангоми интихоби калима ҳамаи тугмаҳои интихобшуда зер карда шаванд.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Танҳо вақте ки ҳамаи тугмаҳои интихобшуда пахш карда мешаванд, интихоби такя:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>Интихобро танҳо вақте пайгирӣ кунед, ки ҳамаи тугмаҳои интихобшуда пахш карда мешаванд:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3042,20 +3242,8 @@ in the pressed state when the word selection changes.</source>
       <translation>Файлҳои аудиоиро тавассути дастгирии аудиои дарунсохт бозӣ кунед</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Плеери дохилиро истифода баред:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Охири аудиоро интихоб кунед</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Ягон барномаи беруниро барои иҷрои файлҳои аудиоӣ истифода баред</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Ба воситаи барномаи дигар иҷро кунед:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3120,28 +3308,12 @@ for all program&apos;s network requests.</source>
       <translation>Девор:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Модели:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Калом</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Соҳаи луғат...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Матн</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Майдони таъриф ...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Ҳукм</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3159,42 +3331,6 @@ you are browsing. If some site breaks because of this, try disabling this.</sour
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>Намоиши мӯҳтавои тиҷориро аз вебсайтҳои дигар қатъ кунед (рекламаро пинҳон мекунад)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Баъзе вебсайтҳо барномаи GoldenDict-ро тавассути сарварақҳои HTTP муайян мекунанд ва дархостҳои барномаро манъ мекунанд.
-Барои ҳал кардани ин мушкилӣ, ин имконотро фаъол кунед.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>Пешгирии муайянкунии барномаи GoldenDict-ро дар сарварақҳои HTTP</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Андозаи максималии кэши шабака:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Фазои максималии дискро кэши шабакаи GoldenDict ишғол мекунад
-% 1
-Агар ба 0 муқаррар карда шавад, кэши диски шабакавӣ ғайрифаъол мешавад.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> МБ</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>Вақте ки ин хосият фаъол аст, GoldenDict
-кэши шабакавии худро аз диск ҳангоми баромадан тоза мекунад.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Кэши шабакаро ҳангоми баромадан тоза кунед</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3256,8 +3392,12 @@ download page.</source>
       <translation>Андозаи калонтарини таърих:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Фосилаи вақти захиракунии таърих. Агар ба 0 танзим кунед, таърих танҳо дар хуруҷ захира мешавад.</translation>
+      <source>Favorites</source>
+      <translation>Дӯстдоштаҳо</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Фосилаи сарфаи дӯстдошта. Агар ба 0 муқаррар карда шавад, дӯстдоштаҳо танҳо ҳангоми баромадан захира карда мешаванд.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3266,14 +3406,6 @@ download page.</source>
     <message>
       <source>minutes</source>
       <translation>дақиқа</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Дӯстдоштаҳо</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Фосилаи сарфаи дӯстдошта. Агар ба 0 муқаррар карда шавад, дӯстдоштаҳо танҳо ҳангоми баромадан захира карда мешаванд.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3372,112 +3504,112 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>Индекси беэътиборро ҳангоми баромадан хориҷ кунед</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>Системаи пешфарз</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Пешфарз</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Классик</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Ҳозира</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Луғати Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Луғати Babylon</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Лингоҳо</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Lingoes-кабуд</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Автомат дар баъзе системаҳо ҳеҷ кор намекунад.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Барои татбиқ кардани забони интихобшуда барномаро аз нав оғоз кунед.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Барои татбиқи тағири услуби интерфейс аз нав оғоз кунед.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Барои татбиқи тағири ҳуруфи интерфейс аз нав оғоз кунед.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Аз нав оғоз кардан лозим аст</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Фаъол кардан</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Хомӯш кардан</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Автоматӣ</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Save debug messages to gd_log.txt in the config folder</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Interface language</translation>
+      <source>S&amp;can</source>
+      <translation>С&amp;кан</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Article Display style</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>Хомӯш кардани огоҳиҳо, тасдиқҳо ва дархостҳои JavaScript дар намуди мақола.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Add-on style</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>Хомӯш кардани муколамаҳои JavaScript</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Interface Style</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>Кушодани луғати вебсайт дар варақаи алоҳида</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Preview Font</translation>
+      <source>Anki</source>
+      <translation type="unfinished">Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation>GoldenDict-ng is a dictionary software.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>Иҷозат додан ба JavaScript барои дастрасӣ ба силули мухобиротӣ дар намуди мақола.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation type="unfinished">Enable Interface Font</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>Фаъол кардани дастрасии JavaScript ба силули мухобиротӣ (бозоғозӣ лозим аст)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>Барои татбиқи тағйироти дастрасии JavaScript ба силули мухобиротӣ бозоғозӣ кунед.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation type="unfinished">Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation type="unfinished">Hide tab bar when only one tab is open.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Ҳеҷ чиз</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation type="unfinished">Use any external audio player to play audio files</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation type="unfinished">View detailed configuration guide</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation type="unfinished">The audio path will be passed as a command-line argument to the external player. </translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation type="unfinished">Internal Audio Player:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation type="unfinished">External Audio Player:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation type="unfinished">Automatically switches based on system theme.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation type="unfinished">Customize Fonts</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation type="unfinished">The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation type="unfinished">Keep Dock icon visible in background</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation type="unfinished">Add audio to Anki card when available</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>Ҳангоми фаъол будан, луғатҳои вебсайт дар ҷадвали худ кушода мешаванд, на дар дохили намуди мақола. Ин маҳдудиятҳои тарҳбандии iframe ва ҳаракатро пешгирӣ мекунад ва сутуни скрипти барои ҳар як луғатро дар муколамаи Луғатҳо фаъол месозад.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation type="unfinished">Word:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation type="unfinished">Text:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation type="unfinished">Sentence:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Шрифти интерфейс</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Оилаи фармоишӣ</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Андозаи фармоишӣ</translation>
     </message>
   </context>
   <context>
@@ -3623,6 +3755,58 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>Force the word to be translated in the mainwindow.</source>
       <translation>Force the word to be translated in the mainwindow.</translation>
     </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>URL-и вебсайт:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>Дар URL, "%GDWORD%" бо калимаи ҷустуҷӯшаванда иваз карда мешавад.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Html-ро пурра кунед (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Html ягона (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>Ҳуҷҷати PDF (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Мақоларо захира кардан ҳамчун</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Мақоларо пурра захира кунед</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Хато</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Мақола захира нашуд: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Save PDF complete</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Save PDF failed</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Захиракунии мақола... (%1/%2)</translation>
+    </message>
   </context>
   <context>
     <name>QuickFilterLine</name>
@@ -3653,6 +3837,10 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>The referenced resource failed to download.</source>
       <translation>Боргирии манбаъи ишорашуда қатъ карда шуд.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>манбаъ берун аз ҷузвдони таъинотӣ захира карда мешуд.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3678,6 +3866,26 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>WARNING: %1</source>
       <translation>Огоҳӣ: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>Маъно</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Варақаи ҷориро пӯшидан</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Ҳамаи варақаҳоро ба ғайр аз ҷорӣ пӯшидан</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Ҳамаи варақаҳоро пӯшидан</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation type="unfinished">Open in &amp;External Browser</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3702,10 +3910,6 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>Send word to main window (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation type="unfinished">Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Add word to Favorites (Ctrl+E)</translation>
     </message>
@@ -3718,6 +3922,10 @@ from Stardict, Babylon and GLS dictionaries</source>
 could be resized or managed in other ways.</source>
       <translation>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Мақоларо захира кардан</translation>
     </message>
   </context>
   <context>
@@ -4000,23 +4208,23 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>Remove selected directories from the list?</source>
-      <translation type="unfinished">Remove selected directories from the list?</translation>
+      <translation>Ҷузвдонҳои интихобшударо аз рӯйхат хориҷ мекунед?</translation>
     </message>
     <message>
       <source>Remove %1 directories from the list?</source>
-      <translation type="unfinished">Remove %1 directories from the list?</translation>
+      <translation>%1 ҷузвдонро аз рӯйхат хориҷ мекунед?</translation>
     </message>
     <message>
       <source>Remove %1 sites from the list?</source>
-      <translation type="unfinished">Remove %1 sites from the list?</translation>
+      <translation>%1 вебсайтро аз рӯйхат хориҷ мекунед?</translation>
     </message>
     <message>
       <source>Remove %1 servers from the list?</source>
-      <translation type="unfinished">Remove %1 servers from the list?</translation>
+      <translation>%1 серверро аз рӯйхат хориҷ мекунед?</translation>
     </message>
     <message>
       <source>Remove %1 programs from the list?</source>
-      <translation type="unfinished">Remove %1 programs from the list?</translation>
+      <translation>%1 барномаро аз рӯйхат хориҷ мекунед?</translation>
     </message>
   </context>
   <context>
@@ -4113,18 +4321,21 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Дарҷ кардани мақола ҳамчун пайванди дохили барчаспи &lt;iframe&gt;</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>Луғати ин вебсайт дар варақаи нав кушода мешавад</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Барои нишон додани вебсайт дар дохили мақола, &quot;Луғати вебсайтро дар ҷадвали алоҳида кушоед&quot;-ро дар Танзимот хомӯш кунед.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Фаъолшуда</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Ҳамчун пайванд</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4137,6 +4348,22 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     <message>
       <source>Icon</source>
       <translation>Аломат</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Скрипт</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>Номи файли нишона. Вобаста ба феҳристи танзимот.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>Танҳо ҳангоми кушодани вебсайтҳо дар варақаҳои алоҳида дастрас аст. Метавонад роҳи файл (нисбат ба феҳристи танзимот ё мутлақ) ё мундариҷаи мустақими скрипт бошад.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>Ин сутун ғайрифаъол аст, зеро имконоти "Кушодани луғати вебсайт дар варақаи алоҳида" дар Танзимот фаъол нест.</translation>
     </message>
   </context>
   <context>

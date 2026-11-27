@@ -3,9 +3,13 @@
 
 #include "edit_orderandprops.hh"
 #include "instances.hh"
+#include "metadata.hh"
 #include "langcoder.hh"
 #include "language.hh"
 #include <algorithm>
+#include <QInputDialog>
+#include "common/utils.hh"
+#include <QDir>
 #include <utility>
 #include <QMenu>
 
@@ -202,6 +206,8 @@ void OrderAndProps::disableDictionaryDescription()
   ui.dictionaryTranslatesFrom->clear();
   ui.dictionaryTranslatesTo->clear();
   ui.dictionaryFileList->clear();
+  ui.dictionaryFileList->setVisible( false );
+  ui.dictionaryComponentsLabel->setVisible( false );
 
   ui.dictionaryDescription->clear();
   ui.dictionaryDescription->setVisible( false );
@@ -231,16 +237,21 @@ void OrderAndProps::describeDictionary( DictListWidget * lst, const QModelIndex 
     ui.dictionaryTranslatesFrom->setText( Language::localizedStringForId( dict->getLangFrom() ) );
     ui.dictionaryTranslatesTo->setText( Language::localizedStringForId( dict->getLangTo() ) );
 
-    const std::vector< std::string > & filenames = dict->getDictionaryFilenames();
-
-    QString filenamesText;
-
-    for ( unsigned x = 0; x < filenames.size(); x++ ) {
-      filenamesText += filenames[ x ].c_str();
-      filenamesText += '\n';
+    if ( dict->isLocalDictionary() ) {
+      const std::vector< std::string > & filenames = dict->getDictionaryFilenames();
+      QString filenamesText;
+      for ( unsigned x = 0; x < filenames.size(); x++ ) {
+        filenamesText += filenames[ x ].c_str();
+        filenamesText += '\n';
+      }
+      ui.dictionaryFileList->setPlainText( filenamesText );
+      ui.dictionaryFileList->setVisible( true );
+      ui.dictionaryComponentsLabel->setVisible( true );
     }
-
-    ui.dictionaryFileList->setPlainText( filenamesText );
+    else {
+      ui.dictionaryFileList->setVisible( false );
+      ui.dictionaryComponentsLabel->setVisible( false );
+    }
 
     QString descText = dict->getDescription();
     if ( !descText.isEmpty() && descText.compare( "NONE" ) != 0 ) {
@@ -264,7 +275,7 @@ void OrderAndProps::contextMenuRequested( const QPoint & pos )
 {
   QMenu menu( this );
 
-  QAction * showHeadwordsAction = NULL;
+  QAction * showHeadwordsAction = nullptr;
   QModelIndex idx               = ui.searchLine->mapToSource( ui.dictionaryOrder->indexAt( pos ) );
   sptr< Dictionary::Class > dict;
   if ( idx.isValid() && (unsigned)idx.row() < ui.dictionaryOrder->getCurrentDictionaries().size() ) {
@@ -273,6 +284,12 @@ void OrderAndProps::contextMenuRequested( const QPoint & pos )
   if ( dict && dict->getWordCount() > 0 ) {
     showHeadwordsAction = new QAction( tr( "Dictionary headwords" ), &menu );
     menu.addAction( showHeadwordsAction );
+  }
+
+  QAction * changeNameAction = nullptr;
+  if ( dict ) {
+    changeNameAction = new QAction( tr( "Change display name" ), &menu );
+    menu.addAction( changeNameAction );
   }
 
   QAction * sortNameAction = new QAction( tr( "Sort by name" ), &menu );
@@ -295,6 +312,30 @@ void OrderAndProps::contextMenuRequested( const QPoint & pos )
 
   if ( result && result == showHeadwordsAction ) {
     emit showDictionaryHeadwords( dict.get() );
+  }
+
+  if ( result && result == changeNameAction ) {
+    QString metadataPath = dict->getContainingFolder();
+    if ( metadataPath.isEmpty() ) {
+      return;
+    }
+
+    QInputDialog dialog( this );
+    dialog.setWindowTitle( tr( "Change display name" ) );
+    dialog.setLabelText( tr( "New display name:" ) );
+    dialog.setTextValue( QString::fromUtf8( dict->getName().c_str() ) );
+    if ( auto * lineEdit = dialog.findChild< QLineEdit * >() ) {
+      lineEdit->setClearButtonEnabled( true );
+    }
+
+    if ( dialog.exec() == QDialog::Accepted ) {
+      QString newName = dialog.textValue();
+      dict->setName( newName.toStdString() );
+      Metadata::saveDisplayName( metadataPath.toStdString(), dict->getMetadataFileStem(), newName.toStdString() );
+
+      ui.dictionaryOrder->update( idx );
+      describeDictionary( ui.dictionaryOrder, idx );
+    }
   }
 }
 

@@ -1,53 +1,84 @@
 # Anki Integration
 
-# prerequisite
-1. install Anki
-2. install ankiconnect
+## Prerequisites
 
-# configure Anki
+- Install Anki
+- Install AnkiConnect add-on for Anki
 
-## 1. create a new model, or use an existing model
+## Configure Anki
+
+### Create a new model or use an existing model
 
 For example, the model could have `Front` and `Back` fields.
 
-![Snipaste_2022-05-21_14-08-21](https://user-images.githubusercontent.com/105986/169638410-c6aa8038-df03-40de-8731-9f0b9f43bf59.png)
-## 2. configure the template
-the front template
+![Anki Setting](img/anki-1.png)
 
-![image](https://user-images.githubusercontent.com/105986/169638457-2358d020-0132-469f-a6b4-0fb6d1590fa2.png)
-the back template
+### Configure the template
 
-![image](https://user-images.githubusercontent.com/105986/169638440-7191fcdd-c338-48a3-a899-7216a5c77425.png)
+#### Front template
 
-# configure goldendict
-## 1. through toolbar=>preference=>network
-![screenshot](https://user-images.githubusercontent.com/69171671/224496944-dbf31d6e-26be-42c9-98fc-257f70a8428e.png)
+![Anki Front Template](img/anki-front.png)
 
-* Word - Vocabulary headword.
-* Text - Selected definition.
-* Sentence - Search string. You can leave it blank.
+#### Back template
 
-**Example for adding Japanese sentences:**
-![screenshot](https://user-images.githubusercontent.com/69171671/224497112-ab027a16-89b2-48d8-8308-a3dbb5b9e1e4.png)
+![Anki Back Template](img/anki-back.png)
 
-## 2. action
-![image](https://user-images.githubusercontent.com/105986/169638740-abecde84-d33b-45ce-932c-d465c6650334.png)
-## 3. result
+## Configure GoldenDict
 
-**Word and definition:**
-![image](https://user-images.githubusercontent.com/105986/169638761-f67c009d-27cd-440d-bafa-ebbdce9577e3.png)
+### Through toolbar → Preferences → Anki tab
 
-**Sentence, word, and definition:**
-![screenshot](https://user-images.githubusercontent.com/69171671/224497528-889d6393-e04d-4af7-b1a7-816ba010f2b2.png)
+![Anki Goldendict Configure](img/anki-gd.png)
 
+#### Field mappings
 
+- **Word**: Vocabulary headword
+- **Text**: Selected definition
+- **Sentence**: Search string (can be left blank)
+
+#### Example for adding Japanese sentences
+
+![screenshot](img/anki-jp-example.png)
+
+### Action
+
+![image](img/anki-action.png)
+
+### Result
+
+#### Word and definition
+
+![image](img/anki-result-word.png)
+
+#### Sentence, word, and definition
+
+![screenshot](img/anki-result-sentence.png)
 
 ## Using URI schemes
 
-`goldendict://word` link can be use to query a word directly on GoldenDict-ng.
+The `goldendict://word` link can be used to query a word directly in GoldenDict-ng.
 
-On your Anki card's template, you can add the code below to have a "1 click open in GoldenDict-ng" card.
+On your Anki card's template, you can add the code below to create a "1-click open in GoldenDict-ng" link:
 
-```
+```html
 <a href="goldendict://{{Front}}">{{Front}}</a>
 ```
+
+### Opening in Popup Window（supported specify target parameter at 2026-5-28）
+
+You can specify where to display the translation by adding the `target` parameter:
+
+```html
+<!-- Open in popup window -->
+<a href="goldendict://{{Front}}?target=popup">{{Front}}</a>
+
+<!-- Open in main window -->
+<a href="goldendict://{{Front}}?target=main">{{Front}}</a>
+```
+
+**Supported target values:**
+- `popup` - Display in scan popup window
+- `main` - Display in main window (default if no parameter specified)
+
+**Note for Linux/Wayland users:** The popup window feature may not work properly on some Wayland-based systems due to platform limitations. If you experience issues with `target=popup`, use `target=main` instead or configure GoldenDict to use X11 compatibility mode.
+
+This is useful for quick vocabulary lookup without leaving your current context.

@@ -57,16 +57,45 @@
       <translation>환영합니다!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt; &lt;b&gt;GoldenDict&lt;/b&gt;에 오신 것을 환영합니다!&lt;/h3&gt;&lt;p&gt;프로그램 작업을 시작하려면 먼저 &lt;em&gt;편집 | 사전&lt;/em&gt; 은 사전 파일을 검색하고, 다양한 Wikipedia 사이트 또는 기타 소스를 설정하고, 사전 순서를 조정하거나 사전 그룹을 생성할 디렉터리 경로를 추가합니다.&lt;p&gt;그러면 당신&apos;당신의 말을 찾아볼 준비가 된 것입니다! 이 창에서 왼쪽 창을 사용하여 검색하거나 다른 활성 애플리케이션에서 단어를 &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;할 수 있습니다&lt;/a&gt;. &lt;p&gt;프로그램을 사용자 정의하려면 &lt;em&gt;편집 | 환경설정&lt;/em&gt;. 모든 설정에는 툴팁이 있으므로 의심스러운 점이 있으면 꼭 읽어보세요.&lt;p&gt;추가 도움이 필요하거나 질문, 제안이 있거나 다른 사람들의 생각이 궁금하다면 프로그램&apos; &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;포럼&lt;/a&gt;에 참여하세요.&lt;p&gt;업데이트는 프로그램&apos; &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;웹사이트&lt;/a&gt; 에서 확인하세요. &lt;p&gt;(c) 2008-2013 콘스탄틴 이사코프. GPLv3 이상에 따라 라이센스가 부여되었습니다.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(제목없음)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(그림)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>&lt;div class=&quot;welcome-container&quot;&gt;
+&lt;h3&gt;GoldenDict-ng에 오신 것을 환영합니다!&lt;/h3&gt;
+&lt;section&gt;
+&lt;h4&gt;시작하기&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;사전 파일을 추가하고, 위키피디아와 같은 온라인 소스를 설정하고, 그룹으로 정리하려면 &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;사전 편집&lt;/span&gt;&lt;span&gt;사전&lt;/span&gt;&lt;/span&gt;으로 이동하세요.&lt;/li&gt;
+&lt;li&gt;설정이 완료되면 이 창이나 &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;스캔 팝업&lt;/a&gt;을 사용하여 다른 응용 프로그램에서 단어를 검색할 수 있습니다.&lt;/li&gt;
+&lt;li&gt;프로그램을 사용자 지정하려면 &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;환경 설정 편집&lt;/span&gt;&lt;span&gt;설정&lt;/span&gt;&lt;/span&gt;을 살펴보세요. 모든 설정에는 툴팁이 있으므로, 이해가 안 되는 부분이 있으면 툴팁을 꼭 읽어보세요.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;p&gt;추가적인 도움이 필요하거나 질문, 또는 제안 사항이 있으시면 프로그램의 &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;포럼&lt;/a&gt;과 &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;웹사이트&lt;/a&gt;를 방문해 주세요.&lt;/p&gt;
+&lt;footer class=&quot;welcome-footer&quot;&gt;
+&lt;small&gt;Konstantin Isakov의 GoldenDict 원본(c) 2008-2013을 기반으로 합니다. GoldenDict-NG 커뮤니티에서 유지 관리 및 개발합니다. GPLv3 이상 라이선스가 적용됩니다.&lt;/small&gt;
+&lt;/footer&gt;
+&lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +130,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>문구를 찾을 수 없습니다</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 %2</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +279,41 @@
       <source>&amp;Create Anki note</source>
       <translation>안키 노트 만들기(&amp;C)</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;소리를 클립보드에 복사</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>소리 복사에 실패했습니다</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>완전한 오디오 데이터를 기록하는 데 실패했습니다.</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>사운드는 클립보드에 복사됨</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>사운드 다운로드 실패</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 %2</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>외부 브라우저에서 문서 열기(&amp;B)</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>골든딕트 리소스 뷰어</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -275,52 +335,60 @@ between classic and school orthography in cyrillic)</source>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>중국어 변환</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>번체에서 간체로 변환</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>중국어 간체와 번체 간 변환 가능</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>간체/번체 한자에서 일본어 신지타이 문자로 변환 가능</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>중국어 변환</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>일본 신지타이</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>간체 문자에서 번체(대만 변형) 문자로 변환 가능</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>중국에서 일본으로 변환된 신지타이</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>간체 문자에서 전통(홍콩 변형) 문자로 변환 가능</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>중국어와 일본어 문자 변환</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>간체 중국어, 번체(대만/홍콩), 일본어 신지타이 문자 간 변환 가능</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>번체 문자에서 간체 문자로 변환 가능</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>번체 중국어(대만 변형) 변환으로 간체</translation>
+      <source>Simplified</source>
+      <translation>간소화</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>번체 중국어(홍콩 변형) 변환으로 간체</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>간체 문자에서 번체(대만) 문자로의 변환 활성화</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>번체에서 간체로 변환</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>전통 (대만)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation>대만어 변형</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>간체 문자에서 번체(홍콩) 문자로의 변환 가능</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation>홍콩 변형</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>전통 (홍콩)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation>본토 변형</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>간체체를 번체체(대만) 변환</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>간체체(홍콩) 중국어로의 변환</translation>
     </message>
   </context>
   <context>
@@ -408,10 +476,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>포함된 폴더를 기반으로 그룹 세트를 생성하시겠습니까?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>metadata.toml을 기반으로 그룹 세트를 생성하시겠습니까?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>소스언어에 따라 그룹을 합칩니다  &quot;%1-&gt;&quot;</translation>
     </message>
@@ -426,6 +490,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>&quot;%1&quot;와 그룹을 합칩니다</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>그룹 삭제</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>&lt;b&gt;%1&lt;/b&gt;그룹을 삭제하시겠습니까?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>사전 메타데이터 파일을 기반으로 그룹 집합을 생성하시겠습니까?</translation>
     </message>
   </context>
   <context>
@@ -455,10 +531,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>필터:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>검색 모드</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>이 요소는 필터가 어떻게 해석될 것인지 결정합니다</translation>
     </message>
@@ -481,18 +553,6 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>반환된 최대 필터링된 표제어를 지정합니다.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>최대 결과 필터링:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>도움말</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>확인</translation>
     </message>
     <message>
       <source>Text</source>
@@ -542,6 +602,10 @@ between classic and school orthography in cyrillic)</source>
       <source>Regular Expression</source>
       <translation>정규식</translation>
     </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>최대치:</translation>
+    </message>
   </context>
   <context>
     <name>DictInfo</name>
@@ -574,10 +638,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>번역언어:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>사전의 구성파일:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>설명:</translation>
     </message>
@@ -596,6 +656,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Full-text search disabled</source>
       <translation>전체 텍스트 검색이 비활성화됨</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>장애를 입히다</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>할 수 있게 하다</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>사전 구성 요소:</translation>
     </message>
   </context>
   <context>
@@ -692,6 +764,34 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Restore selection</source>
       <translation>선택 항목 복원</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>취소 리인덱스</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>재색인 일정</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>일정 재인수 취소</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>사전의 색인 재구축이 예정되어 있습니다. 다음 애플리케이션 재시작 시 색인이 다시 생성될 예정입니다.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>표시 이름 변경</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>새로운 표시 이름:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>사전 재색인 일정을 맞추지 못했습니다.</translation>
     </message>
   </context>
   <context>
@@ -808,10 +908,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>폴더 추가</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>모두 지우기</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>즐겨찾기:</translation>
     </message>
@@ -820,16 +916,20 @@ between classic and school orthography in cyrillic)</source>
       <translation>선택한 모든 항목이 삭제됩니다. 계속하다?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>모든 항목 지우기</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>모든 항목을 지우시겠습니까?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>이 폴더를 단어 추가/제거 및 작업의 대상으로 만듭니다.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>비켜</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>명백한 페이버릿</translation>
     </message>
   </context>
   <context>
@@ -957,28 +1057,12 @@ between classic and school orthography in cyrillic)</source>
       <translation>탭 2</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>새 사전 그룹을 만듭니다</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>그룹 추가(&amp;A)</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>현재 사전 그룹의 이름을 바꿉니다</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>그룹 이름 바꾸기(&amp;N)</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>현재 사전 그룹을 삭제합니다</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>그룹 삭제(&amp;R)</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1048,6 +1132,22 @@ between classic and school orthography in cyrillic)</source>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>모든 그룹을 삭제하시겠습니까?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>새로운 사전 그룹 추가</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>그룹 추가(&amp;A)</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>이미 존재하는 군</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>이름을 가진 그룹 &apos;%1&apos; 이미 존재한다.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1081,6 +1181,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>%1 Morphology</source>
       <translation>%1 철자법사전</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>철자가 맞았고, 다른 단어 형태는 발견되지 않았습니다.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>출처 %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>어형 %1: </translation>
     </message>
   </context>
   <context>
@@ -2100,7 +2212,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Kabyle</source>
-      <translation type="unfinished">Kabyle</translation>
+      <translation>카빌레</translation>
     </message>
   </context>
   <context>
@@ -2388,10 +2500,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>새 탭</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>환영합니다!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>Accessibility API가 활성화 되지 않았습니다</translation>
     </message>
@@ -2464,42 +2572,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Print Article</source>
       <translation>항목 인쇄</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>완전한 HTML(*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>단일 HTML(*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>PDF(*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>MIME HTML(*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>다른 이름으로 항목 저장</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>오류</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>항목을 저장할 수 없습니다: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>항목 저장...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>기사 저장 완료</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2594,12 +2666,56 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>보여주다</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation>PDF 저장 완료</translation>
+      <source>Lock Panels</source>
+      <translation>잠금 패널</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation>PDF 저장 실패</translation>
+      <source>Clear History</source>
+      <translation>명확한 역사</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>모든 역사 아이템을 모두 클리어할 게 확실한가요?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>저장 파일</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>애플리케이션은 여전히 백그라운드에서 실행 중입니다. 트레이 아이콘을 클릭하면 창이 표시됩니다.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>외부 브라우저에서 열기</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>이제 헤드워드 캐시를 쌓아가고 있습니다: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>접두사</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>접미사</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>다중 단어</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>전체 텍스트 검색…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>검색 모드</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>검색 모드: %1</translation>
     </message>
   </context>
   <context>
@@ -2616,15 +2732,15 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML 문법오류: %2행 %3열에서 %1</translation>
+      <source>JSON parse error</source>
+      <translation>JSON 파르se 오류</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML 문법오류: %2행 %3열에서 %1</translation>
+      <source>JSON parse error</source>
+      <translation>JSON 파르se 오류</translation>
     </message>
   </context>
   <context>
@@ -2700,10 +2816,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>설명:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>사전의 구성파일:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>마우스끌기로 순서를 조정하십시오. 사전을 사용하지 않으려면 비활성 그룹으로 옮기십시오.</translation>
     </message>
@@ -2722,6 +2834,18 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>사용중: %1, 사용중지: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>표시 이름 변경</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>새로운 표시 이름:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>사전 구성 요소:</translation>
     </message>
   </context>
   <context>
@@ -2766,27 +2890,12 @@ switching to them.</source>
       <translation>새 탭을 배경으로 열기</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>이 항목을 선택하면 새 탭이 현재의 활성탭 다음에 열립니다.
-기본값은 제일 마지막 위치에 새 탭이 열립니다.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>새 탭을 현재 탭 다음에 열기</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>탭이 하나만 열려 있을 때 탭 도구상자를 보이지 않게 하려면 선택하십시오.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>탭이 하나뿐이면 숨김</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>MRU 순서: 가장 최근에 사용한 순서입니다.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2874,8 +2983,100 @@ the application.</source>
       <translation>컨텍스트메뉴 사전 한도:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>시스템 기본값</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>기본값</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>권위 있는</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>현대의</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>링보</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>바빌론</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>링고</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>링고-블루</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>언어변경을 적용하려면 프로그램을 다시 시작하십시오.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>인터페이스 스타일 변경 사항을 적용하려면 다시 시작하십시오.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>인터페이스 글꼴 변경 사항을 적용하려면 다시 시작하세요.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>재시작 필요</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>할 수 있게 하다</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>장애를 입히다</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>오토매틱</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>없음</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>이 기능을 사용하면 새 탭이 열리면서
+현재 활성 상태입니다. 그렇지 않으면 더해집니다.
+마지막이 되어.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp; 스타일</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>모습</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>인터페이스 언어</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>기사 표시 스타일</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Add-on 스타일</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>인터페이스 스타일</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2894,12 +3095,16 @@ the application.</source>
       <translation>다크 리더 모드</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>이러한 글꼴은 사전에서 지정한 글꼴을 찾을 수 없을 때 적용됩니다.</translation>
+      <source>Preview Font</source>
+      <translation>글꼴 미리보기</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>대체 글꼴</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng는 사전 소프트웨어입니다.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>이러한 글꼴은 사전에서 지정한 글꼴을 찾을 수 없을 때 적용됩니다.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2916,10 +3121,6 @@ the application.</source>
     <message>
       <source>Monospace Font</source>
       <translation>모노스페이스 글꼴</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>스캔팝업(&amp;S)</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2956,8 +3157,8 @@ in the pressed state when the word selection changes.</source>
 눌려진 상태에서만 팝업이 나타납니다.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>선택한 모든 키를 계속 누르고 있을 때만 압정 선택:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>선택된 모든 키를 계속 눌렀을 때만 선택을 트랙할 수 있습니다:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3040,20 +3241,8 @@ in the pressed state when the word selection changes.</source>
       <translation>내장 오디오 지원을 통해 오디오 파일 재생</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>내부 플레이어 사용:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>오디오 백엔드 선택</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>외부 프로그램을 통하여 음성을 재생합니다</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>외부 프로그램 사용:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3118,28 +3307,12 @@ for all program&apos;s network requests.</source>
       <translation>갑판:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>모델:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>단어</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>어휘 분야...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>텍스트</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>정의 필드...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>문장</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3156,42 +3329,6 @@ you are browsing. If some site breaks because of this, try disabling this.</sour
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>사이트 외부 자료 허용 안함(대부분의 광고를 차단함)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>일부 사이트는 HTTP 헤더를 통해서 GoldenDict을 탐지하여 요청을 블록합니다.
-이런 문제를 우회하려면 옵션을 선택하십시오.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>HTTP 헤더에 GoldenDict을 표시하지 않음</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>최대 네트워크 캐시 크기:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>GoldenDict가 차지하는 최대 디스크 공간&apos;네트워크 캐시 in
-%1
-으로 설정하면 네트워크 디스크 캐시가 비활성화됩니다.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>이 옵션이 활성화되면 GoldenDict
-은 종료하는 동안 디스크에서 네트워크 캐시를 지웁니다.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>종료 시 네트워크 캐시 지우기</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3252,8 +3389,12 @@ download page.</source>
       <translation>검색기록 최대크기:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>검색기록을 자동으로 저장하는 간격. 0으로 지정하면 종료시에만 저장됩니다.</translation>
+      <source>Favorites</source>
+      <translation>즐겨찾기</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>즐겨찾기 저장 간격. 0으로 설정하면 종료 시에만 즐겨찾기가 저장됩니다.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3262,14 +3403,6 @@ download page.</source>
     <message>
       <source>minutes</source>
       <translation>분 마다</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>즐겨찾기</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>즐겨찾기 저장 간격. 0으로 설정하면 종료 시에만 즐겨찾기가 저장됩니다.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3368,112 +3501,112 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>종료 시 유효하지 않은 인덱스 제거</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>시스템 기본값</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>기본값</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>권위 있는</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>현대의</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>링보</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>바빌론</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>링고</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>링고-블루</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>일부 시스템에서는 자동이 아무 작업도 수행하지 않습니다.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>언어변경을 적용하려면 프로그램을 다시 시작하십시오.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>인터페이스 스타일 변경 사항을 적용하려면 다시 시작하십시오.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>인터페이스 글꼴 변경 사항을 적용하려면 다시 시작하세요.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>재시작 필요</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>할 수 있게 하다</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>장애를 입히다</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>오토매틱</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>config 폴더의 gd_log.txt에 디버그 메시지를 저장합니다</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>인터페이스 언어</translation>
+      <source>S&amp;can</source>
+      <translation>S&amp;can</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>기사 표시 스타일</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>기사 보기에서 자바스크립트 알림, 확인, 프롬프트를 억제하세요.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Add-on 스타일</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>자바스크립트 대화 메시지 억제</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>인터페이스 스타일</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>별도의 탭에서 웹사이트 사전을 엽니다</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>글꼴 미리보기</translation>
+      <source>Anki</source>
+      <translation type="unfinished">Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation>GoldenDict-ng는 사전 소프트웨어입니다.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>자바스크립트가 기사 뷰에서 클립보드에 접근할 수 있도록 허용하세요.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation type="unfinished">Enable Interface Font</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>JavaScript 클립보드 접근 활성화 (재시작 필요)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>JavaScript 클립보드 접근 변경 사항을 적용하려면 재시작하세요.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation type="unfinished">Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>탭이 하나만 열려 있을 때는 탭 바를 숨기세요.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>없음</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>외부 오디오 플레이어를 사용해서 오디오 파일을 재생하세요</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>상세 구성 가이드 보기</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>오디오 경로는 명령줄 인수로 외부 플레이어에 전달됩니다. </translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation>내장 오디오 플레이어:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation>외부 오디오 플레이어:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>시스템 테마에 따라 자동으로 전환됩니다.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>글꼴 커스터마이즈</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>Dock 아이콘은 메인 창이 열려 있을 때 항상 표시되어 macOS가 애플리케이션 이름과 메뉴를 표시할 수 있습니다. 이 옵션을 활성화하면 메인 창이 숨겨진 후에도 도크 아이콘이 보이게 유지됩니다.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>배경에서 도크 아이콘을 보이게 하세요</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>가능하면 Anki 카드에 오디오를 추가하세요</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>활성화되면 웹사이트 사전이 기사 뷰에 삽입되지 않고 자체 탭에서 열립니다. 이로 인해 iframe 레이아웃과 스크롤 제한을 피하고, 사전 대화상자에서 각 사전별 스크립트 열이 활성화됩니다.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>단어:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>본문:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>문장:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>인터페이스 글꼴</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>커스텀 패밀리</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>맞춤 사이즈</translation>
     </message>
   </context>
   <context>
@@ -3619,6 +3752,58 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>Force the word to be translated in the mainwindow.</source>
       <translation>메인 창에서 단어를 강제로 번역합니다.</translation>
     </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>웹사이트 URL:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>URL에서 "%GDWORD%"는 검색하려는 단어로 대체됩니다.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>완전한 HTML(*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>단일 HTML(*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>PDF 문서 (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>MIME HTML(*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>다른 이름으로 항목 저장</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>기사 저장 완료</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>오류</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>항목을 저장할 수 없습니다: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>PDF 저장 완료</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>PDF 저장 실패</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>구원할 만한 기사... (%1/%2)</translation>
+    </message>
   </context>
   <context>
     <name>QuickFilterLine</name>
@@ -3649,6 +3834,10 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>The referenced resource failed to download.</source>
       <translation>참조할 리소스를 다운로드하지 못했습니다.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>리소스는 목적지 폴더 외부에 저장됩니다.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3674,6 +3863,26 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>WARNING: %1</source>
       <translation>경고: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>정의</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>현재 탭 닫기</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>다른 탭 닫기</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>모든 탭 닫기</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>외부 브라우저에서 열기</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3698,10 +3907,6 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>단어를 메인창으로 보냅니다(Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation type="unfinished">Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>즐겨찾기에 단어 추가(Ctrl+E)</translation>
     </message>
@@ -3714,6 +3919,10 @@ from Stardict, Babylon and GLS dictionaries</source>
 could be resized or managed in other ways.</source>
       <translation>핀 아이콘을 선택하면 창을 항상 화면 맨 위에 표시하고, 
 팝업창 크기, 사전모음의 위치 등을 조절할 수 있습니다.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>검색항목을 저장합니다</translation>
     </message>
   </context>
   <context>
@@ -4000,23 +4209,23 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>Remove selected directories from the list?</source>
-      <translation type="unfinished">Remove selected directories from the list?</translation>
+      <translation>목록에서 선택한 디렉터리를 제거하나요?</translation>
     </message>
     <message>
       <source>Remove %1 directories from the list?</source>
-      <translation type="unfinished">Remove %1 directories from the list?</translation>
+      <translation>제거 %1 목록에 있는 디렉터리들?</translation>
     </message>
     <message>
       <source>Remove %1 sites from the list?</source>
-      <translation type="unfinished">Remove %1 sites from the list?</translation>
+      <translation>제거 %1 목록에 있는 장소들인가요?</translation>
     </message>
     <message>
       <source>Remove %1 servers from the list?</source>
-      <translation type="unfinished">Remove %1 servers from the list?</translation>
+      <translation>제거 %1 목록에 있는 서버들?</translation>
     </message>
     <message>
       <source>Remove %1 programs from the list?</source>
-      <translation type="unfinished">Remove %1 programs from the list?</translation>
+      <translation>제거 %1 목록에 있는 프로그램인가요?</translation>
     </message>
   </context>
   <context>
@@ -4113,18 +4322,21 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>&lt;iframe&gt; 태그 안에 링크로 기사 삽입</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>이 웹사이트 사전은 새 탭에서 열립니다</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>꺼 &quot;별도의 탭에서 웹사이트 사전을 엽니다&quot; 대신 문서 내 웹사이트를 표시하기 위해 환경설정에서 선택하세요.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>활성</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>링크로</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4137,6 +4349,22 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     <message>
       <source>Icon</source>
       <translation>아이콘</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>스크립트</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>아이콘 파일 이름. 설정 디렉터리에 대해 비교해서요.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>웹사이트를 별도의 탭에서 열었을 때만 사용 가능합니다. 파일 경로(설정 디렉터리를 기준으로 한 상대 경로 또는 절대 경로) 또는 스크립트 내용을 직접 지정할 수 있습니다.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>이 열은 비활성화된 이유는 &quot;별도의 탭에서 웹사이트 사전을 엽니다&quot; 환경설정에서 옵션이 활성화되어 있지 않습니다.</translation>
     </message>
   </context>
   <context>

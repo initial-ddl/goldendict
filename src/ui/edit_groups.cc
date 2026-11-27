@@ -40,12 +40,13 @@ Groups::Groups( QWidget * parent,
 
   connect( ui.addGroup, &QAbstractButton::clicked, this, &Groups::addNew );
   connect( ui.renameGroup, &QAbstractButton::clicked, this, &Groups::renameCurrent );
-  connect( ui.removeGroup, &QAbstractButton::clicked, this, &Groups::removeCurrent );
   connect( ui.removeAllGroups, &QAbstractButton::clicked, this, &Groups::removeAll );
   connect( ui.addDictsToGroup, &QAbstractButton::clicked, this, &Groups::addToGroup );
   connect( ui.dictionaries, &QAbstractItemView::doubleClicked, this, &Groups::addToGroup );
   connect( ui.removeDictsFromGroup, &QAbstractButton::clicked, this, &Groups::removeFromGroup );
   connect( ui.groups, &DictGroupsWidget::showDictionaryInfo, this, &Groups::showDictionaryInfo );
+  connect( ui.groups->tabBar(), &QTabBar::tabBarDoubleClicked, this, &Groups::renameCurrent );
+  connect( ui.groups, &DictGroupsWidget::newTabRequested, this, &Groups::addNew );
 
   connect( ui.autoGroups, &QAbstractButton::clicked, this, &Groups::addAutoGroups );
   connect( ui.autoGroupsFolders, &QAbstractButton::clicked, this, &Groups::addAutoGroupsByFolders );
@@ -55,6 +56,7 @@ Groups::Groups( QWidget * parent,
   connect( ui.dictionaries, &QWidget::customContextMenuRequested, this, &Groups::showDictInfo );
 
   countChanged();
+  connect( ui.groups, &DictGroupsWidget::countChanged, this, &Groups::countChanged );
 }
 
 void Groups::resetData( const vector< sptr< Dictionary::Class > > & dicts_,
@@ -101,14 +103,7 @@ void Groups::countChanged()
   bool en = ui.groups->count();
 
   ui.renameGroup->setEnabled( en );
-  ui.removeGroup->setEnabled( en );
   ui.removeAllGroups->setEnabled( en );
-
-  int stretch = ui.groups->count() / 5;
-  if ( stretch > 3 ) {
-    stretch = 3;
-  }
-  ui.gridLayout->setColumnStretch( 2, stretch );
 }
 
 void Groups::addNew()
@@ -123,27 +118,33 @@ void Groups::addNew()
                                         &ok );
 
   if ( ok ) {
+    // Check if group with the same name already exists
+    for ( int i = 0; i < ui.groups->count(); ++i ) {
+      auto * w = qobject_cast< DictGroupWidget * >( ui.groups->widget( i ) );
+      if ( w && w->name() == name ) {
+        QMessageBox::warning( this,
+                              tr( "Group already exists" ),
+                              tr( "A group with the name '%1' already exists." ).arg( name ) );
+        return;
+      }
+    }
     ui.groups->addNewGroup( name );
-    countChanged();
   }
 }
 
 void Groups::addAutoGroups()
 {
   ui.groups->addAutoGroups();
-  countChanged();
 }
 
 void Groups::addAutoGroupsByFolders()
 {
   ui.groups->addAutoGroupsByFolders();
-  countChanged();
 }
 
 void Groups::groupsByMetadata()
 {
   ui.groups->groupsByMetadata();
-  countChanged();
 }
 void Groups::renameCurrent()
 {
@@ -163,6 +164,18 @@ void Groups::renameCurrent()
                                         &ok );
 
   if ( ok ) {
+    // Check if group with the same name already exists (excluding the current group)
+    for ( int i = 0; i < ui.groups->count(); ++i ) {
+      if ( i != current ) {
+        auto * w = qobject_cast< DictGroupWidget * >( ui.groups->widget( i ) );
+        if ( w && w->name() == name ) {
+          QMessageBox::warning( this,
+                                tr( "Group already exists" ),
+                                tr( "A group with the name '%1' already exists." ).arg( name ) );
+          return;
+        }
+      }
+    }
     ui.groups->renameCurrentGroup( name );
   }
 }
@@ -180,7 +193,6 @@ void Groups::removeCurrent()
             QMessageBox::Cancel )
          == QMessageBox::Yes ) {
     ui.groups->removeCurrentGroup();
-    countChanged();
   }
 }
 
@@ -196,7 +208,6 @@ void Groups::removeAll()
                                  QMessageBox::Cancel )
          == QMessageBox::Yes ) {
     ui.groups->removeAllGroups();
-    countChanged();
   }
 }
 

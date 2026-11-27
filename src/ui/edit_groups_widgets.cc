@@ -9,6 +9,8 @@
 #include "language.hh"
 #include "metadata.hh"
 #include "utils.hh"
+#include <climits>
+#include <algorithm>
 
 #include <QFileDialog>
 #include <QFileInfo>
@@ -19,6 +21,8 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QList>
+#include <QShortcut>
+#include <QToolButton>
 
 using std::vector;
 
@@ -80,6 +84,14 @@ DictGroupWidget::DictGroupWidget( QWidget * parent,
   connect( ui.dictionaries, &QWidget::customContextMenuRequested, this, &DictGroupWidget::showDictInfo );
 
   connect( ui.dictionaries, &QAbstractItemView::doubleClicked, this, &DictGroupWidget::removeCurrentItem );
+
+  // Limit the Del shortcut to the dictionaries list, otherwise it would also trigger
+  // while editing the filter line or the group properties.
+  auto * deleteShortcut = new QShortcut( QKeySequence::Delete, ui.dictionaries );
+  deleteShortcut->setContext( Qt::WidgetWithChildrenShortcut );
+  connect( deleteShortcut, &QShortcut::activated, this, [ this ]() {
+    ui.dictionaries->getModel()->removeSelectedRows( ui.dictionaries->selectionModel() );
+  } );
 }
 
 void DictGroupWidget::groupIconActivated( int index )
@@ -219,7 +231,7 @@ int DictListModel::rowCount( const QModelIndex & ) const
 
 QVariant DictListModel::data( const QModelIndex & index, int role ) const
 {
-  if ( index.row() < 0 ) {
+  if ( !index.isValid() || index.row() < 0 || index.row() >= (int)dictionaries.size() ) {
     return QVariant();
   }
 
@@ -361,18 +373,40 @@ void DictListModel::removeSelectedRows( QItemSelectionModel * source )
     return;
   }
 
-  const QModelIndexList rows = source->selectedRows();
+  // selectedRows() is not guaranteed to be sorted (see Qt docs of selectedIndexes()),
+  // so collect the row numbers and sort them before removing.
+  QList< int > rows;
+  const QModelIndexList selected = source->selectedRows();
+  for ( const auto & idx : selected ) {
+    if ( idx.isValid() && idx.row() >= 0 && idx.row() < (int)dictionaries.size() && !rows.contains( idx.row() ) ) {
+      rows.push_back( idx.row() );
+    }
+  }
 
-  if ( !rows.count() ) {
+  if ( rows.isEmpty() ) {
     return;
   }
 
-  for ( int i = rows.count() - 1; i >= 0; --i ) {
-    dictionaries.erase( dictionaries.begin() + rows.at( i ).row() );
+  std::sort( rows.begin(), rows.end() );
+
+  // Remove the rows from the bottom up, grouping adjacent ones, so that the indexes
+  // of the rows still to be removed stay valid.
+  for ( int i = rows.size() - 1; i >= 0; ) {
+    const int last = rows.at( i );
+    int first      = last;
+
+    while ( i > 0 && rows.at( i - 1 ) == first - 1 ) {
+      first = rows.at( i - 1 );
+      --i;
+    }
+
+    beginRemoveRows( QModelIndex(), first, last );
+    dictionaries.erase( dictionaries.begin() + first, dictionaries.begin() + last + 1 );
+    endRemoveRows();
+
+    --i;
   }
 
-  beginResetModel();
-  endResetModel();
   emit contentChanged();
 }
 
@@ -406,12 +440,25 @@ void DictListModel::addSelectedUniqueFromModel( QItemSelectionModel * source )
   QList< std::string > list;
   QList< std::string > dicts;
   for ( const auto & dictionarie : dictionaries ) {
-    dicts.append( dictionarie->getId() );
+    if ( dictionarie ) {
+      dicts.append( dictionarie->getId() );
+    }
   }
 
   for ( int i = 0; i < rows.count(); i++ ) {
-    QModelIndex idx = proxyModel ? proxyModel->mapToSource( rows.at( i ) ) : rows.at( i );
-    std::string id  = baseModel->dictionaries.at( idx.row() )->getId();
+    const QModelIndex idx = proxyModel ? proxyModel->mapToSource( rows.at( i ) ) : rows.at( i );
+
+    if ( !idx.isValid() || idx.row() < 0 || idx.row() >= (int)baseModel->dictionaries.size() ) {
+      continue;
+    }
+
+    const sptr< Dictionary::Class > & dict = baseModel->dictionaries[ idx.row() ];
+
+    if ( !dict ) {
+      continue;
+    }
+
+    const std::string id = dict->getId();
 
     if ( !dicts.contains( id ) ) {
       list.append( id );
@@ -422,6 +469,8 @@ void DictListModel::addSelectedUniqueFromModel( QItemSelectionModel * source )
     return;
   }
 
+  beginResetModel();
+
   for ( const auto & j : list ) {
     for ( const auto & allDict : *allDicts ) {
       if ( allDict->getId() == j ) {
@@ -431,7 +480,6 @@ void DictListModel::addSelectedUniqueFromModel( QItemSelectionModel * source )
     }
   }
 
-  beginResetModel();
   endResetModel();
   emit contentChanged();
 }
@@ -531,13 +579,22 @@ void DictListWidget::rowsAboutToBeRemoved( const QModelIndex & parent, int start
 
 DictGroupsWidget::DictGroupsWidget( QWidget * parent ):
   QTabWidget( parent ),
-  nextId( 1 ),
   allDicts( nullptr ),
   activeDicts( nullptr )
 {
   setMovable( true );
   setContextMenuPolicy( Qt::CustomContextMenu );
   connect( this, &QWidget::customContextMenuRequested, this, &DictGroupsWidget::contextMenu );
+
+  QToolButton * addTabButton = new QToolButton( this );
+  addTabButton->setAutoRaise( true );
+  addTabButton->setIcon( QIcon( ":/icons/addtab.svg" ) );
+  setCornerWidget( addTabButton, Qt::TopLeftCorner );
+
+  connect( addTabButton, &QToolButton::clicked, this, &DictGroupsWidget::addNewTab );
+
+  setTabsClosable( true );
+  connect( this, &QTabWidget::tabCloseRequested, this, &DictGroupsWidget::removeTabRequested );
 
   setElideMode( Qt::ElideNone );
   setUsesScrollButtons( true );
@@ -563,7 +620,6 @@ void DictGroupsWidget::populate( const Config::Groups & groups,
     setTabToolTip( x, toolTipStr );
   }
 
-  nextId = groups.nextId;
 
   setCurrentIndex( 0 );
 }
@@ -572,8 +628,6 @@ void DictGroupsWidget::populate( const Config::Groups & groups,
 Config::Groups DictGroupsWidget::makeGroups() const
 {
   Config::Groups result;
-
-  result.nextId = nextId;
 
   for ( int x = 0; x < count(); ++x ) {
     result.push_back( dynamic_cast< DictGroupWidget & >( *widget( x ) ).makeGroup() );
@@ -646,8 +700,28 @@ int DictGroupsWidget::addNewGroup( const QString & name )
 
   Config::Group newGroup;
 
-  newGroup.id   = nextId++;
   newGroup.name = name;
+  newGroup.id   = static_cast< unsigned >( qHash( newGroup.name ) );
+  // Ensure ID is not 0 (reserved for NoGroupId)
+  if ( newGroup.id == 0 ) {
+    newGroup.id = 1;
+  }
+  // Check for duplicate IDs
+  QSet< unsigned > existingIds;
+  for ( int x = 0; x < count(); ++x ) {
+    const Config::Group existingGroup = dynamic_cast< DictGroupWidget & >( *widget( x ) ).makeGroup();
+    existingIds.insert( existingGroup.id );
+  }
+  // Handle potential overflow
+  while ( existingIds.contains( newGroup.id ) ) {
+    if ( newGroup.id == UINT_MAX ) {
+      // Start from 1 when reaching maximum value
+      newGroup.id = 1;
+    }
+    else {
+      newGroup.id++;
+    }
+  }
 
   const auto gr = new DictGroupWidget( this, *allDicts, newGroup );
   const int idx = insertTab( currentIndex() + 1, gr, Utils::escapeAmps( name ) );
@@ -873,11 +947,12 @@ void DictGroupsWidget::groupsByMetadata()
   if ( activeDicts->empty() ) {
     return;
   }
-  if ( QMessageBox::information( this,
-                                 tr( "Confirmation" ),
-                                 tr( "Are you sure you want to generate a set of groups based on metadata.toml?" ),
-                                 QMessageBox::Yes,
-                                 QMessageBox::Cancel )
+  if ( QMessageBox::information(
+         this,
+         tr( "Confirmation" ),
+         tr( "Are you sure you want to generate a set of groups based on dictionary metadata files?" ),
+         QMessageBox::Yes,
+         QMessageBox::Cancel )
        != QMessageBox::Yes ) {
     return;
   }
@@ -890,9 +965,7 @@ void DictGroupsWidget::groupsByMetadata()
       continue;
     }
 
-    auto filePath = Utils::Path::combine( baseDir, "metadata.toml" );
-
-    const auto dictMetaData = Metadata::load( filePath.toStdString() );
+    const auto dictMetaData = Metadata::loadForDictionary( baseDir.toStdString(), dict->getMetadataFileStem() );
     if ( dictMetaData && dictMetaData->categories ) {
       for ( const auto & category : dictMetaData->categories.value() ) {
         auto group = QString::fromStdString( category ).trimmed();
@@ -936,10 +1009,43 @@ void DictGroupsWidget::removeCurrentGroup()
 {
   const int current = currentIndex();
 
-  if ( current >= 0 ) {
-    removeTab( current );
+  if ( current < 0 ) {
+    return;
+  }
+
+  QWidget * page = widget( current );
+  removeTab( current );
+
+  if ( page ) {
+    page->deleteLater();
   }
 }
+
+void DictGroupsWidget::removeTabRequested( int index )
+{
+  if ( index < 0 ) {
+    return;
+  }
+  if ( QMessageBox::question( this,
+                              tr( "Remove group" ),
+                              tr( "Are you sure you want to remove the group <b>%1</b>?" ).arg( tabText( index ) ),
+                              QMessageBox::Yes,
+                              QMessageBox::Cancel )
+       == QMessageBox::Yes ) {
+    QWidget * page = widget( index );
+    removeTab( index );
+
+    if ( page ) {
+      page->deleteLater();
+    }
+  }
+}
+
+void DictGroupsWidget::addNewTab()
+{
+  emit newTabRequested();
+}
+
 
 void DictGroupsWidget::removeAllGroups()
 {
@@ -1127,6 +1233,18 @@ void DictGroupsWidget::tabDataChanged()
   const QString toolTipStr =
     tr( "Dictionaries: " ) + QString::number( getCurrentModel()->getCurrentDictionaries().size() );
   setTabToolTip( currentIndex(), toolTipStr );
+}
+
+void DictGroupsWidget::tabInserted( int index )
+{
+  QTabWidget::tabInserted( index );
+  emit countChanged();
+}
+
+void DictGroupsWidget::tabRemoved( int index )
+{
+  QTabWidget::tabRemoved( index );
+  emit countChanged();
 }
 
 QuickFilterLine::QuickFilterLine( QWidget * parent ):

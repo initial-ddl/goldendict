@@ -5,11 +5,11 @@
     <name>About</name>
     <message>
       <source>About</source>
-      <translation>バージョン情報</translation>
+      <translation>このアプリについて</translation>
     </message>
     <message>
       <source>Licensed under GNU GPLv3 or later</source>
-      <translation>GNU GPLv3 以降の下でライセンスされています</translation>
+      <translation>GNU GPLv3 以降のバージョンでライセンスされている</translation>
     </message>
     <message>
       <source>Copy version info</source>
@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation>Anki: can&apos;t create a card without a word</translation>
+      <translation>Anki: 単語がないとカードが作れないよ。</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -28,11 +28,11 @@
     </message>
     <message>
       <source>Anki: post to Anki failed</source>
-      <translation>安置：安置に失敗。</translation>
+      <translation>Anki: Ankiへの送信に大失敗…</translation>
     </message>
     <message>
       <source>Anki: post to Anki success</source>
-      <translation>安芸：安芸投稿成功</translation>
+      <translation>Anki: Ankiへの送信に大成功！</translation>
     </message>
   </context>
   <context>
@@ -46,7 +46,7 @@
     <name>ArticleMaker</name>
     <message>
       <source>No translation for &lt;b dir=&quot;%3&quot;&gt;%1&lt;/b&gt; was found in group &lt;b&gt;%2&lt;/b&gt;.</source>
-      <translation>グループ &lt;b&gt;%2&lt;/b&gt;では &lt;b dir=&quot;%3&quot;&gt;%1&lt;/b&gt; の翻訳が見つかりませんでした。</translation>
+      <translation>グループ &lt;b&gt;%2&lt;/b&gt;では &lt;b dir=&quot;%3&quot;&gt;%1&lt;/b&gt; の記事が見つからなかった。</translation>
     </message>
     <message>
       <source>No translation was found in group &lt;b&gt;%1&lt;/b&gt;.</source>
@@ -57,16 +57,46 @@
       <translation>ようこそ!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt; &lt;b&gt;GoldenDict&lt;/b&gt;へようこそ!&lt;/h3&gt;&lt;p&gt;プログラムの操作を開始するには、まず &lt;em&gt;[編集] | [編集] にアクセスします。 Dictionaries&lt;/em&gt; では、辞書ファイルを検索するためのディレクトリ パスを追加したり、さまざまな Wikipedia サイトやその他のソースを設定したり、辞書の順序を調整したり、辞書グループを作成したりできます。&lt;p&gt;そして、あなたは&apos;自分の言葉を調べる準備ができました!このウィンドウでは、左側のペインを使用してこれを行うことも、 &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;他のアクティブなアプリケーションから単語を検索することもできます&lt;/a&gt;。 &lt;p&gt;プログラムをカスタマイズするには、 &lt;em&gt;編集 | で利用可能な設定を確認してください。設定&lt;/em&gt;．すべての設定にはツールチップが付いているので、疑問がある場合は必ず読んでください。&lt;p&gt;さらに支援が必要な場合、質問、提案がある場合、または単に他の人がどう思うか気になる場合は、プログラム&apos; &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;フォーラム&lt;/a&gt;にお越しください。&lt;p&gt;プログラム&apos;の &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;ウェブサイト&lt;/a&gt; で更新情報を確認します。 &lt;p&gt;(c) 2008-2013 コンスタンチン イサコフ。 GPLv3 以降に基づいてライセンスされています。</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(無題)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(画像)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+&lt;div class=&quot;welcome-container&quot;&gt;
+&lt;h3&gt;&lt;strong&gt;GoldenDict-ng&lt;/strong&gt;へようこそ！&lt;/h3&gt;
+&lt;section&gt;
+&lt;h4&gt;使い始めるには&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;編集&lt;/span&gt; > &lt;span&gt;辞書&lt;/span&gt;&lt;/span&gt; に進み、辞書ファイルの追加、Wikipediaなどのオンラインソースの設定、およびグループへの整理を行ってください。&lt;/li&gt;
+&lt;li&gt;設定が完了すると、このウィンドウ内で単語を検索できるほか、&lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;「スキャンポップアップ」機能を使って他のアプリケーションで検索する&lt;/a&gt;ことも可能になります。&lt;/li&gt;
+&lt;li&gt;プログラムをカスタマイズするには、&lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;編集&lt;/span&gt; > &lt;span&gt;環境設定&lt;/span&gt;&lt;/span&gt; から各種設定項目をご確認ください。すべての設定にはツールチップによる説明が付いていますので、不明な点があればぜひご参照ください。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;p&gt;さらに詳しいヘルプが必要な場合や、ご質問・ご提案などがございましたら、本プログラムの&lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;フォーラム&lt;/a&gt;または&lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;公式サイト&lt;/a&gt;をご利用ください。&lt;/p&gt;
+&lt;footer class=&quot;welcome-footer&quot;&gt;
+&lt;small&gt;Konstantin Isakov氏によるオリジナル版GoldenDict (c) 2008-2013 をベースとしています。GoldenDict-NGコミュニティによって保守・開発が行われています。ライセンスはGPLv3以降のバージョンに準拠します。&lt;/small&gt;
+&lt;/footer&gt;
+&lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>フレーズが見つかりません</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 / %2 一致</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -160,7 +186,7 @@
     </message>
     <message>
       <source>Op&amp;en Link</source>
-      <translation>リンクを開く(&amp;O)</translation>
+      <translation>リンクを開く(&amp;E)</translation>
     </message>
     <message>
       <source>Open Link in New &amp;Tab</source>
@@ -208,7 +234,7 @@
     </message>
     <message>
       <source>Save &amp;Bookmark &quot;%1...&quot;</source>
-      <translation>ブックマークを保存 &quot;%1...&quot;</translation>
+      <translation>「%1...」をブックマークに保存(&amp;B)</translation>
     </message>
     <message>
       <source>&amp;Send Current Article to Anki</source>
@@ -220,11 +246,11 @@
     </message>
     <message>
       <source>Save sound</source>
-      <translation>サウンドを保存</translation>
+      <translation>音声を保存</translation>
     </message>
     <message>
       <source>Sound files (*.wav *.opus *.ogg *.oga *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape *.spx);;All files (*.*)</source>
-      <translation>サウンドファイル (*.wav *.opus *.ogg *.ogg *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape *.spx);すべてのファイル (*..*)</translation>
+      <translation>音声ファイル (*.wav *.opus *.ogg *.ogg *.mp3 *.mp4 *.aac *.flac *.mid *.wv *.ape *.spx);すべてのファイル (*..*)</translation>
     </message>
     <message>
       <source>Save image</source>
@@ -254,80 +280,122 @@
       <source>&amp;Create Anki note</source>
       <translation>アンキノートを作成(&amp;C)</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>サウンドをクリップボードにコピー(&amp;C)</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>音声ファイルのコピーに失敗したんだ</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>音声データ全体の書き込みに失敗したんだ</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>音声ファイルをクリップボードにコピーしたんだ</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>音声ファイルのダウンロードに失敗したんだ</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1件目 / %2件</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>外部ブラウザで記事を開く(&amp;B)</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>GoldenDict リソース ビューアー</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
     <message>
       <source>Belarusian transliteration from latin to cyrillic (classic orthography)</source>
-      <translation>ベラルーシ語のラテン語からキリル文字への音訳（古典的な表記法）</translation>
+      <translation>ベラルーシ語のラテン文字からキリル文字への翻字（古典正書法）</translation>
     </message>
     <message>
       <source>Belarusian transliteration from latin to cyrillic (school orthography)</source>
-      <translation>ベラルーシ語のラテン語からキリル文字への音訳（学校表記）</translation>
+      <translation>ベラルーシ語のラテン文字からキリル文字への翻字（学校正書法）</translation>
     </message>
     <message>
       <source>Belarusian transliteration (smoothes out the difference
 between classic and school orthography in cyrillic)</source>
-      <translation>ベラルーシ語音訳（キリルにおける古典と学校の直交法の違い
-を平滑化する）</translation>
+      <translation>ベラルーシ語の翻字（キリル文字における古典・学校正書法の差異を調整）</translation>
     </message>
   </context>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>中国語変換</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>繁体字から簡体字への変換</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>簡体字と繁体字の変換を有効にする</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>簡体字/繁体字の中国語文字から日本語の新字体文字への変換を可能にする</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>中国語バージョン(&amp;V)</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>日本の新治隊</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>簡略化された文字から従来の文字への変換を有効にする (台湾のバリアント文字)</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>中国から日本の新次台への改造</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>簡略化された文字から従来の文字への変換を有効にする (香港のバリアント文字)</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>中国語と日本語の文字変換</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>簡体字中国語、繁体字(台湾/香港)、日本語の新字台文字間の変換を可能にする</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>従来の文字から簡略化された文字への変換を有効にする</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>簡体字から繁体字中国語への変換 (台湾のバリアント)</translation>
+      <source>Simplified</source>
+      <translation>簡略化</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>簡体字中国語(香港バリアント)変換</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>簡体字から繁体字(台湾)文字への変換を有効にする</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>繁体字から簡体字への変換</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>伝統的(台湾)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation>Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>簡体字から繁体字(香港)文字への変換を可能にする</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation>香港の種類</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>トラディショナル(香港)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation>本土の種類</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>簡体字から繁体字中国語(台湾)への変換</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>簡体字から繁体字(香港)への変換</translation>
     </message>
   </context>
   <context>
     <name>CustomTranslit</name>
     <message>
       <source>custom transliteration</source>
-      <translation>カスタム音訳</translation>
+      <translation>カスタム翻字</translation>
     </message>
   </context>
   <context>
@@ -362,7 +430,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Images</source>
-      <translation>イメージ</translation>
+      <translation>画像</translation>
     </message>
     <message>
       <source>All files</source>
@@ -389,7 +457,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Are you sure you want to generate a set of groups based on language pairs?</source>
-      <translation>言語の組み合わせに基づいたグループのセットを生成しますか?</translation>
+      <translation>言語ペアに基づいたグループを生成しますか？</translation>
     </message>
     <message>
       <source>Unassigned</source>
@@ -408,31 +476,39 @@ between classic and school orthography in cyrillic)</source>
       <translation>含まれているフォルダに基づいて一連のグループを生成してもよろしいですか？</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>metadata.tomlに基づいてグループのセットを生成してもよろしいですか？</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
-      <translation>翻訳元の言語でグループを &quot;%1-&gt;&quot; に結合します</translation>
+      <translation>グループをソース言語別に結合し、「%1->」とする</translation>
     </message>
     <message>
       <source>Combine groups by target language to &quot;-&gt;%1&quot;</source>
-      <translation>翻訳先の言語で &quot;-&gt;%1&quot; にグループを結合します</translation>
+      <translation>グループをターゲット言語別に結合し、「->%1」とする</translation>
     </message>
     <message>
       <source>Make two-side translate group &quot;%1-%2-%1&quot;</source>
-      <translation>二面翻訳グループ &quot;%1-%2-%1&quot;</translation>
+      <translation>双方向翻訳グループ「%1-%2-%1」を作成</translation>
     </message>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
-      <translation>&quot;%1&quot; とグループを結合</translation>
+      <translation>グループを「%1」として結合</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>グループを削除</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>グループ &lt;b&gt;%1&lt;/b&gt; を削除してもよろしいですか?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>辞書メタデータファイルに基づいてグループ群を生成しても本当に良いですか?</translation>
     </message>
   </context>
   <context>
     <name>DictHeadwords</name>
     <message>
       <source>If checked any filter changes will we immediately applied to headwords list</source>
-      <translation>フィルタをチェックすると、すぐにヘッドワードリストに適用されます</translation>
+      <translation>有効にすると、フィルタ変更が見出し語リストに即反映される</translation>
     </message>
     <message>
       <source>Auto apply</source>
@@ -440,7 +516,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Press this button to apply filter to headwords list</source>
-      <translation>このボタンを押して、ヘッダ単語リストにフィルタを適用します</translation>
+      <translation>このボタンを押して、見出し語リストにフィルタを適用する</translation>
     </message>
     <message>
       <source>Apply</source>
@@ -455,12 +531,8 @@ between classic and school orthography in cyrillic)</source>
       <translation>フィルタ:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>検索モード</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
-      <translation>この要素はフィルター文字列の解釈方法を決定します</translation>
+      <translation>この設定は、フィルター文字列の解釈方法を指定する</translation>
     </message>
     <message>
       <source>If checked on the symbols case will be take in account when filtering</source>
@@ -472,7 +544,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Exports headwords to file</source>
-      <translation>ヘッドワードをファイルにエクスポートする</translation>
+      <translation>見出し語をファイルにエクスポート</translation>
     </message>
     <message>
       <source>Export</source>
@@ -480,19 +552,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
-      <translation>返される最大フィルタリングされたヘッドワードを指定します。</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>最大検索結果:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>ヘルプ</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>OK</translation>
+      <translation>フィルタ適用後の見出し語の最大表示件数を指定する。</translation>
     </message>
     <message>
       <source>Text</source>
@@ -504,15 +564,15 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Unique headwords total: %1.</source>
-      <translation>ユニークなヘッドワードの合計: %1.</translation>
+      <translation>重複を除いた見出し語の総数：%1。</translation>
     </message>
     <message>
       <source>Unique headwords total: %1, filtered(limited): %2</source>
-      <translation>ユニークなヘッドワードの合計: %1, filtered(limited): %2</translation>
+      <translation>重複を除いた見出し語の総数：%1、フィルタ適用後（表示件数）：%2</translation>
     </message>
     <message>
       <source>Save headwords to file</source>
-      <translation>ヘッドワードをファイルに保存</translation>
+      <translation>見出し語をファイルに保存</translation>
     </message>
     <message>
       <source>Text files (*.txt);;All files (*.*)</source>
@@ -542,6 +602,10 @@ between classic and school orthography in cyrillic)</source>
       <source>Regular Expression</source>
       <translation>正規表現</translation>
     </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>最大限:</translation>
+    </message>
   </context>
   <context>
     <name>DictInfo</name>
@@ -551,7 +615,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Total articles:</source>
-      <translation>辞書の合計:</translation>
+      <translation>辞書の合計：</translation>
     </message>
     <message>
       <source>Index filename:</source>
@@ -574,20 +638,16 @@ between classic and school orthography in cyrillic)</source>
       <translation>翻訳先:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>この辞書を含むファイル:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>説明:</translation>
     </message>
     <message>
       <source>Show all unique dictionary headwords</source>
-      <translation>すべての一意の辞書の見出しを表示</translation>
+      <translation>重複なしの全見出し語を表示</translation>
     </message>
     <message>
       <source>Headwords</source>
-      <translation>Headwords</translation>
+      <translation>見出し語</translation>
     </message>
     <message>
       <source>Full-text search enabled</source>
@@ -596,6 +656,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Full-text search disabled</source>
       <translation>全文検索が無効になっています</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>無効にする</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>有効にする</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>辞書の構成要素:</translation>
     </message>
   </context>
   <context>
@@ -653,14 +725,13 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Comma-delimited list of databases
 (empty string or &quot;*&quot; matches all databases)</source>
-      <translation>カンマ区切りのデータベースリスト
-(空文字列または &quot;*&quot; はすべてのデータベースに一致します)</translation>
+      <translation>カンマ区切りのデータベース一覧（空文字列または「*」はすべてのデータベースに該当）</translation>
     </message>
     <message>
       <source>Comma-delimited list of search strategies
 (empty string mean &quot;prefix&quot; strategy)</source>
       <translation>カンマ区切りの検索戦略リスト
-(空文字列の意味 &quot;prefix&quot; strategy)</translation>
+（空文字列は「prefix」方式）</translation>
     </message>
   </context>
   <context>
@@ -683,7 +754,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Dictionary headwords</source>
-      <translation>辞書のheadwords</translation>
+      <translation>辞書の見出し語</translation>
     </message>
     <message>
       <source>Open dictionary folder</source>
@@ -692,6 +763,34 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Restore selection</source>
       <translation>選択範囲を復元</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>インデックス再作成を取り消す</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>インデックス再作成を予約</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>インデックス再作成の予約を解除</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>辞書の再インデックスが予約された。次回アプリ起動時に再構築される。</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>表示名の変更</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>新しい表示名:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>辞書の再インデックス作成のスケジュールに失敗しました。</translation>
     </message>
   </context>
   <context>
@@ -744,7 +843,7 @@ between classic and school orthography in cyrillic)</source>
     <name>ExternalViewer</name>
     <message>
       <source>the viewer program name is empty</source>
-      <translation>視聴者のプログラム名が空です</translation>
+      <translation>ビューアプログラム名が空である</translation>
     </message>
   </context>
   <context>
@@ -767,7 +866,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Articles found: </source>
-      <translation>発見された記事: </translation>
+      <translation>見つかった記事：</translation>
     </message>
     <message>
       <source>Now indexing: </source>
@@ -808,20 +907,12 @@ between classic and school orthography in cyrillic)</source>
       <translation>フォルダを追加</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>すべてクリア</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>お気に入り:</translation>
     </message>
     <message>
       <source>All selected items will be deleted. Continue?</source>
-      <translation>選択したすべてのアイテムが削除されます。続行しますか？</translation>
-    </message>
-    <message>
-      <source>Clear All Items</source>
-      <translation>すべての項目をクリア</translation>
+      <translation>選択した項目をすべて削除します。よろしいですか？</translation>
     </message>
     <message>
       <source>Are you sure you want to clear all items?</source>
@@ -830,6 +921,14 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>このフォルダを単語の追加/削除アクションのターゲットにします。</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>クリア</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>お気に入りをクリア</translation>
     </message>
   </context>
   <context>
@@ -863,7 +962,7 @@ between classic and school orthography in cyrillic)</source>
     <name>FtsSearchPanel</name>
     <message>
       <source>&amp;Previous</source>
-      <translation>前(&amp;P)</translation>
+      <translation>前へ(&amp;P)</translation>
     </message>
     <message>
       <source>&amp;Next</source>
@@ -878,15 +977,15 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Mode:</source>
-      <translation>モード:</translation>
+      <translation>モード：</translation>
     </message>
     <message>
       <source>Articles found:</source>
-      <translation>発見された記事:</translation>
+      <translation>見つかった記事：</translation>
     </message>
     <message>
       <source>Available dictionaries in group:</source>
-      <translation>グループ内の使用可能な辞書:</translation>
+      <translation>グループ内の利用可能な辞書：</translation>
     </message>
     <message>
       <source>Wait for indexing:</source>
@@ -894,7 +993,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Total:</source>
-      <translation>合計:</translation>
+      <translation>合計：</translation>
     </message>
     <message>
       <source>Indexed:</source>
@@ -902,7 +1001,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Now indexing: None</source>
-      <translation>インデックス作成: なし</translation>
+      <translation>インデックス中：なし</translation>
     </message>
     <message>
       <source>Cancel</source>
@@ -917,21 +1016,21 @@ between classic and school orthography in cyrillic)</source>
     <name>GermanTranslit</name>
     <message>
       <source>German Transliteration</source>
-      <translation>ドイツ語音訳</translation>
+      <translation>ドイツ語翻字</translation>
     </message>
   </context>
   <context>
     <name>GreekTranslit</name>
     <message>
       <source>Greek Transliteration</source>
-      <translation>ギリシャ語音訳</translation>
+      <translation>ギリシャ語翻字</translation>
     </message>
   </context>
   <context>
     <name>GroupComboBox</name>
     <message>
       <source>Choose a Group (Alt+G)</source>
-      <translation>グループの選択 (Alt+G)</translation>
+      <translation>グループを選択 (Alt+G)</translation>
     </message>
   </context>
   <context>
@@ -950,19 +1049,11 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Groups:</source>
-      <translation>グループ:</translation>
+      <translation>グループ：</translation>
     </message>
     <message>
       <source>Tab 2</source>
       <translation>タブ 2</translation>
-    </message>
-    <message>
-      <source>Create new dictionary group</source>
-      <translation>新しい辞書グループを作成します</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>グループの追加(&amp;A)</translation>
     </message>
     <message>
       <source>Rename current dictionary group</source>
@@ -970,15 +1061,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Re&amp;name group</source>
-      <translation>グループ名の変更(&amp;N)</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>現在の辞書グループを削除します</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>グループの削除(&amp;R)</translation>
+      <translation>グループ名を変更(&amp;N)</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1022,7 +1105,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Add group</source>
-      <translation>グループの追加</translation>
+      <translation>グループを追加</translation>
     </message>
     <message>
       <source>Give a name for the new group:</source>
@@ -1038,7 +1121,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Remove group</source>
-      <translation>グループの削除</translation>
+      <translation>グループを削除</translation>
     </message>
     <message>
       <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
@@ -1047,6 +1130,22 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>すべてのグループを削除してもよろしいですか?</translation>
+    </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>新しい辞書グループを追加</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>グループの追加(&amp;A)</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>グループは既に存在している</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>「%1」というグループは既に存在している。</translation>
     </message>
   </context>
   <context>
@@ -1061,7 +1160,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>History:</source>
-      <translation>履歴:</translation>
+      <translation>履歴：</translation>
     </message>
     <message>
       <source>%1/%2</source>
@@ -1069,7 +1168,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>History size: %1 entries out of maximum %2</source>
-      <translation>履歴サイズ: %1 件のエントリが最大 %2 件中</translation>
+      <translation>履歴サイズ：最大%2件中%1件</translation>
     </message>
   </context>
   <context>
@@ -1081,6 +1180,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>%1 Morphology</source>
       <translation>%1 形態</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>スペルは正しく、他の単語形態は見つかりませんでした。</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>そこから %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>語形は %1: </translation>
     </message>
   </context>
   <context>
@@ -2149,7 +2260,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Favo&amp;rites</source>
-      <translation>Favo(&amp;R)</translation>
+      <translation>お気に入り(&amp;R)</translation>
     </message>
     <message>
       <source>&amp;Search Pane</source>
@@ -2209,7 +2320,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>&amp;Save Article</source>
-      <translation>記事の保存(&amp;S)</translation>
+      <translation>記事を保存(&amp;S)</translation>
     </message>
     <message>
       <source>Save Article</source>
@@ -2361,7 +2472,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Show &amp;Main Window</source>
-      <translation>メイン ウィンドウの表示(&amp;M)</translation>
+      <translation>メイン ウィンドウを表示(&amp;M)</translation>
     </message>
     <message>
       <source>Opened tabs</source>
@@ -2385,11 +2496,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>New Tab</source>
-      <translation>New Tab</translation>
-    </message>
-    <message>
-      <source>Welcome!</source>
-      <translation>ようこそ!</translation>
+      <translation>新しいタブ</translation>
     </message>
     <message>
       <source>Accessibility API is not enabled</source>
@@ -2402,8 +2509,8 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>String to search in dictionaries. The wildcards &apos;*&apos;, &apos;?&apos; and sets of symbols &apos;[...]&apos; are allowed.
 To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &apos;\*&apos;, &apos;\?&apos;, &apos;\[&apos;, &apos;\]&apos; respectively</source>
-      <translation>辞書で検索する文字列。ワイルドカード &apos;*&apos;, &apos;?&apos; とシンボル&apos; セット &apos;[...]許可されます。
- &apos;*&apos;, &apos;を求めるには?&apos;, &apos;[&apos;, &apos;]&apos; シンボルは &apos;\*&apos;, &apos;\? を使用します。それぞれ&apos;、 &apos;\[&apos;、 &apos;\]&apos;</translation>
+      <translation>辞書で検索する文字列。ワイルドカードとして「*」「?」、および文字セット「[...]」が使用できます。
+「*」「?」「[」「]」をそのまま検索する場合は、それぞれ「\*」「\?」「\[」「\]」と入力してください。</translation>
     </message>
     <message>
       <source>%1 dictionaries, %2 articles, %3 words</source>
@@ -2427,7 +2534,7 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
       <source>Failed to initialize hotkeys monitoring mechanism.&lt;br&gt;Make sure your XServer has RECORD extension turned on.</source>
-      <translation>ホットキー監視機構の初期化に失敗しました。&lt;br&gt;XServer の RECORD 拡張がオンになっていることを確認してください。</translation>
+      <translation>ホットキー監視機能の初期化に失敗しました。&lt;br&gt;Xサーバーで RECORD 拡張が有効になっていることを確認してください。</translation>
     </message>
     <message>
       <source>New Release Available</source>
@@ -2466,42 +2573,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>記事の印刷</translation>
     </message>
     <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>完全な HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>単一の HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>PDF (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>MIME HTML (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>名前を付けて記事を保存</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>エラー</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>記事を保存できません: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>記事を保存しています...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>記事の保存が完了しました</translation>
-    </message>
-    <message>
       <source>The main window is set to be always on top.</source>
       <translation>メインウィンドウは常に上に設定されています。</translation>
     </message>
@@ -2531,7 +2602,7 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
       <source>Import error: </source>
-      <translation>インポートエラー: </translation>
+      <translation>インポートエラー：</translation>
     </message>
     <message>
       <source>Import error: invalid data in file</source>
@@ -2587,19 +2658,63 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
       <source>Remove headword &quot;%1&quot; from Favorites?</source>
-      <translation>ヘッドワード &quot;%1&quot; をお気に入りから削除しますか？</translation>
+      <translation>お気に入りから見出し語 &quot;%1&quot; を削除しますか？</translation>
     </message>
     <message>
       <source>Show</source>
       <translation>表示</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation>PDFの保存が完了しました</translation>
+      <source>Lock Panels</source>
+      <translation>パネルをロック</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation>PDFの保存に失敗しました</translation>
+      <source>Clear History</source>
+      <translation>履歴を消去</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>すべての履歴項目を消去してもよろしいですか？</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>ファイルを保存</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>アプリケーションはバックグラウンドで起動中だよ。タスクトレイのアイコンをクリックしてウィンドウを表示してね。</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>外部ブラウザで開く(&amp;E)</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>現在、ヘッドワードの地位を築き上げています: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>接頭辞</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>接尾辞</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>マルチワード</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>全文検索…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>検索モード</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>検索モード: %1</translation>
     </message>
   </context>
   <context>
@@ -2616,15 +2731,15 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML 分析エラー: %1 at %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>JSONパースエラー</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML 分析エラー: %1 at %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>JSONパースエラー</translation>
     </message>
   </context>
   <context>
@@ -2654,7 +2769,7 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <name>MultimediaAudioPlayer</name>
     <message>
       <source>Couldn&apos;t open audio buffer for reading.</source>
-      <translation>Couldn&apos;t 読み取り用のオーディオバッファを開きます。</translation>
+      <translation>読み取り用のオーディオバッファを開けなかった。</translation>
     </message>
   </context>
   <context>
@@ -2700,10 +2815,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>説明:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>この辞書を含むファイル:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>アイテムをドラッグ アンド ドロップして順序を調整します。使用を無効にするには非アクティブなグループへ辞書をドロップします。</translation>
     </message>
@@ -2722,6 +2833,18 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>辞書はアクティブ: %1, 非アクティブ: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>表示名の変更</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>新しい表示名:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>辞書コンポーネント:</translation>
     </message>
   </context>
   <context>
@@ -2763,35 +2886,19 @@ switching to them.</source>
     </message>
     <message>
       <source>Open new tabs in background</source>
-      <translation>背景で新しいタブを開く</translation>
-    </message>
-    <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>これがオンだと、新しいタブは現在の
-アクティブなものの後に開かれます。
-そうでなければ最後に追加されます。</translation>
+      <translation>バックグラウンドで新しいタブを開く</translation>
     </message>
     <message>
       <source>Open new tabs after the current one</source>
       <translation>現在の後に新しいタブを開く</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>タブを 1 つだけ開いているときにメイン タブ バーを表示したく&apos;場合は、このオプションを選択します。</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
-      <translation>単一タブを隠す</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>MRU注文: 最後に使用された注文。</translation>
+      <translation>タブが1つのときはタブバーを隠す</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
-      <translation>Ctrl-Tab でMRUの順序でタブを移動</translation>
+      <translation>Ctrl-Tab で最近使用した順にタブを切り替える</translation>
     </message>
     <message>
       <source>Normally, pressing ESC key moves focus to the translation line.
@@ -2805,7 +2912,7 @@ With this on however, it will hide the main window.</source>
     </message>
     <message>
       <source>Turn this option on if you want to select words by single mouse click</source>
-      <translation>単語をクリックして単語を選択する場合は、このオプションをオンにします</translation>
+      <translation>シングルクリックで単語を選択できるようにする場合は、このオプションを有効にしてください</translation>
     </message>
     <message>
       <source>Select word by single click</source>
@@ -2817,11 +2924,11 @@ With this on however, it will hide the main window.</source>
     </message>
     <message>
       <source>Automatically starts GoldenDict after operation system bootup.</source>
-      <translation>オペレーション システムのブートアップの後に GoldenDict が自動的に起動します。</translation>
+      <translation>OS起動後にGoldenDictが自動的に起動する。</translation>
     </message>
     <message>
       <source>Start with system</source>
-      <translation>システムと起動する</translation>
+      <translation>システム起動時に起動</translation>
     </message>
     <message>
       <source>Normally, clicking on a link, double-clicking on a word or looking up
@@ -2855,13 +2962,12 @@ its main window.</source>
     </message>
     <message>
       <source>Start to system tray</source>
-      <translation>システム トレイに入れて起動する</translation>
+      <translation>システムトレイで起動</translation>
     </message>
     <message>
       <source>With this on, an attempt to close main window would hide it instead of closing
 the application.</source>
-      <translation>これがオンだと、メイン ウィンドウを閉じるとアプリケーションを閉じる代わりに
-非表示になります。</translation>
+      <translation>有効にすると、メインウィンドウを閉じようとすると、アプリケーションを終了せずに非表示になる。</translation>
     </message>
     <message>
       <source>Close to system tray</source>
@@ -2869,15 +2975,107 @@ the application.</source>
     </message>
     <message>
       <source>Adjust this value to avoid huge context menus.</source>
-      <translation>大きなコンテキストメニューを避けるために、この値を調整します。</translation>
+      <translation>大きすぎるコンテキストメニューを避けるために、この値を調整する。</translation>
     </message>
     <message>
       <source>Context menu dictionaries limit:</source>
       <translation>コンテキストメニュー辞書の制限:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>システム既定</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>既定</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>クラシック</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>モダン</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Babylon</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Lingoes</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Lingoes ブルー</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>言語の変更を適用するには、再起動が必要だ。</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>再起動してインターフェイス スタイルの変更を適用します。</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>インターフェースのフォントの変更を適用するには再起動してください。</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>再起動が必要です</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>有効にする</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>無効にする</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>自動</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>なし</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>このオプションを有効にすると、
+新しいタブは現在アクティブなタブの直後に開く。
+無効の場合は、すべてのタブの最後に追加される。</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>スタイル(&amp;S)</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>外観</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>インターフェース言語</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>記事表示のスタイル</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>アドオンのスタイル</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>インターフェイスのスタイル</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2896,12 +3094,16 @@ the application.</source>
       <translation>ダークリーダーモード</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>これらのフォントは、辞書で指定されたフォントが見つからない場合に適用されます。</translation>
+      <source>Preview Font</source>
+      <translation>フォントをプレビュー</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>フォールバックフォント</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng は辞書ソフトウェアです。</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>これらのフォントは、辞書で指定されたフォントが見つからない場合に適用されます。</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2920,12 +3122,8 @@ the application.</source>
       <translation>等幅フォント</translation>
     </message>
     <message>
-      <source>&amp;Popup</source>
-      <translation>スキャン ポップアップ(&amp;S)</translation>
-    </message>
-    <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
-      <translation>プログラム&apos;の起動時にクリップボードのモニタリングがデフォルトでオンになるかどうかを選択します。</translation>
+      <translation>プログラム&apos;の起動時にクリップボードのモニタリングがデフォルトでオンになるかどうかを選択する。</translation>
     </message>
     <message>
       <source>Start with clipboard monitoring turned on</source>
@@ -2933,7 +3131,7 @@ the application.</source>
     </message>
     <message>
       <source>Send translated word to main window instead of to show it in popup window</source>
-      <translation>翻訳された単語をポップアップウィンドウに表示する代わりにメインウィンドウに送信する</translation>
+      <translation>翻訳結果をポップアップウィンドウに表示せず、メインウィンドウに送信する</translation>
     </message>
     <message>
       <source>Send translated word to main window</source>
@@ -2941,7 +3139,7 @@ the application.</source>
     </message>
     <message>
       <source>Track clipboard changes when Scanning is enabled. Notice! You should always enable this unless you are on Linux.</source>
-      <translation>スキャンが有効な場合、クリップボードの変更を追跡します。注意！Linuxでない限り、常に有効にする必要があります。</translation>
+      <translation>スキャン有効時はクリップボードの変更を検出する。※GNU/Linux以外の環境では、本オプションを常に有効にすることを推奨する。</translation>
     </message>
     <message>
       <source>Track Clipboard change</source>
@@ -2954,12 +3152,12 @@ the application.</source>
     <message>
       <source>With this enabled, the popup would only show up if all chosen keys are
 in the pressed state when the word selection changes.</source>
-      <translation>これが有効だと、ポップアップは単語の選択範囲が変更したときに
-すべての選択されたキーが押されている状態でのみ表示されます。</translation>
+      <translation>このオプションを有効にすると、選択中の単語が変更されたときに、
+指定されたキーがすべて押されている場合にのみポップアップが表示される。</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>選択したすべてのキーが押された場合のみタック選択:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>指定したキーをすべて押している場合のみ、選択を追跡する：</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -2979,7 +3177,7 @@ in the pressed state when the word selection changes.</source>
     </message>
     <message>
       <source>Show a flag window before showing popup window, click the flag to show popup window. </source>
-      <translation>ポップアップウィンドウを表示する前にフラグウィンドウを表示し、ポップアップウィンドウを表示するにはフラグをクリックします。 </translation>
+      <translation>ポップアップを表示する前にフラグウィンドウを表示し、そのフラグをクリックするとポップアップが表示される。</translation>
     </message>
     <message>
       <source>Show scan flag when word is selected</source>
@@ -2991,7 +3189,7 @@ in the pressed state when the word selection changes.</source>
     </message>
     <message>
       <source>Ignore GoldenDict&apos;s own selection and clipboard changes</source>
-      <translation>GoldenDict&apos;s 自身の選択とクリップボードの変更を無視する</translation>
+      <translation>GoldenDict自身の選択とクリップボードの変更を無視する</translation>
     </message>
     <message>
       <source>Delay time</source>
@@ -3015,11 +3213,11 @@ in the pressed state when the word selection changes.</source>
     </message>
     <message>
       <source>The hotkeys are global and work from any program and within any context as long as GoldenDict is running in background.</source>
-      <translation>ホットキーはグローバルであり、GoldenDict が背景で起動中であればすべてのプログラムで脈絡なく実行します。</translation>
+      <translation>ホットキーはすべてのプログラムで有効で、GoldenDictがバックグラウンドで起動している限り、どのコンテキストでも使用できる。</translation>
     </message>
     <message>
       <source>&amp;Audio</source>
-      <translation>オーディオ(&amp;A)</translation>
+      <translation>音声(&amp;A)</translation>
     </message>
     <message>
       <source>Pronunciation</source>
@@ -3027,11 +3225,11 @@ in the pressed state when the word selection changes.</source>
     </message>
     <message>
       <source>Auto-pronounce words in main window</source>
-      <translation>メイン ウィンドウで単語を自動的に発音する</translation>
+      <translation>メインウィンドウで単語を自動再生</translation>
     </message>
     <message>
       <source>Auto-pronounce words in the popup</source>
-      <translation>ポップアップで単語を自動発音する</translation>
+      <translation>ポップアップで単語を自動再生</translation>
     </message>
     <message>
       <source>Playback</source>
@@ -3039,23 +3237,11 @@ in the pressed state when the word selection changes.</source>
     </message>
     <message>
       <source>Play audio files via built-in audio support</source>
-      <translation>内蔵のオーディオサポートを介してオーディオファイルを再生する</translation>
-    </message>
-    <message>
-      <source>Use internal player:</source>
-      <translation>内部プレイヤーを使用:</translation>
+      <translation>内蔵オーディオ機能で音声ファイルを再生する</translation>
     </message>
     <message>
       <source>Choose audio back end</source>
       <translation>オーディオバックエンドを選択</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>オーディオ ファイルの再生に外部プログラムを使用します</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>外部プログラムを使用する:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3068,8 +3254,8 @@ in the pressed state when the word selection changes.</source>
     <message>
       <source>Enable if you wish to use a proxy server
 for all program&apos;s network requests.</source>
-      <translation>すべてのプログラムのネットワーク要求にプロキシ
-サーバーを使用したい場合は有効にします。</translation>
+      <translation>すべてのプログラムのネットワーク要求でプロキシサーバーを
+使用する場合は、このオプションを有効にしてください。</translation>
     </message>
     <message>
       <source>Use proxy server</source>
@@ -3120,28 +3306,12 @@ for all program&apos;s network requests.</source>
       <translation>デッキ:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>モデル:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>単語</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>語彙フィールド...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>テキスト</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>定義フィールド...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Sentence</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3151,49 +3321,13 @@ for all program&apos;s network requests.</source>
       <source>Enabling this would make GoldenDict block most advertisements
 by disallowing content (images, frames) not originating from the site
 you are browsing. If some site breaks because of this, try disabling this.</source>
-      <translation>これを有効にすると GoldenDict はブラウズ中のサイト以外の場所にある
-コンテンツ (イメージ、フレーム) を無効にすることによってほとんどの広告を
-ブロックします。特定のサイトが破損する場合は、これを無効にしてみてください。</translation>
+      <translation>有効にすると、GoldenDict は閲覧中のサイト以外から読み込まれるコンテンツ
+（画像やフレームなど）をブロックし、ほとんどの広告を表示しなくします。
+サイトが正しく表示されない場合は、この機能を無効にしてみてください。</translation>
     </message>
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>他のサイトからのコンテンツの読み込みを無効にする (ほとんどの広告を非表示にします)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>一部のサイトでは、HTTPヘッダーを介してGoldenDictを検出し、リクエストをブロックします。
-このオプションを有効にして問題を回避します。</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>HTTPヘッダーでGoldenDictを識別しない</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>ネットワークキャッシュの最大サイズ:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>GoldenDict&apos;s ネットワークキャッシュの最大ディスク容量
-%1
-に設定されている場合、ネットワークのディスクキャッシュは無効になります。</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>このオプションを有効にすると、GoldenDict
-は終了時にネットワークキャッシュをディスクから消去します。</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>終了時にネットワークキャッシュをクリア</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3201,10 +3335,9 @@ checks if a new, updated version of GoldenDict
 is available for download. If it is so, the program
 informs the user about it and prompts to open a
 download page.</source>
-      <translation>これが有効だと、プログラムは GoldenDict の新しく更新された
-バージョンのダウンロードが利用可能かを定期的にチェックします。
-利用可能であれば、プログラムはそれをユーザーにお知らせし、
-ダウンロード ページを開くか確認します。</translation>
+      <translation>このオプションを有効にすると、GoldenDict の新しいバージョンが
+利用可能かどうかを定期的にチェックする。利用可能な場合は、
+ユーザーに通知し、ダウンロードページを開くよう促す。</translation>
     </message>
     <message>
       <source>Check for new program releases periodically</source>
@@ -3220,7 +3353,7 @@ download page.</source>
     </message>
     <message>
       <source>Don&apos;t search in dictionaries containing more than</source>
-      <translation>Don&apos;t search in dictions including more than</translation>
+      <translation>次の記事数を超える辞書を検索対象から除外：</translation>
     </message>
     <message>
       <source>articles (0 - unlimited)</source>
@@ -3228,7 +3361,7 @@ download page.</source>
     </message>
     <message>
       <source>Create fulltext index with parallel threads </source>
-      <translation>並列スレッドで全文インデックスを作成する </translation>
+      <translation>全文インデックス作成時のスレッド数：</translation>
     </message>
     <message>
       <source>Ad&amp;vanced</source>
@@ -3236,11 +3369,11 @@ download page.</source>
     </message>
     <message>
       <source>History</source>
-      <translation>沿革</translation>
+      <translation>履歴</translation>
     </message>
     <message>
       <source>Turn this option on to store history of the translated words</source>
-      <translation>翻訳された単語の履歴を保存するには、このオプションをオンにしてください</translation>
+      <translation>このオプションを有効にすると、検索した単語の履歴が保存される。</translation>
     </message>
     <message>
       <source>Store &amp;history</source>
@@ -3252,11 +3385,15 @@ download page.</source>
     </message>
     <message>
       <source>Maximum history size:</source>
-      <translation>履歴の最大サイズ:</translation>
+      <translation>履歴の最大保存件数：</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>履歴の保存間隔。0に設定すると、終了時にのみ履歴が保存されます。</translation>
+      <source>Favorites</source>
+      <translation>お気に入り</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>お気に入りの保存間隔（0の場合は終了時のみ保存）</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3267,16 +3404,8 @@ download page.</source>
       <translation>分</translation>
     </message>
     <message>
-      <source>Favorites</source>
-      <translation>お気に入り</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>お気に入り保存間隔。0に設定すると、終了時にのみ保存されます。</translation>
-    </message>
-    <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
-      <translation>項目削除のすべての操作を確認するには、このオプションをオンにしてください</translation>
+      <translation>項目の削除操作ごとに確認を求めるには、このオプションを有効にしてください</translation>
     </message>
     <message>
       <source>Confirmation for items deletion</source>
@@ -3292,11 +3421,11 @@ download page.</source>
     </message>
     <message>
       <source>Input phrases longer than this size will be ignored</source>
-      <translation>このサイズより長い入力フレーズは無視されます</translation>
+      <translation>この文字数より長い入力は無視される</translation>
     </message>
     <message>
       <source>symbols</source>
-      <translation>シンボル</translation>
+      <translation>文字</translation>
     </message>
     <message>
       <source>Select this option to automatic collapse big articles</source>
@@ -3309,12 +3438,11 @@ download page.</source>
     <message>
       <source>Turn this option on to ignore unreasonably long input text
 from mouse-over, selection, clipboard or command line</source>
-      <translation>マウスオーバー、クリップボード、またはコマンドラインから不当に長い入力テキスト
-を無視するには、このオプションをオンにします。</translation>
+      <translation>このオプションを有効にすると、ホバー、テキスト選択、クリップボード、コマンドラインからの極端に長い入力テキストが無視される。</translation>
     </message>
     <message>
       <source>Ignore input phrases longer than</source>
-      <translation>より長い入力フレーズを無視する</translation>
+      <translation>この文字数を超える入力を無視する：</translation>
     </message>
     <message>
       <source>Articles longer than this size will be collapsed</source>
@@ -3322,23 +3450,23 @@ from mouse-over, selection, clipboard or command line</source>
     </message>
     <message>
       <source>Turn this option on to always expand optional parts of articles</source>
-      <translation>常に記事のオプション部分を展開するには、このオプションをオンにしてください。</translation>
+      <translation>このオプションを有効にすると、記事の折りたたみ可能な部分が常に展開される。</translation>
     </message>
     <message>
       <source>Expand optional &amp;parts</source>
-      <translation>オプションパーツを展開(&amp;P)</translation>
+      <translation>折り畳める部分を展開(&amp;P)</translation>
     </message>
     <message>
       <source>Turn this option on to ignore diacritics while searching articles</source>
-      <translation>記事検索中に発音を無視するには、このオプションをオンにしてください。</translation>
+      <translation>このオプションを有効にすると、記事検索時にダイアクリティカルマークが無視される。</translation>
     </message>
     <message>
       <source>Ignore diacritics while searching</source>
-      <translation>検索中に発音を無視</translation>
+      <translation>検索時にダイアクリティカルマークを無視</translation>
     </message>
     <message>
       <source>During successive searches,if one dictionary is collapsed by manual, it will remain collapsed in the next search</source>
-      <translation>連続した検索では、辞書が手動で折りたたまれている場合、次の検索では折りたたまれたままになります</translation>
+      <translation>連続検索時、手動で折りたたんだ辞書は次の検索でも折りたたまれたままになる。</translation>
     </message>
     <message>
       <source>Session collapse</source>
@@ -3347,8 +3475,7 @@ from mouse-over, selection, clipboard or command line</source>
     <message>
       <source>Turn this option on to enable extra articles search via synonym lists
 from Stardict, Babylon and GLS dictionaries</source>
-      <translation>Stardict、Babylon、GLS辞書から同義語リスト
-で追加記事検索を有効にするには、このオプションをオンにしてください。</translation>
+      <translation>このオプションを有効にすると、Stardict、Babylon、GLS 辞書の同義語リストを使って追加の記事検索ができるようになる。</translation>
     </message>
     <message>
       <source>Extra search via synonyms</source>
@@ -3360,7 +3487,7 @@ from Stardict, Babylon and GLS dictionaries</source>
     </message>
     <message>
       <source>On a new search, focus the main or popup window even if it&apos;s visible</source>
-      <translation>新しい検索では、たとえそれが表示されていてもメインまたはポップアップウィンドウにフォーカスします&apos;</translation>
+      <translation>新しい検索時、メインウィンドウまたはポップアップウィンドウが既に前面に表示されている場合でも、そのウィンドウにフォーカスを移す</translation>
     </message>
     <message>
       <source>Miscellaneous</source>
@@ -3371,112 +3498,112 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>終了時に無効なインデックスを削除する</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>システム既定</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>既定</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>クラシック</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>モダンな</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Babylon</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Lingoes</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>ランゴー・ブルー</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>一部のシステムでは自動では何も実行されません。</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>言語の変更を適用するにはプログラムを再起動します。</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>再起動してインターフェイス スタイルの変更を適用します。</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>インターフェースのフォントの変更を適用するには再起動してください。</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>再起動が必要です</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>有効にする</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>無効にする</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>自動</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
-      <translation>設定フォルダ内のgd_log.txtにデバッグメッセージを保存します</translation>
+      <translation>デバッグメッセージをgd_log.txtとして設定フォルダに保存する</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>インターフェース言語</translation>
+      <source>S&amp;can</source>
+      <translation>スキャン(&amp;C)</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>記事表示のスタイル</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>本文ビューでのJavaScriptアラート、確認ダイアログ、プロンプトを抑制する。</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>アドオンのスタイル</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>JavaScriptダイアログを抑制する</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>インターフェイスのスタイル</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>オンライン辞書ページを別タブで開く</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>フォントをプレビュー</translation>
+      <source>Anki</source>
+      <translation>Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation>GoldenDict-ng は辞書ソフトウェアです。</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>本文ビューで、JavaScriptにクリップボードへのアクセスを許可する。</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation>インターフェースフォントを有効にする</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>JavaScriptのクリップボードアクセスを有効にする (再起動が必要)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation>Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>再起動して、JavaScriptのクリップボードアクセス設定の変更を適用する。</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation>Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>タブが1つだけのときにタブバーを非表示にする。</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>なし</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>外部プレーヤーを使用して音声ファイルを再生する</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>詳細設定ガイドを表示</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>音声ファイルのパスがコマンドライン引数として外部プレーヤーに渡される。</translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation>内蔵プレーヤー：</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation>外部プレーヤー：</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>システムテーマに応じて自動的に切り替わる。</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>フォントのカスタマイズ</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>メインウィンドウ表示中はDockアイコンが表示され、macOSがアプリ名とメニューを表示できる。このオプションを有効にすると、メインウィンドウを隠した後もDockアイコンを表示し続ける。</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>バックグラウンドでDockアイコンを表示し続ける</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>利用可能な場合はAnkiカードに音声を追加してください</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>有効化すると、ウェブサイトの辞書は記事ビューに埋め込まれるのではなく、独立したタブで開きます。これによりiframeレイアウトやスクロールの制限を回避し、「辞書」ダイアログで辞書ごとのスクリプト欄が有効になります。</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>単語:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>テキスト:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>文:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>インターフェースフォント</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>カスタムファミリー</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>カスタムサイズ</translation>
     </message>
   </context>
   <context>
@@ -3533,7 +3660,7 @@ from Stardict, Babylon and GLS dictionaries</source>
     </message>
     <message>
       <source>Command Line</source>
-      <translation>Command Line</translation>
+      <translation>コマンドライン</translation>
     </message>
     <message>
       <source>Icon</source>
@@ -3584,7 +3711,7 @@ from Stardict, Babylon and GLS dictionaries</source>
     </message>
     <message>
       <source>Word or sentence to query.</source>
-      <translation>クエリする単語または文。</translation>
+      <translation>検索する単語または文。</translation>
     </message>
     <message>
       <source>Reset window state.</source>
@@ -3612,15 +3739,67 @@ from Stardict, Babylon and GLS dictionaries</source>
     </message>
     <message>
       <source>Save debug messages to gd_log.txt in the config folder.</source>
-      <translation>configフォルダのgd_log.txtにデバッグメッセージを保存します。</translation>
+      <translation>デバッグメッセージをgd_log.txtとして設定フォルダに保存する。</translation>
     </message>
     <message>
       <source>Force the word to be translated in Popup.</source>
-      <translation>ポップアップで翻訳する単語を強制します。</translation>
+      <translation>ポップアップで単語を翻訳するよう強制する。</translation>
     </message>
     <message>
       <source>Force the word to be translated in the mainwindow.</source>
-      <translation>メインウィンドウに単語を強制的に翻訳します。</translation>
+      <translation>メインウィンドウで単語を翻訳するよう強制する。</translation>
+    </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>Web URL：</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>URL内の「%GDWORD%」は、検索している単語に置き換えられる。</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>完全なHTML (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>単一HTML (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>PDFドキュメント (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>MIME HTML (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>記事を別名保存</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>記事の保存が完了した</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>エラー</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>記事を保存ない： %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>PDFの保存が完了した</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>PDFの保存に失敗した</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>記事を保存している… (%1/%2)</translation>
     </message>
   </context>
   <context>
@@ -3652,6 +3831,10 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>The referenced resource failed to download.</source>
       <translation>参照されたリソースのダウンロードに失敗しました。</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>リソースは宛先フォルダの外に保存されます。</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3661,7 +3844,7 @@ from Stardict, Babylon and GLS dictionaries</source>
     </message>
     <message>
       <source>Hepburn Romaji for Katakana</source>
-      <translation>ヘボン式ローマ字のカタカナ</translation>
+      <translation>片仮名をヘボン式ローマ字で検索</translation>
     </message>
   </context>
   <context>
@@ -3676,6 +3859,26 @@ from Stardict, Babylon and GLS dictionaries</source>
     <message>
       <source>WARNING: %1</source>
       <translation>警告: %1</translation>
+    </message>
+    <message>
+      <source>Definition</source>
+      <translation>定義</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>現在のタブを閉じる</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>現在以外のすべてのタブを閉じる</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>すべてのタブを閉じる</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>外部ブラウザで開く(&amp;E)</translation>
     </message>
   </context>
   <context>
@@ -3701,10 +3904,6 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>単語をメインウィンドウに送信 (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation>Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>単語をお気に入りに追加 (Ctrl+E)</translation>
     </message>
@@ -3715,8 +3914,12 @@ from Stardict, Babylon and GLS dictionaries</source>
     <message>
       <source>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</source>
-      <translation>画面に表示されたままにするためにこれを使用すると、
-のサイズを変更したり、他の方法で管理することができます。</translation>
+      <translation>このオプションを有効にすると、ウィンドウを画面に固定し、
+サイズ変更やその他の管理が可能になる。</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>記事の保存</translation>
     </message>
   </context>
   <context>
@@ -3793,7 +3996,7 @@ could be resized or managed in other ways.</source>
     </message>
     <message>
       <source>Morphology</source>
-      <translation>形態</translation>
+      <translation>形態素解析</translation>
     </message>
     <message>
       <source>Path to a directory with Hunspell/Myspell dictionaries:</source>
@@ -3805,7 +4008,7 @@ could be resized or managed in other ways.</source>
     </message>
     <message>
       <source>Available morphology dictionaries:</source>
-      <translation>利用可能な形態辞書:</translation>
+      <translation>利用可能な形態素解析辞書：</translation>
     </message>
     <message>
       <source>Each morphology dictionary appears as a
@@ -3814,7 +4017,9 @@ provides stem words for searches and
 spelling suggestions for mistyped words.
 Add appropriate dictionaries to the bottoms
 of the appropriate groups to use them.</source>
-      <translation>それぞれの形態辞書は検索の語幹と誤入力された単語のスペルの提案を提供する個別の補助辞書として表示されます。適切な辞書を使用するには適切なグループの末尾へそれらを追加します。</translation>
+      <translation>各形態素解析辞書は、検索用の辞書形を提供し、
+スペルミスの修正候補を提示する補助辞書です。
+使用するには、該当するグループの末尾に追加してください。</translation>
     </message>
     <message>
       <source>Wikipedia</source>
@@ -3846,7 +4051,7 @@ of the appropriate groups to use them.</source>
     </message>
     <message>
       <source>Any external programs. A string %GDWORD% will be replaced with the query word. A string %GDSEARCH% will be replaced with the text in the search bar. If both of the parameters are not provided, the headword will be fed into standard input.</source>
-      <translation>外部プログラム。文字列 %GDWORD% はクエリ単語に置き換えられます。文字列 %GDSEARCH% は検索バー内のテキストに置き換えられます。両方のパラメータが指定されていない場合、見出し語は標準入力に入力されます。</translation>
+      <translation>外部プログラムでは、%GDWORD% は検索語に置き換えられ、%GDSEARCH% は検索バーのテキストに置き換えられる。両方の引数が指定されていない場合は、見出し語が標準入力に渡される。</translation>
     </message>
     <message>
       <source>Lingua Libre</source>
@@ -3858,7 +4063,7 @@ of the appropriate groups to use them.</source>
     </message>
     <message>
       <source>Enable Lingua Libre</source>
-      <translation>リンガ・リブレを有効にする</translation>
+      <translation>Lingua Libreを有効にする</translation>
     </message>
     <message>
       <source>ISO 639-3 language code</source>
@@ -3878,7 +4083,7 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>Live pronunciations from &lt;a href=&quot;http://www.forvo.com/&quot;&gt;forvo.com&lt;/a&gt;. The site allows people to record and share word pronunciations. You can listen to them from GoldenDict.</source>
-      <translation>&lt;a href=&quot;http://www.forvo.com/&quot;&gt;Forvo.com&lt;/a&gt; からの生の発音です。このサイトで人々は単語の発音を録音および共有します。GoldenDict からそれらを聴くことができます。</translation>
+      <translation>&lt;a href=&quot;http://www.forvo.com/&quot;&gt;Forvo.com&lt;/a&gt; からの発音である。このサイトでは、ユーザーが単語の発音を録音して共有できる。GoldenDict からその発音を聞くことができる。</translation>
     </message>
     <message>
       <source>Enable pronunciations from Forvo</source>
@@ -3910,27 +4115,27 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>Transliteration</source>
-      <translation>音訳</translation>
+      <translation>翻字</translation>
     </message>
     <message>
       <source>Greek transliteration</source>
-      <translation>ギリシャ語音訳</translation>
+      <translation>ギリシャ語翻字</translation>
     </message>
     <message>
       <source>Russian transliteration</source>
-      <translation>ロシア語音訳</translation>
+      <translation>ロシア語翻字</translation>
     </message>
     <message>
       <source>German transliteration</source>
-      <translation>ドイツ語音訳</translation>
+      <translation>ドイツ語翻字</translation>
     </message>
     <message>
       <source>Belarusian transliteration</source>
-      <translation>ベラルーシ語</translation>
+      <translation>ベラルーシ語翻字</translation>
     </message>
     <message>
       <source>Enables to use the Latin alphabet to write the Japanese language</source>
-      <translation>日本語の記述のラテン文字の使用を有効にします</translation>
+      <translation>日本語をラテン文字で書けるようにする</translation>
     </message>
     <message>
       <source>Japanese Romaji</source>
@@ -3966,7 +4171,7 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>Custom transliteration</source>
-      <translation>カスタム音訳</translation>
+      <translation>カスタム翻字</translation>
     </message>
     <message>
       <source>This only applied in search phrase, with each line represent a transliteration,semicolon seperated. For example, ae;æ,users can input ae to represent æ in the target word.</source>
@@ -3990,7 +4195,7 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>The most widely used method of transcription of Japanese, based on English phonology</source>
-      <translation>最も広く使用されている日本語の音韻論に基づく表記法</translation>
+      <translation>英語の綴りに基づいた、最も広く使われている日本語のローマ字表記法</translation>
     </message>
     <message>
       <source>Remove selected directories from the list?</source>
@@ -3998,19 +4203,19 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>Remove %1 directories from the list?</source>
-      <translation>%1 ディレクトリをリストから削除しますか？</translation>
+      <translation>リストから%1個のディレクトリを削除しますか？</translation>
     </message>
     <message>
       <source>Remove %1 sites from the list?</source>
-      <translation>%1 サイトをリストから削除しますか？</translation>
+      <translation>リストから%1個のサイトを削除しますか？</translation>
     </message>
     <message>
       <source>Remove %1 servers from the list?</source>
-      <translation>%1 サーバーをリストから削除しますか？</translation>
+      <translation>リストから%1個のサーバーを削除しますか？</translation>
     </message>
     <message>
       <source>Remove %1 programs from the list?</source>
-      <translation>%1 プログラムをリストから削除しますか？</translation>
+      <translation>リストから%1個のプログラムを削除しますか？</translation>
     </message>
   </context>
   <context>
@@ -4107,18 +4312,21 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>&lt;iframe&gt; タグ内のリンクとして記事を挿入</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>このオンライン辞書は新しいタブで開いている</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>電源を切ってください &quot;ウェブサイト辞書を別のタブで開きます&quot; 記事内のウェブサイトを表示するために、設定に入っておきます。</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>有効</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>リンクとして</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4131,6 +4339,22 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     <message>
       <source>Icon</source>
       <translation>アイコン</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>スクリプト</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>アイコンのファイル名（設定フォルダからの相対パス）</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>別タブでウェブサイトを開く場合にのみ利用可能。ファイルパス（設定フォルダからの相対パスまたは絶対パス）またはスクリプトを直接指定できる。</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>環境設定で「別タブでオンライン辞書を開く」オプションが有効になっていないため、この列は無効である。</translation>
     </message>
   </context>
   <context>

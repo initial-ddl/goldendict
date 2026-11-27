@@ -1,8 +1,11 @@
 #pragma once
 
 #include <QToolBar>
+class QMainWindow;
 #include <QSize>
 #include <QList>
+#include <QHash>
+#include <QIcon>
 #include <QString>
 #include <QTimer>
 #include "dict/dictionary.hh"
@@ -21,16 +24,16 @@ class DictionaryBar: public QToolBar
 public:
 
   /// Constructs an empty dictionary bar
-  DictionaryBar( QWidget * parent, Config::Events &, const unsigned short & maxDictionaryRefsInContextMenu_ );
+  DictionaryBar( QWidget * parent, const unsigned short & maxDictionaryRefsInContextMenu_ );
 
   /// Sets dictionaries to be displayed in the bar. Their statuses (enabled/
   /// disabled) are taken from the configuration data.
   void setDictionaries( const std::vector< sptr< Dictionary::Class > > & );
-  void setMutedDictionaries( Config::MutedDictionaries * mutedDictionaries_ )
+  void setMutedDictionaries( QSet< QString > * mutedDictionaries_ )
   {
     mutedDictionaries = mutedDictionaries_;
   }
-  const Config::MutedDictionaries * getMutedDictionaries() const
+  const QSet< QString > * getMutedDictionaries() const
   {
     return mutedDictionaries;
   }
@@ -43,8 +46,9 @@ public:
 
   void setDictionaryIconSize( IconSize size );
   void updateToGroup( const Instances::Group * grp,
-                      Config::MutedDictionaries * allGroupMutedDictionaries,
-                      Config::Class & cfg );
+                      QSet< QString > * allGroupMutedDictionaries,
+                      Config::Class & cfg,
+                      bool isPopup = false );
 
 signals:
 
@@ -64,22 +68,33 @@ signals:
   /// Signal to close context menu
   void closePopupMenu();
 
+  /// Signal to show status bar message (used instead of direct status bar calls)
+  void showStatusBarMessage( const QString & message, int timeout = 3000 );
+
 private:
 
-  Config::MutedDictionaries * mutedDictionaries;
+  QSet< QString > * mutedDictionaries;
 
   // In temporary selection, shift+click capture selections.
-  std::optional< Config::MutedDictionaries > tempSelectionCapturedMuted;
-
-  Config::Events & configEvents;
+  std::optional< QSet< QString > > tempSelectionCapturedMuted;
 
   void selectSingleDict( const QString & id );
+
+  /// Updates the action's icon according to its checked state: full-color
+  /// when checked, dimmed (lower opacity) when unchecked. The dimmed variant
+  /// is alpha-blended, so it fades naturally into both light and dark
+  /// backgrounds without relying on Qt style sheets.
+  void applyActionIcon( QAction * action, bool checked );
 
   // how many dictionaries should be shown in the context menu:
   const unsigned short & maxDictionaryRefsInContextMenu;
   std::vector< sptr< Dictionary::Class > > allDictionaries;
   /// All the actions we have added to the toolbar
   QList< QAction * > dictActions;
+  /// Full-color icons keyed by action, used when the action is checked.
+  QHash< QAction *, QIcon > fullIcons;
+  /// Dimmed (reduced-opacity) icons keyed by action, used when unchecked.
+  QHash< QAction *, QIcon > dimmedIcons;
   QAction * maxDictionaryRefsAction;
 
   QSize normalIconSize; // cache icon size set by stylesheet provided by user

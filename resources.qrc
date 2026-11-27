@@ -1,52 +1,41 @@
 <RCC>
     <qresource prefix="/">
         <file>icons/add-anki-icon.svg</file>
+        <file>icons/anki.svg</file>
         <file>icons/document.png</file>
         <file>icons/audio.png</file>
         <file>version.txt</file>
-        <file>icons/arrow.png</file>
         <file>icons/arrow.svg</file>
-        <file>icons/prefix.png</file>
-        <file>icons/playsound.png</file>
         <file>icons/playsound.svg</file>
         <file>icons/programicon.png</file>
-        <file>icons/programicon_scan.png</file>
-        <file>icons/warning.png</file>
+        <file>icons/warning.svg</file>
         <file>icons/icon32_dsl.png</file>
-        <file>icons/icon32_stardict.png</file>
+        <file>icons/icon32_stardict.svg</file>
         <file>icons/icon32_xdxf.png</file>
         <file>icons/icon32_bgl.png</file>
         <file>icons/icon32_dictd.png</file>
         <file>icons/icon32_hunspell.png</file>
         <file>icons/icon32_wiki.png</file>
-        <file>icons/wiktionary.png</file>
+        <file>icons/wiktionary.svg</file>
         <file>icons/forvo.png</file>
         <file>icons/lingualibre.svg</file>
-        <file>icons/highlighter.png</file>
         <file>icons/icon32_sdict.png</file>
         <file>icons/icon32_aard.png</file>
-        <file>icons/expand_opt.png</file>
         <file>icons/expand_opt.svg</file>
-        <file>icons/collapse_opt.png</file>
         <file>icons/collapse_opt.svg</file>
         <file>icons/menu_button.svg</file>
         <file>icons/clear.png</file>
         <file>icons/icon32_lingoes.png</file>
         <file>icons/mdict.png</file>
-        <file>icons/downarrow.png</file>
         <file>icons/downarrow.svg</file>
-        <file>icons/expand_article_hovered.png</file>
-        <file>icons/expand_article.png</file>
         <file>icons/expand_article_hovered.svg</file>
         <file>icons/expand_article.svg</file>
-        <file>icons/collapse_article_hovered.png</file>
         <file>icons/collapse_article_hovered.svg</file>
-        <file>icons/collapse_article.png</file>
         <file>icons/collapse_article.svg</file>
-        <file>icons/video.png</file>
+        <file>icons/video.svg</file>
         <file>icons/programicon_old.png</file>
         <file>icons/playsound_full.png</file>
-        <file>icons/icon32_zim.png</file>
+        <file>icons/icon32_zim.svg</file>
         <file>icons/icon32_epwing.png</file>
         <file>icons/icon32_slob.png</file>
         <file>icons/icon32_gls.png</file>
@@ -54,17 +43,15 @@
         <file>icons/ontop.svg</file>
         <file>icons/addtab.svg</file>
         <file>icons/book.svg</file>
+        <file>icons/font.svg</file>
         <file>icons/bookcase.svg</file>
         <file>icons/closetab.svg</file>
         <file>icons/configure.svg</file>
         <file>icons/error.svg</file>
-        <file>icons/fileopen.svg</file>
         <file>icons/folder-sound.svg</file>
         <file>icons/filesave.png</file>
         <file>icons/folder.svg</file>
-        <file>icons/folder_active.svg</file>
         <file>icons/folders.svg</file>
-        <file>icons/home.svg</file>
         <file>icons/hotkeys.svg</file>
         <file>icons/icon.svg</file>
         <file>icons/icon32_zoombase.png</file>
@@ -77,7 +64,7 @@
         <file>icons/playsound_color.svg</file>
         <file>icons/sounddir.svg</file>
         <file>icons/zipsound.svg</file>
-        <file>icons/lsasound.png</file>
+        <file>icons/lsasound.svg</file>
         <file>icons/previous.svg</file>
         <file>icons/print.svg</file>
         <file>icons/programs.svg</file>
@@ -87,25 +74,28 @@
         <file>icons/star_blue.svg</file>
         <file>icons/system-search.svg</file>
         <file>icons/windows-list.svg</file>
-        <file>icons/wizard.svg</file>
+        <file>icons/clipboard.svg</file>
         <file>icons/dictionary.svg</file>
         <file>icons/advanced.png</file>
         <file>icons/webdict.svg</file>
+        <file>icons/mdict-bg.svg</file>
+        <file>icons/webdict-bg.svg</file>
         <file>icons/transliteration.png</file>
         <file>icons/pushpin.svg</file>
         <file>icons/fulltext.svg</file>
         <file>icons/text2speech.svg</file>
         <file>icons/closetab-hover.png</file>
         <file>icons/1downarrow.svg</file>
-        <file>icons/wizard-selected.svg</file>
-        <file>icons/mdict-bg.png</file>
-        <file>icons/old-arrow.png</file>
-        <file>icons/old-downarrow.png</file>
+        <file>icons/clipboard-selected.svg</file>
+        <file>icons/old-arrow.svg</file>
+        <file>icons/old-downarrow.svg</file>
         <file>icons/custom_trans.svg</file>
         <file>icons/splash.png</file>
         <file>icons/fts_disabled.svg</file>
         <file>icons/fts_enabled.svg</file>
+        <file>icons/scan.svg</file>
         <file>icons/sc.svg</file>
+        <file>icons/jpc.svg</file>
         <file>icons/tc.svg</file>
         <file>icons/hk.svg</file>
         <file>icons/hira.svg</file>

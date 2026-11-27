@@ -1,7 +1,7 @@
 # GoldenDict-ng
 
 [![Crowdin](https://badges.crowdin.net/goldendict-ng/localized.svg)](https://crowdin.com/project/goldendict-ng)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=xiaoyifang_goldendict&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=xiaoyifang_goldendict)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=xiaoyifang_goldendict-ng&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=xiaoyifang_goldendict-ng)
 [![Build](https://github.com/xiaoyifang/goldendict-ng/actions/workflows/PR-check-cmake.yml/badge.svg)](https://github.com/xiaoyifang/goldendict-ng/actions/workflows/PR-check-cmake.yml)
 
 GoldenDict-ng is an advanced dictionary lookup program, supporting [many formats](https://xiaoyifang.github.io/goldendict-ng/dictformats/).
@@ -51,7 +51,4 @@ This project is licensed under the <b>GNU GPLv3+</b> license, a copy of which ca
 
 The original project was developed at <http://goldendict.org/> and <https://github.com/goldendict/goldendict>.
 
-## Thank JetBrains for the help
-
-[![JetBrains Black Box Logo logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_square.png)](https://jb.gg/OpenSourceSupport)
 

@@ -3,7 +3,9 @@
 
 #include "groupcombobox.hh"
 #include <QEvent>
+#include <QPainter>
 #include <QShortcutEvent>
+#include <QStyleOptionComboBox>
 
 GroupComboBox::GroupComboBox( QWidget * parent ):
   QComboBox( parent ),
@@ -11,6 +13,7 @@ GroupComboBox::GroupComboBox( QWidget * parent ):
   selectNextAction( this ),
   selectPreviousAction( this )
 {
+  setIconSize( QSize( fontMetrics().height(), fontMetrics().height() ) );
   setSizeAdjustPolicy( AdjustToContents );
   setToolTip( tr( "Choose a Group (Alt+G)" ) );
 
@@ -62,6 +65,31 @@ void GroupComboBox::fill( const Instances::Groups & groups )
       shortcuts.insert( id, x );
     }
   }
+  updateGeometry();
+}
+
+QSize GroupComboBox::sizeHint() const
+{
+  QSize s = QComboBox::sizeHint();
+  if ( count() > 0 ) {
+    QFontMetrics fm( font() );
+    int maxW = 0;
+    for ( int i = 0; i < count(); ++i ) {
+      maxW = qMax( maxW, fm.horizontalAdvance( itemText( i ) ) );
+    }
+
+    int iconW = iconSize().width();
+    if ( iconW > 0 ) {
+      iconW += 6; // Icon plus some margin
+    }
+
+    // 41 pixels for the arrow and internal padding (35 + 6 for left padding)
+    int estimated = iconW + maxW + 41;
+    if ( s.width() < estimated ) {
+      s.setWidth( estimated );
+    }
+  }
+  return s;
 }
 
 bool GroupComboBox::event( QEvent * event )
@@ -79,6 +107,24 @@ bool GroupComboBox::event( QEvent * event )
   }
 
   return QComboBox::event( event );
+}
+
+void GroupComboBox::paintEvent( QPaintEvent * )
+{
+  QStyleOptionComboBox opt;
+  initStyleOption( &opt );
+
+  QPainter painter( this );
+  painter.setRenderHint( QPainter::Antialiasing );
+
+  // Draw frame, focus rect, drop-down button
+  style()->drawComplexControl( QStyle::CC_ComboBox, &opt, &painter, this );
+
+  // Add left padding so the icon/text isn't flush against the left edge
+  opt.rect.adjust( 6, 0, 0, 0 );
+
+  // Draw the label (icon + text) with the adjusted content area
+  style()->drawControl( QStyle::CE_ComboBoxLabel, &opt, &painter, this );
 }
 
 QList< QAction * > GroupComboBox::getExternActions()

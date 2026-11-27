@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation>Anki: kan&apos;t skapa ett kort utan ett ord</translation>
+      <translation>Anki: kan inte skapa ett kort utan ett ord</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -57,16 +57,46 @@
       <translation>Välkommen!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;Välkommen till &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;För att börja arbeta med programmet, besök först &lt;em&gt;Redigera | Ordböcker&lt;/em&gt; för att lägga till några katalogsökvägar där man kan söka efter ordboksfilerna, skapa olika Wikipedia-webbplatser eller andra källor, justera ordboksordningen eller skapa ordboksgrupper.&lt;p&gt;Och då är du&apos;att slå upp dina ord! Du kan göra det i det här fönstret genom att använda en ruta till vänster, eller så kan du &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;upp ord från andra aktiva applikationer&lt;/a&gt;. &lt;p&gt;För att anpassa programmet, kolla in de tillgängliga inställningarna på &lt;em&gt;Redigera | Inställningar&lt;/em&gt;. Alla inställningar där har verktygstips, se till att läsa dem om du är osäker på något.&lt;p&gt;Behöver du ytterligare hjälp, har några frågor, förslag eller bara undrar vad de andra tycker är du välkommen till programmet&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Kolla program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;hemsida&lt;/a&gt; för uppdateringarna. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensierad under GPLv3 eller senare.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(namnlös)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(bild)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Välkommen till &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;För att komma igång&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Gå till &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Redigera&lt;/span&gt;&lt;span&gt;Ordböcker&lt;/span&gt;&lt;/span&gt; för att lägga till dina ordboksfiler, konfigurera onlinekällor som Wikipedia, och organisera dem i grupper.&lt;/li&gt;
+          &lt;li&gt;En gång i tiden du kan slå upp ord i detta fönster eller &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;från andra program med hjälp av Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;För att anpassa programmet, utforska inställningarna i &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Redigera&lt;/span&gt;&lt;span&gt;Inställningar&lt;/span&gt;&lt;/span&gt;. Alla inställningar har verktygstips, så se till att läsa dem om något är oklart.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Skulle du behöva ytterligare hjälp, har frågor eller förslag, du är välkommen till programmet&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; och &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;webbplats&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Baserat på den ursprungliga GoldenDict av Konstantin Isakov (c) 2008-2013. Underhålls och utvecklas av GoldenDict-NG gemenskapen. Licensierad under GPLv3 eller senare.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>Fras hittades inte</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 av %2 träffar</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Skapa Anki anteckning</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;Kopiera ljud till urklipp</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>Det gick inte att kopiera ljud</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>Det gick inte att skriva fullständig ljuddata</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>Ljud kopierat till urklipp</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Det gick inte att ladda ner ljud</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 av %2 träffar</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Öppna artikel i extern &amp;webbläsare</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>GoldenDict Resource Viewer</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -275,52 +336,60 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Kinesisk konvertering</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Traditionell till förenklad kinesisk konvertering</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Aktivera konvertering mellan förenklade och traditionella kinesiska tecken</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Möjliggör konvertering från förenklade/traditionella kinesiska tecken till japanska Shinjitai-tecken</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>Kinesisk Con&amp;version</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Japansk Shinjitai</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Aktivera konvertering från förenklade tecken till traditionella (Taiwan variant) tecken</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>Kinesisk till japansk Shinjitai-konvertering</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Aktivera konvertering från förenklade tecken till traditionella (Hong Kong variant) tecken</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>Kinesisk och japansk teckenkonversion</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>Aktivera konvertering mellan förenklade kinesiska, traditionella kinesiska (Taiwan/Hongkong) och japanska Shinjitai-tecken</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Aktivera konvertering från traditionella tecken till förenklade tecken</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Förenklad till traditionell kinesisk (Taiwanesisk variant) konvertering</translation>
+      <source>Simplified</source>
+      <translation>Förenklad</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Förenklad till traditionell kinesisk (Hong Kong variant) konvertering</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Aktivera konvertering från förenklade tecken till traditionella (taiwanska) tecken</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Traditionell till förenklad kinesisk konvertering</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>Traditionell (Taiwan)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation>Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Aktivera konvertering från förenklade tecken till traditionella (Hongkong-)tecken</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation>Hongkong variant</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Traditionell (Hongkong)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation>Variant på fastlandet</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>Förenklad till traditionell kinesisk (Taiwan) konvertering</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>Förenklad till traditionell kinesisk (Hongkong) konvertering</translation>
     </message>
   </context>
   <context>
@@ -408,10 +477,6 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
       <translation>Är du säker på att du vill skapa en uppsättning grupper baserat på innehållande mappar?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>Är du säker på att du vill skapa en uppsättning grupper baserade på metadata.toml?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Kombinera grupper efter källspråk till &quot;%1 &gt;&quot;</translation>
     </message>
@@ -426,6 +491,18 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Kombinera grupper med &quot;%1&quot;</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Ta bort grupp</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>Är du säker på att du vill ta bort gruppen &lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>Är du säker på att du vill generera en uppsättning grupper baserat på metadatafiler i ordboksdata?</translation>
     </message>
   </context>
   <context>
@@ -455,10 +532,6 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
       <translation>Filtrera:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Sökläge</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Detta element bestämmer hur filtersträngen ska tolkas</translation>
     </message>
@@ -481,18 +554,6 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Ange de maximalt filtrerade headwords som returnerats.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Filtrera max resultat:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Hjälp</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>Ok</translation>
     </message>
     <message>
       <source>Text</source>
@@ -542,6 +603,10 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
       <source>Regular Expression</source>
       <translation>Reguljärt uttryck</translation>
     </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>Maximalt:</translation>
+    </message>
   </context>
   <context>
     <name>DictInfo</name>
@@ -574,10 +639,6 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
       <translation>Målspråk:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Filer som omfattas av ordlistan:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Beskrivning:</translation>
     </message>
@@ -596,6 +657,18 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
     <message>
       <source>Full-text search disabled</source>
       <translation>Fulltextsökning avaktiverad</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Inaktivera</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Aktivera</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>Ordbokskomponenter:</translation>
     </message>
   </context>
   <context>
@@ -692,6 +765,34 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
     <message>
       <source>Restore selection</source>
       <translation>Återställ markering</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>Avbryt omindexering</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>Schemalägg för omindexering</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>Avbryt omindexering av schema</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>Ordboken har schemalagts för omindexering. Indexet kommer att byggas om vid nästa omstart av programmet.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Ändra visningsnamn</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Nytt visningsnamn:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Misslyckades med att boka ordboken för omindexering.</translation>
     </message>
   </context>
   <context>
@@ -808,10 +909,6 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
       <translation>Lägg till mapp</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Rensa alla</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Favoriter:</translation>
     </message>
@@ -820,16 +917,20 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
       <translation>Alla markerade objekt tas bort. Fortsätt?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Rensa alla objekt</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>Är du säker på att du vill rensa alla objekt?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Rensa</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>Rensa favoriter</translation>
     </message>
   </context>
   <context>
@@ -957,28 +1058,12 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
       <translation>Flik 2</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>Skapa en ny ordlistegrupp</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>&amp;Lägg till grupp</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>Byt namn på den aktuella ordlistegruppen</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>Byt &amp;namn på grupp</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Ta bort den aktuella ordlistegruppen</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>Ta &amp;bort grupp</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1048,6 +1133,22 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>Är du säker på att du vill ta bort alla grupper?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>Lägg till en ny ordboksgrupp</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>&amp;Lägg till grupp</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>Gruppen finns redan</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>En grupp med namnet &apos;%1&apos; finns redan.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1081,6 +1182,18 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
     <message>
       <source>%1 Morphology</source>
       <translation>Morfologi för %1</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Stavning rätt, inga andra ordformer hittades.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>Från %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Ordformer för %1: </translation>
     </message>
   </context>
   <context>
@@ -2388,10 +2501,6 @@ klassisk rättstavning och skolrättstavning i kyrillisk skrift)</translation>
       <translation>Ny flik</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>Välkommen!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>API för hjälpmedel har inte aktiverats</translation>
     </message>
@@ -2464,42 +2573,6 @@ För att hitta &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbol
     <message>
       <source>Print Article</source>
       <translation>Skriv ut artikel</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Komplett HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Enkel HTML (*.html *.html)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>Pdf (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Mime HTML (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Spara artikel som</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Fel</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Det gick inte att spara artikeln: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Sparar artikel …</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Spara artikeln klar</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2594,12 +2667,56 @@ För att hitta &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbol
       <translation>Visa</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation>Spara PDF slutförd</translation>
+      <source>Lock Panels</source>
+      <translation>Lås paneler</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation>Kunde inte spara PDF</translation>
+      <source>Clear History</source>
+      <translation>Rensa historik</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>Är du säker på att du vill rensa alla historikobjekt?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Spara fil</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>Applikationen körs fortfarande i bakgrunden. Klicka på brickikonen för att visa fönstret.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Öppna i &amp; Extern webbläsare</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>Nu bygger vi headwords-cache: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Prefix</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Suffix</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Flerords</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Fulltextsökning…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Sökläge</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Sökläge: %1</translation>
     </message>
   </context>
   <context>
@@ -2616,15 +2733,15 @@ För att hitta &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbol
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML-tolkningsfel: %1 på %2, %3</translation>
+      <source>JSON parse error</source>
+      <translation>JSON parse error</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XML-tolkningsfel: %1 på %2, %3</translation>
+      <source>JSON parse error</source>
+      <translation>JSON parse error</translation>
     </message>
   </context>
   <context>
@@ -2700,10 +2817,6 @@ För att hitta &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbol
       <translation>Beskrivning:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Filer som omfattas av ordlistan:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Ändra ordningen genom att dra och släppa objekten i listan. Släpp ordlistor i gruppen &quot;Inaktiverade ordlistor&quot; för att inaktivera dem.</translation>
     </message>
@@ -2722,6 +2835,18 @@ För att hitta &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbol
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Ordlistor aktiva: % 1, inaktiva: % 2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Ändra visningsnamn</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Nytt visningsnamn:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>Ordbokskomponenter:</translation>
     </message>
   </context>
   <context>
@@ -2766,28 +2891,12 @@ att växla till dem på en gång.</translation>
       <translation>Öppna nya flikar i bakgrunden</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Aktivera detta alternativ för att öppna nya flikar
-bredvid den aktuella, aktiva fliken. Annars öppnas
-de efter den sista fliken i flikfältet.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Öppna nya flikar bredvid den aktuella fliken</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Välj detta alternativ om du inte fill se flikfältet när endast en flik är öppen.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Dölj fliken och flikfältet om endast en flik är öppen</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>MRU beställning: Senast använda beställning.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2875,8 +2984,100 @@ minimera fönstret till meddelandefältet istället för att avsluta programmet.
       <translation>Högsta antal ordlistor i snabbmenyer:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>Systemstandard</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Standard</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Klassisk</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Modernt</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Babylon</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Lingor</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Lingoes (blå)</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Starta om programmet för att verkställa bytet av språk.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Starta om för att tillämpa ändringen av gränssnittsstilen.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Starta om för att tillämpa gränssnittets teckensnittsändring.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Omstart behövs</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Aktivera</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Inaktivera</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Automatisk</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Ingen</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>Med den här funktionen öppnas nya flikar precis efter
+aktuell, aktiv. Annars läggs de till
+vara de sista.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp;Stil</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Utseende</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Gränssnittets språk</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Artikelns visningsstil</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Stil på tillägg</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Gränssnitt stil</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2895,12 +3096,16 @@ minimera fönstret till meddelandefältet istället för att avsluta programmet.
       <translation>Mörkt läsarläge</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Dessa typsnitt kommer att tillämpas när de typsnitt som anges i en ordbok inte hittas.</translation>
+      <source>Preview Font</source>
+      <translation>Förhandsgranska typsnitt</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Reservteckensnitt</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng är en ordbok programvara.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Dessa typsnitt kommer att tillämpas när de typsnitt som anges i en ordbok inte hittas.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2917,10 +3122,6 @@ minimera fönstret till meddelandefältet istället för att avsluta programmet.
     <message>
       <source>Monospace Font</source>
       <translation>Monospace teckensnitt</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Sökpopupruta</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2957,8 +3158,8 @@ in the pressed state when the word selection changes.</source>
 angivna tangenterna är nedtryckta när ordet markeras.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Endast tack val när alla valda nycklar hålls tryckt:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>Endast spårval när alla valda nycklar hålls tryckt:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3041,20 +3242,8 @@ angivna tangenterna är nedtryckta när ordet markeras.</translation>
       <translation>Spela upp ljudfiler via inbyggt ljudstöd</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Använd intern spelare:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Välj ljud-backend</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Använd ett externt program för att spela upp ljudfiler.</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Använd externt program:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3120,28 +3309,12 @@ förfrågningar.</translation>
       <translation>Däck:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Modell:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Ord</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Ordförrådsfältet...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Text</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Definition fält...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Mening</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3159,43 +3332,6 @@ webbplats slutar fungera p.g.a. det här, testa att inaktivera alternativet.</tr
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>Blockera inläsning av innehåll från andra webbplatser (döljer merparten av annonserna)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Vissa webbplatser identifierar GoldenDict m.h.a. HTTP-huvuden och
-blockerar alla förfrågningar. Aktivera detta alternativ för att lösa
-det problemet.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>Identifiera inte GoldenDict i HTTP-huvuden</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Maximal nätverkscache storlek:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Maximalt diskutrymme som upptas av GoldenDicts nätverkscache
-%1
-Om inställt på 0 kommer nätverksdiskcachen att inaktiveras.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>När det här alternativet är aktiverat rensar GoldenDict
-sin nätverkscache från disken under avslutning.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Rensa nätverkscachen vid avslut</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3258,8 +3394,12 @@ saken och ber denna att öppna en hämtningssida.</translation>
       <translation>Största historikstorlek:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Sparintervall för historiken. Ange till 0 för att endast  spara historiken vid programavslut.</translation>
+      <source>Favorites</source>
+      <translation>Favoriter</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Favoriters sparningsintervall. Om inställd på 0 sparas Favoriter endast vid avslutning.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3268,14 +3408,6 @@ saken och ber denna att öppna en hämtningssida.</translation>
     <message>
       <source>minutes</source>
       <translation>minut</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Favoriter</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Favoriters sparningsintervall. Om inställd på 0 sparas Favoriter endast vid avslutning.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3374,112 +3506,112 @@ från Stardict, Babylon och GLS ordböcker</translation>
       <translation>Ta bort ogiltigt index vid utgång</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>Systemstandard</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Standard</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Klassisk</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Modernt</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Babylon</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Lingor</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Lingoes (blå)</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Auto gör ingenting på vissa system.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Starta om programmet för att verkställa bytet av språk.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Starta om för att tillämpa ändringen av gränssnittsstilen.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Starta om för att tillämpa gränssnittets teckensnittsändring.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Omstart behövs</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Aktivera</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Inaktivera</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Automatisk</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Spara felsökningsmeddelanden till gd_log.txt i konfigurationsmappen</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Gränssnittets språk</translation>
+      <source>S&amp;can</source>
+      <translation>&amp;Skanna</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Artikelns visningsstil</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>Förhindra JavaScript-varningar, bekräftelser och uppmaningar i artikelvyn.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Stil på tillägg</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>Undertrycka JavaScript dialogrutor</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Gränssnitt stil</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>Öppna webbplatsordlista i separat flik</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Förhandsgranska typsnitt</translation>
+      <source>Anki</source>
+      <translation>Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation>GoldenDict-ng är en ordbok programvara.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>Tillåt JavaScript att komma åt urklipp i artikelvyn.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation>Aktivera typsnitt för gränssnitt</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>Aktivera åtkomst till JavaScript-urklipp (behöver startas om)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation>Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>Starta om för att tillämpa JavaScript-urklipp åtkomständring.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation>Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>Dölj flikfältet när endast en flik är öppen.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Ingen</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Använd någon extern ljudspelare för att spela upp ljudfiler</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Visa detaljerad konfigurationsguide</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>Ljudsökvägen kommer att skickas som ett kommandoradsargument till den externa spelaren. </translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation>Intern ljudspelare:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation>Extern ljudspelare:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>Byter automatiskt baserat på systemtema.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>Anpassa typsnitt</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>Dockikonen visas alltid när huvudfönstret är öppet så att macOS kan visa applikationsnamn och menyer. Aktivera detta alternativ för att hålla dockikonen synlig efter att huvudfönstret är dolt.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>Håll dockikonen synlig i bakgrunden</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>Lägg till ljud på Anki-kortet när det finns tillgängligt</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>När de är aktiverade öppnas webbplatsordböcker i en egen flik istället för att vara inbäddade i artikelvyn. Detta undviker begränsningar i iframe-layout och scrollning och aktiverar kolumnen Script per ordbok i dialogen för ordböcker.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Ord:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>Text:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Mening:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Gränssnittets teckensnitt</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Custom family</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Anpassad storlek</translation>
     </message>
   </context>
   <context>
@@ -3625,6 +3757,58 @@ från Stardict, Babylon och GLS ordböcker</translation>
       <source>Force the word to be translated in the mainwindow.</source>
       <translation>Tvinga ordet som ska översättas i huvudfönstret.</translation>
     </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>Webbadurl:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>I Url kommer &quot;%GDWORD%&quot; att ersättas med ordet som söks.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Complete Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Enkel Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>PDF-dokument (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Spara artikel som</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Spara artikel klar</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Fel</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Kan&apos;t spara artikel: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Spara PDF slutförd</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Kunde inte spara PDF</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Sparar artikel... (%1/%2)</translation>
+    </message>
   </context>
   <context>
     <name>QuickFilterLine</name>
@@ -3655,6 +3839,10 @@ från Stardict, Babylon och GLS ordböcker</translation>
       <source>The referenced resource failed to download.</source>
       <translation>Det gick inte att hämta den refererade resursen.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>Resursen sparades utanför destinationsmappen.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3680,6 +3868,26 @@ från Stardict, Babylon och GLS ordböcker</translation>
       <source>WARNING: %1</source>
       <translation>VARNING: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>Definition</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Stäng aktuell flik</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Stäng alla flikar utom aktuell flik</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Stäng alla flikar</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Öppna i &amp; Extern webbläsare</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3704,10 +3912,6 @@ från Stardict, Babylon och GLS ordböcker</translation>
       <translation>Skicka ord till huvudfönstret (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation>Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Lägg till ord i favoriter (Ctrl+E)</translation>
     </message>
@@ -3720,6 +3924,10 @@ från Stardict, Babylon och GLS ordböcker</translation>
 could be resized or managed in other ways.</source>
       <translation>Använd detta för att fästa ner fönstret så att det skulle stanna på skärmen,
 kan skalas om eller hanteras på andra sätt.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Spara artikel</translation>
     </message>
   </context>
   <context>
@@ -4115,18 +4323,21 @@ Fullständig lista över tillgängliga språk finns &lt;a href=&quot;https://lin
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Infoga artikel som länk inuti &lt;iframe&gt; tagg</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>Denna webbplats ordbok öppnas i en ny flik</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Stäng av &quot;Öppna webbplatsordbok i separat flik&quot; i Inställningar för att visa webbplatsen inuti artikeln istället.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Aktiverad</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Som länk</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4139,6 +4350,22 @@ Fullständig lista över tillgängliga språk finns &lt;a href=&quot;https://lin
     <message>
       <source>Icon</source>
       <translation>Ikon</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Skript</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>Ikon filnamn. Relativt till konfigurationskatalogen.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>Endast tillgängligt när webbplatser öppnas i separata flikar. Kan vara en filsökväg (relativ till konfigurationskatalog eller absolut) eller direkt skriptinnehåll.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>Denna kolumn är inaktiverad eftersom &quot;Öppna webbplatsordlista i separat flik&quot; alternativet är inte aktiverat i inställningar.</translation>
     </message>
   </context>
   <context>

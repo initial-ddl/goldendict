@@ -25,9 +25,6 @@ a:hover {
   background: white;
   padding-left: 2em;
   padding-right: 2em;
-
-  content-visibility: auto;
-  contain-intrinsic-height: auto 600px;
 }
 
 .gdactivearticle {
@@ -50,9 +47,9 @@ a:hover {
 
 .gddictname {
   display: flex;
+  justify-content: flex-end;
   font-size: 12px;
   font-weight: normal;
-  float: right;
   border: 0;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -77,8 +74,6 @@ a:hover {
   margin: -6px;
   margin-bottom: 5px;
   margin-left: 2px;
-
-  float: right;
   border: 1px solid #3399ff;
   color: #0066cc;
   background: #deecf8;
@@ -90,8 +85,8 @@ a:hover {
 
 /* Nice diagonal pattern for the collapsed article */
 .gdcollapsedarticle {
-  background-image: -webkit-linear-gradient(
-    left top,
+  background-image: linear-gradient(
+    to bottom right,
     #ccc 0%,
     #ccc 25%,
     #bbb 25%,
@@ -112,7 +107,7 @@ a:hover {
 .gddicticon {
   display: block;
   vertical-align: text-bottom;
-  padding-right: -1em;
+  padding-right: 1em;
   padding-left: 0.3em;
   order: 2;
 }
@@ -125,11 +120,8 @@ a:hover {
 .gdexpandicon:hover,
 .gdcollapseicon,
 .gdcollapseicon:hover {
-  width: auto; /* Maintain aspect ratio */
-  height: 100%; /* Set height to 100% of the container */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain; /* Ensure the image scales proportionally */
+  width: auto;
+  height: 100%;
   vertical-align: text-bottom;
 }
 
@@ -160,6 +152,11 @@ a:hover {
 }
 
 .gdspellsuggestion {
+  /* Add some vertical space before the article */
+  margin-top: 1.5em;
+}
+
+.gdmorphology {
   /* Add some vertical space before the article */
   margin-top: 1.5em;
 }

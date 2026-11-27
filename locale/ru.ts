@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation>Анки: может&apos;t создать карту без слова</translation>
+      <translation>Anki: нельзя создать карточку без слова</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -28,11 +28,11 @@
     </message>
     <message>
       <source>Anki: post to Anki failed</source>
-      <translation>Анки: сообщение в Анки не удалось</translation>
+      <translation>Anki: не удалось выполнить запись в Anki</translation>
     </message>
     <message>
       <source>Anki: post to Anki success</source>
-      <translation>Анки: запись в Anki успеха</translation>
+      <translation>Anki: запись в Anki выполнена</translation>
     </message>
   </context>
   <context>
@@ -57,16 +57,46 @@
       <translation>Добро пожаловать!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;Добро пожаловать в &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;Чтобы начать работу с программой, сначала откройте меню &lt;em&gt;Правка | Словари&lt;/em&gt;, чтобы добавить пути к каталогам со словарями, к Википедии и другим сайтам, упорядочить и сгруппировать словари.&lt;p&gt;И тогда вы сможете искать слова! Это можно делать непосредственно в этом окне, используя панель поиска слева, или &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;отправляя слова из других программ&lt;/a&gt;. &lt;p&gt;Чтобы настроить GoldenDict, перейдите в настройки на &lt;em&gt;Правка | Настройки&lt;/em&gt;. Все опции имеют подсказки: обязательно прочтите их, если у вас есть сомнения.&lt;p&gt;Если вам нужна помощь, или у вас есть какие-либо вопросы, предложения или просто интересно, что думают другие, заходите на форум GoldenDict&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;&lt;/a&gt;.&lt;p&gt; Проверить обновления можно на сайте &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;&lt;/a&gt; . &lt;p&gt;(c) 2008-2013 Константин Исаков. Лицензия GPLv3 или более поздняя.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(без имени)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(картинка)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Добро пожаловать в &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;Для начала работы с&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Перейдите к &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Редактировать&lt;/span&gt;&lt;span&gt;словари&lt;/span&gt;&lt;/span&gt; для добавления файлов словаря, настройте онлайн-источники, такие как Википедия, и организуйте их в группы.&lt;/li&gt;
+          &lt;li&gt;После установки слова можно найти в этом окне или &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;из других приложений, используя Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;Для настройки программы изучите настройки в &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Изменить&lt;/span&gt;&lt;span&gt;Настройки&lt;/span&gt;&lt;/span&gt;. Все настройки имеют подсказки, поэтому не забудьте прочитать их, если что-то не понятно.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Если вам нужна дополнительная помощь, с любыми вопросами или предложениями вы можете обратиться &apos;на &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;форум&lt;/a&gt; и &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;сайт&lt;/a&gt; программы.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;На основе оригинального GoldenDict Константина Исакова (c) 2008-2013. Поддерживается и разрабатывается Сообществом GoldenDict-NG, распространяется по лицензии GPLv3 или более поздней версии.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>Ничего не найдено</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 из %2 совпадений</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Создать заметку Anki</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;Копировать звук в буфер обмена</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>Не удалось скопировать звук</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>Не удалось записать аудио полные данные</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>Звук скопирован в буфер обмена</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Не удалось загрузить звук</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 из %2 совпадений</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Открыть статью во внешнем и браузере</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>Просмотр ресурсов GoldenDict</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -275,52 +336,60 @@ between classic and school orthography in cyrillic)</source>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Преобразования китайских иероглифов</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Преобразование классических иероглифов в упрощённые</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Преобразования между упрощёнными и классическими китайскими иероглифами</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Включить конвертацию с упрощённых/традиционных китайских иероглифов в японские иероглифы Синцзитай</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>Преобразования китайских иероглифов</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Японский синдзитай</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Преобразование упрощённых иероглифов в класические (Тайваньский вариант)</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>Переход с китайского в японский синцзитай</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Преобразование упрощённых иероглифов в класические (Гонконгский вариант)</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>Конверсия китайских и японских иероглифов</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>Включить конвертацию между упрощённым китайским, традиционным китайским (Тайвань/Гонконг) и японскими синцзитай иероглифами</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Преобразование классических иероглифов в упрощённые</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Преобразование упрощённых иероглифов в класические (Тайваньский вариант)</translation>
+      <source>Simplified</source>
+      <translation>Упрощённое</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Преобразование упрощённых иероглифов в класические (Гонконгский вариант)</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Включить конвертацию с упрощённых символов в традиционные (Тайваньские) символы</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Преобразование классических иероглифов в упрощённые</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>Традиционные (Тайвань)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation>Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Включить преобразование с упрощённых символов в традиционные (гонконгские) символы</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation>Гонконг вариант</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Традиционные (Гонконг)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation>Вариант материкового продукта</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>Упрощённое переход на традиционный китайский (тайваньский) язык</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>Упрощённое переход на традиционный китайский (гонконгский) переход</translation>
     </message>
   </context>
   <context>
@@ -408,10 +477,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Вы уверены, что хотите создать набор групп на основе языковых пар?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>Вы уверены, что хотите создать набор групп на основе metadata.toml?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Собрать группу &quot;%1-&gt;&quot; по исходному языку</translation>
     </message>
@@ -426,6 +491,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Собрать группу &quot;%1&quot;</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Удалить группу</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>Удалить группу &lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>Вы уверены, что хотите сгенерировать набор групп на основе метаданных словаря?</translation>
     </message>
   </context>
   <context>
@@ -456,10 +533,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Фильтр:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Режим поиска</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Этот элемент определяет, как будет интерпретироваться строка фильтра</translation>
     </message>
@@ -483,18 +556,6 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Укажите максимальное количество возвращаемых отфильтрованных заголовков.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Максимальное количество фильтров:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Справка</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>ОК</translation>
     </message>
     <message>
       <source>Text</source>
@@ -544,6 +605,10 @@ between classic and school orthography in cyrillic)</source>
       <source>Regular Expression</source>
       <translation>Регулярное выражение</translation>
     </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>Максимум:</translation>
+    </message>
   </context>
   <context>
     <name>DictInfo</name>
@@ -576,10 +641,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Целевой язык:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Файлы, из которых состоит словарь:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Описание:</translation>
     </message>
@@ -598,6 +659,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Full-text search disabled</source>
       <translation>Полнотекстовый поиск отключен</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Запрещать</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Давать возможность</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>Компоненты словаря:</translation>
     </message>
   </context>
   <context>
@@ -694,6 +767,34 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Restore selection</source>
       <translation>Восстановить выбранное</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>Отменить переиндексацию</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>График переиндексации</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>Отменить переиндексацию расписания</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>Для переиндексации был запланирован словарь. Индекс будет перестроен при следующем перезапуске приложения.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Изменить отображаемое имя</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Новое отображаемое имя:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Не удалось запланировать реиндексацию словаря.</translation>
     </message>
   </context>
   <context>
@@ -810,10 +911,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Добавить папку</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Очистить все</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Избранное:</translation>
     </message>
@@ -822,16 +919,20 @@ between classic and school orthography in cyrillic)</source>
       <translation>Все выбранные элементы будут удалены. Продолжить?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Очистить все элементы</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>Вы уверены, что хотите очистить все элементы?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Очистить</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>Очистить избранное</translation>
     </message>
   </context>
   <context>
@@ -956,15 +1057,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Tab 2</source>
-      <translation>Tab 2</translation>
-    </message>
-    <message>
-      <source>Create new dictionary group</source>
-      <translation>Создать новую группу</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>&amp;Добавить</translation>
+      <translation>Вкладка 2</translation>
     </message>
     <message>
       <source>Rename current dictionary group</source>
@@ -973,14 +1066,6 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Re&amp;name group</source>
       <translation>&amp;Переименовать</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Удалить редактируемую группу</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>&amp;Удалить</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1050,6 +1135,22 @@ between classic and school orthography in cyrillic)</source>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>Удалить все группы?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>Добавить новую группу словарей</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>&amp;Добавить</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>Группа уже существует</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>Группа с именем &apos;%1&apos; уже существует.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1083,6 +1184,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>%1 Morphology</source>
       <translation>%1 (морфология)</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Орфография правильна, других форм слов не найдено.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>Из %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Формы слов для %1: </translation>
     </message>
   </context>
   <context>
@@ -2390,10 +2503,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Новая вкладка</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>Добро пожаловать!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>Интерфейс Accessibility не включён</translation>
     </message>
@@ -2437,7 +2546,7 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
       <source>Version &lt;b&gt;%1&lt;/b&gt; of GoldenDict is now available for download.&lt;br&gt;Click &lt;b&gt;Download&lt;/b&gt; to get to the download page.</source>
-      <translation>Версия &lt;b&gt;%1&lt;/b&gt; программы GoldenDict доступа для загрузки.&lt;br&gt;
+      <translation>Версия &lt;b&gt;%1&lt;/b&gt; программы GoldenDict доступна для загрузки.&lt;br&gt;
 Нажмите &lt;b&gt;Загрузить&lt;/b&gt;, чтобы перейти на страницу загрузки.</translation>
     </message>
     <message>
@@ -2467,42 +2576,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Print Article</source>
       <translation>Печать статьи</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Полный HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Один HTML (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>PDF-файл (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Mime-HTML (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Сохранить статью как</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Ошибка</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Невозможно сохранить статью: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Сохранение статьи...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Статья сохранена</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2597,12 +2670,56 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Показать</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation>PDF файл сохранен</translation>
+      <source>Lock Panels</source>
+      <translation>Блокировать панели</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation>Сохранить PDF не удалось</translation>
+      <source>Clear History</source>
+      <translation>Очистить историю</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>Вы уверены, что хотите очистить все элементы истории?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Сохранить файл</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>Приложение всё ещё работает в фоне. Нажмите на иконку лотка, чтобы показать окно.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Открытый и внешний браузер</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>Теперь строим кэш заголовков: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Префикс</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Суффикс</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Многословное</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Полнотекстовый поиск…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Режим поиска</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Режим поиска: %1</translation>
     </message>
   </context>
   <context>
@@ -2619,15 +2736,15 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Ошибка разбора XML: %1 на строке %2, столбце %3</translation>
+      <source>JSON parse error</source>
+      <translation>Ошибка разбора JSON</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Ошибка разбора XML: %1 на строке %2, столбце %3</translation>
+      <source>JSON parse error</source>
+      <translation>Ошибка разбора JSON</translation>
     </message>
   </context>
   <context>
@@ -2703,10 +2820,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Описание:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Файлы, из которых состоит словарь:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Изменяйте порядок словарей, перетаскивая словари мышкой. Для отключения словаря перетащите его в неактивную группу снизу.</translation>
     </message>
@@ -2725,6 +2838,18 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Словарей активных: %1, неактивных: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Изменить отображаемое имя</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Новое отображаемое имя:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>Компоненты словаря:</translation>
     </message>
   </context>
   <context>
@@ -2769,29 +2894,12 @@ switching to them.</source>
       <translation>Открывать новые вкладки в фоне</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Если данная опция включена, новые вкладки будут
-открываться сразу за текущей, вместо того чтобы
-добавляться в конец..</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Открывать новые вкладки за текущей</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Включите эту опцию, если не хотите видеть панель закладок
-при единственной открытой вкладке.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Скрывать закладки</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>Порядок MRU: последний использованный ордер.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2832,10 +2940,10 @@ With this on however, it will hide the main window.</source>
 selection in an article loads the translation and almost immediately
 scrolls to the article from the same dictionary. With this option off,
 however, the article from the topmost dictionary is shown.</source>
-      <translation>Обычно нажмите на ссылку, двойной щелчок по слову или поиск по
-выбору в статье загружает перевод и почти мгновенно
-прокручивает статью из того же словаря. With this option off,
-however, the article from the topmost dictionary is shown on the top dictionary .</translation>
+      <translation>Обычно при нажатии на ссылку, двойном щелчке по слову или поиске по
+выбору в статье загружается перевод и почти мгновенно выполняется
+прокрутка к статье из того же словаря. Если этот параметр отключён,
+будет показана статья из самого верхнего словаря.</translation>
     </message>
     <message>
       <source>Automatically scroll to target article</source>
@@ -2881,8 +2989,100 @@ the application.</source>
       <translation>Предел количества словарей в контекстном меню:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>По умолчанию</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>По умолчанию</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Классика</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Современный</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Вавилон</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Лингосы</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Лингос-синий</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Перезапустите программу, чтобы изменение языка вошло в силу.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Перезапустите, чтобы применить изменение стиля интерфейса.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Перезапустите, чтобы применить изменение шрифта интерфейса.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Требуется перезагрузка</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Давать возможность</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Запрещать</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Автоматический</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Нет</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>Если данная опция включена, новые вкладки будут
+открываться сразу за текущей, вместо того чтобы
+добавляться в конец.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp;Стиль</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Появление</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Язык интерфейса</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Стиль отображения статьи</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Стиль дополнения</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Стиль интерфейса</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2901,12 +3101,16 @@ the application.</source>
       <translation>Темная тема просмотрщика</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Эти шрифты будут применяться, когда шрифты, указанные в словаре, не будут найдены.</translation>
+      <source>Preview Font</source>
+      <translation>Предпросмотр шрифта</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Резервные шрифты</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng — это программа-словарь.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Эти шрифты будут применяться, когда шрифты, указанные в словаре, не будут найдены.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2923,10 +3127,6 @@ the application.</source>
     <message>
       <source>Monospace Font</source>
       <translation>Моноширинный шрифт</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Всплывающее окно</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2963,8 +3163,8 @@ in the pressed state when the word selection changes.</source>
 находятся в зажатом состоянии в момент выделения слова.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Следить за выделенным текстом только когда все эти клавиши зажаты</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>Выделение трека только при нажатии всех выбранных клавиш:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3047,20 +3247,8 @@ in the pressed state when the word selection changes.</source>
       <translation>Воспроизводить аудио-файлы через встроенный плеер</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Использовать встроенный плеер</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Выбор плеера</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Использовать любую внешнюю программу для проигрывания аудио-файлов</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Воспроизведение через внешнее приложение:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3125,28 +3313,12 @@ for all program&apos;s network requests.</source>
       <translation>Колода:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Модель:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Слово</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Поле словаря...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Текст</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Поле определения...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Предложение</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3164,41 +3336,6 @@ you are browsing. If some site breaks because of this, try disabling this.</sour
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>Запретить загрузку информации с других сайтов (убирает большую часть рекламы)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Некоторые сайты опознают GoldenDict по заголовкам HTTP и блокируют запросы.
-Включите эту опцию, чтобы обойти проблему.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>Не указывать GoldenDict в заголовках HTTP</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Максимальный размер кэша:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Максимальный объём, занимаемый сетевым кэшем GoldenDict в папке
-%1
-Установка параметра в 0 означает отключение кэширования</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation>MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>Если опция включена,  GoldenDict удаляет содержимое кэша при выходе из программы</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Очищать кэш при выходе</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3261,8 +3398,12 @@ GoldenDict. Если новая версия появилась, програм�
       <translation>Максимальный размер журнала:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Интервал сохранения журнала. Если он установлен в 0,
+      <source>Favorites</source>
+      <translation>Избранное</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Интервал сохранения Избранного. Если он установлен в 0,
 журнал будет сохраняться только при выходе из программы.</translation>
     </message>
     <message>
@@ -3272,15 +3413,6 @@ GoldenDict. Если новая версия появилась, програм�
     <message>
       <source>minutes</source>
       <translation>минут</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Избранное</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Интервал сохранения Избранного. Если он установлен в 0,
-журнал будет сохраняться только при выходе из программы.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3355,7 +3487,7 @@ from mouse-over, selection, clipboard or command line</source>
     <message>
       <source>Turn this option on to enable extra articles search via synonym lists
 from Stardict, Babylon and GLS dictionaries</source>
-      <translation>Включите эту опцию, чтобы чтобы разрешить поиск статей по спискам синонимов
+      <translation>Включите эту опцию, чтобы разрешить поиск статей по спискам синонимов
 из словарей формата Stardict, Babylon и GLS</translation>
     </message>
     <message>
@@ -3379,112 +3511,112 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>Удалить неверный индекс при выходе</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>По умолчанию</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>По умолчанию</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Классика</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Современный</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Вавилон</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Лингосы</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Лингос-синий</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>В некоторых системах функция Auto не выполняет никаких действий.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Перезапустите программу, чтобы изменение языка вошло в силу.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Перезапустите, чтобы применить изменение стиля интерфейса.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Перезапустите, чтобы применить изменение шрифта интерфейса.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Требуется перезагрузка</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Давать возможность</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Запрещать</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Автоматический</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Сохранить отладочные сообщения в gd_log.txt в папке конфигурации</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Язык интерфейса</translation>
+      <source>S&amp;can</source>
+      <translation>&amp;Сканировать</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Стиль отображения статьи</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>Отключить уведомления JavaScript, подтверждения и подсказки при просмотре статьи.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Стиль дополнения</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>Отключить диалоги JavaScript</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Стиль интерфейса</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>Открыть словарь сайта в отдельной вкладке</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Предпросмотр шрифта</translation>
+      <source>Anki</source>
+      <translation>Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation>GoldenDict-ng это словарь программного обеспечения.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>Разрешить JavaScript доступ к буферу обмена при просмотре статьи.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation>Включить шрифт интерфейса</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>Разрешить доступ к буферу обмена JavaScript (требуется перезапуск)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation>Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>Перезапустите, чтобы применить изменение доступа к буферу обмена JavaScript.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation>Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>Скрывать панель вкладок, когда открыта только одна вкладка.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Нет</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Использовать любой внешний аудио проигрыватель для воспроизведения аудио файлов</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Подробное руководство по настройке</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>Путь к аудио будет передан в качестве аргумента командной строки внешнему игроку. </translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation>Внутренний аудиоплеер:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation>Внешний аудиоплеер:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>Автоматически переключается в зависимости от темы системы.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>Настройка шрифтов</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>Иконка Dock всегда отображается, когда главное окно открыто, чтобы macOS могла отображать имя приложения и меню. Включите эту опцию, чтобы иконка Dock оставалась видимой после того, как главное окно скрыто.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>Держите иконку Dock видимой на заднем плане</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>Добавлять аудио на карточку Anki, если доступно</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>При включении веб-словари открываются в отдельной вкладке, а не встроены в представление статей. Это избегает ограничений по макет iframe и прокрутке, а также открывает столбец Script по словару в диалоговом диалоге Словари.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Слово:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>Текст:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Предложение:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Шрифт интерфейса</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Пользовательское семейство шрифтов</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Пользовательский размер шрифта</translation>
     </message>
   </context>
   <context>
@@ -3630,6 +3762,58 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>Force the word to be translated in the mainwindow.</source>
       <translation>Принудительно переводить слово в главном окне.</translation>
     </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>Ссылка на сайт:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>В Url, &quot;%GDWORD%&quot; будет заменена на поисковое слово.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Complete Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Единый Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>PDF документ (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Сохранить статью как</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Статья сохранена</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Ошибка</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Не удалось сохранить статью: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>PDF файл сохранен</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Сохранить PDF не удалось</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Сохранение статьи... (%1/%2)</translation>
+    </message>
   </context>
   <context>
     <name>QuickFilterLine</name>
@@ -3660,6 +3844,10 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>The referenced resource failed to download.</source>
       <translation>Невозможно загрузить указанный ресурс.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>Ресурс сохранялся вне папки назначения.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3685,6 +3873,26 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>WARNING: %1</source>
       <translation>ВНИМАНИЕ: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>Определение</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Закрыть текущую вкладку</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Закрыть все вкладки, кроме текущей</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Закрыть все вкладки</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Открытый и внешний браузер</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3709,10 +3917,6 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>Отправить слово в главное окно (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation>Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Добавить слово в избранное (Ctrl+E)</translation>
     </message>
@@ -3725,6 +3929,10 @@ from Stardict, Babylon and GLS dictionaries</source>
 could be resized or managed in other ways.</source>
       <translation>Используйте это для закрепления окна, чтобы оно оставалось на экране,
 может быть изменено или изменено другими способами.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Сохранить статью</translation>
     </message>
   </context>
   <context>
@@ -3862,7 +4070,7 @@ of the appropriate groups to use them.</source>
     </message>
     <message>
       <source>Any external programs. A string %GDWORD% will be replaced with the query word. A string %GDSEARCH% will be replaced with the text in the search bar. If both of the parameters are not provided, the headword will be fed into standard input.</source>
-      <translation>Любые внешние программы. Строка %GDWORD% будет заменена на запрашиваемое слово. Строка %GDSEARCH% будет заменена на текст в поисковой строке. Если обоих строк нет задано, запрашиваемое слово будет отправлено в стандартный входной поток внешней программы.</translation>
+      <translation>Любые внешние программы. Строка %GDWORD% будет заменена на запрашиваемое слово. Строка %GDSEARCH% будет заменена на текст в поисковой строке. Если обе строки не заданы, запрашиваемое слово будет отправлено в стандартный входной поток внешней программы.</translation>
     </message>
     <message>
       <source>Lingua Libre</source>
@@ -4123,18 +4331,21 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Вставлять статью как ссылку в теге &lt;iframe&gt;</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>Этот словарь сайта открыт в новой вкладке</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Выключи &quot;Откройте словарь сайта в отдельной вкладке&quot; в разделе «Настройки» для показа сайта внутри статьи.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Включено</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Как ссылку</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4147,6 +4358,22 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     <message>
       <source>Icon</source>
       <translation>Значок</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Скрипт</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>Имя файла иконок. Относительно каталога конфигурации.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>Доступно только при открытии сайтов в отдельных вкладках. Может быть путь к файлу (относительно конфигурационного каталога или абсолютного) или прямым содержанием скрипта.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>Этот столбец отключен, потому что &quot;Открыть словарь сайта на отдельной вкладке&quot; параметр не включен в Настройках.</translation>
     </message>
   </context>
   <context>

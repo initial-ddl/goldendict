@@ -57,15 +57,30 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>(untitled)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>(picture)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -100,10 +115,6 @@
     <name>ArticleView</name>
     <message>
         <source>Phrase not found</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>%1 of %2 matches</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -254,6 +265,41 @@
         <source>&amp;Create Anki note</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Copy sound to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to copy sound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to write complete audio data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sound copied to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to download sound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2 matches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Article in External &amp;Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ArticleWebView</name>
+    <message>
+        <source>GoldenDict Resource Viewer</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BelarusianTranslit</name>
@@ -274,23 +320,27 @@ between classic and school orthography in cyrillic)</source>
 <context>
     <name>ChineseConversion</name>
     <message>
-        <source>Chinese Conversion</source>
+        <source>Traditional to simplified Chinese conversion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enable conversion between simplified and traditional Chinese characters</source>
+        <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Chinese Con&amp;version</source>
+        <source>Japanese Shinjitai</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
+        <source>Chinese to Japanese Shinjitai conversion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
+        <source>Chinese and Japanese Character Con&amp;version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -298,27 +348,31 @@ between classic and school orthography in cyrillic)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
+        <source>Simplified</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
+        <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Traditional to simplified Chinese conversion</source>
+        <source>Traditional (Taiwan)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Taiwan variant</source>
+        <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Hong Kong variant</source>
+        <source>Traditional (Hong Kong)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Mainland variant</source>
+        <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -407,10 +461,6 @@ between classic and school orthography in cyrillic)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -424,6 +474,18 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
         <source>Combine groups with &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -454,10 +516,6 @@ between classic and school orthography in cyrillic)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Search mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>This element determines how filter string will be interpreted</source>
         <translation type="unfinished"></translation>
     </message>
@@ -479,18 +537,6 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
         <source>Specify the maximum filtered headwords returned.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Filter max results:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -541,6 +587,10 @@ between classic and school orthography in cyrillic)</source>
         <source>Regular Expression</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Maximum:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DictInfo</name>
@@ -573,10 +623,6 @@ between classic and school orthography in cyrillic)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files comprising this dictionary:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Description:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -594,6 +640,18 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
         <source>Full-text search disabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dictionary Components:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -688,6 +746,34 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
         <source>Restore selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel reindex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Schedule for reindex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel schedule reindex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change display name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New display name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to schedule the dictionary for reindexing.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -805,10 +891,6 @@ between classic and school orthography in cyrillic)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Clear All</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Favorites:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -817,15 +899,19 @@ between classic and school orthography in cyrillic)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Clear All Items</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Are you sure you want to clear all items?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Make this folder the target of adding/removing words actions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear Favorites</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -954,27 +1040,11 @@ between classic and school orthography in cyrillic)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Create new dictionary group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Add group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Rename current dictionary group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Re&amp;name group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remove current dictionary group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Remove group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1045,6 +1115,22 @@ between classic and school orthography in cyrillic)</source>
         <source>Are you sure you want to remove all the groups?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Add a new dictionary group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group already exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A group with the name &apos;%1&apos; already exists.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>HistoryPaneWidget</name>
@@ -1077,6 +1163,18 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
         <source>%1 Morphology</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spelling correct, no other word forms found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>From %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Word forms for %1: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2385,10 +2483,6 @@ between classic and school orthography in cyrillic)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Welcome!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Accessibility API is not enabled</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2459,42 +2553,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
         <source>Print Article</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Complete Html (*.html *.htm)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Single Html (*.html *.htm)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pdf (*.pdf)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Mime Html (*.mhtml)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save Article As</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Can&apos;t save article: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Saving article...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save article complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2590,11 +2648,55 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Save PDF complete</source>
+        <source>Lock Panels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Save PDF failed</source>
+        <source>Clear History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to clear all history items?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Application is still running in the background. Click the tray icon to show the window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open in &amp;External Browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Now building headwords cache: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suffix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Multi-word</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full-text search…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search mode: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2612,14 +2714,14 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
 <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-        <source>XML parse error: %1 at %2,%3</source>
+        <source>JSON parse error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-        <source>XML parse error: %1 at %2,%3</source>
+        <source>JSON parse error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2696,10 +2798,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files comprising this dictionary:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2717,6 +2815,18 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     </message>
     <message>
         <source>Dictionaries active: %1, inactive: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change display name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New display name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dictionary components:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2760,25 +2870,11 @@ switching to them.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Open new tabs after the current one</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Hide single tab</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>MRU order: Most recently used order.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2861,7 +2957,97 @@ the application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>System default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lingvo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Babylon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lingoes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lingoes-Blue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart the program to apply the language change.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart to apply the interface style change.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart to apply the interface font change.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart needed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Appearance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interface language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Article Display style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add-on style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interface Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2881,11 +3067,15 @@ the application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+        <source>Preview Font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Fallback Fonts</source>
+        <source>GoldenDict-ng is a dictionary software.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2902,10 +3092,6 @@ the application.</source>
     </message>
     <message>
         <source>Monospace Font</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Popup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2942,7 +3128,7 @@ in the pressed state when the word selection changes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Only tack selection when all selected keys are kept pressed:</source>
+        <source>Only track selection when all selected keys are kept pressed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3026,19 +3212,7 @@ in the pressed state when the word selection changes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use internal player:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Choose audio back end</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use any external program to play audio files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use external program:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3103,27 +3277,11 @@ for all program&apos;s network requests.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Model:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Word</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Vocabulary field...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Text</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Definition field...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sentence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3138,38 +3296,6 @@ you are browsing. If some site breaks because of this, try disabling this.</sour
     </message>
     <message>
         <source>Disallow loading content from other sites (hides most advertisements)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Do not identify GoldenDict in HTTP headers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Maximum network cache size:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source> MiB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clear network cache on exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3229,7 +3355,11 @@ download page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>History saving interval. If set to 0 history will be saved only during exit.</source>
+        <source>Favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3238,14 +3368,6 @@ download page.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Favorites</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3343,111 +3465,111 @@ from Stardict, Babylon and GLS dictionaries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>System default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Classic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Modern</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Lingvo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Babylon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Lingoes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Lingoes-Blue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto does nothing on some systems.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Restart the program to apply the language change.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Restart to apply the interface style change.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Restart to apply the interface font change.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Restart needed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disable</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Automatic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Save debug messages to gd_log.txt in the config folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Interface language</source>
+        <source>S&amp;can</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Article Display style</source>
+        <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add-on style</source>
+        <source>Suppress JavaScript dialogs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Interface Style</source>
+        <source>Open website dictionary in separate tab</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Preview Font</source>
+        <source>Anki</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>GoldenDict-ng is a dictionary software.</source>
+        <source>Allow JavaScript to access clipboard in the article view.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enable Interface Font</source>
+        <source>Enable JavaScript clipboard access (need restart)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Font</source>
+        <source>Restart to apply the JavaScript clipboard access change.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Font Size</source>
+        <source>Hide tab bar when only one tab is open.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>None</source>
+        <source>Use any external audio player to play audio files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View detailed configuration guide</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The audio path will be passed as a command-line argument to the external player. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal Audio Player:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>External Audio Player:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically switches based on system theme.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Customize Fonts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep Dock icon visible in background</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add audio to Anki card when available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Word:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sentence:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interface Font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom family</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom size</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3594,6 +3716,58 @@ from Stardict, Babylon and GLS dictionaries</source>
         <source>Force the word to be translated in the mainwindow.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Website Url:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Complete Html (*.html *.htm)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Single Html (*.html *.htm)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PDF document (*.pdf *.PDF)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mime Html (*.mhtml)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Article As</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save article complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Can&apos;t save article: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save PDF complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save PDF failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Saving article... (%1/%2)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QuickFilterLine</name>
@@ -3624,6 +3798,10 @@ from Stardict, Babylon and GLS dictionaries</source>
         <source>The referenced resource failed to download.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>the resource would be saved outside of the destination folder.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Romaji</name>
@@ -3647,6 +3825,26 @@ from Stardict, Babylon and GLS dictionaries</source>
     <name>ScanPopup</name>
     <message>
         <source>WARNING: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Definition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close current tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close all tabs except current</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close all tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open in &amp;External Browser</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3673,10 +3871,6 @@ from Stardict, Babylon and GLS dictionaries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Alt+W</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add word to Favorites (Ctrl+E)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3687,6 +3881,10 @@ from Stardict, Babylon and GLS dictionaries</source>
     <message>
         <source>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save Article</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4076,17 +4274,20 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
 </context>
 <context>
+    <name>WebSite</name>
+    <message>
+        <source>This website dictionary is opened in a new tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WebSitesModel</name>
     <message>
-        <source>Insert article as link inside &lt;iframe&gt; tag</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>As link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4099,6 +4300,22 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
         <source>Icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Script</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icon file name. Relative to the config directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

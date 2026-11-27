@@ -4,6 +4,12 @@
 #pragma once
 
 #include <QSystemTrayIcon>
+#include <QSignalBlocker>
+#include <QSet>
+#include <QWebEngineProfile>
+#include <QWebEngineDownloadRequest>
+#include <QWebEngineSettings>
+#include <QFileDialog>
 #include <functional>
 #include "ui_mainwindow.h"
 #include "config.hh"
@@ -21,17 +27,16 @@
 #include "translatebox.hh"
 #include "dictheadwords.hh"
 #include "fulltextsearch.hh"
+#include "headwordscache.hh"
 #include "base_type.hh"
 #include "hotkey/hotkeywrapper.hh"
 #include "resourceschemehandler.hh"
-#include "iframeschemehandler.hh"
 #ifdef WITH_X11
   #include <fixx11h.h>
 #endif
 #include "scanpopup.hh"
 #include "clipboard/clipboardlistener.hh"
-//must place the qactiongroup after fixx11h.h, None in QActionGroup conflict with X.h's macro None.
-#include <QActionGroup>
+// must place the qactiongroup after fixx11h.h, None in QActionGroup conflict with X.h's macro None.
 
 using std::string;
 using std::vector;
@@ -56,11 +61,12 @@ public:
 public slots:
 
   void messageFromAnotherInstanceReceived( const QString & );
-  void showStatusBarMessage( const QString &, int, const QPixmap & );
-  void wordReceived( const QString & );
+  void showStatusBarMessage( const QString & message, int timeout = 5000, const QPixmap & pixmap = QPixmap() );
+  void wordReceived( const QString &, bool newTab = false );
   void headwordFromFavorites( const QString & word, const QString & favFolderFullPath );
   /// Save config and states...
   void commitData();
+  void performCleanup();
   void quitApp();
 
 private:
@@ -68,6 +74,21 @@ private:
   void addGlobalActionsToDialog( QDialog * dialog );
   void addGroupComboBoxActionsToDialog( QDialog * dialog, GroupComboBox * pGroupComboBox );
   void removeGroupComboBoxActionsFromDialog( QDialog * dialog, GroupComboBox * pGroupComboBox );
+
+  template< typename Func >
+  void withScanPopupSignalBlocked( Func func )
+  {
+    QSignalBlocker blocker( scanPopup );
+    Q_UNUSED( blocker ); // Avoid unused variable warning
+    func();
+  }
+
+  bool handleStructuredMessage( const QString & message );
+
+public:
+  void showTranslation( const QString & word, const QString & windowType, bool newTab = false );
+
+private:
 
 
   QSystemTrayIcon * trayIcon;
@@ -98,7 +119,7 @@ private:
 
   QAction escAction, focusTranslateLineAction, addTabAction, closeCurrentTabAction, closeAllTabAction,
     closeRestTabAction, switchToNextTabAction, switchToPrevTabAction, showDictBarNamesAction, toggleMenuBarAction,
-    focusHeadwordsDlgAction, focusArticleViewAction, addAllTabToFavoritesAction;
+    lockPanelsAction, focusHeadwordsDlgAction, focusArticleViewAction, addAllTabToFavoritesAction;
 
   QAction useSmallIconsInToolbarsAction, useLargeIconsInToolbarsAction, useNormalIconsInToolbarsAction;
 
@@ -112,15 +133,20 @@ private:
   QAction *zoomIn, *zoomOut, *zoomBase;
   QAction *addToFavorites, *beforeAddToFavoritesSeparator;
   QMenu trayIconMenu;
+#ifdef Q_OS_MACOS
+  QMenu dockMenu; // Separate menu for macOS Dock
+#endif
   QMenu * tabMenu;
+  QAction * openInExternalBrowserAction;
   QAction * menuButtonAction;
   QToolButton * menuButton;
+  QAction * searchModeAction = nullptr;
+  QMenu * searchModeMenu     = nullptr;
   MRUQMenu * tabListMenu;
   //List that contains indexes of tabs arranged in a most-recently-used order
   QList< QWidget * > mruList;
   QToolButton addTab, *tabListButton;
   Config::Class & cfg;
-  Config::Events configEvents;
   History history;
   DictionaryBar dictionaryBar;
   vector< sptr< Dictionary::Class > > dictionaries;
@@ -153,46 +179,64 @@ private:
 
   bool wasMaximized; // Window state before minimization
 
+  bool isQuitting = false;
+
+  // Whether the saved dock widget sizes have already been applied.
+  bool dockSizesApplied = false;
+
+  // Names of the dock widgets whose saved sizes were restored in this session.
+  // The configured values of the others must be kept as is on exit.
+  QSet< QString > restoredDockNames;
+
   QPrinter & getPrinter(); // Creates a printer if it's not there and returns it
 
   DictHeadwords * headwordsDlg;
 
   FTS::FtsIndexing ftsIndexing;
 
+  /// Background headword cache builder -- mirrors FtsIndexing for .hwcache files
+  HeadwordCache::HeadwordIndexing headwordIndexing;
+
+  QTimer ftsRestartTimer;       // Timer to delay FTS indexing restart after state change
+  bool ftsStateChanged = false; // Track if FTS state was changed in DictInfo
+
   FTS::FullTextSearchDialog * ftsDlg;
 
   QIcon starIcon, blueStarIcon;
 
   LocalSchemeHandler * localSchemeHandler;
-  IframeSchemeHandler * iframeSchemeHandler;
   ResourceSchemeHandler * resourceSchemeHandler;
 
   BaseClipboardListener * clipboardListener;
 
-#if !defined( Q_OS_WIN )
   // On Linux, this will be the style before getting overriden by custom styles
   // On macOS, this will be just Fusion.
+  // On Windows, this will be the original style (e.g., "WindowsVista") saved at startup
   QString defaultInterfaceStyle;
+  /// Ensures the scan popup is created and connected
+  void ensureScanPopup();
+
+#if defined( Q_OS_WIN )
+  /// Sets window title bar to dark/light mode (Windows only)
+  void setWindowTitleBarDark( bool dark );
 #endif
+
   /// Applies Qt stylesheets, use Windows dark palette etc....
   void updateAppearances( const QString & addonStyle,
                           const QString & displayStyle,
-                          Config::Dark darkMode
-#if !defined( Q_OS_WIN )
-                          ,
-                          const QString & interfaceStyle
-#endif
-  );
+                          Config::Dark darkMode,
+                          const QString & interfaceStyle = QString() );
 
   /// Creates, destroys or otherwise updates tray icon, according to the
   /// current configuration and situation.
   void trayIconUpdateOrInit();
 
-  void wheelEvent( QWheelEvent * );
-  void closeEvent( QCloseEvent * );
+  void wheelEvent( QWheelEvent * ) override;
+  void closeEvent( QCloseEvent * ) override;
+  void hideEvent( QHideEvent * event ) override;
+  void showEvent( QShowEvent * event ) override;
 
   void applyProxySettings();
-  void setupNetworkCache( int maxSize );
   void makeDictionaries();
   void updateStatusLine();
   void updateGroupList( bool reload = true );
@@ -207,7 +251,23 @@ private:
   /// muting or unmuting dictionaries, or showing/hiding dictionary bar.
   void applyMutedDictionariesState();
 
-  virtual bool eventFilter( QObject *, QEvent * );
+  /// Re-applies the dock widget sizes saved in the configuration, because
+  /// QMainWindow::restoreState() does not restore them reliably.
+  void applyDockWidgetSizes();
+
+  /// Returns the size of the docking area occupied by the dock widget. For a tab
+  /// group this includes the tab bar, which QMainWindow::resizeDocks() expects.
+  QSize dockGroupSize( QDockWidget * dock ) const;
+
+  bool eventFilter( QObject *, QEvent * ) override;
+
+  /// Redraws palette-dependent decorations (the search-mode icon) on theme changes.
+  void changeEvent( QEvent * ) override;
+
+#if defined( Q_OS_WIN )
+  /// Handle theme change events as fallback when colorSchemeChanged signal is not available
+  bool event( QEvent * event ) override;
+#endif
 
   /// Returns the reference to dictionaries stored in the currently active
   /// group, or to all dictionaries if there are no groups.
@@ -222,7 +282,7 @@ private:
   void applyZoomFactor();
   void adjustCurrentZoomFactor();
 
-  void mousePressEvent( QMouseEvent * event );
+  void mousePressEvent( QMouseEvent * event ) override;
 
 
   /// Handles backward and forward mouse buttons and
@@ -230,15 +290,22 @@ private:
   bool handleBackForwardMouseButtons( QMouseEvent * ev );
 
   ArticleView * getCurrentArticleView();
+  ArticleView * getFirstNonWebSiteArticleView();
   void ctrlTabPressed();
 
   void respondToTranslationRequest( const QString & word,
                                     bool checkModifiers,
                                     const QString & scrollTo = QString(),
-                                    bool focus               = true );
+                                    bool focus               = true,
+                                    bool newTab              = false );
 
   void updateSuggestionList();
   void updateSuggestionList( const QString & text );
+
+  /// Builds the search-mode menu and attaches its action to both search boxes.
+  void setupSearchModeMenu();
+  /// Syncs the mode action's tooltip and the checked menu item with the config.
+  void updateSearchModeAction();
 
   enum TranslateBoxPopup {
     NoPopupChange,
@@ -262,6 +329,11 @@ private:
 private slots:
   void updateFavIconSlot();
 
+#ifdef Q_OS_MACOS
+  /// Handle macOS Dock icon click when application becomes active
+  void handleApplicationStateChanged( Qt::ApplicationState state );
+#endif
+
   /// Try check new release, popup a dialog, and update the check time & skippedRelease version
   void checkNewRelease();
 
@@ -282,6 +354,8 @@ private slots:
   void openDictionaryFolder( const QString & id );
 
   void showFTSIndexingName( const QString & name );
+  void showHeadwordsCacheIndexingName( const QString & name );
+  void openWebsiteInNewTab( QString name, QString url, QString dictId, bool isPopup, QString word = QString() );
 
   void handleAddToFavoritesButton();
 
@@ -317,6 +391,7 @@ private slots:
   void pageLoaded( ArticleView * );
   void tabSwitched( int );
   void tabMenuRequested( QPoint pos );
+  void openCurrentTabInExternalBrowser();
 
   void dictionaryBarToggled( bool checked );
 
@@ -347,8 +422,8 @@ private slots:
   void wordListItemActivated( QListWidgetItem * );
   void wordListSelectionChanged();
 
-  void dictsListItemActivated( QListWidgetItem * );
-  void dictsListSelectionChanged();
+  void dictsListItemActivated( QListWidgetItem * ); // Not used but keep method declaration
+  void dictsListSelectionChanged();                 // Not used but keep method declaration
 
   void jumpToDictionary( QListWidgetItem *, bool force = false );
 
@@ -357,6 +432,8 @@ private slots:
 
   /// Creates a new tab, which is to be populated then with some content.
   ArticleView * createNewTab( bool switchToIt, const QString & name );
+
+  ArticleView * findArticleViewByDictId( const QString & dictId );
 
   void openLinkInNewTab( const QUrl &, const QUrl &, const QString &, const Contexts & contexts );
   void showDefinitionInNewTab( const QString & word,
@@ -373,7 +450,7 @@ private slots:
 
   void showTranslationForDicts( const QString &,
                                 const QStringList & dictIDs,
-                                const QRegularExpression & searchRegExp,
+                                const QString & searchRegExp,
                                 bool ignoreDiacritics );
 
   void showHistoryItem( const QString & );
@@ -392,6 +469,7 @@ private slots:
   void toggleMenuBarTriggered( bool announce = true );
 
   void on_clearHistory_triggered();
+  void on_clearFavorites_triggered();
 
   void on_newTab_triggered();
 
@@ -416,6 +494,8 @@ private slots:
   void on_exportFavorites_triggered();
   void on_importFavorites_triggered();
 
+  void onLockPanelsToggled( bool locked );
+
   void updateSearchPaneAndBar( bool searchInDock );
 
   void updateFavoritesMenu();
@@ -435,6 +515,9 @@ private slots:
 
   void closeHeadwordsDialog();
 
+  /// Handle translate selected text from ArticleView
+  void handleTranslateSelectedText( const QString & word, const QUrl & url, const QString & currentArticle );
+
   void focusHeadwordsDialog();
 
   void focusArticleView();
@@ -452,34 +535,12 @@ private slots:
   void prefixMatchFinished();
   void updateMatchResults( bool finished );
   void refreshTranslateLine();
+  void refreshAppearances();
+  void handleDownloadRequested( QWebEngineDownloadRequest * download );
 signals:
   /// Retranslate Ctrl(Shift) + Click on dictionary pane to dictionary toolbar
   void clickOnDictPane( const QString & id );
 
   /// Set group for popup window
   void setPopupGroupByName( const QString & name );
-};
-
-class ArticleSaveProgressDialog: public QProgressDialog
-{
-  Q_OBJECT
-
-public:
-  explicit ArticleSaveProgressDialog( QWidget * parent = nullptr, Qt::WindowFlags f = Qt::Widget ):
-    QProgressDialog( parent, f )
-  {
-    setAutoReset( false );
-    setAutoClose( false );
-  }
-
-public slots:
-  void perform()
-  {
-    int progress = value() + 1;
-    if ( progress == maximum() ) {
-      emit close();
-      deleteLater();
-    }
-    setValue( progress );
-  }
 };

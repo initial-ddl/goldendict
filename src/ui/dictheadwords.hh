@@ -19,6 +19,10 @@ public:
 
   void setup( Dictionary::Class * dict_ );
 
+  /// Call after background cache build completes -- tries to switch model
+  /// to the mmap'd .hwcache file if one is now available for the current dict.
+  void refreshModelCache();
+
 protected:
   Config::Class & cfg;
   Dictionary::Class * dict;
@@ -27,8 +31,6 @@ protected:
   QSortFilterProxyModel * proxy;
   WordListItemDelegate * delegate;
   QString dictId;
-
-  QAction helpAction;
 
   void saveHeadersToFile();
   bool eventFilter( QObject * obj, QEvent * ev );

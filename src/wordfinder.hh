@@ -40,6 +40,7 @@ private:
     StemmedMatch,
     ExpressionMatch
   } searchType;
+  Dictionary::WordMatchMode matchMode = Dictionary::WordMatchMode::Prefix;
   unsigned long requestedMaxResults;
   Dictionary::Features requestedFeatures;
   unsigned stemmedMinLength;
@@ -49,11 +50,29 @@ private:
 
   std::vector< std::u32string > _allWordWritings; // All writings of the inputWord
 
+  struct RankFeatures
+  {
+    int baseScore;
+    int lengthDelta;
+
+    RankFeatures():
+      baseScore( 0 ),
+      lengthDelta( INT_MAX )
+    {
+    }
+    RankFeatures( int score, int delta ):
+      baseScore( score ),
+      lengthDelta( delta )
+    {
+    }
+  };
+
   struct OneResult
   {
     std::u32string word;
     int rank;
     bool wasSuggested;
+    RankFeatures rankFeatures;
   };
 
   // Maps lowercased string to the original one. This catches all duplicates
@@ -92,8 +111,9 @@ public:
   /// and the new one replaces it.
   void prefixMatch( const QString &,
                     const std::vector< sptr< Dictionary::Class > > &,
-                    unsigned long maxResults = 40,
-                    Dictionary::Features     = Dictionary::NoFeatures );
+                    unsigned long maxResults             = 40,
+                    Dictionary::Features                 = Dictionary::NoFeatures,
+                    Dictionary::WordMatchMode matchMode_ = Dictionary::WordMatchMode::Prefix );
 
   /// Do a stemmed-match search in the given list of dictionaries. All comments
   /// from prefixMatch() generally apply as well.
@@ -166,42 +186,18 @@ private:
   // would cancel in parallel.
   void cancelSearches();
 
-  /// Compares results based on their ranks
-  struct SortByRank
+  struct SortByRankFeatures
   {
     bool operator()( const OneResult & first, const OneResult & second )
     {
-      if ( first.rank < second.rank )
-        return true;
+      if ( first.rankFeatures.baseScore != second.rankFeatures.baseScore ) {
+        return first.rankFeatures.baseScore > second.rankFeatures.baseScore;
+      }
 
-      if ( first.rank > second.rank )
-        return false;
+      if ( first.rankFeatures.lengthDelta != second.rankFeatures.lengthDelta ) {
+        return first.rankFeatures.lengthDelta < second.rankFeatures.lengthDelta;
+      }
 
-      // Do any sort of collation here in the future. For now we just put the
-      // strings sorted lexicographically.
-      return first.word < second.word;
-    }
-  };
-
-  /// Compares results based on their ranks and lengths
-  struct SortByRankAndLength
-  {
-    bool operator()( const OneResult & first, const OneResult & second )
-    {
-      if ( first.rank < second.rank )
-        return true;
-
-      if ( first.rank > second.rank )
-        return false;
-
-      if ( first.word.size() < second.word.size() )
-        return true;
-
-      if ( first.word.size() > second.word.size() )
-        return false;
-
-      // Do any sort of collation here in the future. For now we just put the
-      // strings sorted lexicographically.
       return first.word < second.word;
     }
   };

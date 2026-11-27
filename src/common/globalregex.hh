@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QRegularExpression>
+#include <QStringList>
+#include <QPair>
 
 namespace RX {
 class Ftx
@@ -18,6 +20,9 @@ public:
   static QRegularExpression tokenBoundary;
 
   static QRegularExpression token;
+
+  static QStringList processSearchStringForHighlight( const QString & searchString );
+  static QString serializeKeywordsToJson( const QStringList & keywords );
 };
 
 
@@ -43,6 +48,15 @@ public:
   static QRegularExpression links;
   static QRegularExpression fontFace;
   static QRegularExpression styleElement;
+
+  static QRegularExpression protocolRelativeUrlQuoted;
+  static QRegularExpression protocolRelativeUrlUnquoted;
+  static QRegularExpression htmlTagStart;
+  static QRegularExpression htmlTagEnd;
+  static QRegularExpression bodyTagStart;
+  static QRegularExpression bodyTagEnd;
+  static QRegularExpression headTagStart;
+  static QRegularExpression headTagEnd;
 };
 
 namespace Zim {
@@ -68,6 +82,7 @@ bool containHtmlEntity( const std::string & text );
 } // namespace Html
 
 const static QRegularExpression accentMark( R"(\p{M})", QRegularExpression::UseUnicodePropertiesOption );
+const static QRegularExpression accentPunc( R"(\p{M}\p{P})", QRegularExpression::UseUnicodePropertiesOption );
 //contain unicode space mark,invisible, and punctuation
 const static QRegularExpression markPuncSpace( R"([\p{M}\p{Z}\p{C}\p{P}])",
                                                QRegularExpression::UseUnicodePropertiesOption );
@@ -75,5 +90,8 @@ const static QRegularExpression markPuncSpace( R"([\p{M}\p{Z}\p{C}\p{P}])",
 const static QRegularExpression markSpace( R"([\p{M}\p{Z}])", QRegularExpression::UseUnicodePropertiesOption );
 
 const static QRegularExpression whiteSpace( "\\s+" );
+
+extern const QRegularExpression qtWebEngineUserAgent;
+extern const QRegularExpression windowsNtVersion;
 
 } // namespace RX

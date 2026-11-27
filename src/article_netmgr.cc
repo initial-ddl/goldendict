@@ -4,140 +4,194 @@
 #include "article_netmgr.hh"
 #include "globalbroadcaster.hh"
 #include "utils.hh"
+#include "config.hh"
 #include <QNetworkAccessManager>
 #include <QUrl>
 #include <QWebEngineUrlRequestJob>
+#include <QMimeDatabase>
+#include <QMimeType>
+#include <algorithm>
+#include <array>
 #include <stdint.h>
 
 using std::string;
 
-// AllowFrameReply
+namespace {
 
-AllowFrameReply::AllowFrameReply( QNetworkReply * _reply ):
-  baseReply( _reply )
+// Extension whitelist table. Keeping these in a flat array (rather than a
+// chain of ifs) makes the lookup O(table_size) with constant low overhead and,
+// more importantly, keeps the cognitive complexity of the main resolver
+// below SonarCloud's 25-point threshold.
+struct ExtensionMime
 {
-  // Set base data
+  const char * ext;
+  const char * mime;
+};
+// Note: the size is specified explicitly (not via CTAD) for MSVC
+// compatibility. While C++17 class template argument deduction works for
+// std::array in most contexts, MSVC 2022 may fail to resolve the type in
+// subsequent template-dependent expressions (e.g. std::find_if on the
+// iterator). An explicit size keeps the code portable across toolchains
+// without any runtime or maintenance penalty for this fixed-size table.
+const std::array< ExtensionMime, 17 > kExtensionMimeTable = { {
+  { "html", "text/html; charset=utf-8" },
+  { "htm", "text/html; charset=utf-8" },
+  { "css", "text/css; charset=utf-8" },
+  { "js", "text/javascript; charset=utf-8" },
+  { "mjs", "text/javascript; charset=utf-8" },
+  { "png", "image/png" },
+  { "jpg", "image/jpeg" },
+  { "jpeg", "image/jpeg" },
+  { "gif", "image/gif" },
+  { "svg", "image/svg+xml" },
+  { "webp", "image/webp" },
+  { "woff", "font/woff" },
+  { "woff2", "font/woff2" },
+  { "ttf", "font/ttf" },
+  { "mp3", "audio/mpeg" },
+  { "wav", "audio/wav" },
+  { "ogg", "audio/ogg" },
+} };
 
-  setOperation( baseReply->operation() );
-  setRequest( baseReply->request() );
-  setUrl( baseReply->url() );
+// Returns the whitelisted MIME type for the given file extension, or an
+// empty QByteArray when the extension is not in the table.
+QByteArray lookupMimeByExtension( const QString & ext )
+{
+  auto it =
+    std::find_if( kExtensionMimeTable.begin(), kExtensionMimeTable.end(), [ &ext ]( const ExtensionMime & entry ) {
+      return ext.compare( QLatin1String( entry.ext ), Qt::CaseInsensitive ) == 0;
+    } );
+  if ( it != kExtensionMimeTable.end() ) {
+    return QByteArray( it->mime );
+  }
+  return {};
+}
 
-  QList< QByteArray > rawHeaders = baseReply->rawHeaderList();
-  for ( const auto & header : rawHeaders ) {
-    if ( header.toLower() != "x-frame-options" )
-      setRawHeader( header, baseReply->rawHeader( header ) );
+// Returns true when the payload smells like an HTML / XML document, so we
+// can detect cases where the system MIME database mis-classified HTML as
+// text/plain or application/octet-stream.
+bool sniffHtmlContent( const QByteArray & data )
+{
+  const QByteArray trimmed = data.trimmed().toLower();
+  return trimmed.startsWith( "<!doctype html" ) || trimmed.startsWith( "<html" ) || trimmed.startsWith( "<?xml" );
+}
+
+// Appends "; charset=utf-8" for textual MIME types so QtWebEngine renders
+// pages with the correct encoding regardless of system locale defaults.
+QByteArray withUtf8Charset( const QString & mimeName )
+{
+  QByteArray result = mimeName.toUtf8();
+  if ( result.startsWith( "text/" ) || result == "application/javascript" ) {
+    result.append( "; charset=utf-8" );
+  }
+  return result;
+}
+
+} // namespace
+
+QByteArray getMimeTypeWithFallback( const QUrl & url, const QByteArray & data )
+{
+  const QString scheme = url.scheme().toLower();
+
+  // 1. Article lookup / internal page schemes always serve HTML documents, so
+  //    never subject them to dynamic MIME probing.
+  if ( scheme == "gdlookup" || scheme == "bword" || scheme == "entry" || scheme == "gdinternal" ) {
+    return "text/html; charset=utf-8";
   }
 
-  connect( baseReply, &QNetworkReply::errorOccurred, this, &AllowFrameReply::applyError );
+  // 2. Extension whitelist. This avoids depending on the system's
+  //    shared-mime-info database, which is absent on some minimal Linux
+  //    installations and would otherwise make these resources fall back to
+  //    text/plain (and render as raw source) in QtWebEngine.
+  const QString ext        = QFileInfo( url.path() ).suffix().toLower();
+  const QByteArray extMime = lookupMimeByExtension( ext );
+  if ( !extMime.isEmpty() ) {
+    return extMime;
+  }
 
-  connect( baseReply, &QIODevice::readyRead, this, &QIODevice::readyRead );
+  // 3. System MIME database (URL/extension based).
+  QMimeDatabase mimeDb;
+  QMimeType urlMime = mimeDb.mimeTypeForUrl( url );
+  QString mimeName  = ( urlMime.isValid() && !urlMime.isDefault() ) ? urlMime.name() : QString();
 
-  // Redirect QNetworkReply signals
+  // 4. Content-based detection when the URL yielded nothing usable.
+  if ( mimeName.isEmpty() && !data.isEmpty() ) {
+    QMimeType dataMime = mimeDb.mimeTypeForData( data );
+    if ( dataMime.isValid() && !dataMime.isDefault() ) {
+      mimeName = dataMime.name();
+    }
+  }
 
-  connect( baseReply, &QNetworkReply::finished, this, &QNetworkReply::finished );
+  // 5. HTML content sniffing. Never let real HTML be served as text/plain or
+  //    application/octet-stream, which is exactly what makes the main window
+  //    render raw HTML source on misconfigured systems.
+  const bool misclassifiedHtml = !data.isEmpty() && sniffHtmlContent( data )
+    && ( mimeName.isEmpty() || mimeName == "application/octet-stream" || mimeName == "text/plain" );
+  if ( misclassifiedHtml ) {
+    return "text/html; charset=utf-8";
+  }
 
-  setOpenMode( QIODevice::ReadOnly );
+  // 6. Final fallback. Prefer application/octet-stream over text/plain so that
+  //    unrecognized HTML-ish payloads are not rendered as plain text. Keep the
+  //    charset hint for textual types for consistent rendering.
+  if ( mimeName.isEmpty() ) {
+    return "application/octet-stream";
+  }
+  return withUtf8Charset( mimeName );
 }
 
-qint64 AllowFrameReply::bytesAvailable() const
-{
-  return baseReply->bytesAvailable();
-}
-
-void AllowFrameReply::applyError( QNetworkReply::NetworkError code )
-{
-  setError( code, baseReply->errorString() );
-  emit errorOccurred( code );
-}
-
-qint64 AllowFrameReply::readData( char * data, qint64 maxSize )
-{
-  auto bytesAvailable = baseReply->bytesAvailable();
-  qint64 size         = qMin( maxSize, bytesAvailable );
-  baseReply->read( data, size );
-  return size;
-}
 
 QNetworkReply * ArticleNetworkAccessManager::getArticleReply( const QNetworkRequest & req )
 {
-  if ( req.url().scheme() == "qrcx" ) {
-    // Do not support qrcx which is the custom define protocol.
-    return new BlockedNetworkReply( this );
-  }
-
   auto op = GetOperation;
 
   QUrl url            = req.url();
   QMimeType mineType  = db.mimeTypeForUrl( url );
   QString contentType = mineType.name();
 
-  if ( req.url().scheme() == "gdlookup" ) {
+  if ( url.scheme() == "gdlookup" ) {
     QString path = url.path();
     if ( path.size() > 1 ) {
       url.setPath( "" );
-
       Utils::Url::addQueryItem( url, "word", path.mid( 1 ) );
       Utils::Url::addQueryItem( url, "group", QString::number( GlobalBroadcaster::instance()->currentGroupId ) );
     }
   }
 
-  auto dr = getResource( url, contentType );
-
-  if ( dr.get() ) {
+  if ( auto dr = getResource( url, contentType ); dr.get() ) {
     return new ArticleResourceReply( this, req, dr, contentType );
   }
 
-  //dr.get() can be null. code continue to execute.
-
-  //can not match dictionary in the above code,means the url must be external links.
-  //if not external url,can be blocked from here. no need to continue execute the following code.
-  //such as bres://upload.wikimedia....  etc .
+  // Blocking logic
   if ( !Utils::isExternalLink( url ) ) {
-    qWarning( R"(Blocking element "%s" as built-in link )", req.url().toEncoded().data() );
+    qWarning( R"(Blocking element "%s" as built-in link )", url.toEncoded().data() );
     return new BlockedNetworkReply( this );
   }
 
-  // Check the Referer. If the user has opted-in to block elements from external
-  // pages, we block them.
-
   if ( disallowContentFromOtherSites && req.hasRawHeader( "Referer" ) ) {
-    QByteArray referer = req.rawHeader( "Referer" );
-
-    QUrl refererUrl = QUrl::fromEncoded( referer );
-
+    QUrl refererUrl = QUrl::fromEncoded( req.rawHeader( "Referer" ) );
     if ( !url.host().endsWith( refererUrl.host() )
          && Utils::Url::getHostBaseFromUrl( url ) != Utils::Url::getHostBaseFromUrl( refererUrl )
          && !url.scheme().startsWith( "data" ) ) {
       qWarning( R"(Blocking element "%s" due to not same domain)", url.toEncoded().data() );
-
       return new BlockedNetworkReply( this );
     }
   }
 
-  if ( req.url().scheme() == "file" ) {
-    // Check file presence and adjust path if necessary
-    QString fileName = req.url().toLocalFile();
-    if ( req.url().host().isEmpty() && ArticleMaker::adjustFilePath( fileName ) ) {
-      QUrl newUrl( req.url() );
-      QUrl localUrl = QUrl::fromLocalFile( fileName );
-
-      newUrl.setHost( localUrl.host() );
-      newUrl.setPath( Utils::Url::ensureLeadingSlash( localUrl.path() ) );
-
-      QNetworkRequest newReq( req );
-      newReq.setUrl( newUrl );
-
-      return QNetworkAccessManager::createRequest( op, newReq, nullptr );
-    }
+  // File scheme handling
+  if ( QString fileName = url.toLocalFile();
+       url.scheme() == "file" && url.host().isEmpty() && ArticleMaker::adjustFilePath( fileName ) ) {
+    QUrl newUrl = QUrl::fromLocalFile( fileName );
+    newUrl.setHost( newUrl.host() ); // Ensure host is set if needed
+    QNetworkRequest newReq( req );
+    newReq.setUrl( newUrl );
+    return QNetworkAccessManager::createRequest( op, newReq, nullptr );
   }
 
-  // spoof User-Agent
+  // Default request with spoofed User-Agent
   QNetworkRequest newReq;
   newReq.setUrl( url );
   newReq.setAttribute( QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy );
-  if ( hideGoldenDictHeader && url.scheme().startsWith( "http", Qt::CaseInsensitive ) ) {
-    newReq.setRawHeader( "User-Agent", req.rawHeader( "User-Agent" ).replace( qApp->applicationName().toUtf8(), "" ) );
-  }
 
   QNetworkReply * reply = QNetworkAccessManager::createRequest( op, newReq, nullptr );
 
@@ -147,7 +201,7 @@ QNetworkReply * ArticleNetworkAccessManager::getArticleReply( const QNetworkRequ
 #endif
   }
 
-  return new AllowFrameReply( reply );
+  return reply;
 }
 
 string ArticleNetworkAccessManager::getHtml( ResourceType resourceType )
@@ -164,86 +218,197 @@ string ArticleNetworkAccessManager::getHtml( ResourceType resourceType )
   }
 }
 
-sptr< Dictionary::DataRequest > ArticleNetworkAccessManager::getResource( const QUrl & url, QString & contentType )
+namespace {
+// File paths are compared case-insensitively on Windows and case-sensitively
+// elsewhere.
+Qt::CaseSensitivity pathCaseSensitivity()
 {
-  qDebug() << "getResource:" << url.toString();
+#if defined( Q_OS_WIN )
+  return Qt::CaseInsensitive;
+#else
+  return Qt::CaseSensitive;
+#endif
+}
 
-  if ( url.scheme() == "gdlookup" ) {
-    if ( !url.host().isEmpty() && url.host() != "localhost" ) {
-      // Strange request - ignore it
-      return std::make_shared< Dictionary::DataRequestInstant >( false );
-    }
+// Helper function to handle user files access
+sptr< Dictionary::DataRequest > handleUserFileRequest( const QUrl & url )
+{
+  QString filePath = url.path().mid( 1 ); // Get path part and remove leading slash
 
-    contentType = "text/html";
-
-    if ( Utils::Url::queryItemValue( url, "blank" ) == "1" ) {
-      return articleMaker.makeEmptyPage();
-    }
-
-    QString word = Utils::Url::queryItemValue( url, "word" ).trimmed();
-
-    bool groupIsValid = false;
-    unsigned group    = Utils::Url::queryItemValue( url, "group" ).toUInt( &groupIsValid );
-
-    QString dictIDs = Utils::Url::queryItemValue( url, "dictionaries" );
-    if ( !dictIDs.isEmpty() ) {
-      // Individual dictionaries set from full-text search
-      QStringList dictIDList = dictIDs.split( "," );
-      return articleMaker.makeDefinitionFor( word, group, QMap< QString, QString >(), QSet< QString >(), dictIDList );
-    }
-
-    // See if we have some dictionaries muted
-
-    QStringList mutedDictLists = Utils::Url::queryItemValue( url, "muted" ).split( ',' );
-    QSet< QString > mutedDicts( mutedDictLists.begin(), mutedDictLists.end() );
-
-    // Unpack contexts
-
-    const QString contextsEncoded           = Utils::Url::queryItemValue( url, "contexts" );
-    const QMap< QString, QString > contexts = Utils::str2map( contextsEncoded );
-
-    // See for ignore diacritics
-
-    bool ignoreDiacritics = Utils::Url::queryItemValue( url, "ignore_diacritics" ) == "1";
-
-    if ( groupIsValid && !word.isEmpty() ) { // Require group and phrase to be passed
-      return articleMaker.makeDefinitionFor( word, group, contexts, mutedDicts, QStringList(), ignoreDiacritics );
-    }
+  // bres://user/ exists solely to serve the user's article script from the
+  // home directory into article pages. Serve only what the application itself
+  // references there -- config, history, favorites and other home-directory
+  // files must never be readable by web content. url.path() is fully decoded,
+  // so encoded separators ("%2F") have already become real ones here.
+  if ( !Utils::isSafeUserFileName( filePath )
+       || filePath != QString::fromStdString( Config::getUserJsFileName().value_or( "" ) ) ) {
+    qWarning( "Refusing unsafe or unknown user file request: %s", filePath.toUtf8().data() );
+    return {};
   }
 
-  if ( ( url.scheme() == "bres" || url.scheme() == "gdau" || url.scheme() == "gdvideo" || url.scheme() == "gico" )
-       && url.path().size() ) {
+  // Look for the file in user's home directory
+  QDir userDir     = Config::getHomeDir();
+  QString fullPath = userDir.filePath( filePath );
 
+  // Defense in depth: resolve the real file and make sure it still lives in
+  // the home directory (symlinks pointing elsewhere are rejected).
+  const QString canonicalFile = QFileInfo( fullPath ).canonicalFilePath();
+  const QString canonicalHome = userDir.canonicalPath();
+  if ( canonicalFile.isEmpty() || canonicalHome.isEmpty()
+       || !canonicalFile.startsWith( canonicalHome + QLatin1Char( '/' ), pathCaseSensitivity() ) ) {
+    qWarning( "Refusing user file outside the home directory: %s", fullPath.toUtf8().data() );
+    return {};
+  }
 
-    QMimeType mineType = db.mimeTypeForUrl( url );
-    contentType        = mineType.name();
-    string id          = url.host().toStdString();
+  QFile file( canonicalFile );
+  if ( file.open( QIODevice::ReadOnly ) ) {
+    QByteArray content                         = file.readAll();
+    sptr< Dictionary::DataRequestInstant > req = std::make_shared< Dictionary::DataRequestInstant >( true );
+    req->getData().resize( content.size() );
+    memcpy( &( req->getData().front() ), content.data(), content.size() );
+    return req;
+  }
+  else {
+    qWarning( "Failed to open user file: %s", canonicalFile.toUtf8().data() );
+    return {};
+  }
+}
 
-    for ( const auto & dictionary : dictionaries ) {
-      if ( dictionary->getId() == id ) {
-        if ( url.scheme() == "gico" ) {
-          QByteArray bytes;
-          QBuffer buffer( &bytes );
-          buffer.open( QIODevice::WriteOnly );
-          dictionary->getIcon().pixmap( 64 ).save( &buffer, "PNG" );
-          buffer.close();
-          sptr< Dictionary::DataRequestInstant > ico = std::make_shared< Dictionary::DataRequestInstant >( true );
-          ico->getData().resize( bytes.size() );
-          memcpy( &( ico->getData().front() ), bytes.data(), bytes.size() );
-          return ico;
-        }
-        try {
-          return dictionary->getResource( Utils::Url::path( url ).mid( 1 ).toUtf8().data() );
-        }
-        catch ( std::exception & e ) {
-          qWarning( "getResource request error (%s) in \"%s\"", e.what(), dictionary->getName().c_str() );
+// Helper function to handle dictionary resource requests
+sptr< Dictionary::DataRequest > handleDictionaryResource(
+  const QUrl & url, const string & id, const std::vector< sptr< Dictionary::Class > > & dictionaries )
+{
+  for ( const auto & dictionary : dictionaries ) {
+    if ( dictionary->getId() == id ) {
+      if ( url.scheme() == "gico" ) {
+        QByteArray bytes;
+        QBuffer buffer( &bytes );
+        buffer.open( QIODevice::WriteOnly );
+        dictionary->getIcon().pixmap( 64 ).save( &buffer, "PNG" );
+        buffer.close();
+        sptr< Dictionary::DataRequestInstant > ico = std::make_shared< Dictionary::DataRequestInstant >( true );
+        ico->getData().resize( bytes.size() );
+        memcpy( &( ico->getData().front() ), bytes.data(), bytes.size() );
+        return ico;
+      }
+      try {
+        const QString resourceName = Utils::Url::path( url ).mid( 1 );
+
+        // Every backend joins this name onto the dictionary's own folder (or
+        // looks it up inside its resource archive), so any ".." segment would
+        // read files outside the dictionary directory.
+        if ( !Utils::isSafeResourceName( resourceName ) ) {
+          qWarning( "Refusing unsafe dictionary resource request: %s", resourceName.toUtf8().data() );
           return {};
         }
+
+        return dictionary->getResource( resourceName.toUtf8().data() );
+      }
+      catch ( std::exception & e ) {
+        qWarning( "getResource request error (%s) in \"%s\"", e.what(), dictionary->getName().c_str() );
+        return {};
       }
     }
   }
+  return {};
+}
+} // namespace
+
+sptr< Dictionary::DataRequest > ArticleNetworkAccessManager::getResource( const QUrl & url, QString & contentType )
+{
+  qDebug() << "getResource:" << url.toString();
+  const QString scheme = url.scheme();
+
+  if ( scheme == "gdinternal" ) {
+    return handleInternalScheme( url, contentType );
+  }
+  if ( scheme == "gdlookup" ) {
+    return handleLookupScheme( url, contentType );
+  }
+
+  if ( ( scheme == "bres" || scheme == "gdau" || scheme == "gdvideo" || scheme == "gico" || scheme == "qrcx" )
+       && url.path().size() ) {
+    return handleResourceScheme( url, contentType );
+  }
 
   return {};
+}
+
+sptr< Dictionary::DataRequest > ArticleNetworkAccessManager::handleInternalScheme( const QUrl & url,
+                                                                                   QString & contentType )
+{
+  contentType = "text/html; charset=utf-8";
+  if ( url.host() == "welcome-page" ) {
+    return articleMaker.makeWelcomePage();
+  }
+  return articleMaker.makeEmptyPage();
+}
+
+sptr< Dictionary::DataRequest > ArticleNetworkAccessManager::handleLookupScheme( const QUrl & url,
+                                                                                 QString & contentType )
+{
+  if ( !url.host().isEmpty() && url.host() != "localhost" ) {
+    return std::make_shared< Dictionary::DataRequestInstant >( false );
+  }
+
+  contentType  = "text/html; charset=utf-8";
+  QString word = Utils::Url::queryItemValue( url, "word" ).trimmed();
+
+  bool groupIsValid = false;
+  unsigned group    = Utils::Url::queryItemValue( url, "group" ).toUInt( &groupIsValid );
+
+  if ( QString dictIDs = Utils::Url::queryItemValue( url, "dictionaries" ); !dictIDs.isEmpty() ) {
+    return articleMaker.makeDefinitionFor( word, group, {}, {}, dictIDs.split( "," ) );
+  }
+
+  // Get muted dictionaries
+  QSet< QString > mutedDicts;
+  if ( QString muted = Utils::Url::queryItemValue( url, "muted" ); !muted.isEmpty() ) {
+    QStringList lists = muted.split( ',' );
+    mutedDicts        = QSet< QString >( lists.begin(), lists.end() );
+  }
+  else if ( const Config::Class * cfg = GlobalBroadcaster::instance()->getConfig() ) {
+    bool isPopup              = Utils::Url::queryItemValue( url, "popup" ) == "1";
+    const Config::Group * grp = cfg->getGroup( group );
+    const QSet< QString > * ms = nullptr;
+    if ( group == GroupId::AllGroupId ) {
+      ms = isPopup ? &cfg->popupMutedDictionaries : &cfg->mutedDictionaries;
+    }
+    else if ( grp ) {
+      ms = isPopup ? &grp->popupMutedDictionaries : &grp->mutedDictionaries;
+    }
+
+    if ( ms ) {
+      mutedDicts = *ms;
+    }
+  }
+
+  QMap< QString, QString > contexts = Utils::str2map( Utils::Url::queryItemValue( url, "contexts" ) );
+  bool ignoreDiacritics             = Utils::Url::queryItemValue( url, "ignore_diacritics" ) == "1";
+
+  if ( groupIsValid && !word.isEmpty() ) {
+    return articleMaker.makeDefinitionFor( word, group, contexts, mutedDicts, {}, ignoreDiacritics );
+  }
+
+  return std::make_shared< Dictionary::DataRequestInstant >( false );
+}
+
+sptr< Dictionary::DataRequest > ArticleNetworkAccessManager::handleResourceScheme( const QUrl & url,
+                                                                                   QString & contentType )
+{
+  // Use the robust resolver (extension whitelist + QMimeDatabase) instead of a
+  // bare QMimeDatabase lookup, which may return text/plain on systems lacking
+  // shared-mime-info. The payload is not available here, so only URL-based
+  // heuristics are applied at this stage.
+  contentType = QString::fromLatin1( getMimeTypeWithFallback( url ) );
+  string id   = url.host().toStdString();
+
+  // Special handling for 'user' host to access user configuration files
+  if ( id == "user" && url.scheme() == "bres" ) {
+    return handleUserFileRequest( url );
+  }
+
+  return handleDictionaryResource( url, id, dictionaries );
 }
 
 ArticleResourceReply::ArticleResourceReply( QObject * parent,
@@ -353,12 +518,6 @@ qint64 ArticleResourceReply::readData( char * out, qint64 maxSize )
     return 0;
   }
 
-  qDebug( "====reading  %lld of (%lld) bytes, %lld bytes readed . Finish status: %d",
-          toRead,
-          avail,
-          alreadyRead,
-          finished );
-
   try {
     req->getDataSlice( alreadyRead, toRead, out );
   }
@@ -384,12 +543,16 @@ void ArticleResourceReply::readyReadSlot()
 void ArticleResourceReply::finishedSlot()
 {
   if ( req->dataSize() < 0 ) {
+    qWarning( "ArticleResourceReply: content not found for %s", url().toEncoded().constData() );
     emit errorOccurred( ContentNotFoundError );
     setError( ContentNotFoundError, "content not found" );
   }
   //prevent sent multi times.
   if ( !finishSignalSent.loadAcquire() ) {
     finishSignalSent.ref();
+    qDebug( "ArticleResourceReply: %lld bytes served %s",
+            static_cast< long long >( alreadyRead ),
+            url().toEncoded().constData() );
     setFinished( true );
     emit finished();
   }
@@ -425,16 +588,24 @@ void LocalSchemeHandler::requestStarted( QWebEngineUrlRequestJob * requestJob )
   QNetworkRequest request;
   request.setUrl( url );
 
-  //all the url reached here must be either gdlookup or bword scheme.
-  auto [ schemeValid, word ] = Utils::Url::getQueryWord( url );
-  // or the condition can be (!queryWord.first || word.isEmpty())
-  // ( queryWord.first && word.isEmpty() ) is only part of the above condition.
-  if ( schemeValid && word.isEmpty() ) {
-    // invalid gdlookup url.
+  // all the url reached here must be either gdlookup or bword scheme.
+  if ( isInvalidLookupUrl( url ) ) {
+    // Invalid lookup URL, abort the request.
+    requestJob->fail( QWebEngineUrlRequestJob::RequestFailed );
     return;
   }
 
   QNetworkReply * reply = this->mManager.getArticleReply( request );
-  requestJob->reply( "text/html", reply );
+  // Local (HTML) schemes always serve HTML documents: pin the content type
+  // explicitly so QtWebEngine never falls back to text/plain when the system
+  // lacks shared-mime-info, which would render the article as raw source.
+  requestJob->reply( "text/html; charset=utf-8", reply );
   connect( requestJob, &QObject::destroyed, reply, &QObject::deleteLater );
+}
+
+bool LocalSchemeHandler::isInvalidLookupUrl( const QUrl & url )
+{
+  auto [ schemeValid, word ] = Utils::Url::getQueryWord( url );
+  // A valid lookup URL must contain a non-empty word.
+  return schemeValid && word.isEmpty();
 }

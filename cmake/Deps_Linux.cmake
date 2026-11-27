@@ -1,12 +1,6 @@
 find_package(PkgConfig REQUIRED)
 
 set(Optional_Pkgs "")
-if (USE_SYSTEM_FMT)
-    list(APPEND Optional_Pkgs "fmt")
-endif ()
-if (USE_SYSTEM_TOML)
-    list(APPEND Optional_Pkgs "tomlplusplus")
-endif ()
 if (WITH_ZIM)
     list(APPEND Optional_Pkgs "libzim")
 endif ()
@@ -23,6 +17,7 @@ pkg_check_modules(DEPS REQUIRED IMPORTED_TARGET
         liblzma
         lzo2
         opencc
+        tomlplusplus
         vorbis # .ogg
         vorbisfile
         xapian-core
@@ -33,7 +28,8 @@ pkg_check_modules(DEPS REQUIRED IMPORTED_TARGET
 
 
 find_package(BZip2 REQUIRED) # FreeBSD misses .pc file https://www.freshports.org/archivers/bzip2
-target_link_libraries(${GOLDENDICT} PRIVATE PkgConfig::DEPS BZip2::BZip2)
+find_package(fmt REQUIRED)
+target_link_libraries(${GOLDENDICT} PRIVATE PkgConfig::DEPS BZip2::BZip2 fmt::fmt)
 
 # On FreeBSD, there are two iconv, libc iconv & GNU libiconv.
 # The system one is good enough, the following is a workaround to use libc iconv on freeBSD.

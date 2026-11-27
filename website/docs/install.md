@@ -29,6 +29,7 @@ Requires Windows 10 (1809 or later) with [MSVC runtime](https://learn.microsoft.
 * See the right side for available packages in various Linux distros.
 * In Debian 12 and Ubuntu 23.04, `goldendict-webengine` is available (For later versions it is `goldendict-ng`).
 * For ArchLinux, pre-built binary is available from [archlinuxcn's repo](https://github.com/archlinuxcn/repo/tree/master/archlinuxcn/goldendict-ng-git).
+* _Unofficial_ [AppImage](https://github.com/pkgforge-dev/GoldenDict-ng-AppImage/releases) maintained by Package Forge devs.
 
 Minimum supported "Linux" version is supposedly the current Ubuntu LTS and Debian's oldstable.
 
@@ -36,7 +37,7 @@ Minimum supported "Linux" version is supposedly the current Ubuntu LTS and Debia
 
 Uses one of the `.dmg` installers in the [Download](#download).
 
-Requires at least macOS 13.
+The pre-built `.dmg` installers are built with Qt 6.12, so they require at least macOS 14.4 (the minimum supported by Qt 6.12). Self-built versions using an older Qt can still run on macOS 13.
 
 ## Versioning and Releasing
 

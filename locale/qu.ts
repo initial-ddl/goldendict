@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation type="unfinished">Anki: can&apos;t create a card without a word</translation>
+      <translation>Anki: mana simiyuq tarjetata&apos;t ruwayta atin</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -28,11 +28,11 @@
     </message>
     <message>
       <source>Anki: post to Anki failed</source>
-      <translation type="unfinished">Anki: post to Anki failed</translation>
+      <translation>Anki: Ankiman apachiy mana llank'arqanchu</translation>
     </message>
     <message>
       <source>Anki: post to Anki success</source>
-      <translation type="unfinished">Anki: post to Anki success</translation>
+      <translation>Anki: Ankiman apachiy allin llank'arqan</translation>
     </message>
   </context>
   <context>
@@ -57,16 +57,46 @@
       <translation>Qallarinapaq</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;Allin hamusqayki &lt;b&gt;GoldenDict&lt;/b&gt;nisqaman!&lt;/h3&gt;&lt;p&gt;Programawan llamk’ayta qallarinapaqqa ñawpaqta &lt;em&gt;Llamk’apuy | Diccionariokuna&lt;/em&gt; wakin directorio ñankunata yapanapaq maypi diccionario willañiqikunata maskanapaq, imaymana Wikipidiya sitiokunata utaq huk pukyuta churanapaq, diccionario ordenta allinchanapaq utaq diccionario huñukunata paqarichinapaq.&lt;p&gt;Hinaspa chaymantaqa&apos;re listo kashanki simiykikunata maskhanaykipaq! Chayta kay ventanata ruwayta atikunki paña kaqpi huk panel kaqwan, utaq &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;huk ruwaq ruwanakunamanta simikunata maskay atikunki&lt;/a&gt;. &lt;p&gt;Programa ruwanapaq, qhaway kay munasqakuna kaqta &lt;em&gt;Llamk'apuy | Munasqakuna&lt;/em&gt;. Llapan chaypi churanakuna yanapakuy yuyaychaykunayuq kanku, ama hina kaspa ñawiriy sichus imamantapas iskayrayanki.&lt;p&gt;Sichus astawan yanapayta necesitanki, ima tapukuyniykipas, yuyaychayniykipas kanman otaq hukkuna ima yuyaykusqankuta tapukunki chayqa, allin chaskisqa kanki programapi&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;foro&lt;/a&gt;.&lt;p&gt;Programa&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;web&lt;/a&gt; nisqapi qhaway, kunanchasqakuna kananpaq. &lt;p&gt;(c) 2008-2013 watakunapi Konstantin Isakov. GPLv3 utaq aswan qhipaman licenciayuq.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(mana sutiyuq)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(rikchay)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Kuskachakuy &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;man!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;Qallarinapaq&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Puriy &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Qillqa&lt;/span&gt;&lt;span&gt;Simi-pirwakuna&lt;/span&gt;&lt;/span&gt; simi-pirwa willañiqikunata yapayta, Wikipedia hina internetpi qullqakunata churayta, hinaspa huñukunapi wakichayta.&lt;/li&gt;
+          &lt;li&gt;Churasqa kaptinqa, rimaykunata kay rikuchinapi utaq &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;huk llamk'achinakunamanta Scan Popup nisqa llamk'achispa&lt;/a&gt; maskayta atinki.&lt;/li&gt;
+          &lt;li&gt;Llamk'achinata hukman churanapaq, akllanakunata &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Qillqa&lt;/span&gt;&lt;span&gt;Akllanakuna&lt;/span&gt;&lt;/span&gt;pi maskay. Llapa akllanakuna pachanpa sut'inchayninniyuq kanku, chayrayku leey anchata mana sut'ichu kaptinqa.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Sichus astawan yanapata munanki, tapuykunata utaq imaymana ruwanapaqkunata, llamk'achinaq &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;rimana wasinpi&lt;/a&gt; hinaspa &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;web-sitionpi&lt;/a&gt; chaskikunanki.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Konstantin Isakovpa qallariy GoldenDict nisqanpi sayachisqa (c) 2008-2013. GoldenDict-NG Huñupa waqaychasqa hinaspa wiñachisqa. GPLv3 utaq aswan qhipa lisinsiyayuq.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>Frase mana tarisqachu</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 de %2 tupachiykuna</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Anki qillqasqata paqarichiy</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;Uyarita k'aspipaq kaqman hukchay</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>Uyarita hukchay mana atikun</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>Hunt'a uyari willayta qillqay mana atikun</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>Uyari k'aspipaq kaqman hukchasqa</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Uyarita uraykachiy mana atikun</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 de %2 tupachiykuna</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>K'ichay artikuluta hawapi &amp;Wamp'uqpi</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>GoldenDict Kapuq Rikuchiq</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -275,52 +336,60 @@ chiqan kayninta sumaqyachin)</translation>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Chinamanta tikray</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Tradicionalmanta chino tikrayman pisiyachisqaman</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Simplificado chaymanta tradicional chino qillqakunapura tikrayta atichiy</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Pisiyachisqa/ñawpaq Chino qillqakunamanta Hapones Shinjitai qillqakunaman tikrayta atichiy</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>Chinomanta tikray</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Hapones Shinjitai</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Sasachasqa qillqakunamanta ñawpaq (Taiwán variante) qillqakunaman tikrayta atichiy</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation type="unfinished">Chinese to Japanese Shinjitai conversion</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Sasachasqa qillqakunamanta ñawpaq (Hong Kong variante) qillqakunaman tikrayta atichiy</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation type="unfinished">Chinese and Japanese Character Con&amp;version</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation type="unfinished">Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Ñawpa qillqakunamanta pisiyachisqa qillqakunaman tikrayta atichiy</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Simplificasqa tradicional chino (Taiwán variante) tikrayman</translation>
+      <source>Simplified</source>
+      <translation>Sasachasqa</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Simplificasqa tradicional chino (Hong Kong variante) tikrayman</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Sasachasqa qillqakunamanta ñawpaq (Taiwán) qillqakunaman tikrayta atichiy</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Tradicionalmanta chino tikrayman pisiyachisqaman</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>Ñawpaq (Taiwán)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation type="unfinished">Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Sasachasqa qillqakunamanta ñawpaq (Hong Kong) qillqakunaman tikrayta atichiy</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation type="unfinished">Hong Kong variant</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Ñawpaq (Hong Kong)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation type="unfinished">Mainland variant</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>Sasachasqa qillqakunamanta ñawpaq China simiman (Taiwán) tikray</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>Sasachasqa qillqakunamanta ñawpaq China simiman (Hong Kong) tikray</translation>
     </message>
   </context>
   <context>
@@ -408,10 +477,6 @@ chiqan kayninta sumaqyachin)</translation>
       <translation>¿Segurochu kanki huk huñu huñukuna ruwayta munanki mayt'ukuna hap'iypi?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>¿Segurochu kanki metadata.toml nisqapi huk huñu huñukunata paqarichiyta munanki?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Pukyu simimanhina huñukunata huñuy &quot;%1-&gt;&quot;</translation>
     </message>
@@ -426,6 +491,18 @@ chiqan kayninta sumaqyachin)</translation>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Huñukunata &quot;%1&quot;nisqawan huñuy</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Juñuta chinkachiy</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>&lt;b&gt;%1&lt;/b&gt; juñuta chinkachiyta munankichu?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>¿Segurochu kanki diccionario metadata willakuykuna nisqakunapi huk huñu huñukunata paqarichiyta munanki?</translation>
     </message>
   </context>
   <context>
@@ -455,10 +532,6 @@ chiqan kayninta sumaqyachin)</translation>
       <translation>Filtro: 1.1.</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Modo de búsqueda nisqa</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Kay elementoqa imayna filtro watiqa t'ikrakunqa chayta kamachin</translation>
     </message>
@@ -481,18 +554,6 @@ chiqan kayninta sumaqyachin)</translation>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Aswan filtrasqa uma simikuna kutichisqa kaqta willay.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Filtro max ruwasqakuna:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Yanapay</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>KUSA</translation>
     </message>
     <message>
       <source>Text</source>
@@ -540,7 +601,11 @@ chiqan kayninta sumaqyachin)</translation>
     </message>
     <message>
       <source>Regular Expression</source>
-      <translation type="unfinished">Regular Expression</translation>
+      <translation>Kamaq Sut'inchana</translation>
+    </message>
+    <message>
+      <source>Maximum:</source>
+      <translation type="unfinished">Maximum:</translation>
     </message>
   </context>
   <context>
@@ -574,10 +639,6 @@ chiqan kayninta sumaqyachin)</translation>
       <translation>Simiman:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Kay simi-pirwaqa chay archiwukunayoq:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Willay:</translation>
     </message>
@@ -596,6 +657,18 @@ chiqan kayninta sumaqyachin)</translation>
     <message>
       <source>Full-text search disabled</source>
       <translation>Tukuy qillqasqa maskay mana llamk'achisqa</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Wañuchisqa</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Kawsarichisqa</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation type="unfinished">Dictionary Components:</translation>
     </message>
   </context>
   <context>
@@ -691,7 +764,35 @@ chiqan kayninta sumaqyachin)</translation>
     </message>
     <message>
       <source>Restore selection</source>
-      <translation type="unfinished">Restore selection</translation>
+      <translation>Akllasqata Kutichiy</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>Musuqmanta t'aqllayta t'ipiy</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>Musuqmanta t'aqllaypaq pacha churasqa</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>Musuqmanta t'aqllaypaq pacha churasqata t'ipiy</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>Simi-pirwa musuqmanta t'aqllaypaq churasqa kachkan. T'aqllayqa musuqmanta ruwasqa kanqa qhipa llamk'achina qallarisqapi.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Rikuchina sutita hukman chura</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Musuq rikuchina sutin:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Mana atipakurqachu simi qullqata musuqmanta allichanapaq wakichiyta.</translation>
     </message>
   </context>
   <context>
@@ -808,10 +909,6 @@ chiqan kayninta sumaqyachin)</translation>
       <translation>Carpeta yapay</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Tukuy Ch'uyanchana</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Munasqakuna:</translation>
     </message>
@@ -820,16 +917,20 @@ chiqan kayninta sumaqyachin)</translation>
       <translation>Llapan akllasqa kaqkunam qullusqa kanqa. Qatiq?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Tukuy Imakunatapas Ch’uyanchana</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>¿Segurochu kanki llapa imakunatapas chuyanchayta munasqaykimanta?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Pichay</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>Akllasqakunata Pichay</translation>
     </message>
   </context>
   <context>
@@ -957,28 +1058,12 @@ chiqan kayninta sumaqyachin)</translation>
       <translation>Pestaña 2</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>Simi-pirwakunaqpa musuq juñunkuta yurichiy</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>&amp;Juñuta yapay</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>Renombrar el grupo actual de diccionarios</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>Juñuqpa &amp;waq sutinta churay</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Simi-pirwakunawan kunan juñuta chinkachiy</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>Juñuta &amp;chinkachiy</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1048,6 +1133,22 @@ chiqan kayninta sumaqyachin)</translation>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>Tukuy juñukunata chinkachiyta munankichu?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>Musuq simi-pirwa huñuta yapay</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>&amp;Juñuta yapay</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>Huñuña kachkan</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>Huk huñu &apos;%1&apos; sutiyuqña kachkan.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1081,6 +1182,18 @@ chiqan kayninta sumaqyachin)</translation>
     <message>
       <source>%1 Morphology</source>
       <translation>Morfología %1</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Qillqanaqa chaninmi, huk simi rikch'aykuna mana tarisqachu.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>Kaymanta %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Sutichaykuna %1-paq:</translation>
     </message>
   </context>
   <context>
@@ -2100,7 +2213,7 @@ chiqan kayninta sumaqyachin)</translation>
     </message>
     <message>
       <source>Kabyle</source>
-      <translation type="unfinished">Kabyle</translation>
+      <translation>Kabila</translation>
     </message>
   </context>
   <context>
@@ -2388,10 +2501,6 @@ chiqan kayninta sumaqyachin)</translation>
       <translation>Musuq Tab</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>¡Bienvenido!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>Yaykuna API mana atichisqachu</translation>
     </message>
@@ -2464,42 +2573,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Print Article</source>
       <translation>Raphipi articulota ñit&apos;iy</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Html hunt'asqa (*.html *.htm) .</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Huklla Html (*.html *.htm) .</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>Pdf (*.pdf) nisqapi.</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Mime Html (*.mhtml) nisqa.</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Jinata articulota jallch&apos;ay</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Pantay</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Mana qillqasqata waqaychayta atinchu: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Qillqata waqaychay...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Artículo hunt'asqata waqaychay</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2594,12 +2667,56 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Qawachiy</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation type="unfinished">Save PDF complete</translation>
+      <source>Lock Panels</source>
+      <translation>Panelkunata Wisq'ay</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation type="unfinished">Save PDF failed</translation>
+      <source>Clear History</source>
+      <translation>Wiñay kawsayta Pichay</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>¿Llapa wiñay kawsayta pichayta munankichu?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Willañiqita Waqaycha</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation type="unfinished">Application is still running in the background. Click the tray icon to show the window.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation type="unfinished">Open in &amp;External Browser</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation type="unfinished">Now building headwords cache: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Ñawpaq simi</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Qhipaq simi</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Achka simi</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Tukuy qillqasqa maskay…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Maskay imayna</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Maskay imayna: %1</translation>
     </message>
   </context>
   <context>
@@ -2616,15 +2733,15 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XMLta ñawichaspa pantay: %1 &quot;%2,%3&quot;pi </translation>
+      <source>JSON parse error</source>
+      <translation>JSON t'aqwiypi pantasqa</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>XMLta ñawichaspa pantay: %1 &quot;%2,%3&quot;pi</translation>
+      <source>JSON parse error</source>
+      <translation>JSON t'aqwiypi pantasqa</translation>
     </message>
   </context>
   <context>
@@ -2700,10 +2817,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Willay:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Kay simi-pirwaqa chay archiwukunayoq:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Ajuste el orden, arrastrando y soltando los diccionarios con el ratón. Mueva diccionarios al grupo deshabilitado para desactivar su uso</translation>
     </message>
@@ -2722,6 +2835,18 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Diccionariokuna llamk'aq: %1, mana llamk'aq: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Rikuchina sutita hukman chura</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Musuq rikuchina sutin:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation type="unfinished">Dictionary components:</translation>
     </message>
   </context>
   <context>
@@ -2766,28 +2891,12 @@ abiertas sin trasladar a ellas.</translation>
       <translation>Musuq pestañata kichaqtin kunan pestañamanta ama ripuychu</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Por defecto, nuevas pestañas son agregadas al final 
-de la lista. Con está opción pestañas nuevas son 
-abiertas al lado de la pestaña actual.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Kunan pestañaqpa chirunman musuq pestañata kichay</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Kay akllanata akllay sichus mana&apos;t hatun tabla barrata rikuyta munankichu huk tablalla kichasqa kaptin.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Sapalla tablata pakay</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>MRU kamachiy: Aswan qhipa llamk'achisqa kamachiy.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2874,8 +2983,98 @@ cerrar la aplicación.</translation>
       <translation>Contexto menú diccionariokuna limite:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>Sistema nisqaqpa simin</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Mana aqllasqa</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Clásico nisqa</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Moderno</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Babilonia</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Lingokuna</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Lingoes-Azul</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Musuq simita jap&apos;ikunanpaq hukmanta programata qallarichiy.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Interfaz estilo tikrayta churanapaq musuqmanta qallariy.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Interfazpa qillqa tikrayta churanapaq musuqmanta qallariy.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Wakmanta qallariy necesitakun</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Kawsarichisqa</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Wañuchisqa</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Kikinmanta</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Ni ima</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>Kayta llamk'achispaqa, musuq patarakuna kunan, llamk'achisqa patara qhipanpi kicharikun. Mana chayqa, qhipa kaqman yapasqa kanku.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp;Rikch'ay</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Rikchaynin</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Interface language</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Article Display style</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Add-on style</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Interface Style</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2894,12 +3093,16 @@ cerrar la aplicación.</translation>
       <translation>Tutayaq Ñawinchaq Modo</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Kay qillqakunaqa churakunqa huk simi pirwapa nisqa qillqakuna mana tarisqa kaptin.</translation>
+      <source>Preview Font</source>
+      <translation>Preview Font</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Fallback nisqa qillqakuna</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ngqa huk simi-pirwa llamp'u kaqmanta.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Kay qillqakunaqa churakunqa huk simi pirwapa nisqa qillqakuna mana tarisqa kaptin.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2916,10 +3119,6 @@ cerrar la aplicación.</translation>
     <message>
       <source>Monospace Font</source>
       <translation>Monoespacio nisqa qillqa</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Juch&apos;uy qhawanapi mask&apos;ay</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2956,8 +3155,8 @@ in the pressed state when the word selection changes.</source>
 seleccionadas estén oprimidas cuando la selección de la palabra cambie.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Tack akllaylla llapa akllasqa llavekuna ñit'isqa kaptinlla:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>Akllasqata qatiylla llapa akllasqa llaveskuna ñit'isqa kaptinqa:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3040,20 +3239,8 @@ seleccionadas estén oprimidas cuando la selección de la palabra cambie.</trans
       <translation>Uyarinapaq willañiqikunata uyarinapaq yanapakuywan pukllay</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Ukhupi pukllaqta llamk'achiy:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Audio qhipa tukukuyta akllay</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Usar cualquier programa para reproducir archivos de audio</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Takichiy jawa programawan:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3118,28 +3305,12 @@ servidor proxy por todas las solicitudes de red del programa.</translation>
       <translation>Carpeta:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Qatina:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Rimay</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Simikuna yachay pampa...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Qillqa</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Definición nisqa pampa...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Rimay</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3154,42 +3325,6 @@ you are browsing. If some site breaks because of this, try disabling this.</sour
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>No permite la carga de contenido de otros sitios (oculta la mayoría de propaganda)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Wakin kitikuna GoldenDict HTTP umalliqkunawan tarinku chaymanta mañakuykunata harkanku.
-Kay akllanata atichiy sasachakuy allichanapaq.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>Ama GoldenDictta HTTP umalliqkunapi riqsichiychu</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Llika waqaychasqa hatun sayaynin:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Aswan hatun disk espacio GoldenDict llika waqaychasqa kaqwan hap'isqa
-%1
-0 kaqman churasqa kaptinqa llika disk waqaychasqa mana llamk'achisqa kanqa.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>Kay akllana atichisqa kaqtin, GoldenDict
-llika waqaychasqa kayninta diskumanta ch'uyanchan lluqsiy pachapi.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Llika waqaychasqata chuyanchay lluqsiypi</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3252,8 +3387,12 @@ la página web para descargarla.</translation>
       <translation>Aswan hatun willakuypa sayaynin:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Historia waqaychay chawpi. 0 nisqaman churasqa kaptinqa willakuyqa lluqsiy pachallapim waqaychasqa kanqa.</translation>
+      <source>Favorites</source>
+      <translation>Favoritos nisqakuna</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Favoritos waqaychay intervalo. 0 nisqaman churasqa kaptinqa Munasqakunaqa lluqsiy pachallapim waqaychasqa kanqa.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3262,14 +3401,6 @@ la página web para descargarla.</translation>
     <message>
       <source>minutes</source>
       <translation>minutokuna</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Favoritos nisqakuna</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Favoritos waqaychay intervalo. 0 nisqaman churasqa kaptinqa Munasqakunaqa lluqsiy pachallapim waqaychasqa kanqa.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3368,112 +3499,112 @@ kaqninta Stardict, Babylon chaymanta GLS simi pirwakunamanta</translation>
       <translation>Lluqsiypi mana allin indisyuta hurquy</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>Sistema nisqaqpa simin</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Mana aqllasqa</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Clásico nisqa</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Moderno</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Babilonia</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Lingokuna</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Lingoes-Azul</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Autoqa wakin sistemakunapiqa manam imatapas ruwanchu.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Musuq simita jap&apos;ikunanpaq hukmanta programata qallarichiy.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Interfaz estilo tikrayta churanapaq musuqmanta qallariy.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Interfazpa qillqa tikrayta churanapaq musuqmanta qallariy.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Wakmanta qallariy necesitakun</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Kawsarichisqa</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Wañuchisqa</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Kikinmanta</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Save debug messages to gd_log.txt in the config folder</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Interface language</translation>
+      <source>S&amp;can</source>
+      <translation>T'a&amp;qllay</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Article Display style</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>JavaScriptpa willachisqankunata, allinchasqankunata, hinaspa tapusqankunata qillqapi rikuchiyta hark'ay.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Add-on style</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>JavaScript rimanakuykunata hark'ay</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Interface Style</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>Web-sitio simi-pirwata huk patarapi kichay</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Preview Font</translation>
+      <source>Anki</source>
+      <translation type="unfinished">Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation type="unfinished">GoldenDict-ng is a dictionary software.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>JavaScriptman qillqapi k'aspipaq kaqta chayanapaq saqiy.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation type="unfinished">Enable Interface Font</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>JavaScript k'aspipaq kaqman chayanapaq llamk'achiy (musuqmanta qallariyta munakun)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>Musuqmanta qallariy JavaScript k'aspipaq kaqman chayanapaq hukman churasqata llamk'achinapaq.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation type="unfinished">Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation type="unfinished">Hide tab bar when only one tab is open.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Ni ima</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Mayqin hawa uyarina pukllaqtaña llamk'achiy uyarina willañiqikunata pukllachinapaq</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Sapanchasqa kamachiy qillqata rikuy</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>Uyarina ñanqa hawa pukllaqman kamachiy siqipa tupachisqan hina apachisqa kanqa.</translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation type="unfinished">Internal Audio Player:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation type="unfinished">External Audio Player:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation type="unfinished">Automatically switches based on system theme.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation type="unfinished">Customize Fonts</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation type="unfinished">The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation type="unfinished">Keep Dock icon visible in background</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation type="unfinished">Add audio to Anki card when available</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>Kacharisqa kaptinqa, web qillqarinakuna sapankama tabpi kicharinkun, manam qillqa rikuchinapi churasqa kaspankuchu. Kaywanqa iframe ruwaypa hinaspa purichiy hark'aykuna hark'asqa kanku, hinaspa sapanka qillqarinapaq Script nisqa siq'i Qillqarinakuna Rimarinapi kacharisqa kachkan.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation type="unfinished">Word:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation type="unfinished">Text:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation type="unfinished">Sentence:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Interfaz nisqa Fuente</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Sapanchasqa rikch'ay</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Sapanchasqa sayay</translation>
     </message>
   </context>
   <context>
@@ -3613,11 +3744,63 @@ kaqninta Stardict, Babylon chaymanta GLS simi pirwakunamanta</translation>
     </message>
     <message>
       <source>Force the word to be translated in Popup.</source>
-      <translation type="unfinished">Force the word to be translated in Popup.</translation>
+      <translation>Rimayta Popup nisqapi t'ikranapaq kamachiy.</translation>
     </message>
     <message>
       <source>Force the word to be translated in the mainwindow.</source>
-      <translation type="unfinished">Force the word to be translated in the mainwindow.</translation>
+      <translation>Hatun ventanata t’ikranapaq simita kallpachay.</translation>
+    </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>Web-sitio Url:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>Url nisqapi, &quot;%GDWORD%&quot; maskasqa rimaywan hukman churasqa kanqa.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Html hunt'asqa (*.html *.htm) .</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Huklla Html (*.html *.htm) .</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>PDF qillqa (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml) nisqa.</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Jinata articulota jallch&apos;ay</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Artículo hunt'asqata waqaychay</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Pantay</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Mana qillqasqata waqaychayta atinchu: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Save PDF complete</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Save PDF failed</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Qillqata waqaychachkan... (%1/%2)</translation>
     </message>
   </context>
   <context>
@@ -3649,6 +3832,10 @@ kaqninta Stardict, Babylon chaymanta GLS simi pirwakunamanta</translation>
       <source>The referenced resource failed to download.</source>
       <translation>El recurso ha fallado de descargar.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>recursoqa destino q'ipaqpa hawapi waqaychasqa kanman.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3674,6 +3861,26 @@ kaqninta Stardict, Babylon chaymanta GLS simi pirwakunamanta</translation>
       <source>WARNING: %1</source>
       <translation>YUYAYCHAY: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>Sut'inchay</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Kunan pestañata wisq&apos;ay</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Llapan tablakunata wichqay, kunanmanta aswan</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Cierra todas las pestañas</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation type="unfinished">Open in &amp;External Browser</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3698,10 +3905,6 @@ kaqninta Stardict, Babylon chaymanta GLS simi pirwakunamanta</translation>
       <translation>Send word to main window (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation type="unfinished">Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Add word to Favorites (Ctrl+E)</translation>
     </message>
@@ -3714,6 +3917,10 @@ kaqninta Stardict, Babylon chaymanta GLS simi pirwakunamanta</translation>
 could be resized or managed in other ways.</source>
       <translation>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Articulo nisqata jallch&apos;ay </translation>
     </message>
   </context>
   <context>
@@ -3992,27 +4199,27 @@ Lliw simikuna tarikuq listataqa tarinki &lt;a href=&quot;https://lingualibre.org
     </message>
     <message>
       <source>The most widely used method of transcription of Japanese, based on English phonology</source>
-      <translation type="unfinished">The most widely used method of transcription of Japanese, based on English phonology</translation>
+      <translation>Huklla aswan mast'arisqa Hapon simita qillqanapaq ñan, Inlish simi rimaychanapi sayachisqa</translation>
     </message>
     <message>
       <source>Remove selected directories from the list?</source>
-      <translation type="unfinished">Remove selected directories from the list?</translation>
+      <translation>Akllasqa qillqaq-wasikunata listamanta hurquykuyta munankichu?</translation>
     </message>
     <message>
       <source>Remove %1 directories from the list?</source>
-      <translation type="unfinished">Remove %1 directories from the list?</translation>
+      <translation>%1 qillqaq-wasikunata listamanta hurquykuyta munankichu?</translation>
     </message>
     <message>
       <source>Remove %1 sites from the list?</source>
-      <translation type="unfinished">Remove %1 sites from the list?</translation>
+      <translation>%1 web-sitiochata listamanta hurquykuyta munankichu?</translation>
     </message>
     <message>
       <source>Remove %1 servers from the list?</source>
-      <translation type="unfinished">Remove %1 servers from the list?</translation>
+      <translation>%1 qillqasqa wasikunata listamanta hurquykuyta munankichu?</translation>
     </message>
     <message>
       <source>Remove %1 programs from the list?</source>
-      <translation type="unfinished">Remove %1 programs from the list?</translation>
+      <translation>%1 llamk'achinakunata listamanta hurquykuyta munankichu?</translation>
     </message>
   </context>
   <context>
@@ -4109,18 +4316,21 @@ Lliw simikuna tarikuq listataqa tarinki &lt;a href=&quot;https://lingualibre.org
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>&lt;iframe&gt; etiqueta ukhupi t'inki hina qillqasqata churay</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>Kay web-sitio simi-pirwa musuq qillqana-pacharapi kichasqa</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Wañuchiy &quot;Web simi qillqata huk tabpi kichay&quot; Akllanakunapi, chaypa rantinpi web p'anqata qillqa ukhupi rikuchinapaq.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Atichisqa</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Enlace hina</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4133,6 +4343,22 @@ Lliw simikuna tarikuq listataqa tarinki &lt;a href=&quot;https://lingualibre.org
     <message>
       <source>Icon</source>
       <translation>Icon</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Qillqa</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>Impaq willañiqi sutin. Churasqa qillqaq-wasiman rikch'aq.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>Web-sitiochata huk pacharukunapi kichasqallapi tarikun. Willañiqi ñan kanman (churasqa qillqaq-wasiman rikch'aq utaq tukuy), utaq qillqaqtaq imaymana.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>Kay rikuchiqa mana llamk'achisqachu kachkan &quot;Web-sitio simi-pirwata huk patarapi kichay&quot; akllana Mana Akllanakunapi llamk'achisqa kachkasqanrayku.</translation>
     </message>
   </context>
   <context>

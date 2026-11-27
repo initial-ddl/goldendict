@@ -173,7 +173,7 @@ GlsScanner::GlsScanner( const string & fileName ):
   lineFeed = Text::initLineFeed( encoding );
 
   std::u32string str;
-  std::u32string * currentField  = 0;
+  std::u32string * currentField  = nullptr;
   std::u32string mark            = U"###";
   std::u32string titleMark       = U"### Glossary title:";
   std::u32string authorMark      = U"### Author:";
@@ -387,7 +387,7 @@ public:
   void setFTSParameters( const Config::FullTextSearch & fts ) override
   {
     if ( metadata_enable_fts.has_value() ) {
-      can_FTS = fts.enabled && metadata_enable_fts.value();
+      can_FTS = metadata_enable_fts.value();
     }
     else {
       can_FTS = fts.enabled && !fts.disabledTypes.contains( "GLS", Qt::CaseInsensitive )
@@ -420,7 +420,7 @@ GlsDictionary::GlsDictionary( const string & id, const string & indexFile, const
   BtreeDictionary( id, dictionaryFiles ),
   idx( indexFile, QIODevice::ReadOnly ),
   idxHeader( idx.read< IdxHeader >() ),
-  dz( 0 ),
+  dz( nullptr ),
   chunks( idx, idxHeader.chunksOffset )
 {
   // Open the .gls file
@@ -755,7 +755,7 @@ QString & GlsDictionary::filterResource( QString & article )
         ( addAudioLink( audioLink, getId() ) + "<span class=\"gls_wav\"><a href=" + href + ">" ).c_str() );
       newTag += match.captured( 4 );
       if ( match.captured( 4 ).indexOf( "<img " ) < 0 ) {
-        newTag += R"( <img src="qrc:///icons/playsound.png" border="0" alt="Play">)";
+        newTag += R"( <img src="qrc:///icons/playsound.svg" border="0" alt="Play">)";
       }
       newTag += "</a></span>";
 

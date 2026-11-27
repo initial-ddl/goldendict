@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation type="unfinished">Anki: can&apos;t create a card without a word</translation>
+      <translation>Anki: không thể tạo thẻ mà không có từ nào</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -28,11 +28,11 @@
     </message>
     <message>
       <source>Anki: post to Anki failed</source>
-      <translation type="unfinished">Anki: post to Anki failed</translation>
+      <translation>Anki: Đăng lên Anki thất bại</translation>
     </message>
     <message>
       <source>Anki: post to Anki success</source>
-      <translation type="unfinished">Anki: post to Anki success</translation>
+      <translation>Anki: Đăng lên Anki thành công</translation>
     </message>
   </context>
   <context>
@@ -57,16 +57,31 @@
       <translation>Chào mừng!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;Chào mừng đến với &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;Để bắt đầu làm việc với chương trình, trước tiên hãy truy cập &lt;em&gt;Chỉnh sửa | Dictionaries&lt;/em&gt; thêm một số đường dẫn thư mục để tìm kiếm các tập tin từ điển, thiết lập các trang Wikipedia khác nhau hoặc các nguồn khác, điều chỉnh thứ tự từ điển hoặc tạo các nhóm từ điển.&lt;p&gt;Và sau đó bạn đã sẵn sàng tra cứu từ cần tìm! Bạn có thể làm điều đó trong cửa sổ này bằng cách sử dụng khung bên trái hoặc bạn có thể &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;cứu các từ từ các ứng dụng đang hoạt động khác&lt;/a&gt;. &lt;p&gt;Để tùy chỉnh chương trình, hãy xem các tùy chọn có sẵn tại &lt;em&gt;Chỉnh sửa | Tùy chọn&lt;/em&gt;. Tất cả các cài đặt ở đó đều có chú giải công cụ, hãy nhớ đọc chúng nếu bạn nghi ngờ về bất kỳ điều gì.&lt;p&gt;Nếu bạn cần trợ giúp thêm, có bất kỳ câu hỏi, đề xuất nào hoặc chỉ thắc mắc người khác nghĩ gì, bạn đều được chào đón tại diễn đàn chương trình &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;&lt;/a&gt;.&lt;p&gt;Kiểm tra chương trình &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;trang web&lt;/a&gt; để biết thông tin cập nhật. &lt;p&gt;(c) 2008-2013 Konstantin Iskov. Được cấp phép theo GPLv3 trở lên.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(chưa đặt tên)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(hình ảnh)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>    &lt;div class=&quot;welcome-container&quot;&gt;      &lt;h3&gt;Chào mừng bạn đến với &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;      &lt;section&gt;        &lt;h4&gt;Để bắt đầu&lt;/h4&gt;        &lt;ul&gt;          &lt;li&gt;Đi tới &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Sửa&lt;/span&gt;&lt;span&gt;Từ điển&lt;/span&gt;&lt;/span&gt; để thêm các tệp từ điển của bạn, thiết lập các nguồn trực tuyến như Wikipedia và sắp xếp chúng thành các nhóm.&lt;/li&gt;          &lt;li&gt;Sau khi thiết lập, bạn có thể tra cứu từ trong cửa sổ này hoặc &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;từ các ứng dụng khác bằng cách sử dụng Cửa sổ Quét bật lên&lt;/a&gt;.&lt;/li&gt;          &lt;li&gt;Để tùy chỉnh chương trình, hãy khám phá các cài đặt trong &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Sửa&lt;/span&gt;&lt;span&gt;Tùy chọn&lt;/span&gt;&lt;/span&gt;. Tất cả các cài đặt đều có chú giải công cụ, vì vậy hãy đọc kỹ chúng nếu có bất cứ điều gì không rõ ràng.&lt;/li&gt;        &lt;/ul&gt;      &lt;/section&gt;      &lt;p&gt;Nếu bạn cần trợ giúp thêm, có bất kỳ câu hỏi hoặc đề xuất nào, bạn luôn được chào đón tại &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;diễn đàn&lt;/a&gt; và &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;trang web&lt;/a&gt; của chương trình.&lt;/p&gt;      &lt;footer class=&quot;welcome-footer&quot;&gt;        &lt;small&gt;Dựa trên GoldenDict gốc của Konstantin Isakov (c) 2008-2013. Được duy trì và phát triển bởi Cộng đồng GoldenDict-NG. Được cấp phép theo GPLv3 trở lên.&lt;/small&gt;      &lt;/footer&gt;    &lt;/div&gt;</translation>
     </message>
   </context>
   <context>
@@ -101,10 +116,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>không tìm thấy cụm từ</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 trên %2 trận đấu</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +265,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Tạo ghi chú Anki</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>S&amp;ao chép âm thanh vào khay nhớ tạm</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>Không thể sao chép âm thanh</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>Không thể ghi dữ liệu âm thanh hoàn chỉnh</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>Âm thanh đã được sao chép vào khay nhớ tạm</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Không thể tải xuống âm thanh</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 trên %2 trận đấu</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Mở bài viết trong trình duyệt &amp;bên ngoài</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>Trình xem tài nguyên GoldenDict</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -274,52 +320,60 @@ between classic and school orthography in cyrillic)</source>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Chuyển đổi tiếng Trung</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Chuyển đổi tiếng Trung phồn thể sang giản thể</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Cho phép chuyển đổi giữa các ký tự tiếng Trung giản thể và phồn thể</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Bật chuyển đổi từ ký tự Trung Quốc giản thể/phồn thể sang ký tự Shinjitai tiếng Nhật</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>Phiên bản&amp;Chuyển đổi tiếng Trung</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Shinjitai Nhật Bản</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Cho phép chuyển đổi từ ký tự giản thể sang ký tự truyền thống (biến thể Đài Loan)</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>Chuyển đổi Shinjitai từ Trung Quốc sang Nhật Bản</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Cho phép chuyển đổi từ ký tự giản thể sang ký tự truyền thống (biến thể Hồng Kông)</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>Chuyển đổi ký tự Trung và Nhật</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>Cho phép chuyển đổi giữa chữ Trung giản thể, chữ Trung phồn thể (Đài Loan/Hồng Kông) và chữ Shinjitai tiếng Nhật</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Cho phép chuyển đổi từ chữ phồn thể sang chữ giản thể</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Chuyển đổi tiếng Trung giản thể sang tiếng Trung phồn thể (biến thể Đài Loan)</translation>
+      <source>Simplified</source>
+      <translation>Đơn giản hóa</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Chuyển đổi tiếng Trung giản thể sang tiếng Trung phồn thể (biến thể Hồng Kông)</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Bật chuyển đổi từ ký tự đơn giản sang ký tự truyền thống (Đài Loan)</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Chuyển đổi tiếng Trung phồn thể sang giản thể</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>Truyền thống (Đài Loan)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation type="unfinished">Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Bật chuyển đổi từ ký tự đơn giản sang ký tự truyền thống (Hồng Kông)</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation type="unfinished">Hong Kong variant</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Truyền thống (Hồng Kông)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation type="unfinished">Mainland variant</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>Đơn giản hóa thành chuyển đổi tiếng Trung phồn thể (Đài Loan)</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>Đơn giản hóa thành chuyển đổi tiếng Trung phồn thể (Hồng Kông)</translation>
     </message>
   </context>
   <context>
@@ -407,10 +461,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Bạn có chắc chắn muốn tạo một tập hợp các nhóm dựa trên các thư mục chứa không?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>Bạn có chắc chắn muốn tạo một tập hợp các nhóm dựa trên metadata.toml không?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Kết hợp nhóm theo ngôn ngữ nguồn &quot;%1-&gt;&quot;</translation>
     </message>
@@ -425,6 +475,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Kết hợp nhóm với &quot;%1&quot;</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Xóa nhóm</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>Bạn có muốn xóa nhóm &lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>Bạn có chắc chắn muốn tạo một tập hợp các nhóm dựa trên các tệp siêu dữ liệu từ điển không?</translation>
     </message>
   </context>
   <context>
@@ -454,10 +516,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Bộ lọc:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Kiểu tìm kiếm</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Xác định cách thức chuỗi bộ lọc sẽ được thể hiện</translation>
     </message>
@@ -480,18 +538,6 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Chỉ định số lượng tiêu đề được lọc tối đa được trả về.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Lọc kết quả tối đa:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Trợ giúp</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>ĐƯỢC RỒI</translation>
     </message>
     <message>
       <source>Text</source>
@@ -539,7 +585,11 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Regular Expression</source>
-      <translation type="unfinished">Regular Expression</translation>
+      <translation>Biểu thức chính quy</translation>
+    </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>Tối đa:</translation>
     </message>
   </context>
   <context>
@@ -573,10 +623,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Dịch sang:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Tệp chứa từ điển này:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Mô tả:</translation>
     </message>
@@ -595,6 +641,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Full-text search disabled</source>
       <translation>Tìm kiếm toàn văn bị vô hiệu hóa</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Vô hiệu hóa</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Cho phép</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>Thành phần từ điển:</translation>
     </message>
   </context>
   <context>
@@ -690,7 +748,35 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Restore selection</source>
-      <translation type="unfinished">Restore selection</translation>
+      <translation>Khôi phục lựa chọn</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>Hủy lập chỉ mục lại</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>Lên lịch lập chỉ mục lại</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>Hủy lịch lập chỉ mục lại</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>Từ điển đã được lên lịch để lập chỉ mục lại. Chỉ mục sẽ được xây dựng lại vào lần khởi động ứng dụng tiếp theo.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Thay đổi tên hiển thị</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Tên hiển thị mới:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Không thể lên lịch cho từ điển để lập chỉ mục lại.</translation>
     </message>
   </context>
   <context>
@@ -807,10 +893,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Thêm thư mục</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Xóa tất cả</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>yêu thích:</translation>
     </message>
@@ -819,16 +901,20 @@ between classic and school orthography in cyrillic)</source>
       <translation>Tất cả các mục đã chọn sẽ bị xóa. Tiếp tục?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Xóa tất cả các mục</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>Bạn có chắc chắn muốn xóa tất cả các mục không?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Xóa</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>Xóa Mục yêu thích</translation>
     </message>
   </context>
   <context>
@@ -956,28 +1042,12 @@ between classic and school orthography in cyrillic)</source>
       <translation>Thẻ 2</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>Tạo một nhóm từ điển mới</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>Thê&amp;m nhóm</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>Đổi tên nhóm từ điển hiện tại</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>Đổi tên &amp;nhóm</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Xóa nhóm hiện tại</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>&amp;Xóa nhóm</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1047,6 +1117,22 @@ between classic and school orthography in cyrillic)</source>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>Bạn có muốn xóa hết các nhóm?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>Thêm nhóm từ điển mới</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>Thê&amp;m nhóm</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>Nhóm đã tồn tại</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>Một nhóm có tên '%1' đã tồn tại.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1080,6 +1166,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>%1 Morphology</source>
       <translation>Hình thái học %1</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Chính tả đúng, không tìm thấy dạng từ nào khác.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>Từ %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Dạng từ cho %1: </translation>
     </message>
   </context>
   <context>
@@ -2099,7 +2197,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Kabyle</source>
-      <translation type="unfinished">Kabyle</translation>
+      <translation>Kabyle</translation>
     </message>
   </context>
   <context>
@@ -2387,10 +2485,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Thẻ mới</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>Chào mừng!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>API Khả năng truy cập không được bật</translation>
     </message>
@@ -2463,42 +2557,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Print Article</source>
       <translation>In Bài viết</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Hoàn thành Html (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Html đơn (*.html *.htm)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>Tệp PDF (*.pdf)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Mime Html (*.mhtml)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Lưu Bài viết như</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Lỗi</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Không thể lưu Bài viết: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Lưu bài viết...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Lưu bài viết hoàn tất</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2593,12 +2651,56 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Trình diễn</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation type="unfinished">Save PDF complete</translation>
+      <source>Lock Panels</source>
+      <translation>Khóa Bảng điều khiển</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation type="unfinished">Save PDF failed</translation>
+      <source>Clear History</source>
+      <translation>Xóa Lịch sử</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>Bạn có chắc chắn muốn xóa tất cả các mục lịch sử không?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Lưu tệp</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>Ứng dụng vẫn đang chạy trong nền. Nhấp vào biểu tượng khay để hiển thị cửa sổ.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Mở trong &amp; trình duyệt bên ngoài</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>Bây giờ đang xây dựng bộ nhớ đệm headwords: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Tiền tố</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>hậu tố</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Nhiều từ</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Tìm kiếm toàn văn…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Chế độ tìm kiếm</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Chế độ tìm kiếm: %1</translation>
     </message>
   </context>
   <context>
@@ -2615,15 +2717,15 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Lỗi phân tích XML: %1 ở %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>Lỗi phân tích JSON</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Lỗi phân tích XML: %1 ở %2,%3</translation>
+      <source>JSON parse error</source>
+      <translation>Lỗi phân tích JSON</translation>
     </message>
   </context>
   <context>
@@ -2699,10 +2801,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Mô tả:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Tệp chứa từ điển này:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Điều chỉnh thứ tự bằng cách kéo và thả các từ điển để di chuyển vị trí. Thả vào ô không hoạt động để vô hiệu hoá từ điển.</translation>
     </message>
@@ -2721,6 +2819,18 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Từ điển hoạt động:%1, không hoạt động: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Thay đổi tên hiển thị</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Tên hiển thị mới:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>Các thành phần từ điển:</translation>
     </message>
   </context>
   <context>
@@ -2765,28 +2875,12 @@ không cần chuyển ngay sang chúng.</translation>
       <translation>Mở thẻ mới dưới nền</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Với tùy chọn này, các thẻ mới sẽ được mở ngay sau 
-thẻ hiện tại (thẻ đang mở). Nếu không chúng sẽ được 
-thêm vào sau cùng.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Mở thẻ mới ngay sau thẻ hiện tại</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Ẩn thẻ trên thanh thẻ chính nếu chỉ duy nhất một thẻ được mở.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Ẩn thẻ đơn nhất</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>Thứ tự MRU: Thứ tự được sử dụng gần đây nhất.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2873,8 +2967,98 @@ the application.</source>
       <translation>Giới hạn từ điển trong trình đơn ngữ cảnh:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>Mặc định hệ thống</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Mặc định</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Cổ điển</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Hiện đại</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Lingvo</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Ba-by-lôn</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Lingoes</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Lingoes-Blue</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Khởi động lại chương trình để áp dụng thay đổi ngôn ngữ.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Khởi động lại để áp dụng thay đổi kiểu giao diện.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Khởi động lại để áp dụng thay đổi phông chữ giao diện.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>khởi động lại cần thiết</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Cho phép</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Vô hiệu hóa</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Tự động</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Không</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>Với tùy chọn này, các tab mới sẽ được mở ngay sau tab hiện tại, đang hoạt động. Nếu không, chúng sẽ được thêm vào cuối cùng.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp;Kiểu</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Vẻ bề ngoài</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Interface language</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Article Display style</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Add-on style</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Interface Style</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2893,12 +3077,16 @@ the application.</source>
       <translation>Chế độ đầu đọc tối</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Các phông chữ này sẽ được áp dụng khi không tìm thấy phông chữ được chỉ định bởi từ điển.</translation>
+      <source>Preview Font</source>
+      <translation>Preview Font</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Phông chữ dự phòng</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng là phần mềm từ điển.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Các phông chữ này sẽ được áp dụng khi không tìm thấy phông chữ được chỉ định bởi từ điển.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2915,10 +3103,6 @@ the application.</source>
     <message>
       <source>Monospace Font</source>
       <translation>Phông chữ đơn cách</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Quét Popup</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2954,8 +3138,8 @@ in the pressed state when the word selection changes.</source>
       <translation>Khi chọn từ cần tra nghĩa, nhấn phím tắt đã chọn để hiện popup.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Chỉ giải quyết lựa chọn khi tất cả các phím đã chọn được nhấn:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>Chỉ theo dõi lựa chọn khi tất cả các phím đã chọn được giữ nhấn:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3038,20 +3222,8 @@ in the pressed state when the word selection changes.</source>
       <translation>Phát các tệp âm thanh thông qua hỗ trợ âm thanh tích hợp</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Sử dụng trình phát nội bộ:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Chọn đầu cuối âm thanh</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Sử dụng bất cứ chương trình ngoài nào để phát tệp âm thanh</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Sử dụng chương trình ngoài:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3116,28 +3288,12 @@ cho tất cả các yêu cầu mạng của chương trình.</translation>
       <translation>Deck:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Mô hình:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Từ</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Trường từ vựng...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Chữ</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Trường định nghĩa...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Câu</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3154,42 +3310,6 @@ you are browsing. If some site breaks because of this, try disabling this.</sour
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>Không cho phép tải nội dung từ các trang khác (tắt các quảng cáo)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Một vài trang mạng nhận ra Từ điển Vàng thông qua phần đầu giao thức HTTP
-và chặn truy vấn. Bật tính năng này để không chèn định danh vào truy vấn HTTP.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>Không định danh Từ điển Vàng trong phần đầu giao thức HTTP</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Kích thước bộ đệm mạng tối đa:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Dung lượng ổ đĩa tối đa do bộ đệm mạng của GoldenDict chiếm trong
-%1
-Nếu được đặt thành 0, bộ đệm đĩa mạng sẽ bị tắt.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> MiB</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>Khi tùy chọn này được bật, GoldenDict
-sẽ xóa bộ đệm mạng của nó khỏi đĩa trong khi thoát.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Xóa bộ đệm mạng khi thoát</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3249,8 +3369,12 @@ download page.</source>
       <translation>Số lịch sử tối đa:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Tần suất lưu lịch sử. Nếu đặt giá trị 0, lịch sử sẽ được lưu khi thoát chương trình.</translation>
+      <source>Favorites</source>
+      <translation>Yêu thích</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Khoảng thời gian lưu yêu thích. Nếu được đặt thành 0 Mục ưa thích sẽ chỉ được lưu trong khi thoát.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3259,14 +3383,6 @@ download page.</source>
     <message>
       <source>minutes</source>
       <translation>phút</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Yêu thích</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Khoảng thời gian lưu yêu thích. Nếu được đặt thành 0 Mục ưa thích sẽ chỉ được lưu trong khi thoát.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3365,112 +3481,112 @@ từ các từ điển Stardict, Babylon và GLS</translation>
       <translation>Xóa chỉ mục không hợp lệ khi thoát</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>Mặc định hệ thống</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Mặc định</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Cổ điển</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Hiện đại</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Lingvo</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Ba-by-lôn</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Lingoes</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Lingoes-Blue</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Chế độ tự động không có tác dụng gì trên một số hệ thống.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Khởi động lại chương trình để áp dụng thay đổi ngôn ngữ.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Khởi động lại để áp dụng thay đổi kiểu giao diện.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Khởi động lại để áp dụng thay đổi phông chữ giao diện.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>khởi động lại cần thiết</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Cho phép</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Vô hiệu hóa</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Tự động</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Lưu thông điệp gỡ lỗi vào gd_log.txt trong thư mục cấu hình</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Interface language</translation>
+      <source>S&amp;can</source>
+      <translation>Qué&amp;t</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Article Display style</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>Chặn các cảnh báo, xác nhận và lời nhắc JavaScript trong chế độ xem bài viết.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Add-on style</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>Chặn hộp thoại JavaScript</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Interface Style</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>Mở từ điển trang web trong tab riêng biệt</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Preview Font</translation>
+      <source>Anki</source>
+      <translation type="unfinished">Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation type="unfinished">GoldenDict-ng is a dictionary software.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>Cho phép JavaScript truy cập khay nhớ tạm trong chế độ xem bài viết.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation type="unfinished">Enable Interface Font</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>Bật quyền truy cập khay nhớ tạm JavaScript (cần khởi động lại)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>Khởi động lại để áp dụng thay đổi truy cập khay nhớ tạm JavaScript.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation type="unfinished">Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>Ẩn thanh tab khi chỉ mở một tab.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Không</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Sử dụng bất kỳ trình phát âm thanh bên ngoài nào để phát các tệp âm thanh</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Xem hướng dẫn cấu hình chi tiết</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>Đường dẫn âm thanh sẽ được chuyển dưới dạng đối số dòng lệnh đến trình phát bên ngoài. </translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation>Trình phát âm thanh bên trong:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation>Trình phát âm thanh bên ngoài:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>Tự động chuyển đổi dựa trên chủ đề hệ thống.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>Tùy chỉnh phông chữ</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>Biểu tượng Dock luôn được hiển thị khi cửa sổ chính đang mở để macOS có thể hiển thị tên ứng dụng và menu. Bật tùy chọn này để giữ biểu tượng Dock hiển thị sau khi cửa sổ chính bị ẩn.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>Giữ biểu tượng Dock hiển thị ở nền</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>Thêm âm thanh vào thẻ Anki khi có sẵn</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>Khi được bật, các từ điển trang web sẽ mở trong tab riêng thay vì được nhúng trong chế độ xem bài viết. Điều này giúp tránh các giới hạn về bố cục iframe và việc cuộn, đồng thời kích hoạt cột Script cho từng từ điển trong hộp thoại Từ điển.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Từ:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>Văn bản:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Câu:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Phông chữ giao diện</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Dòng tùy chỉnh</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Kích thước tùy chỉnh</translation>
     </message>
   </context>
   <context>
@@ -3610,11 +3726,63 @@ từ các từ điển Stardict, Babylon và GLS</translation>
     </message>
     <message>
       <source>Force the word to be translated in Popup.</source>
-      <translation type="unfinished">Force the word to be translated in Popup.</translation>
+      <translation>Buộc từ được dịch trong cửa sổ bật lên.</translation>
     </message>
     <message>
       <source>Force the word to be translated in the mainwindow.</source>
-      <translation type="unfinished">Force the word to be translated in the mainwindow.</translation>
+      <translation>Buộc dịch từ trong cửa sổ chính.</translation>
+    </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>URL trang web:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>Trong URL, "%GDWORD%" sẽ được thay thế bằng từ đang được tìm kiếm.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Hoàn thành Html (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Html đơn (*.html *.htm)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>Tài liệu PDF (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Mime Html (*.mhtml)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Lưu Bài viết như</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Lưu bài viết hoàn tất</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Lỗi</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Không thể lưu Bài viết: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Save PDF complete</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Save PDF failed</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Đang lưu bài viết... (%1/%2)</translation>
     </message>
   </context>
   <context>
@@ -3646,6 +3814,10 @@ từ các từ điển Stardict, Babylon và GLS</translation>
       <source>The referenced resource failed to download.</source>
       <translation>Nguồn tham chiếu lỗi tải xuống.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>Tài nguyên sẽ được lưu bên ngoài thư mục đích.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3671,6 +3843,26 @@ từ các từ điển Stardict, Babylon và GLS</translation>
       <source>WARNING: %1</source>
       <translation>CẢNH BÁO: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>Định nghĩa</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Đóng thẻ hiện tại</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Đóng tất cả thẻ trừ thẻ hiện tại</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Đóng tất cả các thẻ</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Mở trong &amp; trình duyệt bên ngoài</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3695,10 +3887,6 @@ từ các từ điển Stardict, Babylon và GLS</translation>
       <translation>Send word to main window (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation type="unfinished">Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Add word to Favorites (Ctrl+E)</translation>
     </message>
@@ -3711,6 +3899,10 @@ từ các từ điển Stardict, Babylon và GLS</translation>
 could be resized or managed in other ways.</source>
       <translation>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Lưu Bài viết</translation>
     </message>
   </context>
   <context>
@@ -3988,27 +4180,27 @@ Có thể tìm thấy danh sách đầy đủ các ngôn ngữ khả dụng &lt;
     </message>
     <message>
       <source>The most widely used method of transcription of Japanese, based on English phonology</source>
-      <translation type="unfinished">The most widely used method of transcription of Japanese, based on English phonology</translation>
+      <translation>Phương pháp phiên âm tiếng Nhật phổ biến nhất, dựa trên ngữ âm tiếng Anh</translation>
     </message>
     <message>
       <source>Remove selected directories from the list?</source>
-      <translation type="unfinished">Remove selected directories from the list?</translation>
+      <translation>Xóa các thư mục đã chọn khỏi danh sách?</translation>
     </message>
     <message>
       <source>Remove %1 directories from the list?</source>
-      <translation type="unfinished">Remove %1 directories from the list?</translation>
+      <translation>Xóa %1 thư mục khỏi danh sách?</translation>
     </message>
     <message>
       <source>Remove %1 sites from the list?</source>
-      <translation type="unfinished">Remove %1 sites from the list?</translation>
+      <translation>Xóa %1 trang khỏi danh sách?</translation>
     </message>
     <message>
       <source>Remove %1 servers from the list?</source>
-      <translation type="unfinished">Remove %1 servers from the list?</translation>
+      <translation>Xóa %1 máy chủ khỏi danh sách?</translation>
     </message>
     <message>
       <source>Remove %1 programs from the list?</source>
-      <translation type="unfinished">Remove %1 programs from the list?</translation>
+      <translation>Xóa %1 chương trình khỏi danh sách?</translation>
     </message>
   </context>
   <context>
@@ -4105,18 +4297,21 @@ Có thể tìm thấy danh sách đầy đủ các ngôn ngữ khả dụng &lt;
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Chèn bài viết dưới dạng liên kết bên trong thẻ &lt;iframe&gt;</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>Từ điển trang web này được mở trong một tab mới</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Tắt đi &quot;Mở từ điển trang web trong tab riêng biệt&quot; trong phần Tùy chọn để hiển thị trang web bên trong bài viết thay thế.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Bật</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Dưới dạng liên kết</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4129,6 +4324,22 @@ Có thể tìm thấy danh sách đầy đủ các ngôn ngữ khả dụng &lt;
     <message>
       <source>Icon</source>
       <translation>Biểu tượng</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Tập lệnh</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>Tên tệp biểu tượng. Tương đối so với thư mục cấu hình.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>Chỉ khả dụng khi mở trang web trong các tab riêng biệt. Có thể là đường dẫn tệp (tương đối với thư mục cấu hình hoặc tuyệt đối) hoặc nội dung tập lệnh trực tiếp.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>Cột này bị vô hiệu hóa vì tùy chọn "Mở từ điển trang web trong tab riêng biệt" không được bật trong Tùy chọn.</translation>
     </message>
   </context>
   <context>

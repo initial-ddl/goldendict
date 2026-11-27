@@ -33,6 +33,7 @@
 #include <QSvgRenderer>
 #include <QtConcurrentRun>
 #include "utils.hh"
+#include "common/globalbroadcaster.hh"
 
 namespace Dsl {
 
@@ -207,7 +208,7 @@ public:
       return;
     }
     if ( metadata_enable_fts.has_value() ) {
-      can_FTS = fts.enabled && metadata_enable_fts.value();
+      can_FTS = metadata_enable_fts.value();
     }
     else {
       can_FTS = fts.enabled && !fts.disabledTypes.contains( "DSL", Qt::CaseInsensitive )
@@ -260,7 +261,7 @@ DslDictionary::DslDictionary( const string & id, const string & indexFile, const
   BtreeDictionary( id, dictionaryFiles ),
   idx( indexFile, QIODevice::ReadOnly ),
   idxHeader( idx.read< IdxHeader >() ),
-  dz( 0 ),
+  dz( nullptr ),
   deferredInitRunnableStarted( false ),
   optionalPartNom( 0 ),
   articleNom( 0 )
@@ -825,7 +826,7 @@ string DslDictionary::nodeToHtml( const ArticleDom::Node & node )
       result += addAudioLink( url.toEncoded(), getId() );
 
       result += "<span class=\"dsl_s_wav\"><a href=" + ref
-        + R"(><img src="qrc:///icons/playsound.png" border="0" align="absmiddle" alt="Play"/></a></span>)";
+        + R"(><img src="qrc:///icons/playsound.svg" border="0" align="absmiddle" alt="Play"/></a></span>)";
     }
     else if ( Filetype::isNameOfPicture( filename ) ) {
       QUrl url;
@@ -1515,7 +1516,7 @@ void DslArticleRequest::run()
       if ( dict.hasHiddenZones() ) {
         string prefix = "O" + dict.getId().substr( 0, 7 ) + "_" + QString::number( dict.articleNom ).toStdString();
         string id1    = prefix + "_expand";
-        string id2    = "gdarticlefrom-" + dict.getId();
+        string id2    = "gd-" + dict.getId();
         string button = R"( <img src="qrc:///icons/expand_opt.svg" class="hidden_expand_opt" id=")" + id1
           + "\" onclick=\"gdExpandOptPart('" + id1 + "','" + id2 + "')\" alt=\"[+]\"/>";
         if ( articleText.compare( articleText.size() - 4, 4, "</p>" ) == 0 ) {
@@ -1584,7 +1585,6 @@ public:
   {
     isCancelled.ref();
     f.waitForFinished();
-    //hasExited.acquire();
   }
 };
 
@@ -1602,27 +1602,116 @@ void DslResourceRequest::run()
     return;
   }
 
+  // The article renderer appends the name of the sound dictionary specified
+  // via the #SOUND_DICTIONARY directive as a URL fragment. Strip it off and
+  // remember it so that the sound can be looked up in that dictionary.
+  string soundDictName;
+  const auto fragPos = resourceName.find( '#' );
+  if ( fragPos != string::npos ) {
+    soundDictName = resourceName.substr( fragPos + 1 );
+    resourceName.resize( fragPos );
+  }
+
   string n = dict.getContainingFolder().toStdString() + Utils::Fs::separator() + resourceName;
 
   auto fp = Utils::Fs::findFirstExistingFile(
     { n, dict.getResourceDir1() + resourceName, dict.getResourceDir2() + resourceName } );
   qDebug( "found dsl resource name is %s", fp.c_str() );
+
+  auto loadFromDict = [ this ]( const sptr< Dictionary::Class > & sourceDict ) -> bool {
+    if ( !sourceDict ) {
+      return false;
+    }
+    try {
+      sptr< Dictionary::DataRequest > req = sourceDict->getResource( resourceName );
+
+      if ( req->isFinished() && req->dataSize() > 0 ) {
+        data       = req->getFullData();
+        hasAnyData = true;
+        return true;
+      }
+    }
+    catch ( std::exception & ) {
+    }
+    return false;
+  };
+
   try {
     QMutexLocker _( &dataMutex );
 
     if ( !fp.empty() ) {
       File::loadFromFile( fp, data );
+      hasAnyData = true;
     }
     else if ( dict.resourceZip.isOpen() ) {
       if ( !dict.resourceZip.loadFile( Text::toUtf32( resourceName ), data ) ) {
         throw std::runtime_error( "Failed to load file from resource zip" );
       }
+      hasAnyData = true;
     }
     else {
-      throw std::runtime_error( "Resource zip not opened" );
+      // 1. The sound dictionary specified via the #SOUND_DICTIONARY directive.
+      //    When the URL carries no fragment, fall back to the directive stored
+      //    in the dictionary's header.
+      if ( soundDictName.empty() && !dict.preferredSoundDictionary.empty() ) {
+        soundDictName = dict.preferredSoundDictionary;
+      }
+
+      if ( !soundDictName.empty() ) {
+        loadFromDict(
+          GlobalBroadcaster::instance()->getSoundDictionaryByName( QString::fromUtf8( soundDictName.c_str() ) ) );
+      }
+
+      // 2. Try the .lsa dictionary if existed.
+      // The original resource request failed. Let's try to find a matching .lsa dictionary.
+      // Dictionaries muted in the dictionary bar are not used.
+      if ( !hasAnyData ) {
+        QString containingFolder = dict.getContainingFolder();
+        if ( !containingFolder.isEmpty() ) {
+          QDir dir( containingFolder );
+          QStringList lsaFiles = dir.entryList( QStringList() << "*.lsa", QDir::Files );
+
+          if ( !lsaFiles.isEmpty() ) {
+            QString lsaFilePath = dir.absoluteFilePath( lsaFiles.first() );
+            QString lsaDictId   = GlobalBroadcaster::instance()->getLsaIdFromPath( lsaFilePath );
+
+            if ( !lsaDictId.isEmpty() && GlobalBroadcaster::instance()->isDictionaryEnabledInBar( lsaDictId ) ) {
+              sptr< Dictionary::Class > lsaDict = GlobalBroadcaster::instance()->getDictionaryById( lsaDictId );
+
+              if ( lsaDict ) {
+                loadFromDict( lsaDict );
+              }
+            }
+          }
+        }
+      }
+
+      // 3. Try the sound dir dictionaries. Their sounds ( plain files or
+      //    "universal" .lsa archives ) are shared between dictionaries.
+      //    Dictionaries muted in the dictionary bar are not used.
+      if ( !hasAnyData ) {
+        const auto & soundDirIds = GlobalBroadcaster::instance()->getSoundDirDictIds();
+        for ( const auto & id : soundDirIds ) {
+          if ( !GlobalBroadcaster::instance()->isDictionaryEnabledInBar( id ) ) {
+            continue;
+          }
+
+          if ( loadFromDict( GlobalBroadcaster::instance()->getDictionaryById( id ) ) ) {
+            break;
+          }
+        }
+      }
+    }
+
+    if ( !hasAnyData ) {
+      throw std::runtime_error( "Resource not found." );
     }
 
     if ( Filetype::isNameOfTiff( resourceName ) ) {
+      if ( data.empty() ) {
+        throw std::runtime_error( "Empty TIFF resource." );
+      }
+
       // Convert it
       GdTiff::tiff2img( data );
     }
@@ -1630,10 +1719,10 @@ void DslResourceRequest::run()
     hasAnyData = true;
   }
   catch ( std::exception & ex ) {
-    qWarning( "DSL: Failed loading resource \"%s\" for \"%s\", reason: %s",
-              resourceName.c_str(),
-              dict.getName().c_str(),
-              ex.what() );
+    hasAnyData = false;
+    qWarning() << "DSL: Failed loading resource" << QString::fromStdString( resourceName ) << "for"
+               << QString::fromStdString( dict.getName() ) << ", reason:" << ex.what();
+
     // Resource not loaded -- we don't set the hasAnyData flag then
   }
 
@@ -1875,9 +1964,10 @@ vector< sptr< Dictionary::Class > > makeDictionaries( const vector< string > & f
 
             hasString = false;
 
-            // The line read should either consist of pure whitespace, or be a headword
-            // skip too long headword,it can never be headword.
-            if ( curString.empty() || curString.size() > 100 ) {
+            // The line read should either consist of pure whitespace, or be a headword.
+            // Too long lines are kept as headwords: addWord() truncates the index key
+            // at a word boundary while the article itself stays reachable.
+            if ( curString.empty() ) {
               continue;
             }
 

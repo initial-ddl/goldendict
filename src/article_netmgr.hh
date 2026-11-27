@@ -14,105 +14,19 @@
 
 using std::vector;
 
+/// Robustly resolves the MIME type for an article/resource URL served via a
+/// custom scheme (gdlookup, bres, gdau, ...). It consults an extension
+/// whitelist first so it does not depend on the system's shared-mime-info
+/// database (which may be missing on minimal Linux installs and makes
+/// QtWebEngine fall back to text/plain, rendering HTML as raw source), then
+/// QMimeDatabase, and finally sniffs the payload so HTML documents are never
+/// misreported as text/plain. When \a data is empty (e.g. the payload is not
+/// available yet) only the URL-based heuristics are applied.
+QByteArray getMimeTypeWithFallback( const QUrl & url, const QByteArray & data = QByteArray() );
+
 /// A custom QNetworkAccessManager version which fetches images from the
 /// dictionaries when requested.
 
-// Proxy class for QNetworkReply to remove X-Frame-Options header
-// It allow to show websites in <iframe> tag like Qt 4.x
-
-class AllowFrameReply: public QNetworkReply
-{
-  Q_OBJECT
-
-private:
-  QNetworkReply * baseReply;
-  QByteArray buffer;
-
-  AllowFrameReply();
-  AllowFrameReply( const AllowFrameReply & );
-
-public:
-  explicit AllowFrameReply( QNetworkReply * _reply );
-  ~AllowFrameReply()
-  {
-    delete baseReply;
-  }
-
-  void close() override
-  {
-    baseReply->close();
-  }
-
-  // QIODevice virtual functions
-  qint64 bytesAvailable() const override;
-  bool atEnd() const override
-  {
-    return baseReply->atEnd();
-  }
-  qint64 bytesToWrite() const override
-  {
-    return baseReply->bytesToWrite();
-  }
-  bool canReadLine() const override
-  {
-    return baseReply->canReadLine();
-  }
-  bool isSequential() const override
-  {
-    return baseReply->isSequential();
-  }
-  bool waitForReadyRead( int msecs ) override
-  {
-    return baseReply->waitForReadyRead( msecs );
-  }
-  bool waitForBytesWritten( int msecs ) override
-  {
-    return baseReply->waitForBytesWritten( msecs );
-  }
-  bool reset() override
-  {
-    return baseReply->reset();
-  }
-
-public slots:
-  void applyError( QNetworkReply::NetworkError code );
-
-  // Redirect QNetworkReply slots
-  void abort() override
-  {
-    baseReply->abort();
-  }
-  void ignoreSslErrors() override
-  {
-    baseReply->ignoreSslErrors();
-  }
-
-protected:
-  // QNetworkReply virtual functions
-  void ignoreSslErrorsImplementation( const QList< QSslError > & errors ) override
-  {
-    baseReply->ignoreSslErrors( errors );
-  }
-  void setSslConfigurationImplementation( const QSslConfiguration & configuration ) override
-  {
-    baseReply->setSslConfiguration( configuration );
-  }
-  void sslConfigurationImplementation( QSslConfiguration & configuration ) const override
-  {
-    configuration = baseReply->sslConfiguration();
-  }
-
-  // QIODevice virtual functions
-  qint64 readData( char * data, qint64 maxSize ) override;
-  qint64 readLineData( char * data, qint64 maxSize ) override
-  {
-    return baseReply->readLine( data, maxSize );
-  }
-  qint64 writeData( const char * data, qint64 maxSize ) override
-  {
-    return baseReply->write( data, maxSize );
-  }
-};
 
 enum class ResourceType {
   UNTITLE,
@@ -126,7 +40,6 @@ class ArticleNetworkAccessManager: public QNetworkAccessManager
   const vector< sptr< Dictionary::Class > > & dictionaries;
   const ArticleMaker & articleMaker;
   const bool & disallowContentFromOtherSites;
-  const bool & hideGoldenDictHeader;
   QMimeDatabase db;
 
 public:
@@ -134,13 +47,11 @@ public:
   ArticleNetworkAccessManager( QObject * parent,
                                const vector< sptr< Dictionary::Class > > & dictionaries_,
                                const ArticleMaker & articleMaker_,
-                               const bool & disallowContentFromOtherSites_,
-                               const bool & hideGoldenDictHeader_ ):
+                               const bool & disallowContentFromOtherSites_ ):
     QNetworkAccessManager( parent ),
     dictionaries( dictionaries_ ),
     articleMaker( articleMaker_ ),
-    disallowContentFromOtherSites( disallowContentFromOtherSites_ ),
-    hideGoldenDictHeader( hideGoldenDictHeader_ )
+    disallowContentFromOtherSites( disallowContentFromOtherSites_ )
   {
   }
 
@@ -152,6 +63,13 @@ public:
 
   virtual QNetworkReply * getArticleReply( const QNetworkRequest & req );
   string getHtml( ResourceType resourceType );
+
+private:
+  sptr< Dictionary::DataRequest > handleInternalScheme( const QUrl & url, QString & contentType );
+
+  sptr< Dictionary::DataRequest > handleLookupScheme( const QUrl & url, QString & contentType );
+
+  sptr< Dictionary::DataRequest > handleResourceScheme( const QUrl & url, QString & contentType );
 };
 
 class ArticleResourceReply: public QNetworkReply
@@ -237,4 +155,5 @@ protected:
 private:
   ArticleNetworkAccessManager & mManager;
   QNetworkAccessManager mgr;
+  static bool isInvalidLookupUrl( const QUrl & url );
 };

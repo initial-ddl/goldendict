@@ -9,29 +9,41 @@ ResourceSchemeHandler::ResourceSchemeHandler( ArticleNetworkAccessManager & arti
 void ResourceSchemeHandler::requestStarted( QWebEngineUrlRequestJob * requestJob )
 {
   const QUrl url = requestJob->requestUrl();
+
+  // These schemes serve dictionary resources and user files, which are only
+  // ever referenced from pages GoldenDict itself renders (gdlookup, bword,
+  // ...). Content from a remote origin -- e.g. a website dictionary's page, or
+  // any site the article view navigated to -- has no legitimate use for them;
+  // without this check its JavaScript could fetch dictionary or user files
+  // and exfiltrate them to its own origin.
+  const QUrl initiator = requestJob->initiator();
+  if ( initiator.scheme() == QLatin1String( "http" ) || initiator.scheme() == QLatin1String( "https" ) ) {
+    qDebug() << "Blocking custom scheme request from remote origin:" << url.toString();
+    requestJob->fail( QWebEngineUrlRequestJob::RequestDenied );
+    return;
+  }
+
+  // The content type is resolved in replyJob, where the actual payload is
+  // available and can be sniffed. The out-parameter below is therefore unused.
   QString content_type;
-  const QMimeType mineType                    = db.mimeTypeForUrl( url );
   const sptr< Dictionary::DataRequest > reply = this->mManager.getResource( url, content_type );
-  content_type                                = mineType.name();
 
   if ( reply == nullptr ) {
     qDebug() << "Resource failed to load: " << url.toString();
     requestJob->fail( QWebEngineUrlRequestJob::RequestFailed );
   }
   else if ( reply->isFinished() ) {
-    replyJob( reply, requestJob, content_type );
+    replyJob( reply, requestJob );
   }
   else {
     connect( reply.get(), &Dictionary::DataRequest::finished, requestJob, [ = ]() {
-      replyJob( reply, requestJob, content_type );
+      replyJob( reply, requestJob );
     } );
   }
 }
 
 
-void ResourceSchemeHandler::replyJob( sptr< Dictionary::DataRequest > reply,
-                                      QWebEngineUrlRequestJob * requestJob,
-                                      QString content_type )
+void ResourceSchemeHandler::replyJob( sptr< Dictionary::DataRequest > reply, QWebEngineUrlRequestJob * requestJob )
 {
   if ( !reply.get() ) {
     requestJob->fail( QWebEngineUrlRequestJob::UrlNotFound );
@@ -42,13 +54,21 @@ void ResourceSchemeHandler::replyJob( sptr< Dictionary::DataRequest > reply,
     requestJob->fail( QWebEngineUrlRequestJob::UrlNotFound );
     return;
   }
+
+  // Resolve the content type robustly: extension whitelist first (independent
+  // of the system's shared-mime-info), then QMimeDatabase, then sniff the
+  // payload so HTML is never misreported as text/plain on misconfigured
+  // systems. This is where the full data is available, so data sniffing works.
+  const QByteArray contentType =
+    getMimeTypeWithFallback( requestJob->requestUrl(), QByteArray( data.data(), data.size() ) );
+
   QByteArray * ba  = new QByteArray( data.data(), data.size() );
   QBuffer * buffer = new QBuffer( ba );
   buffer->open( QBuffer::ReadOnly );
   buffer->seek( 0 );
 
   // Reply segment
-  requestJob->reply( content_type.toLatin1(), buffer );
+  requestJob->reply( contentType, buffer );
 
   connect( requestJob, &QObject::destroyed, buffer, [ = ]() {
     buffer->close();

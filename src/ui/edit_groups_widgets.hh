@@ -204,21 +204,29 @@ public:
 
   QItemSelectionModel * getCurrentSelectionModel() const;
 
+protected:
+  void tabInserted( int index ) override;
+  void tabRemoved( int index ) override;
+
 private:
 
   /// Add source group to target group
   void combineGroups( int source, int target );
 
-  unsigned nextId;
   const std::vector< sptr< Dictionary::Class > > * allDicts;
   const std::vector< sptr< Dictionary::Class > > * activeDicts;
 
 private slots:
   void contextMenu( const QPoint & );
   void tabDataChanged();
+  void removeTabRequested( int index );
+  void addNewTab();
+
 
 signals:
   void showDictionaryInfo( const QString & id );
+  void countChanged();
+  void newTabRequested();
 };
 
 class QuickFilterLine: public QLineEdit

@@ -6,7 +6,6 @@
 #include "article_netmgr.hh"
 #include "ui/articleview.hh"
 #include "wordfinder.hh"
-#include "keyboardstate.hh"
 #include "config.hh"
 #include "ui_scanpopup_toolbar.h"
 #include <QClipboard>
@@ -17,26 +16,22 @@
 #include <QActionGroup>
 #include "groupcombobox.hh"
 #include "translatebox.hh"
+#include "maintabwidget.hh"
 #ifdef WITH_X11
   #include "scanflag.hh"
 #endif
 
+class QMenu;
 
 /// This is a popup dialog to show translations when clipboard scanning mode
 /// is enabled.
-class ScanPopup: public QMainWindow, KeyboardState
+class ScanPopup: public QMainWindow
 {
   Q_OBJECT
 
 public:
 
-  ScanPopup( QWidget * parent,
-             Config::Class & cfg,
-             ArticleNetworkAccessManager &,
-             const AudioPlayerPtr &,
-             const std::vector< sptr< Dictionary::Class > > & allDictionaries,
-             const Instances::Groups &,
-             History & );
+  ScanPopup( QWidget * parent, Config::Class & cfg, ArticleNetworkAccessManager &, History & );
 
   ~ScanPopup();
 
@@ -99,12 +94,14 @@ public slots:
   void editGroupRequested();
 
   void setGroupByName( const QString & name ) const;
+  void openWebsiteInNewTab( QString name, QString url, QString dictId, bool isPopup, QString word = QString() );
 
 #ifdef WITH_X11
   void showEngagePopup();
 #endif
   void openSearch();
 
+  void reloadAllTabs();
 
 private:
 
@@ -137,18 +134,25 @@ private:
   QAction escapeAction, switchExpandModeAction, focusTranslateLineAction;
   QAction stopAudioAction;
   QAction openSearchAction;
+  QAction sendWordAction;
   QString pendingWord; // Word that is going to be translated
   WordFinder wordFinder;
-  Config::Events configEvents;
   DictionaryBar dictionaryBar;
   QToolBar * foundBar;
   QActionGroup * actionGroup = nullptr;
   MainStatusBar * mainStatusBar;
+  MainTabWidget * tabWidget;
+  QMenu * tabMenu;
+  QAction * openInExternalBrowserAction;
+  QAction * closeCurrentTabAction;
+  QAction * closeRestTabsAction;
+  QAction * closeAllTabsAction;
+  ArticleNetworkAccessManager & articleNetMgr;
   /// Fonts saved before words zooming is in effect, so it could be reset back.
   QFont wordListDefaultFont, translateLineDefaultFont, groupListDefaultFont;
 
 #ifdef WITH_X11
-  ScanFlag * scanFlag;
+  ScanFlag * scanFlag = nullptr;
 #endif
 
   bool mouseEnteredOnce = false;
@@ -187,7 +191,7 @@ private:
   virtual void moveEvent( QMoveEvent * );
 
   /// Returns inputWord, chopped with appended ... if it's too long/
-  QString elideInputWord();
+  QString elideInputWord() const;
 
   void updateBackForwardButtons() const;
 
@@ -195,14 +199,17 @@ private:
 
   void updateSuggestionList();
   void updateSuggestionList( const QString & text );
+  ArticleView * findArticleViewByDictId( const QString & dictId );
 private slots:
   void currentGroupChanged( int );
   void prefixMatchFinished();
   void pinButtonClicked( bool checked );
   void dictionaryBar_visibility_changed( bool visible );
-  void showStatusBarMessage( const QString &, int, const QPixmap & ) const;
+  /// Status bar message slot function, used to handle status bar message signals sent by the dictionary bar
+  void showStatusBarMessage( const QString & message, int timeout = 3000, const QPixmap & icon = QPixmap() );
 
   void pronounceButton_clicked() const;
+  void saveArticleButton_clicked();
   void sendWordButton_clicked();
   void sendWordToFavoritesButton_clicked();
   void goBackButton_clicked() const;
@@ -235,6 +242,14 @@ private slots:
   void alwaysOnTopClicked( bool checked );
 
   void titleChanged( ArticleView *, const QString & title ) const;
+  void activeArticleChanged( const ArticleView *, const QString & id );
   void updateFoundInDictsList();
   void onActionTriggered();
+
+  void tabMenuRequested( QPoint pos );
+  void openCurrentTabInExternalBrowser();
+
+  void closeCurrentTab();
+  void closeRestTabs();
+  void closeAllTabs();
 };

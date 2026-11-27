@@ -7,6 +7,7 @@
 #include "ex.hh"
 #include <QDateTime>
 #include <QDomDocument>
+#include <QHash>
 #include <QKeySequence>
 #include <QList>
 #include <QLocale>
@@ -17,21 +18,24 @@
 #include <QString>
 #include <QThread>
 #include <optional>
+#include <QDir>
 
 /// Special group IDs
 enum GroupId : unsigned {
   AllGroupId  = UINT_MAX - 1, /// The 'All' group
-  HelpGroupId = UINT_MAX,     /// The fictitious 'Help' group
   NoGroupId   = 0,            /// Invalid value, used to specify that no group id is specified at all.
 };
 
 /// GoldenDict's configuration
 namespace Config {
 
-//define a default font fize value
-constexpr int DEFAULT_FONT_SIZE = 12;
+// Current configuration file format version. Bump when a persisted value
+// changes its semantics so older configs can be migrated on load.
+constexpr int CONFIG_VERSION        = 2;
+constexpr int CONFIG_VERSION_LEGACY = 1;
+// v1: pixelSize + single enableInterfaceFont
+// v2: pointSize + enableInterfaceFontFamily / enableInterfaceFontSize
 
-const QString WEBSITE_PROXY_PREFIX = "iframe-";
 
 // Tri states enum for Dark and Dark reader mode
 enum class Dark : std::uint8_t {
@@ -40,8 +44,12 @@ enum class Dark : std::uint8_t {
   Auto = 2,
 };
 
-/// Dictionaries which are temporarily disabled via the dictionary bar.
-using MutedDictionaries = QSet< QString >;
+/// How the search box matches the typed text against dictionary headwords.
+enum class SearchMode : std::uint8_t {
+  Prefix    = 0, ///< Headwords starting with the query (the historical behaviour).
+  Suffix    = 1, ///< Headwords ending with the query.
+  MultiWord = 2, ///< Headwords containing every whitespace-separated token, in any order.
+};
 
 /// A path where to search for the dictionaries
 struct Path
@@ -121,8 +129,8 @@ struct Group
   QKeySequence shortcut;
   QString favoritesFolder;
   QList< DictionaryRef > dictionaries;
-  Config::MutedDictionaries mutedDictionaries;      // Disabled via dictionary bar
-  Config::MutedDictionaries popupMutedDictionaries; // Disabled via dictionary bar in popup
+  QSet< QString > mutedDictionaries;      // Disabled via dictionary bar
+  QSet< QString > popupMutedDictionaries; // Disabled via dictionary bar in popup
 
   Group():
     id( 0 )
@@ -144,15 +152,7 @@ struct Group
 };
 
 /// All the groups
-struct Groups: public QList< Group >
-{
-  unsigned nextId; // Id to use to create the group next time
-
-  Groups():
-    nextId( 1 )
-  {
-  }
-};
+using Groups = QList< Group >;
 
 /// Proxy server configuration
 struct ProxyServer
@@ -187,6 +187,8 @@ struct AnkiConnectServer
   QString text;
   QString sentence;
 
+  bool addAudio = true;
+
   AnkiConnectServer();
 };
 
@@ -218,7 +220,7 @@ struct FullTextSearch
 
   FullTextSearch():
     searchMode( 0 ),
-    enabled( true ),
+    enabled( false ),
     maxDictionarySize( 0 )
   {
   }
@@ -279,25 +281,24 @@ struct Preferences
 {
   QString interfaceLanguage; // Empty value corresponds to system default
   QString interfaceFont;     //Empty as default value.
-  bool enableInterfaceFont = false;
+  bool enableInterfaceFontFamily = false; // New in v2; migrate from enableInterfaceFont below
+  bool enableInterfaceFontSize   = false; // New in v2; migrate from enableInterfaceFont below
+  bool enableInterfaceFont       = false; // Deprecated since v2, kept for config migration only
   int interfaceFontSize;
 
   CustomFonts customFonts;
+  bool useFallbackFonts = true;
   bool newTabsOpenAfterCurrentOne;
   bool newTabsOpenInBackground;
   bool hideSingleTab;
   bool mruTabOrder;
   bool hideMenubar;
+  bool panelsLocked = false;
 
-#ifdef Q_OS_MACOS // macOS uses the dock menu instead of the tray icon
-  bool closeToTray    = false;
-  bool enableTrayIcon = false;
-  bool startToTray    = false;
-#else
   bool enableTrayIcon = true;
   bool closeToTray    = true;
   bool startToTray    = false;
-#endif
+  bool showDockIcon   = false;
 
   bool autoStart;
   bool doubleClickTranslates;
@@ -343,9 +344,7 @@ struct Preferences
 
   bool checkForNewReleases;
   bool disallowContentFromOtherSites;
-  bool hideGoldenDictHeader;
-  int maxNetworkCacheSize;
-  bool clearNetworkCacheOnExit;
+
   bool removeInvalidIndexOnExit = false;
   bool enableApplicationLog =
 #ifdef Q_OS_WIN
@@ -353,6 +352,9 @@ struct Preferences
 #else
     false;
 #endif
+  bool openWebsiteInNewTab = false;
+  bool suppressWebDialogs  = false;
+  bool enableJavaScriptClipboardAccess = false;
 
   qreal zoomFactor;
   qreal helpZoomFactor;
@@ -361,7 +363,6 @@ struct Preferences
   unsigned storeHistory;
   bool alwaysExpandOptionalParts;
 
-  unsigned historyStoreInterval   = 15; // unit is minutes
   unsigned favoritesStoreInterval = 15;
 
   bool confirmFavoritesDeletion;
@@ -379,6 +380,9 @@ struct Preferences
   bool stripClipboard;
   bool raiseWindowOnSearch = true;
 
+  /// Selected headword matching mode for the search box.
+  SearchMode searchMode = SearchMode::Prefix;
+
   FullTextSearch fts;
 
   // Appearances
@@ -394,11 +398,10 @@ struct Preferences
   QString addonStyle;
   QString displayStyle; // Article Display style (Which also affect interface style on windows)
 
-#if !defined( Q_OS_WIN )
   // QApplication style https://doc.qt.io/qt-6/qapplication.html#setStyle
   // In addition to Qt's styles, "Default" is added as default.
+  // On Windows, this field exists but is not used (Windows uses its own styling system).
   QString interfaceStyle;
-#endif
 
   Preferences();
 };
@@ -444,7 +447,7 @@ struct WebSite
   QString id, name, url;
   bool enabled;
   QString iconFilename;
-  bool inside_iframe = false;
+  QString script;
 
   WebSite():
     enabled( false )
@@ -456,20 +459,20 @@ struct WebSite
            const QString & url_,
            bool enabled_,
            const QString & iconFilename_,
-           bool inside_iframe_ ):
+           const QString & script_ = QString() ):
     id( id_ ),
     name( name_ ),
     url( url_ ),
     enabled( enabled_ ),
     iconFilename( iconFilename_ ),
-    inside_iframe( inside_iframe_ )
+    script( script_ )
   {
   }
 
   bool operator==( const WebSite & other ) const
   {
     return id == other.id && name == other.name && url == other.url && enabled == other.enabled
-      && iconFilename == other.iconFilename && inside_iframe == other.inside_iframe;
+      && iconFilename == other.iconFilename && script == other.script;
   }
 };
 
@@ -546,9 +549,10 @@ struct Chinese
 {
   bool enable;
 
-  bool enableSCToTWConversion;
-  bool enableSCToHKConversion;
-  bool enableTCToSCConversion;
+  bool enableSCToTWConversion   = true;
+  bool enableSCToHKConversion   = true;
+  bool enableTCToSCConversion   = true;
+  bool enableJapaneseConversion = true;
 
   Chinese();
 
@@ -556,7 +560,8 @@ struct Chinese
   {
     return enable == other.enable && enableSCToTWConversion == other.enableSCToTWConversion
       && enableSCToHKConversion == other.enableSCToHKConversion
-      && enableTCToSCConversion == other.enableTCToSCConversion;
+      && enableTCToSCConversion == other.enableTCToSCConversion
+      && enableJapaneseConversion == other.enableJapaneseConversion;
   }
 
   bool operator!=( const Chinese & other ) const
@@ -794,7 +799,7 @@ struct HeadwordsDialog
   }
 };
 
-// TODO: arbitrary sizing
+// arbitrary sizing
 enum class ToolbarsIconSize : std::uint8_t {
   Small  = 0,
   Normal = 1,
@@ -824,6 +829,9 @@ struct Class
   Lingua lingua;
   Forvo forvo;
   Programs programs;
+
+  // Flag indicating whether configuration has been modified, only need to save when dirty
+  bool dirty = false;
 #ifdef TTS_SUPPORT
   VoiceEngines voiceEngines;
 #endif
@@ -847,8 +855,13 @@ struct Class
   QByteArray mainWindowState;    // Binary state saved by QMainWindow
   QByteArray mainWindowGeometry; // Geometry saved by QMainWindow
 
-  MutedDictionaries mutedDictionaries;      // Disabled via dictionary bar
-  MutedDictionaries popupMutedDictionaries; // Disabled via dictionary bar in popup
+  // Sizes of the dock widgets, keyed by their object name. QMainWindow's
+  // restoreState() does not restore dock sizes reliably, so they are kept
+  // separately and re-applied with resizeDocks().
+  QHash< QString, QSize > dockWidgetSizes;
+
+  QSet< QString > mutedDictionaries;      // Disabled via dictionary bar
+  QSet< QString > popupMutedDictionaries; // Disabled via dictionary bar in popup
 
   QDateTime timeForNewReleaseCheck; // Last time when the release was checked.
 
@@ -870,6 +883,7 @@ struct Class
     lastMainGroupId( 0 ),
     lastPopupGroupId( 0 ),
     pinPopupWindow( false ),
+    timeForNewReleaseCheck( QDateTime() ),
     showingDictBarNames( false ),
     maxHeadwordSize( 256U ),
     maxHeadwordsToExpand( 0 )
@@ -880,30 +894,6 @@ struct Class
   //disable tts dictionary. does not need to save to persistent file
   bool notts      = false;
   bool resetState = false;
-};
-
-/// Configuration-specific events. Some parts of the program need to react
-/// to specific changes in configuration. The object of this class is used
-/// to emit signals when such events happen -- and the listeners connect to
-/// them to be notified of them.
-/// This class is separate from the main Class since QObjects can't be copied.
-class Events: public QObject
-{
-  Q_OBJECT
-
-public:
-
-  /// Signals that the value of the mutedDictionaries has changed.
-  /// This emits mutedDictionariesChanged() signal, so the subscribers will
-  /// be notified.
-  void signalMutedDictionariesChanged();
-
-signals:
-
-  /// THe value of the mutedDictionaries has changed.
-  void mutedDictionariesChanged();
-
-private:
 };
 
 DEF_EX( exError, "Error with the program's configuration", std::exception )
@@ -928,6 +918,8 @@ QString getConfigDir();
 
 /// Returns the index directory, where the indices are to be stored.
 QString getIndexDir();
+
+QDir getHomeDir();
 
 /// Returns the filename of a .pid file which should store current pid of
 /// the process.

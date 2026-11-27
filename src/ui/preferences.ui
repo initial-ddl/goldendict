@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>788</width>
-    <height>730</height>
+    <height>552</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -36,7 +36,7 @@
       <enum>Qt::ElideNone</enum>
      </property>
      <property name="usesScrollButtons">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="documentMode">
       <bool>false</bool>
@@ -49,572 +49,600 @@
       <attribute name="title">
        <string>&amp;Interface</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,1">
-       <property name="topMargin">
-        <number>9</number>
-       </property>
-       <item row="2" column="0">
-        <widget class="QCheckBox" name="doubleClickTranslates">
-         <property name="text">
-          <string>Double-click translates the word clicked</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" colspan="2">
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string>Tabbed browsing</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_5">
-          <item row="0" column="0">
-           <widget class="QCheckBox" name="newTabsOpenInBackground">
-            <property name="toolTip">
-             <string>Normally, opening a new tab switches to it immediately.
-With this on however, new tabs will be opened without
-switching to them.</string>
-            </property>
-            <property name="text">
-             <string>Open new tabs in background</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QCheckBox" name="newTabsOpenAfterCurrentOne">
-            <property name="toolTip">
-             <string>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</string>
-            </property>
-            <property name="text">
-             <string>Open new tabs after the current one</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QCheckBox" name="hideSingleTab">
-            <property name="toolTip">
-             <string>Select this option if you don't want to see the main tab bar when only a single tab is opened.</string>
-            </property>
-            <property name="text">
-             <string>Hide single tab</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QCheckBox" name="mruTabOrder">
-            <property name="toolTip">
-             <string>MRU order: Most recently used order.</string>
-            </property>
-            <property name="text">
-             <string>Ctrl-Tab navigates tabs in MRU order</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QCheckBox" name="escKeyHidesMainWindow">
-         <property name="toolTip">
-          <string>Normally, pressing ESC key moves focus to the translation line.
+      <layout class="QVBoxLayout" name="verticalLayout_interface">
+       <item>
+        <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,1">
+         <item row="1" column="0">
+          <widget class="QGroupBox" name="groupBox_9">
+           <property name="title">
+            <string/>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_27">
+            <item>
+             <widget class="QCheckBox" name="doubleClickTranslates">
+              <property name="text">
+               <string>Double-click translates the word clicked</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="selectBySingleClick">
+              <property name="toolTip">
+               <string>Turn this option on if you want to select words by single mouse click</string>
+              </property>
+              <property name="text">
+               <string>Select word by single click</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="escKeyHidesMainWindow">
+              <property name="toolTip">
+               <string>Normally, pressing ESC key moves focus to the translation line.
 With this on however, it will hide the main window.</string>
-         </property>
-         <property name="text">
-          <string>ESC key hides main window</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QCheckBox" name="selectBySingleClick">
-         <property name="toolTip">
-          <string>Turn this option on if you want to select words by single mouse click</string>
-         </property>
-         <property name="text">
-          <string>Select word by single click</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QGroupBox" name="groupBox_2">
-         <property name="title">
-          <string>Startup</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <widget class="QCheckBox" name="cbAutostart">
-            <property name="toolTip">
-             <string>Automatically starts GoldenDict after operation system bootup.</string>
-            </property>
-            <property name="text">
-             <string>Start with system</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QCheckBox" name="autoScrollToTargetArticle">
-         <property name="toolTip">
-          <string>Normally, clicking on a link, double-clicking on a word or looking up
+              </property>
+              <property name="text">
+               <string>ESC key hides main window</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="0">
+          <widget class="QGroupBox" name="groupBox_2">
+           <property name="title">
+            <string>Startup</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QCheckBox" name="cbAutostart">
+              <property name="toolTip">
+               <string>Automatically starts GoldenDict after operation system bootup.</string>
+              </property>
+              <property name="text">
+               <string>Start with system</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QGroupBox" name="groupBox_11">
+           <property name="title">
+            <string/>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_28">
+            <item>
+             <widget class="QCheckBox" name="autoScrollToTargetArticle">
+              <property name="toolTip">
+               <string>Normally, clicking on a link, double-clicking on a word or looking up
 selection in an article loads the translation and almost immediately
 scrolls to the article from the same dictionary. With this option off,
 however, the article from the topmost dictionary is shown.</string>
-         </property>
-         <property name="text">
-          <string>Automatically scroll to target article</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QGroupBox" name="enableTrayIcon">
-         <property name="toolTip">
-          <string>When enabled, an icon appears in the system tray area which can be used
-to open main window and perform other tasks.</string>
-         </property>
-         <property name="title">
-          <string>Enable system tray icon</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="checked">
-          <bool>false</bool>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <widget class="QCheckBox" name="startToTray">
-            <property name="toolTip">
-             <string>With this on, the application starts directly to system tray without showing
-its main window.</string>
-            </property>
-            <property name="text">
-             <string>Start to system tray</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="closeToTray">
-            <property name="toolTip">
-             <string>With this on, an attempt to close main window would hide it instead of closing
-the application.</string>
-            </property>
-            <property name="text">
-             <string>Close to system tray</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="16" column="0" colspan="2">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="2" column="1">
-        <layout class="QHBoxLayout" name="horizontalLayout_13">
-         <item>
-          <widget class="QLabel" name="maxDictsInContextMenuLabel">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
+              </property>
+              <property name="text">
+               <string>Automatically scroll to target article</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_13">
+              <item>
+               <widget class="QLabel" name="maxDictsInContextMenuLabel">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="toolTip">
+                 <string>Adjust this value to avoid huge context menus.</string>
+                </property>
+                <property name="text">
+                 <string>Context menu dictionaries limit:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="maxDictsInContextMenu">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximum">
+                 <number>9999</number>
+                </property>
+                <property name="value">
+                 <number>20</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QGroupBox" name="enableTrayIcon">
            <property name="toolTip">
-            <string>Adjust this value to avoid huge context menus.</string>
+            <string>When enabled, an icon appears in the system tray area which can be used
+to open main window and perform other tasks.</string>
            </property>
-           <property name="text">
-            <string>Context menu dictionaries limit:</string>
+           <property name="title">
+            <string>Enable system tray icon</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QCheckBox" name="startToTray">
+              <property name="toolTip">
+               <string>With this on, the application starts directly to system tray without showing
+its main window.</string>
+              </property>
+              <property name="text">
+               <string>Start to system tray</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="closeToTray">
+              <property name="toolTip">
+               <string>With this on, an attempt to close main window would hide it instead of closing
+the application.</string>
+              </property>
+              <property name="text">
+               <string>Close to system tray</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="showDockIcon">
+              <property name="toolTip">
+               <string>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</string>
+              </property>
+              <property name="text">
+               <string>Keep Dock icon visible in background</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
-         <item>
-          <widget class="QSpinBox" name="maxDictsInContextMenu">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+         <item row="2" column="0" colspan="2">
+          <widget class="QGroupBox" name="groupBox">
+           <property name="title">
+            <string>Tabbed browsing</string>
            </property>
-           <property name="maximum">
-            <number>9999</number>
-           </property>
-           <property name="value">
-            <number>20</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_12">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
+           <layout class="QGridLayout" name="gridLayout_5">
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="newTabsOpenInBackground">
+              <property name="toolTip">
+               <string>Normally, opening a new tab switches to it immediately.
+With this on however, new tabs will be opened without
+switching to them.</string>
+              </property>
+              <property name="text">
+               <string>Open new tabs in background</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QCheckBox" name="hideSingleTab">
+              <property name="toolTip">
+               <string>Hide tab bar when only one tab is open.</string>
+              </property>
+              <property name="text">
+               <string>Hide single tab</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QCheckBox" name="mruTabOrder">
+              <property name="text">
+               <string>Ctrl-Tab navigates tabs in MRU order</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QCheckBox" name="newTabsOpenAfterCurrentOne">
+              <property name="toolTip">
+               <string>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</string>
+              </property>
+              <property name="text">
+               <string>Open new tabs after the current one</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>
        </item>
-       <item row="9" column="0">
-        <widget class="QGroupBox" name="groupBox_5">
-         <property name="title">
-          <string>Appearance</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_16">
-          <item>
-           <widget class="QGroupBox" name="enableInterfaceFont">
-            <property name="title">
-             <string>Enable Interface Font</string>
-            </property>
-            <property name="checkable">
-             <bool>true</bool>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_23">
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_17">
-               <item>
-                <widget class="QLabel" name="label_29">
-                 <property name="text">
-                  <string>Font</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QFontComboBox" name="systemFont"/>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_19">
-               <item>
-                <widget class="QLabel" name="label_30">
-                 <property name="text">
-                  <string>Font Size</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QSpinBox" name="interfaceFontSize">
-                 <property name="minimum">
-                  <number>8</number>
-                 </property>
-                 <property name="maximum">
-                  <number>32</number>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_style">
+      <attribute name="icon">
+       <iconset resource="../../resources.qrc">
+        <normaloff>:/icons/font.svg</normaloff>:/icons/font.svg</iconset>
+      </attribute>
+      <attribute name="title">
+       <string>&amp;Style</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_16">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <item>
+          <widget class="QGroupBox" name="groupBox_5">
+           <property name="title">
+            <string>Appearance</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_17">
             <item>
-             <widget class="QLabel" name="label_6">
-              <property name="text">
-               <string>Interface language</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="interfaceLanguage">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>153</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="sizeAdjustPolicy">
-               <enum>QComboBox::AdjustToContents</enum>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_5">
-            <item>
-             <widget class="QLabel" name="label_9">
-              <property name="text">
-               <string>Article Display style</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="displayStyle">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>0</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_12">
-            <item>
-             <widget class="QLabel" name="addonStylesLabel">
-              <property name="text">
-               <string>Add-on style</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="addonStyles">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>0</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="interfaceStyleLayout">
-            <item>
-             <widget class="QLabel" name="interfaceStyleLabel">
-              <property name="text">
-               <string>Interface Style</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="InterfaceStyle"/>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="darkModeLayout">
-            <item>
-             <widget class="QLabel" name="darkModeLabel">
-              <property name="toolTip">
-               <string>Turn the UI to dark.</string>
-              </property>
-              <property name="text">
-               <string>Dark Mode</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="darkMode">
-              <property name="toolTip">
-               <string>Turn the UI to dark.</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="darkReaderLayout">
-            <item>
-             <widget class="QLabel" name="darkReaderModeLabel">
-              <property name="toolTip">
-               <string>Turn the article display style to dark.</string>
-              </property>
-              <property name="text">
-               <string>Dark Reader Mode</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="darkReaderMode">
-              <property name="toolTip">
-               <string>Turn the article display style to dark.</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_23">
-            <item>
-             <widget class="QGroupBox" name="groupBox_8">
+             <widget class="QGroupBox" name="interfaceFontGroup">
               <property name="title">
-               <string>Preview Font</string>
+               <string>Interface Font</string>
               </property>
-              <layout class="QVBoxLayout" name="verticalLayout_22">
+              <layout class="QVBoxLayout" name="verticalLayout_23">
                <item>
-                <widget class="QLabel" name="previewFont">
-                 <property name="text">
-                  <string>GoldenDict-ng is a dictionary software.</string>
-                 </property>
-                 <property name="wordWrap">
-                  <bool>true</bool>
-                 </property>
-                </widget>
+                <layout class="QHBoxLayout" name="horizontalLayout_17">
+                 <item>
+                  <widget class="QCheckBox" name="enableInterfaceFontFamily">
+                   <property name="text">
+                    <string>Custom family</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFontComboBox" name="systemFont"/>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_19">
+                 <item>
+                  <widget class="QCheckBox" name="enableInterfaceFontSize">
+                   <property name="text">
+                    <string>Custom size</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSpinBox" name="interfaceFontSize">
+                   <property name="minimum">
+                    <number>8</number>
+                   </property>
+                   <property name="maximum">
+                    <number>32</number>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
               </layout>
              </widget>
             </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QLabel" name="label_6">
+                <property name="text">
+                 <string>Interface language</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="interfaceLanguage">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>153</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="sizeAdjustPolicy">
+                 <enum>QComboBox::AdjustToContents</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QLabel" name="label_9">
+                <property name="text">
+                 <string>Article Display style</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="displayStyle">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>100</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_12">
+              <item>
+               <widget class="QLabel" name="addonStylesLabel">
+                <property name="text">
+                 <string>Add-on style</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="addonStyles">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>100</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="interfaceStyleLayout">
+              <item>
+               <widget class="QLabel" name="interfaceStyleLabel">
+                <property name="text">
+                 <string>Interface Style</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="InterfaceStyle"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="darkModeLayout">
+              <item>
+               <widget class="QLabel" name="darkModeLabel">
+                <property name="toolTip">
+                 <string>Turn the UI to dark.</string>
+                </property>
+                <property name="text">
+                 <string>Dark Mode</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="darkMode">
+                <property name="toolTip">
+                 <string>Turn the UI to dark.</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="darkReaderLayout">
+              <item>
+               <widget class="QLabel" name="darkReaderModeLabel">
+                <property name="toolTip">
+                 <string>Turn the article display style to dark.</string>
+                </property>
+                <property name="text">
+                 <string>Dark Reader Mode</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="darkReaderMode">
+                <property name="toolTip">
+                 <string>Turn the article display style to dark.</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_23">
+              <item>
+               <widget class="QGroupBox" name="groupBox_8">
+                <property name="title">
+                 <string>Preview Font</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_22">
+                 <item>
+                  <widget class="QLabel" name="previewFont">
+                   <property name="text">
+                    <string>GoldenDict-ng is a dictionary software.</string>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
            </layout>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_5">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="9" column="1">
-        <widget class="QGroupBox" name="groupBox_10">
-         <property name="toolTip">
-          <string>These fonts will be applied when the fonts specified by a dictionary are not found.</string>
-         </property>
-         <property name="title">
-          <string>Fallback Fonts</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_17">
-          <item>
-           <widget class="QLabel" name="label_16">
-            <property name="text">
-             <string>Standard Font</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QFontComboBox" name="font_standard">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_21">
-            <property name="text">
-             <string>Serif Font</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QFontComboBox" name="font_serif">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_26">
-            <property name="text">
-             <string>Sans-serif Font</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QFontComboBox" name="font_sans">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_27">
-            <property name="text">
-             <string>Monospace Font</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QFontComboBox" name="font_monospace">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="fontFilters">
-             <set>QFontComboBox::MonospacedFonts</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_9">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </widget>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="fallbackFontsGroupBox">
+           <property name="toolTip">
+            <string>These fonts will be applied when the fonts specified by a dictionary are not found.</string>
+           </property>
+           <property name="title">
+            <string>Customize Fonts</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_24">
+            <item>
+             <widget class="QLabel" name="label_16">
+              <property name="text">
+               <string>Standard Font</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFontComboBox" name="font_standard">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_21">
+              <property name="text">
+               <string>Serif Font</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFontComboBox" name="font_serif">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_26">
+              <property name="text">
+               <string>Sans-serif Font</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFontComboBox" name="font_sans">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_27">
+              <property name="text">
+               <string>Monospace Font</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QFontComboBox" name="font_monospace">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="fontFilters">
+               <set>QFontComboBox::MonospacedFonts</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_9">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tab_popup">
       <attribute name="icon">
        <iconset resource="../../resources.qrc">
-        <normaloff>:/icons/wizard.svg</normaloff>:/icons/wizard.svg</iconset>
+        <normaloff>:/icons/scan.svg</normaloff>:/icons/scan.svg</iconset>
       </attribute>
       <attribute name="title">
-       <string>&amp;Popup</string>
+       <string>S&amp;can</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_10">
        <item>
@@ -666,7 +694,7 @@ the application.</string>
 in the pressed state when the word selection changes.</string>
             </property>
             <property name="text">
-             <string>Only tack selection when all selected keys are kept pressed:</string>
+             <string>Only track selection when all selected keys are kept pressed:</string>
             </property>
            </widget>
           </item>
@@ -871,6 +899,9 @@ in the pressed state when the word selection changes.</string>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_7">
          <item>
+          <widget class="QKeySequenceEdit" name="mainWindowHotkey"/>
+         </item>
+         <item>
           <spacer name="horizontalSpacer_2">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -882,9 +913,6 @@ in the pressed state when the word selection changes.</string>
             </size>
            </property>
           </spacer>
-         </item>
-         <item>
-          <widget class="QKeySequenceEdit" name="mainWindowHotkey"/>
          </item>
         </layout>
        </item>
@@ -898,6 +926,9 @@ in the pressed state when the word selection changes.</string>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_8">
          <item>
+          <widget class="QKeySequenceEdit" name="clipboardHotkey"/>
+         </item>
+         <item>
           <spacer name="horizontalSpacer_4">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -910,26 +941,7 @@ in the pressed state when the word selection changes.</string>
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QKeySequenceEdit" name="clipboardHotkey"/>
-         </item>
         </layout>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_13">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>16</height>
-          </size>
-         </property>
-        </spacer>
        </item>
        <item>
         <widget class="QLabel" name="label_8">
@@ -1000,7 +1012,7 @@ in the pressed state when the word selection changes.</string>
              <string>Play audio files via built-in audio support</string>
             </property>
             <property name="text">
-             <string>Use internal player:</string>
+             <string>Internal Audio Player:</string>
             </property>
            </widget>
           </item>
@@ -1014,10 +1026,10 @@ in the pressed state when the word selection changes.</string>
           <item row="1" column="0">
            <widget class="QRadioButton" name="useExternalPlayer">
             <property name="toolTip">
-             <string>Use any external program to play audio files</string>
+             <string>Use any external audio player to play audio files</string>
             </property>
             <property name="text">
-             <string>Use external program:</string>
+             <string>External Audio Player:</string>
             </property>
            </widget>
           </item>
@@ -1028,6 +1040,16 @@ in the pressed state when the word selection changes.</string>
             </property>
             <property name="toolTip">
              <string>Enter audio player command line</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QLabel" name="externalPlayerHint">
+            <property name="textFormat">
+             <enum>Qt::RichText</enum>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -1172,158 +1194,7 @@ for all program's network requests.</string>
          </layout>
         </widget>
        </item>
-       <item>
-        <widget class="QGroupBox" name="useAnkiConnect">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="title">
-          <string>Anki Connect</string>
-         </property>
-         <property name="checkable">
-          <bool>true</bool>
-         </property>
-         <property name="checked">
-          <bool>false</bool>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_13">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_21">
-            <item>
-             <widget class="QLabel" name="label_22">
-              <property name="text">
-               <string>Host:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_24">
-              <property name="text">
-               <string>http://</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="ankiHost"/>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_23">
-              <property name="text">
-               <string>Port:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="ankiPort">
-              <property name="maximum">
-               <number>65535</number>
-              </property>
-              <property name="value">
-               <number>8080</number>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_16">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_22">
-            <item>
-             <widget class="QLabel" name="label_28">
-              <property name="text">
-               <string>Deck:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="ankiDeck"/>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_25">
-              <property name="text">
-               <string>Model:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="ankiModel"/>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_17">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QFormLayout" name="formLayout">
-            <item row="0" column="0">
-             <widget class="QLabel" name="wordLabel">
-              <property name="text">
-               <string>Word</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="ankiWord">
-              <property name="placeholderText">
-               <string>Vocabulary field...</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="textLabel">
-              <property name="text">
-               <string>Text</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="ankiText">
-              <property name="placeholderText">
-               <string>Definition field...</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="sentenceLabel">
-              <property name="text">
-               <string>Sentence</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="ankiSentence">
-              <property name="placeholderText">
-               <string>Sentence field (can be empty)...</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
+
        <item>
         <widget class="QCheckBox" name="disallowContentFromOtherSites">
          <property name="toolTip">
@@ -1335,70 +1206,6 @@ you are browsing. If some site breaks because of this, try disabling this.</stri
           <string>Disallow loading content from other sites (hides most advertisements)</string>
          </property>
         </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="hideGoldenDictHeader">
-         <property name="toolTip">
-          <string>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</string>
-         </property>
-         <property name="text">
-          <string>Do not identify GoldenDict in HTTP headers</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_11">
-         <item>
-          <widget class="QLabel" name="label_20">
-           <property name="text">
-            <string>Maximum network cache size:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="maxNetworkCacheSize">
-           <property name="toolTip">
-            <string>Maximum disk space occupied by GoldenDict's network cache in
-%1
-If set to 0 the network disk cache will be disabled.</string>
-           </property>
-           <property name="suffix">
-            <string> MiB</string>
-           </property>
-           <property name="maximum">
-            <number>2000</number>
-           </property>
-           <property name="value">
-            <number>50</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="clearNetworkCacheOnExit">
-           <property name="toolTip">
-            <string>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</string>
-           </property>
-           <property name="text">
-            <string>Clear network cache on exit</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_15">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
        </item>
        <item>
         <widget class="QCheckBox" name="checkForNewReleases">
@@ -1429,6 +1236,170 @@ download page.</string>
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="tab_anki">
+      <attribute name="icon">
+       <iconset resource="../../resources.qrc">
+        <normaloff>:/icons/anki.svg</normaloff>:/icons/anki.svg</iconset>
+      </attribute>
+      <attribute name="title">
+       <string>Anki</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_anki">
+       <item>
+        <widget class="QGroupBox" name="useAnkiConnect">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="title">
+          <string>Anki Connect</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_anki" columnstretch="0,2,0,1">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_22">
+            <property name="text">
+             <string>Host:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout" name="hostLayout">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label_24">
+              <property name="text">
+               <string>http://</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignVCenter|Qt::AlignRight</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="ankiHost"/>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="label_23">
+            <property name="text">
+             <string>Port:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QSpinBox" name="ankiPort">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+            <property name="value">
+             <number>8080</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_28">
+            <property name="text">
+             <string>Deck:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="ankiDeck"/>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="label_25">
+            <property name="text">
+             <string>Type:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLineEdit" name="ankiModel"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="wordLabel">
+            <property name="text">
+             <string>Word:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="3">
+           <widget class="QLineEdit" name="ankiWord">
+            <property name="placeholderText">
+             <string>Vocabulary field...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="textLabel">
+            <property name="text">
+             <string>Text:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="3">
+           <widget class="QLineEdit" name="ankiText">
+            <property name="placeholderText">
+             <string>Definition field...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="sentenceLabel">
+            <property name="text">
+             <string>Sentence:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" colspan="3">
+           <widget class="QLineEdit" name="ankiSentence">
+            <property name="placeholderText">
+             <string>Sentence field (can be empty)...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="4">
+           <widget class="QCheckBox" name="ankiAddAudio">
+            <property name="text">
+             <string>Add audio to Anki card when available</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_anki">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="tab_FTS">
       <attribute name="icon">
        <iconset resource="../../resources.qrc">
@@ -1447,7 +1418,7 @@ download page.</string>
           <bool>true</bool>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="3" column="1">
@@ -1575,26 +1546,39 @@ download page.</string>
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_18">
-            <item>
-             <widget class="QLabel" name="label_7">
-              <property name="text">
-               <string>Create fulltext index with parallel threads </string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="parallelThreads">
-              <property name="minimum">
-               <number>1</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
          </layout>
         </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_18">
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Create fulltext index with parallel threads </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="parallelThreads">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_11">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </item>
        <item>
         <spacer name="verticalSpacer_7">
@@ -1684,66 +1668,6 @@ download page.</string>
               </item>
              </layout>
             </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_10">
-              <item>
-               <widget class="QLabel" name="label_10">
-                <property name="toolTip">
-                 <string>History saving interval. If set to 0 history will be saved only during exit.</string>
-                </property>
-                <property name="statusTip">
-                 <string/>
-                </property>
-                <property name="text">
-                 <string>Save every</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QSpinBox" name="historySaveIntervalField">
-                <property name="statusTip">
-                 <string/>
-                </property>
-                <property name="maximum">
-                 <number>120</number>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_11">
-                <property name="text">
-                 <string>minutes</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_9">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <spacer name="verticalSpacer_8">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
            </layout>
           </widget>
          </item>
@@ -1805,19 +1729,6 @@ download page.</string>
                <string>Confirmation for items deletion</string>
               </property>
              </widget>
-            </item>
-            <item>
-             <spacer name="verticalSpacer_4">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
             </item>
            </layout>
           </widget>
@@ -2011,6 +1922,36 @@ from Stardict, Babylon and GLS dictionaries</string>
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QCheckBox" name="openWebsiteInNewTab">
+            <property name="toolTip">
+             <string>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</string>
+            </property>
+            <property name="text">
+             <string>Open website dictionary in separate tab</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="suppressWebDialogs">
+            <property name="toolTip">
+             <string>Suppress JavaScript alerts, confirms, and prompts in the article view.</string>
+            </property>
+            <property name="text">
+             <string>Suppress JavaScript dialogs</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="enableJavaScriptClipboard">
+            <property name="toolTip">
+             <string>Allow JavaScript to access clipboard in the article view.</string>
+            </property>
+            <property name="text">
+             <string>Enable JavaScript clipboard access (need restart)</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -2048,7 +1989,6 @@ from Stardict, Babylon and GLS dictionaries</string>
   <tabstop>buttonBox</tabstop>
   <tabstop>newTabsOpenInBackground</tabstop>
   <tabstop>newTabsOpenAfterCurrentOne</tabstop>
-  <tabstop>enableTrayIcon</tabstop>
   <tabstop>startToTray</tabstop>
   <tabstop>closeToTray</tabstop>
   <tabstop>cbAutostart</tabstop>

@@ -2,7 +2,16 @@
 
 #include "config.hh"
 #include "pronounceengine.hh"
+#include "dict/dictionary.hh"
 #include "dictionary_icon_name.hh"
+#include "sptr.hh"
+#include <QMap>
+#include <QScopedPointer>
+#include <QDateTime>
+#include <atomic>
+#include <vector>
+#include "instances.hh"
+#include "audio/audioplayerinterface.hh"
 
 struct ActiveDictIds
 {
@@ -21,16 +30,57 @@ class GlobalBroadcaster: public QObject
 {
   Q_OBJECT
 
-  Config::Preferences * preference;
-  QSet< QString > whitelist;
+  Config::Class * config = nullptr;
+  const AudioPlayerPtr * audioPlayer                         = nullptr;
+  std::vector< sptr< Dictionary::Class > > * allDictionaries = nullptr;
+  Instances::Groups * groups                                 = nullptr;
+  QSet< QString > hostWhitelist;
+  QSet< QString > refererWhitelist;
   Icons::DictionaryIconName _icon_names;
+  QMap< QString, QString > lsaIdToPathMap;
+  QMap< QString, QString > lsaPathToIdMap;
+  QSet< QString > soundDirDictIds;
+  QMap< QString, sptr< Dictionary::Class > > dictMap;
+  void loadWhitelist();
+
 
 public:
-  void setPreference( Config::Preferences * _pre );
+  std::atomic_bool is_popup;
+  std::atomic<qint64> lastPopupEngageMs{ 0 };
+
+  void setConfig( Config::Class * _config );
+  Config::Class * getConfig() const;
+  void setAudioPlayer( const AudioPlayerPtr * _audioPlayer );
+  const AudioPlayerPtr * getAudioPlayer() const;
+  void setAllDictionaries( std::vector< sptr< Dictionary::Class > > * _allDictionaries );
+  const std::vector< sptr< Dictionary::Class > > * getAllDictionaries() const;
+  sptr< Dictionary::Class > getDictionaryById( const QString & dictId );
+  void clearDictMap();
+  void setGroups( Instances::Groups * _groups );
+  const Instances::Groups * getGroups() const;
+  void addLsaDictMapping( const QString & dictId, const QString & path );
+  QString getLsaPathFromId( const QString & dictId ) const;
+  QString getLsaIdFromPath( const QString & path ) const;
+  void addSoundDirDictId( const QString & dictId );
+  const QSet< QString > & getSoundDirDictIds() const;
+  /// Finds a sound-capable dictionary ( a sound dir or a Lingvo sound
+  /// archive ) by its name, as referenced by the DSL #SOUND_DICTIONARY
+  /// directive.
+  sptr< Dictionary::Class > getSoundDictionaryByName( const QString & name ) const;
+  /// True if the dictionary is not muted in the dictionary bar of the current
+  /// group.
+  bool isDictionaryEnabledInBar( const QString & dictId ) const;
+  // For backward compatibility
   Config::Preferences * getPreference() const;
   GlobalBroadcaster( QObject * parent = nullptr );
-  void addWhitelist( QString host );
-  bool existedInWhitelist( QString host ) const;
+  /// \param host The host to add to host whitelist
+  void addHostWhitelist( QString host );
+  void addRefererWhitelist( QString host );
+
+  /// \param host The host to check
+  /// \return true if the host is in the host whitelist, false otherwise
+  bool existedInHostWhitelist( QString host ) const;
+  bool existedInRefererWhitelist( QString host ) const;
   static GlobalBroadcaster * instance();
   unsigned currentGroupId;
   QString translateLineText{};
@@ -40,10 +90,32 @@ public:
   std::function< bool( const QString & ) > isWordPresentedInFavorites;
 
   PronounceEngine pronounce_engine;
-  QString getAbbrName( const QString & text );
+  QString getAbbrName( const QString & text, const QString & key = {} );
+
+  /// Check if dark reader mode is enabled
+  /// @return true if dark reader mode is enabled, false otherwise
+  bool isDarkReaderModeEnabled() const;
+
+  /// Check if system is in dark theme
+  /// @return true if system is in dark theme, false otherwise
+  static bool isSystemDarkTheme();
+
 signals:
   void dictionaryChanges( ActiveDictIds ad );
   void dictionaryClear( ActiveDictIds ad );
 
   void indexingDictionary( QString );
+
+  // Headword-cache build progress (distinct from full-text search indexing)
+  void indexingHeadwordsCache( QString );
+
+  void websiteDictionarySignal( QString, QString, QString, bool, QString );
+
+  void ftsStateChanged();
+
+  // New signals for controlling FTS indexing
+  void stopFtsIndexing();
+  void startFtsIndexing();
+
+  void mutedDictionariesChanged();
 };

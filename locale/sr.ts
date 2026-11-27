@@ -20,7 +20,7 @@
     <name>AnkiConnector</name>
     <message>
       <source>Anki: can&apos;t create a card without a word</source>
-      <translation type="unfinished">Anki: can&apos;t create a card without a word</translation>
+      <translation>Анки: не могу да креирам картицу без речи</translation>
     </message>
     <message>
       <source>Anki search: AnkiConnect is not enabled.</source>
@@ -28,11 +28,11 @@
     </message>
     <message>
       <source>Anki: post to Anki failed</source>
-      <translation type="unfinished">Anki: post to Anki failed</translation>
+      <translation>Anki: објављивање на Anki неуспешно</translation>
     </message>
     <message>
       <source>Anki: post to Anki success</source>
-      <translation type="unfinished">Anki: post to Anki success</translation>
+      <translation>Anki: објављивање на Anki успешно</translation>
     </message>
   </context>
   <context>
@@ -57,16 +57,46 @@
       <translation>Добро дошли!</translation>
     </message>
     <message>
-      <source>&lt;h3 align=&quot;center&quot;&gt;Welcome to &lt;b&gt;GoldenDict&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;To start working with the program, first visit &lt;em&gt;Edit | Dictionaries&lt;/em&gt; to add some directory paths where to search for the dictionary files, set up various Wikipedia sites or other sources, adjust dictionary order or create dictionary groups.&lt;p&gt;And then you&apos;re ready to look up your words! You can do that in this window by using a pane to the left, or you can &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;look up words from other active applications&lt;/a&gt;. &lt;p&gt;To customize program, check out the available preferences at &lt;em&gt;Edit | Preferences&lt;/em&gt;. All settings there have tooltips, be sure to read them if you are in doubt about anything.&lt;p&gt;Should you need further help, have any questions, suggestions or just wonder what the others think, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;forum&lt;/a&gt;.&lt;p&gt;Check program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;website&lt;/a&gt; for the updates. &lt;p&gt;(c) 2008-2013 Konstantin Isakov. Licensed under GPLv3 or later.</source>
-      <translation>&lt;h3 align=&quot;center&quot;&gt;Добродошли у &lt;b&gt;ГолденДицт&lt;/b&gt;!&lt;/h3&gt;&lt;p&gt;Да бисте почели да радите са програмом, прво посетите &lt;em&gt;Уреди | Речници&lt;/em&gt; да бисте додали неке путање директоријума где да тражите датотеке речника, подесите различите сајтове Википедије или друге изворе, прилагодите редослед речника или креирате групе речника.&lt;p&gt;А онда сте&apos;да потражите своје речи! То можете да урадите у овом прозору користећи окно са леве стране или можете &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;потражити речи из других активних апликација&lt;/a&gt;. &lt;p&gt;Да бисте прилагодили програм, погледајте доступне поставке на &lt;em&gt;Уреди | Преференцес&lt;/em&gt;. Сва подешавања тамо имају описе алата, обавезно их прочитајте ако сте у недоумици.&lt;p&gt;Уколико вам је потребна додатна помоћ, имате питања, сугестије или се само питате шта други мисле, добродошли сте на програм&apos;с &lt;a href=&quot;https://github.com/xiaoyifang/goldendict/discussions&quot;&gt;форум&lt;/a&gt;.&lt;p&gt;Проверите програм&apos;с &lt;a href=&quot;https://github.com/xiaoyifang/goldendict&quot;&gt;веб локацију&lt;/a&gt; за ажурирања. &lt;p&gt;(в) 2008-2013 Константин Исаков. Лиценцирано под ГПЛв3 или новијим.</translation>
-    </message>
-    <message>
       <source>(untitled)</source>
       <translation>(без имена)</translation>
     </message>
     <message>
       <source>(picture)</source>
       <translation>(слика)</translation>
+    </message>
+    <message>
+      <source>
+    &lt;div class=&quot;welcome-container&quot;&gt;
+      &lt;h3&gt;Welcome to &lt;strong&gt;GoldenDict-ng&lt;/strong&gt;!&lt;/h3&gt;
+      &lt;section&gt;
+        &lt;h4&gt;To get started&lt;/h4&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Go to &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Dictionaries&lt;/span&gt;&lt;/span&gt; to add your dictionary files, set up online sources like Wikipedia, and organize them into groups.&lt;/li&gt;
+          &lt;li&gt;Once set up, you can look up words in this window or &lt;a href=&quot;https://xiaoyifang.github.io/goldendict-ng/ui_popup/&quot;&gt;from other applications using the Scan Popup&lt;/a&gt;.&lt;/li&gt;
+          &lt;li&gt;To customize the program, explore the settings in &lt;span class=&quot;menu-path&quot;&gt;&lt;span&gt;Edit&lt;/span&gt;&lt;span&gt;Preferences&lt;/span&gt;&lt;/span&gt;. All settings have tooltips, so be sure to read them if anything is unclear.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+      &lt;p&gt;Should you need further help, have any questions, or suggestions, you are welcome at the program&apos;s &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng/discussions&quot;&gt;forum&lt;/a&gt; and &lt;a href=&quot;https://github.com/xiaoyifang/goldendict-ng&quot;&gt;website&lt;/a&gt;.&lt;/p&gt;
+      &lt;footer class=&quot;welcome-footer&quot;&gt;
+        &lt;small&gt;Based on the original GoldenDict by Konstantin Isakov (c) 2008-2013. Maintained and developed by the GoldenDict-NG Community. Licensed under GPLv3 or later.&lt;/small&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;</source>
+      <translation>
+    &lt;div class="welcome-container">
+      &lt;h3>Добро дошли у &lt;strong>GoldenDict-ng&lt;/strong>!&lt;/h3>
+      &lt;section>
+        &lt;h4>Да бисте почели&lt;/h4>
+        &lt;ul>
+          &lt;li>Идите на &lt;span class="menu-path">&lt;span>Измени&lt;/span>&lt;span>Речници&lt;/span>&lt;/span> да додате своје датотеке речника, подесите онлајн изворе попут Википедије и организујете их у групе.&lt;/li>
+          &lt;li>Када је подешено, можете тражити речи у овом прозору или &lt;a href="https://xiaoyifang.github.io/goldendict-ng/ui_popup/">из других апликација користећи Искачући преглед&lt;/a>.&lt;/li>
+          &lt;li>Да бисте прилагодили програм, истражите подешавања у &lt;span class="menu-path">&lt;span>Измени&lt;/span>&lt;span>Подешавања&lt;/span>&lt;/span>. Сва подешавања имају описе, па их обавезно прочитајте ако нешто није јасно.&lt;/li>
+        &lt;/ul>
+      &lt;/section>
+      &lt;p>Ако вам је потребна додатна помоћ, имате питања или сугестије, добродошли сте на програмски &lt;a href="https://github.com/xiaoyifang/goldendict-ng/discussions">форум&lt;/a> и &lt;a href="https://github.com/xiaoyifang/goldendict-ng">веб-сајт&lt;/a>.&lt;/p>
+      &lt;footer class="welcome-footer">
+        &lt;small>Засновано на оригиналном GoldenDict-у Константина Исакова (c) 2008-2013. Одржавано и развијано од стране GoldenDict-NG заједнице. Лиценцирано под GPLv3 или новијом верзијом.&lt;/small>
+      &lt;/footer>
+    &lt;/div></translation>
     </message>
   </context>
   <context>
@@ -101,10 +131,6 @@
     <message>
       <source>Phrase not found</source>
       <translation>Фраза није пронађена</translation>
-    </message>
-    <message>
-      <source>%1 of %2 matches</source>
-      <translation>%1 од %2 утакмица</translation>
     </message>
     <message>
       <source>Select Current Article</source>
@@ -254,6 +280,41 @@
       <source>&amp;Create Anki note</source>
       <translation>&amp;Креирај Анки белешку</translation>
     </message>
+    <message>
+      <source>&amp;Copy sound to clipboard</source>
+      <translation>&amp;Копирај звук у међуспремник</translation>
+    </message>
+    <message>
+      <source>Failed to copy sound</source>
+      <translation>Копирање звука није успело</translation>
+    </message>
+    <message>
+      <source>Failed to write complete audio data</source>
+      <translation>Писање комплетних аудио података није успело</translation>
+    </message>
+    <message>
+      <source>Sound copied to clipboard</source>
+      <translation>Звук копиран у међуспремник</translation>
+    </message>
+    <message>
+      <source>Failed to download sound</source>
+      <translation>Преузимање звука није успело</translation>
+    </message>
+    <message>
+      <source>%1 of %2 matches</source>
+      <translation>%1 од %2 утакмица</translation>
+    </message>
+    <message>
+      <source>Open Article in External &amp;Browser</source>
+      <translation>Отвори чланак у спољном &amp;прегледачу</translation>
+    </message>
+  </context>
+  <context>
+    <name>ArticleWebView</name>
+    <message>
+      <source>GoldenDict Resource Viewer</source>
+      <translation>GoldenDict прегледач ресурса</translation>
+    </message>
   </context>
   <context>
     <name>BelarusianTranslit</name>
@@ -275,52 +336,60 @@ between classic and school orthography in cyrillic)</source>
   <context>
     <name>ChineseConversion</name>
     <message>
-      <source>Chinese Conversion</source>
-      <translation>Кинеска конверзија</translation>
+      <source>Traditional to simplified Chinese conversion</source>
+      <translation>Традиционална у поједностављена кинеска конверзија</translation>
     </message>
     <message>
-      <source>Enable conversion between simplified and traditional Chinese characters</source>
-      <translation>Омогућите конверзију између поједностављених и традиционалних кинеских знакова</translation>
+      <source>Enable conversion from simplified/traditional Chinese characters to Japanese Shinjitai characters</source>
+      <translation>Омогућите конверзију из поједностављених / традиционалних кинеских знакова у јапанске Схињитаи знакове</translation>
     </message>
     <message>
-      <source>Chinese Con&amp;version</source>
-      <translation>Кинеска конверзија</translation>
+      <source>Japanese Shinjitai</source>
+      <translation>Јапански Схињитаи</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Taiwan variant) characters</source>
-      <translation>Омогућите конверзију из поједностављених знакова у традиционалне (тајванска варијанта) знакова</translation>
+      <source>Chinese to Japanese Shinjitai conversion</source>
+      <translation>Кинески то Јапански Схињитаи конверзија</translation>
     </message>
     <message>
-      <source>Enable conversion from simplified characters to traditional (Hong Kong variant) characters</source>
-      <translation>Омогућите конверзију из поједностављених знакова у традиционалне знакове (варијанта Хонг Конга).</translation>
+      <source>Chinese and Japanese Character Con&amp;version</source>
+      <translation>Кинески и јапански карактер Цон &amp;версион</translation>
+    </message>
+    <message>
+      <source>Enable conversion between simplified Chinese, traditional Chinese (Taiwan/Hong Kong) and Japanese Shinjitai characters</source>
+      <translation>Омогућите конверзију између поједностављеног кинеског, традиционалног кинеског (Тајван / Хонг Конг) и јапанских Схињитаи знакова</translation>
     </message>
     <message>
       <source>Enable conversion from traditional characters to simplified characters</source>
       <translation>Омогућите конверзију традиционалних знакова у поједностављене знакове</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Taiwan variant) conversion</source>
-      <translation>Поједностављена конверзија у традиционални кинески (тајванска варијанта).</translation>
+      <source>Simplified</source>
+      <translation>Поједностављено</translation>
     </message>
     <message>
-      <source>Simplified to traditional Chinese (Hong Kong variant) conversion</source>
-      <translation>Поједностављена конверзија у традиционални кинески (варијанта у Хонг Конгу).</translation>
+      <source>Enable conversion from simplified characters to traditional (Taiwan) characters</source>
+      <translation>Омогући конверзију са поједностављених карактера на традиционалне (тајванске) карактере</translation>
     </message>
     <message>
-      <source>Traditional to simplified Chinese conversion</source>
-      <translation>Традиционална у поједностављена кинеска конверзија</translation>
+      <source>Traditional (Taiwan)</source>
+      <translation>Традиционално (Тајван)</translation>
     </message>
     <message>
-      <source>Taiwan variant</source>
-      <translation type="unfinished">Taiwan variant</translation>
+      <source>Enable conversion from simplified characters to traditional (Hong Kong) characters</source>
+      <translation>Омогући конверзију са поједностављених карактера на традиционалне (хонгконшке) карактере</translation>
     </message>
     <message>
-      <source>Hong Kong variant</source>
-      <translation type="unfinished">Hong Kong variant</translation>
+      <source>Traditional (Hong Kong)</source>
+      <translation>Традиционални (Хонг Конг)</translation>
     </message>
     <message>
-      <source>Mainland variant</source>
-      <translation type="unfinished">Mainland variant</translation>
+      <source>Simplified to traditional Chinese (Taiwan) conversion</source>
+      <translation>Поједностављено на традиционални кинески (Тајван) конверзија</translation>
+    </message>
+    <message>
+      <source>Simplified to traditional Chinese (Hong Kong) conversion</source>
+      <translation>Поједностављено на традиционални кинески (Хонг Конг) конверзија</translation>
     </message>
   </context>
   <context>
@@ -408,10 +477,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Да ли сте сигурни да желите да генеришете скуп група на основу фасцикли које садрже?</translation>
     </message>
     <message>
-      <source>Are you sure you want to generate a set of groups based on metadata.toml?</source>
-      <translation>Да ли сте сигурни да желите да генеришете скуп група на основу метадата.томл?</translation>
-    </message>
-    <message>
       <source>Combine groups by source language to &quot;%1-&gt;&quot;</source>
       <translation>Комбинујте група из изворног језика у &quot;%1-&gt;&quot;</translation>
     </message>
@@ -426,6 +491,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Combine groups with &quot;%1&quot;</source>
       <translation>Комбинујте група са &quot;%1&quot;</translation>
+    </message>
+    <message>
+      <source>Remove group</source>
+      <translation>Уклоните групу</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to remove the group &lt;b&gt;%1&lt;/b&gt;?</source>
+      <translation>Желите да уклоните групу &lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to generate a set of groups based on dictionary metadata files?</source>
+      <translation>Да ли сте сигурни да желите да генеришете скуп група на основу метаподатака речника?</translation>
     </message>
   </context>
   <context>
@@ -455,10 +532,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Филтер:</translation>
     </message>
     <message>
-      <source>Search mode</source>
-      <translation>Режим претраге</translation>
-    </message>
-    <message>
       <source>This element determines how filter string will be interpreted</source>
       <translation>Овај елемент одређује како ће се тумачити низ филтера</translation>
     </message>
@@ -481,18 +554,6 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Specify the maximum filtered headwords returned.</source>
       <translation>Одредите максималан број враћених филтрираних наслова.</translation>
-    </message>
-    <message>
-      <source>Filter max results:</source>
-      <translation>Филтрирајте максималне резултате:</translation>
-    </message>
-    <message>
-      <source>Help</source>
-      <translation>Помоћ</translation>
-    </message>
-    <message>
-      <source>OK</source>
-      <translation>У реду</translation>
     </message>
     <message>
       <source>Text</source>
@@ -540,7 +601,11 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Regular Expression</source>
-      <translation type="unfinished">Regular Expression</translation>
+      <translation>Регуларни израз</translation>
+    </message>
+    <message>
+      <source>Maximum:</source>
+      <translation>Максимум:</translation>
     </message>
   </context>
   <context>
@@ -574,10 +639,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Циљни језик:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Датотеке које чине речник:</translation>
-    </message>
-    <message>
       <source>Description:</source>
       <translation>Опис:</translation>
     </message>
@@ -596,6 +657,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>Full-text search disabled</source>
       <translation>Претрага целог текста је онемогућена</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Онемогући</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Омогући</translation>
+    </message>
+    <message>
+      <source>Dictionary Components:</source>
+      <translation>Компоненте речника:</translation>
     </message>
   </context>
   <context>
@@ -691,7 +764,35 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Restore selection</source>
-      <translation type="unfinished">Restore selection</translation>
+      <translation>Врати избор</translation>
+    </message>
+    <message>
+      <source>Cancel reindex</source>
+      <translation>Откажи поновно индексирање</translation>
+    </message>
+    <message>
+      <source>Schedule for reindex</source>
+      <translation>Закажи за поновно индексирање</translation>
+    </message>
+    <message>
+      <source>Cancel schedule reindex</source>
+      <translation>Откажи заказано поновно индексирање</translation>
+    </message>
+    <message>
+      <source>The dictionary has been scheduled for reindexing. The index will be rebuilt on the next application restart.</source>
+      <translation>Речник је заказан за поновно индексирање. Индекс ће бити поново изграђен приликом следећег покретања апликације.</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Промени име приказа</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Ново име приказа:</translation>
+    </message>
+    <message>
+      <source>Failed to schedule the dictionary for reindexing.</source>
+      <translation>Није успело заказати речник за реиндексирање.</translation>
     </message>
   </context>
   <context>
@@ -808,10 +909,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Додај фолдер</translation>
     </message>
     <message>
-      <source>Clear All</source>
-      <translation>Обриши све</translation>
-    </message>
-    <message>
       <source>Favorites:</source>
       <translation>Фаворити:</translation>
     </message>
@@ -820,16 +917,20 @@ between classic and school orthography in cyrillic)</source>
       <translation>Све изабране ставке ће бити избрисане. Настави?</translation>
     </message>
     <message>
-      <source>Clear All Items</source>
-      <translation>Обриши све ставке</translation>
-    </message>
-    <message>
       <source>Are you sure you want to clear all items?</source>
       <translation>Да ли сте сигурни да желите да обришете све ставке?</translation>
     </message>
     <message>
       <source>Make this folder the target of adding/removing words actions.</source>
       <translation>Make this folder the target of adding/removing words actions.</translation>
+    </message>
+    <message>
+      <source>Clear</source>
+      <translation>Очисти</translation>
+    </message>
+    <message>
+      <source>Clear Favorites</source>
+      <translation>Очисти омиљене</translation>
     </message>
   </context>
   <context>
@@ -957,28 +1058,12 @@ between classic and school orthography in cyrillic)</source>
       <translation>Таб 2</translation>
     </message>
     <message>
-      <source>Create new dictionary group</source>
-      <translation>Направи нову групу</translation>
-    </message>
-    <message>
-      <source>&amp;Add group</source>
-      <translation>&amp;Додај групу</translation>
-    </message>
-    <message>
       <source>Rename current dictionary group</source>
       <translation>Преименуј тренутну групу речника</translation>
     </message>
     <message>
       <source>Re&amp;name group</source>
       <translation>&amp;Преименуј групу</translation>
-    </message>
-    <message>
-      <source>Remove current dictionary group</source>
-      <translation>Уклони тренутну групу речника</translation>
-    </message>
-    <message>
-      <source>&amp;Remove group</source>
-      <translation>&amp;Уклоните групу</translation>
     </message>
     <message>
       <source>Remove all dictionary groups</source>
@@ -1048,6 +1133,22 @@ between classic and school orthography in cyrillic)</source>
       <source>Are you sure you want to remove all the groups?</source>
       <translation>Уклоните све групе?</translation>
     </message>
+    <message>
+      <source>Add a new dictionary group</source>
+      <translation>Додај нову групу речника</translation>
+    </message>
+    <message>
+      <source>&amp;Add group</source>
+      <translation>&amp;Додај групу</translation>
+    </message>
+    <message>
+      <source>Group already exists</source>
+      <translation>Група већ постоји</translation>
+    </message>
+    <message>
+      <source>A group with the name &apos;%1&apos; already exists.</source>
+      <translation>Група са именом '%1' већ постоји.</translation>
+    </message>
   </context>
   <context>
     <name>HistoryPaneWidget</name>
@@ -1081,6 +1182,18 @@ between classic and school orthography in cyrillic)</source>
     <message>
       <source>%1 Morphology</source>
       <translation>%1 (морфологија)</translation>
+    </message>
+    <message>
+      <source>Spelling correct, no other word forms found.</source>
+      <translation>Правопис исправан, нема других облика речи.</translation>
+    </message>
+    <message>
+      <source>From %1</source>
+      <translation>Од %1</translation>
+    </message>
+    <message>
+      <source>Word forms for %1: </source>
+      <translation>Облици речи за %1: </translation>
     </message>
   </context>
   <context>
@@ -2100,7 +2213,7 @@ between classic and school orthography in cyrillic)</source>
     </message>
     <message>
       <source>Kabyle</source>
-      <translation type="unfinished">Kabyle</translation>
+      <translation>Кабилски</translation>
     </message>
   </context>
   <context>
@@ -2388,10 +2501,6 @@ between classic and school orthography in cyrillic)</source>
       <translation>Нова картица</translation>
     </message>
     <message>
-      <source>Welcome!</source>
-      <translation>Добро дошли!</translation>
-    </message>
-    <message>
       <source>Accessibility API is not enabled</source>
       <translation>Приступачност API није омогућено</translation>
     </message>
@@ -2465,42 +2574,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Print Article</source>
       <translation>Штампај чланак</translation>
-    </message>
-    <message>
-      <source>Complete Html (*.html *.htm)</source>
-      <translation>Комплетан ХТМЛ (*.хтмл *.хтм)</translation>
-    </message>
-    <message>
-      <source>Single Html (*.html *.htm)</source>
-      <translation>Један ХТМЛ (*.хтмл *.хтм)</translation>
-    </message>
-    <message>
-      <source>Pdf (*.pdf)</source>
-      <translation>ПДФ (*.пдф)</translation>
-    </message>
-    <message>
-      <source>Mime Html (*.mhtml)</source>
-      <translation>Миме Хтмл (*.мхтмл)</translation>
-    </message>
-    <message>
-      <source>Save Article As</source>
-      <translation>Сачувајте овај чланак као</translation>
-    </message>
-    <message>
-      <source>Error</source>
-      <translation>Грешка</translation>
-    </message>
-    <message>
-      <source>Can&apos;t save article: %1</source>
-      <translation>Није могуће сачувати чланак: %1</translation>
-    </message>
-    <message>
-      <source>Saving article...</source>
-      <translation>Чување чланка...</translation>
-    </message>
-    <message>
-      <source>Save article complete</source>
-      <translation>Сачувај чланак је завршен</translation>
     </message>
     <message>
       <source>The main window is set to be always on top.</source>
@@ -2595,12 +2668,56 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Прикажи</translation>
     </message>
     <message>
-      <source>Save PDF complete</source>
-      <translation type="unfinished">Save PDF complete</translation>
+      <source>Lock Panels</source>
+      <translation>Закључај панеле</translation>
     </message>
     <message>
-      <source>Save PDF failed</source>
-      <translation type="unfinished">Save PDF failed</translation>
+      <source>Clear History</source>
+      <translation>Очисти историју</translation>
+    </message>
+    <message>
+      <source>Are you sure you want to clear all history items?</source>
+      <translation>Да ли сте сигурни да желите да обришете све ставке историје?</translation>
+    </message>
+    <message>
+      <source>Save File</source>
+      <translation>Сачувај датотеку</translation>
+    </message>
+    <message>
+      <source>Application is still running in the background. Click the tray icon to show the window.</source>
+      <translation>Апликација и даље ради у позадини. Кликните на икону треја да бисте приказали прозор.</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Отвори у и спољни претраживач</translation>
+    </message>
+    <message>
+      <source>Now building headwords cache: </source>
+      <translation>Сада гради кеш кеш за насловне речи: </translation>
+    </message>
+    <message>
+      <source>Prefix</source>
+      <translation>Префикс</translation>
+    </message>
+    <message>
+      <source>Suffix</source>
+      <translation>Суфикс</translation>
+    </message>
+    <message>
+      <source>Multi-word</source>
+      <translation>Више речи</translation>
+    </message>
+    <message>
+      <source>Full-text search…</source>
+      <translation>Претрага целог текста…</translation>
+    </message>
+    <message>
+      <source>Search mode</source>
+      <translation>Режим претраге</translation>
+    </message>
+    <message>
+      <source>Search mode: %1</source>
+      <translation>Режим претраге: %1</translation>
     </message>
   </context>
   <context>
@@ -2617,15 +2734,15 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
   <context>
     <name>MediaWiki::MediaWikiArticleRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Анализа грешке XML: %1 у %2, колони %3</translation>
+      <source>JSON parse error</source>
+      <translation>Грешка при рашчлањивању JSON-а</translation>
     </message>
   </context>
   <context>
     <name>MediaWiki::MediaWikiWordSearchRequest</name>
     <message>
-      <source>XML parse error: %1 at %2,%3</source>
-      <translation>Анализа грешке XML: %1 у %2, колони %3</translation>
+      <source>JSON parse error</source>
+      <translation>Грешка при рашчлањивању JSON-а</translation>
     </message>
   </context>
   <context>
@@ -2701,10 +2818,6 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
       <translation>Опис:</translation>
     </message>
     <message>
-      <source>Files comprising this dictionary:</source>
-      <translation>Датотеке које чине речник:</translation>
-    </message>
-    <message>
       <source>Adjust the order by dragging and dropping items in it. Drop dictionaries to the inactive group to disable their use.</source>
       <translation>Промена редоследа речника, превлачењем миша. Да бисте онемогућили речник превуците га на дно неактивне групе.</translation>
     </message>
@@ -2723,6 +2836,18 @@ To find &apos;*&apos;, &apos;?&apos;, &apos;[&apos;, &apos;]&apos; symbols use &
     <message>
       <source>Dictionaries active: %1, inactive: %2</source>
       <translation>Речници активни: %1, неактивни: %2</translation>
+    </message>
+    <message>
+      <source>Change display name</source>
+      <translation>Промени име приказа</translation>
+    </message>
+    <message>
+      <source>New display name:</source>
+      <translation>Ново име приказа:</translation>
+    </message>
+    <message>
+      <source>Dictionary components:</source>
+      <translation>Компоненте речника:</translation>
     </message>
   </context>
   <context>
@@ -2767,29 +2892,12 @@ switching to them.</source>
       <translation>Отварање нове картице у позадини</translation>
     </message>
     <message>
-      <source>With this on, new tabs are opened just after the
-current, active one. Otherwise they are added to
-be the last ones.</source>
-      <translation>Ако је ова опција омогућена, нова картица ће бити
-отворена одмах након тренутне, у супротном
-додаје се на крају.</translation>
-    </message>
-    <message>
       <source>Open new tabs after the current one</source>
       <translation>Отварање нове картице након тренутне</translation>
     </message>
     <message>
-      <source>Select this option if you don&apos;t want to see the main tab bar when only a single tab is opened.</source>
-      <translation>Омогућите ову опцију ако не желите да видите траку са обележивачима
-у јединој отвореној картици.</translation>
-    </message>
-    <message>
       <source>Hide single tab</source>
       <translation>Сакриј једну картицу</translation>
-    </message>
-    <message>
-      <source>MRU order: Most recently used order.</source>
-      <translation>МРУ налог: Најскорије коришћени налог.</translation>
     </message>
     <message>
       <source>Ctrl-Tab navigates tabs in MRU order</source>
@@ -2878,8 +2986,98 @@ the application.</source>
       <translation>Ограничи падајући изборник речника:</translation>
     </message>
     <message>
+      <source>System default</source>
+      <translation>Систем - подразумевано</translation>
+    </message>
+    <message>
+      <source>Default</source>
+      <translation>Подразумевано</translation>
+    </message>
+    <message>
+      <source>Classic</source>
+      <translation>Цлассиц</translation>
+    </message>
+    <message>
+      <source>Modern</source>
+      <translation>Модеран</translation>
+    </message>
+    <message>
+      <source>Lingvo</source>
+      <translation>Лингво</translation>
+    </message>
+    <message>
+      <source>Babylon</source>
+      <translation>Вавилон</translation>
+    </message>
+    <message>
+      <source>Lingoes</source>
+      <translation>Лингоес</translation>
+    </message>
+    <message>
+      <source>Lingoes-Blue</source>
+      <translation>Лингоес-Блуе</translation>
+    </message>
+    <message>
+      <source>Restart the program to apply the language change.</source>
+      <translation>Поново покрените програм за промену језика.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface style change.</source>
+      <translation>Поново покрените да бисте применили промену стила интерфејса.</translation>
+    </message>
+    <message>
+      <source>Restart to apply the interface font change.</source>
+      <translation>Поново покрените да бисте применили промену фонта интерфејса.</translation>
+    </message>
+    <message>
+      <source>Restart needed</source>
+      <translation>Потребан је рестарт</translation>
+    </message>
+    <message>
+      <source>Enable</source>
+      <translation>Омогући</translation>
+    </message>
+    <message>
+      <source>Disable</source>
+      <translation>Онемогући</translation>
+    </message>
+    <message>
+      <source>Automatic</source>
+      <translation>Аутоматски</translation>
+    </message>
+    <message>
+      <source>None</source>
+      <translation>Ништа</translation>
+    </message>
+    <message>
+      <source>With this on, new tabs are opened just after the
+current, active one. Otherwise, they are added to
+be the last ones.</source>
+      <translation>Када је ово укључено, нове картице се отварају одмах након тренутне, активне. У супротном, додају се на крај.</translation>
+    </message>
+    <message>
+      <source>&amp;Style</source>
+      <translation>&amp;Стил</translation>
+    </message>
+    <message>
       <source>Appearance</source>
       <translation>Изглед</translation>
+    </message>
+    <message>
+      <source>Interface language</source>
+      <translation>Interface language</translation>
+    </message>
+    <message>
+      <source>Article Display style</source>
+      <translation>Article Display style</translation>
+    </message>
+    <message>
+      <source>Add-on style</source>
+      <translation>Add-on style</translation>
+    </message>
+    <message>
+      <source>Interface Style</source>
+      <translation>Interface Style</translation>
     </message>
     <message>
       <source>Turn the UI to dark.</source>
@@ -2898,12 +3096,16 @@ the application.</source>
       <translation>Дарк Реадер Моде</translation>
     </message>
     <message>
-      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
-      <translation>Ови фонтови ће се применити када фонтови наведени у речнику не буду пронађени.</translation>
+      <source>Preview Font</source>
+      <translation>Preview Font</translation>
     </message>
     <message>
-      <source>Fallback Fonts</source>
-      <translation>Резервни фонтови</translation>
+      <source>GoldenDict-ng is a dictionary software.</source>
+      <translation>GoldenDict-ng је софтвер за речнике.</translation>
+    </message>
+    <message>
+      <source>These fonts will be applied when the fonts specified by a dictionary are not found.</source>
+      <translation>Ови фонтови ће се применити када фонтови наведени у речнику не буду пронађени.</translation>
     </message>
     <message>
       <source>Standard Font</source>
@@ -2920,10 +3122,6 @@ the application.</source>
     <message>
       <source>Monospace Font</source>
       <translation>Моноспаце Фонт</translation>
-    </message>
-    <message>
-      <source>&amp;Popup</source>
-      <translation>&amp;Искачући прозор</translation>
     </message>
     <message>
       <source>Chooses whether the clipboard monitoring will be turned on by default at the program&apos;s startup.</source>
@@ -2960,8 +3158,8 @@ in the pressed state when the word selection changes.</source>
 у притиснутом стању, када се избор речи промени.</translation>
     </message>
     <message>
-      <source>Only tack selection when all selected keys are kept pressed:</source>
-      <translation>Одабир хватања само када се сви изабрани тастери држе притиснути:</translation>
+      <source>Only track selection when all selected keys are kept pressed:</source>
+      <translation>Прати избор само када су сви изабрани тастери држани притиснути:</translation>
     </message>
     <message>
       <source>Alt key</source>
@@ -3044,20 +3242,8 @@ in the pressed state when the word selection changes.</source>
       <translation>Пустите аудио датотеке преко уграђене аудио подршке</translation>
     </message>
     <message>
-      <source>Use internal player:</source>
-      <translation>Користите интерни плејер:</translation>
-    </message>
-    <message>
       <source>Choose audio back end</source>
       <translation>Изаберите позадину звука</translation>
-    </message>
-    <message>
-      <source>Use any external program to play audio files</source>
-      <translation>Користите неку спољну апликацију за репродукцију аудио датотека</translation>
-    </message>
-    <message>
-      <source>Use external program:</source>
-      <translation>Користи спољни програм:</translation>
     </message>
     <message>
       <source>Enter audio player command line</source>
@@ -3122,28 +3308,12 @@ for all program&apos;s network requests.</source>
       <translation>шпил:</translation>
     </message>
     <message>
-      <source>Model:</source>
-      <translation>Модел:</translation>
-    </message>
-    <message>
-      <source>Word</source>
-      <translation>Реч</translation>
-    </message>
-    <message>
       <source>Vocabulary field...</source>
       <translation>Поље речника...</translation>
     </message>
     <message>
-      <source>Text</source>
-      <translation>Текст</translation>
-    </message>
-    <message>
       <source>Definition field...</source>
       <translation>Поље дефиниције...</translation>
-    </message>
-    <message>
-      <source>Sentence</source>
-      <translation>Реченица</translation>
     </message>
     <message>
       <source>Sentence field (can be empty)...</source>
@@ -3161,42 +3331,6 @@ you are browsing. If some site breaks because of this, try disabling this.</sour
     <message>
       <source>Disallow loading content from other sites (hides most advertisements)</source>
       <translation>Онемогући учитавање садржаја са других сајтова (уклања већи део оглашавања)</translation>
-    </message>
-    <message>
-      <source>Some sites detect GoldenDict via HTTP headers and block the requests.
-Enable this option to workaround the problem.</source>
-      <translation>Неки сајтови откривају GoldenDict преко HTTP заглавља и блок захтева.
-Омогућите ову могућност да бисте решили тај проблем.</translation>
-    </message>
-    <message>
-      <source>Do not identify GoldenDict in HTTP headers</source>
-      <translation>Немојте да идентификујете GoldenDict у HTTP заглављима</translation>
-    </message>
-    <message>
-      <source>Maximum network cache size:</source>
-      <translation>Максимална величина мрежне кеш меморије:</translation>
-    </message>
-    <message>
-      <source>Maximum disk space occupied by GoldenDict&apos;s network cache in
-%1
-If set to 0 the network disk cache will be disabled.</source>
-      <translation>Максимални простор на диску који заузима ГолденДицт мрежна кеш меморија
-%1
-Ако је постављено на 0, кеш мрежног диска ће бити онемогућен.</translation>
-    </message>
-    <message>
-      <source> MiB</source>
-      <translation> МиБ</translation>
-    </message>
-    <message>
-      <source>When this option is enabled, GoldenDict
-clears its network cache from disk during exit.</source>
-      <translation>Када је ова опција омогућена, ГолденДицт
-брише своју мрежну кеш меморију са диска током изласка.</translation>
-    </message>
-    <message>
-      <source>Clear network cache on exit</source>
-      <translation>Обришите мрежну кеш меморију при изласку</translation>
     </message>
     <message>
       <source>When this is enabled, the program periodically
@@ -3259,8 +3393,12 @@ GoldenDict. Ако се појавила нова верзија, програм
       <translation>Максимална величина историје:</translation>
     </message>
     <message>
-      <source>History saving interval. If set to 0 history will be saved only during exit.</source>
-      <translation>Раздобље чувања историје. Ако се подеси на 0 у историји ће бити сачувана само током излаза.</translation>
+      <source>Favorites</source>
+      <translation>Фаворитес</translation>
+    </message>
+    <message>
+      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
+      <translation>Интервал чувања фаворита. Ако је подешено на 0 Фаворити ће бити сачувани само током изласка.</translation>
     </message>
     <message>
       <source>Save every</source>
@@ -3269,14 +3407,6 @@ GoldenDict. Ако се појавила нова верзија, програм
     <message>
       <source>minutes</source>
       <translation>минута</translation>
-    </message>
-    <message>
-      <source>Favorites</source>
-      <translation>Фаворитес</translation>
-    </message>
-    <message>
-      <source>Favorites saving interval. If set to 0 Favorites will be saved only during exit.</source>
-      <translation>Интервал чувања фаворита. Ако је подешено на 0 Фаворити ће бити сачувани само током изласка.</translation>
     </message>
     <message>
       <source>Turn this option on to confirm every operation of items deletion</source>
@@ -3375,112 +3505,112 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>Уклоните неважећи индекс на излазу</translation>
     </message>
     <message>
-      <source>System default</source>
-      <translation>Систем - подразумевано</translation>
-    </message>
-    <message>
-      <source>Default</source>
-      <translation>Подразумевано</translation>
-    </message>
-    <message>
-      <source>Classic</source>
-      <translation>Цлассиц</translation>
-    </message>
-    <message>
-      <source>Modern</source>
-      <translation>Модеран</translation>
-    </message>
-    <message>
-      <source>Lingvo</source>
-      <translation>Лингво</translation>
-    </message>
-    <message>
-      <source>Babylon</source>
-      <translation>Вавилон</translation>
-    </message>
-    <message>
-      <source>Lingoes</source>
-      <translation>Лингоес</translation>
-    </message>
-    <message>
-      <source>Lingoes-Blue</source>
-      <translation>Лингоес-Блуе</translation>
-    </message>
-    <message>
-      <source>Auto does nothing on some systems.</source>
-      <translation>Ауто не ради ништа на неким системима.</translation>
-    </message>
-    <message>
-      <source>Restart the program to apply the language change.</source>
-      <translation>Поново покрените програм за промену језика.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface style change.</source>
-      <translation>Поново покрените да бисте применили промену стила интерфејса.</translation>
-    </message>
-    <message>
-      <source>Restart to apply the interface font change.</source>
-      <translation>Поново покрените да бисте применили промену фонта интерфејса.</translation>
-    </message>
-    <message>
-      <source>Restart needed</source>
-      <translation>Потребан је рестарт</translation>
-    </message>
-    <message>
-      <source>Enable</source>
-      <translation>Омогући</translation>
-    </message>
-    <message>
-      <source>Disable</source>
-      <translation>Онемогући</translation>
-    </message>
-    <message>
-      <source>Automatic</source>
-      <translation>Аутоматски</translation>
-    </message>
-    <message>
       <source>Save debug messages to gd_log.txt in the config folder</source>
       <translation>Save debug messages to gd_log.txt in the config folder</translation>
     </message>
     <message>
-      <source>Interface language</source>
-      <translation>Interface language</translation>
+      <source>S&amp;can</source>
+      <translation>С&amp;кенирање</translation>
     </message>
     <message>
-      <source>Article Display style</source>
-      <translation>Article Display style</translation>
+      <source>Suppress JavaScript alerts, confirms, and prompts in the article view.</source>
+      <translation>Онемогући JavaScript упозорења, потврде и упите у приказу чланка.</translation>
     </message>
     <message>
-      <source>Add-on style</source>
-      <translation>Add-on style</translation>
+      <source>Suppress JavaScript dialogs</source>
+      <translation>Онемогући JavaScript дијалоге</translation>
     </message>
     <message>
-      <source>Interface Style</source>
-      <translation>Interface Style</translation>
+      <source>Open website dictionary in separate tab</source>
+      <translation>Отвори речник веб-сајта у засебној картици</translation>
     </message>
     <message>
-      <source>Preview Font</source>
-      <translation>Preview Font</translation>
+      <source>Anki</source>
+      <translation type="unfinished">Anki</translation>
     </message>
     <message>
-      <source>GoldenDict-ng is a dictionary software.</source>
-      <translation type="unfinished">GoldenDict-ng is a dictionary software.</translation>
+      <source>Allow JavaScript to access clipboard in the article view.</source>
+      <translation>Дозволи JavaScript-у приступ међуспремнику у приказу чланка.</translation>
     </message>
     <message>
-      <source>Enable Interface Font</source>
-      <translation type="unfinished">Enable Interface Font</translation>
+      <source>Enable JavaScript clipboard access (need restart)</source>
+      <translation>Омогући JavaScript приступ међуспремнику (потребно поновно покретање)</translation>
     </message>
     <message>
-      <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <source>Restart to apply the JavaScript clipboard access change.</source>
+      <translation>Поново покрените да бисте применили промену приступа међуспремнику помоћу JavaScript-а.</translation>
     </message>
     <message>
-      <source>Font Size</source>
-      <translation type="unfinished">Font Size</translation>
+      <source>Hide tab bar when only one tab is open.</source>
+      <translation>Сакриј траку са језичцима када је отворена само једна картица.</translation>
     </message>
     <message>
-      <source>None</source>
-      <translation>Ништа</translation>
+      <source>Use any external audio player to play audio files</source>
+      <translation>Користите било који екстерни аудио плејер за репродукцију аудио фајлова</translation>
+    </message>
+    <message>
+      <source>View detailed configuration guide</source>
+      <translation>Погледајте детаљан водич за конфигурацију</translation>
+    </message>
+    <message>
+      <source>The audio path will be passed as a command-line argument to the external player. </source>
+      <translation>Аудио путања ће бити прослеђена као аргумент командне линије спољном плејеру. </translation>
+    </message>
+    <message>
+      <source>Internal Audio Player:</source>
+      <translation>Интерни аудио плејер:</translation>
+    </message>
+    <message>
+      <source>External Audio Player:</source>
+      <translation>Екстерни аудио плејер:</translation>
+    </message>
+    <message>
+      <source>Automatically switches based on system theme.</source>
+      <translation>Аутоматски се пребацује на основу теме система.</translation>
+    </message>
+    <message>
+      <source>Customize Fonts</source>
+      <translation>Прилагодите фонтове</translation>
+    </message>
+    <message>
+      <source>The Dock icon is always shown while the main window is open so that macOS can display the application name and menus. Enable this option to keep the Dock icon visible after the main window is hidden.</source>
+      <translation>Икона Доцк је увек приказана док је главни прозор отворен, тако да мацОС може да прикаже име апликације и меније. Омогућите ову опцију да би икона Доцк била видљива након што је главни прозор скривен.</translation>
+    </message>
+    <message>
+      <source>Keep Dock icon visible in background</source>
+      <translation>Држите икону Дока видљивом у позадини</translation>
+    </message>
+    <message>
+      <source>Add audio to Anki card when available</source>
+      <translation>Додајте аудио на Анки картицу када је доступна</translation>
+    </message>
+    <message>
+      <source>When enabled, website dictionaries open in their own tab instead of being embedded in the article view. This avoids iframe layout and scrolling limitations, and enables the per-dictionary Script column in the Dictionaries dialog.</source>
+      <translation>Када је омогућено, речници веб сајта се отварају на сопственој картици уместо да буду уграђени у приказ чланка. Ово избегава ифраме распоред и померање ограничења, и омогућава колону Скрипта по речнику у Речници дијалог.</translation>
+    </message>
+    <message>
+      <source>Word:</source>
+      <translation>Реч:</translation>
+    </message>
+    <message>
+      <source>Text:</source>
+      <translation>Текстуална порука:</translation>
+    </message>
+    <message>
+      <source>Sentence:</source>
+      <translation>Реченица:</translation>
+    </message>
+    <message>
+      <source>Interface Font</source>
+      <translation>Интерфејс Фонт</translation>
+    </message>
+    <message>
+      <source>Custom family</source>
+      <translation>Прилагођена породица</translation>
+    </message>
+    <message>
+      <source>Custom size</source>
+      <translation>Прилагођена величина</translation>
     </message>
   </context>
   <context>
@@ -3620,11 +3750,63 @@ from Stardict, Babylon and GLS dictionaries</source>
     </message>
     <message>
       <source>Force the word to be translated in Popup.</source>
-      <translation type="unfinished">Force the word to be translated in Popup.</translation>
+      <translation>Принудно превођење речи у искачућем прозору.</translation>
     </message>
     <message>
       <source>Force the word to be translated in the mainwindow.</source>
-      <translation type="unfinished">Force the word to be translated in the mainwindow.</translation>
+      <translation>Присилите да се реч преведе у главном прозору.</translation>
+    </message>
+    <message>
+      <source>Website Url:</source>
+      <translation>URL веб-сајта:</translation>
+    </message>
+    <message>
+      <source>In the Url, &quot;%GDWORD%&quot; will be replaced with the word being searched.</source>
+      <translation>У URL-у, "%GDWORD%" ће бити замењено речју која се претражује.</translation>
+    </message>
+    <message>
+      <source>Complete Html (*.html *.htm)</source>
+      <translation>Комплетан ХТМЛ (*.хтмл *.хтм)</translation>
+    </message>
+    <message>
+      <source>Single Html (*.html *.htm)</source>
+      <translation>Један ХТМЛ (*.хтмл *.хтм)</translation>
+    </message>
+    <message>
+      <source>PDF document (*.pdf *.PDF)</source>
+      <translation>PDF документ (*.pdf *.PDF)</translation>
+    </message>
+    <message>
+      <source>Mime Html (*.mhtml)</source>
+      <translation>Миме Хтмл (*.мхтмл)</translation>
+    </message>
+    <message>
+      <source>Save Article As</source>
+      <translation>Сачувајте овај чланак као</translation>
+    </message>
+    <message>
+      <source>Save article complete</source>
+      <translation>Сачувај чланак је завршен</translation>
+    </message>
+    <message>
+      <source>Error</source>
+      <translation>Грешка</translation>
+    </message>
+    <message>
+      <source>Can&apos;t save article: %1</source>
+      <translation>Није могуће сачувати чланак: %1</translation>
+    </message>
+    <message>
+      <source>Save PDF complete</source>
+      <translation>Save PDF complete</translation>
+    </message>
+    <message>
+      <source>Save PDF failed</source>
+      <translation>Save PDF failed</translation>
+    </message>
+    <message>
+      <source>Saving article... (%1/%2)</source>
+      <translation>Чување чланка... (%1/%2)</translation>
     </message>
   </context>
   <context>
@@ -3656,6 +3838,10 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>The referenced resource failed to download.</source>
       <translation>Није могуће учитати повезане ресурсе.</translation>
     </message>
+    <message>
+      <source>the resource would be saved outside of the destination folder.</source>
+      <translation>Ресурс ће бити сачуван изван одредишне фасцикле.</translation>
+    </message>
   </context>
   <context>
     <name>Romaji</name>
@@ -3681,6 +3867,26 @@ from Stardict, Babylon and GLS dictionaries</source>
       <source>WARNING: %1</source>
       <translation>УПОЗОРЕЊЕ: %1</translation>
     </message>
+    <message>
+      <source>Definition</source>
+      <translation>Дефиниција</translation>
+    </message>
+    <message>
+      <source>Close current tab</source>
+      <translation>Затвори тренутну картицу</translation>
+    </message>
+    <message>
+      <source>Close all tabs except current</source>
+      <translation>Затворите све картице осим тренутне</translation>
+    </message>
+    <message>
+      <source>Close all tabs</source>
+      <translation>Затворите све картице</translation>
+    </message>
+    <message>
+      <source>Open in &amp;External Browser</source>
+      <translation>Отвори у и спољни претраживач</translation>
+    </message>
   </context>
   <context>
     <name>ScanPopupToolBar</name>
@@ -3705,10 +3911,6 @@ from Stardict, Babylon and GLS dictionaries</source>
       <translation>Send word to main window (Alt+W)</translation>
     </message>
     <message>
-      <source>Alt+W</source>
-      <translation type="unfinished">Alt+W</translation>
-    </message>
-    <message>
       <source>Add word to Favorites (Ctrl+E)</source>
       <translation>Add word to Favorites (Ctrl+E)</translation>
     </message>
@@ -3721,6 +3923,10 @@ from Stardict, Babylon and GLS dictionaries</source>
 could be resized or managed in other ways.</source>
       <translation>Use this to pin down the window so it would stay on screen,
 could be resized or managed in other ways.</translation>
+    </message>
+    <message>
+      <source>Save Article</source>
+      <translation>Сачувајте овај чланак</translation>
     </message>
   </context>
   <context>
@@ -4001,27 +4207,27 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
     <message>
       <source>The most widely used method of transcription of Japanese, based on English phonology</source>
-      <translation type="unfinished">The most widely used method of transcription of Japanese, based on English phonology</translation>
+      <translation>Најчешће коришћена метода транскрипције јапанског језика, заснована на енглеској фонологији</translation>
     </message>
     <message>
       <source>Remove selected directories from the list?</source>
-      <translation type="unfinished">Remove selected directories from the list?</translation>
+      <translation>Уклонити изабране директоријуме са листе?</translation>
     </message>
     <message>
       <source>Remove %1 directories from the list?</source>
-      <translation type="unfinished">Remove %1 directories from the list?</translation>
+      <translation>Уклонити %1 директоријума са листе?</translation>
     </message>
     <message>
       <source>Remove %1 sites from the list?</source>
-      <translation type="unfinished">Remove %1 sites from the list?</translation>
+      <translation>Уклонити %1 сајтова са листе?</translation>
     </message>
     <message>
       <source>Remove %1 servers from the list?</source>
-      <translation type="unfinished">Remove %1 servers from the list?</translation>
+      <translation>Уклонити %1 сервера са листе?</translation>
     </message>
     <message>
       <source>Remove %1 programs from the list?</source>
-      <translation type="unfinished">Remove %1 programs from the list?</translation>
+      <translation>Уклонити %1 програма са листе?</translation>
     </message>
   </context>
   <context>
@@ -4118,18 +4324,21 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     </message>
   </context>
   <context>
-    <name>WebSitesModel</name>
+    <name>WebSite</name>
     <message>
-      <source>Insert article as link inside &lt;iframe&gt; tag</source>
-      <translation>Уметните чланак као везу унутар ознаке &lt;iframe&gt;</translation>
+      <source>This website dictionary is opened in a new tab</source>
+      <translation>Овај речник веб-сајта се отвара у новој картици</translation>
     </message>
+    <message>
+      <source>Turn off &quot;Open website dictionary in separate tab&quot; in Preferences to show the website inside the article instead.</source>
+      <translation>Искључи &quot;Отворите речник веб сајта у посебној картици&quot; у Преференцес да бисте уместо тога приказали веб локацију унутар чланка.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WebSitesModel</name>
     <message>
       <source>Enabled</source>
       <translation>Укључено</translation>
-    </message>
-    <message>
-      <source>As link</source>
-      <translation>Као веза</translation>
     </message>
     <message>
       <source>Name</source>
@@ -4142,6 +4351,22 @@ Full list of availiable languages can be found &lt;a href=&quot;https://linguali
     <message>
       <source>Icon</source>
       <translation>Икона</translation>
+    </message>
+    <message>
+      <source>Script</source>
+      <translation>Скрипта</translation>
+    </message>
+    <message>
+      <source>Icon file name. Relative to the config directory.</source>
+      <translation>Назив датотеке иконе. Релативно у односу на конфигурациони директоријум.</translation>
+    </message>
+    <message>
+      <source>Only available when opening websites in separate tabs. Can be a file path (relative to config directory or absolute) or direct script content.</source>
+      <translation>Доступно само приликом отварања веб-сајтова у засебним картицама. Може бити путања датотеке (релативна у односу на конфигурациони директоријум или апсолутна) или директан садржај скрипте.</translation>
+    </message>
+    <message>
+      <source>This column is disabled because &quot;Open website dictionary in separate tab&quot; option is not enabled in Preferences.</source>
+      <translation>Ова колона је онемогућена јер опција "Отвори речник веб-сајта у засебној картици" није омогућена у Подешавањима.</translation>
     </message>
   </context>
   <context>
